@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.puppet_server = puppet_master
     puppet.puppet_node   = puppet_node
 
-    puppet.options << ' --environment production'
+    puppet.options << ' --environment production --test'
 
     if debug
       puppet.options << ' --debug --verbose'
