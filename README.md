@@ -13,7 +13,7 @@ for more info.
 Sites overview
 ---------------
 
-* The [Zotonic status site](http://zotonic.com/docs/latest/tutorials/zotonic_status.html)
+* The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
   is available at [http://ginger.dev:8000](http://ginger.dev:8000). Log in
   with empty password.
 
