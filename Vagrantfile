@@ -15,7 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = app + ".dev"
 
   config.vm.network :private_network, ip: "192.168.33.10"
-  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 35729, host: 35729
 
   if Vagrant::Util::Platform.windows?
