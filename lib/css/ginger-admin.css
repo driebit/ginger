@@ -201,6 +201,11 @@ div.navbar ul.nav i.icon-white {
 
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
     background-color: #ff7600;
+    color: #fff;
+}
+
+.navbar .nav > li a:hover {
+    color: #fff;
 }
 
 .dropdown-menu {
