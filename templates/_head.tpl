@@ -1,0 +1,1 @@
+<script src="/lib/js/mod_ginger_search.js"></script>
