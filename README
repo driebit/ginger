@@ -1,0 +1,5 @@
+Usage:
+
+    {% include "_map.tpl" id=id container="map-canvas" height=300 %}
+
+The height parameter is optional and defaults to 100%.
