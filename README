@@ -1,5 +1,11 @@
 Usage:
 
-    {% include "_map.tpl" id=id container="map-canvas" height=300 %}
+    {% include "_map.tpl" id=[ID] container="UNIQUE_ID" height=HEIGHT %}
 
-The height parameter is optional and defaults to 100%.
+for a single resource and:
+
+	{% include "_map.tpl" id=COLLECTION container="UNIQUE_ID" height=HEIGHT %}
+
+for an array of resources. 
+
+The height parameter [int] is optional and defaults to 100%.
