@@ -13,9 +13,9 @@
 						locations.push({
 							title: '{{ id.title }}',
 							url: '{{ id.page_url }}',
-							lat: {{ id.location_lat }},
-							lng: {{ id.location_lng }},
-							zoom: {{ id.location_zoom_level }}
+							lat: '{{ id.location_lat }}',
+							lng: '{{ id.location_lng }}',
+							zoom: '{{ id.location_zoom_level }}'
 						});
 					{% endif %}
 				{% endfor %}
