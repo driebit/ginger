@@ -1,1 +1,2 @@
-<link rel="stylesheet" type="text/css" href="/lib/css/mod-ginger-search.css">
+<!-- Styling for search suggestions -->
+{% lib "css/mod-ginger-search.css" %}

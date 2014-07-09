@@ -8,6 +8,7 @@
 		{% wire name="show_suggestions"
 			action={update target="suggestions" template="_search_suggestions.tpl"}
 		%}
+		
         <div id="suggestions" class="search-form_suggestions"></div>
 	</form>
 {% endblock %}
