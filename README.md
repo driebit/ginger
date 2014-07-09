@@ -16,3 +16,21 @@ Instructions for checking out/activating this module into Ginger
 13) go to System --> Status
 14) Rescan modules
 15) Flush system caches
+
+Export/import database
+----------------------
+
+Export your database, where `zwartsjansma` is the schema name of the site
+that you want to export:
+
+```bash
+$ cd modules/mod_admin_ginger
+$ ./export.sh zwartsjansma
+```
+Import an exported `.sql` file, where `zwartsjansma` is the schema name of the
+site that you want to import the data to:
+
+```bash
+$ cd modules/mod_admin_ginger
+$ ./import.sh zwartsjansma
+```
