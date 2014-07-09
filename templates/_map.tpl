@@ -1,10 +1,10 @@
 {% with m.rsc[id] as r %}
 
-	{% block map %}	
+	{% block map_container %}	
 		<div id="{{ container }}" style="height: {% if height %}{{ height}}px{% else %}100%{% endif %}"></div>
 	{% endblock %}
 
-	{% block map_script %}
+	{% block map_js %}
 		<script>
 			$(document).ready(function() {
 				var map = new ginger_map({
