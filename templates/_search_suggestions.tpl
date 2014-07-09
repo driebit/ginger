@@ -13,7 +13,7 @@
 			</ul>
 		{% endfor %}
 	{% else %}
-		<span>{_ Nothing found _}</span>
+		<h4>{_ Nothing found _}</h4>
 	{% endif %}
 	
 {% endwith %}
