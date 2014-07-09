@@ -1,2 +1,2 @@
 <!-- Styling for search suggestions -->
-{% lib "css/mod-ginger-search.css" %}
+{% lib "css/mod_ginger_search.css" %}
