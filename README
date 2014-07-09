@@ -1,0 +1,5 @@
+Usage:
+
+  {% include "_search_form.tpl" %}
+
+Note: can only be included once on a page.
