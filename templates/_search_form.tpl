@@ -1,9 +1,15 @@
-<form class="search-form" method="GET" action="{% url search %}">
-    <input type="text" class="search-query" value="{{ q.qs|escape }}" name="qs" placeholder="Search" autocomplete="off" />
+{% block search_form %}
+	<form class="search-form" method="GET" action="{% url search %}">
+		<input type="text" class="search-query do_suggestions" value="{{ q.qs|escape }}" name="qs" placeholder="Search" autocomplete="off" />
 
-    {% wire name="show_search_results"
-        action={update target="search-results" template="_search_results.tpl"}
-    %}
-</form>
+		{% wire name="show_suggestions"
+			action={update target="suggestions" template="_search_suggestions.tpl"}
+		%}
+	</form>
 
-<div id="search-results"></div>
+	<div id="suggestions"></div>
+{% endblock %}
+
+{% block search_js %}
+	{% lib "js/mod_ginger_search.js" %}
+{% endblock %}
