@@ -60,6 +60,16 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     color: #58595b;
 }
 
+h2 {
+    margin: 0 0 0.5em 0;
+}
+
+.alert-info {
+    background: #fdcea6;
+    color: #ff7500;
+    border: 1px solid #ff7500;
+}
+
 /* / Ginger */
 
 .widget-content h1,
@@ -156,6 +166,36 @@ hr {
     background-color: #ff7600;
 }
 
+#changecategory {
+    display: inline-block;
+    padding: 8px 30px 8px 14px;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: #ff7600;
+    font-size: 1em;
+    line-height: 1;
+    color: #58595b;
+    text-shadow: none;
+    border-radius: 3px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.4s;
+}
+
+#changecategory:before {
+    content: '';
+    width: 11px;
+    height: 6px;
+    margin-top: -3px;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAYAAAAVMmT4AAAASElEQVQY02PYGaWuAMQNQCzAgAWAxKHyCiCOAxD/B+ILQGyAReEFqLwDTHABVOADTAOawgXo1iFrSIDSmAqxaPiPVyEWDRgKAWyPRFkti1kpAAAAAElFTkSuQmCC);
+    border: none;
+    opacity: 1;
+}
+
 /* bootstrap structure
 --------------------------------------------------------- */
 @media (min-width: 980px) {
@@ -197,6 +237,10 @@ div.navbar ul.nav i.icon-white {
     background-image: none;
     border-bottom: 1px solid #ba5b15;
     box-shadow: none;
+}
+
+.navbar .nav.pull-right {
+    margin-right: 15px;
 }
 
 .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
