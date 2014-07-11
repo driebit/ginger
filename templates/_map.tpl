@@ -1,7 +1,7 @@
 {% if items %}
 
 	{% block map %}
-		<div id="{{ container }}" style="height: {% if height %}{{ height}}px{% else %}100%{% endif %}"></div>
+		<div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}"></div>
 	{% endblock %}
 
 	{% block map_js %}
