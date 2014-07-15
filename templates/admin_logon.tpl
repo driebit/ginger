@@ -16,8 +16,14 @@
             <div id="logon_error" class="alert alert-block alert-error"></div>
             {% include "_logon_form.tpl" page=page|default:"/admin" hide_title %}
         </div>
+        <div class="logon_bottom">
+            <ul id="logon_methods">
+                {% all include "_logon_extra.tpl" %}
+            </ul>
+            {% all include "_logon_link.tpl" %}
+        </div>
     </div>
-</div>
+
 {% endblock %}
 
 

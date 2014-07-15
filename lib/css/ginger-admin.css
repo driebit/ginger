@@ -985,6 +985,13 @@ body[dir=rtl] label {
     margin-top: 30px;
 }
 
+.logon_bottom {
+    margin-top: 20px;
+}
+#logon_methods{
+    list-style: none;
+}
+
 #logon_error {
     padding: 16px;
     display: none;
