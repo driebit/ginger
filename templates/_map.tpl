@@ -1,9 +1,9 @@
 {% if items %}
 	{% block map %}
-		<div class="location">
-			<div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="location_map {{ class }}"></div>
+		<div class="map">
+			<div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="map_canvas {{ class }}"></div>
 			{% if link %}
-				<a href='http://maps.google.com/maps?q={{ r.location_lat }},{{ r.location_lng }}' class="location_link" target="_blank">
+				<a href='http://maps.google.com/maps?q={{ r.location_lat }},{{ r.location_lng }}' class="map_link" target="_blank">
 					{_ Show larger map _}
 				</a>
 			{% endif %}
@@ -22,7 +22,8 @@
 							lat: '{{ id.location_lat }}',
 							lng: '{{ id.location_lng }}',
 							zoom: '{{ id.location_zoom_level }}',
-							summary: '{{ id.summary|truncate:100 }}'
+							summary: '{{ id.summary|truncate:100 }}',
+							img: '{% image_url id.depiction mediaclass=mediaclass %}'
 						});
 					{% endif %}
 				{% endfor %}
