@@ -2,7 +2,7 @@
 	{% block map %}
 		<div class="location">
 			<div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="location_map {{ class }}"></div>
-			{% if addlink == true %}
+			{% if link %}
 				<a href='http://maps.google.com/maps?q={{ r.location_lat }},{{ r.location_lng }}' class="location_link" target="_blank">
 					{_ Show larger map _}
 				</a>
