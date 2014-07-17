@@ -1,7 +1,7 @@
-#map-canvas div {
+.map_canvas div {
     line-height: normal !important;
 }
 
-#map-canvas img {
+.map_canvas img {
     max-width: none;
 }
