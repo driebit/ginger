@@ -5,7 +5,7 @@ Instructions for checking out/activating this module into Ginger
 2. 'vagrant up' if ginger is not running
 3. 'vagrant ssh'
 4. 'cd /opt/zotonic/priv/modules'
-5. 'ln -sfn /vagrant/modules/mod_admin_ginger .'
+5. 'ln -sfn /vagrant/modules/mod_ginger_admin .'
 6. 'zotonic stop'
 7. 'zotonic start'
 8. 'zotonic shell'
