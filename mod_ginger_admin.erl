@@ -1,4 +1,4 @@
--module(mod_admin_ginger).
+-module(mod_ginger_admin).
 -author("Driebit <info@driebit.nl>").
 
 -mod_title("Ginger admin module").
