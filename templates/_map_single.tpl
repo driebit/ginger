@@ -17,7 +17,8 @@
 			if (locations.length) {
 				var map = new ginger_map({
 					container: '{{ container }}',
-					locations: locations
+					locations: locations,
+					highlight: 0
 				});
 			}
 		});
