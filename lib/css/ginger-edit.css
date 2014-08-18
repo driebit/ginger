@@ -1,0 +1,32 @@
+.navbar-inner {
+    font-weight: normal !important;
+}
+
+.btn {
+    background-color: #d0d2d3;
+    background-image: none;
+    border: medium none;
+    color: #58595b;
+    font-size: 1em;
+    line-height: 1;
+    padding: 8px 14px;
+    text-shadow: none;
+    transition: background-color 0.4s ease 0s;
+}
+
+.btn-primary {
+    font-size: 1em;
+    line-height: 1;
+    padding: 8px 14px;
+    text-shadow: none;
+    background-color: #ff7600;
+    background-image: none;
+    border: medium none;
+    color: #fff;
+}
+
+.btn-mini {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 4px 4px;
+}

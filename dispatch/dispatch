@@ -1,0 +1,4 @@
+[
+	{ginger_edit, ["edit"], controller_page, [{acl, is_auth}, {template, "page_ginger_edit.tpl"}]},
+	{ginger_edit, ["edit", id], controller_page, [{acl_action, edit}, {template, {cat, "page_ginger_edit.tpl"}}]}
+].
