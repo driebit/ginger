@@ -8,10 +8,15 @@
 <div style="background-color: #eeeeee; margin-bottom: 20px;">
 {% for pred_id in pred_ids %}
     {% with m.rsc[pred_id].name as name %}
-	    <h4 style="margin:5px;">{{ m.rsc[pred_id].title }}</h4>
+
+        <h4 style="margin:5px;">{{ m.rsc[pred_id].title }}</h4>
 
 	    <div style="margin-top:0px; padding: 5px;">
-		    <a id="{{ #connect.name }}" href="#connect">+ {_ add a connection _}</a>
+            {% with	m.predicate.object_category[name]|first|element:1 as cat_id %}
+                {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
+                <a id="{{ #connect.name }}" href="#connect">+ {_ add a  _} {{ m.rsc[cat_id].title}}</a>
+            {% endwith %}
+
 		   	{% wire id=#connect.name 
 		   			action={dialog_open template="_action_ginger_dialog_connect.tpl" 
 		   						title=[_"Add a connection: ", p.title]
