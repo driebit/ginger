@@ -1,4 +1,4 @@
-{# Parent template for admin edit widgets. #}
+{# Parent template for ginger edit widgets. #}
 
 {% block widget_wrapper %}
 {% block widget_before %}{% endblock %}
