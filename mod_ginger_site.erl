@@ -6,4 +6,4 @@
 
 -mod_title("Ginger base site").
 -mod_description("Ginger Base Site").
--mod_prio(100).
+-mod_prio(50).

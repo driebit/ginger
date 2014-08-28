@@ -1,0 +1,25 @@
+{% block lib %}
+	{% lib
+	"js/apps/zotonic-1.0.js"
+	"js/apps/z.widgetmanager.js"
+	"js/modules/z.notice.js"
+	"js/modules/z.imageviewer.js"
+	"js/modules/z.dialog.js"
+	"js/modules/livevalidation-1.3.js"
+	"js/modules/z.inputoverlay.js"
+	"js/modules/jquery.loadmask.js"
+	"bootstrap/js/bootstrap.js"
+
+    "js/modules/z.feedback.js"
+    "js/modules/z.adminwidget.js"
+    "js/ginger_edit.js"
+	%}
+{% endblock %}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.widgetManager();
+	});
+</script>
+
+{% script %}
