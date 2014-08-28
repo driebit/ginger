@@ -33,7 +33,7 @@ logon_user(UserId, Actions, Context) ->
 		        _ -> controller_logon:set_rememberme_cookie(UserId, ContextUser)
 		    end,
             z_render:wire([
-                {replace, [{target, "button-logon"}, {template, "button_logon.tpl"}]} | Actions],
+                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]} | Actions],
                 ContextRemember);
 		%{error, user_not_enabled} ->
         %    check_verified(UserId, Context);

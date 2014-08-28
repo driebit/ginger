@@ -91,9 +91,9 @@
 			{% include "_admin_edit_content_media.tpl" %}
 		{% endif %}
 
-		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
-		{% catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages %}
-		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages %}
+		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable %}
+		{% catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=false %}
+		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=false %}
 	{% endblock %}
 	</div>
 
