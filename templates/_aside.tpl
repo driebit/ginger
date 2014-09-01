@@ -9,6 +9,10 @@
 
 {% with m.rsc[id] as r %}
 
+	{% if r.location_lat and r.location_lng %}
+		{% include "_map_single.tpl" %}
+	{% endif %}
+
     {% with r.subject as keywords %} 
         {% if keywords %}
            {% include "_list.tpl" title="Keywords" class="keywords" items=r.subject %}

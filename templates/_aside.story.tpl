@@ -9,10 +9,6 @@
 
 {% with m.rsc[id] as r %}
 
-	{% if r.location_lat and r.location_lng %}
-		{% include "geomap_small.tpl" %}
-	{% endif %}
-
 	{% if r.subject %}
 		<h4>Keywords:</h4>
 		<ul class="keywordlist">

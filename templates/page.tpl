@@ -9,7 +9,7 @@
 
             <h2 class="page-title">{{ id.title }}</h2>
 
-            {% if id.o.depiction|length > 1 %}
+            {% if id.o.depiction|length > 1 and m.modules.info.mod_ginger_slider.enabled %}%}
                 {% include "_slider.tpl" ids=id.o.depiction slider="carousel" pager="carousel-pager" mediaclassSlider="default" mediaclassPager="thumbnail" %}
             {% else %}
                 {% if id.depiction %}
@@ -32,7 +32,9 @@
             {% endif %}
 
             {% block below_body %}{% endblock %}
-            {% block thumbnails %}{% endblock %}
+            {% block thumbnails %}
+                {% catinclude "_image_thumbnails.tpl" id %}
+            {% endblock %}
 
         </div>
 
@@ -45,6 +47,7 @@
     </div>
 
     <div class="row-fluid footer">
+        {% block footer %}{% endblock %}
     </div>
 
 </div>
