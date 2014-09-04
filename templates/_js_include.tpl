@@ -1,25 +1,24 @@
-{% block lib %}
-	{% lib
+
+{% include "_js_include_jquery.tpl" %}
+
+{% lib
 	"js/apps/zotonic-1.0.js"
 	"js/apps/z.widgetmanager.js"
+	"js/modules/ubf.js"
 	"js/modules/z.notice.js"
 	"js/modules/z.imageviewer.js"
 	"js/modules/z.dialog.js"
 	"js/modules/livevalidation-1.3.js"
 	"js/modules/z.inputoverlay.js"
 	"js/modules/jquery.loadmask.js"
-	"bootstrap/js/bootstrap.js"
+	"bootstrap/js/bootstrap.min.js"
+%}
 
-    "js/modules/z.feedback.js"
-    "js/modules/z.adminwidget.js"
-    "js/ginger_edit.js"
-	%}
-{% endblock %}
+{% block _js_include_extra %}{% endblock %}
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$.widgetManager();
+	$(function()
+	{
+	    $.widgetManager();
 	});
 </script>
-
-{% script %}

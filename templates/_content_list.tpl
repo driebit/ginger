@@ -2,9 +2,9 @@
 	{% if title %}
 		<h4 class="section-title">{{ title }}</h4>
 	{% endif %}
-    <ul class="grid">
+    <div class="list-group">
         {% for id in list %}
-            {% catinclude "_grid_item.tpl" id counter=forloop.counter %}
+            {% catinclude "_list_item.tpl" id counter=forloop.counter %}
         {% endfor %}
-    </ul>
+    </div>
 {% endif %}

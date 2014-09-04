@@ -3,8 +3,8 @@
 {% block page_class %}t-collection t-grid{% endblock %}
 
 {% block content %}
-    <main class="collection">
-
+<div class="row">
+    <div class="col-sm-12 col-md-12">
         {% block body %}
             <h2 class="page-title">{{ m.rsc[id].title }}</h2>
             <ul class="grid">
@@ -15,6 +15,6 @@
             {% endwith %}
             </ul>
         {% endblock %}
-
-    </main>
+    </div>
+</div>
 {% endblock %}

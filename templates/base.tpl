@@ -21,8 +21,11 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
+        {% lib
+            "admin-bootstrap3/css/bootstrap.min.css"
+            "admin-bootstrap3/css/bootstrap-theme.min.css"
+        %}
         {% lib  
-            "css/skeleton.css"
             "css/ginger_site.css"
             "css/zotonic-admin.css"
 
@@ -51,8 +54,10 @@
         {% block content %}{% endblock %}
         
         {% include "_footer.tpl" %}
-        {% include "_js.tpl" %}
-        {% block _js_include_extra %}{% endblock %}
     </div>
+
+    {% include "_js_include.tpl" %}
+    {% script %}
+
     </body>
 </html>

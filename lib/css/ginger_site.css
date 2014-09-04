@@ -2,6 +2,15 @@ body {
     padding-top: 4px !important;
 }
 
+.navbar-default {
+    background-image: linear-gradient(to bottom, #cccccc 0px, #eeeeee 100%);
+    background-repeat: repeat-x;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(200, 200, 200, 0.15) inset, 0 1px 5px rgba(200, 200, 200, 0.075);
+    background-color: #ffffff;
+    border-color: #bbbbbb;
+}
+
 p {
     margin: 20px 0 10px;
 }
