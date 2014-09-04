@@ -30,3 +30,37 @@
     line-height: 14px;
     padding: 4px 4px;
 }
+
+#editcol {
+	max-width: 800px;
+}
+nav.navbar .checkbox.inline {
+	color:white;
+	padding-top: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+nav.navbar .btn {
+	margin-bottom: 10px;
+}
+
+.meta-data .checkbox.inline {
+	padding-top: 0;
+}
+
+.meta-data {
+	color: #777;
+}
+
+#meta-extra {
+	margin-left:10px;
+}
+
+.publication-dates {
+	display: block;
+	margin-top: 4px;
+}
+
+input.do_timepicker {
+	width: 40px;
+}

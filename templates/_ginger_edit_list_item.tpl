@@ -2,8 +2,8 @@
 {% with m.rsc[object_id] as list_item %}
     {% if list_item.is_visible %}
         {% sortable id=#unlink_wrapper tag=edge_id %}
-        <li id="{{ #unlink_wrapper }}" class="list-item" style="margin-bottom: 20px; background-color: #ffffff; padding: 2px; height:100px;">
-            <div class="">
+        <li id="{{ #unlink_wrapper }}">
+            <div class="list-group-item" style="min-height: 145px;">
                 <a href="{{ list_item.page_url }}" style="text-decoration: none;">
                     {% if list_item.is_editable %}
                        <img class="grippy" src="/lib/images/grippy.png" alt="" style="float: right; padding: 2px;"/>
@@ -14,10 +14,10 @@
                     {% image object_id mediaclass="ginger_edit_list_img" style="padding: 5px; float: left;" %}
                     {{ list_item.id|summary:120 }}
                 </a>
-                <span class="btns" style="position: absolute; top: 85px; right: 3px;">
+                <span class="btns" style="position: absolute; top: 115px; right: 3px;">
                     {% if list_item.is_editable %}
-                        <button id="{{ #unlink }}" title="{_ Disconnect _}" class="btn btn-mini"><i class="icon-remove"></i></button>
-                        <a class="btn btn-mini" href="/edit/{{ list_item.id }}" title="{{ title|default:_"Edit" }}"><i class="icon-edit"></i></a>
+                        <a class="btn btn-mini" id="{{ #unlink }}" title="{_ Disconnect _}"><i class="glyphicon glyphicon-remove"></i></button>
+                        <a class="btn btn-mini" href="/edit/{{ list_item.id }}" title="{{ title|default:_"Edit" }}"><i class="glyphicon glyphicon-edit"></i></a>
                     {% endif %}
                 </span>
             </div>

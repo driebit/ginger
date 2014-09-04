@@ -19,7 +19,7 @@
 <div class="tab-content" id="dialog-connect-panels">
     {% block tabs_content %}
 
-        {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id title="" redirect=redirect cat=cat
+        {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id title=""
                     is_active=1 %}
 
         {% include "_action_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect

@@ -1,24 +1,7 @@
-%% @author Marc Worrell <marc@worrell.nl>
-%% @copyright 2009 Marc Worrell
-%% Date: 2009-04-27
-%% @doc Open a dialog with some fields to make a new page/resource.
-
-%% Copyright 2009 Marc Worrell
-%%
-%% Licensed under the Apache License, Version 2.0 (the "License");
-%% you may not use this file except in compliance with the License.
-%% You may obtain a copy of the License at
-%%
-%%     http://www.apache.org/licenses/LICENSE-2.0
-%%
-%% Unless required by applicable law or agreed to in writing, software
-%% distributed under the License is distributed on an "AS IS" BASIS,
-%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%% See the License for the specific language governing permissions and
-%% limitations under the License.
+%% Redirect to ginger edit 
 
 -module(action_ginger_edit_dialog_new_rsc).
--author("Marc Worrell <marc@worrell.nl").
+-author("Fred <fred@driebit.nl").
 
 %% interface functions
 -export([
@@ -42,34 +25,6 @@ render_action(TriggerId, TargetId, Args, Context) ->
     {PostbackMsgJS, Context}.
 
 
-%% @doc Fill the dialog with the new page form. The form will be posted back to this module.
-%% @spec event(Event, Context1) -> Context2
-event(#postback{message={new_rsc_dialog, Title, Cat, NoCatSelect, Redirect, SubjectId, Predicate, Callback, Actions}}, Context) ->
-    CatName = case Cat of
-        undefined -> z_convert:to_list(?__("page", Context));
-        _ -> z_convert:to_list(?__(m_rsc:p(Cat, title, Context), Context))
-    end,
-    CatId = case Cat of
-                undefined -> undefined;
-                X when is_integer(X) -> X;
-                X -> m_category:name_to_id_check(X, Context)
-            end,
-    Vars = [
-        {delegate, atom_to_list(?MODULE)},
-        {redirect, Redirect },
-        {subject_id, SubjectId},
-        {predicate, Predicate},
-        {title, Title},
-        {cat, CatId},
-        {nocatselect, NoCatSelect},
-        {catname, CatName},
-        {callback, Callback},
-        {catname, CatName},
-        {actions, Actions}
-    ],
-    z_render:dialog(z_convert:to_list(?__("Make a new ", Context))++CatName, "_action_dialog_new_rsc.tpl", Vars, Context);
-
-
 event(#submit{message={new_page, Args}}, Context) ->
     Redirect = 1,
     SubjectId = proplists:get_value(subject_id, Args),
@@ -88,10 +43,10 @@ event(#submit{message={new_page, Args}}, Context) ->
     {_,Context1} = mod_admin:do_link(z_convert:to_integer(SubjectId), Predicate, Id, Callback, Context),
 
     % Close the dialog
-    Context2a = z_render:wire({dialog_close, []}, Context1),
+    %Context2a = z_render:wire({dialog_close, []}, Context1),
 
     % wire any custom actions
-    Context2 = z_render:wire([{Action, [{id, Id}|ActionArgs]}|| {Action, ActionArgs} <- Actions], Context2a),
+    Context2 = z_render:wire([{Action, [{id, Id}|ActionArgs]}|| {Action, ActionArgs} <- Actions], Context1),
 
     % optionally redirect to the edit page of the new resource
     case z_convert:to_bool(Redirect) of

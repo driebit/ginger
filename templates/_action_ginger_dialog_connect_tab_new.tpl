@@ -3,7 +3,7 @@
 			delegate="action_ginger_edit_dialog_new_rsc" 
 			predicate=predicate
 			callback=callback
-            redirect=true
+            actions=actions
 			cat=cat|default:(m.predicate.object_category[predicate]|first|element:1)
             nocatselect=1
 	%}

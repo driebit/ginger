@@ -5,11 +5,10 @@
 {% with id.category_id as cat_id %}
 {% with m.rsc[cat_id].o.viewable_predicates as pred_ids %}
 
-<div style="background-color: #eeeeee; margin-bottom: 20px;">
 {% for pred_id in pred_ids %}
     {% with m.rsc[pred_id].name as name %}
 
-        <h4 style="margin:5px;">{{ m.rsc[pred_id].title }}</h4>
+        <h4 class="section-title">{{ m.rsc[pred_id].title }}</h4>
 
 	    <div style="margin-top:0px; padding: 5px;">
             {% with	m.predicate.object_category[name]|first|element:1 as cat_id %}
@@ -33,19 +32,14 @@
                           group=name
                           delegate=`controller_admin_edit`
                 %}
-                <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl" style="list-style-type: none; margin-left: 5px; margin-right: 5px; margin-bottom: 0px;">
+                <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl" style="list-style-type: none; margin-left: -35px; margin-right: 5px; margin-bottom: 0px;">
                     {% include "_ginger_edit_list.tpl" id=id predicate=name %}
                 </ul>
             </div>
         {% endif %}
 
-        <div style="background-color: #ffffff; height: 20px;">
-        </div>
     {% endwith %}
 {% endfor %}
-</div>
-<div style="background-color: #ffffff; height: 20px;">
-</div>
 
 {% endwith %}
 {% endwith %}

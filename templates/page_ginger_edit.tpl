@@ -2,27 +2,28 @@
 
 {% block title %}{_ Edit _}{% if id %}: {{ id.title|default:"-" }}{% endif %}{% endblock%}
 
-{% block html_head_extra %}
+{% block head_extra %}
 	{% lib 
-			"css/admin-frontend.css" 
-			"css/jquery-ui.datepicker.css"
-            "css/jquery.timepicker.css"
-            "css/ginger-edit.css"
+        "css/zotonic-admin.css" 
+        "css/jquery-ui.datepicker.css"
+        "css/jquery.timepicker.css"
+        "css/ginger-edit.css"
 	%}
 {% endblock %}
 
 {% block content %}
-	<div class="row-fluid">
-        <div class="span8 main">
+	<div class="row">
+        <div class="col-sm-8 col-md-8">
             {% include "_ginger_edit.tpl" %}
         </div>
-        <div id="subnavbar" class="span4">
-            {% block subnavbar %}
-                {% catinclude "_aside.tpl" id page="edit" %}
-            {% endblock %}
+
+        <div class="col-sm-4 col-md-4">
+            {% catinclude "_aside.tpl" id page="edit" %}
         </div>
 	</div>
-	{% include "_admin_edit_js.tpl" %}
+    <div class="footer row">
+        {% block footer %}{% endblock %}
+    </div>
 {% endblock %}
 
 {% block navbar %}
@@ -50,9 +51,12 @@
 </nav>
 {% endblock %}
 
+
 {% block _js_include_extra %}
+
 	{% lib
     	"js/modules/jquery.hotkeys.js"
+	    "js/modules/z.adminwidget.js"
 	    "js/modules/z.tooltip.js"
 	    "js/modules/z.feedback.js"
 	    "js/modules/z.formreplace.js"
@@ -61,9 +65,11 @@
 	    "js/modules/jquery.shorten.js"
 	    "js/modules/jquery.timepicker.min.js"
 
+	    "js/jquery.ui.nestedSortable.js"
+
 	    "js/apps/admin-common.js"
-	    "js/modules/tinymce3.5.0/z_editor.js"
+	    "js/modules/admin-frontend.js"
 	%}
 	{% all include "_admin_lib_js.tpl" %}
-	{% include "_admin_tinymce.tpl" is_tinymce_include %}
+
 {% endblock %}
