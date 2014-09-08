@@ -1,5 +1,3 @@
-<header class="main-header">
-    <div class="wrapper">
-        {% include "_nav.tpl" %}
-    </div>
+<header class="row">
+	{% include "_nav.tpl" %}
 </header>

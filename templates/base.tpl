@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<!--
+ #################################
+       _      _      _     _ _
+    __| |_ __(_) ___| |__ (_) |_
+   / _` | '__| |/ _ \ '_ \| | __|
+  | (_| | |  | |  __/ |_) | | |_
+   \__,_|_|  |_|\___|_.__/|_|\__|
+
+ ############ driebit ############
+
+ geavanceerde internet applicaties
+
+         Oudezijds Voorburgwal 247
+                 1012 EZ Amsterdam
+                    020 - 420 8449
+                   info@driebit.nl
+                    www.driebit.nl
+
+##################################
+//-->
 <!--[if IE 8 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie8"> <![endif]-->
 <!--[if IE 9 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
@@ -15,49 +35,40 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Driebit" />
 
         <title>{% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}</title>
 
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
-        {% lib
-            "admin-bootstrap3/css/bootstrap.min.css"
-            "admin-bootstrap3/css/bootstrap-theme.min.css"
-        %}
-        {% lib  
-            "css/ginger_site.css"
-            "css/zotonic-admin.css"
-
-	        "css/jquery.loadmask.css" 
-	        "css/z.growl.css" 
-	        "css/z.modal.css" 
-        %}
-        <!--[if lt IE 10]>
-        <link rel="stylesheet" type="text/css" href="/lib/css/build/ie.css">
-        <![endif]-->
-
-        {% include "_js_include_jquery.tpl" %}
         {% all include "_head.tpl" %}
+
+        {% lib
+            "bootstrap/css/bootstrap.min.css"
+            "bootstrap/css/bootstrap-theme.min.css"
+            "css/screen.css"
+        %}
 
         {% block head_extra %}{% endblock %}
     </head>
 
     <body class="{% block page_class %}{% endblock %}">
-    <div class="container">
-        <div class="masthead">
-            {% block navbar %}
+    
+        <div class="container">
+            {% block header %}
                 {% include "_header.tpl" %}
             {% endblock %}
+            
+            {% block content %}{% endblock %}
+            
+            {% block footer %}
+                {% include "_footer.tpl" %}
+            {% endblock %}
         </div>
-        
-        {% block content %}{% endblock %}
-        
-        {% include "_footer.tpl" %}
-    </div>
 
-    {% include "_js_include.tpl" %}
-    {% script %}
+        {% include "_js_include.tpl" %}
+        {% script %}
 
     </body>
 </html>
