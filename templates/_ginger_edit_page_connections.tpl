@@ -26,7 +26,8 @@
 	   	</div>
 
 		{% if m.rsc[cat_id].name != "collection" and m.rsc[cat_id].name != "query" %}
-            <div class="unlink-wrapper">
+                <div class="list-group">
+                <div class="unlink-wrapper">
                 {% sorter id=["links",id|format_integer,name]|join:"-" 
                           tag={object_sorter predicate=name id=id} 
                           group=name
@@ -35,6 +36,7 @@
                 <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl" style="list-style-type: none; margin-left: -35px; margin-right: 5px; margin-bottom: 0px;">
                     {% include "_ginger_edit_list.tpl" id=id predicate=name %}
                 </ul>
+            </div>
             </div>
         {% endif %}
 

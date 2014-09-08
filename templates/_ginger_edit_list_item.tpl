@@ -4,10 +4,10 @@
         {% sortable id=#unlink_wrapper tag=edge_id %}
         <li id="{{ #unlink_wrapper }}">
             <div class="list-group-item" style="min-height: 145px;">
+                {% if list_item.is_editable %}
+                   <img class="grippy" src="/lib/images/grippy.png" alt="" style="float: right; padding: 2px;"/>
+                {% endif %}
                 <a href="{{ list_item.page_url }}" style="text-decoration: none;">
-                    {% if list_item.is_editable %}
-                       <img class="grippy" src="/lib/images/grippy.png" alt="" style="float: right; padding: 2px;"/>
-                    {% endif %}
                     <h4 class="title" style="margin-bottom:4px;">
                         {{ list_item.title|default:"&mdash;" }}
                     </h4>

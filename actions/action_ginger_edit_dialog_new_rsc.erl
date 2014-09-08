@@ -25,7 +25,35 @@ render_action(TriggerId, TargetId, Args, Context) ->
     {PostbackMsgJS, Context}.
 
 
-event(#submit{message={new_page, Args}}, Context) ->
+%% @doc Fill the dialog with the new page form. The form will be posted back to this module.
+%% @spec event(Event, Context1) -> Context2
+event(#postback{message={new_rsc_dialog, Title, Cat, NoCatSelect, Redirect, SubjectId, Predicate, Callback, Actions}}, Context) ->
+    CatName = case Cat of
+        undefined -> z_convert:to_list(?__("page", Context));
+        _ -> z_convert:to_list(?__(m_rsc:p(Cat, title, Context), Context))
+    end,
+    CatId = case Cat of
+                undefined -> undefined;
+                X when is_integer(X) -> X;
+                X -> m_category:name_to_id_check(X, Context)
+            end,
+    Vars = [
+        {delegate, atom_to_list(?MODULE)},
+        {redirect, Redirect },
+        {subject_id, SubjectId},
+        {predicate, Predicate},
+        {title, Title},
+        {cat, CatId},
+        {nocatselect, NoCatSelect},
+        {catname, CatName},
+        {callback, Callback},
+        {catname, CatName},
+        {actions, Actions}
+    ],
+    z_render:dialog(z_convert:to_list(?__("Make a new ", Context))++CatName, "_action_dialog_new_rsc.tpl", Vars, Context);
+
+
+event(#submit{message={new_ginger_page, Args}}, Context) ->
     Redirect = 1,
     SubjectId = proplists:get_value(subject_id, Args),
     Predicate = proplists:get_value(predicate, Args),
