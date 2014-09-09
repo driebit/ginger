@@ -1,6 +1,5 @@
 <aside>
 	{% with m.rsc[id] as r %}
-
 		{% block keywords %}
 			{% with r.subject as keywords %} 
 				{% if keywords %}
@@ -15,13 +14,13 @@
 		{% block about %}
 			{% if r.o.about %} 
 				<h3>{_ About _}</h3>
-				{% include "_list.tpl" type="image" class="list-about" items=r.subject %}
+				{% include "_list.tpl" type="image" class="list-about" items=r.o.about %}
 			{% endif %}
 		{% endblock %}
 
 		{% block context %}
-			<h3>{_ See Also _}</h3>
 			{% if r.o.fixed_context %}
+				<h3>{_ See Also _}</h3>
 				{% include "_list.tpl" type="image" class="list-context" items=r.o.fixed_context  %}
 			{% elif r.subject %}
 				{% with m.search[{match_objects id=id pagelen=5}] as match %}
