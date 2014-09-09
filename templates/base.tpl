@@ -44,6 +44,12 @@
 
         {% all include "_head.tpl" %}
 
+        {% include "_js_include_jquery.tpl" %}
+
+        {% lib
+            "bootstrap/js/bootstrap.min.js"
+        %}
+
         {% lib
             "bootstrap/css/bootstrap.min.css"
             "bootstrap/css/bootstrap-theme.min.css"
