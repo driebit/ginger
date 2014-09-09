@@ -25,6 +25,7 @@
 			{% elif r.subject %}
 				{% with m.search[{match_objects id=id pagelen=5}] as match %}
 				    {% if match %}
+						<h3>{_ See Also _}</h3>
 				        <ul class="list list-image list-match">
 				            {% for id, rank in match %}
 				                {% catinclude "_list_item_image.tpl" id %}

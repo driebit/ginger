@@ -1,4 +1,4 @@
-article img, aside img {
+img {
   width: 100%;
   border-radius: 4px; }
 
@@ -14,13 +14,15 @@ article {
   margin-bottom: 20px; }
   article img {
     margin-bottom: 20px; }
-  article .page_title {
+  article .title {
     margin-bottom: 20px; }
-  article .page_summary {
+  article .summary {
     margin-bottom: 20px;
     font-size: 17.5px;
     font-weight: 700;
     line-height: 1.25; }
+  article .body {
+    margin-bottom: 20px; }
 
 aside .well ul {
   padding-left: 20px; }

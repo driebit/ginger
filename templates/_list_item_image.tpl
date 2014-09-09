@@ -1,5 +1,5 @@
 {% with id.depiction as dep %}
-	<li class="list_item {% if not dep %} no-image{% endif %}">
+	<li class="list_item{% if not dep %} no-image{% endif %} {{ class }}">
 		<a href="{{ id.page_url }}">
 			{% if id.title %}
 				<h3>{{ id.title }}</h3>

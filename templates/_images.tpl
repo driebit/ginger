@@ -1,4 +1,4 @@
-<div class="page_images container-fluid">
+<div class="article_images container-fluid">
 	{% with id.o.depiction as deps %}
 		{% if deps|length > 1 %}
 			<div class="thumbnails row">
