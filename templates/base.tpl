@@ -68,6 +68,7 @@
         </div>
 
         {% include "_js_include.tpl" %}
+        {% all include "_script.tpl" %}
         {% script %}
 
     </body>

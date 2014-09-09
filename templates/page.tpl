@@ -5,7 +5,7 @@
 {% block content %}
     <div class="row">
         {% block main %}
-            <div class="col-md-8">
+            <article class="col-md-8">
                 {% block title %}
                     <h2 class="page_title">{{ id.title }}</h2>
                 {% endblock %}
@@ -31,7 +31,7 @@
                 {% block images %}
                     {% include "_images.tpl" %}
                 {% endblock %}
-            </div>
+            </article>
         {% endblock %}
     
         {% block aside %}

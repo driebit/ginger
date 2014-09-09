@@ -1,0 +1,57 @@
+.list-image {
+	margin: 0;
+	padding: 0;
+
+	.list_item {
+		display: block;
+		position: relative;
+		overflow: hidden;
+		margin-bottom: 20px;
+
+		a {
+			text-decoration: none;
+		}
+
+		h3 {
+			position: absolute;
+			width: 100%;
+			margin: 0;
+			padding: 10px;
+			background: rgba(255, 255, 255, 0.9);
+			color: $twitter_blue;
+		}
+
+		p {
+			position: absolute;
+			bottom: -200px;
+			width: 100%;
+			margin: 0;
+			padding: 10px;
+			background: rgba(255, 255, 255, 0.9);
+			color: $text_default;
+
+			transition: bottom 0.4s; 
+		}
+
+		&:hover {
+			p {
+				bottom: 0;
+			}
+		}
+
+		&.no-image {
+			background: $twitter_gray;
+			border-radius: 4px;
+
+			h3,
+			p {
+				position: relative;
+				background: none;
+			}
+
+			p {
+				bottom: 0;
+			}
+		}
+	}
+}
