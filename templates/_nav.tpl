@@ -13,7 +13,7 @@
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 			{% menu menu_id=menu_id id=id %}
 			{% include "_nav_language.tpl" %}
-			{% include "_nav_search.tpl" %}
+			{% include "_search_form.tpl" %}
 		</div>
 	</div>
 </nav>
