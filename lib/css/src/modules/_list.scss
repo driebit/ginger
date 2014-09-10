@@ -4,17 +4,20 @@
 
 	.list_item {
 		display: block;
-		position: relative;
-		overflow: hidden;
 		margin-bottom: 20px;
 
 		a {
+			display: block;
 			text-decoration: none;
+			position: relative;
+			overflow: hidden;
 		}
 
 		h3 {
 			position: absolute;
-			width: 100%;
+			top: 0;
+			left: 0;
+			right: 0;
 			margin: 0;
 			padding: 10px;
 			background: rgba(255, 255, 255, 0.9);
@@ -40,15 +43,6 @@
 		}
 
 		&.no-image {
-			background: $twitter_gray;
-			border-radius: 4px;
-
-			h3,
-			p {
-				position: relative;
-				background: none;
-			}
-
 			p {
 				bottom: 0;
 			}

@@ -19,15 +19,11 @@
 				{% endwith %}
 			</article>
 
-			<ul class="home-set list list-image row">
-				{% for id in m.rsc.home_set.haspart %}
-					{% catinclude "_list_item_image.tpl" id class="col-xs-12 col-sm-6" %}
-				{% endfor %}
-			</ul>
+			{% include "_list.tpl" type="image" cols="2" items=m.rsc.home_set.haspart %}
 		</div>
 
 		<aside class="col-md-4">
-			sidebar
+			{% include "_list.tpl" type="image" cols="1" items=m.search[{latest cat="article" pagelen=5}] %}
 		</aside>
 	</div>
 {% endblock %}

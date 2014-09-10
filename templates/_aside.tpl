@@ -23,15 +23,15 @@
 				<h3>{_ See Also _}</h3>
 				{% include "_list.tpl" type="image" class="list-context" items=r.o.fixed_context  %}
 			{% elif r.subject %}
-				{% with m.search[{match_objects id=id pagelen=5}] as match %}
-				    {% if match %}
+				{% with m.search[{match_objects id=id pagelen=5}] as result %}
+					{% if result %}
 						<h3>{_ See Also _}</h3>
-				        <ul class="list list-image list-match">
-				            {% for id, rank in match %}
-				                {% catinclude "_list_item_image.tpl" id %}
-				            {% endfor %}
-				        </div>
-				    {% endif %}
+						<ul class="row list list-image list-match">
+							{% for id, rank in result %}
+								{% catinclude "_list_item_image.tpl" id class="col-xs-12 no-padding" %}
+							{% endfor %}
+						</div>
+					{% endif %}
 				{% endwith %}
 			{% endif %}
 		{% endblock %}

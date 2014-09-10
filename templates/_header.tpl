@@ -1,3 +1,3 @@
-<header class="row">
+<header>
 	{% include "_nav.tpl" %}
 </header>

@@ -10,6 +10,9 @@ footer {
   background: #f0f0f0;
   box-shadow: none; }
 
+.no-padding {
+  padding: 0; }
+
 article {
   margin-bottom: 20px; }
   article img {
@@ -32,14 +35,17 @@ aside .well ul {
   padding: 0; }
   .list-image .list_item {
     display: block;
-    position: relative;
-    overflow: hidden;
     margin-bottom: 20px; }
     .list-image .list_item a {
-      text-decoration: none; }
+      display: block;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden; }
     .list-image .list_item h3 {
       position: absolute;
-      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
       margin: 0;
       padding: 10px;
       background: rgba(255, 255, 255, 0.9);
@@ -56,11 +62,5 @@ aside .well ul {
               transition: bottom 0.4s; }
     .list-image .list_item:hover p {
       bottom: 0; }
-    .list-image .list_item.no-image {
-      background: #f0f0f0;
-      border-radius: 4px; }
-      .list-image .list_item.no-image h3, .list-image .list_item.no-image p {
-        position: relative;
-        background: none; }
-      .list-image .list_item.no-image p {
-        bottom: 0; }
+    .list-image .list_item.no-image p {
+      bottom: 0; }
