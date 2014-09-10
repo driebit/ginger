@@ -5,6 +5,12 @@
 {% block content %}
 	<div class="row">
 		<div class="col-md-8">
+			{% include "_carousel.tpl" 
+				items=m.rsc.home_set.haspart 
+				carousel="carousel" 
+				pager="carousel-pager"
+			%}
+
 			<article class="home-article">
 				{% with m.rsc.home_article as home %}
 					{% block title %}
