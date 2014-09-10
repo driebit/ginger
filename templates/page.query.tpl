@@ -4,6 +4,6 @@
 
 {% block content %}
 	{% with m.search.paged[{query query_id=id pagelen=24 page=q.page}] as result %}
-		{% include "_list.tpl" type="image" cols="3" items=result %}
+		{% include "_list.tpl" cols="3" items=result %}
 	{% endwith %}
 {% endblock %}

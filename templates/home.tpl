@@ -19,11 +19,11 @@
 				{% endwith %}
 			</article>
 
-			{% include "_list.tpl" type="image" cols="2" items=m.rsc.home_set.haspart %}
+			{% include "_list.tpl" cols="2" items=m.rsc.home_set.haspart %}
 		</div>
 
 		<aside class="col-md-4">
-			{% include "_list.tpl" type="image" cols="1" items=m.search[{latest cat="article" pagelen=5}] %}
+			{% include "_list.tpl" cols="1" items=m.search[{latest cat="article" pagelen=5}] %}
 		</aside>
 	</div>
 {% endblock %}

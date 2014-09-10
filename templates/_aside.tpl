@@ -4,9 +4,9 @@
 			{% with r.subject as keywords %} 
 				{% if keywords %}
 					<h3>{_ Keywords _}</h3>
-					<div class="well">
-						{% include "_list.tpl" type="text" class="list-keywords" items=r.subject %}
-					</div>
+					{% for key in keywords %}
+						<a href="{{ key.page_url }}" class="btn btn-default" role="button">{{ key.title }}</a>
+					{% endfor %}
 				{% endif %}
 			{% endwith %}
 		{% endblock %}
@@ -14,23 +14,23 @@
 		{% block about %}
 			{% if r.o.about %} 
 				<h3>{_ About _}</h3>
-				{% include "_list.tpl" type="image" class="list-about" items=r.o.about %}
+				{% include "_list.tpl" class="list-about" items=r.o.about %}
 			{% endif %}
 		{% endblock %}
 
 		{% block context %}
 			{% if r.o.fixed_context %}
 				<h3>{_ See Also _}</h3>
-				{% include "_list.tpl" type="image" class="list-context" items=r.o.fixed_context  %}
+				{% include "_list.tpl" class="list-context" items=r.o.fixed_context  %}
 			{% elif r.subject %}
 				{% with m.search[{match_objects id=id pagelen=5}] as result %}
 					{% if result %}
 						<h3>{_ See Also _}</h3>
-						<ul class="row list list-image list-match">
+						<ul class="row list list-match">
 							{% for id, rank in result %}
-								{% catinclude "_list_item_image.tpl" id class="col-xs-12 no-padding" %}
+								{% include "_list_item_.tpl" id class="col-xs-12 no-padding" %}
 							{% endfor %}
-						</div>
+						</ul>
 					{% endif %}
 				{% endwith %}
 			{% endif %}
