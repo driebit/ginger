@@ -5,19 +5,17 @@ img {
 footer {
   padding: 10px 0; }
 
+.title {
+  margin-bottom: 20px; }
+
 .well {
   border: none;
   background: #f0f0f0;
   box-shadow: none; }
 
-.no-padding {
-  padding: 0; }
-
 article {
   margin-bottom: 20px; }
   article img {
-    margin-bottom: 20px; }
-  article .title {
     margin-bottom: 20px; }
   article .summary {
     margin-bottom: 20px;
@@ -30,12 +28,7 @@ article {
 aside .well ul {
   padding-left: 20px; }
 
-.list {
-  margin: 0;
-  padding: 0; }
-
 .list_item {
-  display: block;
   margin-bottom: 20px; }
   .list_item a {
     display: block;

@@ -4,37 +4,39 @@
 
 {% block content %}
 	<div class="row">
-		{% block main %}
-			<article class="col-md-8">
-				{% block title %}
-					<h2 class="title article_title">{{ id.title }}</h2>
-				{% endblock %}
+		{% block page_main %}
+			{% block title %}
+				<div class="container">
+					<h2 class="title">{{ id.title }}</h2>
+				</div>
+			{% endblock %}
 
-				{% block image %}
+			<article class="col-md-8">
+				{% block page_image %}
 					{% if id.depiction %}
 						{% image id.depiction mediaclass="default" class="img-responsive" alt="" %}
 					{% endif %}
 				{% endblock %}
 
-				{% block summary %}
+				{% block page_summary %}
 					{% if id.summary %}
 						<p class="summary article_summary">{{ id.summary }}</p>
 					{% endif %}
 				{% endblock %}
 
-				{% block body %}
+				{% block page_body %}
 					{% if id.body %}
 						<div class="body article_body">{{ id.body|show_media }}</div>
 					{% endif %}
 				{% endblock %}
 
-				{% block images %}
+				{% block page_images %}
 					{% include "_images.tpl" %}
 				{% endblock %}
 			</article>
 		{% endblock %}
 	
-		{% block aside %}
+		{% block page_aside %}
 			<div class="col-md-4">
 				{% include "_aside.tpl" %}
 			</div>

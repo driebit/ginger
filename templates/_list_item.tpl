@@ -1,5 +1,5 @@
 {% with id.depiction as dep %}
-	<li class="list_item{% if not dep %} no-image{% endif %} {{ class }}">
+	<div class="list_item{% if not dep %} no-image{% endif %} {{ class }}">
 		<a href="{{ id.page_url }}">
 			{% if dep %}
 				{% image dep mediaclass="list-image" alt=id.title class="img-responsive" %}
@@ -15,5 +15,5 @@
 				<p>{{ id.summary|truncate:100 }}</p>
 			{% endif %}
 		</a>
-	</li>
+	</div>
 {% endwith %}

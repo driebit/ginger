@@ -1,5 +1,7 @@
 {% extends "base.tpl" %}
 
+{% block title %}{{ m.config.site.title.value }}{% endblock %}
+
 {% block page_class %}home{% endblock %}
 
 {% block content %}
