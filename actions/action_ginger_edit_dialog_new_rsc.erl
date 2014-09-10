@@ -71,10 +71,10 @@ event(#submit{message={new_ginger_page, Args}}, Context) ->
     {_,Context1} = mod_admin:do_link(z_convert:to_integer(SubjectId), Predicate, Id, Callback, Context),
 
     % Close the dialog
-    %Context2a = z_render:wire({dialog_close, []}, Context1),
+    Context2a = z_render:wire({dialog_close, []}, Context1),
 
     % wire any custom actions
-    Context2 = z_render:wire([{Action, [{id, Id}|ActionArgs]}|| {Action, ActionArgs} <- Actions], Context1),
+    Context2 = z_render:wire([{Action, [{id, Id}|ActionArgs]}|| {Action, ActionArgs} <- Actions], Context2a),
 
     % optionally redirect to the edit page of the new resource
     case z_convert:to_bool(Redirect) of

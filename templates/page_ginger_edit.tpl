@@ -68,7 +68,6 @@
 	    "js/jquery.ui.nestedSortable.js"
 
 	    "js/apps/admin-common.js"
-	    "js/modules/admin-frontend.js"
 	%}
 	{% all include "_admin_lib_js.tpl" %}
 

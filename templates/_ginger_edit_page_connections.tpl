@@ -26,8 +26,8 @@
 	   	</div>
 
 		{% if m.rsc[cat_id].name != "collection" and m.rsc[cat_id].name != "query" %}
-                <div class="list-group">
-                <div class="unlink-wrapper">
+            <div class="list-group">
+            <div class="unlink-wrapper">
                 {% sorter id=["links",id|format_integer,name]|join:"-" 
                           tag={object_sorter predicate=name id=id} 
                           group=name
