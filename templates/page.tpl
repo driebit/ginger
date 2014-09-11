@@ -1,50 +1,43 @@
 {% extends "base.tpl" %}
 
-{% block page_class %}t-page{% endblock %}
+{% block page_class %}page{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-8 col-md-8">
+	{% block page_title %}
+		<h2 class="page-header">{{ id.title }}</h2>
+	{% endblock %}
 
-            <h2 class="page-title">{{ id.title }}</h2>
+	<div class="row">
+		{% block page_content %}
+			<article class="col-md-8">
+				{% block page_image %}
+					{% if id.depiction %}
+						{% image id.depiction mediaclass="default" class="img-responsive" alt="" %}
+					{% endif %}
+				{% endblock %}
 
-            {% block page_image %}
-                {% if id.depiction %}
-                    {% image id.depiction mediaclass="default" crop=id.depiction.id.crop_center alt="" %}
-                {% elif id.media %}
-                    {% media id.media.id width=600 %}
-                {% endif %}
-            {% endblock %}
+				{% block page_summary %}
+					{% if id.summary %}
+						<p class="summary article_summary">{{ id.summary }}</p>
+					{% endif %}
+				{% endblock %}
 
-            {% if id.summary %}
-                <p class="summary">
-                    </p><h3>{{ id.summary }}</h3>
-                <p></p>
-            {% endif %}
+				{% block page_body %}
+					{% if id.body %}
+						<div class="body article_body">{{ id.body|show_media }}</div>
+					{% endif %}
+				{% endblock %}
 
-            {% if id.body %}
-                <div class="body">
-                    {{ id.body|show_media }}
-                </div>
-            {% endif %}
-
-            {% block below_body %}{% endblock %}
-            {% block thumbnails %}
-                {% catinclude "_page_thumbnails.tpl" id %}
-            {% endblock %}
-
-    </div>
-
-
-    <div class="col-lg-4 col-md-4">
-        {% catinclude "_aside.tpl" id %}
-    </div>
-
-</div>
-
-<div class="footer row">
-    {% block footer %}{% endblock %}
-</div>
-
-
+				{% block page_images %}
+					{% include "_images.tpl" %}
+				{% endblock %}
+			</article>
+		{% endblock %}
+	
+		{% block page_aside %}
+			<div class="col-md-4">
+				{% include "_aside.tpl" %}
+			</div>
+		{% endblock %}
+	</div>
 {% endblock %}
