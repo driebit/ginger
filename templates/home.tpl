@@ -14,6 +14,7 @@
 			%}
 
 			<article class="home-article">
+
 				{% with m.rsc.home_article as home %}
 					{% block title %}
 						<h2 class="title home_title">{{ home.title }}</h2>

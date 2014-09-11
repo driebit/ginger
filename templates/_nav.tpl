@@ -1,3 +1,11 @@
+
+<div class="row">
+	<div class="col-md-12">
+		{% include "_nav_logon.tpl" %}
+	</div>
+</div>
+
+
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
