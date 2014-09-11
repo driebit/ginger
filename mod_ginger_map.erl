@@ -6,5 +6,5 @@
 
 -mod_title("Ginger Maps").
 -mod_description("Ginger Maps").
--mod_prio(100).
+-mod_prio(500).
 -mod_depends([mod_geo]).
