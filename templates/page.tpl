@@ -3,14 +3,12 @@
 {% block page_class %}page{% endblock %}
 
 {% block content %}
-	<div class="row">
-		{% block page_main %}
-			{% block title %}
-				<div class="container">
-					<h2 class="title">{{ id.title }}</h2>
-				</div>
-			{% endblock %}
+	{% block page_title %}
+		<h2 class="page-header">{{ id.title }}</h2>
+	{% endblock %}
 
+	<div class="row">
+		{% block page_content %}
 			<article class="col-md-8">
 				{% block page_image %}
 					{% if id.depiction %}
