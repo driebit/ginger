@@ -26,29 +26,29 @@
     </div>
 {% endblock %}
 
-{% block navbar %}
-{# The buttons in the navbar click/sync with hidden counter parts in the resource edit form #}
-<nav class="navbar">
-	<div class="navbar-inner">
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span8" id="save-buttons" style="display:none">
+{% block header %}
+	{# The buttons in the navbar click/sync with hidden counter parts in the resource edit form #}
+	<nav class="navbar">
+		<div class="navbar-inner">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span8" id="save-buttons" style="display:none">
 
-				{% button class="btn btn-primary" text=_"Save" title=_"Save this page." 
-						  action={script script="$('#save_stay').click();"}
-				 %}
+					{% button class="btn btn-primary" text=_"Save" title=_"Save this page." 
+							  action={script script="$('#save_stay').click();"}
+					 %}
 
-				{% button class="btn" text=_"Save &amp; view" title=_"Save and view the page." 
-						  action={script script="$('#save_view').click();"}
-				 %}
+					{% button class="btn" text=_"Save &amp; view" title=_"Save and view the page." 
+							  action={script script="$('#save_view').click();"}
+					 %}
 
-				{# button class="btn pull-right" text=_"Cancel" action={redirect back} tag="a" #}
-				{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
-	    	</div>
+					{# button class="btn pull-right" text=_"Cancel" action={redirect back} tag="a" #}
+					{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
+		    	</div>
+			</div>
 		</div>
-	</div>
-	</div>
-</nav>
+		</div>
+	</nav>
 {% endblock %}
 
 

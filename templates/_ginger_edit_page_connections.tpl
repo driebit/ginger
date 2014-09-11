@@ -33,9 +33,11 @@
                           group=name
                           delegate=`controller_admin_edit`
                 %}
-                <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl" style="list-style-type: none; margin-left: -35px; margin-right: 5px; margin-bottom: 0px;">
-                    {% include "_ginger_edit_list.tpl" id=id predicate=name %}
-                </ul>
+                <div id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl">
+                    {% for o_id, edge_id in m.edge.o[id][name] %}
+                        {% catinclude "_ginger_edit_list_item.tpl" o_id class="col-xs-12" subject_id=id predicate=name object_id=o_id edge_id=edge_id editable%}
+                    {% endfor %}
+                </div>
             </div>
             </div>
         {% endif %}

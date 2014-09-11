@@ -121,8 +121,4 @@
 	}, 10);
 {% endjavascript %}
 
-{% endblock %}
-
-{% block editor %}
-	{% include "_editor.tpl" %}
-{% endblock %}
+{% endblock %}cd c

@@ -64,3 +64,14 @@ nav.navbar .btn {
 input.do_timepicker {
 	width: 40px;
 }
+
+.list_item .edit-btns {
+    position: absolute;
+    top: 6px;
+    right: 22px;
+}
+
+.list_item .edit-btns a {
+    display: inline-block;
+    margin-left: 10px;
+}

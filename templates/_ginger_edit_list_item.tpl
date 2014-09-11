@@ -2,18 +2,11 @@
 {% with m.rsc[object_id] as list_item %}
     {% if list_item.is_visible %}
         {% sortable id=#unlink_wrapper tag=edge_id %}
-        <li id="{{ #unlink_wrapper }}">
-            <div class="list-group-item" style="min-height: 145px;">
-                {% if list_item.is_editable %}
-                   <img class="grippy" src="/lib/images/grippy.png" alt="" style="float: right; padding: 2px;"/>
-                {% endif %}
-                <a href="{{ list_item.page_url }}" style="text-decoration: none;">
-                    <h4 class="title" style="margin-bottom:4px;">
-                        {{ list_item.title|default:"&mdash;" }}
-                    </h4>
-                    {% image object_id mediaclass="ginger_edit_list_img" style="padding: 5px; float: left;" %}
-                    {{ list_item.id|summary:120 }}
-                </a>
+            
+            <div id="{{ #unlink_wrapper }}">
+                
+                {% include "_list_item.tpl" id=list_item %}
+                
                 <span class="btns" style="position: absolute; top: 115px; right: 3px;">
                     {% if list_item.is_editable %}
                         <a class="btn btn-mini" id="{{ #unlink }}" title="{_ Disconnect _}"><i class="glyphicon glyphicon-remove"></i></button>
@@ -21,7 +14,7 @@
                     {% endif %}
                 </span>
             </div>
-        </li>
+
     {% endif %}
 {% endwith %}
 
