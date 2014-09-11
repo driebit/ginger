@@ -57,6 +57,7 @@
     </div>
 
     {% include "_js_include.tpl" %}
+    {% stream %}
     {% script %}
 
     </body>
