@@ -18,11 +18,15 @@
 		{% endwith %}
 	{% endblock %}
 
-	{% block aside_about %}
+	{% block aside_edit_page_connections %}
+		{% include "_ginger_edit_page_connections.tpl" %}
+	{% endblock %}
+
+	{% block aside_connections %}
 		{% if id.o.about %} 
 			<h3>{_ About _}</h3>
 			{% include "_list.tpl" class="list-about" items=id.o.about %}
-		{% endif %}
+		{% endif %}	
 	{% endblock %}
 
 	{% block aside_context %}

@@ -12,7 +12,7 @@
 			{% endif %}
 
 			{% if id.summary %}
-				<p>{{ id.summary|truncate:100 }}</p>
+				<p>{{ id.summary|truncate:150 }}</p>
 			{% endif %}
 		</a>
 	</div>

@@ -36,7 +36,7 @@
 	
 		{% block page_aside %}
 			<div class="col-md-4">
-				{% include "_aside.tpl" %}
+				{% catinclude "_aside.tpl" id %}
 			</div>
 		{% endblock %}
 	</div>
