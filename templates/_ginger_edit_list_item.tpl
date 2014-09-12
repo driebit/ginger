@@ -3,16 +3,16 @@
     {% if list_item.is_visible %}
         {% sortable id=#unlink_wrapper tag=edge_id %}
             
-            <div id="{{ #unlink_wrapper }}">
+            <div id="{{ #unlink_wrapper }}" class="unlink-wrapper">
                 
                 {% include "_list_item.tpl" id=list_item %}
                 
-                <span class="btns" style="position: absolute; top: 115px; right: 3px;">
+                <div class="edit-btns">
                     {% if list_item.is_editable %}
                         <a class="btn btn-mini" id="{{ #unlink }}" title="{_ Disconnect _}"><i class="glyphicon glyphicon-remove"></i></button>
                         <a class="btn btn-mini" href="/edit/{{ list_item.id }}" title="{{ title|default:_"Edit" }}"><i class="glyphicon glyphicon-edit"></i></a>
                     {% endif %}
-                </span>
+                </div>
             </div>
 
     {% endif %}
