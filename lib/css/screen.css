@@ -62,3 +62,6 @@ aside .well ul {
   font-family: 'Glyphicons Halflings';
   src: url('/lib/fonts/glyphicons-halflings-regular.eot');
   src: url('/lib/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/lib/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/lib/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/lib/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
+
+.carousel-pager {
+  margin-bottom: 20px; }
