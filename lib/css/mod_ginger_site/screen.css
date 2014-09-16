@@ -43,7 +43,7 @@ aside .well ul {
     padding: 10px;
     background: rgba(255, 255, 255, 0.9);
     color: #428bca; }
-  .list_item p {
+  .list_item .content {
     position: absolute;
     bottom: -200px;
     width: 100%;

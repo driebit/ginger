@@ -13,9 +13,9 @@
 				{% endif %}
 
 				{% if id.summary %}
-					<p>{{ id.summary|truncate: 200 }}</p>
+					<div class="content">{{ id.summary|truncate: 200 }}</div>
 				{% else %}
-					<p>{{ id.body|truncate: 200 }}</p>
+					<div class="content">{{ id.body|truncate: 200 }}</div>
 				{% endif %}
 			</a>
 		</div>
