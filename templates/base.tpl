@@ -47,11 +47,11 @@
 			"bootstrap/css/bootstrap-theme.min.css"
 		%}
 
-		{% all include "_head.tpl" %}
-
 		{% lib 
-			"css/screen.css"
+			"css/mod_ginger_site/screen.css"
 		%}
+
+		{% all include "_head.tpl" %}
 
 		{% block head_extra %}{% endblock %}
 	</head>
@@ -62,6 +62,8 @@
 			{% block header %}
 				{% include "_header.tpl" %}
 			{% endblock %}
+
+			{% block breadcrumb %}{% endblock %}
 			
 			{% block content %}{% endblock %}
 			

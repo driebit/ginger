@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row jhm-nav-logon">
 	<div class="col-xs-12">
 		{% include "_nav_logon.tpl" %}
 	</div>

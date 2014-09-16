@@ -11,6 +11,9 @@
 		{% if id.summary or id.body %}
 			<div class="row">
 				<div class="col-md-4">
+					
+					{% block custom_title %}{% endblock %}
+
 					{% if id.summary %}
 						<p class="summary">{{ id.summary }}</p>
 					{% endif %}

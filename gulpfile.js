@@ -3,7 +3,7 @@ var gulp         = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
 
     CSS_SOURCE   = 'lib/css/src',
-    CSS_BUILD    = 'lib/css',
+    CSS_BUILD    = 'lib/css/mod_ginger_site',
     JS_SOURCE    = 'lib/js/src',
     JS_BUILD     = 'lib/js/build';
     TEMPLATES    = 'templates'
