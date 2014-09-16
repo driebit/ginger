@@ -18,7 +18,7 @@
 		color: $twitter_blue;
 	}
 
-	p {
+	.content {
 		position: absolute;
 		bottom: -200px;
 		width: 100%;
@@ -26,7 +26,6 @@
 		padding: 10px;
 		background: rgba(255, 255, 255, 0.9);
 		color: $text_default;
-
 		transition: bottom 0.4s; 
 	}
 
