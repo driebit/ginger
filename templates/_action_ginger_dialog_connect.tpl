@@ -1,7 +1,3 @@
-{% with callback|default:q.callback|default:"window.zAdminConnectDone" as callback %}
-{% with actions|default:[] as actions %}
-{% with stay or callback or subject_id as stay %}
-
 <ul class="nav nav-pills">
     {% block tabs %}
 
@@ -27,7 +23,3 @@
 
     {% endblock %}
 </div>
-
-{% endwith %}
-{% endwith %}
-{% endwith %}

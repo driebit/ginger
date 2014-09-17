@@ -82,7 +82,8 @@ event(#submit{message={new_ginger_page, Args}}, Context) ->
              Context2;
         true ->
             Location = z_dispatcher:url_for(ginger_edit_rsc, [{id, Id}], Context2),
-            z_render:wire({redirect, [{location, Location}]}, Context2)
+            ?DEBUG(Location)
+            %z_render:wire({redirect, [{location, Location}]}, Context2)
     end.
 
 get_base_props(undefined, Context) ->
