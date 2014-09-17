@@ -1,3 +1,5 @@
+{% with callback|default:q.callback|default:"window.zAdminConnectDone" as callback %}
+
 <ul class="nav nav-pills">
     {% block tabs %}
 
@@ -19,7 +21,9 @@
                     is_active=1 %}
 
         {% include "_action_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
-                    is_active=0 title="" %}
+                    is_active=0 title="" cat=cat|default:(m.predicate.object_category[predicate]|first|element:1) callback=callback %}
 
     {% endblock %}
 </div>
+
+{% endwith %}
