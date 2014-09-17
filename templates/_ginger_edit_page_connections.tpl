@@ -13,7 +13,7 @@
 	    <div style="margin-top:0px; padding: 5px;">
             {% with	m.predicate.object_category[name]|first|element:1 as cat_id %}
                 {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
-                <a id="{{ #connect.name }}" href="#connect">+ {_ add a  _} {{ m.rsc[cat_id].title}}</a>
+                <a id="{{ #connect.name }}" class="btn btn-small" href="#connect">+ {_ add a  _} {{ m.rsc[cat_id].title}}</a>
             {% endwith %}
 
 		   	{% wire id=#connect.name 
