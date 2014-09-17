@@ -1,10 +1,13 @@
 {% wire id=#form type="submit" 
-	postback={new_ginger_page
-                subject_id=subject_id
-                predicate=predicate
-                redirect=true 
-                actions=actions callback=callback}
-                delegate=delegate 
+	postback={
+        new_page
+        subject_id=subject_id
+        predicate=predicate
+        redirect=redirect 
+        actions=[{redirect dispatch="ginger_edit_rsc" id=id}]
+        callback=callback
+    }
+	delegate=delegate 
 %}
 <p>{_ Please fill in the title _} {% if not nocatselect %}{_ and the category of the new page._}{% else %}{_ of the new _} {{ m.rsc[cat].title }}.{% endif %} </p>
 <form id="{{ #form }}" method="POST" action="postback" class="form">
