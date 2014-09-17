@@ -9,10 +9,10 @@
 	
 	{% block page_content %}
 		{% if id.summary or id.body %}
-			<div class="row">
+			<div class="row {% block row_class %}{% endblock %}">
 				<div class="col-md-4">
 					
-					{% block custom_title %}{% endblock %}
+					{% block content_title %}{% endblock %}
 
 					{% if id.summary %}
 						<p class="summary">{{ id.summary }}</p>
@@ -21,12 +21,12 @@
 						<div class="body">{{ id.body }}</div>
 					{% endif %}
 				</div>
-				<div class="col-md-8">
-					{% include "_list.tpl" cols="2" items=id.o.haspart %}
+				<div class="col-md-8 {% block list_right_class %}{% endblock %}">
+					{% catinclude "_list.tpl" id cols="2" items=id.o.haspart %}
 				</div>
 			</div>
 		{% else %}
-			{% include "_list.tpl" cols="3" items=id.o.haspart %}
+			{% catinclude "_list.tpl" id cols="3" items=id.o.haspart %}
 		{% endif %}
 	{% endblock %}
 {% endblock %}

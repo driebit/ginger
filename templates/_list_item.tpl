@@ -11,7 +11,7 @@
 				{% if id.title %}
 					<h3>{{ id.title }}</h3>
 				{% endif %}
-
+				
 				{% if id.summary %}
 					<div class="content">{{ id.summary|truncate: 200 }}</div>
 				{% else %}

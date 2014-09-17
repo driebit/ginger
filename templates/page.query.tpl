@@ -3,6 +3,7 @@
 {% block page_class %}query{% endblock %}
 
 {% block content %}
+
 	{% block page_title %}
 		<h2 class="page-header">{{ id.title }}</h2>
 	{% endblock %}

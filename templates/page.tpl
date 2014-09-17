@@ -7,9 +7,12 @@
 		<h2 class="page-header">{{ id.title }}</h2>
 	{% endblock %}
 
-	<div class="row">
+	<div class="row {% block row_class %}{% endblock %}">
 		{% block page_content %}
 			<article class="col-md-8">
+
+				{% block content_title %}{% endblock %}
+
 				{% block page_image %}
 					{% if id.depiction %}
 						{% image id.depiction mediaclass="default" class="img-responsive" alt="" %}
