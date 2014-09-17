@@ -11,14 +11,13 @@ event(#submit{message={ginger_logon, Args}, form="logon_dialog"}, Context) ->
     case z_notifier:first(#logon_submit{query_args=LogonArgs}, Context) of
         {ok, UserId} when is_integer(UserId) ->
             ContextUser = logon_user(UserId, Actions, PageUrl, Context);
-        {error, _Reason} ->
-            ?DEBUG(_Reason),
-            Props = '[{email,"fred+1@driebit.nl"},{name_first,"steven2"},{name_surname_prefix,[]},{name_surname,"steven2"}]',
-            SignupProps = '[{identity,{email,"fred+1@driebit.nl",false,false}},{identity,{username_pw,{"fred+1@driebit.nl","steven2"},true,true}}]',
-            ginger_signup(Props, SignupProps, Actions, PageUrl, Context);
-        undefined ->
+        {error, _Reason} -> 
+            logon_error("pw", Context);
+        {expired, UserId} when is_integer(UserId) ->
+            logon_stage("password_expired", [{user_id, UserId}, {secret, set_reminder_secret(UserId, Context)}], Context);
+        undefined -> 
             ?zWarning("Auth module error: #logon_submit{} returned undefined.", Context),
-            z_render:growl_error("Configuration error: please enable a module for #logon_submit{}", Context)
+            logon_error("pw", Context)
     end;
 
 event(#postback{message={ginger_logoff, Args}}, Context) ->

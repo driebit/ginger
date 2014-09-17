@@ -10,8 +10,6 @@
 {% include "_logon_error.tpl" reason=error_reason %}
 </div>
 
-<a data-toggle="tab" href="#{{ #tab }}-register"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I don’t have an account, please sign me up. _}</a>
-
 <div id="logon_form">
     <iframe src="/lib/images/spinner.gif" id="logonTarget" name="logonTarget" style="display:none"></iframe>
     {% with m.rsc[id].uri as page %}
@@ -54,6 +52,8 @@
 <ul id="logon_methods">
     {% all include "_logon_extra.tpl" %}
 </ul>
+
+{# <a data-toggle="tab" href="#{{ #tab }}-register"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I don’t have an account, please sign me up. _}</a> #}
 
 </div>
 

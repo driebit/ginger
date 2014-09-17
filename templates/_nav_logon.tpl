@@ -16,11 +16,11 @@
             {%
                 wire id=#ginger_logon 
                 action={dialog_open template="_action_dialog_authenticate.tpl" 
-                                title=_"Log on"
+                                title=_"logon or register"
                                 template="_action_dialog_authenticate.tpl"
                                 action={redirect id=id}
                                 id=id
-                                tab=logon}
+                                tab="logon"}
             %}
         {% endif %}
     {% endwith %}
