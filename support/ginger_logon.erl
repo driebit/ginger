@@ -13,8 +13,6 @@ event(#submit{message={ginger_logon, Args}, form="logon_dialog"}, Context) ->
             ContextUser = logon_user(UserId, Actions, PageUrl, Context);
         {error, _Reason} -> 
             logon_error("pw", Context);
-        {expired, UserId} when is_integer(UserId) ->
-            logon_stage("password_expired", [{user_id, UserId}, {secret, set_reminder_secret(UserId, Context)}], Context);
         undefined -> 
             ?zWarning("Auth module error: #logon_submit{} returned undefined.", Context),
             logon_error("pw", Context)
@@ -25,6 +23,15 @@ event(#postback{message={ginger_logoff, Args}}, Context) ->
     %Id = z_convert:to_integer(proplists:get_value(id, Args)),
     PageUrl = proplists:get_value(page, Args),
     z_render:wire({redirect, [{location, PageUrl}]}, Context).
+
+%% @doc Handle the submit of the signup form.
+event(#submit{message={ginger_handle_signup, Args}, form="signup_dialog"}, Context) ->
+    % TO DO some real handling of the form :)
+    Actions = proplists:get_all_values(action, Args),
+    PageUrl = proplists:get_value(page, Args),
+    Props = [],
+    SignupProps = [],
+    ginger_signup(Props, SignupProps, Actions, PageUrl, Context).
 
 logon_user(UserId, Actions, PageUrl, Context) ->
     case z_auth:logon(UserId, Context) of

@@ -1,8 +1,8 @@
 <div class="tab-pane {% if is_active %}active{% endif %}" id="{{ tab }}-register">
 {%
-	wire id="register_dialog"
+	wire id="signup_dialog"
 	type="submit"
-	postback={ginger_register action=action}
+	postback={ginger_handle_signup action=action}
 	delegate="ginger_logon"
 %}
 
@@ -11,14 +11,8 @@
 </div>
 
 <div id="register_form">
-    <iframe src="/lib/images/spinner.gif" id="logonTarget" name="logonTarget" style="display:none"></iframe>
-    {% with m.rsc[id].uri as page %}
-
-	{% wire id="signup_form" type="submit" postback={signup} %}
-    <form id="signup_form" class="setcookie" method="post" action="postback">
+    <form id="signup_dialog" class="setcookie" method="post" action="postback">
         
-        <input type="hidden" name="page" value="{{ page }}" />
-
 		<div id="signup_name_full">
 			<label for="name_full">{_ Your name _}</label>
             <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" />
@@ -70,7 +64,6 @@
         </div>
 
     </form>
-    {% endwith %}
 </div>    
 
 <ul id="logon_methods">
