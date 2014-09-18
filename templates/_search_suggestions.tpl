@@ -1,6 +1,6 @@
 {# Add one or more cat="NAME" to the query below to filter the result #}
 
-{% with m.search[{query text=q.value pagelen=12}] as result %}
+{% with m.search[{query cat_exclude=cat_exclude text=q.value pagelen=12}] as result %}
 	{% if result %}
 		{% for cat in result|group_by:`category_id` %}
 			<h4>{{ cat[1].category_id.title }}</h4>
