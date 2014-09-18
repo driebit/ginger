@@ -7,6 +7,9 @@
 		{% endblock %}		
 		
 		{% block page_content %}
+
+			{% block content_title %}{% endblock %}
+
 			{% with m.search.paged[{query	text=q.qs pagelen=24 page=q.page}] as result %}
 				{% if result.total > 0 %}
 					{% include "_list.tpl" cols="3" items=result %}
