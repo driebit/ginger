@@ -11,9 +11,9 @@
 				lat: '{{ id.location_lat }}',
 				lng: '{{ id.location_lng }}',
 				zoom: '{{ id.location_zoom_level }}',
-				content: '{{ id.title }}'
+				content: '{% block map_content %}<a class="marker-content" href="{{ id.uri }}">{{ id.title }}</a>{% endblock %}'
 			});
-		{% endif %}
+		{% endif %}	
 	{% endfor %}
 
 	if (locations.length) {
