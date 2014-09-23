@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="row">
+	<div class="row page-ginger_edit_content_row_class">
         <div class="col-sm-8 col-md-8">
             {% include "_ginger_edit.tpl" %}
         </div>
@@ -28,11 +28,11 @@
 
 {% block header %}
 	{# The buttons in the navbar click/sync with hidden counter parts in the resource edit form #}
-	<nav class="navbar">
+	<nav class="navbar navbar-savebuttons">
 		<div class="navbar-inner">
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span8" id="save-buttons" style="display:none">
+				<div class="col-xs-12" id="save-buttons" style="display:none">
 
 					{% button class="btn btn-primary" text=_"Save" title=_"Save this page." 
 							  action={script script="$('#save_stay').click();"}

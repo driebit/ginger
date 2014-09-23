@@ -25,6 +25,10 @@
     color: #fff;
 }
 
+.btn-add-story {
+    margin-bottom: 12px;
+}
+
 .btn-mini {
     font-size: 12px;
     line-height: 14px;

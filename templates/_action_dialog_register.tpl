@@ -16,7 +16,7 @@
 		<div id="signup_name_full"class="form-group">
 			<label for="name_full" class="control-label">{_ Your name _}</label>
             <div class="controls">
-                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" />
+                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" style="width: 250px" />
                 {% validate id="name_full" type={presence} %}
             </div>
 		</div>
