@@ -21,7 +21,7 @@ event(#postback{message={dialog, Args}}, Context) ->
         true ->
             %% need to log on first
             Continuation = {dialog_open, Args},
-            z_render:dialog(?__("You need to log on", Context), "_action_dialog_logon.tpl", [{action, Continuation}|Args], Context);
+            z_render:dialog(?__("You need to log on", Context), "_action_dialog_authenticate.tpl", [{action, Continuation}|Args], Context);
         false ->
             Title = proplists:get_value(title, Args, ""),
             {template, Template} = proplists:lookup(template, Args),

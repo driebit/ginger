@@ -2,16 +2,16 @@
 {%
 	wire id="signup_dialog"
 	type="submit"
-	postback={ginger_handle_signup action=action}
+	postback={ginger_signup action=action}
 	delegate="ginger_logon"
 %}
 
-<div id="logon_error">
-{% include "_logon_error.tpl" reason=error_reason %}
+<div id="signup_error" style="display:none">
+    {% include "_signup_error.tpl" reason=error_reason %}
 </div>
 
 <div id="register_form">
-    <form id="signup_dialog" class="setcookie" method="post" action="postback">
+    <form id="signup_dialog" method="post" action="postback">
         
 		<div id="signup_name_full"class="form-group">
 			<label for="name_full" class="control-label">{_ Your name _}</label>
@@ -29,47 +29,21 @@
     				<span>{{ email|escape }}</span>
     			{% else %}
     				<input class="form-control" id="email" name="email" type="text" value="{{ email|escape }}" />
-    				{% validate id="email" type={email} type={presence} %}
+    				{% validate id="email" type={presence} type={email failure_message="A valid email addres"} %}
     			{% endif %}
             </div>
 		</div>
 
-        {#
-        <div id="signup_username"class="form-group">
-            <label for="username" class="control-label">{_ Username _}</label>
-
-            <div class="controls">
-                <input class="form-control" id="username" name="username" type="text" value="" />
-                {% validate id="username" wait=400 type={presence} type={username_unique} %}
-            </div>
-        </div>
-        #}
-
-        <div id="signup_password1"class="form-group">
+        <div id="signup_password"class="form-group">
             <label for="password1" class="control-label">{_ Password _}</label>
 
             <div class="controls">
                 <input class="form-control" id="password1" name="password1" type="password" value="" autocomplete="off" />
-                {% validate id="password1" 
+                {% validate id="password1" name="password1"
                     type={presence} 
                     type={length minimum=6 too_short_message="Too short, use 6 or more."} %}
             </div>
         </div>
-
-        {#
-        <div id="signup_password2"class="form-group">
-            <label for="password2" class="control-label">{_ Verify password _}</label>
-
-            <div class="controls">
-                <input class="form-control" id="password2" name="password2" type="password" value="" autocomplete="off" />
-                {% validate id="password2" 
-                    type={presence} 
-                    type={confirmation match="password1"} %}
-            </div>
-        </div>
-        #}
-
-		<p class="clear"></p>
 
         <div class="form-group clearfix" id="signup_button">
             <div>
@@ -84,12 +58,6 @@
     {% all include "_logon_extra.tpl" %}
 </ul>
 
-{# <a data-toggle="tab" href="#{{ #tab }}-logon"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I have an account, Log me in. _}</a> #}
-
 </div>
 
-{# Use a real post for all forms on this page, and not AJAX or Websockets. This will enforce all cookies to be set correctly. #}
-{% javascript %}
-z_only_post_forms = true;
-{% endjavascript %}
 

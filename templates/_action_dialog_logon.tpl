@@ -7,7 +7,7 @@
 %}
 
 <div id="logon_error">
-{% include "_logon_error.tpl" reason=error_reason %}
+    {% include "_logon_error.tpl" reason=error_reason %}
 </div>
 
 <div id="logon_form">
