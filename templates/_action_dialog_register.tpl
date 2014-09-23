@@ -16,7 +16,7 @@
 		<div id="signup_name_full"class="form-group">
 			<label for="name_full" class="control-label">{_ Your name _}</label>
             <div class="controls">
-                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" />
+                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" style="width: 250px" />
                 {% validate id="name_full" type={presence} %}
             </div>
 		</div>
@@ -28,7 +28,7 @@
     			{% if email %}
     				<span>{{ email|escape }}</span>
     			{% else %}
-    				<input class="form-control" id="email" name="email" type="text" value="{{ email|escape }}" />
+    				<input class="form-control" id="email" name="email" type="text" value="{{ email|escape }}" style="width: 250px"/>
     				{% validate id="email" type={email} type={presence} %}
     			{% endif %}
             </div>
@@ -39,7 +39,7 @@
             <label for="username" class="control-label">{_ Username _}</label>
 
             <div class="controls">
-                <input class="form-control" id="username" name="username" type="text" value="" />
+                <input class="form-control" id="username" name="username" type="text" value="" style="width: 250px" />
                 {% validate id="username" wait=400 type={presence} type={username_unique} %}
             </div>
         </div>
@@ -49,7 +49,7 @@
             <label for="password1" class="control-label">{_ Password _}</label>
 
             <div class="controls">
-                <input class="form-control" id="password1" name="password1" type="password" value="" autocomplete="off" />
+                <input class="form-control" id="password1" name="password1" type="password" value="" autocomplete="off" style="width: 250px"/>
                 {% validate id="password1" 
                     type={presence} 
                     type={length minimum=6 too_short_message="Too short, use 6 or more."} %}
@@ -61,7 +61,7 @@
             <label for="password2" class="control-label">{_ Verify password _}</label>
 
             <div class="controls">
-                <input class="form-control" id="password2" name="password2" type="password" value="" autocomplete="off" />
+                <input class="form-control" id="password2" name="password2" type="password" value="" autocomplete="off" style="width: 250px"/>
                 {% validate id="password2" 
                     type={presence} 
                     type={confirmation match="password1"} %}

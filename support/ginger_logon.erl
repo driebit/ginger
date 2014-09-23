@@ -22,7 +22,7 @@ event(#postback{message={ginger_logoff, Args}}, Context) ->
     controller_logoff:reset_rememberme_cookie_and_logoff(Context),
     %Id = z_convert:to_integer(proplists:get_value(id, Args)),
     PageUrl = proplists:get_value(page, Args),
-    z_render:wire({redirect, [{location, PageUrl}]}, Context).
+    z_render:wire({redirect, [{location, PageUrl}]}, Context);
 
 %% @doc Handle the submit of the signup form.
 event(#submit{message={ginger_handle_signup, Args}, form="signup_dialog"}, Context) ->
