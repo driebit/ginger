@@ -3,6 +3,8 @@
 
 app = ENV["APP"] || "ginger"
 debug = ENV["DEBUG"] || false
+zotonic_source = ENV["ZOTONIC_SOURCE"]
+zotonic_version = ENV["ZOTONIC_VERSION"]
 puppet_node = app + ENV['USER'] + ".dev"
 puppet_master = "puppet.driebit.net"
 
@@ -34,6 +36,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.puppet_node   = puppet_node
 
     puppet.options << ' --environment production --test'
+    puppet.facter = {
+        "zotonic_source"  => zotonic_source,
+        "zotonic_version"     => zotonic_version
+    }
 
     if debug
       puppet.options << ' --debug --verbose'
