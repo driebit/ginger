@@ -2,6 +2,7 @@
 
 {% block widget_content %}
 
+
     {% with id.category_id as cat_id %}
     {% with m.rsc[cat_id].o.viewable_predicates as pred_ids %}
 

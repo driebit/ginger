@@ -24,15 +24,6 @@ event(#postback{message={ginger_logoff, Args}}, Context) ->
     PageUrl = proplists:get_value(page, Args),
     z_render:wire({redirect, [{location, PageUrl}]}, Context);
 
-%% @doc Handle the submit of the signup form.
-event(#submit{message={ginger_handle_signup, Args}, form="signup_dialog"}, Context) ->
-    % TO DO some real handling of the form :)
-    Actions = proplists:get_all_values(action, Args),
-    PageUrl = proplists:get_value(page, Args),
-    Props = [],
-    SignupProps = [],
-    ginger_signup(Props, SignupProps, Actions, PageUrl, Context).
-
 logon_user(UserId, Actions, PageUrl, Context) ->
     case z_auth:logon(UserId, Context) of
 		{ok, ContextUser} ->
