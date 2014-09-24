@@ -8,7 +8,7 @@
                 {% include "_list_item.tpl" id=list_item %}
                 
                 <div class="edit-btns">
-                    {% if list_item.is_editable %}
+                    {% if list_item.is_editable and list_item.creator_id==m.acl.user %}
                         <a class="btn btn-mini" id="{{ #unlink }}" title="{_ Disconnect _}"><i class="glyphicon glyphicon-remove"></i></button>
                         <a class="btn btn-mini" href="/edit/{{ list_item.id }}" title="{{ title|default:_"Edit" }}"><i class="glyphicon glyphicon-edit"></i></a>
                     {% endif %}

@@ -12,17 +12,20 @@
             <h4 class="section-title">{{ m.rsc[pred_id].title }}</h4>
 
     	    <div>
-                {% with	m.predicate.object_category[name]|first|element:1 as cat_id %}
-                    {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
-                    <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add a  _} {{ m.rsc[cat_id].title}}</a>
-                {% endwith %}
+                {% with	m.predicate.object_category[name]|first|element:1 as obj_cat_id %}
+                    {% with	m.rsc[obj_cat_id].title as obj_cat_title %}
+                        {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
+                        <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add a  _} {{ obj_cat_title }}</a>
 
-    		   	{% wire id=#connect.name 
-    		   			action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-    		   						title=[_"Add a connection: ", p.title]
-                                    subject_id=id
-                                    predicate=name}
-    		   	%}
+                        {% wire id=#connect.name 
+                                action={dialog_open template="_action_ginger_dialog_connect.tpl" 
+                                            title=[_"Add a ", obj_cat_title, _" to ", id.title]
+                                            logon_required
+                                            subject_id=id
+                                            predicate=name}
+                        %}
+                    {% endwith %}
+                {% endwith %}
     	   	</div>
 
     		{% if m.rsc[cat_id].name != "collection" and m.rsc[cat_id].name != "query" %}

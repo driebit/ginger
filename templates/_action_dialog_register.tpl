@@ -16,7 +16,7 @@
 		<div id="signup_name_full"class="form-group">
 			<label for="name_full" class="control-label">{_ Your name _}</label>
             <div class="controls">
-                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_first|escape }}" style="width: 250px" />
+                <input class="form-control" id="name_full" name="name_full" type="text" value="{{ name_full|escape }}" style="width: 250px" />
                 {% validate id="name_full" type={presence} %}
             </div>
 		</div>
@@ -29,7 +29,7 @@
     				<span>{{ email|escape }}</span>
     			{% else %}
     				<input class="form-control" id="email" name="email" type="text" value="{{ email|escape }}" />
-    				{% validate id="email" type={presence} type={email failure_message="A valid email addres"} %}
+    				{% validate id="email" type={presence} type={email failure_message=_"A valid email addres"} %}
     			{% endif %}
             </div>
 		</div>
@@ -41,7 +41,7 @@
                 <input class="form-control" id="password1" name="password1" type="password" value="" autocomplete="off" />
                 {% validate id="password1" name="password1"
                     type={presence} 
-                    type={length minimum=6 too_short_message="Too short, use 6 or more."} %}
+                    type={length minimum=6 too_short_message=_"6 characters or more."} %}
             </div>
         </div>
 

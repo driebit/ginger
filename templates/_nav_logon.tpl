@@ -11,7 +11,7 @@
             %}
         {% else %}
             <span>
-                <a href="#" id="{{ #ginger_logon }}">{_ logon/register _} <i class="glyphicon glyphicon-log-out"></i></a>
+                <a href="#" id="{{ #ginger_logon }}">{_ logon/register _} <i class="glyphicon glyphicon-log-in"></i></a>
             </span>
             {%
                 wire id=#ginger_logon 

@@ -19,7 +19,7 @@
         <input type="hidden" name="handler" value="username" />
 
         <div class="form-group">
-            <label for="username" class="control-label">{_ Username _}</label>
+            <label for="username" class="control-label">{_ Email _}</label>
             <div class="controls">
             <input type="text" id="username" name="username" value="" class="input-block-level" autofocus="autofocus" autocapitalize="off" autocomplete="on" size="35" style="width: 250px;"/>
             </div>
