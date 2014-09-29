@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+{% if id.is_editable %}
 	<div class="row page-ginger_edit_content_row_class">
         <div class="col-sm-8 col-md-8">
             {% include "_ginger_edit.tpl" %}
@@ -24,6 +25,10 @@
     <div class="footer row">
         {% block footer %}{% endblock %}
     </div>
+{% else %}
+    <h2>{_ Not allowed _}</h2>
+     <a href="/">{_ Go to _} {_ Home _}</a>
+{% endif %}
 {% endblock %}
 
 {% block header %}
@@ -55,6 +60,7 @@
 {% block _js_include_extra %}
 
 	{% lib
+        "js/apps/admin-common.js"
     	"js/modules/jquery.hotkeys.js"
 	    "js/modules/z.adminwidget.js"
 	    "js/modules/z.tooltip.js"
@@ -66,8 +72,6 @@
 	    "js/modules/jquery.timepicker.min.js"
 
 	    "js/jquery.ui.nestedSortable.js"
-
-	    "js/apps/admin-common.js"
 	%}
 	{% all include "_admin_lib_js.tpl" %}
 

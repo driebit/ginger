@@ -94,3 +94,37 @@ input.do_timepicker {
     -moz-box-shadow: none;
     box-shadow: none;
 }
+
+div#logon_error {
+    margin: 0 18px 18px 0px;
+    padding-right: 18px;
+    border-right: 1px solid #ccc;
+    width: 260px; 
+    height: 120px; 
+    float: left; 
+    text-align: left;
+    display: none;
+}
+
+#logon_error h2, #logon_error h3 {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    color: #d80000;
+}
+
+div#signup_error {
+    margin: 0 18px 18px 0px;
+    padding-right: 18px;
+    border-right: 1px solid #ccc;
+    width: 260px; 
+    height: 200px; 
+    float: left; 
+    text-align: left;
+    display: none;
+}
+
+#signup_error h2, #signup_error h3 {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    color: #d80000;
+}

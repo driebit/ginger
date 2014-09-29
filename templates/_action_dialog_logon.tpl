@@ -53,7 +53,7 @@
     {% all include "_logon_extra.tpl" %}
 </ul>
 
-{# <a data-toggle="tab" href="#{{ #tab }}-register"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I don’t have an account, please sign me up. _}</a> #}
+{# <a data-toggle="tab" href="#{{ #tab }}-signup"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I don’t have an account, please sign me up. _}</a> #}
 
 </div>
 

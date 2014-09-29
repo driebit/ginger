@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:22 
+msgid ""
+" to "
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:44 
+msgid ""
+"6 characters or more."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:32 
+msgid ""
+"A valid email addres"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:60 
+msgid ""
+"Access control"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:22 
+msgid ""
+"Add a "
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:4 
+msgid ""
+"Add a connection: "
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3 
+msgid ""
+"Basic"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:38 
+msgid ""
+"Cancel"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:12 
+msgid ""
+"Disconnect"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:25 
+msgid ""
+"E-mail"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:13 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:7 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:9 
+msgid ""
+"Edit"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:22 
+msgid ""
+"Email"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:11 
+msgid ""
+"Find Page"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:30 
+msgid ""
+"Go to"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:30 
+msgid ""
+"Home"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:46 
+msgid ""
+"I forgot my password"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58 
+msgid ""
+"Language"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:37 
+msgid ""
+"Log on"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:7 
+msgid ""
+"Logon"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39 
+msgid ""
+"Make"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:7 
+msgid ""
+"New Page"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:29 
+msgid ""
+"Not allowed"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:16 
+msgid ""
+"Page title"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:29 ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:38 
+msgid ""
+"Password"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12 
+msgid ""
+"Please fill in the title"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:28 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:25 
+msgid ""
+"Published"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:11 ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:50 
+msgid ""
+"Register"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:40 
+msgid ""
+"Remember me"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99 
+msgid ""
+"Save"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102 
+msgid ""
+"Save &amp; view"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102 
+msgid ""
+"Save and view the page."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99 
+msgid ""
+"Save this page."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_connect_tab_depictions.tpl:4 
+msgid ""
+"Select a connected image"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:38 
+msgid ""
+"Stay logged on unless I log off."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
+msgid ""
+"Title"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:104 
+msgid ""
+"View"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:104 
+msgid ""
+"View this page."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24 
+msgid ""
+"You need to log on"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_dialog_register.tpl:17 
+msgid ""
+"Your name"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:18 
+msgid ""
+"add a"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:1 
+msgid ""
+"add media item"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12 
+msgid ""
+"and the category of the new page."
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_nav_logon.tpl:19 
+msgid ""
+"logon or register"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_nav_logon.tpl:14 
+msgid ""
+"logon/register"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12 
+msgid ""
+"of the new"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:29 
+msgid ""
+"till"
+msgstr ""

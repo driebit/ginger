@@ -1,4 +1,4 @@
-{% lib "css/logon.css" %}
+{% lib "css/ginger-edit.css" %}
 
 <ul class="nav nav-pills">
     {% block tabs %}
@@ -7,8 +7,8 @@
             <a data-toggle="tab" href="#{{ #tab }}-logon">{_ Logon _}</a>
         </li>
 
-        <li {% if tab == "register" %}class="active"{% endif %}>
-            <a data-toggle="tab" href="#{{ #tab }}-register">{_ Register _}</a>
+        <li {% if tab == "signup" %}class="active"{% endif %}>
+            <a data-toggle="tab" href="#{{ #tab }}-signup">{_ Signup _}</a>
         </li>
 
 	{% endblock %}
@@ -20,7 +20,7 @@
         {% include "_action_dialog_logon.tpl" tab=#tab id=id action=action title=""
                     is_active=1 %}
 
-        {% include "_action_dialog_register.tpl" tab=#tab id=id action=action title=""
+        {% include "_action_dialog_signup.tpl" tab=#tab id=id action=action title=""
                     is_active=0 %}
 
     {% endblock %}
