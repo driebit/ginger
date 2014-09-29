@@ -1,6 +1,4 @@
 {% javascript %}
-	$('.tree-list .active').removeClass('active');
-	$('.tree-list div[data-page-id="{{ id }}"]').addClass('active');
 	$('#save-buttons').hide().fadeIn();
 {% endjavascript %}
 
@@ -87,7 +85,7 @@
 
 		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
 		{# catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages #}
-		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages %}
+		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened=false %}
 	{% endblock %}
 	</div>
 
@@ -113,10 +111,11 @@
 	$("#save-buttons .brand").html($('#button-prompt').html());
 
 	setTimeout(function() {
-		$('.language-tabs').on('shown', '> li > a[data-toggle="tab"]', function (e) {
+		$('#rscform').on('shown', '.language-tabs > li > a[data-toggle="tab"]', function (e) {
 			if (e.target != e.relatedTarget) {
 				var lang = $(e.target).parent().attr('lang');
 				$("li[lang='"+lang+"']:visible > a").tab('show');
+				z_editor.init();
 			}
 		});
 	}, 10);

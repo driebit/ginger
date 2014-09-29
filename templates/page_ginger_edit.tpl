@@ -47,7 +47,7 @@
 							  action={script script="$('#save_view').click();"}
 					 %}
 
-					{# button class="btn pull-right" text=_"Cancel" action={redirect back} tag="a" #}
+					{% button class="btn pull-right" text=_"Cancel" action={redirect back} tag="a" %}
 					{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
 		    	</div>
 			</div>
@@ -60,7 +60,7 @@
 {% block _js_include_extra %}
 
 	{% lib
-        "js/apps/admin-common.js"
+        "js/ginger_edit.js"
     	"js/modules/jquery.hotkeys.js"
 	    "js/modules/z.adminwidget.js"
 	    "js/modules/z.tooltip.js"
@@ -73,6 +73,7 @@
 
 	    "js/jquery.ui.nestedSortable.js"
 	%}
-	{% all include "_admin_lib_js.tpl" %}
+    
+    {% include "_editor.tpl" %}
 
 {% endblock %}

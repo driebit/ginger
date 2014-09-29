@@ -10,5 +10,3 @@
 %}
 
 {% block _js_include_extra %}{% endblock %}
-
-{% include "_editor.tpl" %}
