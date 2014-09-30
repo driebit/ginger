@@ -60,7 +60,6 @@
 {% block _js_include_extra %}
 
 	{% lib
-        "js/ginger_edit.js"
     	"js/modules/jquery.hotkeys.js"
 	    "js/modules/z.adminwidget.js"
 	    "js/modules/z.tooltip.js"

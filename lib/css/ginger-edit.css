@@ -89,6 +89,11 @@ input.do_timepicker {
     margin: 15px 0px 15px 0px;
 }
 
+#nav-edit {
+    float: right;
+    margin: 15px 15px 15px 0px;
+}
+
 .list-group {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

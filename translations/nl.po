@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:   b\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2014-09-30 16:53+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"X-Generator: Poedit 1.6.9\n"
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23
+msgid " to "
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:42
+msgid "6 characters or more."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:32
+msgid "A valid email addres"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58
+msgid "Access control"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23
+msgid "Add a "
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/button_add_media.tpl:4
+msgid "Add a connection: "
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3
+msgid "Basic"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:50
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:38
+msgid "Cancel"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:12
+msgid "Disconnect"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:25
+msgid "E-mail"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_signup_error.tpl:4
+msgid "E-mail/password already registered"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:13
+#: user/modules/mod_ginger_edit/templates/_nav_edit.tpl:6
+#: user/modules/mod_ginger_edit/templates/_nav_edit.tpl:8
+msgid "Edit"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:22
+msgid "Email"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:11
+msgid "Find Page"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:2
+msgid "Find an existing page to connect"
+msgstr "Zoek een bestaande pagina"
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:30
+msgid "Go to"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:30
+msgid "Home"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:46
+msgid "I forgot my password"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:56
+msgid "Language"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:37
+msgid "Log on"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:7
+msgid "Logon"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39
+msgid "Make"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:7
+msgid "New Page"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:29
+msgid "Not allowed"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:16
+msgid "Page title"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:29
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:38
+msgid "Password"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12
+msgid "Please fill in the title"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:28
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:23
+msgid "Published"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:40
+msgid "Remember me"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
+msgid "Save"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100
+msgid "Save &amp; view"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100
+msgid "Save and view the page."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
+msgid "Save this page."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:11
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:48
+msgid "Signup"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:38
+msgid "Stay logged on unless I log off."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_logon_error.tpl:15
+msgid "The two passwords should be equal. Please retype them."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5
+msgid "Title"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:6
+msgid "Type text to search"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102
+msgid "View"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102
+msgid "View this page."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:13
+msgid "You can add your own story"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_logon_error.tpl:7
+msgid "You entered an unknown username or e-mail address.  Please try again."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_logon_error.tpl:3
+msgid "You entered an unknown username or password.  Please try again."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24
+msgid "You need to log on"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:17
+msgid "Your name"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_logon_error.tpl:11
+msgid "Your new password is too short."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/button_add_media.tpl:1
+msgid "add media item"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:19
+msgid "add my"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12
+msgid "and the category of the new page."
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_nav_logon.tpl:19
+msgid "logon or register"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_nav_logon.tpl:14
+msgid "logon/register"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12
+msgid "of the new"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:27
+msgid "till"
+msgstr ""
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:19
+msgid "to this"
+msgstr ""

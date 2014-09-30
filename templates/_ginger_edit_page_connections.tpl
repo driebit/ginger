@@ -10,18 +10,19 @@
         {% with m.rsc[pred_id].name as name %}
 
             <h4 class="section-title">{{ m.rsc[pred_id].title }}</h4>
-
-    	    <div>
-                {% with	m.predicate.object_category[name]|first|element:1 as obj_cat_id %}
-                    {% with	m.rsc[obj_cat_id].title as obj_cat_title %}
+            <p>{_ You can add your own story _}</p>
+    	    
+            <div>
+                {% with	m.predicate.subject_category[name]|first|element:1 as subj_cat_id %}
+                    {% with	m.rsc[subj_cat_id].title as subj_cat_title %}
                         {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
-                        <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add a  _} {{ obj_cat_title }}</a>
+                        <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add my  _} {{ subj_cat_title|lower }} {_ to this  _}</a>
 
                         {% wire id=#connect.name 
                                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                                            title=[_"Add a ", obj_cat_title, _" to ", id.title]
+                                            title=[_"Add a ", subj_cat_title, _" to ", id.title]
                                             logon_required
-                                            subject_id=id
+                                            object_id=id
                                             predicate=name}
                         %}
                     {% endwith %}
@@ -30,18 +31,11 @@
 
     		{% if m.rsc[cat_id].name != "collection" and m.rsc[cat_id].name != "query" %}
                 <div class="list-group row">
-                    <div class="unlink-wrapper">
-                        {% sorter id=["links",id|format_integer,name]|join:"-" 
-                                  tag={object_sorter predicate=name id=id} 
-                                  group=name
-                                  delegate=`controller_admin_edit`
-                        %}
-                        <div id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_list.tpl">
-                            {% for o_id, edge_id in m.edge.o[id][name] %}
-                                {% catinclude "_ginger_edit_list_item.tpl" o_id class="col-xs-12" subject_id=id predicate=name object_id=o_id edge_id=edge_id editable%}
-                            {% endfor %}
-                        </div>
-                    </div>
+                    {# /rsc/325/s/about #}
+                    {% live template="_ginger_edit_page_connections_list.tpl" 
+                        topic="/rsc/"|append:id|append:"/s/"|append:name 
+                        id=id name=name 
+                     %}
                 </div>
             {% endif %}
 

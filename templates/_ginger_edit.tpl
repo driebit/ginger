@@ -85,7 +85,7 @@
 
 		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
 		{# catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages #}
-		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened=false %}
+		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened %}
 	{% endblock %}
 	</div>
 
@@ -111,7 +111,7 @@
 	$("#save-buttons .brand").html($('#button-prompt').html());
 
 	setTimeout(function() {
-		$('#rscform').on('shown', '.language-tabs > li > a[data-toggle="tab"]', function (e) {
+		$('#rscform').on('shown.bs.tab', '.language-tabs > li > a[data-toggle="tab"]', function (e) {
 			if (e.target != e.relatedTarget) {
 				var lang = $(e.target).parent().attr('lang');
 				$("li[lang='"+lang+"']:visible > a").tab('show');
