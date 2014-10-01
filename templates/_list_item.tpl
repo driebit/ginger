@@ -8,7 +8,9 @@
 					<img src="/lib/images/default.jpg" alt="{{ id.title }}" class="img-responsive" />
 				{% endif %}
 
-				{% if id.title %}
+				{% if id.short_title %}
+					<h3>{{ id.short_title }}</h3>
+				{% else %}
 					<h3>{{ id.title }}</h3>
 				{% endif %}
 				
