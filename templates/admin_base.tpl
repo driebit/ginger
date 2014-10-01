@@ -20,6 +20,7 @@
                 "css/zotonic-admin.css"
                 "css/z.modal.css"
                 "css/jquery.loadmask.css"
+                "css/ginger-admin.css"
         %}
 
         {% all include "_html_head_admin.tpl" %}
@@ -36,7 +37,7 @@
         {% block head_extra %}
         {% endblock %}
     </head>
-    <body class="{% block bodyclass %}{% endblock %}">
+    <body class="{% block bodyclass %}{% endblock %} t-cms">
 
     {% wire name="adminwidget_toggle" action={adminwidget_toggle} %}
 
