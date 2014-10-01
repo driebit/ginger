@@ -20,7 +20,7 @@
 
                         {% wire id=#connect.name 
                                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                                            title=[_"Add a ", subj_cat_title, _" to ", id.title]
+                                            title=[_"Add a ", subj_cat_title|lower , _" to ", id.title]
                                             logon_required
                                             object_id=id
                                             predicate=name}
