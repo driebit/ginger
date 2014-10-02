@@ -37,11 +37,11 @@ body.t-cms {
     font-size: 1em;
 }
 
-.t-cms a {
+a {
     color: #ff7600;
 }
 
-.t-cms a:hover {
+a:hover {
     color: #ec6e01;
 }
 
