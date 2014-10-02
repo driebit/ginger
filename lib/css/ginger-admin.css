@@ -478,11 +478,12 @@ a:hover {
 .t-cms .div.widget ul.nav-tabs li.active > a {
     background: #fff;
 }
-.admin-logon {
+
+.t-cms .admin-logon {
     width: 100%;
     max-width: 470px;
     margin-top: 20px;
-    border: 10px solid green;
+    border: none !important;
 }
 
 .logon-logo {
@@ -504,7 +505,7 @@ body .admin-logon {
     font-size: 1.286em;
 }
 
-.admin-logon label {
+.t-cms .admin-logon label {
     margin-bottom: 10px;
     font-size: 2.000em;
     font-weight: 300;
@@ -512,31 +513,31 @@ body .admin-logon {
     text-transform: lowercase;
 }
 
-.admin-logon input {
+.t-cms .admin-logon input {
     height: 51px;
     margin-bottom: 20px;
     line-height: 51px;
     font-size: 1.5em;
 }
 
-.admin-logon input[type="checkbox"] {
+.t-cms .admin-logon input[type="checkbox"] {
     height: auto;
     margin-left: 0;
     position: relative;
     top: -2px;
 }
 
-.admin-logon .checkbox {
+.t-cms .admin-logon .checkbox {
     width: auto;
 }
 
-.admin-logon .checkbox label {
+.t-cms .admin-logon .checkbox label {
     padding-left: 0px;
     margin-top: 5px;
     font-size: 1.286em;
 }
 
-.admin-logon .btn {
+.t-cms .admin-logon .btn {
     height: 51px;
     padding: 0 30px;
     line-height: 51px;
@@ -545,18 +546,18 @@ body .admin-logon {
     font-weight: 300;
 }
 
-.admin-logon button + label {
+.t-cms .admin-logon button + label {
     font-size: 1.286em;
     margin: 0;
     line-height: 20px;
 }
 
-.admin-logon button {
+.t-cms .admin-logon button {
     position: relative;
     z-index: 100;
 }
 
-.admin-logon button + label input {
+.t-cms .admin-logon button + label input {
     width: 20px;
     height: 20px;
     margin-right: 5px;
