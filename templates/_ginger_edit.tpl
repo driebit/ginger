@@ -82,7 +82,7 @@
 
 		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
 		{# catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages #}
-		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages tab="new" show_opened tab="upload" tabs_enabled=["upload","url"] %}
+		{% catinclude "_ginger_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened tab="upload" tabs_enabled=["upload","video","video_embed"] %}
 	{% endblock %}
 	</div>
 
