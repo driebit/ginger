@@ -13,20 +13,20 @@
 
 					<h1>{{ id.title }}</h1>
 				
-					{% if id.depiction %}
-
-						{% if dep.id.is_a.image %}
-                            <a href="/image/{{ dep.id.medium.filename }}" class="lightbox" rel="fancybox-group">
-                                {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
-                            </a>
-						{% else %}
-							{# TODO: uploaded mp4 support #}
-							<div class="video-wrapper">
-								{% media dep %}
-							</div>
-						{% endif %}
-
-					{% endif %}
+					{% block page_depiction %}
+                        {% if id.depiction %}
+                            {% if dep.id.is_a.image %}
+                                <a href="/image/{{ dep.id.medium.filename }}" class="lightbox" rel="fancybox-group">
+                                    {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
+                                </a>
+                            {% else %}
+                                {# TODO: uploaded mp4 support #}
+                                <div class="video-wrapper">
+                                    {% media dep %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
 
 					{% block page_summary %}
 						{% if id.summary %}
