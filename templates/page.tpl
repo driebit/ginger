@@ -16,7 +16,7 @@
 					{% if id.depiction %}
 
 						{% if dep.id.is_a.image %}
-							{% image id.depiction mediaclass="default" class="img-responsive" alt="" %}
+							{% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
 						{% else %}
 							{# TODO: uploaded mp4 support #}
 							<div class="video-wrapper">
@@ -41,7 +41,7 @@
 					{% endblock %}
 			
 					{% block page_images %}
-						{% include "_images.tpl" %}
+						{% include "_media_thumbs.tpl" %}
 					{% endblock %}
 			
 			</article>
