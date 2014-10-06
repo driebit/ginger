@@ -3,7 +3,7 @@
 		<div class="list_item{% if not dep %} no-image{% endif %} {{ class }}">
 			<a href="{{ id.page_url }}">
 				{% if dep %}
-					{% image dep mediaclass="list-image" alt=id.title class="img-responsive" %}
+					{% image dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}
 				{% else %}
 					<img src="/lib/images/default.jpg" alt="{{ id.title }}" class="img-responsive" />
 				{% endif %}

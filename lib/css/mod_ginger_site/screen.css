@@ -12,7 +12,8 @@ body {
   font-size: 15px; }
 
 .aside_map {
-  margin-top: 54px; }
+  margin-top: 54px;
+  margin-bottom: 20px;  }
 
 .well {
   border: none;
