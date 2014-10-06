@@ -100,6 +100,17 @@ input.do_timepicker {
     box-shadow: none;
 }
 
+.tab-content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mce-path {
+  display: none !important;
+}
+.mce-path-item {
+display: none !important;
+}
 div#logon_error {
     margin: 0 18px 18px 0px;
     padding-right: 18px;

@@ -14,20 +14,6 @@
 	<div class="meta-data row">
 		<div class="col-lg-10 col-md-10">
 			{% block meta_data_first %}{% endblock %}
-			<p>
-				{# id.category_id.title #}
-
-				<span class="publication-dates">
-					<label for="is_published" class="checkbox-inline">
-			    		<input type="checkbox" id="is_published" name="is_published" value="1" {% if id.is_published %}checked="checked"{% endif %}/>
-			    	    {_ Published _}
-				    </label>
-
-					{% include "_edit_date.tpl" date=id.publication_start name="publication_start" is_end=0 %}
-					{_ till _} 
-					{% include "_edit_date.tpl" date=id.publication_end name="publication_end" is_end=1 %}
-				</span>
-			</p>
 		</div>
 
 		<div class="col-lg-2 col-md-2">
@@ -56,6 +42,7 @@
 				<li><a href="#meta-language" data-toggle="tab">{_ Language _}</a></li>
 			{% endif %}
 			<li><a href="#meta-acl" data-toggle="tab">{_ Access control _}</a></li>
+			<li><a href="#meta-pubdate" data-toggle="tab">{_ Publication _}</a></li>
 		</ul>
 		<div class="tab-content">
 			{% block meta_panels %}{% endblock %}
@@ -65,6 +52,16 @@
 			<div class="tab-pane" id="meta-acl">
 				{% include "_admin_edit_visible_for.tpl" id=id is_admin_frontend %}
 			</div>
+            <div class="tab-pane publication-dates" id="meta-pubdate">
+                <label for="is_published" class="checkbox-inline">
+                    <input type="checkbox" id="is_published" name="is_published" value="1" {% if id.is_published %}checked="checked"{% endif %}/>
+                    {_ Published _}
+                </label>
+
+                {% include "_edit_date.tpl" date=id.publication_start name="publication_start" is_end=0 %}
+                {_ till _} 
+                {% include "_edit_date.tpl" date=id.publication_end name="publication_end" is_end=1 %}
+            </div>
 		</div>
 
 		{% javascript %}
@@ -85,7 +82,7 @@
 
 		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
 		{# catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages #}
-		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened %}
+		{% catinclude "_admin_edit_depiction.tpl" id is_editable=is_editable languages=languages tab="new" show_opened tab="upload" tabs_enabled=["upload","url"] %}
 	{% endblock %}
 	</div>
 
