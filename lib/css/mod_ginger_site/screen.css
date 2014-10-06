@@ -8,6 +8,10 @@ footer {
 .title {
   margin-bottom: 20px; }
 
+body {
+    font-size: 15px;
+}
+
 .well {
   border: none;
   background: #f0f0f0;
