@@ -5,7 +5,7 @@
             
             <div id="{{ #unlink_wrapper }}" class="unlink-wrapper">
                 
-                {% include "_list_item.tpl" id=list_item %}
+                {% include "_list_item.tpl" id=list_item last=last %}
                 
                 <div class="edit-btns">
                     {% if list_item.is_editable %}
