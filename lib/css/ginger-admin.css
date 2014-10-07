@@ -1,5 +1,9 @@
 /* Specific styles for Ginger admin */
 
+body {
+    padding: 0;
+}
+
 body.t-cms {
     font: 400 14px/1.4 "myriad-pro", arial;
     color: #58595b;
@@ -174,6 +178,19 @@ a:hover {
     opacity: 1;
 }
 
+.btn-group>.btn+.dropdown-toggle {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-left: 10px;
+}
+
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+    border-radius: 3px;
+}
+
+/* Nav */
+
 .t-cms .navbar .navbar-toggle {
     background: #ba5b15;
     border: none;
@@ -255,10 +272,6 @@ a:hover {
 }
 
 .t-cms .navbar-fixed-save {
-    z-index: -1;
-}
-
-.t-cms .scrolled .navbar-fixed-save {
     z-index: 10;
 }
 
@@ -480,9 +493,10 @@ a:hover {
 }
 
 .t-cms .admin-logon {
-    width: 100%;
-    max-width: 470px;
+    width: 90%;
+    max-width: 471px;
     margin-top: 20px;
+    position: relative;
     border: none !important;
 }
 
@@ -499,15 +513,17 @@ body .admin-logon {
     padding: 0;
 }
 
-.admin-logon div a {
-    position: relative;
-    top: -40px;
-    font-size: 1.286em;
+.admin-logon form div a {
+    position: absolute;
+    bottom: 132px;
+    font-size: 1.1em;
+    right: 9px;
+    font-weight: 300;
 }
 
 .t-cms .admin-logon label {
     margin-bottom: 10px;
-    font-size: 2.000em;
+    font-size: 1.7em;
     font-weight: 300;
     line-height: 1;
     text-transform: lowercase;
@@ -547,8 +563,12 @@ body .admin-logon {
 }
 
 .t-cms .admin-logon button + label {
-    font-size: 1.286em;
-    margin: 0;
+    font-size: 1.1em;
+    margin: 0 20px 0 0;
+    float: right;
+    position: relative;
+    top: 15px;
+    font-weight: 300;
     line-height: 20px;
 }
 
