@@ -2,6 +2,9 @@
 
 {% block page_class %}page{% endblock %}
 
+{% block breadcrumb %}
+{% endblock %}
+
 {% block content %}
 	
 	{% with id.depiction as dep %}
