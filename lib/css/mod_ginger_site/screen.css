@@ -1,42 +1,67 @@
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+/* Creates a mediaquery based on property and size in pixels */
 img {
-  width: 100%;
-  border-radius: 4px; }
+  width: 100%; }
+
+html, body {
+  font-size: 16px; }
 
 footer {
-  padding: 10px 0; }
+  padding: 10px 0px;
+  padding: 0.625rem 0rem; }
 
 .title {
-  margin-bottom: 20px; }
-
-body {
-  font-size: 15px; }
-
-.aside_map {
-  margin-top: 54px;
-  margin-bottom: 20px;  }
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
 
 .well {
   border: none;
   background: #f0f0f0;
   box-shadow: none; }
 
+.section-title {
+  font-size: 18px;
+  font-size: 1.125rem; }
+
 article {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   margin-bottom: 20px; }
   article img {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem; }
   article .summary {
     margin-bottom: 20px;
-    font-size: 17.5px;
+    margin-bottom: 1.25rem;
+    font-size: 17px;
+    font-size: 1.0625rem;
     font-weight: 700;
     line-height: 1.25; }
   article .body {
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem; }
+
+.article_images img {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0px; }
 
 aside .well ul {
-  padding-left: 20px; }
+  padding-left: 20px;
+  padding-left: 1.25rem; }
+
+.aside_block {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+  .aside_block .list-group {
+    margin-bottom: 0; }
+  .aside_block .list_item.last {
+    margin-bottom: 0; }
 
 .list_item {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
   .list_item a {
     display: block;
     text-decoration: none;
@@ -48,14 +73,19 @@ aside .well ul {
     width: 100%;
     margin: 0;
     padding: 10px;
+    padding: 0.625rem;
+    background: #fff;
     background: rgba(255, 255, 255, 0.9);
     color: #428bca; }
   .list_item .content {
     position: absolute;
     bottom: -200px;
+    bottom: -12.5rem;
     width: 100%;
     margin: 0;
     padding: 10px;
+    padding: 0.625rem;
+    background: #fff;
     background: rgba(255, 255, 255, 0.9);
     color: #333;
     -webkit-transition: bottom 0.4s;
@@ -71,4 +101,5 @@ aside .well ul {
   src: url('/lib/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/lib/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/lib/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/lib/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
 
 .carousel-pager {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }

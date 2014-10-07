@@ -1,0 +1,21 @@
+img {
+	width: 100%;
+}
+
+html, body {
+    font-size: 16px;
+}
+
+footer { 
+	@include size(padding, 10, 0);
+}
+
+.title {
+	@include size(margin-bottom, 20);
+}
+
+.well {
+	border: none;
+	background: $twitter_gray;
+	box-shadow: none;
+}

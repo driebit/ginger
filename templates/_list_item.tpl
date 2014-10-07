@@ -1,6 +1,8 @@
+asdfasdfasdf
+
 {% if id %}
 	{% with id.depiction as dep %}
-		<div class="list_item{% if not dep %} no-image{% endif %} {{ class }}">
+		<div class="list_item{% if not dep %} no-image{% endif %} {{ class }} {% if last %} last{% endif%}">
 			<a href="{{ id.page_url }}">
 				{% if dep %}
 					{% image dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}
