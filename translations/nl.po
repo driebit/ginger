@@ -10,15 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2014-10-01 16:37+0100\n"
+"PO-Revision-Date: 2014-10-08 15:52+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl\n"
 "X-Generator: Poedit 1.6.9\n"
 
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23
 msgid " to "
 msgstr " toe aan "
@@ -31,10 +32,11 @@ msgstr "6 karakters of meer"
 msgid "A valid email addres"
 msgstr "Een geldig e-mailadres"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:44
 msgid "Access control"
 msgstr "Toegangs rechten"
 
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23
 msgid "Add a "
 msgstr "Voeg een "
@@ -42,6 +44,10 @@ msgstr "Voeg een "
 #: user/modules/mod_ginger_edit/templates/button_add_media.tpl:4
 msgid "Add a connection: "
 msgstr "Voeg een connectie toe:"
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:3
+msgid "Attached media"
+msgstr "Gekoppelde media"
 
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3
 msgid "Basic"
@@ -95,7 +101,7 @@ msgstr "Home"
 msgid "I forgot my password"
 msgstr "Ik ben mijn wachtwoord vergeten"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:56
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:42
 msgid "Language"
 msgstr "Taal"
 
@@ -132,8 +138,12 @@ msgstr "Wachtwoord"
 msgid "Please fill in the title"
 msgstr "Voer een titel in"
 
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:45
+msgid "Publication"
+msgstr "Publicatie"
+
 #: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:28
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:23
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58
 msgid "Published"
 msgstr "Gepubliceerd"
 
@@ -142,22 +152,22 @@ msgid "Remember me"
 msgstr "Onthoud mij"
 
 #: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94
 msgid "Save"
 msgstr "Bewaren"
 
 #: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
 msgid "Save &amp; view"
 msgstr "Bewaren en bekijken"
 
 #: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
 msgid "Save and view the page."
 msgstr "Bewaar en bekijk de pagina."
 
 #: user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94
 msgid "Save this page."
 msgstr "Bewaar deze pagina."
 
@@ -182,11 +192,15 @@ msgstr "Titel"
 msgid "Type text to search"
 msgstr "Zoek"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections_list.tpl:4
+msgid "User contributions"
+msgstr "Toegevoegd door bezoekers"
+
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99
 msgid "View"
 msgstr "Bekijk"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99
 msgid "View this page."
 msgstr "Bekijk deze pagina"
 
@@ -222,11 +236,8 @@ msgstr "Je naam"
 msgid "Your new password is too short."
 msgstr "Je nieuwe wachtwoord is te kort"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:17
-msgid "aa"
-msgstr "aa"
-
 #: user/modules/mod_ginger_edit/templates/button_add_media.tpl:1
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15
 msgid "add media item"
 msgstr "voeg een mediabestand toe"
 
@@ -250,10 +261,13 @@ msgstr "login/registreer"
 msgid "of the new"
 msgstr "van de nieuwe"
 
-#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:27
+#: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:62
 msgid "till"
 msgstr "tot"
 
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:19
 msgid "to this"
 msgstr "toe"
+
+#~ msgid "aa"
+#~ msgstr "aa"

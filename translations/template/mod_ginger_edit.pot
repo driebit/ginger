@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23 
 msgid ""
 " to "
 msgstr ""
@@ -33,12 +33,12 @@ msgid ""
 "A valid email addres"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:44 
 msgid ""
 "Access control"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23 
 msgid ""
 "Add a "
 msgstr ""
@@ -46,6 +46,11 @@ msgstr ""
 #: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:4 
 msgid ""
 "Add a connection: "
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:3 
+msgid ""
+"Attached media"
 msgstr ""
 
 #: ./user/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3 
@@ -108,7 +113,7 @@ msgid ""
 "I forgot my password"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:56 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:42 
 msgid ""
 "Language"
 msgstr ""
@@ -153,7 +158,12 @@ msgid ""
 "Please fill in the title"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:28 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:23 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:45 
+msgid ""
+"Publication"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:28 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:58 
 msgid ""
 "Published"
 msgstr ""
@@ -163,22 +173,22 @@ msgid ""
 "Remember me"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 
 msgid ""
 "Save"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100 
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
 msgid ""
 "Save &amp; view"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:100 
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
 msgid ""
 "Save and view the page."
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
+#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 
 msgid ""
 "Save this page."
 msgstr ""
@@ -208,12 +218,17 @@ msgid ""
 "Type text to search"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections_list.tpl:4 
+msgid ""
+"User contributions"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99 
 msgid ""
 "View"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:102 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99 
 msgid ""
 "View this page."
 msgstr ""
@@ -248,12 +263,7 @@ msgid ""
 "Your new password is too short."
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:17 
-msgid ""
-"aa"
-msgstr ""
-
-#: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:1 
+#: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:1 ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15 
 msgid ""
 "add media item"
 msgstr ""
@@ -283,7 +293,7 @@ msgid ""
 "of the new"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:27 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:62 
 msgid ""
 "till"
 msgstr ""
