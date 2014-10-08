@@ -1,5 +1,5 @@
 .list_item {
-	margin-bottom: 20px;
+	@include size(margin-bottom, 20);
 
 	a {
 		display: block;
@@ -13,17 +13,19 @@
 		top: 0;
 		width: 100%;
 		margin: 0;
-		padding: 10px;
+		@include size(padding, 10);
+		background: #fff;
 		background: rgba(255, 255, 255, 0.9);
 		color: $twitter_blue;
 	}
 
 	.content {
 		position: absolute;
-		bottom: -200px;
+		@include size(bottom, -200);
 		width: 100%;
 		margin: 0;
-		padding: 10px;
+		@include size(padding, 10);
+		background: #fff;
 		background: rgba(255, 255, 255, 0.9);
 		color: $text_default;
 		transition: bottom 0.4s; 
