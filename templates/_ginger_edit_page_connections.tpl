@@ -8,8 +8,8 @@
 
     {% for pred_id in pred_ids %}
         {% with m.rsc[pred_id].name as name %}
+        {% with m.rsc[pred_id].title as title %}
 
-            <h4 class="section-title">{{ m.rsc[pred_id].title }}</h4>
             <p>{_ You can add your own story _}</p>
     	    
             <div>
@@ -34,11 +34,12 @@
                     {# /rsc/325/s/about #}
                     {% live template="_ginger_edit_page_connections_list.tpl" 
                         topic="/rsc/"|append:id|append:"/s/"|append:name 
-                        id=id name=name 
+                        id=id name=name title=title
                      %}
                 </div>
             {% endif %}
 
+        {% endwith %}
         {% endwith %}
     {% endfor %}
 
