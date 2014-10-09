@@ -7,24 +7,29 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="" />
         <meta name="author" content="Arjan Scherpenisse" />
+        <link rel="icon" href="/lib/images/ginger.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/lib/images/ginger.ico" type="image/x-icon" />
 
         {% lib
-                "css/bootstrap-admin.css"
-                "css/bootstrap-admin-responsive.css"
+            "admin-bootstrap3/css/bootstrap.min.css"
+            "admin-bootstrap3/css/bootstrap-theme.min.css"
+        %}
 
+        {% lib
                 "css/jquery-ui.datepicker.css"
                 "css/jquery.timepicker.css"
                 "css/zp-menuedit.css"
-                "css/ginger-admin.css"
+                "css/zotonic-admin.css"
                 "css/z.modal.css"
                 "css/jquery.loadmask.css"
+                "css/ginger-admin.css"
         %}
 
         {% all include "_html_head_admin.tpl" %}
         
         {% include "_js_include_jquery.tpl" %}
-        <script type="text/javascript" src="//use.typekit.net/fym1ovy.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <script src="//use.typekit.net/fym1ovy.js"></script>
+        <script>try{Typekit.load();}catch(e){}</script>
         
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -34,15 +39,15 @@
         {% block head_extra %}
         {% endblock %}
     </head>
-    <body class="{% block bodyclass %}{% endblock %}">
+    <body class="{% block bodyclass %}{% endblock %} t-cms">
 
-	{% wire name="adminwidget_toggle" action={adminwidget_toggle} %}
+    {% wire name="adminwidget_toggle" action={adminwidget_toggle} %}
 
     {% block navigation %}
         {% include "_admin_menu.tpl" %}
     {% endblock %}
 
-    <div class="container-fluid">
+    <div class="admin-container">
         {% block content %}{% endblock %}
     </div>
 
@@ -51,11 +56,14 @@
     {% include "_admin_js_include.tpl" %}
     {% block js_extra %}{% endblock %}
 
-    {% stream %}
     {% script %}
 
-    {% block tinymce %}{% endblock %}
+    {% block editor %}{% endblock %}
         
     {% block html_body_admin %}{% all include "_html_body_admin.tpl" %}{% endblock %}
+
+    {% block ua_probe %}
+        {% include "_ua_probe.tpl"%}
+    {% endblock %}
 </body>
 </html>
