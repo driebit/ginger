@@ -24,3 +24,8 @@ Checking out sites
 2. Run `$ vagrant provision`.
 3. The site now appears in the [status site](http://ginger.dev:8000)
    and is available at `[sitename].dev`.
+
+Adding modules
+--------------
+
+Place custom modules in `modules/` (no symlinks needed).
