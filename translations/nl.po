@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2014-10-09 14:50+0100\n"
+"PO-Revision-Date: 2014-10-09 15:07+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -260,6 +260,10 @@ msgstr "van de nieuwe"
 msgid "till"
 msgstr "tot"
 
+#: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:19
+msgid "to this"
+msgstr "toe"
+
 #~ msgid "Page title"
 #~ msgstr "Titel"
 
@@ -267,9 +271,6 @@ msgstr "tot"
 #~ msgstr ""
 #~ "Weet u hier meer over te vertellen? Voeg hier uw verhaal, afbeelding en/"
 #~ "of film toe."
-
-#~ msgid "to this"
-#~ msgstr "toe"
 
 #~ msgid "aa"
 #~ msgstr "aa"

@@ -16,7 +16,7 @@
                 {% with	m.predicate.subject_category[name]|first|element:1 as subj_cat_id %}
                     {% with	m.rsc[subj_cat_id].title as subj_cat_title %}
                         {# TODO choice of all possible categories? loop m.predicate.object_category[name] #}
-                        <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add my  _} {{ subj_cat_title|lower }}</a>
+                        <a id="{{ #connect.name }}" class="btn btn-small btn-add-story" href="#connect">+ {_ add my  _} {{ subj_cat_title|lower }} {_ to this  _}</a>
 
                         {% wire id=#connect.name 
                                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 

@@ -292,3 +292,8 @@ msgstr ""
 msgid ""
 "till"
 msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:19 
+msgid ""
+"to this"
+msgstr ""
