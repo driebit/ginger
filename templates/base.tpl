@@ -39,8 +39,7 @@
 
 		<title>{% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}</title>
 
-		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />	
+		{% include "_favicon.tpl" %}
 
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
