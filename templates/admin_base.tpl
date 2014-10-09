@@ -7,8 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="" />
         <meta name="author" content="Arjan Scherpenisse" />
-        <link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/lib/images/ginger.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="/lib/images/ginger.ico" type="image/x-icon" />
 
         {% lib
             "admin-bootstrap3/css/bootstrap.min.css"
