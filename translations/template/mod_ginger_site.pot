@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ./user/modules/mod_ginger_site/templates/_aside.story.tpl:4 ./user/modules/mod_ginger_site/templates/_aside.tpl:28 
+#: ./user/modules/mod_ginger_site/templates/_aside.story.tpl:5 ./user/modules/mod_ginger_site/templates/_aside.tpl:33 
 msgid ""
 "About"
 msgstr ""
@@ -38,7 +38,7 @@ msgid ""
 "Filename"
 msgstr ""
 
-#: ./user/modules/mod_ginger_site/templates/_aside.tpl:14 
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:15 
 msgid ""
 "Keywords"
 msgstr ""
@@ -58,7 +58,7 @@ msgid ""
 "No results"
 msgstr ""
 
-#: ./user/modules/mod_ginger_site/templates/_aside.tpl:40 
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:49 
 msgid ""
 "Related"
 msgstr ""
@@ -68,7 +68,7 @@ msgid ""
 "Searching for"
 msgstr ""
 
-#: ./user/modules/mod_ginger_site/templates/_aside.tpl:35 
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:42 
 msgid ""
 "See Also"
 msgstr ""
