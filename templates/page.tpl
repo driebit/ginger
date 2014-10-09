@@ -13,7 +13,8 @@
 		{% block prev_next_nav %}{% endblock %}
 
 		<article class="col-md-8">
-            {% optional include "_nav_edit.tpl" %}
+        {% block edit_button %}{% endblock %}
+
 
 			<h1>{{ id.title }}</h1> 
 		

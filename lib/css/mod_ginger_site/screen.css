@@ -19,9 +19,8 @@ footer {
   background: #f0f0f0;
   box-shadow: none; }
 
-.page #nav-edit {
-  margin: 0 0 15px 0;
-  float: none; }
+article #nav-edit {
+  margin: 0 0 0 15px; }
 
 .section-title {
   font-size: 18px;

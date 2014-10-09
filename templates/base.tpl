@@ -64,7 +64,7 @@
 			{% endblock %}
 
 			{% block breadcrumb %}{% endblock %}
-			
+
 			{% block content %}{% endblock %}
 			
 			{% block footer %}
