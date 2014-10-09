@@ -385,6 +385,17 @@ a:hover {
         text-shadow: none;
         text-align: center;
     }
+
+    .navbar-brand .zotonic-logo {
+        display: block;
+        width: 175px;
+        height: 31px;
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        background: url('/lib/images/admin_ginger.png');
+    }
+
     .t-cms .navbar-default .navbar-brand:hover, 
     .t-cms .navbar-default .navbar-brand:focus {
         background: #fff;
