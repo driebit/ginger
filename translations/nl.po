@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2014-10-10 16:04+0100\n"
+"PO-Revision-Date: 2014-10-10 16:54+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -254,7 +254,7 @@ msgstr "login/registreer"
 
 #: user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:12
 msgid "of the new"
-msgstr "van de nieuwe"
+msgstr "van het nieuwe"
 
 #: user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:62
 msgid "till"
