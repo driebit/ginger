@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2014-10-09 16:26+0100\n"
+"PO-Revision-Date: 2014-10-10 16:04+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 #: user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:23
 msgid " to "
-msgstr "toe aan "
+msgstr " toe aan "
 
 #: user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:42
 msgid "6 characters or more."
