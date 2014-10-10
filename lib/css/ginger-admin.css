@@ -9,6 +9,16 @@ body.t-cms {
     color: #58595b;
 }
 
+.t-cms .form-group:before,
+.t-cms .form-group:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.t-cms .form-group:after {
+     clear: both;
+}
+
 .t-cms input, button, select, textarea {
     font: inherit;
 }
@@ -526,7 +536,7 @@ body .admin-logon {
 
 .admin-logon form div a {
     position: absolute;
-    bottom: 132px;
+    bottom: 166px;
     font-size: 1.1em;
     right: 9px;
     font-weight: 300;
@@ -556,6 +566,8 @@ body .admin-logon {
 
 .t-cms .admin-logon .checkbox {
     width: auto;
+    float: right;
+    margin-right: 20px;
 }
 
 .t-cms .admin-logon .checkbox label {
