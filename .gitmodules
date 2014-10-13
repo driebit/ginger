@@ -1,0 +1,12 @@
+[submodule "modules/mod_ginger_admin"]
+	path = modules/mod_ginger_admin
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_admin.git
+[submodule "modules/mod_ginger_map"]
+	path = modules/mod_ginger_map
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_map.git
+[submodule "modules/mod_ginger_search"]
+	path = modules/mod_ginger_search
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_search.git
+[submodule "modules/mod_geo"]
+	path = modules/mod_geo
+	url = git@github.com:arjan/mod_geo.git
