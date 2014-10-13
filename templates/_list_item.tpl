@@ -1,5 +1,3 @@
-asdfasdfasdf
-
 {% if id %}
 	{% with id.depiction as dep %}
 		<div class="list_item{% if not dep %} no-image{% endif %} {{ class }} {% if last %} last{% endif%}">

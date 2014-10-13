@@ -10,7 +10,23 @@
     <ul id="{{ id_prefix }}navigation" class="{{ class }}">
     {% for mid, path, action in menu %}
         {% if mid %}
-            {% if action==`down` %}
+            {% with mid.category_id as cat_id %}
+            {% with m.rsc[cat_id].name as cat_name %}
+
+            {% if cat_name=='collection' and mid.o.haspart %}
+                <li class="dropdown{% if mid|member:parents %} active{% endif %}">
+                    <a href="{{ mid.page_url }}" class="dropdown-toggle disabled {{ mid.name }}" data-hover="dropdown" data-toggle="dropdown" data-target="#">
+                        {{ mid.short_title|default:mid.title }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for pid in mid.o.haspart %}
+                            <li class="">
+                                <a href="{{ pid.page_url }}" class="{{ pid.name }} data-target="#">
+                                    {{ pid.short_title|default:pid.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            {% elif action==`down` %}
                 <li class="dropdown{% if mid|member:parents %} active{% endif %}">
                     <a href="{{ mid.page_url }}" class="dropdown-toggle disabled {{ mid.name }}" data-hover="dropdown" data-toggle="dropdown" data-target="#">
                         {{ mid.short_title|default:mid.title }} <b class="caret"></b></a>
@@ -22,6 +38,9 @@
                     </a>
                 </li>
             {% endif %}
+
+            {% endwith %}
+            {% endwith %}
         {% else %}
             </ul></li>
         {% endif %}
