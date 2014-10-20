@@ -49,11 +49,7 @@
 						<header><h3 class="section-title">{_ Related _}</h3></header>
 						<div class="row list list-match">
 							{% for r, rank in result %}
-								{% if forloop.last %}
-									{% include "_list_item.tpl" id=r class="col-xs-12 last" %}
-								{% else %}
-									{% include "_list_item.tpl" id=r class="col-xs-12" %}
-								{% endif %}
+								{% include "_list_item.tpl" id=r class="col-xs-12" last=forloop.last %}
 							{% endfor %}
 						</div>
 					</section>
