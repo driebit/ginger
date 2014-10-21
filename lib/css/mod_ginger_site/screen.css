@@ -88,14 +88,16 @@ aside .well ul {
     margin: 0;
     padding: 10px;
     padding: 0.625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background: #fff;
     background: rgba(255, 255, 255, 0.9);
     color: #333;
     -webkit-transition: bottom 0.4s;
             transition: bottom 0.4s; }
-  .list_item:hover p {
+  .list_item:hover .content {
     bottom: 0; }
-  .list_item.no-image p {
+  .list_item.no-image .content {
     bottom: 0; }
 
 @font-face {
