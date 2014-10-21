@@ -25,6 +25,8 @@
 		width: 100%;
 		margin: 0;
 		@include size(padding, 10);
+		overflow: hidden;
+		text-overflow: ellipsis;
 		background: #fff;
 		background: rgba(255, 255, 255, 0.9);
 		color: $text_default;
@@ -32,13 +34,13 @@
 	}
 
 	&:hover {
-		p {
+		.content {
 			bottom: 0;
 		}
 	}
 
 	&.no-image {
-		p {
+		.content {
 			bottom: 0;
 		}
 	}

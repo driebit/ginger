@@ -9,15 +9,15 @@
 				{% endif %}
 
 				{% if id.short_title %}
-					<h3>{{ id.short_title }}</h3>
+					<h3 class="list_item_short-title">{{ id.short_title }}</h3>
 				{% else %}
-					<h3>{{ id.title }}</h3>
+					<h3 class="list_item_title">{{ id.title }}</h3>
 				{% endif %}
 				
 				{% if id.summary %}
-					<div class="content">{{ id.summary|truncate: 200 }}</div>
-				{% else %}
-					<div class="content">{{ id.body|truncate: 200 }}</div>
+					<div class="list_item_content content">{{ id.summary|truncate: 200 }}</div>
+				{% elseif id.body %}
+					<div class="list_item_content content">{{ id.body|truncate: 200 }}</div>
 				{% endif %}
 			</a>
 		</div>
