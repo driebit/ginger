@@ -9,11 +9,13 @@
     }
 	delegate=delegate 
 %}
-<p>{_ Please fill in the title _} {% if not nocatselect %}{_ and the category of the new page._}{% else %}{_ of the new _} {{ m.rsc[cat].title }}.{% endif %} </p>
+{# TODO: ask Fred about the if not nocatselect #}
+<p>{_ Please fill in the title _} {% if nocatselect %}{_ and the category of the new page._}{% else %}{_ of the new _} {{ m.rsc[cat].title }}.{% endif %} </p>
 <form id="{{ #form }}" method="POST" action="postback" class="form">
+    <input type="hidden" id="{{ #published }}" name="is_published" value="1" />
 
 	<div class="form-group row">
-	    <label class="control-label col-md-3" for="new_rsc_title">{_ Page title _}</label>
+	    <label class="control-label col-md-3" for="new_rsc_title">{_ Title _}</label>
 	    <div class="col-md-9">
 		<input type="text" id="new_rsc_title" name="new_rsc_title" value="{{ title|escape }}" class="do_autofocus form-control" />
 		{% validate id="new_rsc_title" type={presence} %}
@@ -24,7 +26,8 @@
 	<input type="hidden" name="is_published" value=1/>
 	<input type="hidden" name="redirect" value=1/>
 	
-	<div class="form-group row">
+	{#
+    <div class="form-group row ">
 	    <label class="control-label col-md-3" for="{{ #published }}">{_ Published _}</label>
         <div class="checkbox col-md-9">
 		<label>
@@ -33,6 +36,7 @@
 		</label>
 	    </div>
 	</div>
+    #}
 
     <div class="modal-footer">
 	{% button class="btn btn-default" action={dialog_close} text=_"Cancel" tag="a" %}

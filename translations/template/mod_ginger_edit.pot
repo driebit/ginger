@@ -58,7 +58,7 @@ msgid ""
 "Basic"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:50 ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:38 
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:38 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:50 
 msgid ""
 "Cancel"
 msgstr ""
@@ -66,6 +66,11 @@ msgstr ""
 #: ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:12 
 msgid ""
 "Disconnect"
+msgstr ""
+
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:13 
+msgid ""
+"Do you know more about this? Add your story, image(s) and / or film(s)."
 msgstr ""
 
 #: ./user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:25 
@@ -78,7 +83,7 @@ msgid ""
 "E-mail/password already registered"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:13 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:6 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:8 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_list_item.tpl:13 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:6 ./user/modules/mod_ginger_edit/templates/_nav_edit.tpl:8 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 
 msgid ""
 "Edit"
 msgstr ""
@@ -143,11 +148,6 @@ msgid ""
 "Not allowed"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:16 
-msgid ""
-"Page title"
-msgstr ""
-
 #: ./user/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:29 ./user/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:38 
 msgid ""
 "Password"
@@ -173,22 +173,22 @@ msgid ""
 "Remember me"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 
 msgid ""
 "Save"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 
 msgid ""
 "Save &amp; view"
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:97 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:46 
 msgid ""
 "Save and view the page."
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:94 ./user/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:42 
 msgid ""
 "Save this page."
 msgstr ""
@@ -208,7 +208,7 @@ msgid ""
 "The two passwords should be equal. Please retype them."
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
+#: ./user/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:16 ./user/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
 msgid ""
 "Title"
 msgstr ""
@@ -231,11 +231,6 @@ msgstr ""
 #: ./user/modules/mod_ginger_edit/templates/_ginger_edit.tpl:99 
 msgid ""
 "View this page."
-msgstr ""
-
-#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_page_connections.tpl:13 
-msgid ""
-"You can add your own story"
 msgstr ""
 
 #: ./user/modules/mod_ginger_edit/templates/_logon_error.tpl:7 
@@ -263,7 +258,7 @@ msgid ""
 "Your new password is too short."
 msgstr ""
 
-#: ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:1 ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15 
+#: ./user/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15 ./user/modules/mod_ginger_edit/templates/button_add_media.tpl:1 
 msgid ""
 "add media item"
 msgstr ""

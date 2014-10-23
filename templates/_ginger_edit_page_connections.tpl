@@ -10,7 +10,7 @@
         {% with m.rsc[pred_id].name as name %}
         {% with m.rsc[pred_id].title as title %}
 
-            <p>{_ You can add your own story _}</p>
+            <p>{_ Do you know more about this? Add your story, image(s) and / or film(s). _}</p>
     	    
             <div>
                 {% with	m.predicate.subject_category[name]|first|element:1 as subj_cat_id %}
