@@ -92,13 +92,6 @@ input.do_timepicker {
     float: right;
 }
 
-.nav-logon,
-.nav-edit {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
 .list-group {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
