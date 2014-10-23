@@ -58,7 +58,7 @@
 
 	<body class="{% block page_class %}{% endblock %}">
 	
-		<div class="container">
+		<div class="{% block container_class %}container{% endblock %}">
 			{% block header %}
 				{% include "_header.tpl" %}
 			{% endblock %}
