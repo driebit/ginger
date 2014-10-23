@@ -1,4 +1,4 @@
-<div class="row jhm-nav-logon">
+<div class="row">
 	<div class="col-xs-12">
 		{% optional include "_nav_logon.tpl" %}
 		{% optional include "_nav_edit.tpl" %}

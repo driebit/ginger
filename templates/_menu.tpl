@@ -18,7 +18,7 @@
                     <ul class="dropdown-menu">
                         {% for pid in mid.o.haspart %}
                             <li class="">
-                                <a href="{{ pid.page_url }}" class="{{ pid.name }} data-target="#">
+                                <a href="{{ pid.page_url }}" class="{{ pid.name }}" data-target="#">
                                     {{ pid.short_title|default:pid.title }}
                                 </a>
                             </li>
