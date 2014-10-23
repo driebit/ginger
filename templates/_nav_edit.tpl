@@ -1,4 +1,4 @@
-<div id="nav-edit">
+<button id="nav-edit" class="nav-edit">
     {% if id.is_editable %}
         {% with id.category_id as cat_id %}
         {% with m.rsc[cat_id].name as cat_name %}
@@ -10,4 +10,4 @@
         {% endwith %}
         {% endwith %}
     {% endif %}
-</div>
+</button>

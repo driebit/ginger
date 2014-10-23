@@ -1,4 +1,4 @@
-<div id="nav-logon">
+<button id="nav-logon" class="nav-logon">
     {% with m.rsc[id].uri as page %}
         {% if m.acl.user %}
             <span>
@@ -24,4 +24,4 @@
             %}
         {% endif %}
     {% endwith %}
-</div>
+</button>

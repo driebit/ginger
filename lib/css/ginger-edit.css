@@ -3,21 +3,21 @@
 }
 
 .btn {
+    padding: 8px 14px;
     background-color: #d0d2d3;
     background-image: none;
     border: medium none;
     color: #58595b;
     font-size: 1em;
     line-height: 1;
-    padding: 8px 14px;
     text-shadow: none;
     transition: background-color 0.4s ease 0s;
 }
 
 .btn-primary {
+    padding: 8px 14px;
     font-size: 1em;
     line-height: 1;
-    padding: 8px 14px;
     text-shadow: none;
     background-color: #ff7600;
     background-image: none;
@@ -31,22 +31,19 @@
 }
 
 .btn-mini {
+    padding: 4px 4px;
     font-size: 12px;
     line-height: 14px;
-    padding: 4px 4px;
 }
 
 #editcol {
 	max-width: 800px;
 }
 nav.navbar .checkbox.inline {
-	color:white;
-	padding-top: 0;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-nav.navbar .btn {
-	/*margin-bottom: 10px;*/
+    padding-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+	color: white;
 }
 
 .meta-data .checkbox.inline {
@@ -57,8 +54,8 @@ nav.navbar .btn {
 	color: #777;
 }
 
-#meta-extra {
-	margin-left:10px;
+.meta-extra {
+	margin-left: 10px;
 }
 
 .publication-dates {
@@ -85,14 +82,21 @@ input.do_timepicker {
     margin-left: 10px;
 }
 
-#nav-logon {
-    float: right;
+.nav-logon {
     margin: 15px 0px 15px 0px;
+    float: right;
 }
 
-#nav-edit {
-    float: right;
+.nav-edit {
     margin: 15px 15px 15px 0px;
+    float: right;
+}
+
+.nav-logon,
+.nav-edit {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .list-group {
@@ -107,40 +111,44 @@ input.do_timepicker {
 }
 
 .mce-path {
-  display: none !important;
-}
-.mce-path-item {
-display: none !important;
-}
-div#logon_error {
-    margin: 0 18px 18px 0px;
-    padding-right: 18px;
-    border-right: 1px solid #ccc;
-    width: 260px; 
-    height: 120px; 
-    float: left; 
-    text-align: left;
-    display: none;
+    display: none !important;
 }
 
-#logon_error h2, #logon_error h3 {
+.mce-path-item {
+    display: none !important;
+}
+
+#logon_error {
+    display: none;
+    width: 260px; 
+    height: 120px; 
+    padding-right: 18px;
+    margin: 0 18px 18px 0px;
+    float: left; 
+    text-align: left;
+    border-right: 1px solid #ccc;
+}
+
+#logon_error h2, 
+#logon_error h3 {
     font-size: 1.1em;
     line-height: 1.2em;
     color: #d80000;
 }
 
-div#signup_error {
-    margin: 0 18px 18px 0px;
-    padding-right: 18px;
-    border-right: 1px solid #ccc;
+#signup_error {
+    display: none;
     width: 260px; 
     height: 200px; 
+    padding-right: 18px;
+    margin: 0 18px 18px 0px;
     float: left; 
     text-align: left;
-    display: none;
+    border-right: 1px solid #ccc;
 }
 
-#signup_error h2, #signup_error h3 {
+#signup_error h2, 
+#signup_error h3 {
     font-size: 1.1em;
     line-height: 1.2em;
     color: #d80000;
