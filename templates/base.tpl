@@ -74,6 +74,7 @@
 
 		{% include "_js_include.tpl" %}
 		{% all include "_script.tpl" %}
+        {% block module_script %}{% endblock %}
 		{% script %}
 
 	</body>
