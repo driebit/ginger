@@ -1,11 +1,11 @@
 #!/bin/bash
 
-DB="ginger"
 USER="ginger"
 HOST="localhost"
-SCHEMA=$1
-FILE="./data/dump.sql"
+DATABASE=$1
+FILE=$2
 PASSWORD="ginger"
+SCHEMA="public"
 
 sudo service zotonic stop
 
