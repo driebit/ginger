@@ -1,3 +1,4 @@
+
 {% if id and id.is_visible and id.is_published %}
 	{% with id.depiction as dep %}
 		<div class="list_item{% if not dep %} no-image{% endif %} {{ class }} {% if last %} last{% endif%}">
@@ -15,9 +16,9 @@
 				{% endif %}
 				
 				{% if id.summary %}
-					<div class="list_item_content content">{{ id.summary|truncate: 200 }}</div>
+					<div class="list_item_content content">{{ id.summary|striptags|truncate:200 }}</div>
 				{% elseif id.body %}
-					<div class="list_item_content content">{{ id.body|truncate: 200 }}</div>
+					<div class="list_item_content content">{{ id.body|striptags|truncate:200 }}</div>
 				{% endif %}
 			</a>
 		</div>

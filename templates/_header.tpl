@@ -1,3 +1,3 @@
 <header>
-	{% include "_nav.tpl" %}
+	{% include "_nav.tpl" context=context %}
 </header>

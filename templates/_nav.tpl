@@ -18,9 +18,9 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
-			{% menu menu_id=menu_id id=id %}
-			{% include "_nav_language.tpl" %}
-			{% include "_search_form.tpl" %}
+			{% menu menu_id=menu_id id=id context=context %}
+			{% include "_nav_language.tpl" context=context %}
+			{% include "_search_form.tpl" context=context %}
 		</div>
 	</div>
 </nav>

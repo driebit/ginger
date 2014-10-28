@@ -60,7 +60,7 @@
 	
 		<div class="{% block container_class %}container{% endblock %}">
 			{% block header %}
-				{% include "_header.tpl" %}
+				{% include "_header.tpl" context=context %}
 			{% endblock %}
 
 			{% block breadcrumb %}{% endblock %}

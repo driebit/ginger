@@ -13,12 +13,12 @@
 
             {% if mid.is_a.collection and mid.o.haspart %}
                 <li class="dropdown{% if mid|member:parents %} active{% endif %}">
-                    <a href="{{ mid.page_url }}" class="dropdown-toggle disabled {{ mid.name }}" data-hover="dropdown" data-toggle="dropdown" data-target="#">
+                    <a href="{% if context %}/{{ context }}/{{ mid.id }}{%else %}{{ mid.page_url }}{% endif %}" class="dropdown-toggle disabled {{ mid.name }}" data-hover="dropdown" data-toggle="dropdown" data-target="#">
                         {{ mid.short_title|default:mid.title }} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {% for pid in mid.o.haspart %}
                             <li class="">
-                                <a href="{{ pid.page_url }}" class="{{ pid.name }}" data-target="#">
+                                <a href="{% if context %}/{{ context }}/{{ pid.id }}{%else %}{{ pid.page_url }}{% endif %}" class="{{ pid.name }}" data-target="#">
                                     {{ pid.short_title|default:pid.title }}
                                 </a>
                             </li>
