@@ -2,7 +2,7 @@
 
 USER="ginger"
 HOST="localhost"
-DATABASE=$1
+DB=$1
 FILE=$2
 PASSWORD="ginger"
 SCHEMA="public"
