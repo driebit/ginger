@@ -1,6 +1,6 @@
 {% with m.config.i18n.language_list.list as languages %}
 	{% if languages %}
-		<div class="btn-group navbar-btn navbar-right">
+		<div class="btn-group navbar-btn navbar-right nav-language">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				{{ z_language }} <span class="caret"></span>
 			</button>
