@@ -13,8 +13,8 @@
 		{% block prev_next_nav %}{% endblock %}
 
 		<article class="col-md-8">
-        {% block page_actions %}{% endblock %}
-
+            
+            {% block page_actions %}{% all include "_page_actions.tpl" %}{% endblock %}
 
 			<h1>{{ id.title }}</h1> 
 		
