@@ -25,10 +25,7 @@
                             {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
                         </a>
                     {% else %}
-                        {# TODO: uploaded mp4 support #}
-                        <div class="video-wrapper">
-                            {% media dep %}
-                        </div>
+                        {% include "_media_item.tpl" id=id %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
