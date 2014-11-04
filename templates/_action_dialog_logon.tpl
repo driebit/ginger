@@ -32,13 +32,15 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <span style="float:left;">
+            <div class="checkbox"><label title="{_ Stay logged on unless I log off. _}">
+                <input type="checkbox" name="rememberme" value="1" />
+                {_ Remember me _}
+            </label></div>
+        </span>
+        <div class="form-group clearfix">
             <div>
                 <button class="btn btn-primary btn-lg pull-right" type="submit">{_ Log on _}</button>
-                <div class="checkbox"><label title="{_ Stay logged on unless I log off. _}">
-                    <input type="checkbox" name="rememberme" value="1" />
-                    {_ Remember me _}
-                </label></div>
             </div>
         </div>
 
