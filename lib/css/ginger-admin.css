@@ -625,6 +625,10 @@ body .admin-logon {
     margin-bottom: 20px;
 }
 
+.t-cms #content-location img {
+    max-width: none;
+}
+
 @media (min-width: 560px) {
     .admin-logon { 
         margin-top: 40px;
