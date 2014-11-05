@@ -1,4 +1,4 @@
-<div id="nav-logon">
+<div id="nav-logon" class="nav-logon">
     {% with m.rsc[id].uri as page %}
         {% if m.acl.user %}
             <span>
