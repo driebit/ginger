@@ -8,8 +8,7 @@
                     {% else %}
                         {{ id.title }}
                     {% endif %}
-                </a>
-                {% if not forloop.last and not forloop.first %},&nbsp;{% endif %}
+                </a>{% if not forloop.last %},{% endif %}
             </span>
         {% endif %}
 	{% endfor %}

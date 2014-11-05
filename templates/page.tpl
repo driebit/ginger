@@ -42,10 +42,16 @@
 				{% endif %}
 			{% endblock %}
 	
+			{% block page_blocks %}
+				{% include "_blocks.tpl" %}
+			{% endblock %}
+
 			{% block page_images %}
 				{% include "_media_list.tpl" %}
 			{% endblock %}
 	
+			{% block content_connections %}{% endblock %}
+
 			{% block social_media %}{% endblock %}
 			
 		</article>
