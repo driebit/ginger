@@ -15,7 +15,7 @@
         <div class="col-md-7">
             <select class="form-control" id="creator_id" name="creator_id">
                 <option value="1" {% ifequal 1 r.creator_id %}selected="selected"{% endifequal %}>{{ m.rsc[1].title }}</option>
-                {% for user_id in m.search[{query cat='editor' sort='rsc.pivot_title'}] %}
+                {% for user_id in m.search[{query cat='participant' sort='rsc.pivot_title'}] %}
                     <option value="{{ user_id }}" {% ifequal user_id r.creator_id %}selected="selected"{% endifequal %}>{{ m.rsc[user_id].title }}</option>
                 {% endfor %}
             </select>
