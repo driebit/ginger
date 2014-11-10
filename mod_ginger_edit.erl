@@ -8,7 +8,8 @@
 -include_lib("zotonic.hrl").
 
 -export([is_authorized/2,
-        event/2
+        event/2,
+        observe_admin_rscform/3
         ]).
 
 is_authorized(ReqData, Context) ->
@@ -36,3 +37,12 @@ event(#postback_notify{message="feedback", trigger="dialog-connect-find", target
         {update, [{target, TargetId}, {template, "_action_dialog_connect_tab_find_results.tpl"} | Vars]}
     ], Context).
     
+observe_admin_rscform(#admin_rscform{id=Id}, Post, _Context) ->
+    case proplists:is_defined("creator_id", Post) of
+        true ->
+            CreatorId = z_convert:to_integer(proplists:get_value("creator_id", Post)),
+            z_db:q("update rsc set creator_id = $1 where id = $2", [CreatorId, Id], _Context),
+            z_depcache:flush(Id, _Context),
+            Post;
+        false -> Post
+    end.
