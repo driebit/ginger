@@ -27,6 +27,9 @@
             <select class="form-control" id="creator_id" name="creator_id">
                 <option value="">--</option>
                 <option value="1" {% ifequal 1 r.creator_id %}selected="selected"{% endifequal %}>{{ m.rsc[1].title }}</option>
+                {% if r.creator_id > 1 %}
+                    <option value="{{ r.creator_id }}" selected="selected">{{ r.creator_id.title }}</option>
+                {% endif %}
 
                 {% for group_id in m.search[{query cat='acl_role' sort='rsc.pivot_title'}] %}
                     <option value="{{ group_id }}" {% ifequal group_id r.creator_id %}selected="selected"{% endifequal %}>{{ m.rsc[group_id].title }}</option>
