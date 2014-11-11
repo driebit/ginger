@@ -24,7 +24,7 @@
         <label class="control-label col-md-3" for="creator_id">{_ Person/Group _}</label>
         <div class="col-md-7">
             <select class="form-control" id="creator_id" name="creator_id">
-                <option value="">-</option>
+                <option value="1">-</option>
                 {# <option value="1" {% ifequal 1 r.creator_id %}selected="selected"{% endifequal %}>{_ Sysadmins _}</option> #}
                 {% for group_id in m.search[{query cat='acl_role' sort='rsc.pivot_title'}] %}
                     <option value="{{ group_id }}" {% ifequal group_id r.creator_id %}selected="selected"{% endifequal %}>{{ m.rsc[group_id].title }}</option>
