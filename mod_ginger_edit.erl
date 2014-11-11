@@ -8,9 +8,10 @@
 -include_lib("zotonic.hrl").
 
 -export([is_authorized/2,
-        event/2,
-        observe_admin_rscform/3
-        ]).
+    event/2,
+    observe_admin_rscform/3,
+    observe_acl_is_allowed/2
+    ]).
 
 is_authorized(ReqData, Context) ->
     z_acl:wm_is_authorized(use, z_context:get(acl_module, Context, mod_admin), admin_logon, ReqData, Context).
@@ -46,3 +47,26 @@ observe_admin_rscform(#admin_rscform{id=Id}, Post, _Context) ->
             Post;
         false -> Post
     end.
+
+observe_acl_is_allowed(#acl_is_allowed{action=update, object=Id}, Context) ->
+    case m_rsc:p_no_acl(Id, editable_for, Context) of
+		<<"2">> -> can_group_edit(Id, Context);
+		_ -> undefined
+	end;
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
+
+%% @doc A user can edit content his/her group created
+can_group_edit(Id, #context{user_id=UserId, acl=ACL} = Context) when UserId /= undefined ->
+    RscGroupId = m_rsc:p_no_acl(Id, creator_id, Context),
+    {rsc_list, Ids} = m_rsc:s(UserId, acl_role_member, Context),
+    case lists:any(
+        fun(UserGroupId) ->
+            RscGroupId =:= UserGroupId
+        end,
+        Ids
+    ) of
+        true -> true;
+        _ -> undefined
+    end.
+
