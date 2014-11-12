@@ -25,9 +25,7 @@
                             {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
                         </a>
                     {% else %}
-                        {% if dep.id.medium.mime=="video/mp4" or dep.id.medium.mime=="video/webm" or dep.id.medium.mime=="video/ogg" or dep.id.medium.mime=="video/x-flv" or dep.id.medium.mime=="video/x-swv" %}
-                            {% include "_media_item.tpl" id=id %}
-                        {% endif %}
+                        {% include "_media_item.tpl" id=id %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
