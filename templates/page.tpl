@@ -25,7 +25,7 @@
                             {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
                         </a>
                     {% else %}
-                        {% include "_media_item.tpl" id=id %}
+                        {% catinclude "_media_item.tpl" id %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
