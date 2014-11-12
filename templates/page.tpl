@@ -25,7 +25,13 @@
                             {% image id.depiction mediaclass="default" class="img-responsive" alt="" crop=id.depiction.id.crop_center %}
                         </a>
                     {% else %}
-                        {% catinclude "_media_item.tpl" id %}
+                        {% if id.is_a.document %}
+                            {% catinclude "_media_item.tpl" id %}
+                        {% else %}
+                            <a href="{{ dep.id.page_url }}">
+                                {% include "_media_item.tpl" id=id %}
+                            </a>
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
