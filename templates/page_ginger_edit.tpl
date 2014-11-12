@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-sm-4 col-md-4">
-            {% catinclude "_aside.tpl" id page="edit" %}
+            {% catinclude "_aside_ginger_edit.tpl" id page="edit" %}
         </div>
 	</div>
     <div class="footer row">
