@@ -1,13 +1,4 @@
 <aside>
-	{% block aside_map %}
-		{% if id.location_lat and id.location_lng %}
-			{% block map_title %}{% endblock %}
-			<div class="aside_block aside_map">
-				{% include "_map_single.tpl" id=id container="map-canvas" height=120 %}
-			</div>
-		{% endif %}
-	{% endblock %}
-
 	{% block aside_keywords %}
 		{% with id.subject as keywords %} 
 			{% if keywords %}
