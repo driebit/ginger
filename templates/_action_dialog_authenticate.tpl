@@ -11,6 +11,10 @@
             <a data-toggle="tab" href="#{{ #tab }}-signup">{_ Signup _}</a>
         </li>
 
+        <li {% if tab == "forgot" %}class="active"{% endif %}>
+            <a data-toggle="tab" href="#{{ #tab }}-forgot">{_ Forgot my password _}</a>
+        </li>
+
 	{% endblock %}
 </ul>
 
@@ -21,6 +25,9 @@
                     is_active=1 %}
 
         {% include "_action_dialog_signup.tpl" tab=#tab id=id action=action title=""
+                    is_active=0 %}
+
+        {% include "_action_dialog_forgot.tpl" tab=#tab id=id action=action title=""
                     is_active=0 %}
 
     {% endblock %}

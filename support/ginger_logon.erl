@@ -39,7 +39,22 @@ event(#postback{message={ginger_logoff, Args}}, Context) ->
     controller_logoff:reset_rememberme_cookie_and_logoff(Context),
     %Id = z_convert:to_integer(proplists:get_value(id, Args)),
     PageUrl = proplists:get_value(page, Args),
-    z_render:wire({redirect, [{location, PageUrl}]}, Context).
+    z_render:wire({redirect, [{location, PageUrl}]}, Context);
+
+event(#submit{message={ginger_reminder, Args}, form="ginger_password_reminder"}, Context) ->
+    case z_string:trim(z_context:get_q("reminder_address", Context, [])) of
+        [] ->
+            logon_error("reminder", Context);
+        Reminder ->
+            case controller_logon:lookup_identities(Reminder, Context) of
+                [] -> 
+                    reminder_error("reminder", Context);
+                Identities ->
+                    % @todo TODO check if reminder could be sent (maybe there is no e-mail address)
+                    controller_logon:send_reminder(Identities, Context),
+                    z_render:growl("The Password reminder is sent to you", Context)
+            end
+    end.
 
 logon_user(UserId, Actions, Context) ->
     case z_auth:logon(UserId, Context) of
@@ -69,3 +84,7 @@ logon_error(Reason, Context) ->
 signup_error(Reason, Context) ->
     ?DEBUG(Reason),
     z_render:appear("signup_error", z_template:render("_signup_error.tpl", [{reason, Reason}], Context), Context).
+
+reminder_error(Reason, Context) ->
+    ?DEBUG(Reason),
+    z_render:appear("reminder_error", z_template:render("_signup_error.tpl", [{reason, Reason}], Context), Context).

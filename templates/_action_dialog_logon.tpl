@@ -43,10 +43,6 @@
                 <button class="btn btn-primary btn-lg pull-right" type="submit">{_ Log on _}</button>
             </div>
         </div>
-
-        <div>
-            <a class="" href="{% url logon_reminder %}">{_ I forgot my password _}</a>
-        </div>
     </form>
     {% endwith %}
 </div>    
