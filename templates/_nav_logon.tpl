@@ -2,7 +2,7 @@
     {% with m.rsc[id].uri as page %}
         {% if m.acl.user %}
             <span>
-                {{ m.rsc[m.acl.user].title }}&nbsp;<a href="#" id="{{ #ginger_logoff }}"><i class="glyphicon glyphicon-log-out"></i></a>
+                <a href="{{ m.rsc[m.acl.user].page_url }}">{{ m.rsc[m.acl.user].title }}</a>&nbsp;<a href="#" id="{{ #ginger_logoff }}"><i class="glyphicon glyphicon-log-out"></i></a>
             </span>
             {%
                 wire id=#ginger_logoff
