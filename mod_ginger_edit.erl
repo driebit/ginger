@@ -48,6 +48,11 @@ observe_admin_rscform(#admin_rscform{id=Id}, Post, _Context) ->
         false -> Post
     end.
 
+observe_acl_is_allowed(#acl_is_allowed{object=#acl_edge{subject_id = SubjectId}}, Context) ->
+    case m_rsc:p_no_acl(SubjectId, editable_for, Context) of
+		<<"2">> -> can_group_edit(SubjectId, Context);
+		_ -> undefined
+	end;
 observe_acl_is_allowed(#acl_is_allowed{action=update, object=Id}, Context) ->
     case m_rsc:p_no_acl(Id, editable_for, Context) of
 		<<"2">> -> can_group_edit(Id, Context);
@@ -57,7 +62,7 @@ observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
 
 %% @doc A user can edit content his/her group created
-can_group_edit(Id, #context{user_id=UserId, acl=ACL} = Context) when UserId /= undefined ->
+can_group_edit(Id, #context{user_id=UserId} = Context) when UserId /= undefined ->
     RscGroupId = m_rsc:p_no_acl(Id, creator_id, Context),
     {rsc_list, Ids} = m_rsc:s(UserId, acl_role_member, Context),
     case lists:any(
