@@ -17,7 +17,7 @@
                           group="edges"
                           delegate=`controller_admin_edit`
                 %}
-                <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_rsc_edge_list.tpl">{% include "_rsc_edge_list.tpl" id=id predicate=name %}</ul>
+                <ul id="links-{{ id }}-{{ name }}" class="tree-list connections-list" data-reload-template="_ginger_edit_rsc_edge_list.tpl">{% include "_ginger_edit_rsc_edge_list.tpl" id=id predicate=name %}</ul>
            </div>
 
             {% if is_editable %}
