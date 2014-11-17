@@ -41,7 +41,7 @@
 			{% if m.modules.info.mod_translation.enabled %}
 				<li><a href="#meta-language" data-toggle="tab">{_ Language _}</a></li>
 			{% endif %}
-			<li><a href="#meta-acl" data-toggle="tab">{_ Access control _}</a></li>
+			{# <li><a href="#meta-acl" data-toggle="tab">{_ Access control _}</a></li> #}
 			<li><a href="#meta-pubdate" data-toggle="tab">{_ Publication _}</a></li>
 		</ul>
 		<div class="tab-content">
@@ -49,9 +49,9 @@
 			<div class="tab-pane" id="meta-language">
 				{% optional include "_translation_edit_languages.tpl" %}
 			</div>
-			<div class="tab-pane" id="meta-acl">
-				{% include "_admin_edit_visible_for.tpl" id=id is_admin_frontend %}
-			</div>
+			{# <div class="tab-pane" id="meta-acl"> #}
+			{#	{% include "_admin_edit_visible_for.tpl" id=id is_admin_frontend %} #}
+			{# </div> #}
             <div class="tab-pane publication-dates" id="meta-pubdate">
                 <label for="is_published" class="checkbox-inline">
                     <input type="checkbox" id="is_published" name="is_published" value="1" {% if id.is_published %}checked="checked"{% endif %}/>
