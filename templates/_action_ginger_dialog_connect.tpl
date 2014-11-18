@@ -17,11 +17,17 @@
 <div class="tab-content" id="dialog-connect-panels">
     {% block tabs_content %}
 
-        {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]] title=""
+        {% if direction=='in' %}
+            {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]] title=""
                     is_active=1 %}
-
-        {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=object_id redirect=redirect
-                    is_active=0 title="" cat=cat|default:(m.predicate.subject_category[predicate]|first|element:1) callback=callback %}
+            {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]] redirect=redirect
+                    is_active=0 title="" cat=cat callback=callback %}
+        {% else %}
+            {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id title=""
+                    is_active=1 %}
+            {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
+                    is_active=0 title="" cat=cat callback=callback %}
+        {% endif %}
 
     {% endblock %}
 </div>

@@ -1,7 +1,8 @@
 {% wire id=#form type="submit" 
 	postback={
         new_page
-        objects=objects
+        subject_id=subject_id
+        objects=objects|default:[]
         predicate=predicate
         redirect=redirect 
         actions=[{redirect dispatch="ginger_edit_rsc" id=id}]
@@ -9,8 +10,8 @@
     }
 	delegate=delegate 
 %}
-{# TODO: ask Fred about the if not nocatselect #}
-<p>{_ Please fill in the title _} {% if nocatselect %}{_ and the category of the new page._}{% else %}{_ of the new _} {{ m.rsc[cat].title }}.{% endif %} </p>
+
+<p>{_ Please fill in the title _} {% if nocatselect %}{_ and the category of the new page._}{% else %}{_ of the new _} {{ m.rsc[cat].title|lower }}.{% endif %} </p>
 <form id="{{ #form }}" method="POST" action="postback" class="form">
     <input type="hidden" id="{{ #published }}" name="is_published" value="1" />
 

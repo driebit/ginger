@@ -12,9 +12,9 @@
 		{% endwith %}
 	{% endblock %}
 
-	{% block aside_edit_page_connections %}
+	{% block action_ginger_connections %}
 		<section class="aside_block aside_stories">
-			{% include "_ginger_edit_page_connections.tpl" %}
+            {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
 		</section>
 	{% endblock %}
 	
