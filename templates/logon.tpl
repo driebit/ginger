@@ -1,5 +1,9 @@
 {% extends "admin_base.tpl" %}
 
+{% block html_head_extra %}
+{% lib "css/logon.css" %}
+{% endblock %}
+
 {% block title %}{_ Admin log on _}{% endblock %}
 
 {% block bodyclass %}noframe{% endblock %}
@@ -21,6 +25,15 @@
             {% include "_logon_form.tpl" %}
         {% endif %}
     </div>    
+</div>
+
+<div class="logon_bottom">
+    <ul id="logon_methods">
+        {% all include "_logon_extra.tpl" %}
+    </ul>
+
+    {% all include "_logon_link.tpl" %}
+
 </div>
 
 {# Use a real post for all forms on this page, and not AJAX or Websockets. This will enforce all cookies to be set correctly. #}
