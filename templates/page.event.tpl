@@ -36,16 +36,16 @@
                 {% endif %}
             {% endblock %}
 
+			{% block page_date %}
+				{% if id.date_start %}
+					<p class="date-leaf">{{ id.date_start }}</p>
+				{% endif %}
+			{% endblock %}
+
 			{% block page_summary %}
 				{% if id.summary %}
 					<p class="summary article_summary">{{ id.summary }}</p>
 				{% endif %}
-			{% endblock %}
-
-			{% block page_date %}
-				{% if id.date_start %}<p class="date">{{ id.date_start }}{% endif %}
-				{% if id.date_end %} - {{ id.date_end }}{% endif %}
-				{% if id.date_start %}</p>{% endif %}
 			{% endblock %}
 
 			{% block page_body %}

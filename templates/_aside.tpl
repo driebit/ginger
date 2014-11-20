@@ -21,10 +21,8 @@
 		{% endwith %}
 	{% endblock %}
 
-	{% block aside_edit_page_connections %}
-		<section class="aside_block aside_stories">
-			{% include "_ginger_edit_page_connections.tpl" %}
-		</section>
+	{% block action_ginger_connections %}
+        {# overwrite and add actions here #}
 	{% endblock %}
 	
 	{% block aside_connections %}

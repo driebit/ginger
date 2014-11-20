@@ -10,7 +10,9 @@
                             {% catinclude "_media_thumb.tpl" dep %}
                         {% endif %}
                     {% else %}
-                        {% catinclude "_media_thumb.tpl" dep %}
+                        {% if not forloop.first %}
+                            {% catinclude "_media_thumb.tpl" dep %}
+                        {% endif %}
                     {% endif %}
 				{% endfor %}
 				{% for doc in docs %}
