@@ -14,7 +14,8 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">{{ m.config.site.title.value }}</a>
+			{# <a class="navbar-brand" href="/">{{ m.config.site.title.value }}</a> #}
+			<a class="navbar-brand" href="/">{_ Home _}</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
