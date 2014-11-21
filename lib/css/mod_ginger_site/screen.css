@@ -1,8 +1,5 @@
 /* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
 /* Creates a mediaquery based on property and size in pixels */
-img {
-  width: 100%; }
-
 html, body {
   font-size: 16px; }
 
