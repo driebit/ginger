@@ -52,6 +52,7 @@
 		%}
 
 		{% all include "_head.tpl" %}
+		{% all include "_html_head.tpl" %}
 
 		{% block head_extra %}{% endblock %}
 	</head>

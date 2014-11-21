@@ -64,7 +64,9 @@
 	
 			{% block content_connections %}{% endblock %}
 
-			{% block social_media %}{% endblock %}
+			{% block social_media %}
+				{% optional include "_action_share_page.tpl" %}
+            {% endblock %}
 			
 		</article>
 
