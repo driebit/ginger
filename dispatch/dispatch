@@ -9,6 +9,9 @@
  {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
 
  %% Simple search page
- {search, ["search"], controller_template, [ {template, "search.tpl"} ]}
+ {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
+
+ %% close a popup
+ {closepopup, ["closepopup"], controller_template, [ {template, "close_popup.tpl"} ]}
 
 ].
