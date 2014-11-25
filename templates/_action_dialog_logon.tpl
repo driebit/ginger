@@ -47,9 +47,11 @@
     {% endwith %}
 </div>    
 
-<ul id="logon_methods">
-    {% all include "_logon_extra.tpl" %}
-</ul>
+<div style='width:153px;'>
+    <ul id="logon_methods" style="text-decoration: none;">
+        {% all include "_logon_extra.tpl" %}
+    </ul>
+</div>
 
 {# <a data-toggle="tab" href="#{{ #tab }}-signup"><i class="glyphicon glyphicon-log-in">&nbsp;</i>{_ I don’t have an account, please sign me up. _}</a> #}
 
