@@ -23,7 +23,6 @@
     
      $('a[data-toggle="tab"]').click(function(){
            var id = $(this).data('id');
-           console.log(id);
            $('#find_category').val(id);
            $('#dialog-connect-find').change();
         });

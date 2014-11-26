@@ -1,4 +1,5 @@
-{% with callback|default:q.callback|default:"window.zAdminConnectDone" as callback %}
+{% with callback|default:q.callback|default:"window.zConnectDoneReload" as callback %}
+{% with m.rsc[cat].name as cat_name %}
 
 <ul class="nav nav-pills">
     {% block tabs %}
@@ -8,7 +9,7 @@
         </li>
 
         <li {% if tab == "find" and not q.is_zmedia %}class="active"{% endif %}>
-            <a data-toggle="tab" href="#{{ #tab }}-find">{_ Find Page _}</a>
+            <a data-toggle="tab" data-id="{{m.rsc[cat_name].id}}" data-name="{{cat_name}}" href="#{{ #tab }}-find">{_ Find Page _}</a>
         </li>
 
 	{% endblock %}
@@ -32,4 +33,5 @@
     {% endblock %}
 </div>
 
+{% endwith %}
 {% endwith %}

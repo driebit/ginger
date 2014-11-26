@@ -8,6 +8,10 @@
 		{% endif %}	
 	{% endblock %}
 
+    <section class="aside_block aside_stories">
+        {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
+    </section>
+	
 	{% block aside_keywords %}
 		{% with id.subject as keywords %} 
 			{% if keywords %}
@@ -21,12 +25,6 @@
 		{% endwith %}
 	{% endblock %}
 
-	{% block action_ginger_connections %}
-		<section class="aside_block aside_stories">
-            {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
-		</section>
-	{% endblock %}
-	
 	{% block aside_context %}
 		{% if id.o.fixed_context %}
 			<section class="aside_block aside_fixed-content">

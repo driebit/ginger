@@ -1,11 +1,8 @@
 <aside>
 
-	{% block action_ginger_connections %}
-		<section class="aside_block aside_stories">
-            {% include "_action_ginger_connection.tpl" category='location' predicate='located_in' %}
-            {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
-		</section>
-	{% endblock %}
+    <section class="aside_block aside_stories">
+        {% include "_action_ginger_connection.tpl" category='location' predicate='located_in' %}
+    </section>
 	
 	{% block aside_connections %}
 		{% if id.o.located_in %} 
@@ -15,6 +12,10 @@
 			</section>
 		{% endif %}	
 	{% endblock %}
+
+	<section class="aside_block aside_stories">
+        {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
+	</section>
 
 	{% block aside_keywords %}
 		{% with id.subject as keywords %} 

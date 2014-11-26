@@ -32,7 +32,6 @@
 		{% all include "_head.tpl" %}
 		{% all include "_html_head.tpl" %}
         {% all include "_html_head_admin.tpl" %}
-
         
         {% include "_js_include_jquery.tpl" %}
         
@@ -52,14 +51,20 @@
         {% block content %}{% endblock %}
 	</div>
 
+    {% lib
+        "js/ginger_edit.js"
+        "js/modules/z.imageviewer.js"
+        "js/qlobber.js"
+        "js/pubzub.js"
+        "js/modules/z.live.js"
+        "js/modules/z.inputoverlay.js"
+        "js/modules/jquery.loadmask.js"
+    %}
+    {% include "_editor.tpl" %}
     {% include "_admin_js_include.tpl" %}
     {% include "_ginger_edit_js_extra.tpl" %}
-    {% block js_extra %}{% endblock %}
 
-    {% block editor %}{% endblock %}
         
-    {% block html_body_admin %}{% endblock %}
-
     {% block ua_probe %}
         {% include "_ua_probe.tpl"%}
     {% endblock %}
