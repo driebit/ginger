@@ -34,7 +34,7 @@
 		{% endif %}	
 		{% if id.s.located_in %} 
 			<section class="aside_block aside_about">
-				<header><h3 class="section-title">{_ Events taking place here _}</h3></header>
+				<header><h3 class="section-title">{_ Events _}</h3></header>
 				{% include "_list.tpl" class="list-about" items=id.s.located_in %}
 			</section>
 		{% endif %}	
