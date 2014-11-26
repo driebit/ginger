@@ -76,6 +76,16 @@
 
 		{% all catinclude "_admin_edit_content.tpl" id is_editable=is_editable languages=languages %}
 
+        {% if id.is_a.location %}
+            {% catinclude "_ginger_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
+            {% optional include "_geomap_admin_location.tpl" %}
+        {% endif %}
+
+        {% if id.is_a.event %}
+            {% catinclude "_ginger_edit_content_date_range.tpl" id is_editable=is_editable %}
+        {% endif %}
+
+
 		{% if id.is_a.media or id.medium %}
 			{% include "_admin_edit_content_media.tpl" %}
 		{% endif %}

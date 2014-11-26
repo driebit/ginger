@@ -1,37 +1,32 @@
-{% extends "base.tpl" %}
+{% extends "ginger_edit_base.tpl" %}
 
 {% block title %}{_ Edit _}{% if id %}: {{ id.title|default:"-" }}{% endif %}{% endblock%}
 
 {% block head_extra %}
 	{% lib 
-        "css/zotonic-admin.css" 
-        "css/jquery-ui.datepicker.css"
-        "css/jquery.timepicker.css"
-        "css/zp-menuedit.css"
-        "css/zotonic-admin.css"
-        "css/z.modal.css"
+		"css/mod_ginger_site/screen.css"
         "css/ginger-edit.css"
 	%}
 {% endblock %}
 
 {% block content %}
-{% if id.is_editable %}
-	<div class="row page-ginger_edit_content_row_class">
-        <div class="col-sm-8 col-md-8">
-            {% include "_ginger_edit.tpl" %}
-        </div>
+    {% if id.is_editable %}
+        <div class="row page-ginger_edit_content_row_class">
+            <div class="col-sm-8 col-md-8">
+                {% include "_ginger_edit.tpl" %}
+            </div>
 
-        <div class="col-sm-4 col-md-4">
-            {% catinclude "_aside_ginger_edit.tpl" id page="edit" %}
+            <div class="col-sm-4 col-md-4">
+                {% catinclude "_aside_ginger_edit.tpl" id page="edit" %}
+            </div>
         </div>
-	</div>
-    <div class="footer row">
-        {% block footer %}{% endblock %}
-    </div>
-{% else %}
-    <h2>{_ Not allowed _}</h2>
-     <a href="/">{_ Go to _} {_ Home _}</a>
-{% endif %}
+        <div class="footer row">
+            {% block footer %}{% endblock %}
+        </div>
+    {% else %}
+        <h2>{_ Not allowed _}</h2>
+         <a href="/">{_ Go to _} {_ Home _}</a>
+    {% endif %}
 {% endblock %}
 
 {% block header %}
@@ -60,22 +55,6 @@
 {% endblock %}
 
 
-{% block _js_include_extra %}
-
-	{% lib
-    	"js/modules/jquery.hotkeys.js"
-	    "js/modules/z.adminwidget.js"
-	    "js/modules/z.tooltip.js"
-	    "js/modules/z.feedback.js"
-	    "js/modules/z.formreplace.js"
-	    "js/modules/z.datepicker.js"
-	    "js/modules/z.cropcenter.js"
-	    "js/modules/jquery.shorten.js"
-	    "js/modules/jquery.timepicker.min.js"
-
-	    "js/jquery.ui.nestedSortable.js"
-	%}
-    
+{% block editor %}
     {% include "_editor.tpl" %}
-
 {% endblock %}
