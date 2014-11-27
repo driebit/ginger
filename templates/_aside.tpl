@@ -32,6 +32,18 @@
 				{% include "_list.tpl" class="list-about" items=id.o.about %}
 			</section>
 		{% endif %}	
+		{% if id.s.located_in %} 
+			<section class="aside_block aside_about">
+				<header><h3 class="section-title">{_ Events _}</h3></header>
+				{% include "_list.tpl" class="list-about" items=id.s.located_in %}
+			</section>
+		{% endif %}	
+		{% if id.o.located_in %} 
+			<section class="aside_block aside_about">
+				<header><h3 class="section-title">{_ Location _}</h3></header>
+				{% include "_list.tpl" class="list-about" items=id.o.located_in %}
+			</section>
+		{% endif %}	
 	{% endblock %}
 
 	{% block aside_context %}
