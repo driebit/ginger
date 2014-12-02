@@ -38,7 +38,7 @@
 
 			{% block page_date %}
 				{% if id.date_start %}
-					<p class="date-leaf">{{ id.date_start }}</p>
+					<time datetime="{{ id.date_start }}">{{ id.date_start }}</time>
 				{% endif %}
 			{% endblock %}
 
