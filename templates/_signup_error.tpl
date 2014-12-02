@@ -1,15 +1,15 @@
 
-{% if reason == "identity_in_use" %}
+{% if reason|first == "identity_in_use" %}
 
-    <h4 style="color: red;">{_ E-mail/password already registered _}</h4>
+    <p style="color: red;">{_ E-mail/password already registered _}</p>
     {% javascript %}
     $("#signup_form form").unmask();
     $("#signup_form #username").focus();
     {% endjavascript %}
 
-{% elseif reason == "reminder" %}
+{% elseif reason|first == "reminder" %}
 
-    <h4 style="color: red;">{_ E-mail/User not found _}</h4>
+    <p style="color: red;">{_ E-mail/User not found _}</p>
 
 {% endif %}
 

@@ -15,7 +15,7 @@ event(#submit{message={ginger_logon, Args}, form="logon_dialog"}, Context) ->
             logon_error("pw", Context);
         undefined -> 
             ?zWarning("Auth module error: #logon_submit{} returned undefined.", Context),
-            logon_error("pw", Context)
+            logon_error("unknown", Context)
     end;
 
 event(#submit{message={ginger_signup, Args}}, Context) ->
@@ -73,7 +73,7 @@ logon_user(UserId, Actions, Context) ->
 		{error, Reason} ->
 			% Could not log on, some error occured
             io:format("~p", [Reason]),
-			logon_error("unknown", Context)
+			logon_error(Reason, Context)
 	end.
 
 logon_error(Reason, Context) ->

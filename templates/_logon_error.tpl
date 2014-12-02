@@ -1,19 +1,14 @@
 
 {% if reason == "pw" %}
-<h2>{_ You entered an unknown username or password.  Please try again. _}</h2>
-
+    <p style="color: red;">{_ You entered an unknown username or password.  Please try again. _}</p>
+{% elseif reason == "user_not_enabled" %}
+    <p style="color: red;">{_ You have to confirm your account first.  Please see the email send to you. _}</p>
 {% elseif reason == "reminder" %}
-
-<h2>{_ You entered an unknown username or e-mail address.  Please try again. _}</h2>
-	
+    <p style="color: red;">{_ You entered an unknown username or e-mail address.  Please try again. _}</p>
 {% elseif reason == "tooshort" %}
-
-<h2>{_ Your new password is too short. _}</h2>
-
+    <p style="color: red;">{_ Your new password is too short. _}</p>
 {% elseif reason == "unequal" %}
-
-<h2>{_ The two passwords should be equal. Please retype them. _}</h2>
-
+    <p style="color: red;">{_ The two passwords should be equal. Please retype them. _}</p>
 {% endif %}
 
 
