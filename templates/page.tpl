@@ -67,6 +67,10 @@
 			{% block social_media %}
 				{% optional include "_action_share_page.tpl" %}
             {% endblock %}
+
+             {% block comments %}
+                {% optional include "_comments.tpl" %}
+            {% endblock %}
 			
 		</article>
 
