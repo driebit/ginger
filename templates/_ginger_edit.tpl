@@ -11,6 +11,7 @@
 <form id="rscform" method="post" action="postback" class="form">
 	<input type="hidden" name="id" value="{{ id }}" />
 
+    {% block meta_data %}
 	<div class="meta-data row">
 		<div class="col-lg-10 col-md-10">
 			{% block meta_data_first %}{% endblock %}
@@ -31,10 +32,12 @@
 			{% endjavascript %}
 		</div>
 	</div>
+    {% endblock %}
 
 	{% block meta_data_after %}
 	{% endblock %}
 
+    {% block meta_extra %}
 	<div class="row meta-extra" id="meta-extra" style="display:none; margin-left:0px;; margin-right:0px">
 		<ul class="nav nav-tabs">
 			{% block meta_tabs %}{% endblock %}
@@ -68,10 +71,11 @@
 			$('#meta-extra .nav-tabs a:first').tab('show');
 		{% endjavascript %}
 	</div>
+    {% endblock %}
 
-	<div id="poststuff">
-	{% optional include "_translation_init_languages.tpl" %}
-	{% block edit_blocks %}
+    {% block edit_blocks %}
+        <div id="poststuff">
+	    {% optional include "_translation_init_languages.tpl" %}
 		{% catinclude "_ginger_edit_basics.tpl" id is_editable=is_editable languages=languages %}
 
 		{% all catinclude "_admin_edit_content.tpl" id is_editable=is_editable languages=languages %}
@@ -93,9 +97,10 @@
 		{% catinclude "_admin_edit_body.tpl" id is_editable=is_editable languages=languages %}
 		{# catinclude "_admin_edit_blocks.tpl" id is_editable=is_editable languages=languages #}
 		{% catinclude "_ginger_edit_depiction.tpl" id is_editable=is_editable languages=languages show_opened tab="upload" tabs_enabled=["upload","video","video_embed"] %}
-	{% endblock %}
-	</div>
+        </div>
+    {% endblock %}
 
+    {% block form_save %}
 	{# Hidden safe buttons and publish state - controlled via the nabvar #}
 	<div style="display: none">
 		<span id="button-prompt">{% block nav_prompt %}{{ id.category_id.title }}{% endblock %}</span>
@@ -110,6 +115,7 @@
 			{% endif %}
 		{% endblock %}
 	</div>
+    {% endblock %}
 </form>
 {% endwith %}
 {% endwith %}
