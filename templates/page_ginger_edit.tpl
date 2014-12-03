@@ -13,7 +13,7 @@
     {% if id.is_editable %}
         <div class="row page-ginger_edit_content_row_class">
             <div class="col-sm-8 col-md-8">
-                {% include "_ginger_edit.tpl" %}
+                {% catinclude "_ginger_edit.tpl" id %}
             </div>
 
             <div class="col-sm-4 col-md-4">

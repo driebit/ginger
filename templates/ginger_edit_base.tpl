@@ -62,7 +62,7 @@
     %}
     {% include "_editor.tpl" %}
     {% include "_admin_js_include.tpl" %}
-    {% include "_ginger_edit_js_extra.tpl" %}
+    {% optional include "_ginger_edit_js_extra.tpl" %}
 
         
     {% block ua_probe %}

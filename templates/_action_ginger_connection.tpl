@@ -13,6 +13,8 @@
                             logon_required
                             object_id=id
                             cat=cat_id
+                            findtab=findtab
+                            newtab=newtab
                             predicate=predicate
                             direction=direction}
             %}
@@ -23,6 +25,8 @@
                             logon_required
                             subject_id=id
                             cat=cat_id
+                            findtab=findtab
+                            newtab=newtab
                             predicate=predicate
                             direction=direction}
             %}
