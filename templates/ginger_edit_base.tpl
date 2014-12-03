@@ -51,17 +51,11 @@
         {% block content %}{% endblock %}
 	</div>
 
-    {% lib
-        "js/ginger_edit.js"
-        "js/modules/z.imageviewer.js"
-        "js/qlobber.js"
-        "js/pubzub.js"
-        "js/modules/z.live.js"
-        "js/modules/z.inputoverlay.js"
-        "js/modules/jquery.loadmask.js"
-    %}
     {% include "_editor.tpl" %}
     {% include "_admin_js_include.tpl" %}
+    {% lib
+        "js/ginger_edit.js"
+    %}
     {% include "_ginger_edit_js_extra.tpl" %}
 
         
