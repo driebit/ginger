@@ -56,10 +56,8 @@
     {% lib
         "js/ginger_edit.js"
     %}
-
-    {% include "_editor.tpl" %}
-    {% include "_admin_js_include.tpl" %}
     {% optional include "_ginger_edit_js_extra.tpl" %}
+
         
     {% block ua_probe %}
         {% include "_ua_probe.tpl"%}
