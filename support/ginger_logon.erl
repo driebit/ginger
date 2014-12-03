@@ -41,7 +41,7 @@ event(#postback{message={ginger_logoff, Args}}, Context) ->
     PageUrl = proplists:get_value(page, Args),
     z_render:wire({redirect, [{location, PageUrl}]}, Context);
 
-event(#submit{message={ginger_reminder, Args}, form="ginger_password_reminder"}, Context) ->
+event(#submit{message={ginger_reminder, _Args}, form="ginger_password_reminder"}, Context) ->
     case z_string:trim(z_context:get_q("reminder_address", Context, [])) of
         [] ->
             logon_error("reminder", Context);
