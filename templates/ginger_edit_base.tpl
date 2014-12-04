@@ -16,6 +16,7 @@
 
 		{% lib 
 			"css/mod_ginger_site/screen.css"
+            "css/ginger-edit.css"
 		%}
 
         {% lib
