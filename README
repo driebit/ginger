@@ -1,8 +1,8 @@
 Provides frontend editing and resource connecting.
 
 Usage:
- - add a predicate "Viewable connections" with name "viewable_predicates"
- - make this predicate valid for "category" to "predicate"
- - edit a category (like "project") and add "Viewable connections" (like: "about" and "relation")
+Add includes to your templates like:
 
-On a "project" frontend page the sidebar should now show "add connections" buttons
+{% include "_action_ginger_connection.tpl" predicate='author' category='person' new_rsc_title='author' %}
+
+to get a "Add my author" button
