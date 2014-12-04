@@ -1,8 +1,14 @@
 <aside>
 	{% block aside_connections %}
-		{% if id.s.located_in %} 
+		{% if id.s.presented_at %} 
 			<section class="aside_block aside_about">
 				<header><h3 class="section-title">{_ Events _}</h3></header>
+				{% include "_list.tpl" class="list-about" items=id.s.presented_at %}
+			</section>
+		{% endif %}	
+		{% if id.s.located_in %} 
+			<section class="aside_block aside_about">
+				<header><h3 class="section-title">{_ Is here _}</h3></header>
 				{% include "_list.tpl" class="list-about" items=id.s.located_in %}
 			</section>
 		{% endif %}	
