@@ -11,7 +11,7 @@
 	{% block action_ginger_connections %}
         {% if id.is_editable %}
             <section class="ginger-edit_add-story">
-                {% include "_action_ginger_connection.tpl" category='event' obj_title='event' %}
+                {% include "_action_ginger_connection.tpl" category='event' new_rsc_title='event' %}
             </section>
         {% endif %}
 	{% endblock %}
