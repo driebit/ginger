@@ -2,6 +2,9 @@
 
 {% block title %}{_ Edit _}{% if id %}: {{ id.title|default:"-" }}{% endif %}{% endblock%}
 
+{% block page_class %}ginger-edit{% endblock %}
+
+
 {% block content %}
     {% if id.is_editable %}
         <div class="row page-ginger_edit_content_row_class">
