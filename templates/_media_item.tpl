@@ -1,4 +1,3 @@
-
 {% if dep.id.medium.mime=="video/mp4" or dep.id.medium.mime=="video/webm" or dep.id.medium.mime=="video/ogg" %}
     <div class="video-wrapper">
         <video width="640" height="480" controls>
