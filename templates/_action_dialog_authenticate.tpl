@@ -1,5 +1,3 @@
-{% lib "css/ginger-edit.css" %}
-
 <ul id="logon_methods" style="text-decoration: none;">
     {% all include "_logon_extra.tpl" %}
 </ul>
