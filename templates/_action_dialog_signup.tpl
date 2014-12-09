@@ -11,7 +11,7 @@
 </div>
 
 <div id="signup_form">
-    <form id="signup_dialog" method="post" action="postback">
+    <form id="signup_dialog" class="setcookie" method="post" action="postback">
         
 		<div id="signup_name_full"class="form-group">
 			<label for="name_full" class="control-label">{_ Your name _}</label>
@@ -51,10 +51,6 @@
 
     </form>
 </div>    
-
-<ul id="logon_methods">
-    {% all include "_logon_extra.tpl" %}
-</ul>
 
 </div>
 

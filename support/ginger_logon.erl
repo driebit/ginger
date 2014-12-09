@@ -34,6 +34,27 @@ event(#submit{message={ginger_signup, Args}}, Context) ->
         {error, Reason} ->  
             signup_error(Reason, Context)
     end;
+
+event(#postback{message={ginger_logon_actions, Args}}, Context) ->
+    case z_auth:is_auth(Context) of
+        true ->
+            Actions = proplists:get_all_values(action, Args),
+            z_render:wire([
+                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]} | Actions],
+                Context);
+        false ->
+            z_render:wire({reload, []}, Context)
+    end;
+
+event(#z_msg_v1{data=Data}, Context) ->
+    case proplists:get_value(<<"msg">>, Data) of
+        <<"ginger_logon_actions">> ->
+            z_render:wire(
+                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]},
+                Context);
+        Msg ->
+            lager:warning("[ginger_logon] unknown message ~p", [Msg])
+    end;
     
 event(#postback{message={ginger_logoff, Args}}, Context) ->
     controller_logoff:reset_rememberme_cookie_and_logoff(Context),

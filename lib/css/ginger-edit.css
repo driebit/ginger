@@ -151,6 +151,26 @@ input.do_timepicker {
     color: #d80000;
 }
 
+#logon_methods {
+    overflow: hidden;
+    list-style-type: none;
+    padding-left: 0;
+}
+#logon_methods li {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+#logon_methods li a {
+    padding-top: 1em;
+}
+#logon_methods li a span {
+    font-size: 2em;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin: -0.3em 10px 0 0;
+}
+
 .aside_partof .list_item {
     padding: 15px 5px;
     background: #f7f7f7;

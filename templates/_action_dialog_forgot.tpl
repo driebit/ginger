@@ -11,7 +11,7 @@
     </div>
 
     <div id="reminder_form">
-    <form id="ginger_password_reminder" method="post" action="postback" class="clearfix">
+    <form id="ginger_password_reminder" method="post" action="postback" class="clearfix setcookie">
 
         <p>{_ Enter your e-mail address or username below and we will send you an e-mail with password reset instructions. _}</p>
 

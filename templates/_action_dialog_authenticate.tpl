@@ -1,3 +1,11 @@
+{% lib "css/ginger-edit.css" %}
+
+<ul id="logon_methods" style="text-decoration: none;">
+    {% all include "_logon_extra.tpl" %}
+</ul>
+
+{% wire name="ginger_logon_actions" postback={ginger_logon_actions action=action} delegate="ginger_logon" %}
+
 <ul class="nav nav-pills">
     {% block tabs %}
 
