@@ -8,6 +8,7 @@
 	{% endblock %}
 	
 	{% block page_content %}
+        {% block page_actions %}{% catinclude "_page_actions.tpl" id %}{% endblock %}
 		{% if id.summary or id.body %}
 			<div class="row {% block row_class %}{% endblock %}">
 				<div class="col-md-4">
