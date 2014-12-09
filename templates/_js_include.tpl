@@ -10,6 +10,5 @@
 {% block _js_extra %}{% endblock %}
 
 {% javascript %}
-    z_transport_delegate_register('reload', function() { });
 	$.widgetManager();
 {% endjavascript %}
