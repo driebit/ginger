@@ -11,7 +11,6 @@
 
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
-			"bootstrap/css/bootstrap-theme.min.css"
 		%}
 
 		{% lib 

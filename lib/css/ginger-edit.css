@@ -1,3 +1,7 @@
+input, textarea, .form-control {
+    font: inherit;
+}
+
 .navbar-inner {
     font-weight: normal !important;
 }
@@ -162,3 +166,13 @@ input.do_timepicker {
     color: #000;
     background: none;
 }
+
+.date-range_start input,
+.date-range_stop input {
+    width: 120px;
+}   
+
+.date-range_start input + input,
+.date-range_stop input + input {
+    width: 80px;
+}   
