@@ -11,7 +11,7 @@
         <div class="form-group col-xs-12">
             <div class="checkbox">
                 <label>
-                    <input name="date_is_all_day" id="{{ #all_day }}" type="checkbox" {% if id.date_is_all_day %}checked{% endif %} /> {_ All day _}
+                    <input name="date_is_all_day" id="{{ #all_day }}" type="checkbox" {% if id.date_is_all_day %}checked{% endif %}> {_ All day _}
                 </label>
             </div>
         </div>

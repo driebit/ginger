@@ -1,9 +1,9 @@
 {% with m.rsc[id] as r %}
     {% with not id or m.rsc[id].is_editable as is_editable %}
-        <fieldset>
-            <div class="form-group row">
-	            <label class="control-label col-md-3" for="{{ #title }}{{ lang_code_for_id }}">{_ Title _} {{ lang_code_with_brackets }}</label>
-                <div class="col-md-9">
+        <div class="row">
+            <div class="form-group col-xs-12">
+	            <label class="control-label" for="{{ #title }}{{ lang_code_for_id }}">{_ Title _} {{ lang_code_with_brackets }}</label>
+                <div class="">
 	                <input type="text" id="{{ #title }}{{ lang_code_for_id }}" name="title{{ lang_code_with_dollar }}" 
 		                value="{{ is_i18n|if : r.translation[lang_code].title : r.title }}"
 		                {% if not is_editable %}disabled="disabled"{% endif %}
@@ -11,6 +11,6 @@
                     />
                 </div>
             </div>
-        </fieldset>
+        </div>
     {% endwith %}
 {% endwith %}
