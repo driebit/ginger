@@ -22,6 +22,12 @@
 	{% endblock %}
 	
 	{% block aside_connections %}
+		{% if id.s.participant %} 
+			<section class="aside_block aside_about">
+				<header><h3 class="section-title">{_ Participants _}</h3></header>
+				{% include "_list_simple.tpl" class="list-about" items=id.s.participant %}
+			</section>
+		{% endif %}	
 		{% if id.o.presented_at %} 
 			<section class="aside_block aside_about">
 				<header><h3 class="section-title">{_ Location _}</h3></header>

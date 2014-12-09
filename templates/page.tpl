@@ -14,7 +14,7 @@
 
 		<article class="col-md-8">
             
-            {% block page_actions %}{% all include "_page_actions.tpl" %}{% endblock %}
+            {% block page_actions %}{% catinclude "_page_actions.tpl" id %}{% endblock %}
 
 			<h1>{{ id.title }}</h1> 
 		
