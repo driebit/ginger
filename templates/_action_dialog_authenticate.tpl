@@ -1,5 +1,3 @@
-{% lib "css/ginger-edit.css" %}
-
 <ul class="nav nav-pills">
     {% block tabs %}
 
