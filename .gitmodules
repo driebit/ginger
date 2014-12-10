@@ -9,4 +9,4 @@
 	url = git@gitlab.driebit.nl:driebit/mod_ginger_search.git
 [submodule "modules/mod_geo"]
 	path = modules/mod_geo
-	url = git@github.com:arjan/mod_geo.git
+ 	url = https://github.com/arjan/mod_geo.git
