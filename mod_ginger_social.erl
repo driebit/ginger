@@ -39,17 +39,17 @@ observe_import_resource(#import_resource{
         {false, true, true} ->
             AdminContext = z_acl:sudo(Context),
             GingerProps = [
-                {name, UniqueName},
-                {category, feed_category(Source)},
-                {creator_id, UserId},
-                {is_published, is_published(UserId, Context)},
-                {posting_data, {raw, [
-                    {source, Source},
-                    {source_id, SourceId},
-                    {source_user_id, SourceUserId},
-                    {source_url, SourceUrl}
-                ]}}
-            ],
+                    {name, UniqueName},
+                    {category, feed_category(Source)},
+                    {creator_id, UserId},
+                    {is_published, is_published(UserId, Context)},
+                    {posting_data, {raw, [
+                        {source, Source},
+                        {source_id, SourceId},
+                        {source_user_id, SourceUserId},
+                        {source_url, SourceUrl}
+                    ]}}
+                ] ++ fetch_website(Source, SourceId, Data),
             RscProps = z_utils:props_merge(GingerProps, ImportProps),
             Result = case first_media_props(MediaUrls ++ LinkUrls, Context) of
                         {ok, MI} ->
@@ -113,6 +113,17 @@ is_retweet(<<"MT ", _/binary>>) -> true;
 is_retweet(<<" ", Text/binary>>) -> is_retweet(Text);
 is_retweet(<<>>) -> true;
 is_retweet(_) -> false.
+
+fetch_website(twitter, TweetId, Data) ->
+    {User} = proplists:get_value(<<"user">>, Data),
+    ScreenName = proplists:get_value(<<"screen_name">>, User),
+    TweetUrl = iolist_to_binary([
+            "https://twitter.com/", ScreenName, "/status/", z_convert:to_binary(TweetId)
+        ]),
+    [{website, TweetUrl}];
+fetch_website(_, _, _) ->
+    [].
+
 
 manage_schema(_, _Context) ->
     #datamodel{
