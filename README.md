@@ -14,16 +14,14 @@ Sites overview
 ---------------
 
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
-  is available at [http://ginger.dev:8000](http://ginger.dev:8000). Log in
-  with empty password.
+  is available at [http://ginger.dev](http://ginger.dev). Log in with empty password.
 
 Checking out sites
 ------------------
 
-1. Check out your Zotonic sites in the `sites/` directory.
-2. Run `$ vagrant provision`.
-3. The site now appears in the [status site](http://ginger.dev:8000)
-   and is available at `[sitename].dev`.
+1. Check out your Zotonic site in the `sites/` directory.
+2. The site now appears on the [status site](http://ginger.dev), where you can
+   start it.
 
 Adding modules
 --------------
