@@ -114,7 +114,7 @@ a:hover {
     background-color: #d0d2d3;
     background-image: none;
     border: none;
-    font-size: 1em;
+    font-size: 14px;
     line-height: 1;
     color: #58595b;
     text-shadow: none;
@@ -394,6 +394,7 @@ a:hover {
         border-right: 1px solid #ba5b15;
         text-shadow: none;
         text-align: center;
+        text-indent: -9999px;
     }
 
     .navbar-brand .zotonic-logo {
@@ -536,9 +537,9 @@ body .admin-logon {
 
 .admin-logon form div a {
     position: absolute;
-    bottom: 166px;
+    bottom: 202px;
     font-size: 1.1em;
-    right: 9px;
+    right: 22px;
     font-weight: 300;
 }
 
