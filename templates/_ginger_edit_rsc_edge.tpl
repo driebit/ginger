@@ -3,7 +3,7 @@
 {% sortable id=#unlink_wrapper tag=edge_id %}
 <li id="{{ #unlink_wrapper }}" class="menu-item">
     <div>
-	    <img class="grippy" src="/lib/images/grippy.png" alt="" />
+	    <i class="z-icon z-icon-drag"></i>
         <a href="/edit/{{ object_id }}" title="{_ Edit _}">
 	    	{% image object_id mediaclass="admin-list-dashboard" %}
         	{{ title|truncate:30|default:"<i>untitled</i>" }}
