@@ -48,7 +48,12 @@ observe_import_resource(#import_resource{
                         {source_id, SourceId},
                         {source_user_id, SourceUserId},
                         {source_url, SourceUrl}
-                    ]}}
+                    ]}},
+                    {title, extract_title(Source, ImportProps)},
+                    {short_title, username(Source, Data)},
+                    {source_user_url, user_url(Source, Data)},
+                    {source_user_thumbnail_url, user_thumbnail_url(Source, Data)},
+                    {source_post_url, SourceUrl}
                 ] ++ fetch_website(Source, SourceId, Data),
             RscProps = z_utils:props_merge(GingerProps, ImportProps),
             Result = case first_media_props(MediaUrls ++ LinkUrls, Context) of
@@ -74,6 +79,66 @@ observe_import_resource(#import_resource{
             lager:info("[~p] Ginger Social: dropped duplicate posting ~p:~p", 
                        [z_context:site(Context), Source, SourceId]),
             ok
+    end.
+
+extract_title(_Source, ImportProps) ->
+    case proplists:get_value(body, ImportProps) of
+        undefined ->
+            proplists:get_value(title, ImportProps);
+        {trans, []} ->
+            proplists:get_value(title, ImportProps);
+        Body ->
+            truncate_title(Body)
+    end.
+
+truncate_title(undefined) ->
+    undefined;
+truncate_title({trans, Tr}) ->
+    {trans, [ {Iso, truncate_title(T)} || {Iso, T} <- Tr ]};
+truncate_title(B) ->
+    z_string:truncate(z_html:strip(B), 50).
+
+username(instagram, Data) ->
+    v(<<"username">>, v(<<"user">>, Data));
+username(twitter, Data) ->
+    v(<<"screen_name">>, v(<<"user">>, Data));
+username(_Source, _Date) ->
+    undefined.
+
+user_url(instagram, Data) ->
+    case v(<<"username">>, v(<<"user">>, Data)) of
+        undefined -> 
+            undefined;
+        Username -> 
+            iolist_to_binary([ <<"https://instagram.com/">>, Username ])
+    end;
+user_url(twitter, Data) ->
+    case v(<<"screen_name">>, v(<<"user">>, Data)) of
+        undefined ->
+            undefined;
+        Username -> 
+            iolist_to_binary([ <<"https://twitter.com/">>, Username ])
+    end;
+user_url(_Source, _Date) ->
+    undefined.
+
+user_thumbnail_url(instagram, Data) ->
+    v(<<"profile_picture">>, v(<<"user">>, Data));
+user_thumbnail_url(twitter, Data) ->
+    v(<<"profile_image_url_https">>, v(<<"user">>, Data));
+user_thumbnail_url(_Source, _Date) ->
+    undefined.
+
+v(_P, undefined) ->
+    undefined;
+v(P, {struct, Ps}) ->
+    v(P, Ps);
+v(P, {Ps}) ->
+    v(P, Ps);
+v(P, Ps) ->
+    case proplists:get_value(P, Ps) of
+        null -> undefined;
+        V -> V
     end.
 
 is_published(UserId, Context) ->
