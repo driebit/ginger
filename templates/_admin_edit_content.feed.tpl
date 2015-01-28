@@ -23,6 +23,17 @@
 	<div class="row">
 		<div class="col-lg-12 col-md-12">
 			<div class="form-group">
+				<label class="control-label" for="{{ #source_user_name_full }}">{_ User full name _}</label>
+				<div>
+					<input class="form-control" id="{{ #source_user_name_full }}" type="url" name="source_user_name_full" value="{{ r.source_user_name_full }}" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12 col-md-12">
+			<div class="form-group">
 				<label class="control-label" for="{{ #source_user_url }}">{_ User URL _}</label>
 				<div>
 					<input class="form-control" id="{{ #source_user_url }}" type="url" name="source_user_url" value="{{ r.source_user_url }}" />

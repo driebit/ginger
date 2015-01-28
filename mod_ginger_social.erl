@@ -53,6 +53,7 @@ observe_import_resource(#import_resource{
                     {short_title, username(Source, Data)},
                     {source_user_url, user_url(Source, Data)},
                     {source_user_thumbnail_url, user_thumbnail_url(Source, Data)},
+                    {source_user_name_full, user_name_full(Source, Data)},
                     {source_post_url, SourceUrl}
                 ] ++ fetch_website(Source, SourceId, Data),
             RscProps = z_utils:props_merge(GingerProps, ImportProps),
@@ -103,6 +104,13 @@ username(instagram, Data) ->
 username(twitter, Data) ->
     v(<<"screen_name">>, v(<<"user">>, Data));
 username(_Source, _Date) ->
+    undefined.
+
+user_name_full(instagram, Data) ->
+    v(<<"full_name">>, v(<<"user">>, Data));
+user_name_full(twitter, Data) ->
+    v(<<"name">>, v(<<"user">>, Data));
+user_name_full(_Source, _Date) ->
     undefined.
 
 user_url(instagram, Data) ->
