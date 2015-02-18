@@ -49,3 +49,29 @@
         background: #ddd;
     }
 }
+
+#logon_methods {
+    padding: 0;
+    @include size(margin, 0,0,20,0);
+    list-style: none;
+
+    li {
+        display: inline-block;
+    }
+
+    .z-btn-social {
+        @include size(padding, 10, 10, 10, 30);
+        @include size(margin-bottom, 5);
+        transition: opacity 0.3s;
+
+        &:hover {
+            color: #fff;
+            opacity: 0.8;
+        }
+    }
+}
+
+.tab-content {
+    @include size(margin-top, 15);
+    @include size(margin-bottom, 15);
+}
