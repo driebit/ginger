@@ -6,6 +6,12 @@ This is the Ginger Zotonic edition.
 Development environment
 -----------------------
 
+Check out this repository then install the modules:
+
+```bash
+$ ./install-modules.sh
+```
+
 Use Vagrant to start the development environment. See
 [our docs](https://gitlab.driebit.nl/driebit/docs/blob/master/vagrant.md)
 for more info.
