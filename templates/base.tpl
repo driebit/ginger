@@ -26,12 +26,12 @@
 <!--<![endif]-->
 	<head>
 		<script>document.getElementsByTagName('html')[0].className.replace('no-js', 'has-js');</script>
-		<!--[if lt IE 9]>
+		{#<!--[if lt IE 9]>
 		  {% lib
 			"js/vendor/html5shiv.js"
 			"js/vendor/html5shiv-printshiv.js"
 		  %}
-		<![endif]-->
+		<![endif]-->#}
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -42,33 +42,30 @@
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
 
+		<script src="//use.typekit.net/byu8yfe.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+		
 		{% all include "_head.tpl" %}
 		
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
-			"bootstrap/css/bootstrap-theme.min.css"
-			"css/mod_ginger_site/screen.css"
+			"css/z.icons.css"
 		%}
 
 		{% all include "_html_head.tpl" %}
-
+		
 		{% block head_extra %}{% endblock %}
 	</head>
 
 	<body class="{% block page_class %}{% endblock %}">
 	
 		<div class="{% block container_class %}container{% endblock %}">
-			{% block header %}
-				{% include "_header.tpl" context=context %}
-			{% endblock %}
+			
 
 			{% block breadcrumb %}{% endblock %}
 
 			{% block content %}{% endblock %}
-			
-			{% block footer %}
-				{% include "_footer.tpl" %}
-			{% endblock %}
+		
 		</div>
 
 		{% include "_js_include.tpl" %}

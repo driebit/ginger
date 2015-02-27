@@ -1,78 +1,77 @@
-.btn {
-    border-radius: 0;
-    font-size: 1em;
-    border: none;
-    line-height: 1;
+.btn-ginger-pill {
+    display: inline-block;
+    @include size(padding, 9, 20, 6, 20);
+    border-radius: 18px;
+    font-size: inherit;
+    @include size(font-size, 14);
+    transition: color 0.3s;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
 }
 
-.btn-edit-primary {
-    @include size(padding, 8, 14);
-    @include size(padding-top, 10);
-    background: $blue;
-    transition: opacity 0.4s;
+.btn-ginger-pill-primary {
+    background: $gingerBlue;
     color: $white;
-    box-shadow: none;
-    line-height: 1;
     text-transform: uppercase;
-    border: 1px solid #74afe3;
-    font-weight: 300;
-    border-radius: 4px;
 
     &:hover,
     &:active,
     &:focus {
         color: $white;
-        background: #74afe3;
-        border-color: #74afe3;
-    }
-
-    &.disabled {
-        background: $blue;
-        border: none;
-        opacity: 0.7;
     }
 }
 
-.btn-edit-secondary {
-    @include size(padding, 8, 14);
-    @include size(padding-top, 10);
-    background: #f0f0f0;
-    border-radius: 0;  
-    border: 1px solid #ddd;
-    box-shadow: none;
-    border-radius: 4px;
-    color: #333;
+.btn-ginger-pill-primary-inversed {
+    @include size(padding-top, 8);
+    @include size(padding-bottom, 5);
+    border: 1px solid $white;
+    color: $white;
+    text-transform: uppercase;
 
     &:hover,
     &:active,
     &:focus {
-        background: #ddd;
+        color: $white;
     }
 }
 
-#logon_methods {
-    padding: 0;
-    @include size(margin, 0,0,20,0);
-    list-style: none;
+.btn-ginger-pill-inversed {
+    color: $dustyGrey;
+    background: $shark;
 
-    li {
+    &:hover,
+    &:active,
+    &:focus {
+        color: $white;
+    }
+}
+
+.btn-ginger-pill-inversed--icon {
+    span {
         display: inline-block;
-    }
-
-    .z-btn-social {
-        @include size(padding, 10, 10, 10, 30);
-        @include size(margin-bottom, 5);
-        transition: opacity 0.3s;
-        color: #fff;
-
-        &:hover {
-            color: #fff;
-            opacity: 0.8;
-        }
+        @include size(margin-right, 5);
     }
 }
 
-.tab-content {
-    @include size(margin-top, 15);
-    @include size(margin-bottom, 15);
+.btn-ginger-pill-secondary {
+    @include size(padding-top, 8);
+    @include size(padding-bottom, 5);
+    color: $gingerBlue;
+    border: 1px solid $greySuit;
+    text-transform: uppercase;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: $gingerBlue;
+    }
+}
+
+.btn-ginger-pill-secondary--anchor {
+
+
 }

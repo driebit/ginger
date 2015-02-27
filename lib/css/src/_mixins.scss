@@ -1,3 +1,5 @@
+$defaultTextSize : 17;
+
 @function strip-unit($num) {
     @return $num / ($num * 0 + 1);
 }
@@ -11,7 +13,7 @@
     @for $i from 1 through $max {
         $value: strip-unit(nth($values, $i));
         $pxValues: #{$pxValues + $value}px;
-        $remValues: #{$remValues + $value/18}rem;
+        $remValues: #{$remValues + $value/$defaultTextSize}rem;
 
         @if $i < $max {
             $pxValues: #{$pxValues + " "};
@@ -27,7 +29,7 @@
 @mixin mq($property, $size) {
     $value: strip-unit($size);
 
-    @media only screen and (#{$property}: #{$value/18}rem) {
+    @media only screen and (#{$property}: #{$value/$defaultTextSize}rem) {
         @content;
     }
 }

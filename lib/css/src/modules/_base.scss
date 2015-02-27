@@ -1,15 +1,17 @@
-html, body {
-	
+html {
+    font-size: 17px;
 }
 
 body {
-	color: #000000;
+    background: $white;
+	color: $tuna;
 	line-height: 1.5;
     font-family: 'myriad pro';
+    @include size(font-size, 17);
 }
 
 a, a:hover, a:active {
-	color: $blue;
+	color: $gingerBlue;
 }
 
 
@@ -47,4 +49,24 @@ p {
     font-style: italic;
     font-weight: 400;
     font-family: 'myriad pro';
+}
+
+// shit
+
+.bg-black {
+    display: inline-block;
+    position: relative;
+    margin: 0 15px;
+}
+
+.bg-black:after {
+    content: '';
+    display: inline-block;
+    width: 110%;
+    height: 80px;
+    position: absolute;
+    top: -17px;
+    left: -5%;
+    z-index: -1;
+    background: $black;
 }
