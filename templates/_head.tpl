@@ -1,1 +1,0 @@
-{% lib "css/ginger.search.css" %}
