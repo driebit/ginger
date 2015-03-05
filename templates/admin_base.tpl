@@ -12,7 +12,6 @@
 
         {% lib
             "admin-bootstrap3/css/bootstrap.min.css"
-            "admin-bootstrap3/css/bootstrap-theme.min.css"
         %}
 
         {% lib
@@ -21,6 +20,8 @@
                 "css/zp-menuedit.css"
                 "css/zotonic-admin.css"
                 "css/z.modal.css"
+                "css/z.icons.css"
+                "css/logon.css"
                 "css/jquery.loadmask.css"
                 "css/ginger-admin.css"
         %}

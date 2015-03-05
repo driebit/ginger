@@ -654,4 +654,39 @@ body .admin-logon {
     }
 }
 
+/* Blocks */
+
+.t-cms ul.blocks.ui-sortable .form-control.block-name {
+    margin-top: 15px;
+}
+
+.t-cms .block-name {
+    display: none;
+}
+
+.block-relation {
+    margin-top: 30px;
+}
+
+.block-relation_item {
+    display: none;
+}
+
+.block-relation_item.is-visible {
+    display: block;
+}
+
+.t-cms .blocks > .block {
+    
+}
+
+.t-cms .blocks > .widget {
+    
+}
+
+.t-cms .blocks .widget-content {
+    
+    
+}
+
 /* / Ginger */
