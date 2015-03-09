@@ -110,3 +110,14 @@ p {
   margin-left: 10px;
   margin-left: 0.55556rem;
   float: right; }
+
+.nav-logon {
+    margin: 15px 0px 15px 0px;
+    float: right;
+}
+
+.nav-edit {
+    margin: 8px 8px 0px 0px;
+    float: right;
+}
+
