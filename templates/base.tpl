@@ -42,16 +42,20 @@
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
 
+		<script src="//use.typekit.net/byu8yfe.js"></script>
+		<script>try{Typekit.load();}catch(e){}</script>
+
+		{% all include "_head.tpl" %}
+
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
-			"bootstrap/css/bootstrap-theme.min.css"
+			"css/z.icons.css"
 		%}
 
 		{% lib 
 			"css/mod_ginger_site/screen.css"
 		%}
 
-		{% all include "_head.tpl" %}
 		{% all include "_html_head.tpl" %}
 
 		{% block head_extra %}{% endblock %}
