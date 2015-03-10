@@ -551,7 +551,8 @@ body .admin-logon {
     text-transform: lowercase;
 }
 
-.t-cms .admin-logon input {
+.t-cms #logon_box form input[type="text"],
+.t-cms #logon_box form input[type="password"] {
     height: 51px;
     margin-bottom: 20px;
     line-height: 51px;
@@ -576,9 +577,10 @@ body .admin-logon {
     margin-top: 5px;
     font-size: 1.286em;
 }
-
-.t-cms .admin-logon .btn {
+ 
+.t-cms #logon_box .btn {
     height: 51px;
+    margin: 0 0 0 10px;
     padding: 0 30px;
     line-height: 51px;
     font-size: 2em;
@@ -664,6 +666,20 @@ body .admin-logon {
     display: none;
 }
 
+.t-cms .block .widget-content {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.t-cms .block .widget-content .tab-pane {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.t-cms .block .widget-content .widget {
+    border: none;
+}
+
 .block-relation {
     margin-top: 30px;
 }
@@ -676,17 +692,29 @@ body .admin-logon {
     display: block;
 }
 
-.t-cms .blocks > .block {
-    
+.block-relation_item {
+    width: 50%;
+    padding: 8px 8px;
+    margin: 10px 0;
+    position: relative;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #f5f5f5 50%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f5f5f5));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
+    background: -o-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
+    background: linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 );
+    border-radius: 4px;
+    border: 1px solid #E0E0E0;
 }
 
-.t-cms .blocks > .widget {
-    
+.block-relation_item .z-btn-remove {
+    display: block;
+    position: absolute;
+    top: 9px;
+    right: 8px;
 }
 
-.t-cms .blocks .widget-content {
-    
-    
-}
 
 /* / Ginger */
