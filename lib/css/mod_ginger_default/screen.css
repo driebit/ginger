@@ -1,27 +1,26 @@
 /* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
 /* Creates a mediaquery based on property and size in pixels */
-html {
-  font-size: 17px; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
-  background: #fff;
+  background: #FFF;
   color: #35353F;
   line-height: 1.5;
   font-family: 'myriad pro';
   font-size: 17px;
-  font-size: 1rem; }
+  font-size: 1.7rem; }
 
 a, a:hover, a:active {
   color: #0087D2; }
 
 img {
   max-width: 100%;
-  border-radius: 0px; }
+  border-radius: 0; }
 
-h1, h2, h3, h4 {
-  margin: 0 0 1em 0; }
-
-p {
+h1, h2, h3, h4, p, ol, ul, table {
   margin: 0 0 1em 0; }
 
 .cf:before, .cf:after {
@@ -38,9 +37,9 @@ p {
 
 .page-title {
   margin-bottom: 10px;
-  margin-bottom: 0.58824rem;
+  margin-bottom: 1rem;
   font-size: 26px;
-  font-size: 1.52941rem;
+  font-size: 2.6rem;
   color: #58595b;
   font-style: italic;
   font-weight: 400;
@@ -62,55 +61,235 @@ p {
   z-index: -1;
   background: #000; }
 
-.btn-ginger-pill {
+.has-icon, .btn-ginger-pill__icon-left:after, .btn-ginger-pill__icon-right:after, .btn-ginger-pill--anchor:after, .ginger-pagination__previous:after, .ginger-pagination__next:after, .ginger-metadata__item--has-icon:after, .ginger-metadata__item--type-collection:after, .ginger-metadata__item--type-event:after, .ginger-metadata__item--type-location:after, .ginger-metadata__item--type-page:after, .ginger-metadata__item--type-person:after, .ginger-metadata__item--type-source:after {
+  position: absolute;
+  display: block;
+  content: '';
+  background-repeat: no-repeat;
+  background-position: center center; }
+
+/* abstract css class */
+.btn-ginger-pill, .btn-ginger-pill--primary, .btn-ginger-pill--secondary, .btn-ginger-pill--anchor {
   display: inline-block;
   padding: 9px 20px 6px 20px;
-  padding: 0.52941rem 1.17647rem 0.35294rem 1.17647rem;
+  padding: 0.9rem 2rem 0.6rem 2rem;
   border-radius: 18px;
-  font-size: inherit;
   font-size: 14px;
-  font-size: 0.82353rem;
-  transition: color 0.3s; }
-  .btn-ginger-pill:hover, .btn-ginger-pill:active, .btn-ginger-pill:focus {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  border: none;
+  /* 'primary' variant of btn-ginger-pill */
+  /* 'secondary' variant of btn-ginger-pill */
+  /* button/link to jump to comments */ }
+  .btn-ginger-pill:hover, .btn-ginger-pill--primary:hover, .btn-ginger-pill--secondary:hover, .btn-ginger-pill--anchor:hover, .btn-ginger-pill:active, .btn-ginger-pill--primary:active, .btn-ginger-pill--secondary:active, .btn-ginger-pill--anchor:active, .btn-ginger-pill:focus, .btn-ginger-pill--primary:focus, .btn-ginger-pill--secondary:focus, .btn-ginger-pill--anchor:focus {
     text-decoration: none; }
+  .btn-ginger-pill__icon-left:after, .btn-ginger-pill__icon-right:after, .btn-ginger-pill--anchor:after {
+    top: 50%;
+    margin-top: -10px;
+    margin-top: -1rem;
+    width: 20px;
+    width: 2rem;
+    height: 20px;
+    height: 2rem; }
+  .btn-ginger-pill__icon-left {
+    padding-left: 30px;
+    padding-left: 3rem; }
+    .btn-ginger-pill__icon-left:after {
+      left: 8px;
+      left: 0.8rem; }
+  .btn-ginger-pill__icon-right, .btn-ginger-pill--anchor {
+    padding-right: 30px;
+    padding-right: 3rem; }
+    .btn-ginger-pill__icon-right:after, .btn-ginger-pill--anchor:after {
+      right: 8px;
+      right: 0.8rem; }
+  .btn-ginger-pill--primary {
+    background: #0087D2;
+    color: #FFF; }
+    .btn-ginger-pill--primary:hover, .btn-ginger-pill--primary:active, .btn-ginger-pill--primary:focus {
+      color: #FFF; }
+  .btn-ginger-pill--secondary, .btn-ginger-pill--anchor {
+    background: #FFF;
+    color: #0087D2;
+    border: 1px solid #CFCCD0; }
+  .btn-ginger-pill--anchor {
+    position: relative; }
+    .btn-ginger-pill--anchor:after {
+      background-image: url(/lib/images/arrow-down.png);
+      background-image: url(/lib/images/arrow-down.svg?embed), none; }
 
-.btn-ginger-pill-primary {
-  background: #0087D2;
-  color: #fff;
-  text-transform: uppercase; }
-  .btn-ginger-pill-primary:hover, .btn-ginger-pill-primary:active, .btn-ginger-pill-primary:focus {
-    color: #fff; }
+.ginger-pagination {
+  position: relative;
+  background-color: #5B5B6B;
+  color: #FFF;
+  font-size: 14px;
+  font-size: 1.4rem; }
+  .ginger-pagination a:link, .ginger-pagination a:visited {
+    color: #FFF;
+    text-decoration: none; }
+  .ginger-pagination a:hover, .ginger-pagination a:active {
+    text-decoration: underline; }
+  .ginger-pagination__previous, .ginger-pagination__next {
+    position: absolute;
+    line-height: 28px;
+    line-height: 2.8rem;
+    top: 7px;
+    top: 0.7rem; }
+    .ginger-pagination__previous:after, .ginger-pagination__next:after {
+      top: 4px;
+      top: 0.4rem;
+      width: 20px;
+      width: 2rem;
+      height: 20px;
+      height: 2rem; }
+  .ginger-pagination__previous {
+    left: 10px;
+    left: 1rem;
+    padding-left: 25px;
+    padding-left: 2.5rem; }
+    .ginger-pagination__previous:after {
+      left: 0;
+      background-image: url(/lib/images/pagination_arrow-left.png);
+      background-image: url(/lib/images/pagination_arrow-left.svg?embed), none; }
+  .ginger-pagination__next {
+    right: 10px;
+    right: 1rem;
+    padding-right: 25px;
+    padding-right: 2.5rem; }
+    .ginger-pagination__next:after {
+      right: 0;
+      background-image: url(/lib/images/pagination_arrow-right.png);
+      background-image: url(/lib/images/pagination_arrow-right.svg?embed), none; }
+  .ginger-pagination__pages {
+    padding: 0px 100px;
+    padding: 0rem 10rem;
+    text-align: center;
+    padding: 7px;
+    padding: 0.7rem;
+    margin: 0; }
+  .ginger-pagination__page, .ginger-pagination__page--active {
+    display: inline-block;
+    list-style-type: none;
+    min-width: 28px;
+    min-width: 2.8rem;
+    height: 28px;
+    height: 2.8rem;
+    line-height: 28px;
+    line-height: 2.8rem;
+    vertical-align: middle; }
+    .ginger-pagination__page--active {
+      border-radius: 2px;
+      background-color: #44444f; }
 
-.btn-ginger-pill-primary-inversed {
-  padding-top: 8px;
-  padding-top: 0.47059rem;
-  padding-bottom: 5px;
-  padding-bottom: 0.29412rem;
-  border: 1px solid #fff;
-  color: #fff;
-  text-transform: uppercase; }
-  .btn-ginger-pill-primary-inversed:hover, .btn-ginger-pill-primary-inversed:active, .btn-ginger-pill-primary-inversed:focus {
-    color: #fff; }
-
-.btn-ginger-pill-inversed {
-  color: #9B9B9B;
-  background: #1F1F25; }
-  .btn-ginger-pill-inversed:hover, .btn-ginger-pill-inversed:active, .btn-ginger-pill-inversed:focus {
-    color: #fff; }
-
-.btn-ginger-pill-inversed--icon span {
+.ginger-metadata, .ginger-metadata--main-content {
   display: inline-block;
-  margin-right: 5px;
-  margin-right: 0.29412rem; }
-
-.btn-ginger-pill-secondary {
-  padding-top: 8px;
-  padding-top: 0.47059rem;
-  padding-bottom: 5px;
-  padding-bottom: 0.29412rem;
-  color: #0087D2;
-  border: 1px solid #CFCCD0;
-  text-transform: uppercase; }
-  .btn-ginger-pill-secondary:hover, .btn-ginger-pill-secondary:active, .btn-ginger-pill-secondary:focus {
-    color: #0087D2; }
-
+  font-size: 0; }
+  .ginger-metadata__item, .ginger-metadata__item--primary, .ginger-metadata__item--secondary {
+    display: inline-block;
+    color: #FFF;
+    padding: 7px 10px 5px 10px;
+    padding: 0.7rem 1rem 0.5rem 1rem;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 18px;
+    line-height: 1.8rem; }
+    .ginger-metadata__item--has-icon, .ginger-metadata__item--type-collection, .ginger-metadata__item--type-event, .ginger-metadata__item--type-location, .ginger-metadata__item--type-page, .ginger-metadata__item--type-person, .ginger-metadata__item--type-source {
+      position: relative;
+      padding-left: 30px;
+      padding-left: 3rem; }
+      .ginger-metadata__item--has-icon:after, .ginger-metadata__item--type-collection:after, .ginger-metadata__item--type-event:after, .ginger-metadata__item--type-location:after, .ginger-metadata__item--type-page:after, .ginger-metadata__item--type-person:after, .ginger-metadata__item--type-source:after {
+        left: 0;
+        top: 0;
+        width: 30px;
+        width: 3rem;
+        height: 30px;
+        height: 3rem; }
+    .ginger-metadata__item--primary {
+      background-color: #0087D2; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-collection:after {
+        background-image: url(/lib/images/item-metadata_collection_dark.png);
+        background-image: url(/lib/images/item-metadata_collection_dark.svg?embed), none; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-event:after {
+        background-image: url(/lib/images/item-metadata_event_dark.png);
+        background-image: url(/lib/images/item-metadata_event_dark.svg?embed), none; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-location:after {
+        background-image: url(/lib/images/item-metadata_location_dark.png);
+        background-image: url(/lib/images/item-metadata_location_dark.svg?embed), none; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-page:after {
+        background-image: url(/lib/images/item-metadata_page_dark.png);
+        background-image: url(/lib/images/item-metadata_page_dark.svg?embed), none; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-person:after {
+        background-image: url(/lib/images/item-metadata_person_dark.png);
+        background-image: url(/lib/images/item-metadata_person_dark.svg?embed), none; }
+      .ginger-metadata__item--primary.ginger-metadata__item--type-source:after {
+        background-image: url(/lib/images/item-metadata_source_dark.png);
+        background-image: url(/lib/images/item-metadata_source_dark.svg?embed), none; }
+    .ginger-metadata__item--secondary {
+      background-color: #24242B; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-collection:after {
+        background-image: url(/lib/images/item-metadata_collection_light.png);
+        background-image: url(/lib/images/item-metadata_collection_light.svg?embed), none; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-event:after {
+        background-image: url(/lib/images/item-metadata_event_light.png);
+        background-image: url(/lib/images/item-metadata_event_light.svg?embed), none; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-location:after {
+        background-image: url(/lib/images/item-metadata_location_light.png);
+        background-image: url(/lib/images/item-metadata_location_light.svg?embed), none; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-page:after {
+        background-image: url(/lib/images/item-metadata_page_light.png);
+        background-image: url(/lib/images/item-metadata_page_light.svg?embed), none; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-person:after {
+        background-image: url(/lib/images/item-metadata_person_light.png);
+        background-image: url(/lib/images/item-metadata_person_light.svg?embed), none; }
+      .ginger-metadata__item--secondary.ginger-metadata__item--type-source:after {
+        background-image: url(/lib/images/item-metadata_source_light.png);
+        background-image: url(/lib/images/item-metadata_source_light.svg?embed), none; }
+    .ginger-metadata__item--type-collection:after {
+      background-image: url(/lib/images/item-metadata_collection_default.png);
+      background-image: url(/lib/images/item-metadata_collection_default.svg?embed), none; }
+    .ginger-metadata__item--type-event:after {
+      background-image: url(/lib/images/item-metadata_event_default.png);
+      background-image: url(/lib/images/item-metadata_event_default.svg?embed), none; }
+    .ginger-metadata__item--type-location:after {
+      background-image: url(/lib/images/item-metadata_location_default.png);
+      background-image: url(/lib/images/item-metadata_location_default.svg?embed), none; }
+    .ginger-metadata__item--type-page:after {
+      background-image: url(/lib/images/item-metadata_page_default.png);
+      background-image: url(/lib/images/item-metadata_page_default.svg?embed), none; }
+    .ginger-metadata__item--type-person:after {
+      background-image: url(/lib/images/item-metadata_person_default.png);
+      background-image: url(/lib/images/item-metadata_person_default.svg?embed), none; }
+    .ginger-metadata__item--type-source:after {
+      background-image: url(/lib/images/item-metadata_source_default.png);
+      background-image: url(/lib/images/item-metadata_source_default.svg?embed), none; }
+  .ginger-metadata--main-content .ginger-metadata__item, .ginger-metadata--main-content .ginger-metadata__item--primary, .ginger-metadata--main-content .ginger-metadata__item--secondary {
+    font-size: 18px;
+    font-size: 1.8rem;
+    line-height: 23px;
+    line-height: 2.3rem;
+    padding: 10px 13px 8px 13px;
+    padding: 1rem 1.3rem 0.8rem 1.3rem; }
+    .ginger-metadata--main-content .ginger-metadata__item:after, .ginger-metadata--main-content .ginger-metadata__item--primary:after, .ginger-metadata--main-content .ginger-metadata__item--secondary:after {
+      left: 2px;
+      left: 0.2rem;
+      top: 5px;
+      top: 0.5rem;
+      background-size: 23px 23px; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-collection {
+      padding-left: 35px;
+      padding-left: 3.5rem; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-event {
+      padding-left: 35px;
+      padding-left: 3.5rem; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-location {
+      padding-left: 35px;
+      padding-left: 3.5rem; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-page {
+      padding-left: 35px;
+      padding-left: 3.5rem; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-person {
+      padding-left: 35px;
+      padding-left: 3.5rem; }
+    .ginger-metadata--main-content .ginger-metadata__item--type-source {
+      padding-left: 35px;
+      padding-left: 3.5rem; }

@@ -40,32 +40,35 @@
 		<title>{% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}</title>
 
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
 		<script src="//use.typekit.net/byu8yfe.js"></script>
 		<script>try{Typekit.load();}catch(e){}</script>
-		
+
 		{% all include "_head.tpl" %}
-		
+
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
 			"css/z.icons.css"
+
 		%}
 
+		<link rel="stylesheet" href="/lib/css/mod_ginger_default/screen.css">
+
 		{% all include "_html_head.tpl" %}
-		
+
 		{% block head_extra %}{% endblock %}
 	</head>
 
 	<body class="{% block page_class %}{% endblock %}">
-	
+
 		<div class="{% block container_class %}container{% endblock %}">
-			
+
 
 			{% block breadcrumb %}{% endblock %}
 
 			{% block content %}{% endblock %}
-		
+
 		</div>
 
 		{% include "_js_include.tpl" %}
@@ -73,5 +76,8 @@
         {% block module_script %}{% endblock %}
 		{% script %}
 
+		<!--[if (gt IE 9)|!(IE)]><!-->
+			<script src="//192.168.33.10:35729/livereload.js"></script>
+		<!--<![endif]-->
 	</body>
 </html>

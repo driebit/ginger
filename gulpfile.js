@@ -1,15 +1,17 @@
+'use strict';
+
 var gulp            = require('gulp'),
     sass            = require('gulp-sass'),
     autoprefixer    = require('gulp-autoprefixer'),
     livereload      = require('gulp-livereload'),
     cssInlineImages = require('gulp-css-inline-images'),
+    glob            = require('glob'),
+    svgToPng        = require('svg-to-png'),
+    path            = require('path'),
 
-    CSS_SOURCE   = 'lib/css/src',
-    CSS_BUILD    = 'lib/css/mod_ginger_default',
-    JS_SOURCE    = 'lib/js/src',
-    JS_BUILD     = 'lib/js/build',
-    TEMPLATES    = 'templates';
-
+    CSS_SOURCE = 'lib/css/src',
+    CSS_BUILD  = 'lib/css/mod_ginger_default',
+    TEMPLATES  = 'templates';
 
 gulp.task('default', ['styles', 'watch', 'livereload']);
 
@@ -31,6 +33,21 @@ gulp.task('inline-images', function () {
             path: 'images'
         }))
         .pipe(gulp.dest('build'));
+});
+
+gulp.task('svg-to-png', function (done) {
+    glob('lib/images/*.svg', function (er, files) {
+        if (er) {
+            throw new Error(er);
+        }
+
+        svgToPng.convert(files, 'lib/images', {
+            compress: true,
+            optimizationLevel: 7
+        }).then(function () {
+            done();
+        });
+    });
 });
 
 gulp.task('livereload', function () {

@@ -1,77 +1,76 @@
+/* abstract css class */
 .btn-ginger-pill {
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
     border-radius: 18px;
-    font-size: inherit;
     @include size(font-size, 14);
-    transition: color 0.3s;
+    text-transform: uppercase;
+    border: none;
 
     &:hover,
     &:active,
     &:focus {
         text-decoration: none;
     }
-}
 
-.btn-ginger-pill-primary {
-    background: $gingerBlue;
-    color: $white;
-    text-transform: uppercase;
+    &__icon-left,
+    &__icon-right {
+        &:after {
+            @extend .has-icon;
+            top: 50%;
+            @include size(margin-top, -10);
+            @include size(width, 20);
+            @include size(height, 20);
+        }
+    }
 
-    &:hover,
-    &:active,
-    &:focus {
+    &__icon-left {
+        @include size(padding-left, 30);
+
+        &:after {
+            @include size(left, 8);
+        }
+    }
+
+    &__icon-right {
+        @include size(padding-right, 30);
+
+        &:after {
+            @include size(right, 8);
+        }
+    }
+
+    /* 'primary' variant of btn-ginger-pill */
+    &--primary {
+        @extend .btn-ginger-pill;
+        background: $pillBtnColor;
         color: $white;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $white;
+        }
     }
-}
 
-.btn-ginger-pill-primary-inversed {
-    @include size(padding-top, 8);
-    @include size(padding-bottom, 5);
-    border: 1px solid $white;
-    color: $white;
-    text-transform: uppercase;
-
-    &:hover,
-    &:active,
-    &:focus {
-        color: $white;
+    /* 'secondary' variant of btn-ginger-pill */
+    &--secondary {
+        @extend .btn-ginger-pill;
+        background: $white;
+        color: $pillBtnColor;
+        border: 1px solid $pillBtnBorder;
     }
-}
 
-.btn-ginger-pill-inversed {
-    color: $dustyGrey;
-    background: $shark;
+    /* button/link to jump to comments */
+    &--anchor {
+        @extend .btn-ginger-pill;
+        @extend .btn-ginger-pill--secondary;
+        @extend .btn-ginger-pill__icon-right;
 
-    &:hover,
-    &:active,
-    &:focus {
-        color: $white;
+        position: relative;
+
+        &:after {
+            @include combinedSvgPngBackground('/lib/images/arrow-down', true)
+        }
     }
-}
-
-.btn-ginger-pill-inversed--icon {
-    span {
-        display: inline-block;
-        @include size(margin-right, 5);
-    }
-}
-
-.btn-ginger-pill-secondary {
-    @include size(padding-top, 8);
-    @include size(padding-bottom, 5);
-    color: $gingerBlue;
-    border: 1px solid $greySuit;
-    text-transform: uppercase;
-
-    &:hover,
-    &:active,
-    &:focus {
-        color: $gingerBlue;
-    }
-}
-
-.btn-ginger-pill-secondary--anchor {
-
-
 }
