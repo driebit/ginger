@@ -1,4 +1,9 @@
 <aside>
+
+	{% block aside_external %}
+        {% optional include "_ocd_scomp.tpl" id=id %}
+	{% endblock %}
+
 	{% block aside_map %}
 		{% if id.location_lat and id.location_lng %}
 			{% block map_title %}{% endblock %}
@@ -67,4 +72,5 @@
 			{% endwith %}
 		{% endif %}
 	{% endblock %}
+    
 </aside>
