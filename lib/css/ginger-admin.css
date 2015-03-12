@@ -559,6 +559,22 @@ body .admin-logon {
     font-size: 1.5em;
 }
 
+.t-cms #logon_box .alert {
+    width: 80%;
+    position: static;
+    margin-bottom: 0;
+}
+
+.t-cms #logon_box .alert p {
+    margin: 0 0 1em 0;
+}
+
+.t-cms #logon_box div#logon_error {
+    padding: 0 10px;
+    margin: 0 10px;
+    float: none;
+}
+
 .t-cms .admin-logon input[type="checkbox"] {
     height: auto;
     margin-left: 0;
