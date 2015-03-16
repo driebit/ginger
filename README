@@ -1,5 +1,8 @@
 Provides frontend editing and resource connecting.
 
+Registring:
+Add a config key: mod_signup.request_confirm  false
+
 Usage:
 Add includes to your templates like:
 
