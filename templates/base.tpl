@@ -50,7 +50,6 @@
 		{% lib
 			"bootstrap/css/bootstrap.min.css"
 			"css/z.icons.css"
-
 		%}
 
 		<link rel="stylesheet" href="/lib/css/mod_ginger_default/screen.css">
@@ -61,20 +60,25 @@
 	</head>
 
 	<body class="{% block page_class %}{% endblock %}">
+		{% block navigation %}
+			{% include "_main-nav.tpl" %}
+		{% endblock %}
 
 		<div class="{% block container_class %}container{% endblock %}">
-
-
 			{% block breadcrumb %}{% endblock %}
 
 			{% block content %}{% endblock %}
-
 		</div>
 
 		{% include "_js_include.tpl" %}
 		{% all include "_script.tpl" %}
         {% block module_script %}{% endblock %}
 		{% script %}
+
+		{% lib
+			"js/src/ginger-default_toggle-navigation.js"
+			"js/src/ginger-default_toggle-search.js"
+		%}
 
 		<!--[if (gt IE 9)|!(IE)]><!-->
 			<script src="//192.168.33.10:35729/livereload.js"></script>

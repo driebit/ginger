@@ -1,5 +1,5 @@
 /* abstract css class */
-.btn-ginger-pill {
+.ginger-btn-pill {
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
     border-radius: 18px;
@@ -40,9 +40,9 @@
         }
     }
 
-    /* 'primary' variant of btn-ginger-pill */
+    /* 'primary' variant of ginger-btn-pill */
     &--primary {
-        @extend .btn-ginger-pill;
+        @extend .ginger-btn-pill;
         background: $pillBtnColor;
         color: $white;
 
@@ -53,9 +53,9 @@
         }
     }
 
-    /* 'secondary' variant of btn-ginger-pill */
+    /* 'secondary' variant of ginger-btn-pill */
     &--secondary {
-        @extend .btn-ginger-pill;
+        @extend .ginger-btn-pill;
         background: $white;
         color: $pillBtnColor;
         border: 1px solid $pillBtnBorder;
@@ -63,9 +63,9 @@
 
     /* button/link to jump to comments */
     &--anchor {
-        @extend .btn-ginger-pill;
-        @extend .btn-ginger-pill--secondary;
-        @extend .btn-ginger-pill__icon-right;
+        @extend .ginger-btn-pill;
+        @extend .ginger-btn-pill--secondary;
+        @extend .ginger-btn-pill__icon-right;
 
         position: relative;
 

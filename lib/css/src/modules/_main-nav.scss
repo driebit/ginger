@@ -1,0 +1,228 @@
+$mainNavHeight: 70;
+
+.main-nav {
+    // the position: static is to make all child elements position themselves
+    // based on the of first positioned parent of .main-nav. Usually <body>.
+    // this helps in making the .*__off-canvas element 100% high.
+
+    position: static;
+    @include size(height, $mainNavHeight * (2.5/3));
+    @include size(line-height, $mainNavHeight * (2.5/3));
+    @include size(font-size, 15);
+
+    ul {
+        margin-bottom: 0;
+        list-style-type: none;
+    }
+
+    &__logo {
+        display: inline-block;
+        @include size(margin-top, 10);
+        @include size(margin-left, 25);
+    }
+
+    &__off-canvas {
+        position: fixed;
+        display: block;
+        color: $mainNavPagesColor;
+        @include translate(100%);
+        @include size(width, 250);
+        height: 100%;
+        @include size(top, $mainNavHeight);
+        right: 0;
+        background-color: $mainThemeColor;
+        color: $white;
+        transition: all 250ms ease-out;
+
+        &.is-shown {
+            @include translate(0);
+
+            &:after {
+                opacity: 0.75;
+            }
+        }
+
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            @include size(width, 1000);
+            top: 0;
+            left: 0;
+            height: 100%;
+            transition: opacity 250ms linear;
+            @include translate(-1000px);
+            background-color: $black;
+            opacity: 0;
+        }
+
+        .main-nav__actions {
+            float: none;
+        }
+    }
+
+    &__pages {
+        display: block;
+
+        li {
+            display: block;
+            @include size(line-height, 18);
+            border-bottom: 1px solid darken($mainThemeColor, 10);
+        }
+
+        a {
+            display: block;
+            @include size(padding, 12, 24);
+            transition: background 250ms linear;
+
+            &:link,
+            &:visited,
+            &:hover,
+            &:active {
+                color: $white;
+            }
+
+            &:hover {
+                text-decoration: none;
+                background-color: darken($mainThemeColor, 10);
+            }
+        }
+    }
+
+    &__search-form {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        @include size(height, $mainNavHeight * (2.5/3));
+        @include translate(100%);
+        transition: all 250ms ease-out;
+
+        &.is-shown {
+            @include translate(0);
+        }
+
+        &__query {
+            border: 0;
+            width: 100%;
+            @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
+            background-position: 10px center;
+            background-repeat: no-repeat;
+            background-size: 30px 30px;
+            @include size(font-size, 18);
+            @include size(font-size, 25);
+            @include size(padding, 0, 50);
+        }
+
+        &__close-btn {
+            position: absolute;
+            display: block;
+            @include size(top, 9);
+            @include size(right, 15);
+            height: 0;
+            @include size(width, 40);
+            @include size(padding-top, 40);
+            overflow: hidden;
+            border: 0;
+            background: none;
+
+            &:after {
+                @extend .has-icon;
+
+                @include size(top, 5);
+                @include size(left, 5);
+                background-size: 30px 30px;
+                @include size(width, 30);
+                @include size(padding-top, 30);
+
+                @include combinedSvgPngBackground('/lib/images/icon_close_0087D2');
+            }
+        }
+    }
+
+    &__actions {
+        float: right;
+        display: inline-block;
+        @include size(margin-right, 5);
+    }
+
+    &__toggle-search,
+    &__toggle-menu {
+        position: relative;
+        display: inline-block;
+
+        a {
+            position: relative;
+            display: block;
+            @include size(margin, 15, 5);
+            @include size(width, 40);
+            height: 0;
+            @include size(padding-top, 40);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid $mainNavActionsSeperator;
+
+            &:after {
+                @extend .has-icon;
+
+                @include size(left, 20);
+                @include size(top, 20);
+                @include size(margin-left, -15);
+                @include size(margin-top, -15);
+
+                @include size(width, 30);
+                @include size(height, 30);
+                background-size: 30px 30px;
+                background-position: center center;
+            }
+
+            &:hover {
+                background-color: $mainThemeColor;
+            }
+        }
+    }
+
+    &__toggle-search {
+        a {
+            &:after {
+                @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
+            }
+
+            &:hover:after {
+                @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
+            }
+        }
+    }
+
+    &__toggle-menu {
+        a {
+            &:after {
+                @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2', true);
+            }
+
+            &:hover:after {
+                @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_FFFFFF', true);
+            }
+        }
+    }
+}
+
+@mixin mainNavGt1024 {
+    .main-nav {
+        &__off-canvas {
+            display: inline-block;
+        }
+
+        &__toggle-menu {
+            display: none !important;
+        }
+    }
+}
+
+.ie8 {
+    @include mainNavGt1024();
+}
+
+@media only screen and (min-device-width: 1024px) {
+    @include mainNavGt1024();
+}

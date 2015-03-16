@@ -8,8 +8,16 @@ $secondaryThemeColor: #0087D2;
 $pillBtnColor: $mainThemeColor;
 $pillBtnBorder: #CFCCD0;
 
+$mainNavPagesColor: #9B9B9B;
+$mainNavActionsColor: $mainThemeColor;
+$mainNavActionsSeperator: #DDDDDD;
+
 $paginationBackground: #5B5B6B;
 $paginationActiveBackground: darken($paginationBackground, 10);
 
 $metadataPrimaryBgColor: $secondaryThemeColor;
 $metadataSecondaryBgColor: #24242B;
+
+$relatedItemsBgColor: #1F1F25;
+$relatedItemsTextColor: $white;
+$relatedItemsHeaderBgColor: #2C2E36;

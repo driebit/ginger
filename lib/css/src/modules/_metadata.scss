@@ -3,7 +3,7 @@
         @extend .ginger-metadata__item--has-icon;
 
         &:after {
-            @include combinedSvgPngBackground('/lib/images/item-metadata_#{$typeName}_default', true);
+            @include combinedSvgPngBackground('/lib/images/icon_#{$typeName}_4A4A4A', true);
         }
     }
 }
@@ -12,9 +12,9 @@
     &.ginger-metadata__item--type-#{$typeName}:after {
 
         @if $variant == primary {
-            @include combinedSvgPngBackground('/lib/images/item-metadata_#{$typeName}_dark', true);
+            @include combinedSvgPngBackground('/lib/images/icon_#{$typeName}_004063', true);
         } @else {
-            @include combinedSvgPngBackground('/lib/images/item-metadata_#{$typeName}_light', true);
+            @include combinedSvgPngBackground('/lib/images/icon_#{$typeName}_FFFFFF', true);
         }
     }
 }

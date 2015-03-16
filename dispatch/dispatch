@@ -1,5 +1,6 @@
 % -*- mode: erlang -*-
 %% Put your dispatch rules here.
 [
-  {patterns, ["patterns"], controller_template, [ {template, "patterns.tpl"} ]}
+  {patterns, ["patterns"], controller_template, [ {template, "patterns.tpl"} ]},
+  {home, ["home"], controller_template, [ {template, "home.tpl"} ]}
 ].
