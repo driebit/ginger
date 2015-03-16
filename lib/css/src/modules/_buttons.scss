@@ -63,6 +63,7 @@
         @include size(padding, 10, 10, 10, 30);
         @include size(margin-bottom, 5);
         transition: opacity 0.3s;
+        color: #fff;
 
         &:hover {
             color: #fff;
