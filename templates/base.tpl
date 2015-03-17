@@ -64,9 +64,7 @@
 			{% include "_main-nav.tpl" %}
 		{% endblock %}
 
-		<div class="{% block container_class %}container{% endblock %}">
-			{% block breadcrumb %}{% endblock %}
-
+		<div class="page__wrapper cf">
 			{% block content %}{% endblock %}
 		</div>
 

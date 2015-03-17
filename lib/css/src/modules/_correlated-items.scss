@@ -33,20 +33,9 @@
         @include size(padding, 10, 30);
     }
 
-    &__tile-row {
-        @extend .cf;
-    }
-
     &__tile {
-        @include size(width, 313);
-        width: calc(33.3333333333% - 8px); // should be `(100% - 24) / 3` but not all browser understand division :/
-        @include size(max-width, 313);
-        @include size(margin-left, 12);
-        float: left;
-
-        &:first-child {
-            margin-left: 0;
-        }
+        width: 100%;
+        @include size(padding, 0, 12);
 
         .ginger-correlated-items__illustration,
         .ginger-correlated-items__intro {
@@ -77,5 +66,24 @@
 
     &__title {
         @extend .ginger-correlated-items__title;
+    }
+}
+
+
+@media only screen and (min-width: 600px) {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 33.333333333%;
+        }
     }
 }

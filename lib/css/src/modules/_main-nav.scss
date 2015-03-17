@@ -1,4 +1,5 @@
-$mainNavHeight: 70;
+// TODO: consolidate the styles with background images into a single class that will be extended.
+//       This so that the same background image doesn't get embedded multiple times
 
 .main-nav {
     // the position: static is to make all child elements position themselves
@@ -6,9 +7,10 @@ $mainNavHeight: 70;
     // this helps in making the .*__off-canvas element 100% high.
 
     position: static;
-    @include size(height, $mainNavHeight * (2.5/3));
-    @include size(line-height, $mainNavHeight * (2.5/3));
+    @include size(height, $mainNavMobileHeight);
+    @include size(line-height, $mainNavMobileHeight);
     @include size(font-size, 15);
+    font-weight: 400;
 
     ul {
         margin-bottom: 0;
@@ -28,11 +30,12 @@ $mainNavHeight: 70;
         @include translate(100%);
         @include size(width, 250);
         height: 100%;
-        @include size(top, $mainNavHeight);
+        @include size(top, $mainNavMobileHeight);
         right: 0;
         background-color: $mainThemeColor;
         color: $white;
         transition: all 250ms ease-out;
+        z-index: 10000;
 
         &.is-shown {
             @include translate(0);
@@ -94,7 +97,7 @@ $mainNavHeight: 70;
         top: 0;
         left: 0;
         width: 100%;
-        @include size(height, $mainNavHeight * (2.5/3));
+        @include size(height, $mainNavMobileHeight);
         @include translate(100%);
         transition: all 250ms ease-out;
 
@@ -106,7 +109,7 @@ $mainNavHeight: 70;
             border: none;
             width: 100%;
             @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
-            background-color: #F00;
+            background-color: #FFF;
             background-position: 10px center;
             background-repeat: no-repeat;
             background-size: 30px 30px;

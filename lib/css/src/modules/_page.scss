@@ -1,0 +1,94 @@
+.page {
+    &__masthead {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #F00;
+        @include size(height, 650);
+        z-index: 10;
+    }
+
+    &__content-wrapper {
+        position: relative;
+        @include size(padding-top, 220);
+        @include size(max-size, 1024);
+    }
+
+    &__main-content {
+        position: relative;
+        z-index: 100;
+        @include size(max-width, 718);
+        margin: 0 auto;
+    }
+
+    &__content {
+        background-color: $white;
+        @include size(padding, 25, 70);
+
+        &__body {
+            @include size(font-size, 22);
+            @include size(line-height, 26);
+        }
+    }
+
+    &--home {
+        &__main-content {
+            @extend .page__main-content;
+        }
+
+        &__content-wrapper {
+            @extend .page__content-wrapper;
+            @include size(padding-top, 150);
+        }
+
+        &__header {
+            &__title,
+            &__tagline {
+                text-align: center;
+                display: block;
+                text-shadow: 5px 5px 10px $black;
+                color: $white;
+                @include size(width, 540);
+                margin: 0 auto;
+                font-weight: 600;
+                font-style: italic;
+            }
+
+            &__title {
+                @include size(font-size, 100);
+                @include size(line-height, 120);
+            }
+
+            &__tagline {
+                @include size(font-size, 28);
+                @include size(line-height, 34);
+            }
+        }
+
+        &__links {
+            li {
+                display: inline-block;
+                list-style-type: none;
+                @include size(margin-left, 13);
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+@mixin pageGt1024 {
+    .page {
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    @include pageGt1024();
+}
+
+.ie8 {
+    @include pageGt1024();
+}

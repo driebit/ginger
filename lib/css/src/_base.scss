@@ -9,6 +9,7 @@ body {
 	color: $typographyColor;
 	line-height: 1.5;
     font-family: 'myriad pro';
+    font-weight: 300;
     @include size(font-size, 17);
 }
 
