@@ -18,11 +18,11 @@
     </div>
 
     <ul class="main-nav__actions">
-        <li class="main-nav__toggle-search"><a href="#main-nav">Zoek</a></li>
+        <li class="main-nav__toggle-search"><a href="#main-nav__search-form">Zoek</a></li>
         <li class="main-nav__toggle-menu"><a href="#navigation">Toggle menu</a></li>
-    </li>
+    </ul>
 
-    <form class="main-nav__search-form" role="search" action="{% url search %}" method="get">
+    <form id="main-nav__search-form" class="main-nav__search-form" role="search" action="{% url search %}" method="get">
         <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
         <input type="text" class="main-nav__search-form__query do_suggestions" name="qs" value="{{q.qs|escape}}" autocomplete="off" placeholder="Zoeken...">

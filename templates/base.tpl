@@ -26,12 +26,12 @@
 <!--<![endif]-->
 	<head>
 		<script>document.getElementsByTagName('html')[0].className.replace('no-js', 'has-js');</script>
-		{#<!--[if lt IE 9]>
+		<!--[if lt IE 9]>
 		  {% lib
 			"js/vendor/html5shiv.js"
 			"js/vendor/html5shiv-printshiv.js"
 		  %}
-		<![endif]-->#}
+		<![endif]-->
 
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -103,9 +103,10 @@ $mainNavHeight: 70;
         }
 
         &__query {
-            border: 0;
+            border: none;
             width: 100%;
             @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
+            background-color: #F00;
             background-position: 10px center;
             background-repeat: no-repeat;
             background-size: 30px 30px;
@@ -209,20 +210,126 @@ $mainNavHeight: 70;
 
 @mixin mainNavGt1024 {
     .main-nav {
+        @include size(height, $mainNavHeight);
+        @include size(line-height, $mainNavHeight);
+
+        &__logo {
+            margin-top: 0;
+        }
+
+        &__logo,
         &__off-canvas {
+            vertical-align: top;
+        }
+
+        &__off-canvas {
+            position: relative;
             display: inline-block;
+            background-color: transparent;
+            width: auto;
+            top: 0;
+            left: 0;
+            @include translate(0);
+
+            li {
+                display: inline-block;
+                border-bottom: 0;
+                @include size(line-height, $mainNavHeight);
+            }
+
+            a {
+                &:link,
+                &:visited,
+                &:hover,
+                &:active {
+                    color: $mainNavPagesColor;
+                    border: none;
+                    background-color: transparent;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
 
         &__toggle-menu {
             display: none !important;
         }
+
+        &__actions,
+        &__pages, {
+            float: none;
+            display: inline-block;
+
+            a {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        &__search-form, &__search-form__query {
+            @include size(height, $mainNavHeight);
+            @include size(line-height, $mainNavHeight);
+        }
+
+        &__actions {
+            a {
+                @include size(padding, 0, 17, 0, 30);
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+                display: inline-block;
+                width: auto;
+                height: auto;
+                overflow: visible;
+                border-radius: 0;
+                margin: 0;
+
+                &:after {
+                    background-size: 16px 16px;
+                    top: 50%;
+                    @include size(margin-top, -15);
+                }
+
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &__toggle-search {
+            a:hover:after {
+                @include combinedSvgPngBackground('/lib/images/icon_search_0087D2', true);
+            }
+        }
+    }
+
+    .main-nav > .main-nav__actions {
+        float: right;
     }
 }
 
 .ie8 {
     @include mainNavGt1024();
+
+    .main-nav {
+        &__search-form {
+            display: none;
+
+            &.is-shown {
+                display: block;
+            }
+        }
+
+        &__off-canvas {
+            &:after {
+                display: none;
+            }
+        }
+    }
 }
 
-@media only screen and (min-device-width: 1024px) {
+@media only screen and (min-width: 1024px) {
     @include mainNavGt1024();
 }
