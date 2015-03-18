@@ -1,15 +1,15 @@
-<li class="{{ prefix }}__tile">
+<li class="{{ classPrefix }}__{{ showas }}">
     <a href="{{ item.page_url }}">
-        <div class="{{ prefix }}__illustration">
+        <div class="{{ classPrefix }}__{{ showas }}__illustration">
             {% if item.header %}
-                {% image item.header mediaclass=mediaclass alt=item.title %}
+                {% image item.header mediaclass="img-related" alt="" %}
             {% elseif dep %}
-                {% image item.dep mediaclass=mediaclass alt=item.title %}
+                {% image item.dep mediaclass="img-related" alt="" %}
             {% endif %}
         </div>
 
-        <div class="{{ prefix }}__content">
-            <h6 class="{{ prefix }}__title">
+        <div class="{{ classPrefix }}__{{ showas }}__content">
+            <h6 class="{{ classPrefix }}__{{ showas }}__title">
                 {% if item.short_title %}
                     {{ item.short_title }}
                 {% else %}

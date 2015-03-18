@@ -11,7 +11,7 @@
                 {% if header %}
                     <div class="page__masthead" style="background-image: url({% image_url header.id mediaclass='img-header' crop %});">
                 {% else %}
-                    <div class="page__masthead--no-image">
+                    <div class="page__masthead">
                 {% endif %}
                     </div>
             {% endwith %}
@@ -49,7 +49,7 @@
 
             {% with m.search.paged[{query query_id=m.rsc.agenda.id pagelen=10 page=q.page}] as agenda %}
                 {% if agenda %}
-                    {% include "_correlated-items.tpl" items=agenda showMetaData="date" %}
+                    {% include "_correlated-items.tpl" items=agenda showMetaData="date" title="Aankomende Evenementen" %}
                 {% endif %}
             {% endwith %}
 

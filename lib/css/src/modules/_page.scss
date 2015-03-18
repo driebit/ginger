@@ -4,7 +4,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        background-color: #F00;
+        background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
         @include size(height, 650);
         z-index: 10;
     }
@@ -47,7 +47,7 @@
             &__tagline {
                 text-align: center;
                 display: block;
-                text-shadow: 5px 5px 10px $black;
+                text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
                 color: $white;
                 @include size(width, 540);
                 margin: 0 auto;

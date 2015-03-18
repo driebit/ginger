@@ -1,12 +1,18 @@
+$headerHeight: 90;
+
 .ginger-correlated-items {
+    background-color: $correlatedItemsBgColor;
+
     &__header {
         @extend .cf;
         @include size(padding-left, 30);
+        background-color: $correlatedItemsHeaderBgColor;
     }
 
     &__title {
         @include size(font-size, 28);
-        @include size(line-height, 34);
+        @include size(line-height, $headerHeight);
+        @include size(height, $headerHeight);
         text-transform: uppercase;
         float: left;
         margin: 0;
@@ -21,37 +27,141 @@
         }
 
         &-item {
-            @include size(height, 90);
-            @include size(width, 90);
-            display: inline-block;
-            @include size(font-size, 15);
-            @include size(line-height, 18);
+            &--list,
+            &--tiles {
+                display: inline-block;
+
+                button {
+                    position: relative;
+                    @include size(padding-top, 60);
+                    @include size(height, $headerHeight);
+                    @include size(width, $headerHeight);
+                    display: block;
+                    @include size(font-size, 15);
+                    @include size(line-height, 18);
+                    border: 0;
+                    background-color: transparent;
+
+                    &:after {
+                        @extend .has-icon;
+                        @include size(width, 30);
+                        @include size(height, 30);
+                        background-size: 28px 28px;
+                        left: 50%;
+                        top: 50%;
+                        @include size(margin-left, -15);
+                        @include size(margin-top, -20);
+                    }
+                }
+
+                &.is-shown {
+                    background-color: $correlatedItemsShownButtonBgColor;
+                }
+            }
+
+            &--list button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_list_9B9B9B', true);
+            }
+
+            &--tiles button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_collection_9B9B9B', true);
+            }
         }
     }
 
     &__tiles {
-        @include size(padding, 10, 30);
+        list-style-type: none;
+        padding: 0;
+        @include size(margin, 0, -12);
+    }
+
+    &__list,
+    &__tiles-wrapper {
+        @include size(padding, 30, 30);
+    }
+
+    &__tile,
+    &__list-item {
+        display: block;
+        width: 100%;
+        @include size(margin-bottom, 18);
+
+        a {
+            background-color: $white;
+            display: block;
+
+            &:link,
+            &:visited,
+            &:hover,
+            &:active {
+                color: $black;
+                text-decoration: none;
+            }
+        }
+
+        &__title {
+            color: #062A30;
+            @include size(font-size, 15);
+            @include size(line-height, 24);
+            margin: 0;
+        }
     }
 
     &__tile {
-        width: 100%;
         @include size(padding, 0, 12);
 
-        .ginger-correlated-items__illustration,
-        .ginger-correlated-items__intro {
+        &__illustration,
+        &__content {
             display: block;
+        }
+
+        &__illustration {
+            img {
+                display: block;
+                max-width: 100%;
+            }
+        }
+
+        &__content {
+            background-color: $white;
+            @include size(padding, 15);
+            @include size(font-size, 14);
+            @include size(line-height, 19);
         }
     }
 
-    &__illustration {
-        img {
-            display: block;
-            max-width: 100%;
+    &__list-item {
+        &__illustration,
+        &__content {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        &__illustration {
+            width: 33%;
+
+        }
+
+        &__content {
+            width: 66%;
+            @include size(padding, 30);
+            color: $typographyColor;
+        }
+
+        &__title {
+            font-weight: 400;
+            @include size(font-size, 25);
+            @include size(line-height, 40);
+            color: $black;
         }
     }
 
-    &__intro {
+    [data-section] {
+        display: none;
 
+        &.is-shown {
+            display: block;
+        }
     }
 }
 
