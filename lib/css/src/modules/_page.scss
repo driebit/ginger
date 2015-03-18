@@ -20,11 +20,20 @@
         z-index: 100;
         @include size(max-width, 718);
         margin: 0 auto;
+        @include size(margin-bottom, 40);
     }
 
     &__content {
         background-color: $white;
         @include size(padding, 25, 70);
+
+        &__title {
+            @include size(margin, 0, -40, 20, -40);
+            @include size(font-size, 48);
+            @include size(line-height, 40);
+            color: $black;
+            font-weight: 300;
+        }
 
         &__body {
             @include size(font-size, 22);
@@ -76,6 +85,12 @@
                     margin-left: 0;
                 }
             }
+        }
+    }
+
+    &--event {
+        &__content-wrapper {
+            @extend .page__content-wrapper;
         }
     }
 }

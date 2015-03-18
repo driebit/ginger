@@ -7,14 +7,7 @@
 {% block content %}
     <div class="page--home__content-wrapper">
         {% with m.rsc.home_article as home %}
-            {% with home.header as header %}
-                {% if header %}
-                    <div class="page__masthead" style="background-image: url({% image_url header.id mediaclass='img-header' crop %});">
-                {% else %}
-                    <div class="page__masthead">
-                {% endif %}
-                    </div>
-            {% endwith %}
+            {% include "_masthead.tpl" article=home %}
 
             <main role="main" class="page__main-content">
                 <header class="page--home__header">

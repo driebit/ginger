@@ -2,6 +2,8 @@ $headerHeight: 90;
 
 .ginger-correlated-items {
     background-color: $correlatedItemsBgColor;
+    position: relative;
+    z-index: 100;
 
     &__header {
         @extend .cf;

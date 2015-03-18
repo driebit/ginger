@@ -118,6 +118,8 @@
         @include size(height, $mainNavMobileHeight);
         @include translate(100%);
         transition: all 250ms ease-out;
+        background-color: $white;
+        z-index: 100;
 
         &.is-shown {
             @include translate(0);
@@ -255,6 +257,7 @@
             top: 0;
             left: 0;
             @include translate(0);
+            z-index: 10;
 
             li {
                 display: inline-block;
@@ -275,6 +278,10 @@
                 &:hover {
                     text-decoration: underline;
                 }
+            }
+
+            &:after {
+                display: none;
             }
         }
 

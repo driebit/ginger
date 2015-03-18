@@ -4,6 +4,7 @@
     <div class="main-nav__off-canvas">
         {% menu class="main-nav__pages" %}
 
+        {#
         <ul class="main-nav__actions">
             <li>
                 {% optional include "_actions_login.tpl" %}
@@ -15,6 +16,7 @@
                 {% optional include "_actions_profile.tpl" %}
             </li>
         </ul>
+        #}
     </div>
 
     <ul class="main-nav__actions">
