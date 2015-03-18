@@ -719,7 +719,9 @@ h1, h2, h3, h4, p, ol, ul, table {
     background-image: url(/lib/images/icon_search_0087D2.png);
     background-image: url(/lib/images/icon_search_0087D2.svg?embed), none; }
 .ie8 .main-nav > .main-nav__actions {
-  float: right; }
+  position: absolute;
+  top: 0;
+  right: 0; }
 .ie8 .main-nav__search-form {
   display: none; }
   .ie8 .main-nav__search-form.is-shown {
@@ -802,7 +804,9 @@ h1, h2, h3, h4, p, ol, ul, table {
       background-image: url(/lib/images/icon_search_0087D2.png);
       background-image: url(/lib/images/icon_search_0087D2.svg?embed), none; }
   .main-nav > .main-nav__actions {
-    float: right; } }
+    position: absolute;
+    top: 0;
+    right: 0; } }
 
 .search-suggestions h4 {
   margin: 0; }
@@ -880,6 +884,11 @@ h1, h2, h3, h4, p, ol, ul, table {
   font-size: 2.8rem;
   line-height: 34px;
   line-height: 3.4rem; }
+.page--home__content__body {
+  font-size: 22px;
+  font-size: 2.2rem;
+  line-height: 26px;
+  line-height: 2.6rem; }
 .page--home__links li {
   display: inline-block;
   list-style-type: none;

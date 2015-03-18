@@ -338,7 +338,9 @@
     }
 
     .main-nav > .main-nav__actions {
-        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }
 

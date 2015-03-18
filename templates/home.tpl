@@ -24,7 +24,7 @@
                         </div>
                     {% endif %}
 
-                    <div class="page__content__body">
+                    <div class="page--home__content__body">
                         {{ home.body|show_media }}
                     </div>
 

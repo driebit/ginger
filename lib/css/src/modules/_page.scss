@@ -75,6 +75,11 @@
             }
         }
 
+        &__content__body {
+            @include size(font-size, 22);
+            @include size(line-height, 26);
+        }
+
         &__links {
             li {
                 display: inline-block;
