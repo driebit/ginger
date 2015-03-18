@@ -888,3 +888,8 @@ h1, h2, h3, h4, p, ol, ul, table {
   .page--home__links li:first-child {
     margin-left: 0; }
 
+.main-footer {
+  background-color: #23232A;
+  color: #919194;
+  padding: 50px 80px 60px 80px;
+  padding: 5rem 8rem 6rem 8rem; }

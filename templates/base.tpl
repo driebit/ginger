@@ -66,6 +66,8 @@
 
 		<div class="page__wrapper cf">
 			{% block content %}{% endblock %}
+
+			{% include "_footer.tpl" %}
 		</div>
 
 		{% include "_js_include.tpl" %}
