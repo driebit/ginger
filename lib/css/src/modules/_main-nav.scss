@@ -119,7 +119,7 @@
         @include translate(100%);
         transition: all 250ms ease-out;
         background-color: $white;
-        z-index: 100;
+        z-index: 500;
 
         &.is-shown {
             @include translate(0);

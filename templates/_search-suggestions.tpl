@@ -3,10 +3,10 @@
 {% with m.search[{query cat_exclude=cat_exclude text=q.value pagelen=12}] as result %}
     {% if result %}
         {% for cat in result|group_by:`category_id` %}
-            <h4>{{ cat[1].category_id.title }}</h4>
-            <ul>
+            <h4 class="search-suggestions__title">{{ cat[1].category_id.title }}</h4>
+            <ul class="search-suggestions__list">
                 {% for id in cat %}
-                    <li>
+                    <li class="search-suggestions__list-item">
                         <a href="{{ id.page_url }}">{{ id.title }}</a>
                     </li>
                 {% endfor %}

@@ -544,7 +544,7 @@ h1, h2, h3, h4, p, ol, ul, table {
             transform: translate3D(100%, 0, 0);
     transition: all 250ms ease-out;
     background-color: #FFF;
-    z-index: 100; }
+    z-index: 500; }
     .main-nav__search-form.is-shown {
       -webkit-transform: translateX(0);
           -ms-transform: translateX(0);
@@ -803,6 +803,18 @@ h1, h2, h3, h4, p, ol, ul, table {
       background-image: url(/lib/images/icon_search_0087D2.svg?embed), none; }
   .main-nav > .main-nav__actions {
     float: right; } }
+
+.search-suggestions h4 {
+  margin: 0; }
+.search-suggestions ul {
+  margin: 0px 0px 10px 0px;
+  margin: 0rem 0rem 1rem 0rem; }
+  .search-suggestions ul li {
+    list-style-type: none;
+    font-size: 14px;
+    font-size: 1.4rem;
+    line-height: 18px;
+    line-height: 1.8rem; }
 
 .page__masthead {
   position: absolute;

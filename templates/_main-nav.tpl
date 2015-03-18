@@ -29,11 +29,11 @@
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
         <input type="text" class="main-nav__search-form__query do_suggestions" name="qs" value="{{q.qs|escape}}" autocomplete="off" placeholder="Zoeken...">
         {% wire name="show_suggestions"
-            action={update target="main-nav__search-suggestions" template="_search_suggestions.tpl"}
+            action={update target="search-suggestions" template="_search_suggestions.tpl"}
         %}
 
         <button class="main-nav__search-form__close-btn" type="button">Sluiten</button>
 
-        <div id="main-nav__search-suggestions"></div>
+        <div id="search-suggestions" class="search-suggestions"></div>
     </form>
 </nav>
