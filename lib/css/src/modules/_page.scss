@@ -35,7 +35,7 @@
             font-weight: 300;
         }
 
-        &__body {
+        &__intro {
             @include size(font-size, 22);
             @include size(line-height, 26);
         }
