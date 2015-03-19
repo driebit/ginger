@@ -25,14 +25,11 @@
                 </article>
             </main>
 
-{#
-            {% with m.search[{match_objects id=id pagelen=5}] as result %}
+            {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
 				{% if result %}
                     {% include "_correlated-items.tpl" items=result showMetaData="date" title="" %}
                 {% endif %}
             {% endwith %}
-#}
-
         {% endwith %}
     </div>
 {% endblock %}
