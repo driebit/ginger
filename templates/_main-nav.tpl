@@ -24,6 +24,12 @@
         <li class="main-nav__toggle-menu"><a href="#navigation">Toggle menu</a></li>
     </ul>
 
+    <div class="main-nav__search">
+        {% include "_search_form.tpl" identifier="main-nav" %}
+        <button class="main-nav__search__close-btn" type="button">Sluiten</button>
+    </div>
+
+    {#
     <form id="main-nav__search-form" class="main-nav__search-form" role="search" action="{% url search %}" method="get">
         <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
@@ -32,8 +38,11 @@
             action={update target="search-suggestions" template="_search_suggestions.tpl"}
         %}
 
-        <button class="main-nav__search-form__close-btn" type="button">Sluiten</button>
+
 
         <div id="search-suggestions" class="search-suggestions"></div>
     </form>
+    #}
+
+
 </nav>

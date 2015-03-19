@@ -110,7 +110,7 @@
         }
     }
 
-    &__search-form {
+    &__search {
         position: fixed;
         top: 0;
         left: 0;
@@ -121,11 +121,29 @@
         background-color: $white;
         z-index: 500;
 
+        #search-form {
+            float: none !important;
+            margin: 0;
+            padding: 0;
+            border: none;
+
+            .form-group {
+                display: block;
+            }
+
+            [type=text] {
+                border: 0;
+                width: 100%;
+                @include size(height, $mainNavMobileHeight);
+                display: block;
+            }
+        }
+
         &.is-shown {
             @include translate(0);
         }
 
-        &__query {
+        [type=text] {
             border: none;
             width: 100%;
             @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
@@ -136,6 +154,10 @@
             @include size(font-size, 18);
             @include size(font-size, 25);
             @include size(padding, 0, 50);
+        }
+
+        [type=submit] {
+            display: none;
         }
 
         &__close-btn {
@@ -300,9 +322,12 @@
             }
         }
 
-        &__search-form, &__search-form__query {
-            @include size(height, $mainNavHeight);
-            @include size(line-height, $mainNavHeight);
+        &__search {
+            #search-form {
+                [type=text] {
+                    @include size(height, $mainNavHeight);
+                }
+            }
         }
 
         &__actions {
