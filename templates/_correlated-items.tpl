@@ -1,4 +1,9 @@
-<aside class="ginger-correlated-items do_ginger_default_correlated_items">
+{% if variant %}
+    <aside class="ginger-correlated-items--{{ variant }} do_ginger_default_correlated_items">
+{% else %}
+    <aside class="ginger-correlated-items do_ginger_default_correlated_items">
+{% endif %}
+
     <header class="ginger-correlated-items__header">
         <h3 class="ginger-correlated-items__title">{{ title }}</h3>
 

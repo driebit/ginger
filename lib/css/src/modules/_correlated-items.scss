@@ -170,14 +170,36 @@ $headerHeight: 90;
 .ginger-correlated-items--related {
     background-color: $relatedItemsBgColor;
 
-    &__header {
-        @extend .ginger-correlated-items__header;
-        background-color: $relatedItemsHeaderBgColor;
-        color: $relatedItemsTextColor;
+    .ginger-correlated-items {
+        &__header {
+            background-color: $relatedItemsHeaderBgColor;
+            color: $relatedItemsTextColor;
+        }
+
+        &__navigation-item {
+            &--list,
+            &--tiles {
+                &.is-shown {
+                    background-color: $relatedItemsBgColor
+                }
+            }
+
+            &--list button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_list_FFFFFF', true);
+            }
+
+            &--tiles button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_collection_FFFFFF', true);
+            }
+        }
     }
 
-    &__title {
-        @extend .ginger-correlated-items__title;
+    [data-section] {
+        display: none;
+
+        &.is-shown {
+            display: block;
+        }
     }
 }
 

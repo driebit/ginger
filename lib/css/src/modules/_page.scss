@@ -12,7 +12,6 @@
     &__content-wrapper {
         position: relative;
         @include size(padding-top, 220);
-        @include size(max-size, 1024);
     }
 
     &__main-content {
@@ -28,7 +27,7 @@
         @include size(padding, 25, 70);
 
         &__title {
-            @include size(margin, 0, -40, 20, -40);
+            @include size(margin, 0, -40, 40, -40);
             @include size(font-size, 48);
             @include size(line-height, 40);
             color: $black;
@@ -39,6 +38,70 @@
             @include size(font-size, 22);
             @include size(line-height, 26);
         }
+
+        &__about {
+            border-top: 3px dotted #DDD;
+            border-bottom: 3px dotted #DDD;
+            @include size(margin, 0, -70, 45, -70);
+            @include size(padding, 10, 30);
+
+            + .page__content__about {
+                border-top: none;
+            }
+
+            &__header,
+            &__content,
+            &__link {
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: 0;
+                @include size(font-size, 15);
+                @include size(line-height, 19);
+                font-weight: 600;
+            }
+
+            &__header {
+                width: 29.5%;
+                @include size(padding-left, 25);
+                text-transform: uppercase;
+                color: $aboutHeaderTextColor;
+
+                &:after {
+                    @extend .has-icon;
+                }
+            }
+
+            &__content {
+                width: 49.5%;
+                color: $aboutContentTextColor;
+            }
+
+            &__link {
+                vertical-align: bottom;
+                width: 19.5%;
+                text-align: right;
+                font-weight: 400;
+            }
+
+            &--location {
+                @extend .page__content__about;
+
+                .page__content__about__header {
+
+                }
+            }
+        }
+    }
+
+    &__avatar {
+        position: relative;
+        border-radius: 50%;
+        border: 5px solid $white;
+        left: 50%;
+        @include size(margin-left, -80);
+        @include size(margin-bottom, 25);
+        @include size(width, 160);
+        @include size(height, 160);
     }
 
     &--home {
@@ -96,6 +159,32 @@
     &--event {
         &__content-wrapper {
             @extend .page__content-wrapper;
+
+            .page__content__organizer {
+                @include size(margin-bottom, 45);
+
+                &__depiction,
+                &__name,
+                &__signup {
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0;
+                    @include size(margin-right, 10);
+                }
+
+                &__depiction {
+                    @include size(width, 46);
+                    @include size(height, 46);
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    &--person {
+        &__content-wrapper {
+            @extend .page__content-wrapper;
+            @include size(padding-top, 20);
         }
     }
 }

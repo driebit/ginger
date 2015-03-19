@@ -2,36 +2,34 @@
 
 {% block title %}{{ id.title }}{% endblock %}
 
-{% block body_class %}article{% endblock %}
+{% block body_class %}location{% endblock %}
 
 {% block content %}
-    <div class="page--article__content-wrapper">
-        {% with id as article %}
-            {% include "_masthead.tpl" article=article %}
+    <div class="page--event__content-wrapper">
+        {% with id as location %}
+            {% include "_masthead.tpl" article=location %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
-                    <h1 class="page__content__title">{{ article.title }}</h1>
+                    <h1 class="page__content__title">{{ location.title }}</h1>
 
-                    {% print article.o.connections %}
+                    {% include "_about.location.tpl" title="Adres" location=location.located_in %}
 
-                    <div class="page__content__organiser"></div>
-
-                    {% if article.summary %}
+                    {% if location.summary %}
                         <div class="page__content__intro">
-                            {{ article.summary }}
+                            {{ location.summary }}
                         </div>
                     {% endif %}
 
                     <div class="page__content__body">
-                        {{ article.body|show_media }}
+                        {{ location.body|show_media }}
                     </div>
                 </article>
             </main>
 
             {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
 				{% if result %}
-                    {% include "_correlated-items.tpl" items=result showMetaData="date" title="" %}
+                    {% include "_correlated-items.tpl" items=result showMetaData="date" title="Evenementen in "++location.title variant="related" %}
                 {% endif %}
             {% endwith %}
         {% endwith %}
