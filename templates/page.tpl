@@ -25,9 +25,13 @@
                 </article>
             </main>
 
-            {% if id.o.haspart %}
-                {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
-            {% endif %}
+{#
+            {% with m.search[{match_objects id=id pagelen=5}] as result %}
+				{% if result %}
+                    {% include "_correlated-items.tpl" items=result showMetaData="date" title="" %}
+                {% endif %}
+            {% endwith %}
+#}
 
         {% endwith %}
     </div>

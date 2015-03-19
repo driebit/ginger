@@ -42,7 +42,7 @@
 
             {% with m.search.paged[{query query_id=m.rsc.agenda.id pagelen=10 page=q.page}] as agenda %}
                 {% if agenda %}
-                    {% include "_correlated-items.tpl" items=agenda showMetaData="date" title="Aankomende Evenementen" %}
+                    {% include "_correlated-items.tpl" items=agenda showMetaData="date" title="Andere pagina's" %}
                 {% endif %}
             {% endwith %}
 
