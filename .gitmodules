@@ -13,3 +13,6 @@
 [submodule "modules/mod_ginger_site"]
 	path = modules/mod_ginger_site
 	url = git@gitlab.driebit.nl:driebit/mod_ginger_site.git
+[submodule "modules/mod_ginger_oai_pmh"]
+	path = modules/mod_ginger_oai_pmh
+	url = git@github.com:driebit/mod_ginger_oai_pmh.git
