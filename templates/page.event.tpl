@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "page.tpl" %}
 
 {% block title %}{{ id.title }}{% endblock %}
 
@@ -50,11 +50,13 @@
                 </article>
             </main>
 
-            {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
-				{% if result %}
-                    {% include "_correlated-items.tpl" items=result showMetaData="date" title="Andere evenementen" variant="related" %}
-                {% endif %}
-            {% endwith %}
+            {% block correlatedItems %}
+                {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
+                    {% if result %}
+                        {% include "_correlated-items.tpl" items=result showMetaData="date" title="Andere evenementen" variant="related" %}
+                    {% endif %}
+                {% endwith %}
+            {% endblock %}
         {% endwith %}
     </div>
 {% endblock %}

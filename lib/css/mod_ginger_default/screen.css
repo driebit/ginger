@@ -295,7 +295,7 @@ h1, h2, h3, h4, p, ol, ul, table {
       padding-left: 35px;
       padding-left: 3.5rem; }
 
-.ginger-correlated-items {
+.ginger-correlated-items, .ginger-correlated-items--related {
   background-color: #EBEBEB;
   position: relative;
   z-index: 100; }
@@ -414,13 +414,10 @@ h1, h2, h3, h4, p, ol, ul, table {
     line-height: 40px;
     line-height: 4rem;
     color: #000; }
-  .ginger-correlated-items [data-section] {
+  .ginger-correlated-items [data-section], .ginger-correlated-items--related [data-section] {
     display: none; }
-    .ginger-correlated-items [data-section].is-shown {
+    .ginger-correlated-items [data-section].is-shown, .ginger-correlated-items--related [data-section].is-shown {
       display: block; }
-
-.ginger-correlated-items--related {
-  background-color: #1F1F25; }
   .ginger-correlated-items--related .ginger-correlated-items__header {
     background-color: #2C2E36;
     color: #FFF; }
@@ -914,6 +911,25 @@ h1, h2, h3, h4, p, ol, ul, table {
       width: 19.5%;
       text-align: right;
       font-weight: 400; }
+  .page__content__person-details {
+    margin-left: -70px;
+    margin-left: -7rem;
+    margin-right: -70px;
+    margin-right: -7rem; }
+  .page__content__person-detail, .page__content__person-detail--email, .page__content__person-detail--website, .page__content__person-detail--phone, .page__content__person-detail--mobile {
+    padding: 10px 20px;
+    padding: 1rem 2rem;
+    border-top: 3px dotted #DDD;
+    border-bottom: 3px dotted #DDD;
+    display: block; }
+    .page__content__person-detail + .page__content__person__detail, .page__content__person-detail--email + .page__content__person__detail, .page__content__person-detail--website + .page__content__person__detail, .page__content__person-detail--phone + .page__content__person__detail, .page__content__person-detail--mobile + .page__content__person__detail {
+      border-top: 0; }
+    .page__content__person-detail__label, .page__content__person-detail__value {
+      display: inline-block; }
+    .page__content__person-detail__label {
+      width: 33%; }
+    .page__content__person-detail__value {
+      width: 65%; }
 .page__avatar {
   position: relative;
   border-radius: 50%;
@@ -981,6 +997,15 @@ h1, h2, h3, h4, p, ol, ul, table {
   padding-top: 20px;
   padding-top: 2rem; }
 
+/*
+@media only screen and (min-width: 1024px) {
+    @include pageGt1024();
+}
+
+.ie8 {
+    @include pageGt1024();
+}
+*/
 .main-footer {
   background-color: #23232A;
   color: #919194;

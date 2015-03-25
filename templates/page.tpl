@@ -13,8 +13,6 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
-                    {% print article.o.connections %}
-
                     <div class="page__content__organiser"></div>
 
                     {% if article.summary %}
@@ -28,6 +26,8 @@
                     </div>
                 </article>
             </main>
+
+            {% block correlatedItems %}{% endblock %}
 
             {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
 				{% if result %}

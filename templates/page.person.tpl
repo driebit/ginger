@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "page.tpl" %}
 
 {% block title %}{{ id.title }}{% endblock %}
 
@@ -26,14 +26,46 @@
                     <div class="page__content__body">
                         {{ person.body|show_media }}
                     </div>
+
+                    <ul class="page__content__person-details">
+                        {% if person.email %}
+                            <li class="page__content__person-detail--email">
+                                <span class="page__content__person-detail__label">E-mail</span>
+                                <a class="page__content__person-detail__value" href="mailto:{{ person.email }}">{{ person.email }}</a>
+                            </li>
+                        {% endif %}
+
+                        {% if person.website %}
+                            <li class="page__content__person-detail--website">
+                                <span class="page__content__person-detail__label">Website</span>
+                                <a class="page__content__person-detail__value" href="{{ person.website }}">{{ person.website }}</a>
+                            </li>
+                        {% endif %}
+
+                        {% if person.phone %}
+                            <li class="page__content__person-detail--website">
+                                <span class="page__content__person-detail__label">Telefoon</span>
+                                <a class="page__content__person-detail__value" href="tel:{{ person.phone }}">{{ person.phone }}</a>
+                            </li>
+                        {% endif %}
+
+                        {% if person.phone_mobile %}
+                            <li class="page__content__person-detail--website">
+                                <span class="page__content__person-detail__label">Mobiel</span>
+                                <a class="page__content__person-detail__value" href="tel:{{ person.phone_mobile }}">{{ person.phone_mobile }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </article>
             </main>
 
-            {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
-				{% if result %}
-                    {% include "_correlated-items.tpl" items=result showMetaData="date" title="Bijdragen van "++person.title variant="related" %}
-                {% endif %}
-            {% endwith %}
+            {% block correlatedItems %}
+                {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
+    				{% if result %}
+                        {% include "_correlated-items.tpl" items=result showMetaData="date" title="Bijdragen van "++person.title variant="related" %}
+                    {% endif %}
+                {% endwith %}
+            {% endblock %}
         {% endwith %}
     </div>
 {% endblock %}

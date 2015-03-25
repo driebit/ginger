@@ -91,6 +91,39 @@
                 }
             }
         }
+
+        &__person-details {
+            @include size(margin-left, -70);
+            @include size(margin-right, -70);
+        }
+
+        &__person-detail {
+            @include size(padding, 10, 20);
+            border-top: 3px dotted #DDD;
+            border-bottom: 3px dotted #DDD;
+            display: block;
+
+            + .page__content__person__detail {
+                border-top: 0;
+            }
+
+            &--email, &--website, &--phone, &--mobile {
+                @extend .page__content__person-detail;
+            }
+
+            &__label,
+            &__value {
+                display: inline-block;
+            }
+
+            &__label {
+                width: 33%;
+            }
+
+            &__value {
+                width: 65%; // the 33% and 65% don't add up to leave space for whitespace characters between elements
+            }
+        }
     }
 
     &__avatar {
@@ -189,11 +222,7 @@
     }
 }
 
-@mixin pageGt1024 {
-    .page {
-    }
-}
-
+/*
 @media only screen and (min-width: 1024px) {
     @include pageGt1024();
 }
@@ -201,3 +230,4 @@
 .ie8 {
     @include pageGt1024();
 }
+*/

@@ -40,11 +40,13 @@
                 </article>
             </main>
 
-            {% with m.search.paged[{query query_id=m.rsc.agenda.id pagelen=10 page=q.page}] as agenda %}
-                {% if agenda %}
-                    {% include "_correlated-items.tpl" items=agenda showMetaData="date" title="Andere pagina's" %}
-                {% endif %}
-            {% endwith %}
+            {% block correlatedItems %}
+                {% with m.search.paged[{query query_id=m.rsc.agenda.id pagelen=10 page=q.page}] as agenda %}
+                    {% if agenda %}
+                        {% include "_correlated-items.tpl" items=agenda showMetaData="date" title="Andere pagina's" %}
+                    {% endif %}
+                {% endwith %}
+            {% endblock %}
 
         {% endwith %}
     </div>

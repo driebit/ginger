@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "page.tpl" %}
 
 {% block title %}{{ id.title }}{% endblock %}
 
@@ -25,9 +25,11 @@
                 </article>
             </main>
 
-            {% if id.o.haspart %}
-                {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
-            {% endif %}
+            {% block correlatedItems %}
+                {% if id.o.haspart %}
+                    {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
+                {% endif %}
+            {% endblock %}
 
         {% endwith %}
     </div>
