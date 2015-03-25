@@ -42,8 +42,10 @@
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
-		<script src="//use.typekit.net/byu8yfe.js"></script>
-		<script>try{Typekit.load();}catch(e){}</script>
+		{% block customFont %}
+			<script src="//use.typekit.net/byu8yfe.js"></script>
+			<script>try{Typekit.load();}catch(e){}</script>
+		{% endblock %}
 
 		{% all include "_head.tpl" %}
 
@@ -52,7 +54,9 @@
 			"css/z.icons.css"
 		%}
 
-		<link rel="stylesheet" href="/lib/css/mod_ginger_default/screen.css">
+		{% block siteStyles %}
+			<link rel="stylesheet" href="/lib/css/mod_ginger_default/screen.css">
+		{% endblock %}
 
 		{% all include "_html_head.tpl" %}
 
