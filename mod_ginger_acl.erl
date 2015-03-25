@@ -17,10 +17,10 @@ is_authorized(ReqData, Context) ->
     z_acl:wm_is_authorized(use, z_context:get(acl_module, Context, mod_admin), admin_logon, ReqData, Context).
     
 observe_admin_rscform(#admin_rscform{id=Id}, Post, _Context) ->
-    case proplists:is_defined("creator_id", Post) of
+    case proplists:is_defined("owner_id", Post) of
         true ->
-            CreatorId = z_convert:to_integer(proplists:get_value("creator_id", Post)),
-            z_db:q("update rsc set creator_id = $1 where id = $2", [CreatorId, Id], _Context),
+            OwnerId = z_convert:to_integer(proplists:get_value("owner_id", Post)),
+            z_db:q("update rsc set creator_id = $1 where id = $2", [OwnerId, Id], _Context),
             z_depcache:flush(Id, _Context),
             Post;
         false -> Post
@@ -31,13 +31,14 @@ observe_acl_is_allowed(#acl_is_allowed{object=#acl_edge{subject_id = SubjectId}}
 		<<"2">> -> can_group_edit(SubjectId, Context);
 		_ -> 
             {rsc_list, Authors} = m_rsc:s(SubjectId, author, Context),
-            ?DEBUG(Authors),
+            %?DEBUG(Authors),
             case is_list(Authors) of
                 true -> can_author_edit(Authors, Context);
                 _ -> undefined
             end
 	end;
 observe_acl_is_allowed(#acl_is_allowed{action=update, object=Id}, Context) ->
+    %?DEBUG(m_rsc:p_no_acl(Id, editable_for, Context)),
     case m_rsc:p_no_acl(Id, editable_for, Context) of
 		<<"2">> -> can_group_edit(Id, Context);
 		_ -> 
