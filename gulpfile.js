@@ -7,7 +7,6 @@ var gulp            = require('gulp'),
     cssInlineImages = require('gulp-css-inline-images'),
     glob            = require('glob'),
     svgToPng        = require('svg-to-png'),
-    path            = require('path'),
 
     CSS_SOURCE = 'lib/css/src',
     CSS_BUILD  = 'lib/css/mod_ginger_default',
