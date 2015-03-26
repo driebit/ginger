@@ -17,14 +17,14 @@
     &__main-content {
         position: relative;
         z-index: 100;
-        @include size(max-width, 718);
-        margin: 0 auto;
         @include size(margin-bottom, 40);
     }
 
     &__content {
         background-color: $white;
         @include size(padding, 25, 70);
+        @include size(max-width, 718);
+        margin: 0 auto;
 
         &__title {
             @include size(margin, 0, -40, 40, -40);
@@ -99,16 +99,15 @@
 
         &__person-detail {
             @include size(padding, 10, 20);
-            border-top: 3px dotted #DDD;
-            border-bottom: 3px dotted #DDD;
+            border-top: 2px dotted $alto;
+            border-bottom: 2px dotted $alto;
             display: block;
+            @include size(font-size, 15);
+            @include size(line-height, 19);
+            font-weight: 400;
 
-            + .page__content__person__detail {
+            + .page__content__person-detail {
                 border-top: 0;
-            }
-
-            &--email, &--website, &--phone, &--mobile {
-                @extend .page__content__person-detail;
             }
 
             &__label,
@@ -118,10 +117,35 @@
 
             &__label {
                 width: 33%;
+                @include size(padding-left, 30);
+                position: relative;
+
+                &:after {
+                    @extend .has-icon;
+                    @include size(width, 20);
+                    @include size(height, 20);
+                    left: 0;
+                    top: 0;
+                }
             }
 
             &__value {
-                width: 65%; // the 33% and 65% don't add up to leave space for whitespace characters between elements
+                width: 65%; // the 33% and 65% don't add up to 100% to leave space for whitespace characters between elements
+            }
+
+            &--email .page__content__person-detail__label:after {
+                @include combinedSvgPngBackground('/lib/images/icon_envelope_4A4A4A', true);
+            }
+
+            &--phone,
+            &--mobile {
+                .page__content__person-detail__label:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_phone-horn_4A4A4A', true);
+                }
+            }
+
+            &--website .page__content__person-detail__label:after {
+                @include combinedSvgPngBackground('/lib/images/icon_pointer_4A4A4A', true);
             }
         }
     }
@@ -154,8 +178,6 @@
                 display: block;
                 text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
                 color: $white;
-                @include size(width, 540);
-                margin: 0 auto;
                 font-weight: 600;
                 font-style: italic;
             }
@@ -221,13 +243,3 @@
         }
     }
 }
-
-/*
-@media only screen and (min-width: 1024px) {
-    @include pageGt1024();
-}
-
-.ie8 {
-    @include pageGt1024();
-}
-*/

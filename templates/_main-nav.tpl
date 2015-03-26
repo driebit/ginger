@@ -1,5 +1,9 @@
 <nav class="main-nav do_ginger_default_toggle_navigation do_ginger_default_toggle_search">
-    <a href="/" class="main-nav__logo"><img src="/lib/images/logo_ginger.png"/></a>
+    <a href="/" class="main-nav__logo">
+        {% block mainNavLogo %}
+            <img src="/lib/images/logo_ginger.png"/>
+        {% endblock %}
+    </a>
 
     <div class="main-nav__off-canvas">
         {% menu class="main-nav__pages" %}

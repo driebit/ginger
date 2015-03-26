@@ -43,14 +43,14 @@
                         {% endif %}
 
                         {% if person.phone %}
-                            <li class="page__content__person-detail--website">
+                            <li class="page__content__person-detail--phone">
                                 <span class="page__content__person-detail__label">Telefoon</span>
                                 <a class="page__content__person-detail__value" href="tel:{{ person.phone }}">{{ person.phone }}</a>
                             </li>
                         {% endif %}
 
                         {% if person.phone_mobile %}
-                            <li class="page__content__person-detail--website">
+                            <li class="page__content__person-detail--mobile">
                                 <span class="page__content__person-detail__label">Mobiel</span>
                                 <a class="page__content__person-detail__value" href="tel:{{ person.phone_mobile }}">{{ person.phone_mobile }}</a>
                             </li>
