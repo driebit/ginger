@@ -20,9 +20,10 @@ observe_admin_rscform(#admin_rscform{id=Id}, Post, _Context) ->
     case proplists:is_defined("owner_id", Post) of
         true ->
             OwnerId = z_convert:to_integer(proplists:get_value("owner_id", Post)),
+            Post1 = proplists:delete(owner_id, Post),
             z_db:q("update rsc set creator_id = $1 where id = $2", [OwnerId, Id], _Context),
             z_depcache:flush(Id, _Context),
-            Post;
+            Post1;
         false -> Post
     end.
 
