@@ -42,13 +42,18 @@
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
 
+
 		{% all include "_head.tpl" %}
 		
-		{% lib
-			"bootstrap/css/bootstrap.min.css"
-			"bootstrap/css/bootstrap-theme.min.css"
-			"css/mod_ginger_site/screen.css"
-		%}
+		{% block default_css %}
+			{% lib
+				"bootstrap/css/bootstrap.min.css"
+				"bootstrap/css/bootstrap-theme.min.css"
+				"css/z.icons.css"
+				"css/mod_ginger_site/screen.css"
+			%}
+		{% endblock %}
+
 
 		{% all include "_html_head.tpl" %}
 

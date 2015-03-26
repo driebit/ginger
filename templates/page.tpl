@@ -16,7 +16,7 @@
             
             {% block page_actions %}{% catinclude "_page_actions.tpl" id %}{% endblock %}
 
-			<h1>{{ id.title }}</h1> 
+			<h1 id="article-title">{{ id.title }}</h1> 
 		
 			{% block page_depiction %}
                 {% if id.depiction %}
@@ -38,7 +38,7 @@
 
 			{% block page_summary %}
 				{% if id.summary %}
-					<p class="summary article_summary">{{ id.summary }}</p>
+					<p class="summary article_summary" id="article-summary">{{ id.summary }}</p>
 				{% endif %}
 			{% endblock %}
 
@@ -50,7 +50,7 @@
 
 			{% block page_body %}
 				{% if id.body %}
-					<div class="body article_body">{{ id.body|show_media }}</div>
+					<div class="body article_body" id="article-body">{{ id.body|show_media }}</div>
 				{% endif %}
 			{% endblock %}
 	

@@ -1,8 +1,7 @@
-
 {% with id.o.depiction as deps %}
+{% with id.o.hasdocument as docs %}
     {% if deps|length > 1 or docs %}
         <div class="article_images container-fluid">
-            {% with id.o.hasdocument as docs %}
         		{% if deps|length > 1 or docs %}
         			<div class="thumbnails row">
         				{% for dep in deps %}
@@ -21,7 +20,7 @@
         				{% endfor %}
         			</div>
         		{% endif %}
-        	{% endwith %}
         </div>
     {% endif %}
+{% endwith %}
 {% endwith %}
