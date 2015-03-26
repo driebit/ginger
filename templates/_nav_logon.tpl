@@ -1,4 +1,4 @@
-<div id="nav-logon" class="nav-logon btn {% if button == 'small' %}btn-sm {% else %}btn-default {% endif %}">
+<div id="nav-logon" class="nav-logon btn btn-sm">
     {% with m.rsc[id].uri as page %}
         {% if m.acl.user %}
                 <a href="{{ m.rsc[m.acl.user].page_url }}">{{ m.rsc[m.acl.user].title }}</a>&nbsp;<a href="#" id="{{ #ginger_logoff }}"><i class="glyphicon glyphicon-log-out"></i></a>
