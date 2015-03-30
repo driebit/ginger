@@ -37,7 +37,6 @@
 
     &__logo {
         display: inline-block;
-        @include size(margin-top, 10);
         @include size(margin-left, 25);
     }
 
@@ -200,7 +199,7 @@
         a {
             position: relative;
             display: block;
-            @include size(margin, 15, 5);
+            @include size(margin, 8, 5);
             @include size(width, 40);
             height: 0;
             @include size(padding-top, 40);
@@ -211,14 +210,14 @@
             &:after {
                 @extend .has-icon;
 
-                @include size(left, 20);
+                @include size(left, 19);
                 @include size(top, 20);
                 @include size(margin-left, -15);
                 @include size(margin-top, -15);
 
                 @include size(width, 30);
                 @include size(height, 30);
-                background-size: 30px 30px;
+                background-size: 22px 22px;
                 background-position: center center;
             }
 
@@ -260,10 +259,6 @@
 
         &:after {
             top: $mainNavHeight - 10px;
-        }
-
-        &__logo {
-            margin-top: 0;
         }
 
         &__logo,
