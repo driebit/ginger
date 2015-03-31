@@ -38,6 +38,7 @@
     &__logo {
         display: inline-block;
         @include size(margin-left, 25);
+        @include size(margin-right, 24);
     }
 
     &__off-canvas {
