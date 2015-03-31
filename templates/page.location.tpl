@@ -5,7 +5,7 @@
 {% block body_class %}location{% endblock %}
 
 {% block content %}
-    <div class="page--event__content-wrapper">
+    <div class="page--event page__content-wrapper">
         {% with id as location %}
             {% include "_masthead.tpl" article=location %}
 

@@ -5,7 +5,7 @@
 {% block body_class %}collection{% endblock %}
 
 {% block content %}
-    <div class="page--event__content-wrapper">
+    <div class="page--event page__content-wrapper">
         {% with id as collection %}
             {% include "_masthead.tpl" article=collection %}
 

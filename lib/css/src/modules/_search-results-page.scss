@@ -1,0 +1,42 @@
+.search-results {
+    &__form {
+        position: relative;
+        width: 90%;
+        @include size(max-width, 555);
+        margin: 0 auto;
+        @include size(margin-bottom, 50);
+        @include size(margin-top, 50);
+    }
+
+    &__query {
+        width: 100%;
+        border: 0;
+        border-bottom: 2px solid #E4E4E4;
+        @include size(font-size, 25);
+        @include size(line-height, 40);
+        @include size(height, 40);
+        @include size(padding, 0, 10);
+    }
+
+    &__submit-btn,
+    &__submit-btn:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include size(width, 40);
+    }
+
+    &__submit-btn {
+        height: 0;
+        @include size(padding-top, 40);
+        overflow: hidden;
+        background: transparent;
+        border: 0;
+
+        &:after {
+            @extend .has-icon;
+            @include size(height, 40);
+            @include combinedSvgPngBackground('/lib/images/icon_search_0087D2', true);
+        }
+    }
+}

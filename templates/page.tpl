@@ -5,7 +5,7 @@
 {% block body_class %}article{% endblock %}
 
 {% block content %}
-    <div class="page--article__content-wrapper">
+    <div class="page--article page__content-wrapper">
         {% with id as article %}
             {% include "_masthead.tpl" article=article %}
 
