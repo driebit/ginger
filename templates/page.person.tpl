@@ -12,6 +12,8 @@
             <main role="main" class="page__main-content">
                 {% if person.depiction %}
                     <img class="page__avatar" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
+                {% elseif person.media|length > 0 %}
+                    <img class="page__avatar" src="{% image_url person.media|first mediaclass='img-avatar' %}" alt=""/>
                 {% endif %}
 
                 <article class="page__content">

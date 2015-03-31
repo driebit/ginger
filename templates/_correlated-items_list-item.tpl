@@ -3,8 +3,10 @@
         <div class="{{ classPrefix }}__{{ showas }}__illustration">
             {% if item.header %}
                 {% image item.header mediaclass="img-related" alt="" %}
-            {% elseif dep %}
+            {% elseif item.dep %}
                 {% image item.dep mediaclass="img-related" alt="" %}
+            {% elseif item.media|length > 0 %}
+                {% image item.media|first mediaclass="img-related" alt="" %}
             {% endif %}
         </div>
 

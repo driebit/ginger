@@ -15,7 +15,7 @@
 
         {% with m.search.paged[{query text=q.qs pagelen=10 page=q.page}] as result %}
             {% if result %}
-                {% pager result=result hide_single_page=1 custom=true %}
+                {% pager result=result hide_single_page=1 gingerpager=true %}
 
                 {% include "_correlated-items.tpl" items=result showMetaData="date" title="" %}
             {% else %}

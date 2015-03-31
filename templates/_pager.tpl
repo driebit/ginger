@@ -1,4 +1,4 @@
-{% if custom == true %}
+{% if gingerpager %}
     <nav class="ginger-pagination">
         {% if prev_url %}
             <a href="{{ prev_url }}" class="ginger-pagination__previous">Vorige</a>
@@ -9,7 +9,7 @@
                 {% if nr %}
                     <li class="ginger-pagination__page{% if nr == page %}--active{% endif %}"><a href="{{ url }}">{{ nr }}</a></li>
                 {% else %}
-                    <li class="ginger-pagination__seperator"></li>
+                    <li class="ginger-pagination__seperator">...</li>
                 {% endif %}
             {% endfor %}
         </ol>
