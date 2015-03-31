@@ -33,8 +33,8 @@
             {
                 "startDate":"{{ pid.date_start|date:"Y,m,d" }}",
                 {% if pid.date_end %}"endDate":"{{ pid.date_end|date:"Y,m,d" }}",{% endif %}
-                "headline":"{{ pid.title }}",
-                "text":"<p>{{ pid.summary }}</p>",
+                "headline":"<a href='{{ pid.page_url }}' style='text-decoration: none;'>{{ pid.title }}</a>",
+                "text":"<p><a href='{{ id.page_url }}' style='text-decoration: none;'>{{ pid.summary }}</a></p>",
                 {% with pid.depiction as dep %}
                 "asset":
                 {
