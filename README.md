@@ -43,5 +43,5 @@ observe_find_links(#find_links{id=Id, is_a=CatList}, Links, _Context) ->
             predicate="http://xmlns.com/foaf/0.1/depicts",
             object=Id
         }
-    ] | Links.
+    | Links ].
 ```
