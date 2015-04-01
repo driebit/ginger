@@ -39,7 +39,7 @@ observe_find_links(#find_links{id=Id, is_a=CatList}, Links, _Context) ->
         %% An incoming link
         #triple{
             type=resource,
-            subject="http://example.com/some/external/resource.rdf"
+            subject="http://example.com/some/external/resource.rdf",
             predicate="http://xmlns.com/foaf/0.1/depicts",
             object=Id
         }
