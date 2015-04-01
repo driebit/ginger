@@ -58,18 +58,19 @@
         margin: 0;
     }
 
-    &__page {
+    &__page,
+    &__seperator {
         display: inline-block;
         list-style-type: none;
         @include size(min-width, 28);
         @include size(height, 28);
         @include size(line-height, 28);
         vertical-align: middle;
+    }
 
-        &--active {
-            @extend .ginger-pagination__page;
-            border-radius: 2px;
-            background-color: $paginationActiveBackground;
-        }
+    &__page--active {
+        @extend .ginger-pagination__page;
+        border-radius: 2px;
+        background-color: $paginationActiveBackground;
     }
 }

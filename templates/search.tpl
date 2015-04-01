@@ -2,7 +2,7 @@
 
 {% block title %}Zoeken naar {{ q.qs }}{% endblock %}
 
-{% block body_class %}search no-header{% endblock %}
+{% block body_class %}search{% endblock %}
 
 {% block content %}
     <div class="search-results">

@@ -239,54 +239,56 @@
 }
 
 @media only screen and (min-width: 300px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 35);
     }
 }
 
 @media only screen and (min-width: 500px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 40);
     }
 }
 
 @media only screen and (min-width: 600px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 50);
     }
 }
 
 @media only screen and (min-width: 700px) {
-    .page {
-        &--home__header__title {
-            @include size(font-size, 60);
-        }
+    .page--home {
+        .page {
+            &__header__title {
+                @include size(font-size, 60);
+            }
 
-        &__content {
-            @include size(padding, 25, 70);
+            &__content {
+                @include size(padding, 25, 70);
 
-            &__title {
-                @include size(margin-left, -40);
-                @include size(margin-right, -40);
+                &__title {
+                    @include size(margin-left, -40);
+                    @include size(margin-right, -40);
+                }
             }
         }
     }
 }
 
 @media only screen and (min-width: 800px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 70);
     }
 }
 
 @media only screen and (min-width: 900px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 80);
     }
 }
 
 @media only screen and (min-width: 1000px) {
-    .page--home__header__title  {
+    .page--home .page__header__title  {
         @include size(font-size, 90);
     }
 }
