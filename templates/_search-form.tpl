@@ -3,7 +3,7 @@
         <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
         <input type="text" 
-            class="ginger-search_form-control do_ginger-search"
+            class="ginger-search_form-control do_ginger_search"
             name="qs" 
             value="{{q.qs|escape}}" 
             placeholder="Search" 
