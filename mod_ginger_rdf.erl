@@ -7,6 +7,7 @@
 -mod_title("Ginger RDF").
 -mod_description("RDF in Zotonic").
 -mod_prio(500).
+-mod_schema(1).
 
 -behaviour(gen_server).
 
@@ -14,6 +15,7 @@
 -include_lib("include/rdf.hrl").
 
 -export([
+    manage_schema/2,
     pid_observe_rsc_pivot_done/3,
     init/1,
     handle_call/3,
@@ -26,9 +28,31 @@
 
 -record(state, {context}).
 
+manage_schema(install, Context) ->
+    Datamodel = #datamodel{
+        categories=[
+            {rdf, meta, [{title, <<"RDF resource">>}]}
+        ]
+    },
+    z_datamodel:manage(?MODULE, Datamodel, Context),
+
+    %% Update some predicates so they can refer to category RDF, too
+    case m_rsc:uri_lookup("http://xmlns.com/foaf/0.1/depiction", Context) of 
+        undefined -> noop;
+        PredId ->
+            Objects = m_predicate:objects(PredId, Context),
+            m_predicate:update_noflush(
+                PredId,
+                m_predicate:subjects(PredId, Context),
+                [m_rsc:rid(rdf, Context) | Objects],
+                Context
+            )
+    end,
+    ok.
+
 %% @doc When pivot is done, ask observers to provide subject links from the 
 %% resource and object links to the resource.
-pid_observe_rsc_pivot_done(Pid, #rsc_pivot_done{id=Id, is_a=CatList}, Context) ->
+pid_observe_rsc_pivot_done(Pid, #rsc_pivot_done{id=Id, is_a=CatList}, _Context) ->
     gen_server:cast(Pid, #find_links{id=Id, is_a=CatList}).
 
 start_link(Args) when is_list(Args) ->
@@ -46,7 +70,7 @@ handle_cast(Record = #find_links{}, State = #state{context=Context}) ->
     Triples = z_notifier:foldr(Record, [], Context),
     
     %% todo: store the triples
-    ?DEBUG(Triples),
+    [m_rdf_triple:insert(Triple, Context) || Triple <- Triples],
     {noreply, State};
 handle_cast(Msg, State) ->
     {stop, {unknown_cast, Msg}, State}.
