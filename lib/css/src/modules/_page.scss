@@ -44,7 +44,7 @@
         &__about {
             border-top: 3px dotted #DDD;
             border-bottom: 3px dotted #DDD;
-            @include size(margin, 0, -70, 45, -70);
+            @include size(margin, 0, -30, 45, -30);
             @include size(padding, 10, 30);
 
             + .page__content__about {
@@ -63,6 +63,7 @@
             }
 
             &__header {
+                position: relative;
                 width: 29.5%;
                 @include size(padding-left, 25);
                 text-transform: uppercase;
@@ -88,8 +89,13 @@
             &--location {
                 @extend .page__content__about;
 
-                .page__content__about__header {
-
+                .page__content__about__header:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_location_4A4A4A', true);
+                    @include size(width, 20);
+                    @include size(height, 20);
+                    background-size: 13px 19px;
+                    top: 0;
+                    left: 0;
                 }
             }
         }

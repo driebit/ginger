@@ -9,5 +9,8 @@
   {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
 
   %% Simple search page
-  {search, ["search"], controller_template, [ {template, "search.tpl"} ]}
+  {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
+
+  %% Show defined set of articles (e.g. all events for location X)
+  {all_in_set, ["all-in-set"], controller_template, [ {template, "all-in-set.tpl"} ]}
 ].

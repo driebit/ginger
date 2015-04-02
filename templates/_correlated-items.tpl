@@ -29,4 +29,11 @@
             {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="list-item" %}
         {% endfor %}
     </ol>
+
+    {% if showMoreCollection %}
+        {{ showMoreCollection|pprint }}
+        <div>
+            <p><a href="{% url all_in_set collection=showMoreCollection|make_list|join:',' %}">{{ showMoreLabel }}</a></p>
+        </div>
+    {% endif %}
 </aside>
