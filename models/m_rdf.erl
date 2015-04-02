@@ -5,11 +5,11 @@
 
 -export([
     object/3,
-    link/4,
-    find/2
+    find/2,
+    ensure_resource/2
 ]).
 
-%% @doc Find an RDF resource by URI
+%% @doc Find a RDF resource by URI
 %% @spec find(string(), Context) -> Id | undefined
 find(Uri, Context) ->
     m_rsc:uri_lookup(Uri, Context).
@@ -39,70 +39,12 @@ rsc(Url, Context) ->
         ?WEEK,
         Context
     ).
-    
-%% Create a RDF link between two resources
-link(Subject, Predicate, Object, Context) ->
-    %% Predicate must be an URL
-    %% Subject and object can be either URL or internal Zotonic id
 
-    %% Check if the predicate already exists in Zotonic
-    PredicateId = case m_rsc:uri_lookup(Predicate, Context) of
-        undefined ->
-            %% predicate needs to be created
-            {ok, Id} = create_predicate(Predicate, Context),
-            Id;
-        Id -> Id
-    end,
-    
-    m_edge:insert(
-        find_or_create_resource(Subject, Context), 
-        PredicateId, 
-        find_or_create_resource(Object, Context),
-        Context
-    ).
-
-%% @doc Create non-authoritative RDF resource
-%% @spec create_resource(string(), Context) -> Id
-create_resource(Uri, Context) ->
-    Props = [
-        {title, Uri},
-        {name, z_string:to_name(Uri)},
-        {category, rdf},
-        {is_authoritative, false},
-        {is_published, true}
-    ],
-    {ok, Id} = m_rsc:insert(Props, Context),
-    Id.
-    
-%% @doc Create RDF predicate
-create_predicate(Uri, Context) ->
-    Props = [
-        {title, Uri},
-        {name, z_string:to_name(Uri)},
-        {uri, Uri},
-        {category, predicate},
-        {group, admins},
-        {is_published, true},
-        {visible_for, 0}
-    ],
-    case m_rsc:insert(Props, Context) of
-        {ok, Id} -> 
-            m_predicate:flush(Context),
-            {ok, Id};
-        {error, Reason} ->
-            {error, Reason}
-    end.
-    
-%% @doc Is String a valid URI?
-is_http_uri(String) ->
-    {Scheme, _, _, _, _} = mochiweb_util:urlsplit(String),
-    case Scheme of
-        "http" -> true;
-        "https" -> true;
-        _ -> false
-    end.
-
-find_or_create_resource(Uri, Context) ->
+%% @doc Ensure URI is a resource in Zotonic.
+%% @spec ensure_resource(Uri, Context) -> int()
+ensure_resource(Uri, _Context) when is_integer(Uri) ->
+    Uri;
+ensure_resource(Uri, Context) ->
     case is_http_uri(Uri) of
         false ->
             m_rsc:rid(Uri, Context);
@@ -113,3 +55,27 @@ find_or_create_resource(Uri, Context) ->
                 Id -> Id
             end
     end.
+    
+%% @doc Create non-authoritative RDF resource
+%% @spec create_resource(string(), Context) -> Id
+create_resource(Uri, Context) ->
+    Props = [
+%%         {name, z_string:to_name(Uri)},
+        {category, rdf},
+        {is_authoritative, false},
+        {is_published, true},
+        {uri, Uri}
+    ],
+%%     {ok, Id} = m_rsc_update:insert(Props, [{acl_check, false}], Context),
+    {ok, Id} = m_rsc_update:insert(Props, Context),
+    Id.
+    
+%% @doc Is String a valid URI?
+is_http_uri(String) ->
+    {Scheme, _, _, _, _} = mochiweb_util:urlsplit(z_convert:to_list(String)),
+    case Scheme of
+        "http" -> true;
+        "https" -> true;
+        _ -> false
+    end.
+
