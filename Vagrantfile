@@ -20,6 +20,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 35729, host: 35729
 
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1536
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+  end
+
   if Vagrant::Util::Platform.windows?
     config.vm.synced_folder ".", "/vagrant"
   else
