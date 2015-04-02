@@ -14,20 +14,10 @@
                     <h1 class="page__content__title">{{ event.title }}</h1>
 
                     {% with event.organized_by as organizer %}
-                        {% if organizer %}
-                            <div class="page__content__organizer">
-                                {% if organizer.depiction %}
-                                    <img class="page__content__organizer__depiction" src="{% image_url organizer.depiction mediaclass='img-avatar' %}" alt=""/>
-                                {% endif %}
-
-                                <p class="page__content__organizer__name">
-                                    Organisator:<br/>
-                                    {{ organizer.title }}
-                                </p>
-
-                                <a href="" class="ginger-btn-pill--primary page__content__organizer__signup">Aanmelden</a>
-                            </div>
-                        {% endif %}
+                        {%
+                            include "_metadata.tpl" person=organizer role="Organisator"
+                                links=[{'Aanmelden', '#signup', 'primary'}]
+                        %}
                     {% endwith %}
 
                     {% with event.located_in as location %}
@@ -51,7 +41,7 @@
             </main>
 
             {% block correlatedItems %}
-                {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
+                {% with m.search[{query cat="event" id_exclude=event.id}] as result %}
                     {% if result %}
                         {% include "_correlated-items.tpl" items=result showMetaData="date" title="Andere evenementen" variant="related" %}
                     {% endif %}

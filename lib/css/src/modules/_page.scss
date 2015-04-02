@@ -95,8 +95,8 @@
         }
 
         &__person-details {
-            @include size(margin-left, -70);
-            @include size(margin-right, -70);
+            @include size(margin-left, -30);
+            @include size(margin-right, -30);
         }
 
         &__person-detail {
@@ -107,6 +107,7 @@
             @include size(font-size, 15);
             @include size(line-height, 19);
             font-weight: 400;
+            list-style-type: none;
 
             + .page__content__person-detail {
                 border-top: 0;
@@ -135,6 +136,14 @@
                 width: 65%; // the 33% and 65% don't add up to 100% to leave space for whitespace characters between elements
             }
 
+            &--email,
+            &--mobile,
+            &--phone,
+            &--website {
+                @extend .page__content__person-detail;
+            }
+
+
             &--email .page__content__person-detail__label:after {
                 @include combinedSvgPngBackground('/lib/images/icon_envelope_4A4A4A', true);
             }
@@ -148,6 +157,30 @@
 
             &--website .page__content__person-detail__label:after {
                 @include combinedSvgPngBackground('/lib/images/icon_pointer_4A4A4A', true);
+            }
+        }
+
+        &__metadata {
+            @include size(margin-bottom, 45);
+
+            &__depiction,
+            &__name,
+            &__actions {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+                @include size(margin-right, 10);
+            }
+
+            &__depiction {
+                @include size(width, 46);
+                @include size(height, 46);
+                border-radius: 50%;
+            }
+
+            &__actions li {
+                list-style-type: none;
+                display: inline-block;
             }
         }
     }
@@ -206,27 +239,6 @@
                         margin-left: 0;
                     }
                 }
-            }
-        }
-    }
-
-    &--event {
-        .page__content__organizer {
-            @include size(margin-bottom, 45);
-
-            &__depiction,
-            &__name,
-            &__signup {
-                display: inline-block;
-                vertical-align: middle;
-                margin: 0;
-                @include size(margin-right, 10);
-            }
-
-            &__depiction {
-                @include size(width, 46);
-                @include size(height, 46);
-                border-radius: 50%;
             }
         }
     }

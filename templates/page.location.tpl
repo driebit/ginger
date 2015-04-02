@@ -5,7 +5,7 @@
 {% block body_class %}location{% endblock %}
 
 {% block content %}
-    <div class="page--event page__content-wrapper">
+    <div class="page--location page__content-wrapper">
         {% with id as location %}
             {% include "_masthead.tpl" article=location %}
 
@@ -13,7 +13,7 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ location.title }}</h1>
 
-                    {% include "_about.location.tpl" title="Adres" location=location.located_in %}
+                    {% include "_about.location.tpl" title="Adres" location=location %}
 
                     {% if location.summary %}
                         <div class="page__content__intro">
@@ -28,9 +28,9 @@
             </main>
 
             {% block correlatedItems %}
-                {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
-                    {% if result %}
-                        {% include "_correlated-items.tpl" items=result showMetaData="date" title="Evenementen in "++location.title variant="related" %}
+                {% with location.s.located_in as events %}
+                    {% if events %}
+                        {% include "_correlated-items.tpl" items=events showMetaData="date" title="Evenementen in "++location.title variant="related" %}
                     {% endif %}
                 {% endwith %}
             {% endblock %}

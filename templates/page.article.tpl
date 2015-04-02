@@ -1,11 +1,11 @@
-{% extends "base.tpl" %}
+{% extends "page.tpl" %}
 
 {% block title %}{{ id.title }}{% endblock %}
 
-{% block body_class %}generic{% endblock %}
+{% block body_class %}article{% endblock %}
 
 {% block content %}
-    <div class="page--generic page__content-wrapper">
+    <div class="page--article page__content-wrapper">
         {% with id as article %}
             {% include "_masthead.tpl" article=article %}
 
@@ -13,7 +13,15 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
-                    <div class="page__content__organiser"></div>
+                    {% with article.author as author %}
+                        {%
+                            include "_metadata.tpl" role="Auteur" person=author
+                                links=[
+                                    ["X reacties", "#comments", "anchor"],
+                                    ["Delen"     , "#share"   , "secondary"]
+                                ]
+                            %}
+                    {% endwith %}
 
                     {% if article.summary %}
                         <div class="page__content__intro">

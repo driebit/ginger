@@ -62,7 +62,7 @@
             </main>
 
             {% block correlatedItems %}
-                {% with m.search[{query cat_exclude=cat_exclude text="lectoraat" pagelen=12}] as result %}
+                {% with m.search[{query hasobject=[person.id,'author'] cat="text"}] as result %}
     				{% if result %}
                         {% include "_correlated-items.tpl" items=result showMetaData="date" title="Bijdragen van "++person.title variant="related" %}
                     {% endif %}
