@@ -14,6 +14,12 @@
         <div id="logon_box" class="widget-content">
             <div id="logon_error" class="alert alert-block alert-error"></div>
             {% include "_logon_form.tpl" page=page|default:"/admin" hide_title %}
+
+            {% include
+                "_logon_modal.tpl"
+                page=page|default:"/admin"
+                logon_context="admin_logon"
+            %}
         </div>
     </div>
 {% endblock %}
