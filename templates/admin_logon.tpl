@@ -13,9 +13,11 @@
         <img alt="Driebit Ginger" class="logon-logo" src="/lib/images/ginger-logo.png">
         <div id="logon_box" class="widget-content">
             <div id="logon_error" class="alert alert-block alert-error"></div>
-            {% include "_logon_form.tpl" page=page|default:"/admin" hide_title %}
+            {# comment %}<= 0.12{% endcomment #}
+            {% optional include "_logon_form.tpl" page=page|default:"/admin" hide_title %}
 
-            {% include
+            {# comment %}>= 0.13{% endcomment #}
+            {% optional include
                 "_logon_modal.tpl"
                 page=page|default:"/admin"
                 logon_context="admin_logon"
