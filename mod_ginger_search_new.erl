@@ -1,7 +1,7 @@
 %% @author Driebit <info@driebit.nl>
 %% @copyright 2014
 
--module(mod_ginger_search).
+-module(mod_ginger_search_new).
 -author("Driebit <info@driebit.nl>").
 
 -mod_title("Ginger search").
