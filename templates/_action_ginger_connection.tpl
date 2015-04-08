@@ -4,7 +4,7 @@
 
     {% with	m.rsc[category].id as cat_id %}
     {% with	m.rsc[cat_id].title|lower as cat_title %}
-        <a id="{{ #connect.predicate }}" class="btn btn-small btn-add-thing" href="#connect">+ {_ add my  _}  {% if title %} {{ title }} {% else %} {% if new_rsc_title %}{{ new_rsc_title }}{% else %}{{ cat_title|lower }}{% endif %}{% endif %} {_ to this  _}</a>
+        <a id="{{ #connect.predicate }}" class="btn {{ btn_class }} btn-small btn-add-thing" href="#connect">+ {_ add my  _}  {% if title %} {{ title }} {% else %} {% if new_rsc_title %}{{ new_rsc_title }}{% else %}{{ cat_title|lower }}{% endif %}{% endif %} {_ to this  _}</a>
 
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
