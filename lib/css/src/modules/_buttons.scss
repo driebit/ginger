@@ -1,6 +1,6 @@
 .btn {
     border-radius: 0;
-    font-size: 1em;
+    font-size: inherit;
     border: none;
     line-height: 1;
 }
@@ -63,6 +63,7 @@
         @include size(padding, 10, 10, 10, 30);
         @include size(margin-bottom, 5);
         transition: opacity 0.3s;
+        color: #fff;
 
         &:hover {
             color: #fff;

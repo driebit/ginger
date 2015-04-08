@@ -10,8 +10,7 @@ body {
 
 a, a:hover, a:active {
 	color: $blue;
-}
-
+} 
 
 img {
 	max-width: 100%;
@@ -47,4 +46,8 @@ p {
     font-style: italic;
     font-weight: 400;
     font-family: 'myriad pro';
+}
+
+body {
+    border: 10px solid red;
 }

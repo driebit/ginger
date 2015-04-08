@@ -8,11 +8,11 @@
     {% block tabs %}
 
         <li {% if tab == "logon" %}class="active"{% endif %}>
-            <a data-toggle="tab" href="#{{ #tab }}-logon">{_ Logon _}</a>
+            <a data-toggle="tab" href="#{{ #tab }}-logon">{_ Log in _}</a>
         </li>
 
         <li {% if tab == "signup" %}class="active"{% endif %}>
-            <a data-toggle="tab" href="#{{ #tab }}-signup">{_ Signup _}</a>
+            <a data-toggle="tab" href="#{{ #tab }}-signup">{_ Sign up _}</a>
         </li>
 
         <li {% if tab == "forgot" %}class="active"{% endif %}>

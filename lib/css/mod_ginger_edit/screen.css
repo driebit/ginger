@@ -95,7 +95,8 @@ p {
     padding: 0.55556rem 0.55556rem 0.55556rem 1.66667rem;
     margin-bottom: 5px;
     margin-bottom: 0.27778rem;
-    transition: opacity 0.3s; }
+    transition: opacity 0.3s;
+    color: #fff; }
     #logon_methods .z-btn-social:hover {
       color: #fff;
       opacity: 0.8; }
@@ -105,19 +106,3 @@ p {
   margin-top: 0.83333rem;
   margin-bottom: 15px;
   margin-bottom: 0.83333rem; }
-
-.ginger-edit_nav .btn {
-  margin-left: 10px;
-  margin-left: 0.55556rem;
-  float: right; }
-
-.nav-logon {
-    margin: 15px 0px 15px 0px;
-    float: right;
-}
-
-.nav-edit {
-    margin: 8px 8px 0px 0px;
-    float: right;
-}
-
