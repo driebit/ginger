@@ -87,6 +87,7 @@
 			"js/src/ginger-default_toggle-navigation.js"
 			"js/src/ginger-default_toggle-search.js"
 			"js/src/ginger-default_correlated-items.js"
+			"js/src/ginger-default_parallax.js"
 		%}
 
 		<!--[if (gt IE 9)|!(IE)]><!-->

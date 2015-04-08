@@ -25,25 +25,23 @@
                         {{ location.body|show_media }}
                     </div>
                 </article>
-
-
             </main>
 
             {% block correlatedItems %}
-                {% with location.s.located_in as events %}
+                {% with location.s.located_at as events %}
                     {% if events %}
                         {% if events|length > 10 %}
-                            Meer dan tien
                             {% include
                                 "_correlated-items.tpl"
                                 items=events|slice:[1,10]
                                 showMetaData="date"
                                 title="Evenementen in "++location.title variant="related"
                                 showMoreLabel="Toon alle"
-                                showMoreCollection=events
+                                showMoreDirection="object"
+                                showMoreType="located_at"
+                                showMoreId=location.id
                             %}
                         {% else %}
-                            Minder dan tien
                             {% include "_correlated-items.tpl" items=events showMetaData="date" title="Evenementen in "++location.title variant="related" %}
                         {% endif %}
                     {% endif %}

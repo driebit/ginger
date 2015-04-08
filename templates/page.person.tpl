@@ -7,13 +7,15 @@
 {% block content %}
     <div class="page--person page__content-wrapper">
         {% with id as person %}
-            {% include "_masthead.tpl" article=person %}
+            {% include "_masthead.tpl" %}
 
             <main role="main" class="page__main-content">
                 {% if person.depiction %}
                     <img class="page__avatar" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
                 {% elseif person.media|length > 0 %}
                     <img class="page__avatar" src="{% image_url person.media|first mediaclass='img-avatar' %}" alt=""/>
+                {% elseif person.header %}
+                    <img class="page__avatar" src="{% image_url person.header.id mediaclass='img-avatar' %}" alt=""/>
                 {% endif %}
 
                 <article class="page__content">

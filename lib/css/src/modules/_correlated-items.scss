@@ -101,11 +101,17 @@ $headerHeight: 90;
             }
         }
 
+        &__content,
         &__title {
-            color: #062A30;
-            @include size(font-size, 15);
-            @include size(line-height, 24);
+            @include size(font-size, 14);
+            @include size(line-height, 20);
+        }
+
+        &__title {
+            color: $secondaryThemeColor;
             margin: 0;
+            margin-bottom: 0.5em;
+            font-weight: 700;
         }
     }
 
@@ -113,11 +119,15 @@ $headerHeight: 90;
         @include size(padding, 0, 12);
 
         &__illustration,
-        &__content {
+        &__content,
+        &__title {
             display: block;
+            transition: background-color 500ms, color 500ms;
         }
 
         &__illustration {
+            position: relative;
+
             img {
                 display: block;
                 max-width: 100%;
@@ -127,8 +137,21 @@ $headerHeight: 90;
         &__content {
             background-color: $white;
             @include size(padding, 15);
-            @include size(font-size, 14);
-            @include size(line-height, 19);
+        }
+
+        &:hover {
+            .ginger-correlated-items__tile__content {
+                background-color: $secondaryThemeColor;
+                color: $white;
+
+                p {
+                    opacity: 0.7;
+                }
+            }
+
+            .ginger-correlated-items__tile__title {
+                color: $white;
+            }
         }
     }
 
@@ -153,8 +176,14 @@ $headerHeight: 90;
         &__title {
             font-weight: 400;
             @include size(font-size, 25);
-            @include size(line-height, 40);
+            @include size(line-height, 30);
             color: $black;
+        }
+
+        &:hover {
+            .ginger-correlated-items__list-item__title {
+                color: $secondaryThemeColor;
+            }
         }
     }
 

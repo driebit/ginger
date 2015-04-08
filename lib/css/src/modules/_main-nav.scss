@@ -2,17 +2,17 @@
 //       This so that the same background image doesn't get embedded multiple times
 
 .main-nav {
-    // the position: static is to make all child elements position themselves
-    // based on the of first positioned parent of .main-nav. Usually <body>.
-    // this helps in making the .*__off-canvas element 100% high.
-
-    position: static;
+    position: fixed;
     @include size(height, $mainNavMobileHeight);
     @include size(line-height, $mainNavMobileHeight);
     @include size(font-size, 15);
     font-weight: 400;
     box-shadow: 0 2px 4px rgba(0,0,0, .13);
     background-color: $white;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 200;
 
     // because .main-nav has no positioning and .page__wrapper does,
     // .page__wrapper has a higher stacking order and thus the top falls over

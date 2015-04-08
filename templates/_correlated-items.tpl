@@ -30,10 +30,9 @@
         {% endfor %}
     </ol>
 
-    {% if showMoreCollection %}
-        {{ showMoreCollection|pprint }}
-        <div>
-            <p><a href="{% url all_in_set collection=showMoreCollection|make_list|join:',' %}">{{ showMoreLabel }}</a></p>
-        </div>
+    {% if showMoreLabel %}
+        <p class="ginger-correlated-items__show-more">
+            <a href="{% url all_in_set type=showMoreType direction=showMoreDirection id=showMoreId %}">{{ showMoreLabel }}</a>
+        </p>
     {% endif %}
 </aside>
