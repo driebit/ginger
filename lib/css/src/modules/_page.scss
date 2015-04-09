@@ -49,6 +49,7 @@
 
             + .page__content__about {
                 border-top: none;
+                @include size(margin-top, -45);
             }
 
             &__header,
@@ -71,6 +72,10 @@
 
                 &:after {
                     @extend .has-icon;
+                    @include size(width, 20);
+                    @include size(height, 20);
+                    top: 0;
+                    left: 0;
                 }
             }
 
@@ -87,15 +92,16 @@
             }
 
             &--location {
-                @extend .page__content__about;
-
                 .page__content__about__header:after {
                     @include combinedSvgPngBackground('/lib/images/icon_location_4A4A4A', true);
-                    @include size(width, 20);
-                    @include size(height, 20);
                     background-size: 13px 19px;
-                    top: 0;
-                    left: 0;
+                }
+            }
+
+            &--people {
+                .page__content__about__header:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
+                    background-size: 19px 20px;
                 }
             }
         }

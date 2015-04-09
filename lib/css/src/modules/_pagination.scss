@@ -37,7 +37,7 @@
 
         &:after {
             left: 0;
-            @include combinedSvgPngBackground('/lib/images/pagination_arrow-left', true);
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-left_FFFFFF', true);
         }
     }
 
@@ -47,7 +47,7 @@
 
         &:after {
             right: 0;
-            @include combinedSvgPngBackground('/lib/images/pagination_arrow-right', true);
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-right_FFFFFF', true);
         }
     }
 

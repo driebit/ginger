@@ -69,6 +69,11 @@ $headerHeight: 90;
                 @include combinedSvgPngBackground('/lib/images/icon_collection_9B9B9B', true);
             }
         }
+
+        &__show-more {
+            @include size(padding, 0, 30);
+            text-align: right;
+        }
     }
 
     &__tiles {
@@ -79,7 +84,7 @@ $headerHeight: 90;
 
     &__list,
     &__tiles-wrapper {
-        @include size(padding, 30, 30);
+        @include size(padding, 30, 30, 18, 30); // the 18px is to correct for the 12px bottom margin from the last tile
     }
 
     &__tile,
@@ -197,6 +202,7 @@ $headerHeight: 90;
 
     &--related {
         @extend .ginger-correlated-items;
+        background-color: $relatedItemsBgColor;
 
         .ginger-correlated-items {
             &__header {

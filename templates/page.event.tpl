@@ -13,20 +13,26 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ event.title }}</h1>
 
-                    {% with event.organized_by as organizer %}
-                        {%
-                            include "_metadata.tpl" person=organizer role="Organisator"
-                                links=[{'Aanmelden', '#signup', 'primary'}]
-                        %}
-                    {% endwith %}
+                    {% block organizer %}
+                        {% with event.organized_by as organizer %}
+                            {%
+                                include "_metadata.tpl" person=organizer role="Organisator"
+                                    links=[['Aanmelden', '#signup', 'primary']]
+                            %}
+                        {% endwith %}
+                    {% block %}
 
-                    {% with event.located_in as location %}
-                        {% include "_about.location.tpl" title="Locatie" location=event.located_in %}
-                    {% endwith %}
+                    {% block venue %}
+                        {% with event.located_in as location %}
+                            {% include "_about.location.tpl" title="Locatie" location=event.located_in %}
+                        {% endwith %}
+                    {% endblock %}
 
-                    {% with event.s.participates_in as participants %}
-                        {% include "_about.people.tpl" title="Deelnemers" people=participants %}
-                    {% endwith %}
+                    {% block attendees %}
+                        {% with event.s.participates_in as participants %}
+                            {% include "_about.people.tpl" title="Deelnemers" people=participants %}
+                        {% endwith %}
+                    {% endblock %}
 
                     {% if event.summary %}
                         <div class="page__content__intro">
@@ -43,7 +49,18 @@
             {% block correlatedItems %}
                 {% with m.search[{query cat="event" id_exclude=event.id}] as result %}
                     {% if result %}
-                        {% include "_correlated-items.tpl" items=result showMetaData="date" title="Andere evenementen" variant="related" %}
+                        {% if result|length > 10 %}
+                            {% include "_correlated-items.tpl"
+                                items=result|slice:[1,10]
+                                showMetaData="date"
+                                title="Andere evenementen"
+                                variant="related"
+                                showMoreLabel="Toon alle"
+                                showMoreQueryRsc=m.rsc.le_all_events
+                            %}
+                        {% else %}
+                            {% include "_correlated-items.tpl" items=result showMetaData="date" title="Andere evenementen" variant="related" %}
+                        {% endif %}
                     {% endif %}
                 {% endwith %}
             {% endblock %}

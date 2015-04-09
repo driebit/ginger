@@ -53,9 +53,21 @@
         }
     }
 
+
+    &--secondary,
+    &--anchor,
+    &--next {
+        @extend .ginger-btn-pill;
+    }
+
+    &--anchor,
+    &--next {
+        @extend .ginger-btn-pill--secondary;
+        @extend .ginger-btn-pill__icon-right;
+    }
+
     /* 'secondary' variant of ginger-btn-pill */
     &--secondary {
-        @extend .ginger-btn-pill;
         background: $white;
         color: $pillBtnColor;
         border: 1px solid $pillBtnBorder;
@@ -63,14 +75,17 @@
 
     /* button/link to jump to comments */
     &--anchor {
-        @extend .ginger-btn-pill;
-        @extend .ginger-btn-pill--secondary;
-        @extend .ginger-btn-pill__icon-right;
-
         position: relative;
 
         &:after {
             @include combinedSvgPngBackground('/lib/images/arrow-down', true)
+        }
+    }
+
+    /* the show more button in correlating items */
+    &--next {
+        &:after {
+            @include comginedSvgPngBackground('/lib/images/icon_arrow_right', true);
         }
     }
 }
