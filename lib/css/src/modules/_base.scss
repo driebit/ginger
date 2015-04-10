@@ -48,6 +48,6 @@ p {
     font-family: 'myriad pro';
 }
 
-body {
-    border: 10px solid red;
+.row + .row {
+    margin-top: 20px;
 }

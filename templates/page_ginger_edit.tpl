@@ -32,16 +32,11 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="col-xs-12" id="save-buttons" style="display:none">
-
-					{% button class="btn btn-primary" text=_"Save" title=_"Save this page." 
-							  action={script script="$('#save_stay').click();"}
-					 %}
-
-					{% button class="btn" text=_"Save &amp; view" title=_"Save and view the page." 
+					{% button class="btn ginger-edit-save" text=_"Save" title=_"Save" 
 							  action={script script="$('#save_view').click();"}
 					 %}
 
-					{% button class="btn pull-right" text=_"Cancel" action={redirect back} tag="a" %}
+					{% button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" %}
 					{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
 		    	</div>
 			</div>

@@ -44,6 +44,8 @@
         {% block header %}{% endblock %}
 
         {% block content %}{% endblock %}
+
+        {% block footer %}{% endblock %}
 	</div>
 
     {% include "_editor.tpl" %}
