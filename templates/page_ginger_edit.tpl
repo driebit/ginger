@@ -28,19 +28,15 @@
 {% block header %}
 	{# The buttons in the navbar click/sync with hidden counter parts in the resource edit form #}
 	<nav class="navbar navbar-savebuttons">
-		<div class="navbar-inner">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="col-xs-12" id="save-buttons" style="display:none">
-					{% button class="btn ginger-edit-save" text=_"Save" title=_"Save" 
-							  action={script script="$('#save_view').click();"}
-					 %}
+		<div class="navbar-inner row">
+			<div class="col-xs-12" id="save-buttons" style="display:none">
+				{% button class="btn ginger-edit-save" text=_"Save" title=_"Save" 
+						  action={script script="$('#save_view').click();"}
+				 %}
 
-					{% button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" %}
-					{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
-		    	</div>
-			</div>
-		</div>
+				{% button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" %}
+				{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
+	    	</div>
 		</div>
 	</nav>
 {% endblock %}
