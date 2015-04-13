@@ -11,12 +11,13 @@
 %% @spec insert(Triple, Context) -> {ok, Id} | {error, Reason}
 insert(#triple{type=Type, subject=Subject, predicate=Predicate, object=Object}, Context) ->
     PredicateId = ensure_predicate(Predicate, Context),
-    m_edge:insert(
+    Result = m_edge:insert(
         m_rdf:ensure_resource(Subject, Context), 
         PredicateId, 
         m_rdf:ensure_resource(Object, Context),
         Context
-    ).
+    ),
+    ?DEBUG({"Inserting RDF triple for ", Subject}).
 
 %% @doc Ensure predicate exists. If it doesn't yet exist, create it.
 %% @spec ensure_predicate(Uri, Context) -> int()

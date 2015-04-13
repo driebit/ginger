@@ -88,7 +88,8 @@ handle_call(Message, _From, State) ->
 handle_cast(Record = #find_links{}, State = #state{context=Context}) ->
     %% Let other modules find outgoing links, then process them here
     Triples = z_notifier:foldr(Record, [], Context),
-    [m_rdf_triple:insert(Triple, Context) || Triple <- Triples],
+    AdminContext = z_acl:sudo(Context),
+    [m_rdf_triple:insert(Triple, AdminContext) || Triple <- Triples],
     {noreply, State};
 handle_cast(Msg, State) ->
     {stop, {unknown_cast, Msg}, State}.
