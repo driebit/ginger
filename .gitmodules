@@ -16,3 +16,9 @@
 [submodule "modules/mod_ginger_oai_pmh"]
 	path = modules/mod_ginger_oai_pmh
 	url = git@github.com:driebit/mod_ginger_oai_pmh.git
+[submodule "modules/mod_ginger_xml"]
+	path = modules/mod_ginger_xml
+	url = https://github.com/driebit/mod_ginger_xml.git
+[submodule "modules/mod_ginger_opensearch"]
+	path = modules/mod_ginger_opensearch
+	url = https://github.com/driebit/mod_ginger_opensearch.git
