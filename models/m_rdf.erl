@@ -33,7 +33,7 @@ rsc(Url, Context) ->
     %     case z_notifier:first(#rsc_property{id=Id, property=title, value=Title1}, Context) of
     z_depcache:memo(
         fun() ->
-            z_notifier:first(#rdf_get{url=Url}, Context)
+            z_notifier:first(#rdf_get{uri=Url}, Context)
         end,
         Url,
         ?WEEK,
@@ -60,13 +60,12 @@ ensure_resource(Uri, Context) ->
 %% @spec create_resource(string(), Context) -> Id
 create_resource(Uri, Context) ->
     Props = [
-%%         {name, z_string:to_name(Uri)},
+        {name, z_string:to_name(Uri)},
         {category, rdf},
         {is_authoritative, false},
         {is_published, true},
         {uri, Uri}
     ],
-%%     {ok, Id} = m_rsc_update:insert(Props, [{acl_check, false}], Context),
     {ok, Id} = m_rsc_update:insert(Props, Context),
     Id.
     
