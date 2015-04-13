@@ -1,4 +1,4 @@
--record(rdf_get, {url}).
+-record(rdf_get, {uri}).
 
 -record(find_links, {id, is_a}).
 
