@@ -49,6 +49,7 @@
         &:hover,
         &:active,
         &:focus {
+            background-color: darken($pillBtnColor, 15);
             color: $white;
         }
     }
@@ -78,7 +79,7 @@
     /* button/link to jump to comments */
     &--anchor {
         &:after {
-            @include combinedSvgPngBackground('/lib/images/arrow-down', true)
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true)
         }
     }
 

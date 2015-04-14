@@ -40,13 +40,19 @@
         &__intro {
             @include size(font-size, 22);
             @include size(line-height, 26);
+            margin-bottom: 1em;
+
+            p:last-child {
+                margin-bottom: 0;
+            }
         }
 
         &__about {
+            position: relative;
             border-top: 3px dotted #DDD;
             border-bottom: 3px dotted #DDD;
             @include size(margin, 0, -30, 45, -30);
-            @include size(padding, 10, 30);
+            @include size(padding, 15, 30);
 
             + .page__content__about {
                 border-top: none;
@@ -65,8 +71,10 @@
             }
 
             &__header {
-                position: relative;
-                width: 29.5%;
+                position: absolute;
+                @include size(top, 15);
+                @include size(left, 25);
+                width: 19.5%;
                 @include size(padding-left, 25);
                 text-transform: uppercase;
                 color: $aboutHeaderTextColor;
@@ -80,15 +88,19 @@
                 }
             }
 
+            &__content,
+            &__link {
+                width: 80%;
+                font-weight: 400;
+                margin-left: 19.5%;
+                @include size(padding-left, 25);
+            }
+
             &__content {
-                width: 49.5%;
                 color: $aboutContentTextColor;
             }
 
             &__link {
-                vertical-align: bottom;
-                width: 19.5%;
-                text-align: right;
                 font-weight: 400;
             }
 
@@ -174,7 +186,8 @@
         }
 
         &__metadata {
-            @include size(margin-bottom, 45);
+            @include size(margin-bottom, 30);
+            @include size(margin-top, -10);
 
             &__depiction,
             &__name,
