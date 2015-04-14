@@ -33,9 +33,7 @@
     {% if showMoreLabel %}
         <p class="ginger-correlated-items__show-more">
             {% if showMoreQueryRsc %}
-                {{ showMoreQueryRsc|pprint }}
-
-                <a href="{% url page id=showMoreQueryRsc.id slug=showMoreQueryRsc.slug %}" class="ginger-btn-pill">{{ showMoreLabel }}</a>
+                <a href="{% url page id=showMoreQueryRsc.id slug=showMoreQueryRsc.slug %}" class="ginger-btn-pill--next">{{ showMoreLabel }}</a>
             {% else %}
                 <a href="{% url all_in_set type=showMoreType direction=showMoreDirection id=showMoreId %}" class="ginger-btn-pill--next">{{ showMoreLabel }}</a>
             {% endif %}
