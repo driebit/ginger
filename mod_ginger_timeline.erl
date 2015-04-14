@@ -6,4 +6,4 @@
 
 -mod_title("Timeline JS prototype").
 -mod_description("Timeline JS prototype").
--mod_prio(50).
+-mod_prio(75).
