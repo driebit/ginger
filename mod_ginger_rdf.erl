@@ -70,8 +70,7 @@ observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
                 true -> 
                     Props;
                 false ->
-                    ExtraProps = z_notifier:foldl(#rdf_get{uri=RscUri}, [], Context),
-                    ExtraProps ++ Props
+                    z_notifier:foldl(#rdf_get{uri=RscUri}, Props, Context)
             end
     end.
 

@@ -6,7 +6,7 @@
 -export([
     object/3,
     find/2,
-    ensure_resource/2
+    ensure_resource/3
 ]).
 
 %% @doc Find a RDF resource by URI
@@ -42,31 +42,33 @@ rsc(Url, Context) ->
 
 %% @doc Ensure URI is a resource in Zotonic.
 %% @spec ensure_resource(Uri, Context) -> int()
-ensure_resource(Uri, _Context) when is_integer(Uri) ->
+ensure_resource(Uri, _Props, _Context) when is_integer(Uri) ->
     Uri;
-ensure_resource(Uri, Context) ->
+ensure_resource(Uri, Props, Context) ->
     case is_http_uri(Uri) of
         false ->
             m_rsc:rid(Uri, Context);
         true ->
             case find(Uri, Context) of
                 undefined ->
-                    create_resource(Uri, Context);
-                Id -> Id
+                    create_resource(Uri, Props, Context);
+                Id ->
+                    {ok, Id} = m_rsc_update:update(Id, Props, Context),
+                    Id
             end
     end.
     
 %% @doc Create non-authoritative RDF resource
 %% @spec create_resource(string(), Context) -> Id
-create_resource(Uri, Context) ->
-    Props = [
+create_resource(Uri, Props, Context) ->
+    AllProps = [
         {name, z_string:to_name(Uri)},
         {category, rdf},
         {is_authoritative, false},
         {is_published, true},
         {uri, Uri}
-    ],
-    {ok, Id} = m_rsc_update:insert(Props, Context),
+    ] ++ Props,
+    {ok, Id} = m_rsc_update:insert(AllProps, Context),
     Id.
     
 %% @doc Is String a valid URI?

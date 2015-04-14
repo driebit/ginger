@@ -9,15 +9,21 @@
 
 %% @doc Insert a triple, making sure no duplicates are created
 %% @spec insert(Triple, Context) -> {ok, Id} | {error, Reason}
-insert(#triple{type=Type, subject=Subject, predicate=Predicate, object=Object}, Context) ->
+insert(#triple{
+    type=Type,
+    subject=Subject,
+    subject_props=SubjectProps,
+    predicate=Predicate,
+    object=Object,
+    object_props=ObjectProps
+}, Context) ->
     PredicateId = ensure_predicate(Predicate, Context),
-    Result = m_edge:insert(
-        m_rdf:ensure_resource(Subject, Context), 
+    m_edge:insert(
+        m_rdf:ensure_resource(Subject, SubjectProps, Context), 
         PredicateId, 
-        m_rdf:ensure_resource(Object, Context),
+        m_rdf:ensure_resource(Object, ObjectProps, Context),
         Context
-    ),
-    ?DEBUG({"Inserting RDF triple for ", Subject}).
+    ).
 
 %% @doc Ensure predicate exists. If it doesn't yet exist, create it.
 %% @spec ensure_predicate(Uri, Context) -> int()
