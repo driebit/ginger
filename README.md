@@ -68,7 +68,7 @@ may want to store additional properties in either subject or object by adding
             predicate="http://xmlns.com/foaf/0.1/depiction",
             object="http://example.com/some/external/resource.rdf",
             object_props=[
-                {some_extra_id_that_is_needed_for_retrieval, "ID.123.467"
+                {some_extra_id_that_is_needed_for_retrieval, "ID.123.467"}
             ]
         },
 ```
