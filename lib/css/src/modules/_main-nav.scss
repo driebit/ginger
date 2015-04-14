@@ -45,7 +45,7 @@
         position: fixed;
         display: block;
         color: $mainNavPagesColor;
-        @include translate(100%);
+        transform: translateX(100%);
         @include size(width, 250);
         height: 100%;
         @include size(top, $mainNavMobileHeight);
@@ -56,23 +56,24 @@
         z-index: 10000;
 
         &.is-shown {
-            @include translate(0);
+            transform: translateX(0);
 
             &:after {
+                display: block;
                 opacity: 0.75;
             }
         }
 
         &:after {
             content: '';
-            display: block;
+            display: none;
             position: absolute;
             @include size(width, 1000);
             top: 0;
             left: 0;
             height: 100%;
             transition: opacity 250ms linear;
-            @include translate(-1000px);
+            transform: translateX(-1000px);
             background-color: $black;
             opacity: 0;
         }
@@ -116,10 +117,11 @@
         left: 0;
         width: 100%;
         @include size(height, $mainNavMobileHeight);
-        @include translate(100%);
+        transform: translateX(100%);
         transition: all 250ms ease-out;
         background-color: $white;
         z-index: 500;
+        display: none;
 
         #search-form {
             float: none !important;
@@ -140,7 +142,8 @@
         }
 
         &.is-shown {
-            @include translate(0);
+            transform: translateX(0);
+            display: block;
         }
 
         [type=text] {
@@ -274,7 +277,7 @@
             width: auto;
             top: 0;
             left: 0;
-            @include translate(0);
+            transform: translateX(0);
             z-index: 10;
 
             li {

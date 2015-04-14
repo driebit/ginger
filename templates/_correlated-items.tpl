@@ -37,7 +37,7 @@
 
                 <a href="{% url page id=showMoreQueryRsc.id slug=showMoreQueryRsc.slug %}" class="ginger-btn-pill">{{ showMoreLabel }}</a>
             {% else %}
-                <a href="{% url all_in_set type=showMoreType direction=showMoreDirection id=showMoreId %}" class="ginger-btn-pill">{{ showMoreLabel }}</a>
+                <a href="{% url all_in_set type=showMoreType direction=showMoreDirection id=showMoreId %}" class="ginger-btn-pill--next">{{ showMoreLabel }}</a>
             {% endif %}
         </p>
     {% endif %}

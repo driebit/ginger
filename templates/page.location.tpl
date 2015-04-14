@@ -13,7 +13,7 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ location.title }}</h1>
 
-                    {% include "_about.location.tpl" title="Adres" location=location %}
+                    {% include "_about_location.tpl" title="Adres" location=location %}
 
                     {% if location.summary %}
                         <div class="page__content__intro">

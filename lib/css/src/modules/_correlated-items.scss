@@ -200,6 +200,12 @@ $headerHeight: 90;
         }
     }
 
+    &__show-more {
+        margin: 0;
+        text-align: right;
+        @include size(padding, 0, 30, 30, 30);
+    }
+
     &--related {
         @extend .ginger-correlated-items;
         background-color: $relatedItemsBgColor;
@@ -234,6 +240,12 @@ $headerHeight: 90;
             &.is-shown {
                 display: block;
             }
+        }
+
+        .ginger-btn-pill--next {
+            background-color: $relatedItemsBgColor;
+            color: $white;
+            border-color: $white;
         }
     }
 }

@@ -46,33 +46,6 @@
     transform: translateY(-50%);
 }
 
-// Use regular and 3D translatation because not all browsers that support
-// translations support 3D translations, those who do benefit from hardware acceleration
-@mixin translate($values...) {
-    @if (length($values) > 0) {
-        $x: nth($values, 1);
-        transform: translateX($x);
-    }
-
-    @if (length($values) > 1) {
-        $y: nth($values, 2);
-        transform: translateY($y);
-    }
-
-    @if (length($values) > 2) {
-        $z: nth($values, 3);
-        transform: translateZ($z);
-    }
-
-    @if (length($values) == 1) {
-        transform: translate3D($x, 0, 0);
-    } @else if (length($values) == 3) {
-        transform: translate3D($x, $y, 0);
-    } @else if (length($values) == 3) {
-        transform: translate3D($x, $y, $z);
-    }
-}
-
 @mixin combinedSvgPngBackground($file, $embedSvg: false) {
     background-image: url(#{$file}.png);
 

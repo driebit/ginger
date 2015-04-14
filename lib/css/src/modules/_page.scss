@@ -9,6 +9,7 @@
         padding-top: 50%;
         @include size(min-height, 300);
         z-index: 10;
+        transform: translateX(0);
     }
 
     &__content-wrapper {
@@ -256,8 +257,14 @@
     }
 
     &--person {
-        .page__content-wrapper {
+        &.page__content-wrapper {
             @include size(padding-top, 20);
+        }
+    }
+
+    &--query {
+        &.page__content-wrapper {
+            @include size(padding-top, 70);
         }
     }
 }
