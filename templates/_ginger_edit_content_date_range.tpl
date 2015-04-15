@@ -36,11 +36,11 @@
         {% endjavascript %}
         <div class="form-group date-range_start col-xs-12 col-md-5">
             <label class="control-label">{_ From _}</label>
-            {% include "_ginger_edit_date.tpl" date=id.date_start time_id="date_start_time" name="date_start" is_end=0 date_is_all_day=id.date_is_all_day %}
+            {% include "_edit_date.tpl" date=id.date_start time_id="date_start_time" name="date_start" is_end=0 date_is_all_day=id.date_is_all_day %}
         </div>
         <div class="form-group date-range_stop col-xs-12 col-md-5">
             <label class="control-label">{_ Till _}</label>
-            {% include "_ginger_edit_date.tpl" date=id.date_end time_id="date_end_time" name="date_end" is_end=1 date_is_all_day=id.date_is_all_day %}
+            {% include "_edit_date.tpl" date=id.date_end time_id="date_end_time" name="date_end" is_end=1 date_is_all_day=id.date_is_all_day %}
         </div>
     </div>
 {% endblock %}
