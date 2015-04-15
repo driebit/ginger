@@ -7,16 +7,20 @@
 {% block content %}
     <div class="page--person page__content-wrapper">
         {% with id as person %}
-            {% include "_masthead.tpl" %}
+            {% block masthead %}
+                {% include "_masthead.tpl" %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
-                {% if person.depiction %}
-                    <img class="page__avatar" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
-                {% elseif person.media|length > 0 %}
-                    <img class="page__avatar" src="{% image_url person.media|first mediaclass='img-avatar' %}" alt=""/>
-                {% elseif person.header %}
-                    <img class="page__avatar" src="{% image_url person.header.id mediaclass='img-avatar' %}" alt=""/>
-                {% endif %}
+                {% block avatar %}
+                    {% if person.depiction %}
+                        <img class="page__avatar" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
+                    {% elseif person.media|length > 0 %}
+                        <img class="page__avatar" src="{% image_url person.media|first mediaclass='img-avatar' %}" alt=""/>
+                    {% elseif person.header %}
+                        <img class="page__avatar" src="{% image_url person.header.id mediaclass='img-avatar' %}" alt=""/>
+                    {% endif %}
+                {% endblock %}
 
                 <article class="page__content">
                     <h1 class="page__content__title">{{ person.title }}</h1>

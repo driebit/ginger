@@ -7,7 +7,9 @@
 {% block content %}
     <div class="page--event page__content-wrapper">
         {% with id as event %}
-            {% include "_masthead.tpl" article=event %}
+            {% block masthead %}
+                {% include "_masthead.tpl" article=event %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">

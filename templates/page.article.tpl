@@ -7,21 +7,23 @@
 {% block content %}
     <div class="page--article page__content-wrapper">
         {% with id as article %}
-            {% include "_masthead.tpl" article=article %}
+            {% block masthead %}
+                {% include "_masthead.tpl" article=article %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
-                    {% with article.author as author %}
+                    {% block metadata %}
                         {%
-                            include "_metadata.tpl" role="Auteur" person=author
+                            include "_metadata.tpl" role="Auteur" person=article.author
                                 links=[
                                     ["X reacties", "#comments", "anchor"],
                                     ["Delen"     , "#share"   , "secondary"]
                                 ]
                             %}
-                    {% endwith %}
+                    {% eneblock %}
 
                     {% if article.summary %}
                         <div class="page__content__intro">

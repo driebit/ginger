@@ -7,7 +7,9 @@
 {% block content %}
     <div class="page--generic page__content-wrapper">
         {% with id as article %}
-            {% include "_masthead.tpl" article=article %}
+            {% block masthead %}
+                {% include "_masthead.tpl" article=article %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">

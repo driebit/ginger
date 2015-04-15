@@ -7,7 +7,9 @@
 {% block content %}
     <div class="page--collection page__content-wrapper">
         {% with id as collection %}
-            {% include "_masthead.tpl" article=collection %}
+            {% block masthead %}
+                {% include "_masthead.tpl" article=collection %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
