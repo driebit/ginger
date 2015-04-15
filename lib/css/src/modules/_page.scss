@@ -209,6 +209,61 @@
                 display: inline-block;
             }
         }
+
+        &__comments {
+            &__wrapper {
+                @include size(margin-left, -30);
+                @include size(margin-right, -30);
+            }
+
+            &__header {
+                position: relative;
+                border-top: 5px solid $bodyBgColor;
+                border-bottom: 5px solid $bodyBgColor;
+                @include size(padding, 18, 0, 18, 56);
+                text-transform: uppercase;
+                @include size(font-size, 15);
+                @include size(line-height, 19);
+                font-weight: 600;
+
+                &:after {
+                    @extend .has-icon;
+                    @include size(width, 18);
+                    @include size(height, 19);
+                    @include size(left, 24);
+                    @include size(top, 18);
+
+                    @include combinedSvgPngBackground('/lib/images/icon_comments_35353F');
+                }
+            }
+        }
+
+        &__comment {
+            position: relative;
+            @include size(font-size, 15);
+            @include size(line-height, 24);
+            list-style-type: none;
+            border-top: 2px dotted #B7B7B7;
+            @include size(padding, 30, 30, 30, 173);
+
+            &:first-child {
+                border-top: none;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+            &__about {
+                position: absolute;
+                @include size(top, 30);
+                left: 0;
+                @include size(font-size, 14);
+                @include size(line-height, 18);
+                text-align: center;
+                @include size(width, 162);
+            }
+        }
     }
 
     &__avatar {

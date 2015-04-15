@@ -13,8 +13,6 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
-                    <div class="page__content__organiser"></div>
-
                     {% if article.summary %}
                         <div class="page__content__intro">
                             {{ article.summary }}
@@ -24,6 +22,12 @@
                     <div class="page__content__body">
                         {{ article.body|show_media }}
                     </div>
+
+                    {% block comments %}
+                        {% if article.s.comment %}
+                            {% include "_comments.tpl" comments=article.s.comment %}
+                        {% endif %}
+                    {% endblock %}
                 </article>
             </main>
 
