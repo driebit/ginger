@@ -262,6 +262,12 @@
                 @include size(line-height, 18);
                 text-align: center;
                 @include size(width, 162);
+
+                &__avatar {
+                    @include size(height, 50);
+                    @include size(width, 50);
+                    border-radius: 50%;
+                }
             }
         }
     }
