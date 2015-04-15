@@ -8,9 +8,10 @@
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
 
-
+        {% lib
+            "bootstrap/css/bootstrap.min.css"
+        %}
 		{% lib
-			"bootstrap/css/bootstrap.min.css"
 			"css/mod_ginger_site/screen.css"
             "css/ginger-edit.css"
             "css/jquery-ui.datepicker.css"
