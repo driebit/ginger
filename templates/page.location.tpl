@@ -4,12 +4,27 @@
 
 {% block body_class %}location{% endblock %}
 
+{% block module_script %}
+    {% if not location.header and not location.media|length > 0 %}
+        <script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>
+        {% lib
+            "js/src/ginger-default_masthead-map.js"
+        %}
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="page--location page__content-wrapper">
         {% with id as location %}
-            {% block masthead %}
-                {% include "_masthead.tpl" article=location %}
-            {% endblock %}
+            {% if location.header or location.media|length > 0 %}
+                {% block masthead %}
+                    {% include "_masthead.tpl" article=location %}
+                {% endblock %}
+            {% else %}
+                {% block masthead %}
+                    {% include "_masthead.tpl" article=location type="map" %}
+                {% endblock %}
+            {% endif %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
