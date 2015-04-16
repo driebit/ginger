@@ -7,7 +7,9 @@
 {% block content %}
     <div class="page--collection page__content-wrapper">
         {% with id as collection %}
-            {% include "_masthead.tpl" article=collection %}
+            {% block masthead %}
+                {% include "_masthead.tpl" article=collection %}
+            {% endblock %}
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
@@ -27,7 +29,22 @@
 
             {% block correlatedItems %}
                 {% if id.o.haspart %}
-                    {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
+                    {% if id.o.haspart|length > 10 %}
+                        {% include
+                            "_correlated-items.tpl"
+                        %}
+
+                        {% include "_correlated-items.tpl"
+                            items=id.o.haspart|slice:[1,10]
+                            showMetaData="date"
+                            title="Andere objecten"
+                            variant="related"
+                            showMoreLabel="Toon alle"
+                            showMoreQueryRsc=m.rsc.le_all_events
+                        %}
+                    {% else %}
+                        {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
+                    {% endif %}
                 {% endif %}
             {% endblock %}
 
