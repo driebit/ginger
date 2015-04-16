@@ -225,6 +225,7 @@
                 @include size(font-size, 15);
                 @include size(line-height, 19);
                 font-weight: 600;
+                margin-bottom: 0;
 
                 &:after {
                     @extend .has-icon;
@@ -245,6 +246,7 @@
             list-style-type: none;
             border-top: 2px dotted #B7B7B7;
             @include size(padding, 30, 30, 30, 173);
+            @include size(min-height, 120);
 
             &:first-child {
                 border-top: none;
@@ -252,6 +254,11 @@
 
             p:last-child {
                 margin-bottom: 0;
+            }
+
+            &__about,
+            &__body {
+                float: left;
             }
 
             &__about {
@@ -268,6 +275,10 @@
                     @include size(width, 50);
                     border-radius: 50%;
                 }
+            }
+
+            &__body {
+
             }
         }
     }

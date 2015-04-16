@@ -23,7 +23,7 @@
                                     ["Delen"     , "#share"   , "secondary"]
                                 ]
                             %}
-                    {% eneblock %}
+                    {% endblock %}
 
                     {% if article.summary %}
                         <div class="page__content__intro">
