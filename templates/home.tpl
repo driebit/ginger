@@ -5,7 +5,7 @@
 {% block body_class %}home{% endblock %}
 
 {% block content %}
-    <div class="page--home__content-wrapper">
+    <div class="page--home page__content-wrapper">
         {% with m.rsc.home_article as home %}
             {% include "_masthead.tpl" article=home %}
 
