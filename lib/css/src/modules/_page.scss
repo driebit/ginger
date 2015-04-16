@@ -312,7 +312,7 @@
                 }
 
                 &__title {
-                    @include size(font-size, 100);
+                    @include size(font-size, 30);
                     line-height: 1.15em;
                 }
 
@@ -338,6 +338,10 @@
                     }
                 }
             }
+
+            &__main-content {
+                @include size(margin-top, 20);
+            }
         }
     }
 
@@ -356,19 +360,25 @@
 
 @media only screen and (min-width: 300px) {
     .page--home .page__header__title  {
-        @include size(font-size, 35);
+
     }
 }
 
 @media only screen and (min-width: 500px) {
-    .page--home .page__header__title  {
-        @include size(font-size, 40);
+    .page--home .page {
+        &__header__title  {
+            @include size(font-size, 35);
+        }
+
+        &__main-content {
+            margin-top: 0;
+        }
     }
 }
 
 @media only screen and (min-width: 600px) {
     .page--home .page__header__title  {
-        @include size(font-size, 50);
+        @include size(font-size, 45);
     }
 }
 
@@ -376,7 +386,7 @@
     .page--home {
         .page {
             &__header__title {
-                @include size(font-size, 60);
+                @include size(font-size, 50);
             }
 
             &__content {
