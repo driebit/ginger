@@ -267,3 +267,12 @@ $headerHeight: 90;
         }
     }
 }
+
+.ie8 {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 33.333333333%;
+        }
+    }
+}

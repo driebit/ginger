@@ -24,7 +24,7 @@
         position: absolute;
         height: 10px;
         top: $mainNavMobileHeight - 10px;
-        z-index: 100;
+        z-index: 1;
         left: 0;
         width: 100%;
         box-shadow: 0 2px 4px rgba(0,0,0, .13);
@@ -302,6 +302,26 @@
             &:after {
                 display: none;
             }
+
+            .dropdown {
+                &:hover .dropdown-menu {
+                    display: block;
+                    top: 75%;
+                }
+            }
+
+            .dropdown-menu {
+                line-height: 3em;
+
+                a {
+                    &:hover,
+                    &:focus {
+                        text-decoration: underline;
+                        color: $mainNavPagesColor;
+                        background-color: transparent;
+                    }
+                }
+            }
         }
 
         &__toggle-menu {
@@ -366,11 +386,15 @@
     }
 }
 
+@media only screen and (min-width: 1024px) {
+    @include mainNavGt1024();
+}
+
 .ie8 {
     @include mainNavGt1024();
 
     .main-nav {
-        &__search-form {
+        &__search {
             display: none;
 
             &.is-shown {
@@ -384,8 +408,4 @@
             }
         }
     }
-}
-
-@media only screen and (min-width: 1024px) {
-    @include mainNavGt1024();
 }
