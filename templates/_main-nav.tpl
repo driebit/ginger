@@ -8,19 +8,19 @@
     <div class="main-nav__off-canvas">
         {% menu class="main-nav__pages" %}
 
-        {#
+
         <ul class="main-nav__actions">
             <li>
-                {% optional include "_actions_login.tpl" %}
+                {% optional include "_nav_logon.tpl" %}
             </li>
             <li>
-                {% optional include "_actions_admin.tpl" %}
+                {% optional include "_nav_admin.tpl" %}
             </li>
             <li>
-                {% optional include "_actions_profile.tpl" %}
+                {% optional include "_nav_profile.tpl" %}
             </li>
         </ul>
-        #}
+
     </div>
 
     <ul class="main-nav__actions">
@@ -41,9 +41,6 @@
         {% wire name="show_suggestions"
             action={update target="search-suggestions" template="_search_suggestions.tpl"}
         %}
-
-
-
         <div id="search-suggestions" class="search-suggestions"></div>
     </form>
     #}

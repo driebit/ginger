@@ -90,6 +90,32 @@
 			"js/src/ginger-default_parallax.js"
 		%}
 
+        {% include "_js_include_jquery.tpl" %}
+
+        {% lib
+                "js/apps/zotonic-1.0.js"
+                "js/apps/z.widgetmanager.js"
+                "js/modules/ubf.js"
+                "js/modules/z.notice.js"
+                "js/modules/z.imageviewer.js"
+                "js/modules/z.dialog.js"
+                "js/modules/livevalidation-1.3.js"
+                "js/modules/z.inputoverlay.js"
+                "js/modules/jquery.loadmask.js"
+                "bootstrap/js/bootstrap.min.js"
+                "js/modules/responsive.js"
+                %}
+
+        {% block _js_include_extra %}{% endblock %}
+
+        <script type="text/javascript">
+            $(function()
+            {
+                $.widgetManager();
+            });
+        </script>
+
+
 		<!--[if (gt IE 9)|!(IE)]><!-->
 			<script src="//192.168.33.10:35729/livereload.js"></script>
 		<!--<![endif]-->
