@@ -1,0 +1,15 @@
+#comments-area {
+    @include size(padding-left, 30);
+    @include size(padding-right, 30);
+    border-top: 5px solid $bodyBgColor;
+
+    .btn {
+        @extend .ginger-btn-pill--primary;
+    }
+
+    label {
+        font-family: Serifa;
+        text-transform: uppercase;
+        color: #555;
+    }
+}

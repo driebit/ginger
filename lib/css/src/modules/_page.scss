@@ -1,7 +1,7 @@
 .page {
     &__masthead {
         position: absolute;
-        top: 0;
+        @include size(top, $mainNavMobileHeight);
         left: 0;
         width: 100%;
         background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
@@ -225,6 +225,7 @@
                 @include size(font-size, 15);
                 @include size(line-height, 19);
                 font-weight: 600;
+                margin-bottom: 0;
 
                 &:after {
                     @extend .has-icon;
@@ -245,6 +246,7 @@
             list-style-type: none;
             border-top: 2px dotted #B7B7B7;
             @include size(padding, 30, 30, 30, 173);
+            @include size(min-height, 120);
 
             &:first-child {
                 border-top: none;
@@ -254,19 +256,40 @@
                 margin-bottom: 0;
             }
 
+            &__about,
+            &__body {
+                float: left;
+            }
+
             &__about {
                 position: absolute;
                 @include size(top, 30);
                 left: 0;
-                @include size(font-size, 14);
+                @include size(font-size, 12);
                 @include size(line-height, 18);
                 text-align: center;
                 @include size(width, 162);
+                color: #B0B0B0;
+                @include size(padding, 0, 10);
 
                 &__avatar {
                     @include size(height, 50);
                     @include size(width, 50);
                     border-radius: 50%;
+                }
+
+                &.has-no-avatar {
+                    &:before {
+                        @extend .has-icon;
+                        @include size(width, 50);
+                        @include size(height, 50);
+                        border-radius: 50%;
+                        background-color: $bodyBgColor;
+                        margin: 0 auto;
+                        position: relative;
+                        @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
+                        background-size: 20px 20px;
+                    }
                 }
             }
         }
@@ -284,11 +307,11 @@
     }
 
     &--home {
-        .page {
-            &__content-wrapper {
-                padding-top: 15%;
-            }
+        &.page__content-wrapper {
+            padding-top: 15%;
+        }
 
+        .page {
             &__header {
                 &__title,
                 &__tagline {
@@ -301,7 +324,7 @@
                 }
 
                 &__title {
-                    @include size(font-size, 100);
+                    @include size(font-size, 30);
                     line-height: 1.15em;
                 }
 
@@ -327,6 +350,10 @@
                     }
                 }
             }
+
+            &__main-content {
+                @include size(margin-top, 20);
+            }
         }
     }
 
@@ -345,19 +372,25 @@
 
 @media only screen and (min-width: 300px) {
     .page--home .page__header__title  {
-        @include size(font-size, 35);
+
     }
 }
 
 @media only screen and (min-width: 500px) {
-    .page--home .page__header__title  {
-        @include size(font-size, 40);
+    .page--home .page {
+        &__header__title  {
+            @include size(font-size, 35);
+        }
+
+        &__main-content {
+            margin-top: 0;
+        }
     }
 }
 
 @media only screen and (min-width: 600px) {
     .page--home .page__header__title  {
-        @include size(font-size, 50);
+        @include size(font-size, 45);
     }
 }
 
@@ -365,7 +398,7 @@
     .page--home {
         .page {
             &__header__title {
-                @include size(font-size, 60);
+                @include size(font-size, 50);
             }
 
             &__content {
@@ -395,5 +428,11 @@
 @media only screen and (min-width: 1000px) {
     .page--home .page__header__title  {
         @include size(font-size, 90);
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .page__masthead {
+        @include size(top, $mainNavHeight);
     }
 }

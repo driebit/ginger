@@ -164,7 +164,7 @@
         &__close-btn {
             position: absolute;
             display: block;
-            @include size(top, 9);
+            @include size(top, 15);
             @include size(right, 15);
             height: 0;
             @include size(width, 40);
