@@ -265,20 +265,32 @@
                 position: absolute;
                 @include size(top, 30);
                 left: 0;
-                @include size(font-size, 14);
+                @include size(font-size, 12);
                 @include size(line-height, 18);
                 text-align: center;
                 @include size(width, 162);
+                color: #B0B0B0;
+                @include size(padding, 0, 10);
 
                 &__avatar {
                     @include size(height, 50);
                     @include size(width, 50);
                     border-radius: 50%;
                 }
-            }
 
-            &__body {
-
+                &.has-no-avatar {
+                    &:before {
+                        @extend .has-icon;
+                        @include size(width, 50);
+                        @include size(height, 50);
+                        border-radius: 50%;
+                        background-color: $bodyBgColor;
+                        margin: 0 auto;
+                        position: relative;
+                        @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
+                        background-size: 20px 20px;
+                    }
+                }
             }
         }
     }
