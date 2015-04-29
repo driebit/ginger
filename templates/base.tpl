@@ -81,15 +81,6 @@
         {% block module_script %}{% endblock %}
 		{% script %}
 
-		{% lib
-			"js/vendor/masonry.js"
-			"js/vendor/imagesloaded.js"
-			"js/src/ginger-default_toggle-navigation.js"
-			"js/src/ginger-default_toggle-search.js"
-			"js/src/ginger-default_correlated-items.js"
-			"js/src/ginger-default_parallax.js"
-		%}
-
         {% include "_js_include_jquery.tpl" %}
 
         {% lib
@@ -106,14 +97,25 @@
                 "js/modules/responsive.js"
                 %}
 
+		{% lib
+			"js/vendor/masonry.js"
+			"js/vendor/imagesloaded.js"
+			"js/src/ginger-default_toggle-navigation.js"
+			"js/src/ginger-default_toggle-search.js"
+			"js/src/ginger-default_correlated-items.js"
+			"js/src/ginger-default_parallax.js"
+		%}
+
         {% block _js_include_extra %}{% endblock %}
 
+		{#
         <script type="text/javascript">
             $(function()
             {
                 $.widgetManager();
             });
         </script>
+		#}
 
 
 		<!--[if (gt IE 9)|!(IE)]><!-->
