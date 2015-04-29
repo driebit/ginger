@@ -2,7 +2,7 @@
 %% Put your dispatch rules here.
 [
   {patterns, ["patterns"], controller_template, [ {template, "patterns.tpl"} ]},
-  {home, ["home"], controller_template, [ {template, "home.tpl"} ]},
+  {home, [], controller_template, [ {template, "home.tpl"} ]},
 
   %% Normal page to show a resource.
   {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
