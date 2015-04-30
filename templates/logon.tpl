@@ -10,15 +10,10 @@
 {% block body_class %}t-cms{% endblock %}
 
 {% block head_extra %}
-    {% lib
-        "css/jquery-ui.datepicker.css"
-        "css/jquery.timepicker.css"
-        "css/zp-menuedit.css"
-        "css/zotonic-admin.css"
+    {% lib  
         "css/z.modal.css"
         "css/z.icons.css"
         "css/logon.css"
-        "css/jquery.loadmask.css"
     %}
 {% endblock %}
 
@@ -48,8 +43,6 @@
     <ul id="logon_methods">
         {% all include "_logon_extra.tpl" %}
     </ul>
-    {% all include "_logon_link.tpl" %}
-
 </div>
 
 {# Use a real post for all forms on this page, and not AJAX or Websockets. This will enforce all cookies to be set correctly. #}
