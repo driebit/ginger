@@ -19,14 +19,12 @@
         "css/z.icons.css"
         "css/logon.css"
         "css/jquery.loadmask.css"
-        "css/ginger-admin.css"
     %}
 {% endblock %}
 
 {% block content %}
 
 <div class="widget admin-logon">
-    <img alt="Driebit Ginger" class="logon-logo" src="/lib/images/ginger-logo.png">
     <div id="logon_box" class="widget-content">
         <div id="logon_error" class="alert alert-block alert-error">
             {% include "_logon_error.tpl" reason=error_reason %}
