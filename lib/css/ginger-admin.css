@@ -19,35 +19,44 @@ body.t-cms {
      clear: both;
 }
 
-.t-cms input, button, select, textarea {
+.t-cms .admin-logon input,
+.t-cms .admin-logon button,
+.t-cms .admin-logon select,
+.t-cms .admin-logon textarea {
     font: inherit;
 }
 
-.t-cms textarea, input, select {
+.t-cms .admin-logon textarea,
+.t-cms .admin-logon input,
+.t-cms .admin-logon select {
     font-weight: 300;
 }
 
-.t-cms label, input, button, select, textarea {
+.t-cms .admin-logon label,
+.t-cms .admin-logon input,
+.t-cms .admin-logon button,
+.t-cms .admin-logon select, 
+.t-cms .admin-logon textarea {
     font-size: 1em;
     font-weight: normal;
 }
 
-.t-cms select, textarea, 
-.t-cms input[type="text"], 
-.t-cms input[type="password"], 
-.t-cms input[type="datetime"], 
-.t-cms input[type="datetime-local"], 
-.t-cms input[type="date"], 
-.t-cms input[type="month"], 
-.t-cms input[type="time"], 
-.t-cms input[type="week"], 
-.t-cms input[type="number"], 
-.t-cms input[type="email"], 
-.t-cms input[type="url"], 
-.t-cms input[type="search"], 
-.t-cms input[type="tel"], 
-.t-cms input[type="color"], 
-.t-cms .uneditable-input {
+.t-cms .admin-logon select, textarea, 
+.t-cms .admin-logon input[type="text"], 
+.t-cms .admin-logon input[type="password"], 
+.t-cms .admin-logon input[type="datetime"], 
+.t-cms .admin-logon input[type="datetime-local"], 
+.t-cms .admin-logon input[type="date"], 
+.t-cms .admin-logon input[type="month"], 
+.t-cms .admin-logon input[type="time"], 
+.t-cms .admin-logon input[type="week"], 
+.t-cms .admin-logon input[type="number"], 
+.t-cms .admin-logon input[type="email"], 
+.t-cms .admin-logon input[type="url"], 
+.t-cms .admin-logon input[type="search"], 
+.t-cms .admin-logon input[type="tel"], 
+.t-cms .admin-logon input[type="color"], 
+.t-cms .admin-logon .uneditable-input {
     font-size: 1em;
 }
 
@@ -73,22 +82,22 @@ a:hover {
     max-width: 100%;
 }
 
-.t-cms textarea:focus, 
-.t-cms input[type="text"]:focus,
-.t-cms input[type="password"]:focus,
-.t-cms input[type="datetime"]:focus,
-.t-cms input[type="datetime-local"]:focus,
-.t-cms input[type="date"]:focus,
-.t-cms input[type="month"]:focus,
-.t-cms input[type="time"]:focus,
-.t-cms input[type="week"]:focus,
-.t-cms input[type="number"]:focus,
-.t-cms input[type="email"]:focus,
-.t-cms input[type="url"]:focus,
-.t-cms input[type="search"]:focus,
-.t-cms input[type="tel"]:focus,
-.t-cms input[type="color"]:focus,
-.t-cms .uneditable-input:focus {
+.t-cms .admin-logon textarea:focus, 
+.t-cms .admin-logon input[type="text"]:focus,
+.t-cms .admin-logon input[type="password"]:focus,
+.t-cms .admin-logon input[type="datetime"]:focus,
+.t-cms .admin-logon input[type="datetime-local"]:focus,
+.t-cms .admin-logon input[type="date"]:focus,
+.t-cms .admin-logon input[type="month"]:focus,
+.t-cms .admin-logon input[type="time"]:focus,
+.t-cms .admin-logon input[type="week"]:focus,
+.t-cms .admin-logon input[type="number"]:focus,
+.t-cms .admin-logon input[type="email"]:focus,
+.t-cms .admin-logon input[type="url"]:focus,
+.t-cms .admin-logon input[type="search"]:focus,
+.t-cms .admin-logon input[type="tel"]:focus,
+.t-cms .admin-logon input[type="color"]:focus,
+.t-cms .admin-logon .uneditable-input:focus {
     border-color: #ff7600;
 }
 
@@ -448,22 +457,22 @@ a:hover {
     background-color: #f1f1f2;
 }
 
-.t-cms textarea,
-.t-cms input[type="text"],
-.t-cms input[type="password"],
-.t-cms input[type="datetime"],
-.t-cms input[type="datetime-local"],
-.t-cms input[type="date"],
-.t-cms input[type="month"],
-.t-cms input[type="time"],
-.t-cms input[type="week"],
-.t-cms input[type="number"],
-.t-cms input[type="email"],
-.t-cms input[type="url"],
-.t-cms input[type="search"],
-.t-cms input[type="tel"],
-.t-cms input[type="color"],
-.t-cms .uneditable-input {
+.t-cms .admin-logon textarea,
+.t-cms .admin-logon input[type="text"],
+.t-cms .admin-logon input[type="password"],
+.t-cms .admin-logon input[type="datetime"],
+.t-cms .admin-logon input[type="datetime-local"],
+.t-cms .admin-logon input[type="date"],
+.t-cms .admin-logon input[type="month"],
+.t-cms .admin-logon input[type="time"],
+.t-cms .admin-logon input[type="week"],
+.t-cms .admin-logon input[type="number"],
+.t-cms .admin-logon input[type="email"],
+.t-cms .admin-logon input[type="url"],
+.t-cms .admin-logon input[type="search"],
+.t-cms .admin-logon input[type="tel"],
+.t-cms .admin-logon input[type="color"],
+.t-cms .admin-logon .uneditable-input {
     border: 2px solid #e7e8e9;
     box-shadow: none;
     border-radius: 4px;

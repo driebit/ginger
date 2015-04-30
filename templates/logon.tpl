@@ -7,12 +7,56 @@
 {{ m.rsc.page_logon.title|default:[_"Sign in to", " ", m.config.site.title.value|default:"Zotonic"] }}
 {% endblock %}
 
+{% block body_class %}t-cms{% endblock %}
+
+{% block head_extra %}
+    {% lib
+        "css/jquery-ui.datepicker.css"
+        "css/jquery.timepicker.css"
+        "css/zp-menuedit.css"
+        "css/zotonic-admin.css"
+        "css/z.modal.css"
+        "css/z.icons.css"
+        "css/logon.css"
+        "css/jquery.loadmask.css"
+        "css/ginger-admin.css"
+    %}
+{% endblock %}
+
 {% block content %}
-        <div id="logon_box" class="widget-content">
+
+<div class="widget admin-logon">
+    <img alt="Driebit Ginger" class="logon-logo" src="/lib/images/ginger-logo.png">
+    <div id="logon_box" class="widget-content">
+        <div id="logon_error" class="alert alert-block alert-error">
+            {% include "_logon_error.tpl" reason=error_reason %}
+        </div>
+        {% if zotonic_dispatch == `logon_reminder` %}
+            {% include "_logon_password_reminder.tpl" %}
+        {% elseif zotonic_dispatch == `logon_reset` %}
+            {% include "_logon_password_reset.tpl" %}
+        {% else %}
             {# <= 0.12 #}
             {% optional include "_logon_form.tpl" page=page|default:"/admin" hide_title %}
 
             {# >= 0.13 #}
             {% optional include "_logon_modal.tpl" style_boxed=1 style_width="600px" %}
-        </div>
+            
+        {% endif %}
+    </div>
+</div>
+
+<div class="logon_bottom">
+    <ul id="logon_methods">
+        {% all include "_logon_extra.tpl" %}
+    </ul>
+    {% all include "_logon_link.tpl" %}
+
+</div>
+
+{# Use a real post for all forms on this page, and not AJAX or Websockets. This will enforce all cookies to be set correctly. #}
+{% javascript %}
+z_only_post_forms = true;
+{% endjavascript %}
+
 {% endblock %}
