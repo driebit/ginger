@@ -84,7 +84,7 @@
             {% catinclude "_ginger_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
             {% optional include "_geomap_admin_location.tpl" %}
         {% endif %}
-
+        
         {% if id.is_a.event %}
             {% catinclude "_ginger_edit_content_date_range.tpl" id is_editable=is_editable %}
         {% endif %}
@@ -101,25 +101,25 @@
     {% endblock %}
 
     {% block form_save %}
-	{# Hidden safe buttons and publish state - controlled via the nabvar #}
-	<div style="display: none">
-		<span id="button-prompt">{% block nav_prompt %}{{ id.category_id.title }}{% endblock %}</span>
+    	{# Hidden safe buttons and publish state - controlled via the nabvar #}
+    	<div style="display: none">
+    		<span id="button-prompt">{% block nav_prompt %}{{ id.category_id.title }}{% endblock %}</span>
 
-		{% block buttons %}
-			{% button type="submit" id="save_stay" class="btn btn-primary" text=_"Save" title=_"Save this page." disabled=not id.is_editable %}
-		
-			{% if id.is_editable %}
-				{% button type="submit" id="save_view" class="btn btn-default" text=_"Save &amp; view" title=_"Save and view the page." %}
-			{% else %}
-				{% button id="save_view" class="btn btn-primary" text=_"View" title=_"View this page." action={redirect id=id} %}
-			{% endif %}
-		{% endblock %}
-	</div>
+    		{% block buttons %}
+    			{% button type="submit" id="save_stay" class="btn btn-primary" text=_"Save" title=_"Save this page." disabled=not id.is_editable %}
+    		
+    			{% if id.is_editable %}
+    				{% button type="submit" id="save_view" class="btn btn-default" text=_"Save &amp; view" title=_"Save and view the page." %}
+    			{% else %}
+    				{% button id="save_view" class="btn btn-primary" text=_"View" title=_"View this page." action={redirect id=id} %}
+    			{% endif %}
+    		{% endblock %}
+    	</div>
     {% endblock %}
 </form>
 {% endwith %}
 {% endwith %}
-
+    
 {% javascript %}
 	$("#save-buttons .brand").html($('#button-prompt').html());
 

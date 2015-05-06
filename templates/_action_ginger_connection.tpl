@@ -16,6 +16,7 @@
                             cat=cat_id
                             findtab=findtab
                             newtab=newtab
+                            callback=callback
                             predicate=predicate
                             direction=direction
                             cg_id=cg_id nocatselect}
@@ -29,6 +30,7 @@
                             cat=cat_id
                             findtab=findtab
                             newtab=newtab
+                            callback=callback
                             predicate=predicate
                             direction=direction
                             cg_id=cg_id nocatselect}

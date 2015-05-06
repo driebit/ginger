@@ -12,7 +12,7 @@
         {% if is_editable %}
             <div class="form-group clearfix">
                 <div class="pull-right">
-                    <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {_ add media item _}</a>
+                    <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>
                     {% wire id=#connect 
                         action={dialog_open template="_action_dialog_connect.tpl" 
                             title=[_"Add a ", m.rsc.depiction.title|lower , _" to ", id.title]

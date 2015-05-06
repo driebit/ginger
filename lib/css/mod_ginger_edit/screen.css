@@ -40,9 +40,12 @@ p {
   font-weight: 400;
   font-family: 'myriad pro'; }
 
+.row + .row {
+  margin-top: 20px; }
+
 .btn {
   border-radius: 0;
-  font-size: 1em;
+  font-size: inherit;
   border: none;
   line-height: 1; }
 
