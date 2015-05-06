@@ -4,5 +4,7 @@
 			predicate=predicate
 			callback=callback
 			cat=cat
+            cg_id=cg_id
+            nocatselect=nocatselect
 	%}
 </div>
