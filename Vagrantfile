@@ -13,12 +13,16 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.require_version ">= 1.5.1"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "driebit/debian-7-x86_64"
+  config.vm.box = "driebit/debian-8-x86_64"
   config.vm.hostname = app + ".dev"
 
   config.vm.network :private_network, ip: "192.168.33.10"
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 35729, host: 35729
+
+  # Ports for Disco (Consul).
+  config.vm.network "forwarded_port", guest: 8301, host: 8301, protocol: "udp"
+  config.vm.network "forwarded_port", guest: 8301, host: 8301, protocol: "tcp"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 1536
@@ -43,7 +47,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     puppet.options << ' --environment production --test'
     puppet.facter = {
         "zotonic_source"  => zotonic_source,
-        "zotonic_version"     => zotonic_version
+        "zotonic_version" => zotonic_version,
+        "vagrant_user"    => ENV['USER'],
     }
 
     if debug
