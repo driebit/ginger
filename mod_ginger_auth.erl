@@ -25,7 +25,6 @@ manage_schema(install, Context) ->
     ],
     lists:foreach(
         fun({Mod, Key, Value}) ->
-            ?DEBUG({Mod, Key, Value}),
             case m_config:get(Mod, Key, Context) of 
                 undefined ->
                     m_config:set_value(Mod, Key, Value, Context);
