@@ -27,7 +27,7 @@
 	    </div>
 	</div>
 
-	{% all include "_ginger_dialog_new_rsc_extra.tpl" cat_id=m.rsc[cat].id %}
+	{% all include "_ginger_dialog_new_rsc_extra.tpl" cat_id=m.rsc[cat].id cg_id=cg_id %}
 
     <div class="modal-footer">
 	{% button class="btn btn-default" action={dialog_close} text=_"Cancel" tag="a" %}
