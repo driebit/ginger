@@ -1,6 +1,6 @@
 #!/bin/bash
 
-USER="ginger"
+USER="zotonic"
 HOST="localhost"
 DB=$1
 FILE="data/dump-${DB}.sql"
