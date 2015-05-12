@@ -19,7 +19,6 @@
         %}
 
         {% all include "_ginger_html_head_admin.tpl" %}
-        
         {% include "_js_include_jquery.tpl" %}
         
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
