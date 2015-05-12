@@ -12,7 +12,6 @@
             "bootstrap/css/bootstrap.min.css"
         %}
 		{% lib
-			"css/mod_ginger_site/screen.css"
             "css/ginger-edit.css"
             "css/zotonic-admin.css"
             "css/z.modal.css"
