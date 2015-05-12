@@ -14,19 +14,10 @@
 		{% lib
 			"css/mod_ginger_site/screen.css"
             "css/ginger-edit.css"
-            "css/jquery-ui.datepicker.css"
-            "css/jquery.timepicker.css"
-            "css/z.logo.css"
-            "css/zp-menuedit.css"
             "css/zotonic-admin.css"
             "css/z.modal.css"
-            "css/jquery.loadmask.css"
-            "css/zotonic-admin.css"
         %}
 
-		{% all include "_head.tpl" %}
-		{% all include "_html_head.tpl" %}
-        {% all include "_html_head_admin.tpl" %}
         {% all include "_ginger_html_head_admin.tpl" %}
         
         {% include "_js_include_jquery.tpl" %}
