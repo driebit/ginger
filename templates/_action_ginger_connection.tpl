@@ -19,7 +19,7 @@
                             callback=callback
                             predicate=predicate
                             direction=direction
-                            cg_id=cg_id nocatselect nocgselect tab='new'}
+                            cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
             {% wire id=#connect.predicate 
@@ -33,7 +33,7 @@
                             callback=callback
                             predicate=predicate
                             direction=direction
-                            cg_id=cg_id nocatselect nocgselect tab='new'}
+                            cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% endif %}
 
