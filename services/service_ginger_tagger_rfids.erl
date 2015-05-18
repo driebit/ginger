@@ -33,7 +33,10 @@ process_get(_ReqData, Context) ->
             ),
             
             z_convert:to_json(
-                {proplists:get_value(key, RfidIdentity), Identities}
+                [
+                    {user, m_rsc_export:full(UserId, Context)},
+                    {identities, Identities}
+                ]
             )
     end.
 
