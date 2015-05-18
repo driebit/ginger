@@ -17,7 +17,7 @@ process_get(_ReqData, Context) ->
         undefined -> 
             {error, not_exists, "rfid"};
         RfidIdentity ->
-            %% Retrieve all identities for this user
+            %% Retrieve all identities for user related to RfidIdentity
             UserId = proplists:get_value(rsc_id, RfidIdentity),
             
             %% Look up extra identities for this user
@@ -40,18 +40,18 @@ process_get(_ReqData, Context) ->
 process_post(ReqData, Context) ->
     UserId = z_acl:user(Context),
     
-    %% Decode JSON request
-    {ReqBody, _RD} = wrq:req_body(ReqData),
-    {struct, Body} = mochijson2:decode(ReqBody),
-    
-    Rfids = proplists:get_value(<<"rfids">>, Body),
-    
-    lists:foreach(
-        fun(Rfid) ->
-            {ok, _IdentityId} = m_identity:insert_unique(UserId, rfid, Rfid, Context)
-        end,
-        Rfids
-    ),
-    
-    %% Better to return a 201, for instance, but that's not possible with controller_api
-    [].
+    case ginger_json:decode(ReqData) of
+        {error, Type, Argument} -> {error, Type, Argument};
+        JsonBody ->
+            Rfids = proplists:get_value(<<"rfids">>, JsonBody),
+                    
+            lists:foreach(
+                fun(Rfid) ->
+                    {ok, _IdentityId} = m_identity:insert_unique(UserId, rfid, Rfid, Context)
+                end,
+                Rfids
+            ),
+            
+            %% Better to return a 201, for instance, but that's not possible with controller_api
+            []
+    end.
