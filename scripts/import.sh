@@ -1,10 +1,10 @@
 #!/bin/bash
 
-USER="ginger"
+USER="zotonic"
 HOST="localhost"
 DB=$1
 FILE=$2
-PASSWORD="ginger"
+PASSWORD="zotonic"
 SCHEMA="public"
 
 sudo service zotonic stop
