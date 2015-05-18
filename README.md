@@ -7,8 +7,8 @@ Usage
 -----
 
 You need to be authenticated with an OAuth2 access token to perform API calls.
-See [mod_oauth2](https://github.com/driebit/mod_oauth2) on how to obtain such
-this token.
+See [mod_oauth2](https://github.com/driebit/mod_oauth2) on how to obtain such a
+token.
 
 ### Get user RFIDs
 
