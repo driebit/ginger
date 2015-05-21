@@ -66,9 +66,11 @@
 	<body class="{% block page_class %}{% endblock %}">
 		{% block navigation %}
 			{% include "_main-nav.tpl" %}
+            {% include "_content-group-nav.tpl" %}
 		{% endblock %}
 
 		<div class="page__wrapper cf">
+
 			{% block content %}{% endblock %}
 
 			{% block footer %}
@@ -95,6 +97,7 @@
                 "js/modules/jquery.loadmask.js"
                 "bootstrap/js/bootstrap.min.js"
                 "js/modules/responsive.js"
+                "js/ginger-search.js"
                 %}
 
 		{% lib
@@ -104,6 +107,7 @@
 			"js/src/ginger-default_toggle-search.js"
 			"js/src/ginger-default_correlated-items.js"
 			"js/src/ginger-default_parallax.js"
+            "js/src/ginger-default_content-group-navigation.js"
 		%}
 
         {% block _js_include_extra %}{% endblock %}

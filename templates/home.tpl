@@ -6,10 +6,12 @@
 
 {% block content %}
     <div class="page--home page__content-wrapper">
+
         {% with m.rsc.home_article as home %}
             {% include "_masthead.tpl" article=home %}
 
             <main role="main" class="page__main-content">
+
                 <header class="page--home__header">
                     <h1>
                         <span class="page--home__header__title page__header__title">{{ home.title }}</span>

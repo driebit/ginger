@@ -14,7 +14,30 @@
 
     &__content-wrapper {
         position: relative;
-        padding-top: 22%;
+        padding-top: 22%; 
+
+
+
+
+
+
+
+
+
+        /* DE HELE CONTENT naar beneden, inclusief subnav */
+
+        &.has-content-group-banner {
+            @include size(padding-top, 140);
+        }
+
+
+
+
+
+
+
+
+
     }
 
     &__main-content {

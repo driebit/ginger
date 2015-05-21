@@ -13,6 +13,7 @@
 
             <main role="main" class="page__main-content">
                 <article class="page__content">
+
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
                     {% block metadata %}
