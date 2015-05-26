@@ -7,7 +7,7 @@
 {{ m.rsc.page_logon.title|default:[_"Sign in to", " ", m.config.site.title.value|default:"Zotonic"] }}
 {% endblock %}
 
-{% block body_class %}t-cms{% endblock %}
+{% block body_class %}t-login{% endblock %}
 
 {% block head_extra %}
     {% lib  
