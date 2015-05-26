@@ -81,7 +81,7 @@
 		{% all catinclude "_admin_edit_content.tpl" id is_editable=is_editable languages=languages %}
 
         {% if id.is_a.location %}
-            {% catinclude "_ginger_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
+            {% catinclude "_admin_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
             {% optional include "_geomap_admin_location.tpl" %}
         {% endif %}
         
