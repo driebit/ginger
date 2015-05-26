@@ -24,6 +24,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8301, host: 8301, protocol: "udp"
   config.vm.network "forwarded_port", guest: 8301, host: 8301, protocol: "tcp"
 
+  config.ssh.forward_agent = true
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 1536
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
