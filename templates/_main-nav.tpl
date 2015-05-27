@@ -7,7 +7,9 @@
 
     <div class="main-nav__off-canvas">
         {% menu class="main-nav__pages" %}
+    </div>
 
+    {% block mainNavActions %}
         <ul class="main-nav__actions">
             <li>
                 {% optional include "_nav_logon.tpl" %}
@@ -19,8 +21,7 @@
                 {% optional include "_nav_profile.tpl" %}
             </li>
         </ul>
-
-    </div>
+    {% endblock %}
 
     <ul class="main-nav__actions">
         <li class="main-nav__toggle-search"><a href="#main-nav__search-form">Zoek</a></li>
