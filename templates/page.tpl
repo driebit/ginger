@@ -29,6 +29,10 @@
                         {{ article.body|show_media }}
                     </div>
 
+                    {% block page_blocks %}
+                        {% include "_blocks.tpl" %}
+                    {% endblock %}
+
                     {% block comments %}
                         {% if article.s.comment %}
                             {% include "_comments.tpl" comments=article.s.comment %}

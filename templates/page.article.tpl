@@ -35,6 +35,10 @@
                     <div class="page__content__body">
                         {{ article.body|show_media }}
                     </div>
+
+                    {% block page_blocks %}
+                        {% include "_blocks.tpl" %}
+                    {% endblock %}
                 </article>
             </main>
 
