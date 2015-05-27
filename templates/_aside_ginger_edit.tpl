@@ -1,4 +1,5 @@
 <aside>
+
 	{% block aside_keywords %}
 		{% with id.subject as keywords %} 
 			{% if keywords %}
@@ -19,7 +20,7 @@
 	{% endblock %}
 	
 	{% block aside_connections %}
-		{% if id.o.about %} 
+		{% if id.o.about %}
 			<section class="aside_block aside_about">
 				<header><h3 class="section-title">{_ About _}</h3></header>
 				{% include "_list.tpl" class="list-about" items=id.o.about %}
