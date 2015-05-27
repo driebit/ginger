@@ -3,9 +3,6 @@
     <nav class="mod_ginger_nav__main-nav">
 
         {% block mainNavLogo %}
-            <a href="/" class="mod_ginger_nav__main-nav__logo">
-                <span>hart</span><span>amsterdam museum</span>
-            </a>
         {% endblock %}
 
         <a href="#" class="mod_ginger_nav__top-button mod_ginger_nav__main-nav__search-button">
