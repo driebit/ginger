@@ -6,7 +6,7 @@
 
 -mod_title("Authentication for Ginger").
 -mod_description("Configures mod_signup and tweaks modal login").
--mod_prio(500).
+-mod_prio(400).
 -mod_depends([signup]).
 -mod_schema(0).
 
