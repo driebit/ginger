@@ -254,7 +254,7 @@
     }
 }
 
-@mixin mainNavGt1024 {
+@mixin mainNavGt1100 {
     .main-nav {
         @include size(height, $mainNavHeight);
         @include size(line-height, $mainNavHeight);
@@ -385,16 +385,18 @@
     }
 
     .main-nav > .main-nav__actions {
-        display: table-cell;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 }
 
-@media only screen and (min-width: 1024px) {
-    @include mainNavGt1024();
+@media only screen and (min-width: 1100px) {
+    @include mainNavGt1100();
 }
 
 .ie8 {
-    @include mainNavGt1024();
+    @include mainNavGt1100();
 
     .main-nav {
         &__search {
@@ -409,6 +411,13 @@
             &:after {
                 display: none;
             }
+        }
+
+        > .main-nav__actions {
+            position: relative;
+            display: table-cell;
+            top: auto;
+            right: auto;
         }
     }
 }
