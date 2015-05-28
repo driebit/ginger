@@ -1,4 +1,4 @@
-// TODO: consolidate the styles with background images into a single class that will be extended.
+// TODO: consolidate the styles which contain background images into a single class that will be extended.
 //       This so that the same background image doesn't get embedded multiple times
 
 .main-nav {
@@ -37,8 +37,8 @@
 
     &__logo {
         display: inline-block;
-        @include size(margin-left, 25);
-        @include size(margin-right, 24);
+        @include size(padding-left, 25);
+        @include size(padding-right, 24);
     }
 
     &__off-canvas {
@@ -268,11 +268,16 @@
             vertical-align: top;
         }
 
+        &__logo,
+        &__off-canvas,
+        &__actions {
+            display: table-cell;
+        }
+
         &__off-canvas {
             position: relative;
-            display: inline-block;
             background-color: transparent;
-            width: auto;
+            width: 100%;
             top: 0;
             left: 0;
             transform: translateX(0);
@@ -380,9 +385,7 @@
     }
 
     .main-nav > .main-nav__actions {
-        position: absolute;
-        top: 0;
-        right: 0;
+        display: table-cell;
     }
 }
 

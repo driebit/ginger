@@ -15,7 +15,7 @@
                 <header class="page--home__header">
                     <h1>
                         <span class="page--home__header__title page__header__title">{{ home.title }}</span>
-                        <span class="page--home__header__tagline page__header_tagline">{{ home.title }}</span>
+                        <span class="page--home__header__tagline page__header__tagline">{{ home.title }}</span>
                     </h1>
                 </header>
 
