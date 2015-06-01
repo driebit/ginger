@@ -7,21 +7,21 @@
 
     <div class="main-nav__off-canvas">
         {% menu class="main-nav__pages" %}
-    </div>
 
-    {% block mainNavActions %}
-        <ul class="main-nav__actions">
-            <li>
-                {% optional include "_nav_logon.tpl" %}
-            </li>
-            <li>
-                {% optional include "_nav_admin.tpl" %}
-            </li>
-            <li>
-                {% optional include "_nav_profile.tpl" %}
-            </li>
-        </ul>
-    {% endblock %}
+        {% block mainNavActions %}
+            <ul class="main-nav__actions">
+                <li>
+                    {% optional include "_nav_logon.tpl" %}
+                </li>
+                <li>
+                    {% optional include "_nav_admin.tpl" %}
+                </li>
+                <li>
+                    {% optional include "_nav_profile.tpl" %}
+                </li>
+            </ul>
+        {% endblock %}
+    </div>
 
     <ul class="main-nav__actions">
         <li class="main-nav__toggle-search"><a href="#main-nav__search-form">Zoek</a></li>
@@ -32,5 +32,4 @@
         {% include "_search_form.tpl" identifier="main-nav" %}
         <button class="main-nav__search__close-btn" type="button">Sluiten</button>
     </div>
-
 </nav>

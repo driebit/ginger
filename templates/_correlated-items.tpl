@@ -15,7 +15,6 @@
         </nav>
     </header>
 
-
     <div class="ginger-correlated-items__tiles-wrapper is-shown" data-section="tiles">
         <ol class="ginger-correlated-items__tiles">
             {% for item in items %}
