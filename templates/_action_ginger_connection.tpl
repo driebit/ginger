@@ -10,7 +10,7 @@
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"Add ", cat_title , _" toe "]
+                            title=[_"add my", " ", cat_title , _" toe "]
                             logon_required
                             object_id=id
                             cat=cat_id
