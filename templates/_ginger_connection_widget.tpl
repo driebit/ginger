@@ -6,10 +6,9 @@
 <div id="unlink-undo-message">
 </div>
 {% with predicate_ids|default:r.predicates_edit as pred_shown %}
+
     {% for name, p in m.predicate %}
         {% if p.id|member:pred_shown %}
-           {% ifnotequal name "depiction" %}
-           <h4>{{ p.title }}</h4>
 
            <div class="unlink-wrapper">
                 {% sorter id=["links",id|format_integer,name]|join:"-" 
@@ -35,8 +34,7 @@
                     %}
                 </p>
             {% endif %}
-                <hr />
-            {% endifnotequal %}
+            <hr />
         {% endif %}
     {% endfor %}
 {% endwith %}

@@ -1,4 +1,22 @@
 <aside>
+
+	{% block action_ginger_connections %}
+        {% if id.is_editable %}
+            <section class="aside_block aside_stories">
+
+                <header><h3 class="section-title">{_ Keyword _}</h3></header>
+                {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' new_rsc_title=_'Keyword' tab='find' %}
+                {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.subject.id] %}
+				<header><h3 class="section-title">{_ Author _}</h3></header>
+                {% include "_action_ginger_connection.tpl" category='person' predicate='author' new_rsc_title=_'Author' tab='find' %}
+                {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.author.id] %}
+
+                {% include "_admin_edit_content_date_range.tpl" show_header is_editable %}
+
+            </section>
+        {% endif %}
+	{% endblock %}
+	
 	{% block aside_connections %}
 		{% if id.s.presented_at %} 
 			<section class="aside_block aside_about">
@@ -14,42 +32,4 @@
 		{% endif %}	
 	{% endblock %}
 
-    <section class="aside_block aside_stories">
-        {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' %}
-    </section>
-	
-	{% block aside_keywords %}
-		{% with id.subject as keywords %} 
-			{% if keywords %}
-				<section class="aside_block aside_keywords">
-					<header><h3 class="section-title">{_ Keywords _}</h3></header>
-					{% for key in keywords %}
-						<a href="{{ key.page_url }}" class="btn btn-default" role="button">{{ key.title }}</a>
-					{% endfor %}
-				</section>
-			{% endif %}
-		{% endwith %}
-	{% endblock %}
-
-	{% block aside_context %}
-		{% if id.o.fixed_context %}
-			<section class="aside_block aside_fixed-content">
-				<header><h3 class="section-title">{_ See Also _}</h3></header>
-				{% include "_list.tpl" class="list-context" items=id.o.fixed_context  %}
-			</section>
-		{% elif id.subject %}
-			{% with m.search[{match_objects id=id pagelen=5}] as result %}
-				{% if result %}
-					<section class="aside_block aside_related">
-						<header><h3 class="section-title">{_ Related _}</h3></header>
-						<div class="row list list-match">
-							{% for r, rank in result %}
-								{% include "_list_item.tpl" id=r class="col-xs-12" last=forloop.last %}
-							{% endfor %}
-						</div>
-					</section>
-				{% endif %}
-			{% endwith %}
-		{% endif %}
-	{% endblock %}
 </aside>
