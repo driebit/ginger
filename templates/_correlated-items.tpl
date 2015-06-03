@@ -17,16 +17,28 @@
 
     <div class="ginger-correlated-items__tiles-wrapper is-shown" data-section="tiles">
         <ol class="ginger-correlated-items__tiles">
-            {% for item in items %}
-                {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="tile" %}
-            {% endfor %}
+            {% if useRank|is_defined and useRank == 1 %}
+                {% for item, rank in items %}
+                    {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="tile" %}
+                {% endfor %}
+            {% else %}
+                {% for item in items %}
+                    {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="tile" %}
+                {% endfor %}
+            {% endif %}
         </ol>
     </div>
 
     <ol class="ginger-correlated-items__list" data-section="list">
-        {% for item in items %}
-            {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="list-item" %}
-        {% endfor %}
+        {% if useRank|is_defined and useRank == 1 %}
+            {% for item, rank in items %}
+                {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="list-item" %}
+            {% endfor %}
+        {% else %}
+            {% for item in items %}
+                {% include "_correlated-items_list-item.tpl" type=showMetaData classPrefix="ginger-correlated-items" item=item showas="list-item" %}
+            {% endfor %}
+        {% endif %}
     </ol>
 
     {% if showMoreLabel %}

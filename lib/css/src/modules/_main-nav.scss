@@ -77,10 +77,6 @@
             background-color: $black;
             opacity: 0;
         }
-
-        .main-nav__actions {
-            float: none;
-        }
     }
 
     &__pages {
@@ -256,6 +252,7 @@
 
 @mixin mainNavGt1100 {
     .main-nav {
+        display: table;
         @include size(height, $mainNavHeight);
         @include size(line-height, $mainNavHeight);
 
@@ -333,6 +330,21 @@
                     }
                 }
             }
+
+            .main-nav__actions {
+                float: right;
+
+                a {
+                    border-left: 1px solid $mainNavActionsSeperator;
+                }
+            }
+
+            .nav-logon {
+                padding: 0;
+                font: inherit;
+                border-radius: 0;
+                border: none;
+            }
         }
 
         &__toggle-menu {
@@ -345,6 +357,7 @@
             display: inline-block;
 
             a {
+                font: inherit;
                 padding-top: 0;
                 padding-bottom: 0;
             }
@@ -359,6 +372,12 @@
         }
 
         &__actions {
+            text-align: right;
+
+            li {
+                display: inline-block;
+            }
+
             a {
                 @include size(padding, 0, 17, 0, 30);
                 border-top: none;

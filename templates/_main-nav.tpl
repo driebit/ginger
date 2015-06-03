@@ -16,9 +16,6 @@
                 <li>
                     {% optional include "_nav_admin.tpl" %}
                 </li>
-                <li>
-                    {% optional include "_nav_profile.tpl" %}
-                </li>
             </ul>
         {% endblock %}
     </div>

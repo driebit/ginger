@@ -30,10 +30,6 @@
             {% block correlatedItems %}
                 {% if id.o.haspart %}
                     {% if id.o.haspart|length > 10 %}
-                        {% include
-                            "_correlated-items.tpl"
-                        %}
-
                         {% include "_correlated-items.tpl"
                             items=id.o.haspart|slice:[1,10]
                             showMetaData="date"
