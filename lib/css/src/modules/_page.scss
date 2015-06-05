@@ -137,7 +137,7 @@
             &--people {
                 .page__content__about__header:after {
                     @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
-                    background-size: 19px 20px;
+                    background-size: 15px auto;
                 }
             }
         }
@@ -314,6 +314,46 @@
                         background-size: 20px 20px;
                     }
                 }
+            }
+        }
+    }
+
+    &__share {
+        display: inline-block;
+        position: relative;
+
+        &:hover {
+            ul {
+                display: block;
+            }
+        }
+    }
+
+    &__share__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 99;
+        margin: 1px 3px;
+        padding: 6px 12px;
+        border: solid 1px #ccc;
+        border-radius: 3px;
+        background: #fff;
+        list-style: none;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+
+        li {
+            display: block;
+        }
+
+        a {
+            display: block;
+            padding: 3px 12px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
             }
         }
     }

@@ -15,10 +15,8 @@
                 {% block avatar %}
                     {% if person.depiction %}
                         <img class="page__avatar" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
-                    {% elseif person.media|length > 0 %}
-                        <img class="page__avatar" src="{% image_url person.media|first mediaclass='img-avatar' %}" alt=""/>
-                    {% elseif person.header %}
-                        <img class="page__avatar" src="{% image_url person.header.id mediaclass='img-avatar' %}" alt=""/>
+                    {% else%}
+                        <img class="page__avatar" src="/lib/images/avatar.png" alt=""/>
                     {% endif %}
                 {% endblock %}
 

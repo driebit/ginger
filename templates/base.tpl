@@ -62,68 +62,75 @@
 
 		{% block head_extra %}{% endblock %}
 	</head>
+    {% with m.rsc[id.content_group_id] as content_group %}
+        {% if content_group.o.hassubnav %}
+                <body class="{% block page_class %}{% endblock %} has-content-group">
+            {% else %}
+                <body class="{% block page_class %}{% endblock %}">
+            {% endif %}
+                    
+    		{% block navigation %}
+    			{% include "_main-nav.tpl" %}
+                {% include "_content-group-nav.tpl" %}
+    		{% endblock %}
 
-	<body class="{% block page_class %}{% endblock %}">
-		{% block navigation %}
-			{% include "_main-nav.tpl" %}
-            {% include "_content-group-nav.tpl" %}
-		{% endblock %}
+    		<div class="page__wrapper cf">
 
-		<div class="page__wrapper cf">
+    			{% block content %}{% endblock %}
 
-			{% block content %}{% endblock %}
+    			{% block footer %}
+    				{% include "_footer.tpl" %}
+    			{% endblock %}
+    		</div>
 
-			{% block footer %}
-				{% include "_footer.tpl" %}
-			{% endblock %}
-		</div>
+    		{% include "_js_include.tpl" %}
+    		{% all include "_script.tpl" %}
+            {% block module_script %}{% endblock %}
+    		{% script %}
 
-		{% include "_js_include.tpl" %}
-		{% all include "_script.tpl" %}
-        {% block module_script %}{% endblock %}
-		{% script %}
+            {% include "_js_include_jquery.tpl" %}
 
-        {% include "_js_include_jquery.tpl" %}
+            {% lib
+                    "js/apps/zotonic-1.0.js"
+                    "js/apps/z.widgetmanager.js"
+                    "js/modules/ubf.js"
+                    "js/modules/z.notice.js"
+                    "js/modules/z.imageviewer.js"
+                    "js/modules/z.dialog.js"
+                    "js/modules/livevalidation-1.3.js"
+                    "js/modules/z.inputoverlay.js"
+                    "js/modules/jquery.loadmask.js"
+                    "bootstrap/js/bootstrap.min.js"
+                    "js/modules/responsive.js"
+                    "js/ginger-search.js"
+                    %}
 
-        {% lib
-                "js/apps/zotonic-1.0.js"
-                "js/apps/z.widgetmanager.js"
-                "js/modules/ubf.js"
-                "js/modules/z.notice.js"
-                "js/modules/z.imageviewer.js"
-                "js/modules/z.dialog.js"
-                "js/modules/livevalidation-1.3.js"
-                "js/modules/z.inputoverlay.js"
-                "js/modules/jquery.loadmask.js"
-                "bootstrap/js/bootstrap.min.js"
-                "js/modules/responsive.js"
-                "js/ginger-search.js"
-                %}
+    		{% lib
+    			"js/vendor/masonry.js"
+    			"js/vendor/imagesloaded.js"
+    			"js/src/ginger-default_toggle-navigation.js"
+    			"js/src/ginger-default_toggle-search.js"
+    			"js/src/ginger-default_correlated-items.js"
+    			"js/src/ginger-default_parallax.js"
+                "js/src/ginger-default_content-group-navigation.js"
+                "js/src/ginger-default_scroll-top.js"
+    		%}
 
-		{% lib
-			"js/vendor/masonry.js"
-			"js/vendor/imagesloaded.js"
-			"js/src/ginger-default_toggle-navigation.js"
-			"js/src/ginger-default_toggle-search.js"
-			"js/src/ginger-default_correlated-items.js"
-			"js/src/ginger-default_parallax.js"
-            "js/src/ginger-default_content-group-navigation.js"
-		%}
+            {% block _js_include_extra %}{% endblock %}
 
-        {% block _js_include_extra %}{% endblock %}
+    		{#
+            <script type="text/javascript">
+                $(function()
+                {
+                    $.widgetManager();
+                });
+            </script>
+    		#}
 
-		{#
-        <script type="text/javascript">
-            $(function()
-            {
-                $.widgetManager();
-            });
-        </script>
-		#}
-
-
-		<!--[if (gt IE 9)|!(IE)]><!-->
-			<script src="//192.168.33.10:35729/livereload.js"></script>
-		<!--<![endif]-->
+            {# TODO: If dev dan geen livereload doen #}
+    		<!--[if (gt IE 9)|!(IE)]><!-->
+    			<script src="//192.168.33.10:35729/livereload.js"></script>
+    		<!--<![endif]-->
+        {% endwith %}
 	</body>
 </html>

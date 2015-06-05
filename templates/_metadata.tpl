@@ -14,7 +14,13 @@
         <ul class="page__content__metadata__actions">
             {% for link in links %}
                 <li>
-                    <a href="{{ link[2] }}" class="ginger-btn-pill--{{ link[3] }}">{{ link[1] }}</a>
+                    {% if link[1] == 'Aanmelden' %}
+                        {% include '_action_signup_event.tpl' %}
+                    {% elif link[1] == 'Delen' %}
+                        {% include '_action_share.tpl' %}
+                    {% else %}
+                        <a href="{{ link[2] }}" class="ginger-btn-pill--{{ link[3] }}">{{ link[1] }}</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

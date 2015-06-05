@@ -22,7 +22,7 @@
                                     links=[['Aanmelden', '#signup', 'primary']]
                             %}
                         {% endwith %}
-                    {% block %}
+                    {% endblock %}
 
                     {% block venue %}
                         {% with event.located_in as location %}
@@ -31,7 +31,7 @@
                     {% endblock %}
 
                     {% block attendees %}
-                        {% with event.s.participates_in as participants %}
+                        {% with event.s.participant as participants %}
                             {% include "_about.people.tpl" title="Deelnemers" people=participants %}
                         {% endwith %}
                     {% endblock %}

@@ -90,3 +90,21 @@
         }
     }
 }
+
+/* Buttons in login modal */
+
+.nav-pills > li.active > a, 
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    @extend .ginger-btn-pill--primary;
+}
+
+.nav-pills > li > a {
+    @extend .ginger-btn-pill;   
+}
+
+.btn-primary {
+    @extend .ginger-btn-pill--primary;
+}
+
+

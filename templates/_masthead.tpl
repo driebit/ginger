@@ -1,3 +1,7 @@
+{% with m.rsc[id].media|without_embedded_media:id as media_without_embedded %}
+{% with media_without_embedded[1] as first_media_id %}
+{% with m.rsc[id].o.hasicon[1] as icon_id %}
+
 {% if article %}
     {% if type == 'map' %}
         <div class="page__masthead do_ginger_default_masthead_map"
@@ -8,12 +12,25 @@
             data-country="{{ article.address_country }}"
         ></div>
     {% else %}
-        <div class="page__masthead do_ginger_default_paralax"
-            {% if article.header %}
-                style="background-image: url({% image_url article.header.id mediaclass='img-header' crop %}); background-size: cover;"
-            {% else %}
-                style="background-image: url({% image_url article.media|first mediaclass='img-header' crop %}); background-size: cover;"
-            {% endif %}
-        ></div>
+        {% if first_media_id or icon_id%}
+            {% with m.rsc[first_media_id]|default:m.rsc[icon_id] as dep_rsc %}
+                
+                {% if dep_rsc and dep_rsc.is_a.image %}
+                    {% if dep_rsc.medium.width > 750 %}
+                        <div class="page__masthead do_ginger_default_paralax" style="background-image: url({% image_url dep_rsc.id mediaclass='img-header' crop %}); background-size: cover;"></div>
+                    {% else %}
+                        <div class="page__masthead"></div>
+                    {% endif %}
+                {% else %}
+                    <div class="page__masthead"></div>
+                {% endif %}
+
+            {% endwith %}
+
+        {% endif %}
     {% endif %}
 {% endif %}
+
+{% endwith %}
+{% endwith %}
+{% endwith %}

@@ -344,6 +344,10 @@
                 font: inherit;
                 border-radius: 0;
                 border: none;
+
+                &:active {
+                    box-shadow: none;
+                }
             }
         }
 

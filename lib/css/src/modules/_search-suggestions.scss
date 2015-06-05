@@ -1,10 +1,17 @@
-#search-suggestions {
+.ginger-search_suggestions {
+    @include size(padding, 10, 15);
+    background: $white;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
     h4 {
-        margin: 0;
+        @include size(margin, 0, 0, 4, 0);
     }
 
     ul {
-        @include size(margin, 0, 0, 10, 0);
+        @include size(padding-left, 20);
+        @include size(margin, 0, 0, 15, 0);
 
         li {
             list-style-type: none;

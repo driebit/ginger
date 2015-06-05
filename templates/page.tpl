@@ -13,8 +13,6 @@
 
             <main role="main" class="page__main-content">
 
-                {% include "_content-group-subnav.tpl" %}
-
                 <article class="page__content">
 
                     <h1 class="page__content__title">{{ article.title }}adsfadsf</h1>
