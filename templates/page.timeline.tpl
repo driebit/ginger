@@ -2,8 +2,7 @@
 
 {% block page_class %}timeline{% endblock %}
 
-<!-- TODO: als bug met overrules gefixt is, dit naar apart template halen !-->
-{% block container_class %}container container-topmargin{% endblock %}
+{% block container_class %}container{% endblock %}
 
 {% block content %}
 	{% block page_title %}
@@ -43,6 +42,7 @@
                         {
                             "media":"{% image_url dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
                             "credit":"",
+                            "thumbnail":"{% image_url dep mediaclass="thumbnail" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
                             "caption":""
                         }
                         {% endwith %}
@@ -59,8 +59,15 @@
             js:         '/lib/js/timeline-min.js',
             css:        '/lib/css/timeline.css',
     		source:     dataObject,
-    		embed_id:   'my-timeline'
+    		embed_id:   'my-timeline',
+            start_zoom_adjust: 1
     	});
+
+        /* Safari fix */
+        setTimeout(function(){
+            $(window).trigger('resize');
+        }, 100);      
+
     {% endjavascript %}
 
 
