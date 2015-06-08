@@ -37,6 +37,7 @@
 	{% endblock %}
 
 	{% javascript %}
+		
 		var slider = new mod_bxslider({
 			container: '#{{ carousel }}',
 			pagerCustom: '#{{ pager }}',
@@ -44,6 +45,11 @@
 			auto: true,
 			controls: {% if controls %}{{ controls }} {% else %} true {% endif %}
 		});
+
+		setTimeout(function(){
+            slider.redrawSlider();
+        },100);
+
 	{% endjavascript %}
 
 {% endif %}
