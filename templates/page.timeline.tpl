@@ -5,7 +5,7 @@
 {% block container_class %}container{% endblock %}
 
 {% block content %}
-	{% block page_title %}
+	{% block timeline_title %}
 		<h2 class="page-header">{{ id.title }}</h2>
 	{% endblock %}
 	
@@ -40,7 +40,10 @@
                         {% with pid.depiction as dep %}
                         "asset":
                         {
-                            "media":"{% image_url dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
+
+                            {% if dep %}
+                                "media":"{% image_url dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
+                            {% endif %}
                             "credit":"",
                             "thumbnail":"{% image_url dep mediaclass="thumbnail" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
                             "caption":""
@@ -53,20 +56,20 @@
         }    
         
     	createStoryJS({
-    		type:       'timeline',
-    		width:      '100%',
-    		height:     '600',
-            js:         '/lib/js/timeline-min.js',
-            css:        '/lib/css/timeline.css',
-    		source:     dataObject,
-    		embed_id:   'my-timeline',
-            start_zoom_adjust: 1
+    		type:                 'timeline',
+    		width:                '100%',
+    		height:               '600',
+            js:                   '/lib/js/timeline-min.js',
+            css:                  '/lib/css/timeline.css',
+    		source:               dataObject,
+    		embed_id:             'my-timeline',
+            start_zoom_adjust:    {{ id.timelinezoom|default:"-2" }}
     	});
 
         /* Safari fix */
         setTimeout(function(){
             $(window).trigger('resize');
-        }, 100);      
+        }, 100);
 
     {% endjavascript %}
 
