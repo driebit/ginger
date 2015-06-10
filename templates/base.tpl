@@ -127,10 +127,11 @@
             </script>
     		#}
 
-            {# TODO: If dev dan geen livereload doen #}
-    		<!--[if (gt IE 9)|!(IE)]><!-->
-    			<script src="//192.168.33.10:35729/livereload.js"></script>
-    		<!--<![endif]-->
+            {% if m.site.hostname|match:".*\.dev$" %}
+        		<!--[if (gt IE 9)|!(IE)]><!-->
+        			<script src="//192.168.33.10:35729/livereload.js"></script>
+        		<!--<![endif]-->
+            {% endif %}
         {% endwith %}
 	</body>
 </html>

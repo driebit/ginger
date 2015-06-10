@@ -107,4 +107,8 @@
     @extend .ginger-btn-pill--primary;
 }
 
+.btn-default {
+    @extend .ginger-btn-pill--secondary;   
+}
+
 
