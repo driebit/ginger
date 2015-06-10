@@ -5,10 +5,10 @@
             <section class="aside_block aside_stories">
 
                 <header><h3 class="section-title">{_ Keyword _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' new_rsc_title=_'Keyword' tab='find' %}
+                {% include "_action_ginger_connection.tpl" callback='zAdminConnectDone' newtab='false' category='keyword' predicate='subject' new_rsc_title=_'Keyword' tab='find' %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.subject.id] %}
 				<header><h3 class="section-title">{_ Author _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='person' predicate='author' new_rsc_title=_'Author' tab='find' %}
+                {% include "_action_ginger_connection.tpl" callback='zAdminConnectDone' newtab='false' category='person' predicate='author' new_rsc_title=_'Author' tab='find' %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.author.id] %}
 
                 {% include "_admin_edit_content_date_range.tpl" show_header is_editable %}
