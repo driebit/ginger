@@ -1,24 +1,23 @@
-{% wire id=#form type="submit" 
+{% wire id=#form type="submit"
 	postback={
         new_page
         subject_id=subject_id
         objects=objects|default:[]
         predicate=predicate
-        redirect=redirect 
+        redirect=redirect
         actions=[{redirect dispatch="ginger_edit_rsc" id=id}]
         callback=callback
     }
-	delegate=delegate 
+	delegate=delegate
 %}
-
+{{ delegate|pprint }}
 <p></p>
 <form id="{{ #form }}" method="POST" action="postback" class="form">
 
     <input type="hidden" id="{{ #published }}" name="is_published" value="1" />
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
-	<input type="hidden" name="is_published" value=1/>
-	<input type="hidden" name="redirect" value=1/>
-	
+	<input type="hidden" name="redirect" value="1" />
+
 	<div class="form-group row">
 	    <label class="control-label col-md-3" for="new_rsc_title">{_ Title _}</label>
 	    <div class="col-md-9">
@@ -35,4 +34,3 @@
     </div>
 
 </form>
-
