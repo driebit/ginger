@@ -33,3 +33,12 @@ Adding modules
 --------------
 
 Place custom modules in `modules/` (no symlinks needed).
+
+Starting and stopping Zotonic
+-----------------------------
+
+Stop Zotonic: `$ sudo service zotonic stop`.
+
+Start Zotonic: `$ sudo service zotonic start`.
+
+Start Zotonic in debug mode: `$ zotonic debug`.
