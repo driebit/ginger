@@ -2,7 +2,7 @@
 {%
 	wire id="logon_dialog"
 	type="submit"
-	postback={ginger_logon action=action}
+	postback={ginger_logon action=action page=page}
 	delegate="ginger_logon"
 %}
 
