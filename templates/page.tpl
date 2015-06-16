@@ -15,7 +15,7 @@
 
                 <article class="page__content">
 
-                    <h1 class="page__content__title">{{ article.title }}adsfadsf</h1>
+                    <h1 class="page__content__title">{{ article.title }}</h1>
 
                     {% if article.summary %}
                         <div class="page__content__intro">
