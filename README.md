@@ -24,7 +24,7 @@ Authorization: Bearer {OAuth2 token}
 Attach a RFID to a user:
 
 ```http
-POST /rfids/{id} HTTP/1.1
+POST /me/rfids HTTP/1.1
 Authorization: Bearer {User OAuth2 token}
 Content-Type: application/json
 Accept: application/json
