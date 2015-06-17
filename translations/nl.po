@@ -1,0 +1,2 @@
+msgid "Log in or sign up"
+msgstr "Log in of registreer"
