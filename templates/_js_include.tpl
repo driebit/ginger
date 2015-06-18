@@ -8,8 +8,11 @@
     "js/ginger.search.js"
 %}
 
-{% block _js_extra %}{% endblock %}
-
 {% javascript %}
-	$.widgetManager();
+    $(function()
+    {
+        $.widgetManager();
+    });
 {% endjavascript %}
+
+{% block _js_extra %}{% endblock %}
