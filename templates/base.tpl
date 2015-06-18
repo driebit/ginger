@@ -51,6 +51,7 @@
 				"bootstrap/css/bootstrap-theme.min.css"
 				"css/z.icons.css"
 				"css/mod_ginger_site/screen.css"
+                "css/ginger.search.css"
 			%}
 		{% endblock %}
 

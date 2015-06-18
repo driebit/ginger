@@ -5,6 +5,7 @@
 	"js/apps/z.widgetmanager.js"
 	"js/modules/ubf.js"
 	"bootstrap/js/bootstrap.min.js"
+    "js/ginger.search.js"
 %}
 
 {% block _js_extra %}{% endblock %}
