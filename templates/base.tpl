@@ -114,6 +114,7 @@
     			"js/src/ginger-default_parallax.js"
                 "js/src/ginger-default_content-group-navigation.js"
                 "js/src/ginger-default_scroll-top.js"
+                "js/src/ginger-default_article-foldout.js"
     		%}
 
             {% block _js_include_extra %}{% endblock %}

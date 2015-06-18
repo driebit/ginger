@@ -39,6 +39,8 @@
         display: inline-block;
         @include size(padding-left, 25);
         @include size(padding-right, 24);
+        @include size(margin-top, 5);
+        @include size(height, 50);
     }
 
     &__off-canvas {

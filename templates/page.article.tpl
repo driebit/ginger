@@ -12,9 +12,17 @@
             {% endblock %}
 
             <main role="main" class="page__main-content">
-                <article class="page__content">
+                <article class="page__content do_ginger_default_article_foldout">
+
+                    <a href="#" class="ginger-btn-pill--anchor btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}">{_ Lees meer _}</a>
 
                     <h1 class="page__content__title">{{ article.title }}</h1>
+
+                    {% if article.summary %}
+                        <div class="page__content__intro">
+                            {{ article.summary }}
+                        </div>
+                    {% endif %}
 
                     {% block metadata %}
                         {%
@@ -24,13 +32,7 @@
                                     ["Delen"     , "#share"   , "secondary"]
                                 ]
                             %}
-                    {% endblock %}
-
-                    {% if article.summary %}
-                        <div class="page__content__intro">
-                            {{ article.summary }}
-                        </div>
-                    {% endif %}
+                    {% endblock %}                    
 
                     <div class="page__content__body">
                         {{ article.body|show_media }}

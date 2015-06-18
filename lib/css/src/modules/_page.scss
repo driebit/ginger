@@ -16,37 +16,61 @@
         position: relative;
         padding-top: 22%; 
 
-
-
-
-
-
-
-
-
-        /* DE HELE CONTENT naar beneden, inclusief subnav */
-
         &.has-content-group-banner {
             @include size(padding-top, 140);
         }
-
-
-
-
-
-
-
-
-
     }
 
     &__main-content {
         position: relative;
         z-index: 100;
         @include size(margin-bottom, 40);
+
+        /* background image */
+        background-size: cover; 
+        background-position: 0px 0px;
+        overflow: hidden;
+
     }
 
     &__content {
+
+        &.collapsed {
+
+            .btn-article-foldout {
+                position:absolute; 
+                @include size(bottom, 12);
+                @include size(right, 12);
+                z-index:100;
+                display: none;
+            }
+
+            @include size(max-height, 475);
+            position: relative;
+
+            &:after {
+                content: ' ';
+                @include size(height, 150);
+                position: absolute;
+                @include size(bottom, 0);
+                @include size(left, 0);
+                width: 100%; 
+                text-align: center; 
+                @include size(margin, 0);
+                padding: 30px 0; 
+                
+                background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 3%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(3%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* IE10+ */
+                background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* W3C */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+            }
+        }
+
+
         background-color: $white;
         @include size(padding, 25, 30);
         @include size(max-width, 718);
@@ -210,7 +234,6 @@
 
         &__metadata {
             @include size(margin-bottom, 30);
-            @include size(margin-top, -10);
 
             &__depiction,
             &__name,
@@ -219,6 +242,7 @@
                 vertical-align: middle;
                 margin: 0;
                 @include size(margin-right, 10);
+                list-style-type: none;
             }
 
             &__depiction {
@@ -371,7 +395,11 @@
 
     &--home {
         &.page__content-wrapper {
-            padding-top: 15%;
+            @include size(padding-top, 38);
+        }
+
+        &__header {
+            @include size(margin-top, 50);
         }
 
         .page {
@@ -459,6 +487,7 @@
 
 @media only screen and (min-width: 700px) {
     .page--home {
+
         .page {
             &__header__title {
                 @include size(font-size, 50);
@@ -486,6 +515,13 @@
     .page--home .page__header__title  {
         @include size(font-size, 80);
     }
+
+    .page--home {
+         &.page__content-wrapper {
+            @include size(padding-top, 60);
+        }
+    }
+
 }
 
 @media only screen and (min-width: 1000px) {
