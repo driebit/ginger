@@ -1,2 +1,101 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
 body {
-  color: 'blue'; }
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+/* Creates a mediaquery based on property and size in pixels */
+body {
+  color: blue; }
+
+.main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  border: 1px solid red; }
+
+.main-content {
+  *zoom: 1; }
+
+.main-content *:not(input):not(textarea):not(select) {
+  background-color: rgba(0, 0, 255, 0.1); }
+
+.main-content:before {
+  content: '';
+  display: table; }
+
+.main-content:after {
+  content: '';
+  display: table;
+  clear: both; }
+  .main-content div {
+    width: calc(99.99% * 1/1 - (30px - 30px * 1/1)); }
+  .main-content div:nth-child(n) {
+  float: left;
+  margin-right: 30px;
+  clear: none; }
+  .main-content div:last-child {
+  margin-right: 0; }
+  .main-content div:nth-child(1n) {
+  margin-right: 0; }
+  .main-content div:nth-child(1n + 1) {
+  clear: left; }
+    @media only screen and (min-width: 40rem) {
+      .main-content div {
+        width: calc(99.99% * 1/2 - (30px - 30px * 1/2)); }
+      .main-content div:nth-child(n) {
+    float: left;
+    margin-right: 30px;
+    clear: none; }
+      .main-content div:last-child {
+    margin-right: 0; }
+      .main-content div:nth-child(2n) {
+    margin-right: 0; }
+      .main-content div:nth-child(2n + 1) {
+    clear: left; } }
+    @media only screen and (min-width: 64rem) {
+      .main-content div {
+        width: calc(99.99% * 1/3 - (30px - 30px * 1/3)); }
+      .main-content div:nth-child(n) {
+    float: left;
+    margin-right: 30px;
+    clear: none; }
+      .main-content div:last-child {
+    margin-right: 0; }
+      .main-content div:nth-child(3n) {
+    margin-right: 0; }
+      .main-content div:nth-child(3n + 1) {
+    clear: left; } }

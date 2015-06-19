@@ -1,13 +1,21 @@
 {% extends "base.tpl" %}
 
-{% block body_class %}page do_mod_am_default{% endblock %}
-{% block container_class %}container container-topmargin{% endblock %}
-
-{% block breadcrumb %}
-{% endblock %}
+{% block body_class %}page{% endblock %}
 
 {% block content %}
+    <div class="l-container">
+        <div class="l-content">
+            
+        </div>
+        <div class="related">
+            <div class="list">
+                <div class="list__item"></div>
+            </div>
+        </div>
+    </div>
 
+
+    {#
 	<div class="row {% block row_class %}{% endblock %}">
 
 		{% block prev_next_nav %}{% endblock %}
@@ -94,4 +102,5 @@
 			{% catinclude "_aside.tpl" id %}
 		</div>
 	</div>
+    #}
 {% endblock %}

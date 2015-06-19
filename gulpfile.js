@@ -1,42 +1,43 @@
 'use strict';
 
-var gulp            = require('gulp'),
-    sass            = require('gulp-sass'),
-    postcss         = require('gulp-postcss'),
-    sourcemaps      = require('gulp-sourcemaps'),
-    autoprefixer    = require('autoprefixer'),
-    lost            = require('lost'),
-    livereload      = require('gulp-livereload');
- 
+var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    postcss = require('gulp-postcss'),
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('autoprefixer'),
+    lost = require('lost'),
+    livereload = require('gulp-livereload');
+
 var paths = {
-  cssSource: 'lib/css/src/',
-  cssDestination: 'lib/css/mod_ginger_base/',
-  templates: 'templates/'
+    cssSource: 'lib/css/src/',
+    cssDestination: 'lib/css/mod_ginger_base/',
+    templates: 'templates/'
 };
 
-gulp.task('watch', function () {
+gulp.task('watch', function() {
     gulp.watch(paths.cssSource + '/**/*.scss', ['styles']);
 });
 
 gulp.task('styles', function() {
-
-  return gulp.src(paths.cssSource + '**/*.scss')
-    .pipe(sass({errLogToConsole: true}))
-    .pipe(postcss([
-      lost(),
-      autoprefixer('last 1 version', 'ie > 7')
-    ]))
-    .pipe(gulp.dest(paths.cssDestination));
+    return gulp.src(paths.cssSource + '**/*.scss')
+        .pipe(sass({
+            errLogToConsole: true
+        }))
+        .pipe(postcss([
+            lost(),
+            autoprefixer('last 1 version', 'ie > 7')
+        ]))
+        .pipe(gulp.dest(paths.cssDestination));
 });
 
-gulp.task('livereload', function () {
+gulp.task('livereload', function() {
     var server = livereload();
 
-    gulp.watch(paths.cssSource + '/**/*.css').on('change', function (file) {
+    gulp.watch(paths.cssSource + '/**/*.css').on('change', function(file) {
         server.changed(file.path);
     });
 
-    gulp.watch(paths.templates + '/**/*.tpl').on('change', function (file) {
+    gulp.watch(paths.templates + '/**/*.tpl').on('change', function(file) {
         server.changed(file.path);
     });
 });
