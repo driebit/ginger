@@ -28,11 +28,11 @@
                         {%
                             include "_metadata.tpl" role="Auteur" person=article.author
                                 links=[
-                                    ["X reacties", "#comments", "anchor"],
-                                    ["Delen"     , "#share"   , "secondary"]
+                                    [m.comment.rsc[id] ++ " reacties", "#comments", "anchor"],
+                                    ["Delen"                        , "#share"   , "secondary"]
                                 ]
                             %}
-                    {% endblock %}                    
+                    {% endblock %}
 
                     <div class="page__content__body">
                         {{ article.body|show_media }}
