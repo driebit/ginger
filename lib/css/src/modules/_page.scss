@@ -1,15 +1,8 @@
 .page {
     &__masthead {
         position: absolute;
-        
-
-        /*@include size(top, $mainNavMobileHeight);*/
-
         top: 0px;
-
-
         border: 2px solid blue;
-
         left: 0;
         width: 100%;
         background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
@@ -22,10 +15,7 @@
 
     &__content-wrapper {
         position: relative;
-        padding-top: 22%; 
-
-        
-
+        padding-top: 22%;
 
         &.has-content-group-banner {
             /*@include size(padding-top, 140);
@@ -33,30 +23,21 @@
             border: 2px solid yellow;*/
 
         }
-
-
-
     }
 
     &__main-content {
         position: relative;
         z-index: 100;
         @include size(margin-bottom, 40);
-
-        /* background image */
-        background-size: cover; 
+        background-size: cover;
         background-position: 0px 0px;
         overflow: hidden;
-
     }
 
     &__content {
-
         &.collapsed {
-
             .btn-article-foldout {
-
-                position:absolute; 
+                position:absolute;
                 z-index:100;
                 display: block;
                 background: #FFF url(/lib/images/read-more.png?embed) top left no-repeat;
@@ -67,7 +48,6 @@
                 left: 0;
                 right: 0;
                 bottom: 0px;
-
             }
 
             @include size(max-height, 575);
@@ -79,24 +59,15 @@
                 position: absolute;
                 @include size(bottom, 0);
                 @include size(left, 0);
-                width: 100%; 
-                text-align: center; 
+                width: 100%;
+                text-align: center;
                 @include size(margin, 0);
-                padding: 30px 0; 
-                
-                background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 3%, rgba(255,255,255,1) 100%); /* FF3.6+ */
-                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(3%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
-                background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
-                background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
-                background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* IE10+ */
+                padding: 30px 0;
                 background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* W3C */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */                
-
             }
 
             border-bottom: 2px solid $mainThemeColor;
         }
-
 
         background-color: $white;
         @include size(padding, 25, 30);
@@ -426,7 +397,7 @@
         }
 
         &__header {
-            
+
             @include size(height, 200);
 
             h1 {
@@ -442,7 +413,7 @@
 
                 &__title,
                 &__tagline {
-                    
+
                     text-align: center;
                     display: block;
                     text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
@@ -493,8 +464,9 @@
     }
 
     &--query {
-        &.page__content-wrapper {
-            @include size(padding-top, 70);
+        .query-results {
+            position: relative;
+            z-index: 20;
         }
     }
 }
@@ -503,7 +475,6 @@
     .page--home .page__header__title  {
         @include size(font-size, 50);
     }
-
 }
 
 @media only screen and (min-width: 500px) {
