@@ -43,27 +43,76 @@
         @include size(height, 50);
     }
 
+    &__actions {
+        li {
+            border-left: 1px solid $mainNavActionsSeperator;
+        }
+    }
+
     &__off-canvas {
+
         position: fixed;
         display: block;
-        color: $mainNavPagesColor;
         transform: translateX(100%);
-        @include size(width, 250);
+        width: 100%;
         height: 100%;
         @include size(top, $mainNavMobileHeight);
         right: 0;
-        background-color: $mainThemeColor;
-        color: $white;
+        background-color: $menuMobileBgColor;
         transition: all 250ms ease-out;
         z-index: 10000;
 
-        &.is-shown {
-            transform: translateX(0);
+        .main-nav__actions {
 
+            display: block;
+            clear: both;
+            float: none;
+            margin: 0px;
+            background: $menuMobileActionsBgColor;
+
+            li {
+
+                float: right;
+                padding: 0px 14px 0px 14px;
+                border-left: 1px solid $white;
+
+                a {
+                    color: $mainNavPagesColor;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }               
+
+                /* icons */
+                i {
+                   @include size(margin-right, 8);
+                   color: $mainThemeColor;
+                }
+
+            }
+
+
+            &__language {       
+                a {
+                    &:not(:last-child):after {
+                        content: ' /';
+                    }
+                    &.active {
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+        }
+
+        &.is-shown {
+
+            transform: translateX(0);
             &:after {
                 display: block;
                 opacity: 0.75;
             }
+
         }
 
         &:after {
@@ -79,6 +128,27 @@
             background-color: $black;
             opacity: 0;
         }
+
+        .dropdown-menu {
+            left: auto;
+            right: 10px;
+
+            li {
+
+                display: block;
+
+                a {
+                    @include size(padding, 10);
+                    text-align: left;
+                    &:hover,
+                    &:focus {
+                        text-decoration: none;
+                        color: $mainNavPagesColor;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
     }
 
     &__pages {
@@ -87,24 +157,24 @@
         li {
             display: block;
             @include size(line-height, 18);
-            border-bottom: 1px solid darken($mainThemeColor, 10);
+            border-bottom: 1px solid lighten($typographyColor, 60%);
         }
 
         a {
             display: block;
             @include size(padding, 12, 24);
             transition: background 250ms linear;
+            text-align: right;
 
             &:link,
             &:visited,
             &:hover,
             &:active {
-                color: $white;
+                color: $mainNavPagesColor;
             }
 
             &:hover {
                 text-decoration: none;
-                background-color: darken($mainThemeColor, 10);
             }
         }
     }
@@ -205,7 +275,6 @@
             @include size(padding-top, 40);
             border-radius: 5px;
             overflow: hidden;
-            border: 1px solid $mainNavActionsSeperator;
 
             &:after {
                 @extend .has-icon;
@@ -228,13 +297,14 @@
     }
 
     &__toggle-search {
+       
         a {
             &:after {
-                @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
+                @include combinedSvgPngBackground('/lib/images/icon_toggle-search_0087D2');
             }
 
             &:hover:after {
-                @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
+                @include combinedSvgPngBackground('/lib/images/icon_toggle-search_FFFFFF', true);
             }
         }
     }
@@ -242,7 +312,7 @@
     &__toggle-menu {
         a {
             &:after {
-                @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2', true);
+                @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2');
             }
 
             &:hover:after {
@@ -294,21 +364,6 @@
                 @include size(line-height, $mainNavHeight);
             }
 
-            a {
-                &:link,
-                &:visited,
-                &:hover,
-                &:active {
-                    color: $mainNavPagesColor;
-                    border: none;
-                    background-color: transparent;
-                }
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
             &:after {
                 display: none;
             }
@@ -322,23 +377,21 @@
 
             .dropdown-menu {
                 line-height: 3em;
-
-                a {
-                    &:hover,
-                    &:focus {
-                        text-decoration: underline;
-                        color: $mainNavPagesColor;
-                        background-color: transparent;
-                    }
-                }
             }
 
             .main-nav__actions {
+
+                background: none;
                 float: right;
 
-                a {
+                li {
+
                     border-left: 1px solid $mainNavActionsSeperator;
+                    a {
+                        color: $mainNavPagesColor;
+                    }
                 }
+
             }
 
             .nav-logon {
@@ -385,7 +438,7 @@
             }
 
             a {
-                @include size(padding, 0, 17, 0, 30);
+                /*@include size(padding, 0, 17, 0, 30);*/
                 border-top: none;
                 border-right: none;
                 border-bottom: none;
@@ -409,8 +462,12 @@
         }
 
         &__toggle-search {
-            a:hover:after {
-                @include combinedSvgPngBackground('/lib/images/icon_search_0087D2', true);
+
+            border-left: 1px solid $mainNavActionsSeperator;
+            @include size(padding-right, 18);
+
+            a {
+                @include size(padding-left, 40);
             }
         }
     }
@@ -449,4 +506,10 @@
             right: auto;
         }
     }
+}
+
+.profile-avatar {
+    @include size(height, 34);
+    @include size(width, 34);
+    border-radius: 50%;
 }

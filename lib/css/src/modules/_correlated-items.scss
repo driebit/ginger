@@ -1,4 +1,4 @@
-$headerHeight: 90;
+$headerHeight: 70;
 
 .ginger-correlated-items {
     background-color: $correlatedItemsBgColor;
@@ -12,7 +12,7 @@ $headerHeight: 90;
     }
 
     &__title {
-        @include size(font-size, 28);
+        @include size(font-size, 22);
         @include size(line-height, $headerHeight);
         @include size(height, $headerHeight);
         text-transform: uppercase;

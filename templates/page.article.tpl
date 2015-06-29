@@ -14,7 +14,7 @@
             <main role="main" class="page__main-content">
                 <article class="page__content do_ginger_default_article_foldout">
 
-                    <a href="#" class="ginger-btn-pill--anchor btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}">{_ Lees meer _}</a>
+                    <a href="#" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></a>
 
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
@@ -41,6 +41,11 @@
                     {% block page_blocks %}
                         {% include "_blocks.tpl" %}
                     {% endblock %}
+
+                    {% with m.comment.rsc[id] as comments %}
+                        {% include "_comments.tpl" comments=comments %}
+                    {% endwith %}
+
                 </article>
             </main>
 

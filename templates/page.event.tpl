@@ -12,7 +12,10 @@
             {% endblock %}
 
             <main role="main" class="page__main-content">
-                <article class="page__content">
+                <article class="page__content do_ginger_default_article_foldout">
+
+                    <a href="#" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></a>
+
                     <h1 class="page__content__title">{{ event.title }}</h1>
 
                     {% block organizer %}

@@ -70,8 +70,10 @@
             {% endif %}
                     
     		{% block navigation %}
+
+                {# quick fix 23-6-2015: only include _main-nav.tpl #}
     			{% include "_main-nav.tpl" %}
-                {% include "_content-group-nav.tpl" %}
+
     		{% endblock %}
 
     		<div class="page__wrapper cf">

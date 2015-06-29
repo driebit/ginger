@@ -1,4 +1,4 @@
-{% with id.content_group_id as content_group %}
+<!-- {% with id.content_group_id as content_group %}
 {% if content_group.o.hassubnav %}
 
     {% with content_group.o.hassubnav as subnav_ids %}
@@ -21,4 +21,4 @@
         </nav>
     {% endwith %}
 {% endif %}
-{% endwith %}
+{% endwith %} -->

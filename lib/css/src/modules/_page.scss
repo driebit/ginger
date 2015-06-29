@@ -1,7 +1,15 @@
 .page {
     &__masthead {
         position: absolute;
-        @include size(top, $mainNavMobileHeight);
+        
+
+        /*@include size(top, $mainNavMobileHeight);*/
+
+        top: 0px;
+
+
+        border: 2px solid blue;
+
         left: 0;
         width: 100%;
         background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
@@ -16,9 +24,18 @@
         position: relative;
         padding-top: 22%; 
 
+        
+
+
         &.has-content-group-banner {
-            @include size(padding-top, 140);
+            /*@include size(padding-top, 140);
+
+            border: 2px solid yellow;*/
+
         }
+
+
+
     }
 
     &__main-content {
@@ -38,14 +55,22 @@
         &.collapsed {
 
             .btn-article-foldout {
+
                 position:absolute; 
-                @include size(bottom, 12);
-                @include size(right, 12);
                 z-index:100;
-                display: none;
+                display: block;
+                background: #FFF url(/lib/images/read-more.png?embed) top left no-repeat;
+                width: 64px;
+                height: 37px;
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+                bottom: 0px;
+
             }
 
-            @include size(max-height, 475);
+            @include size(max-height, 575);
             position: relative;
 
             &:after {
@@ -65,9 +90,11 @@
                 background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
                 background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* IE10+ */
                 background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* W3C */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */                
 
             }
+
+            border-bottom: 2px solid $mainThemeColor;
         }
 
 
@@ -399,19 +426,30 @@
         }
 
         &__header {
-            @include size(margin-top, 50);
+            
+            @include size(height, 200);
+
+            h1 {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
         }
 
         .page {
             &__header {
+
                 &__title,
                 &__tagline {
+                    
                     text-align: center;
                     display: block;
                     text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
                     color: $white;
                     font-weight: 600;
                     font-style: italic;
+
                 }
 
                 &__title {
@@ -463,8 +501,9 @@
 
 @media only screen and (min-width: 300px) {
     .page--home .page__header__title  {
-
+        @include size(font-size, 50);
     }
+
 }
 
 @media only screen and (min-width: 500px) {
@@ -526,12 +565,22 @@
 
 @media only screen and (min-width: 1000px) {
     .page--home .page__header__title  {
-        @include size(font-size, 90);
+        @include size(font-size, 80);
     }
+
 }
 
 @media only screen and (min-width: 1024px) {
     .page__masthead {
-        @include size(top, $mainNavHeight);
+        /*@include size(top, $mainNavHeight);*/
+    }
+
+    .page--home__header {
+        height: auto;
+        h1 {
+            top: auto;
+            transform: none;
+            @include size(margin-top, 50);
+        }
     }
 }

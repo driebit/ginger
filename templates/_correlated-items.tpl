@@ -7,12 +7,14 @@
     <header class="ginger-correlated-items__header">
         <h3 class="ginger-correlated-items__title">{{ title }}</h3>
 
+        {% block correlated_items %}
         <nav class="ginger-correlated-items__navigation">
             <ul>
                 <li class="ginger-correlated-items__navigation-item--tiles is-shown" data-show-section="tiles"><button type="button" >Tegels</button>
                 <li class="ginger-correlated-items__navigation-item--list" data-show-section="list"><button type="button">Lijst</button></li>
             </ul>
         </nav>
+        {% endblock %}
     </header>
 
     <div class="ginger-correlated-items__tiles-wrapper is-shown" data-section="tiles">
