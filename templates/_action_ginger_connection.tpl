@@ -6,11 +6,11 @@
     {% with m.rsc[category].id as cat_id %}
     {% with	new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
 
-        <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">+ {_ add my  _} {{cat_title }} {_ toe _}</a>
+        <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">+ {_ add _} {{cat_title }} {_ toe _}</a>
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add my", " ", cat_title, " ", _"toe "]
+                            title=[_"add", " ", cat_title, " ", _"toe "]
                             logon_required
                             object_id=id
                             cat=cat_id
@@ -24,7 +24,7 @@
         {% else %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add my", " ", cat_title , " ", _"toe"]
+                            title=[_"add", " ", cat_title , " ", _"toe"]
                             logon_required
                             subject_id=id
                             cat=cat_id
