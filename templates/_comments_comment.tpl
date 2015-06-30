@@ -2,7 +2,6 @@
     {% if m.rsc[comment.user_id] %}
         {% if m.rsc[comment.user_id].depiction %}
             <div class="page__content__comment__about">
-                depiction
                 <img class="page__content__comment__about__avatar" src="{% image_url m.rsc[comment.user_id].depiction mediaclass='img-comment-avatar' %}" alt=""/><br/>
         {% elseif m.rsc[comment.user_id].media|length > 0 %}
             <div class="page__content__comment__about">
