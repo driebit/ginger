@@ -50,7 +50,6 @@
     }
 
     &__off-canvas {
-
         position: fixed;
         display: block;
         transform: translateX(100%);
@@ -63,7 +62,6 @@
         z-index: 10000;
 
         .main-nav__actions {
-
             display: block;
             clear: both;
             float: none;
@@ -71,7 +69,6 @@
             background: $menuMobileActionsBgColor;
 
             li {
-
                 float: right;
                 padding: 0px 14px 0px 14px;
                 border-left: 1px solid $white;
@@ -81,18 +78,17 @@
                     &:hover {
                         text-decoration: none;
                     }
-                }               
+                }
 
                 /* icons */
                 i {
                    @include size(margin-right, 8);
                    color: $mainThemeColor;
                 }
-
             }
 
 
-            &__language {       
+            &__language {
                 a {
                     &:not(:last-child):after {
                         content: ' /';
@@ -106,13 +102,12 @@
         }
 
         &.is-shown {
-
             transform: translateX(0);
+
             &:after {
                 display: block;
                 opacity: 0.75;
             }
-
         }
 
         &:after {
@@ -134,7 +129,6 @@
             right: 10px;
 
             li {
-
                 display: block;
 
                 a {
@@ -297,7 +291,7 @@
     }
 
     &__toggle-search {
-       
+
         a {
             &:after {
                 @include combinedSvgPngBackground('/lib/images/icon_toggle-search_0087D2');
@@ -380,18 +374,16 @@
             }
 
             .main-nav__actions {
-
                 background: none;
                 float: right;
 
                 li {
-
                     border-left: 1px solid $mainNavActionsSeperator;
+
                     a {
                         color: $mainNavPagesColor;
                     }
                 }
-
             }
 
             .nav-logon {
@@ -512,4 +504,44 @@
     @include size(height, 34);
     @include size(width, 34);
     border-radius: 50%;
+}
+
+@media only screen and (max-width: 1099px) {
+    .main-nav {
+        &__pages {
+            li {
+                border-bottom: none;
+                border-top: 1px solid lighten($typographyColor, 60%);
+            }
+        }
+
+        &__off-canvas {
+            .dropdown-menu {
+                position: relative;
+                top: auto;
+                left: auto;
+                display: block;
+                float: none;
+                border: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                background-color: transparent;
+                border-radius: 0;
+                @include size(margin-right, -10);
+
+                li a {
+                    text-align: right;
+                }
+
+                > li > a {
+                    @include size(padding, 12, 24);
+                }
+            }
+
+            .caret {
+                display: none;
+            }
+        }
+    }
 }
