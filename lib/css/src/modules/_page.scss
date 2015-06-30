@@ -459,6 +459,10 @@
         .query-results {
             position: relative;
             z-index: 20;
+
+            .page__content {
+                @include size(margin-bottom, 30); 
+            }
         }
     }
 }
