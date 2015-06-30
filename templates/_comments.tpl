@@ -4,7 +4,7 @@
     {% with m.comment.rsc[id] as comments %}
         {% if comments %}
             {% with m.rsc[id].creator_id as creator_id %}
-                <ol class="page__content__comments">
+                <ol class="page__content__comments" id="comments-list">
                     {% for comment in comments %}
                         {% if comment.is_visible %}
                            {% include "_comments_comment.tpl" %}
