@@ -72,9 +72,9 @@
 
             li {
 
-                float: right;
+                float: left;
                 padding: 0px 14px 0px 14px;
-                border-left: 1px solid $white;
+                border-right: 1px solid $white;
 
                 a {
                     color: $mainNavPagesColor;
@@ -164,7 +164,7 @@
             display: block;
             @include size(padding, 12, 24);
             transition: background 250ms linear;
-            text-align: right;
+            text-align: left;
 
             &:link,
             &:visited,
@@ -509,7 +509,8 @@
 }
 
 .profile-avatar {
-    @include size(height, 34);
-    @include size(width, 34);
+    @include size(height, 30);
+    @include size(width, 30);
     border-radius: 50%;
+    filter: grayscale(100%);
 }

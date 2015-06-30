@@ -122,7 +122,6 @@ $headerHeight: 70;
 
     &__tile {
         @include size(padding, 0, 12);
-
         &__illustration,
         &__content,
         &__title {
@@ -168,7 +167,7 @@ $headerHeight: 70;
         }
 
         &__illustration {
-            width: 33%;
+            width: 25%;
 
         }
 
@@ -263,7 +262,7 @@ $headerHeight: 70;
     .ginger-correlated-items,
     .ginger-correlated-items--related {
         &__tile {
-            width: 33.333333333%;
+            width: 25%;
         }
     }
 }
@@ -272,7 +271,7 @@ $headerHeight: 70;
     .ginger-correlated-items,
     .ginger-correlated-items--related {
         &__tile {
-            width: 33.333333333%;
+            width: 25%;
         }
     }
 }
