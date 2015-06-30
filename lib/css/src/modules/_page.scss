@@ -1,15 +1,7 @@
 .page {
     &__masthead {
         position: absolute;
-        
-
-        /*@include size(top, $mainNavMobileHeight);*/
-
         top: 0px;
-
-
-        border: 2px solid blue;
-
         left: 0;
         width: 100%;
         background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
@@ -22,20 +14,7 @@
 
     &__content-wrapper {
         position: relative;
-        padding-top: 22%; 
-
-        
-
-
-        &.has-content-group-banner {
-            /*@include size(padding-top, 140);
-
-            border: 2px solid yellow;*/
-
-        }
-
-
-
+        padding-top: 22%;
     }
 
     &__main-content {

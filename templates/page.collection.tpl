@@ -5,7 +5,7 @@
 {% block body_class %}collection{% endblock %}
 
 {% block content %}
-    <div class="page--collection page__content-wrapper">
+    <div class="page--collection page__content-wrapper do_ginger_default_content_group_navigation">
         {% with id as collection %}
             {% block masthead %}
                 {% include "_masthead.tpl" article=collection %}

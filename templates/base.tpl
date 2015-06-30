@@ -71,7 +71,6 @@
                     
     		{% block navigation %}
 
-                {# quick fix 23-6-2015: only include _main-nav.tpl #}
     			{% include "_main-nav.tpl" %}
 
     		{% endblock %}
@@ -85,12 +84,12 @@
     			{% endblock %}
     		</div>
 
+            {% include "_js_include_jquery.tpl" %}
     		{% include "_js_include.tpl" %}
+            
     		{% all include "_script.tpl" %}
             {% block module_script %}{% endblock %}
     		{% script %}
-
-            {% include "_js_include_jquery.tpl" %}
 
             {% lib
                     "js/apps/zotonic-1.0.js"
