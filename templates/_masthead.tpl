@@ -29,6 +29,8 @@
         {% else %}
             {% if m.rsc[id].header %}
                 <div class="page__masthead do_ginger_default_paralax" style="background-image: url({% image_url m.rsc[id].header.id mediaclass='img-header' crop %}); background-size: cover;"></div>
+            {% elseif article.header %}
+                <div class="page__masthead do_ginger_default_paralax" style="background-image: url({% image_url article.header.id mediaclass='img-header' crop %}); background-size: cover;"></div>
             {% endif %}
         {% endif %}
     {% endif %}
