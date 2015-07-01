@@ -6,7 +6,7 @@
 			</button>
 			<ul class="dropdown-menu" role="menu">
 				{% for code,lang in languages %}
-					{% if all or lang.is_enabled %}
+					{% if all or lang.is_enabled or id|is_undefined %}
 						<li><a href="{% url language_select code=code p=m.req.raw_path %}">{{ code }}</a></li>
 					{% endif %}
 				{% endfor %}
