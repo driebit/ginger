@@ -10,8 +10,7 @@
     }
 	delegate=delegate
 %}
-{{ delegate|pprint }}
-<p></p>
+
 <form id="{{ #form }}" method="POST" action="postback" class="form">
 
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
