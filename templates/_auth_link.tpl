@@ -1,11 +1,29 @@
 {# Render link that opens a modal login/signup dialog. #}
 
 {% if not m.acl.user %}
+
+    {% with
+        class|default:"main-nav__login-register-button",
+        icon|default:"glyphicon glyphicon-log-in",
+        icon_before,
+        label|default:_"logon/signup"
+    as
+        class,
+        icon,
+        icon_position,
+        label
+    %}
+
     {% lib
         "css/logon.css"
     %}
 
-    <a id="{{ #signup }}" href="#">{{ label|default:_"logon/signup" }} <i class="glyphicon glyphicon-log-in"></i></a>
+    {% if icon_before %}
+        <a class="{{ class }}" id="{{ #signup }}" href="#"><span class="{{ icon }}"></span> {{ label }}</a>
+    {% else %}
+        <a class="{{ class }}" id="{{ #signup }}" href="#">{{ label }}<span class="{{ icon }}"></span></a>
+    {% endif %}
+
     {% wire
         id=#signup
         action={
@@ -16,4 +34,6 @@
             redirect=m.req.path
         }
     %}
+
+    {% endwith %}
 {% endif %}
