@@ -14,7 +14,7 @@
             <main role="main" class="page__main-content">
                 <article class="page__content do_ginger_default_article_foldout">
 
-                    <a href="#" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></a>
+                    <button type="button" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>
 
                     <h1 class="page__content__title">{{ event.title }}</h1>
 
@@ -48,6 +48,12 @@
                     <div class="page__content__body">
                         {{ event.body|show_media }}
                     </div>
+
+                    {% block comments %}
+                        {% with m.comment.rsc[id] as comments %}
+                            {% include "_comments.tpl" comments=comments %}
+                        {% endwith %}
+                    {% endblock %}
                 </article>
             </main>
 

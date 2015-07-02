@@ -73,6 +73,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0px;
+                border: none;
             }
         }
 
@@ -471,7 +472,7 @@
             z-index: 20;
 
             .page__content {
-                @include size(margin-bottom, 30); 
+                @include size(margin-bottom, 30);
             }
         }
     }

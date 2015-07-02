@@ -16,7 +16,7 @@
 
                 <article class="page__content do_ginger_default_article_foldout">
 
-                    <a href="#" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></a>
+                    <button type="button" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>
 
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
