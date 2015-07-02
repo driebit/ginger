@@ -14,7 +14,6 @@
 <p></p>
 <form id="{{ #form }}" method="POST" action="postback" class="form">
 
-    <input type="hidden" id="{{ #published }}" name="is_published" value="1" />
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
 	<input type="hidden" name="redirect" value="1" />
 

@@ -7,10 +7,11 @@
 event(#submit{message={ginger_logon, Args}, form="logon_dialog"}, Context) ->
     LogonArgs = z_context:get_q_all(Context),
     Actions = proplists:get_all_values(action, Args),
+    PageUrl = proplists:get_value(page, Args),
 
     case z_notifier:first(#logon_submit{query_args=LogonArgs}, Context) of
         {ok, UserId} when is_integer(UserId) ->
-            logon_user(UserId, Actions, Context);
+            logon_user(UserId, Actions, PageUrl, Context);
         {error, _Reason} -> 
             logon_error("pw", Context);
         undefined -> 
@@ -20,6 +21,7 @@ event(#submit{message={ginger_logon, Args}, form="logon_dialog"}, Context) ->
 
 event(#submit{message={ginger_signup, Args}}, Context) ->
     Actions = proplists:get_all_values(action, Args),
+    PageUrl = proplists:get_value(page, Args),
     Email = z_context:get_q_validated("email", Context),
     SignupProps = [{identity, {username_pw, {Email, 
                                              z_context:get_q_validated("password1", Context)}, 
@@ -30,32 +32,11 @@ event(#submit{message={ginger_signup, Args}}, Context) ->
     RequestConfirm = z_convert:to_bool(m_config:get_value(mod_signup, request_confirm, true, Context)),
     case mod_signup:signup(Props, SignupProps, RequestConfirm, Context) of
         {ok, UserId} ->
-            logon_user(UserId, Actions, Context);
+            logon_user(UserId, Actions, PageUrl, Context);
         {error, Reason} ->  
             signup_error(Reason, Context)
     end;
 
-event(#postback{message={ginger_logon_actions, Args}}, Context) ->
-    case z_auth:is_auth(Context) of
-        true ->
-            Actions = proplists:get_all_values(action, Args),
-            z_render:wire([
-                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]} | Actions],
-                Context);
-        false ->
-            z_render:wire({reload, []}, Context)
-    end;
-
-event(#z_msg_v1{data=Data}, Context) ->
-    case proplists:get_value(<<"msg">>, Data) of
-        <<"ginger_logon_actions">> ->
-            z_render:wire(
-                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]},
-                Context);
-        Msg ->
-            lager:warning("[ginger_logon] unknown message ~p", [Msg])
-    end;
-    
 event(#postback{message={ginger_logoff, Args}}, Context) ->
     controller_logoff:reset_rememberme_cookie_and_logoff(Context),
     %Id = z_convert:to_integer(proplists:get_value(id, Args)),
@@ -77,18 +58,15 @@ event(#submit{message={ginger_reminder, _Args}, form="ginger_password_reminder"}
             end
     end.
 
-logon_user(UserId, Actions, Context) ->
+logon_user(UserId, Actions, PageUrl, Context) ->
     case z_auth:logon(UserId, Context) of
 		{ok, ContextUser} ->
 		    case z_context:get_q("rememberme", ContextUser, []) of
 		        [] -> ContextUser;
 		        _ -> controller_logon:set_rememberme_cookie(UserId, ContextUser)
 		    end,
-            ?DEBUG(Actions),
-            %Context1 = z_render:wire({redirect, [{location, cleanup_url(PageUrl)}]}, ContextUser),
-            z_render:wire([
-                {replace, [{target, "nav-logon"}, {template, "_nav_logon.tpl"}]} | Actions],
-                ContextUser);
+            ?DEBUG(PageUrl),
+            z_render:wire({redirect, [{location, PageUrl}]}, ContextUser);
 		%{error, user_not_enabled} ->
         %    check_verified(UserId, Context);
 		{error, Reason} ->

@@ -23,20 +23,20 @@
             {% if direction=='in' %}
                 {% if newtab!='false' %}
                     {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]] title=""
-                            cg_id=cg_id nocatselect=nocatselect is_active=1 cat=cat callback="" %}
+                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" %}
                 {% endif %}
                 {% if findtab!='false' %}
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]] redirect=redirect
-                            cg_id=cg_id nocatselect=nocatselect is_active=(newtab == 'false') title="" cat=cat callback=callback %}
+                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback %}
                 {% endif %}
             {% else %}
                 {% if newtab!='false' %}
                     {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id title=""
-                            cg_id=cg_id nocatselect=nocatselect is_active=1 cat=cat callback="" %}
+                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" %}
                 {% endif %}
                 {% if findtab!='false' %}
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
-                            cg_id=cg_id nocatselect=nocatselect is_active=(newtab == 'false') title="" cat=cat callback=callback %}
+                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback %}
                 {% endif %}
             {% endif %}
 

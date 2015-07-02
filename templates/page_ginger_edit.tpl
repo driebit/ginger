@@ -36,6 +36,11 @@
 
 				{% button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" %}
 				{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
+
+                {% ifnotequal id 1 %}
+                    {% button style="float:right;" class="btn btn-default btn-sm" disabled=(r.is_protected or not m.rsc[id].is_deletable) id="delete-button" text=_"Delete" action={dialog_delete_rsc id=id.id on_success={redirect back}} title=_"Delete this page." %}
+                {% endifnotequal %}
+
 	    	</div>
 		</div>
 	</nav>
