@@ -14,7 +14,6 @@
 
 -export([
     manage_schema/2
-%%     observe_logon_ready_page/2
 ]).
 
 %% @doc Set preferred default settings (but don't overwrite if they're already set)
@@ -36,9 +35,3 @@ manage_schema(install, Context) ->
         PreferredConfigs
     ),
     ok.
-
-%% @doc Override mod_signup's behaviour of redirecting users to their personal
-%%      page.
-%% observe_logon_ready_page(#logon_ready_page{request_page=RequestPage}, _Context) ->
-%%     undefined.
-%% %%     RequestPage.
