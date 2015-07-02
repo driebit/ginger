@@ -1,5 +1,5 @@
-{#
-Params (optionally) passed from logon modal:
+{# Ginger-preferred config for signup modal
+
 logon_state
 logon_context
 update_target

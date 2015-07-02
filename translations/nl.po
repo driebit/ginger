@@ -1,2 +1,2 @@
-msgid "Log in or sign up"
-msgstr "Log in of registreer"
+msgid "logon/signup"
+msgstr "Log in / registreer"
