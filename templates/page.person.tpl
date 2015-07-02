@@ -23,6 +23,14 @@
                 <article class="page__content">
                     <h1 class="page__content__title">{{ person.title }}</h1>
 
+                        {% if id.category_id.name == m.rsc.person.name%}
+                            {% if m.rsc[id].is_editable %}
+                                {% block person_edit_button %}
+                                    <a class="btn btn-default person_edit_button" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
+                                {% endblock %}
+                            {% endif %}
+                        {% endif %}
+
                     {% if person.summary %}
                         <div class="page__content__intro">
                             {{ person.summary }}
