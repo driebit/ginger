@@ -269,12 +269,19 @@
             &__wrapper {
                 @include size(margin-left, -30);
                 @include size(margin-right, -30);
+
+                #comments-area {
+                    border-bottom: none;
+
+                    h2 {
+                        border: none;
+                    }
+                }
             }
 
             &__header {
                 position: relative;
                 border-top: 5px solid $bodyBgColor;
-                border-bottom: 5px solid $bodyBgColor;
                 @include size(padding, 18, 0, 18, 56);
                 text-transform: uppercase;
                 @include size(font-size, 15);
