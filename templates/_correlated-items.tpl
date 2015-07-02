@@ -33,6 +33,7 @@
         </ol>
     </div>
 
+    {#
     <ol class="ginger-correlated-items__list" data-section="list">
         {% if useRank|is_defined and useRank == 1 %}
             {% for item, rank in items %}
@@ -44,6 +45,7 @@
             {% endfor %}
         {% endif %}
     </ol>
+    #}
 
     {% if showMoreLabel %}
         <p class="ginger-correlated-items__show-more">
