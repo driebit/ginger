@@ -1,6 +1,5 @@
 <div class="page__content__metadata">
 
-metadata
     {% if person %}
         {% if person.depiction %}
             <img class="page__content__metadata__depiction" src="{% image_url person.depiction mediaclass='img-avatar' %}" alt=""/>
