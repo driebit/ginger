@@ -28,7 +28,7 @@
                         {%
                             include "_metadata.tpl" role="Auteur" person=article.author
                                 links=[
-                                    [m.comment.rsc[id]|length ++ " reacties", "#comments-area", "anchor"],
+                                    [m.comment.rsc[id]|length ++ " reacties", "#comments", "anchor"],
                                     ["Delen"                        , "#share"   , "secondary"]
                                 ]
                             %}

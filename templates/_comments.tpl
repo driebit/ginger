@@ -1,4 +1,4 @@
-<div class="page__content__comments__wrapper">
+<div id="comments" class="page__content__comments__wrapper">
     <h3 class="page__content__comments__header">{{ comments|length }} reacties</h3>
     <ol class="page__content__comments" id="comments-list">
     {% with m.comment.rsc[id] as comments %}
