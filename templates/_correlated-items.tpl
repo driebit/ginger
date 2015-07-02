@@ -7,7 +7,7 @@
     <header class="ginger-correlated-items__header">
         <h3 class="ginger-correlated-items__title">{{ title }}</h3>
 
-        {#
+        {# Navigation between list view and tile view
         {% block correlated_items_nav %}
         <nav class="ginger-correlated-items__navigation">
             <ul>
@@ -33,7 +33,7 @@
         </ol>
     </div>
 
-    {#
+    {# Items for list view
     <ol class="ginger-correlated-items__list" data-section="list">
         {% if useRank|is_defined and useRank == 1 %}
             {% for item, rank in items %}
