@@ -89,6 +89,8 @@
 
 
             &__language {
+                white-space: nowrap;
+
                 a {
                     line-height: initial;
 
@@ -363,6 +365,7 @@
             width: 100%;
             top: 0;
             left: 0;
+            transition: none;
             transform: translateX(0);
             z-index: 10;
 
@@ -559,7 +562,6 @@
         }
     }
 }
-
 
 .navicon-logout {
     @include combinedSvgPngBackground('/lib/images/navicon-logout');
