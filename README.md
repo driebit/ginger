@@ -6,9 +6,14 @@ This [Ginger](ttps://ginger.nl) module provides the following.
 2. A tabbed dialog that allows switching between login, signup and forgot
    password.
 
+## Login/profile nav template
+
+Include [_nav_logon_tpl](_nav_logon.tpl) in your nav bar template, and
+optionally show the user’s picture and prefix the user’s name with greeting.
+
 ## Link template
 
-Display a link that open an authentication dialog:
+Display a link that opens an authentication dialog:
 
 ```dtl
 {% include "_auth_link.tpl" %}
