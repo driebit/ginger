@@ -48,6 +48,12 @@
                     <div class="page__content__body">
                         {{ event.body|show_media }}
                     </div>
+
+                    {% block comments %}
+                        {% with m.comment.rsc[id] as comments %}
+                            {% include "_comments.tpl" comments=comments %}
+                        {% endwith %}
+                    {% endblock %}
                 </article>
             </main>
 
