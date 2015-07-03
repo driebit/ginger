@@ -17,15 +17,28 @@
                     <button type="button" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>
 
                     <h1 class="page__content__title">{{ event.title }}</h1>
-                    
+
                     {% block organizer %}
                         {% with event.organised_by as organiser %}
-                            {%
-                                include "_metadata.tpl" person=organiser role="Organisator"
-                                    links=[['Aanmelden', '#signup', 'primary']]
-                            %}
+                            {% if m.comment.rsc[id]|length > 0 %}
+                                {%
+                                    include "_metadata.tpl" person=organiser role="Organisator"
+                                        links=[
+                                            [m.comment.rsc[id]|length ++ " reacties", "#comments", "anchor"],
+                                            ['Aanmelden'                            , '#signup', 'primary']
+                                        ]
+                                %}
+                            {% else %}
+                                {%
+                                    include "_metadata.tpl" person=organiser role="Organisator"
+                                        links=[
+                                            ["reacties",  "#comments", "anchor"],
+                                            ['Aanmelden', '#signup', 'primary']
+                                        ]
+                                %}
+                            {% endif %}
                         {% endwith %}
-                    {% endblock %} 
+                    {% endblock %}
 
                     {% block venue %}
                         {% with event.located_in as location %}
