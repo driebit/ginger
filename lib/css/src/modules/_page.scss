@@ -60,23 +60,29 @@
             }
 
             .btn-article-foldout {
-                width: 64px;
-                height: 37px;
-                position: absolute;
-                z-index: 100;
-                display: block;
-                @include combinedSvgPngBackground('/lib/images/arrow-fold-content-out', true);
-                background-size: 35px 16px;
-                background-color: #FFF;
-                background-position: center;
-                background-repeat: no-repeat;
-                margin-left: auto;
-                margin-right: auto;
-                left: 0;
-                right: 0;
-                bottom: 0px;
-                border: none;
+                transform: rotate(0);
             }
+        }
+
+        .btn-article-foldout {
+            width: 64px;
+            height: 37px;
+            position: absolute;
+            z-index: 100;
+            display: block;
+            @include combinedSvgPngBackground('/lib/images/arrow-fold-content-out_0087D2', true);
+            background-size: 35px 16px;
+            background-color: #FFF;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            border: none;
+            transform: rotate(180deg);
+            transition: all linear 250ms;
         }
 
         &__title {
@@ -270,14 +276,6 @@
             &__wrapper {
                 @include size(margin-left, -30);
                 @include size(margin-right, -30);
-
-                #comments-area {
-                    border-bottom: none;
-
-                    h2 {
-                        border: none;
-                    }
-                }
             }
 
             &__header {
@@ -415,7 +413,6 @@
         }
 
         &__header {
-
             @include size(height, 200);
 
             h1 {
@@ -423,22 +420,18 @@
                 top: 50%;
                 transform: translateY(-50%);
             }
-
         }
 
         .page {
             &__header {
-
                 &__title,
                 &__tagline {
-
                     text-align: center;
                     display: block;
                     text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
                     color: $white;
                     font-weight: 600;
                     font-style: italic;
-
                 }
 
                 &__title {
