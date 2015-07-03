@@ -500,13 +500,19 @@
 }
 
 @media only screen and (min-width: 500px) {
-    .page--home .page {
-        &__header__title  {
-            @include size(font-size, 35);
+    .page--home {
+        &.page__content-wrapper {
+            padding-top: 19%;
         }
 
-        &__main-content {
-            margin-top: 0;
+        .page {
+            &__header__title  {
+                @include size(font-size, 35);
+            }
+
+            &__main-content {
+                margin-top: 0;
+            }
         }
     }
 }
@@ -547,18 +553,17 @@
     .page--home .page__header__title  {
         @include size(font-size, 80);
     }
-
-    .page--home {
-         &.page__content-wrapper {
-            @include size(padding-top, 60);
-        }
-    }
-
 }
 
 @media only screen and (min-width: 1000px) {
     .page--home .page__header__title  {
         @include size(font-size, 80);
+    }
+
+    .page--home {
+         &.page__content-wrapper {
+              padding-top: 22%;
+        }
     }
 
 }
