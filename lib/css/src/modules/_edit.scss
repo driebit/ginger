@@ -7,7 +7,7 @@
 
     .widget {
         background: none;
-        border: solid 1px red;
+        border: solid 1px $mainThemeColor;
     }
 
     .widget ul.nav-tabs li.active > a {
