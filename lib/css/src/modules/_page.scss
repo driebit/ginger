@@ -276,14 +276,6 @@
             &__wrapper {
                 @include size(margin-left, -30);
                 @include size(margin-right, -30);
-
-                #comments-area {
-                    border-bottom: none;
-
-                    h2 {
-                        border: none;
-                    }
-                }
             }
 
             &__header {
