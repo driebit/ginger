@@ -14,7 +14,9 @@
                 {% include "_action_ginger_connection.tpl" callback='zAdminConnectDone' newtab='false' category='location' predicate='located_in' new_rsc_title=_'Location' tab='find' %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.located_in.id] %}
 
-                {% include "_admin_edit_content_date_range.tpl" show_header is_editable %}
+                {% if m.rsc[id.category_id].name != "person" %}
+                    {% include "_admin_edit_content_date_range.tpl" show_header is_editable %}
+                {% endif %}
 
             </section>
         {% endif %}
