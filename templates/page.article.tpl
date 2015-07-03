@@ -18,12 +18,6 @@
 
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
-                    {% if article.summary %}
-                        <div class="page__content__intro">
-                            {{ article.summary }}
-                        </div>
-                    {% endif %}
-
                     {% block metadata %}
                         {%
                             include "_metadata.tpl" role="Auteur" person=article.author
@@ -33,6 +27,12 @@
                                 ]
                             %}
                     {% endblock %}
+
+                    {% if article.summary %}
+                        <div class="page__content__intro">
+                            {{ article.summary }}
+                        </div>
+                    {% endif %}
 
                     <div class="page__content__body">
                         {{ article.body|show_media }}
