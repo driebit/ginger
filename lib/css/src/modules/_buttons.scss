@@ -84,7 +84,18 @@
     /* button/link to jump to comments */
     &--anchor {
         &:after {
-            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true)
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true);
+        }
+
+        &:hover {
+            background-color: $mainThemeColor;
+            color: $white;
+
+            &:after {
+                content: '';
+                display: block;
+                @include combinedSvgPngBackground('/lib/images/icon_arrow-down_FFFFFF', true);
+            }
         }
     }
 
@@ -98,14 +109,14 @@
 
 /* Buttons in login modal */
 
-.nav-pills > li.active > a, 
+.nav-pills > li.active > a,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
     @extend .ginger-btn-pill--primary;
 }
 
 .nav-pills > li > a {
-    @extend .ginger-btn-pill;   
+    @extend .ginger-btn-pill;
 }
 
 .btn-primary {
@@ -113,7 +124,5 @@
 }
 
 .btn-default {
-    @extend .ginger-btn-pill--secondary;   
+    @extend .ginger-btn-pill--secondary;
 }
-
-
