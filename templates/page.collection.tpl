@@ -39,7 +39,7 @@
                             showMoreQueryRsc=m.rsc.le_all_events
                         %}
                     {% else %}
-                        {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="" %}
+                        {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="Andere objecten" %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
