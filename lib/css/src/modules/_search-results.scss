@@ -6,6 +6,8 @@
         margin: 0 auto;
         @include size(margin-bottom, 50);
         @include size(margin-top, 50);
+
+        border: 2px solid red;
     }
 
     &__query {

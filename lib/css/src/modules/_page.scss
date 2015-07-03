@@ -94,8 +94,8 @@
         }
 
         &__intro {
-            @include size(font-size, 22);
-            @include size(line-height, 26);
+            @include size(font-size, 20);
+            @include size(line-height, 28);
             margin-bottom: 1em;
 
             p:last-child {

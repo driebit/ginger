@@ -19,13 +19,23 @@
                     <h1 class="page__content__title">{{ article.title }}</h1>
 
                     {% block metadata %}
-                        {%
-                            include "_metadata.tpl" role="Auteur" person=article.author
-                                links=[
-                                    [m.comment.rsc[id]|length ++ " reacties", "#comments", "anchor"],
-                                    ["Delen"                        , "#share"   , "secondary"]
-                                ]
-                            %}
+                        {% if m.comment.rsc[id]|length > 0 %}
+                            {%
+                                include "_metadata.tpl" role="Auteur" person=article.author
+                                    links=[
+                                        [m.comment.rsc[id]|length ++ " reacties", "#comments", "anchor"],
+                                        ["Delen"                                , "#share"   , "secondary"]
+                                    ]
+                                %}
+                        {% else %}
+                            {%
+                                include "_metadata.tpl" role="Auteur" person=article.author
+                                    links=[
+                                        ["reacties", "#comments", "anchor"],
+                                        ["Delen"   , "#share"   , "secondary"]
+                                    ]
+                                %}
+                        {% endif %}
                     {% endblock %}
 
                     {% if article.summary %}
