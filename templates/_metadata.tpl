@@ -37,15 +37,11 @@
 
     {% if m.acl.user %}
         {% with m.acl.user as user %}
-            {% if id.o.author.id == user.id %}
-                <a class="ginger-btn-pill--secondary" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
-            {% else  %}
-                {% with id.creator_id as creator %}
-                    {% if creator == user.id %}
-                        <a class="ginger-btn-pill--secondary" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
-                    {% endif %}
-                {% endwith %}
+        {% with id.creator_id as creator %}
+            {% if id.o.author.id == user.id or creator == user.id %}
+                <a class="ginger-btn-pill--secondary" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>                
             {% endif %}
+        {% endwith %}
         {% endwith %}
     {% endif %}
 </div>
