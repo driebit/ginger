@@ -413,7 +413,6 @@
         }
 
         &__header {
-
             @include size(height, 200);
 
             h1 {
@@ -421,22 +420,18 @@
                 top: 50%;
                 transform: translateY(-50%);
             }
-
         }
 
         .page {
             &__header {
-
                 &__title,
                 &__tagline {
-
                     text-align: center;
                     display: block;
                     text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
                     color: $white;
                     font-weight: 600;
                     font-style: italic;
-
                 }
 
                 &__title {

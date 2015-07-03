@@ -33,13 +33,13 @@
                         {% include "_correlated-items.tpl"
                             items=id.o.haspart|slice:[1,10]
                             showMetaData="date"
-                            title="Andere objecten"
+                            title="Gerelateerd"
                             variant="related"
                             showMoreLabel="Toon alle"
                             showMoreQueryRsc=m.rsc.le_all_events
                         %}
                     {% else %}
-                        {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="Andere objecten" %}
+                        {% include "_correlated-items.tpl" items=id.o.haspart showMetaData="date" title="Gerelateerd" %}
                     {% endif %}
                 {% endif %}
             {% endblock %}
