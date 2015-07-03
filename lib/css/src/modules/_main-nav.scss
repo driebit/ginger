@@ -173,7 +173,7 @@
 
         a {
             display: block;
-            @include size(padding, 12, 24);
+            @include size(padding, 12, 14);
             transition: background 250ms linear;
             text-align: left;
 
@@ -200,6 +200,10 @@
         transition: all 250ms ease-out;
         background-color: $white;
         z-index: 500;
+
+        .ginger-search_form-group {
+           @include size(height, 70);
+        }
 
         #search-form {
             float: none !important;
