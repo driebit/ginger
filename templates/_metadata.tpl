@@ -27,14 +27,6 @@
         </ul>
     {% endif %}
 
-    {% if id.category_id.name == m.rsc.person.name%}
-        {% if m.rsc[id].is_editable %}
-            {% block person_edit_button %}
-                <a class="ginger-btn-pill--secondary" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
-            {% endblock %}
-        {% endif %}
-    {% endif %}
-
     {% if m.acl.user %}
         {% with m.acl.user as user %}
         {% with id.creator_id as creator %}
