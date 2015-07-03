@@ -21,4 +21,8 @@
         font-weight: normal;
         color: #555;
     }
+
+    .has-error .form-control {
+        border-color: #EE3399;
+    }
 }
