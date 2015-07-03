@@ -310,11 +310,11 @@
     &__toggle-search {
         a {
             &:after {
-                @include combinedSvgPngBackground('/lib/images/icon_toggle-search_0087D2');
+                @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
             }
 
             &:hover:after {
-                @include combinedSvgPngBackground('/lib/images/icon_toggle-search_FFFFFF', true);
+                @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
             }
         }
     }

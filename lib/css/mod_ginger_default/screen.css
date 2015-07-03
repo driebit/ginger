@@ -53,6 +53,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   font-size: 1.4rem;
   text-transform: uppercase;
   border: none;
+  cursor: pointer;
   /* 'primary' variant of ginger-btn-pill */
   /* 'secondary' variant of ginger-btn-pill */
   /* button/link to jump to comments */
@@ -91,6 +92,8 @@ h1, h2, h3, h4, p, ol, ul, table {
     background: #FFF;
     color: #0087D2;
     border: 1px solid #CFCCD0; }
+    .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover {
+      border-color: #0087D2; }
   .ginger-btn-pill--anchor:after {
     background-image: url(/lib/images/icon_arrow-down_0087D2.png);
     background-image: url(/lib/images/icon_arrow-down_0087D2.svg?embed), none; }
@@ -702,11 +705,11 @@ h1, h2, h3, h4, p, ol, ul, table {
       .main-nav__toggle-search a:hover, .main-nav__toggle-menu a:hover {
         background-color: #0087D2; }
   .main-nav__toggle-search a:after {
-    background-image: url(/lib/images/icon_toggle-search_0087D2.png);
-    background-image: url(/lib/images/icon_toggle-search_0087D2.svg), none; }
+    background-image: url(/lib/images/icon_search_0087D2.png);
+    background-image: url(/lib/images/icon_search_0087D2.svg), none; }
   .main-nav__toggle-search a:hover:after {
-    background-image: url(/lib/images/icon_toggle-search_FFFFFF.png);
-    background-image: url(/lib/images/icon_toggle-search_FFFFFF.svg?embed), none; }
+    background-image: url(/lib/images/icon_search_FFFFFF.png);
+    background-image: url(/lib/images/icon_search_FFFFFF.svg?embed), none; }
   .main-nav__toggle-menu a:after {
     background-image: url(/lib/images/icon_toggle-menu_0087D2.png);
     background-image: url(/lib/images/icon_toggle-menu_0087D2.svg), none; }
@@ -1042,7 +1045,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   top: 0px;
   left: 0;
   width: 100%;
-  background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
+  background: #FFF url(/lib/images/bg_rectangle.png?embed) top center repeat;
   max-height: 650px;
   max-height: 65rem;
   padding-top: 50%;
@@ -1054,7 +1057,7 @@ h1, h2, h3, h4, p, ol, ul, table {
           transform: translateX(0); }
 .page__content-wrapper {
   position: relative;
-  padding-top: 22%; }
+  padding-top: 300px; }
 .page__main-content {
   position: relative;
   z-index: 100;
@@ -1452,6 +1455,8 @@ h1, h2, h3, h4, p, ol, ul, table {
     font-size: 4.5rem; } }
 
 @media only screen and (min-width: 700px) {
+  .page__content-wrapper {
+    padding-top: 22%; }
   .page--home .page__header__title {
     font-size: 50px;
     font-size: 5rem; }
@@ -1573,3 +1578,46 @@ h1, h2, h3, h4, p, ol, ul, table {
 .query-results__no-results {
   width: 100%;
   text-align: center; }
+
+.ginger-edit {
+  background: #fff; }
+  .ginger-edit .navbar-savebuttons {
+    padding: 20px 0; }
+  .ginger-edit .widget {
+    background: none;
+    border: solid 1px #0087D2; }
+  .ginger-edit .widget ul.nav-tabs li.active > a {
+    background-image: none;
+    border: none; }
+  .ginger-edit .nav-tabs > li {
+    margin-bottom: 0px; }
+  .ginger-edit .widget .widget-header {
+    background-image: none;
+    font-size: 16px;
+    font-size: 1.6rem; }
+    .ginger-edit .widget .widget-header .z-icon-plus {
+      top: 5px;
+      position: relative; }
+  .ginger-edit .aside_block {
+    margin-top: 20px; }
+  .ginger-edit .keyword-button_title {
+    margin-left: 15px;
+    cursor: default; }
+  .ginger-edit .sortable .btn-default, .ginger-edit .meta-data .btn-default {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 0px; }
+  .ginger-edit .unlink-wrapper {
+    margin-top: 20px; }
+  .ginger-edit .meta-data .btn-default {
+    background-color: #d0d2d3;
+    position: relative;
+    right: -1px; }
+  .ginger-edit .meta-extra {
+    margin-bottom: 20px; }
+
+.ginger-edit__save {
+  float: right; }
+

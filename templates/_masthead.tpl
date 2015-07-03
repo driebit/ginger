@@ -13,6 +13,7 @@
         ></div>
     {% else %}
         {% if first_media_id or icon_id%}
+
             {% with m.rsc[first_media_id]|default:m.rsc[icon_id] as dep_rsc %}
                 
                 {% if dep_rsc and dep_rsc.is_a.image %}

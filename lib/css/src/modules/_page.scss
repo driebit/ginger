@@ -4,7 +4,7 @@
         top: 0px;
         left: 0;
         width: 100%;
-        background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
+        background: #FFF url(/lib/images/bg_rectangle.png?embed) top center repeat;
         @include size(max-height, 650);
         padding-top: 50%;
         @include size(min-height, 300);
@@ -14,7 +14,7 @@
 
     &__content-wrapper {
         position: relative;
-        padding-top: 22%;
+        padding-top: 300px;
     }
 
     &__main-content {
@@ -524,6 +524,12 @@
 }
 
 @media only screen and (min-width: 700px) {
+    .page {
+        &__content-wrapper {
+            padding-top: 22%;
+        }
+    }
+
     .page--home {
 
         .page {
