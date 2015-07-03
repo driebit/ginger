@@ -26,4 +26,28 @@
             {% endfor %}
         </ul>
     {% endif %}
+
+    {% if id.category_id.name == m.rsc.person.name%}
+        {% if m.rsc[id].is_editable %}
+            {% block person_edit_button %}
+                <a class="btn btn-default person_edit_button" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
+            {% endblock %}
+        {% endif %}
+    {% endif %}
+
+
+    {% if id.o.author %}
+        {% with m.rsc[id.o.author.id] as author %}
+            {% if author.id > 1 %}
+                <a class="btn btn-default person_edit_button" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
+            {% endif %}
+        {% endwith %}
+    {% else %}
+        asdfasdf
+        {% with m.rsc[id.creator_id] as creator %}
+            {% if creator.id > 1 %}
+                <a class="btn btn-default person_edit_button" href="/edit/{{ m.rsc[id].id }}">{_ Bewerk _}</a>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
 </div>

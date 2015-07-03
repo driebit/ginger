@@ -1,8 +1,6 @@
 #comments-area {
     @include size(padding-left, 30);
     @include size(padding-right, 30);
-    border-bottom: 5px solid $bodyBgColor;
-
 
     h2 {
         @include size(padding, 18, 0, 18, 30);
@@ -10,9 +8,9 @@
         @include size(font-size, 15);
         @include size(line-height, 19);
         font-weight: 600;
-        border-top: 5px solid $bodyBgColor;
-        border-bottom: 5px solid $bodyBgColor;
         @include size(margin, 0, -30, 18);
+        text-align: center;
+        font-family: Serifa, sans-serif;
     }
 
     .btn {
@@ -20,7 +18,11 @@
     }
 
     label {
-        text-transform: uppercase;
+        font-weight: normal;
         color: #555;
+    }
+
+    .has-error .form-control {
+        border-color: #EE3399;
     }
 }

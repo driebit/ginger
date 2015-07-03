@@ -53,6 +53,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   font-size: 1.4rem;
   text-transform: uppercase;
   border: none;
+  cursor: pointer;
   /* 'primary' variant of ginger-btn-pill */
   /* 'secondary' variant of ginger-btn-pill */
   /* button/link to jump to comments */
@@ -91,6 +92,8 @@ h1, h2, h3, h4, p, ol, ul, table {
     background: #FFF;
     color: #0087D2;
     border: 1px solid #CFCCD0; }
+    .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover {
+      border-color: #0087D2; }
   .ginger-btn-pill--anchor:after {
     background-image: url(/lib/images/icon_arrow-down_0087D2.png);
     background-image: url(/lib/images/icon_arrow-down_0087D2.svg?embed), none; }
@@ -524,18 +527,20 @@ h1, h2, h3, h4, p, ol, ul, table {
           margin-right: 8px;
           margin-right: 0.8rem;
           color: #8d8d8d; }
-      .main-nav__off-canvas .main-nav__actions__language a {
-        line-height: initial; }
-        .main-nav__off-canvas .main-nav__actions__language a:hover {
-          text-decoration: none; }
-          .main-nav__off-canvas .main-nav__actions__language a:hover span {
+      .main-nav__off-canvas .main-nav__actions__language {
+        white-space: nowrap; }
+        .main-nav__off-canvas .main-nav__actions__language a {
+          line-height: initial; }
+          .main-nav__off-canvas .main-nav__actions__language a:hover {
+            text-decoration: none; }
+            .main-nav__off-canvas .main-nav__actions__language a:hover span {
+              text-decoration: underline; }
+          .main-nav__off-canvas .main-nav__actions__language a:before {
+            content: '/ '; }
+          .main-nav__off-canvas .main-nav__actions__language a:first-child:before {
+            content: ''; }
+          .main-nav__off-canvas .main-nav__actions__language a.active span {
             text-decoration: underline; }
-        .main-nav__off-canvas .main-nav__actions__language a:before {
-          content: '/ '; }
-        .main-nav__off-canvas .main-nav__actions__language a:first-child:before {
-          content: ''; }
-        .main-nav__off-canvas .main-nav__actions__language a.active span {
-          text-decoration: underline; }
     .main-nav__off-canvas.is-shown {
       -webkit-transform: translateX(0);
           -ms-transform: translateX(0);
@@ -700,11 +705,11 @@ h1, h2, h3, h4, p, ol, ul, table {
       .main-nav__toggle-search a:hover, .main-nav__toggle-menu a:hover {
         background-color: #0087D2; }
   .main-nav__toggle-search a:after {
-    background-image: url(/lib/images/icon_toggle-search_0087D2.png);
-    background-image: url(/lib/images/icon_toggle-search_0087D2.svg), none; }
+    background-image: url(/lib/images/icon_search_0087D2.png);
+    background-image: url(/lib/images/icon_search_0087D2.svg), none; }
   .main-nav__toggle-search a:hover:after {
-    background-image: url(/lib/images/icon_toggle-search_FFFFFF.png);
-    background-image: url(/lib/images/icon_toggle-search_FFFFFF.svg?embed), none; }
+    background-image: url(/lib/images/icon_search_FFFFFF.png);
+    background-image: url(/lib/images/icon_search_FFFFFF.svg?embed), none; }
   .main-nav__toggle-menu a:after {
     background-image: url(/lib/images/icon_toggle-menu_0087D2.png);
     background-image: url(/lib/images/icon_toggle-menu_0087D2.svg), none; }
@@ -733,6 +738,7 @@ h1, h2, h3, h4, p, ol, ul, table {
       width: 100%;
       top: 0;
       left: 0;
+      transition: none;
       -webkit-transform: translateX(0);
           -ms-transform: translateX(0);
               transform: translateX(0);
@@ -827,6 +833,7 @@ h1, h2, h3, h4, p, ol, ul, table {
     width: 100%;
     top: 0;
     left: 0;
+    transition: none;
     -webkit-transform: translateX(0);
         -ms-transform: translateX(0);
             transform: translateX(0);
@@ -1038,7 +1045,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   top: 0px;
   left: 0;
   width: 100%;
-  background: #FFF url(/lib/images/bg_rectangle.png?embed) top left repeat;
+  background: #FFF url(/lib/images/bg_rectangle.png?embed) top center repeat;
   max-height: 650px;
   max-height: 65rem;
   padding-top: 50%;
@@ -1050,7 +1057,7 @@ h1, h2, h3, h4, p, ol, ul, table {
           transform: translateX(0); }
 .page__content-wrapper {
   position: relative;
-  padding-top: 22%; }
+  padding-top: 300px; }
 .page__main-content {
   position: relative;
   z-index: 100;
@@ -1102,6 +1109,7 @@ h1, h2, h3, h4, p, ol, ul, table {
       display: block;
       background-image: url(/lib/images/arrow-fold-content-out.png);
       background-image: url(/lib/images/arrow-fold-content-out.svg?embed), none;
+      background-size: 35px 16px;
       background-color: #FFF;
       background-position: center;
       background-repeat: no-repeat;
@@ -1128,6 +1136,9 @@ h1, h2, h3, h4, p, ol, ul, table {
     margin-bottom: 1em; }
     .page__content__intro p:last-child {
       margin-bottom: 0; }
+  .page__content__body ul {
+    margin-left: 20px;
+    margin-left: 2rem; }
   .page__content__about {
     position: relative;
     border-top: 3px dotted #DDD;
@@ -1253,10 +1264,13 @@ h1, h2, h3, h4, p, ol, ul, table {
     margin-left: -3rem;
     margin-right: -30px;
     margin-right: -3rem; }
+    .page__content__comments__wrapper #comments-area {
+      border-bottom: none; }
+      .page__content__comments__wrapper #comments-area h2 {
+        border: none; }
   .page__content__comments__header {
     position: relative;
     border-top: 5px solid #EBEBEB;
-    border-bottom: 5px solid #EBEBEB;
     padding: 18px 0px 18px 56px;
     padding: 1.8rem 0rem 1.8rem 5.6rem;
     text-transform: uppercase;
@@ -1401,9 +1415,6 @@ h1, h2, h3, h4, p, ol, ul, table {
   font-size: 2.2rem;
   line-height: 26px;
   line-height: 2.6rem; }
-  .page--home .page__content__body ul {
-    margin-left: 20px;
-    margin-left: 2rem; }
 .page--home .page__links li {
   display: inline-block;
   list-style-type: none;
@@ -1430,6 +1441,8 @@ h1, h2, h3, h4, p, ol, ul, table {
     font-size: 5rem; } }
 
 @media only screen and (min-width: 500px) {
+  .page--home.page__content-wrapper {
+    padding-top: 19%; }
   .page--home .page__header__title {
     font-size: 35px;
     font-size: 3.5rem; }
@@ -1442,6 +1455,8 @@ h1, h2, h3, h4, p, ol, ul, table {
     font-size: 4.5rem; } }
 
 @media only screen and (min-width: 700px) {
+  .page__content-wrapper {
+    padding-top: 22%; }
   .page--home .page__header__title {
     font-size: 50px;
     font-size: 5rem; }
@@ -1462,15 +1477,14 @@ h1, h2, h3, h4, p, ol, ul, table {
 @media only screen and (min-width: 900px) {
   .page--home .page__header__title {
     font-size: 80px;
-    font-size: 8rem; }
-  .page--home.page__content-wrapper {
-    padding-top: 60px;
-    padding-top: 6rem; } }
+    font-size: 8rem; } }
 
 @media only screen and (min-width: 1000px) {
   .page--home .page__header__title {
     font-size: 80px;
-    font-size: 8rem; } }
+    font-size: 8rem; }
+  .page--home.page__content-wrapper {
+    padding-top: 22%; } }
 
 @media only screen and (min-width: 1024px) {
   .page__masthead {
@@ -1562,4 +1576,48 @@ h1, h2, h3, h4, p, ol, ul, table {
   margin-right: auto;
   text-align: center; }
 .query-results__no-results {
+  width: 100%;
   text-align: center; }
+
+.ginger-edit {
+  background: #fff; }
+  .ginger-edit .navbar-savebuttons {
+    padding: 20px 0; }
+  .ginger-edit .widget {
+    background: none;
+    border: solid 1px #0087D2; }
+  .ginger-edit .widget ul.nav-tabs li.active > a {
+    background-image: none;
+    border: none; }
+  .ginger-edit .nav-tabs > li {
+    margin-bottom: 0px; }
+  .ginger-edit .widget .widget-header {
+    background-image: none;
+    font-size: 16px;
+    font-size: 1.6rem; }
+    .ginger-edit .widget .widget-header .z-icon-plus {
+      top: 5px;
+      position: relative; }
+  .ginger-edit .aside_block {
+    margin-top: 20px; }
+  .ginger-edit .keyword-button_title {
+    margin-left: 15px;
+    cursor: default; }
+  .ginger-edit .sortable .btn-default, .ginger-edit .meta-data .btn-default {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 0px; }
+  .ginger-edit .unlink-wrapper {
+    margin-top: 20px; }
+  .ginger-edit .meta-data .btn-default {
+    background-color: #d0d2d3;
+    position: relative;
+    right: -1px; }
+  .ginger-edit .meta-extra {
+    margin-bottom: 20px; }
+
+.ginger-edit__save {
+  float: right; }
+

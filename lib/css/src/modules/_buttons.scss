@@ -6,6 +6,7 @@
     @include size(font-size, 14);
     text-transform: uppercase;
     border: none;
+    cursor: pointer;
 
     &:hover,
     &:active,
@@ -74,6 +75,10 @@
         background: $white;
         color: $pillBtnColor;
         border: 1px solid $pillBtnBorder;
+
+        &:hover {
+            border-color: $pillBtnColor;
+        }
     }
 
     /* button/link to jump to comments */
