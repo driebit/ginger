@@ -8,7 +8,7 @@ informal: greet user by on first name basis
 greeting: label that greets logged in user
 #}
 
-<div id="nav-logon" class="nav-logon btn btn-sm">
+<div id="nav-logon" class="nav-logon">
     {% with m.rsc[id].uri as page %}
         {% if m.acl.user %}
             <a href="{{ m.rsc[m.acl.user].page_url }}">

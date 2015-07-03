@@ -4,7 +4,7 @@
 
     {% with
         class|default:"main-nav__login-register-button",
-        icon|default:"glyphicon glyphicon-log-in",
+        icon|if_undefined:"glyphicon glyphicon-log-in",
         icon_before,
         label|default:_"logon/signup"
     as
@@ -18,11 +18,17 @@
         "css/logon.css"
     %}
 
-    {% if icon_before %}
-        <a class="{{ class }}" id="{{ #signup }}" href="#"><span class="{{ icon }}"></span> {{ label }}</a>
+    <a class="{{ class }}" id="{{ #signup }}" href="#">
+    {% if icon %}
+        {% if icon_before %}
+            <span class="{{ icon }}"></span> {{ label }}
+        {% else %}
+            {{ label }}<span class="{{ icon }}"></span>
+        {% endif %}
     {% else %}
-        <a class="{{ class }}" id="{{ #signup }}" href="#">{{ label }}<span class="{{ icon }}"></span></a>
+        {{ label }}
     {% endif %}
+    </a>
 
     {% wire
         id=#signup
