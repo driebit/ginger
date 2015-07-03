@@ -17,25 +17,25 @@
                     <button type="button" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>
 
                     <h1 class="page__content__title">{{ event.title }}</h1>
-
+                    
                     {% block organizer %}
-                        {% with event.organized_by as organizer %}
+                        {% with event.organised_by as organiser %}
                             {%
-                                include "_metadata.tpl" person=organizer role="Organisator"
+                                include "_metadata.tpl" person=organiser role="Organisator"
                                     links=[['Aanmelden', '#signup', 'primary']]
                             %}
                         {% endwith %}
-                    {% endblock %}
+                    {% endblock %} 
 
                     {% block venue %}
                         {% with event.located_in as location %}
-                            {% include "_about.location.tpl" title="Locatie" location=event.located_in %}
+                            {% include "_about_location.tpl" title="Locatie" location=event.located_in %}
                         {% endwith %}
                     {% endblock %}
 
                     {% block attendees %}
                         {% with event.s.participant as participants %}
-                            {% include "_about.people.tpl" title="Deelnemers" people=participants %}
+                            {% include "_about_people.tpl" title="Deelnemers" people=participants %}
                         {% endwith %}
                     {% endblock %}
 

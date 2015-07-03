@@ -10,7 +10,9 @@
             {% if location.address_street_2 %}
                 {{ location.address_street_2 }}
             {% endif %}
-            ,
+            {% if location.address_street_1 or location.address_street_2 %}
+                ,
+            {% endif %}
             {% if location.address_postcode %}
                 {{ location.address_postcode }}
             {% endif %}
