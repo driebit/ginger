@@ -15,7 +15,7 @@
 {% else %}
     <nav class="ginger-pagination">
         {% if prev_url %}
-            <a href="{{ prev_url }}" class="ginger-pagination__previous">Vorige</a>
+            <a href="{{ prev_url }}" class="ginger-pagination__previous">{_ Vorige _}</a>
         {% endif %}
 
         <ol class="ginger-pagination__pages">
@@ -29,7 +29,7 @@
         </ol>
 
         {% if next_url %}
-            <a href="{{ next_url }}" class="ginger-pagination__next">Volgende</a>
+            <a href="{{ next_url }}" class="ginger-pagination__next">{_ Volgende _}</a>
         {% endif %}
     </nav>
 {% endif %}

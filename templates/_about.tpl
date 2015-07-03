@@ -1,3 +1,4 @@
+{# Volgens mij kan deze weg, wordt nergens gebruikt #}
 <div class="page__content__about--location">
         <h3 class="page__content__about__header">Locatie</h3>
         <p class="page__content__about__content">

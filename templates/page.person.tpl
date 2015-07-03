@@ -44,28 +44,28 @@
                     <ul class="page__content__person-details">
                         {% if person.email %}
                             <li class="page__content__person-detail--email">
-                                <span class="page__content__person-detail__label">E-mail</span>
+                                <span class="page__content__person-detail__label">{_ E-mail _}</span>
                                 <a class="page__content__person-detail__value" href="mailto:{{ person.email }}">{{ person.email }}</a>
                             </li>
                         {% endif %}
 
                         {% if person.website %}
                             <li class="page__content__person-detail--website">
-                                <span class="page__content__person-detail__label">Website</span>
+                                <span class="page__content__person-detail__label">{_ Website _}</span>
                                 <a class="page__content__person-detail__value" href="{{ person.website }}">{{ person.website }}</a>
                             </li>
                         {% endif %}
 
                         {% if person.phone %}
                             <li class="page__content__person-detail--phone">
-                                <span class="page__content__person-detail__label">Telefoon</span>
+                                <span class="page__content__person-detail__label">{_ Telefoon _}</span>
                                 <a class="page__content__person-detail__value" href="tel:{{ person.phone }}">{{ person.phone }}</a>
                             </li>
                         {% endif %}
 
                         {% if person.phone_mobile %}
                             <li class="page__content__person-detail--mobile">
-                                <span class="page__content__person-detail__label">Mobiel</span>
+                                <span class="page__content__person-detail__label">{_ Mobiel _}</span>
                                 <a class="page__content__person-detail__value" href="tel:{{ person.phone_mobile }}">{{ person.phone_mobile }}</a>
                             </li>
                         {% endif %}

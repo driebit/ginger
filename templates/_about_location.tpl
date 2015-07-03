@@ -23,7 +23,7 @@
 
         {% if location.location_lat and location.location_lng %}
             <p class="page__content__about__link">
-                <a href="http://maps.google.com/maps?q=loc:{{ location.location_lat }}+{{ location.location_lng }}" target="_blank">Toon kaart</a>
+                <a href="http://maps.google.com/maps?q=loc:{{ location.location_lat }}+{{ location.location_lng }}" target="_blank">{_ Toon kaart _}</a>
             </p>
         {% endif %}
     </div>

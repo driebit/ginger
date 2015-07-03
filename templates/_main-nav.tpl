@@ -21,12 +21,12 @@
     </div>
 
     <ul class="main-nav__actions">
-        <li class="main-nav__toggle-search"><a href="#main-nav__search-form">Zoek</a></li>
-        <li class="main-nav__toggle-menu"><a href="#navigation">Toggle menu</a></li>
+        <li class="main-nav__toggle-search"><a href="#main-nav__search-form">{_ Zoek _}</a></li>
+        <li class="main-nav__toggle-menu"><a href="#navigation">{_ Toggle menu _}</a></li>
     </ul>
 
     <div class="main-nav__search">
         {% include "_search_form.tpl" identifier="main-nav" %}
-        <button class="main-nav__search__close-btn" type="button">Sluiten</button>
+        <button class="main-nav__search__close-btn" type="button">{_ Sluiten _}</button>
     </div>
 </nav>

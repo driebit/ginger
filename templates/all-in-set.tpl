@@ -9,7 +9,7 @@
 
                 {% include "_correlated-items.tpl" items=result title="" %}
             {% else %}
-                <p class="query-results__no-results">Geen artikelen</p>
+                <p class="query-results__no-results">{_ Geen resultaten _}</p>
             {% endif %}
         {% endwith %}
 
@@ -20,7 +20,7 @@
 
                 {% include "_correlated-items.tpl" items=result title="" %}
             {% else %}
-                <p class="query-results__no-results">Geen artikelen</p>
+                <p class="query-results__no-results">{_ Geen resultaten _}</p>
             {% endif %}
         {% endwith %}
     {% endif %}
