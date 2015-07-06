@@ -1,2 +1,8 @@
 msgid "logon/signup"
 msgstr "Log in / registreer"
+
+msgid "male"
+msgstr "man"
+
+msgid "female"
+msgstr "vrouw"
