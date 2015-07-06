@@ -23,17 +23,7 @@ msgid ""
 " to "
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:42 
-msgid ""
-"6 characters or more."
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:32 
-msgid ""
-"A valid email addres"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:32 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:34 
 msgid ""
 "About"
 msgstr ""
@@ -68,7 +58,7 @@ msgid ""
 "Basic"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:37 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:37 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:30 
 msgid ""
 "Cancel"
 msgstr ""
@@ -103,16 +93,6 @@ msgid ""
 "Disconnect"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:25 
-msgid ""
-"E-mail"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:19 
-msgid ""
-"E-mail address or username"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:12 
 msgid ""
 "E-mail/User not found"
@@ -126,17 +106,6 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_button.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:7 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:6 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:8 
 msgid ""
 "Edit"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:22 
-msgid ""
-"Email"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:16 
-msgid ""
-"Enter your e-mail address or username below and we will send you an e-mail "
-"with password reset instructions."
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:23 
@@ -157,11 +126,6 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:2 
 msgid ""
 "Find an existing page to connect"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:17 
-msgid ""
-"Forgot my password"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:38 
@@ -214,12 +178,7 @@ msgid ""
 "Location"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:9 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:43 
-msgid ""
-"Log in"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:33 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:31 
 msgid ""
 "Make"
 msgstr ""
@@ -249,14 +208,9 @@ msgid ""
 "Organized by"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:26 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:28 
 msgid ""
 "Part of"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:29 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:38 
-msgid ""
-"Password"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:77 
@@ -264,7 +218,7 @@ msgid ""
 "Postcode"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:38 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:40 
 msgid ""
 "Posted in"
 msgstr ""
@@ -294,11 +248,6 @@ msgid ""
 "Remarks"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:38 
-msgid ""
-"Remember me"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109 
 msgid ""
 "Save"
@@ -324,29 +273,9 @@ msgid ""
 "Search query"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:36 
-msgid ""
-"Send me instructions"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:13 
-msgid ""
-"Sign up"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:48 
-msgid ""
-"Signup"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:81 
 msgid ""
 "State"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:36 
-msgid ""
-"Stay logged on unless I log off."
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:67 
@@ -374,7 +303,7 @@ msgid ""
 "Till"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:22 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:20 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
 msgid ""
 "Title"
 msgstr ""
@@ -434,11 +363,6 @@ msgid ""
 "You need to log on"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:17 
-msgid ""
-"Your name"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:9 
 msgid ""
 "Your new password is too short."
@@ -464,16 +388,6 @@ msgid ""
 "has been disconnected."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_nav_logon.tpl:15 
-msgid ""
-"logon or register"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_nav_logon.tpl:11 
-msgid ""
-"logon/register"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:65 
 msgid ""
 "till"
@@ -492,9 +406,4 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3 
 msgid ""
 "undo"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:26 
-msgid ""
-"user@example.com"
 msgstr ""

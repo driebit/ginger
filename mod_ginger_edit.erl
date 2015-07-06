@@ -9,8 +9,7 @@
 
 -export([
     is_authorized/2,
-    event/2,
-    observe_sanitize_element/3
+    event/2
     ]).
 
 is_authorized(ReqData, Context) ->
@@ -37,11 +36,4 @@ event(#postback_notify{message="feedback", trigger="dialog-connect-find", target
         {remove_class, [{target, TargetId}, {class, "loading"}]},
         {update, [{target, TargetId}, {template, "_action_dialog_connect_tab_find_results.tpl"} | Vars]}
     ], Context).
-
-
-%% @doc Allow iFrame in tinymce
-observe_sanitize_element(#sanitize_element{}, {<<"iframe">>, _Attrs, _Enclosed} = _Element, _Context) ->
-    [];
-observe_sanitize_element(#sanitize_element{}, Element, _Context) ->
-    Element.
 
