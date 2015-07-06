@@ -28,5 +28,5 @@ redirect: URL to redirect to after succesful login
 </ul>
 
 <div id="tab-content" class="tab-content">
-    {% include "_logon_modal.tpl" logon_state="logon" page=redirect %}
+    {% include "_logon_modal.tpl" logon_state=tab page=redirect %}
 </div>
