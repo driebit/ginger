@@ -4,6 +4,10 @@ Params:
 redirect: URL to redirect to after succesful login
 #}
 
+{% lib
+    "css/logon.css"
+%}
+
 <ul class="nav nav-pills">
     {% block tabs %}
         <li {% if tab == "logon" %}class="active"{% endif %}>

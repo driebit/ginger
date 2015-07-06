@@ -14,16 +14,12 @@
         label
     %}
 
-    {% lib
-        "css/logon.css"
-    %}
-
     <a class="{{ class }}" id="{{ #signup }}" href="#">
     {% if icon %}
         {% if icon_before %}
             <span class="{{ icon }}"></span> {{ label }}
         {% else %}
-            {{ label }}<span class="{{ icon }}"></span>
+            {{ label }} <span class="{{ icon }}"></span>
         {% endif %}
     {% else %}
         {{ label }}
