@@ -1,7 +1,5 @@
 {# Override template to use Ginger delegate for handling post-logon continuation actions #}
 
-<iframe src="/lib/images/spinner.gif" id="logonTarget" name="logonTarget" style="display:none"></iframe>
-
 {% if use_wire %}
     {#
         Use a wired postback when we are not using the default logon page with
