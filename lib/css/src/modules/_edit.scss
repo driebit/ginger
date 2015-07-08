@@ -70,7 +70,15 @@
     float: right;
 }
 
-.ginger-edit__cancel,
-.ginger-edit__delete {
-    
+
+.btn.ginger-edit-save {
+    @extend .ginger-btn-pill--primary;
+}
+
+.btn.ginger-edit-cancel {
+    @extend .ginger-btn-pill--secondary;
+}
+
+.btn.ginger-edit-delete {
+    @extend .ginger-btn-pill--secondary;
 }
