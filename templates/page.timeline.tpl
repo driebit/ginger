@@ -57,9 +57,10 @@
         
     	createStoryJS({
     		type:                 'timeline',
+            lang:                 '{{ z_language }}',
     		width:                '100%',
     		height:               '600',
-            js:                   '/lib/js/timeline-min.js',
+            js:                   '/lib/js/timeline.js',
             css:                  '/lib/css/timeline.css',
     		source:               dataObject,
     		embed_id:             'my-timeline',
