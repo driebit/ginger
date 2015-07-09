@@ -742,7 +742,32 @@ body .admin-logon {
 }
 
 ul.tree-list li.menu-item .z-icon-drag {
-  left: 15px;
+    left: 15px;
 }
 
 /* / Ginger */
+
+/* Logon */
+
+
+.admin-logon {
+    margin-bottom: 70px;
+    border: none;
+}
+
+.t-login #logon_facebook {
+    max-width: 200px;
+}
+
+.t-login #logon_facebook a {
+    color: #fff;
+}
+
+.t-login .btn-primary {
+    max-width: 200px;
+    background: #666;
+}
+
+.z-logon-support a {
+    color: #333;
+}
