@@ -3,4 +3,4 @@
 
 -mod_title("Ginger default module").
 -mod_description("Provides the default Ginger styling").
--mod_prio(500).
+-mod_prio(100).
