@@ -741,5 +741,8 @@ body .admin-logon {
     right: 8px;
 }
 
+ul.tree-list li.menu-item .z-icon-drag {
+  left: 15px;
+}
 
 /* / Ginger */
