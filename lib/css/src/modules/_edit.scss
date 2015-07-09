@@ -7,7 +7,7 @@
 
     .widget {
         background: none;
-        border: solid 1px red;
+        border: solid 1px $mainThemeColor;
     }
 
     .widget ul.nav-tabs li.active > a {
@@ -70,7 +70,6 @@
     float: right;
 }
 
-.ginger-edit__cancel,
-.ginger-edit__delete {
-    
+ul.tree-list li.menu-item .z-icon-drag {
+  left: 15px;
 }
