@@ -19,10 +19,10 @@
         {% if icon_before %}
             <span class="{{ icon }}"></span> {{ label }}
         {% else %}
-            {{ label }} <span class="{{ icon }}"></span>
+            <span class="{{ icon }}"></span> <span class="main-nav__login-register-button__label">{{ label }}</span> 
         {% endif %}
     {% else %}
-        {{ label }}
+        <span class="main-nav__login-register-button__label">{{ label }}</span>
     {% endif %}
     </a>
 
