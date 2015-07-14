@@ -1,0 +1,29 @@
+%% -*- mode: erlang -*-
+%% Put your dispatch rules here.
+[
+ %% The home page, just shows the "home.tpl" template.
+ {home, [], controller_template, [ {template, "home.tpl"} ]},
+ 
+ %% Normal page to show a resource.
+ {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
+ {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
+
+ %% Simple search page
+ {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
+
+ %% Connections page
+ {connections, ["connections"], controller_template, [ {template, "connections.tpl"} ]},
+
+ %% Match page
+ {match, ["match"], controller_template, [ {template, "match.tpl"} ]},
+
+ %% Activities page
+ {activities, ["activities"], controller_template, [ {template, "activities.tpl"} ]},
+
+ %% close a popup
+ {closepopup, ["closepopup"], controller_template, [ {template, "close_popup.tpl"} ]},
+
+ %% comments overview page
+ {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]}
+
+].
