@@ -14,7 +14,6 @@
         </div>
     </div>
 
-
     {#
 	<div class="row {% block row_class %}{% endblock %}">
 

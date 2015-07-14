@@ -36,7 +36,7 @@
 
 	<body class="{{ id.category.name }} {% block body_class %}{% endblock %}">
 		{% block nav %}
-			{# include "mod_ginger_nav.tpl" #}
+			{% include "global-nav/global-nav.tpl" %}
 		{% endblock %}
 		
 		{% block content %}{% endblock %}
