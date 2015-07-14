@@ -42,3 +42,15 @@ Stop Zotonic: `$ sudo service zotonic stop`.
 Start Zotonic: `$ sudo service zotonic start`.
 
 Start Zotonic in debug mode: `$ zotonic debug`.
+
+Database
+--------
+
+Connect to the database:
+
+```bash
+$ sudo -u postgres psql
+\l
+\c
+```
+
