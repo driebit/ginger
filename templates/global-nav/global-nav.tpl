@@ -1,13 +1,15 @@
 <nav class="global-nav">  
-    {% include "global-logo/global-nav_logo.tpl" %}
+    {% include "global-nav/global-nav__logo.tpl" %}
     
-    {% include "global-menu/global-nav_menu.tpl" %}
+    {% menu id=id %}
     
     {% block nav_actions %}
         <div class="global-nav__actions">
             {% include "login.tpl" %}
-            {% include "language.tpl" %}
-            {% include "global-nav_search.tpl" %}
+            {% include "global-nav/global-nav__actions__profile.tpl" %}
+            {% include "global-nav/global-nav__actions__language.tpl" %}
+            {% include "global-nav/global-nav__actions__search.tpl" %}
+            <a href="" class="global-nav__toggle-menu">Menu</a>
         </div>
     {% endblock %}
 </nav>
