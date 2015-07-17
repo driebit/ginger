@@ -1,6 +1,3 @@
-// TODO: consolidate the styles which contain background images into a single class that will be extended.
-//       This so that the same background image doesn't get embedded multiple times
-
 .global-nav {
     position: fixed;
     @include size(height, $mainNavMobileHeight);
@@ -40,8 +37,11 @@
     display: inline-block;
     @include size(padding-left, 25);
     @include size(padding-right, 24);
-    @include size(margin-top, 5);
-    @include size(height, 50);
+    height: 100%;
+
+    img {
+        @include vertical-align;
+    }
 }
 
 .global-nav__actions {
@@ -163,7 +163,7 @@
     }
 }
 
-.global-nav__pages {
+.global-nav__menu {
     display: block;
 
     li {
@@ -277,62 +277,54 @@
     @include size(margin-right, 5);
 }
 
-.globa-nav__toggle-search,
-.globa-nav__toggle-menu {
-    position: relative;
-    display: inline-block;
+.global-nav__actions__toggle-search,
+.global-nav__actions__toggle-menu {
+    position: absolute;
+    display: block;
+    @include size(width, 40);
+    @include size(height, 40);
+    padding: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid $mainNavActionsSeperator;
+    text-indent: -9999px;
 
-    a {
-        position: relative;
-        display: block;
-        @include size(margin, 8, 5);
-        @include size(width, 40);
-        height: 0;
-        @include size(padding-top, 40);
-        border-radius: 5px;
-        overflow: hidden;
+    &:after {
+        @extend .has-icon;
+        @include size(left, 19);
+        @include size(top, 20);
+        @include size(margin-left, -15);
+        @include size(margin-top, -15);
 
-        &:after {
-            @extend .has-icon;
+        @include size(width, 30);
+        @include size(height, 30);
+        background-size: 22px 22px;
+        background-position: center center;
+    }
 
-            @include size(left, 19);
-            @include size(top, 20);
-            @include size(margin-left, -15);
-            @include size(margin-top, -15);
-
-            @include size(width, 30);
-            @include size(height, 30);
-            background-size: 22px 22px;
-            background-position: center center;
-        }
-
-        &:hover {
-            background-color: $mainThemeColor;
-        }
+    &:hover {
+        background-color: $mainThemeColor;
     }
 }
 
-.global-nav__toggle-search {
-    a {
-        &:after {
-            @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
-        }
+.icon--search {
+    display: block;
+    width: 15px;
+    height: 15px;
+    @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
 
-        &:hover:after {
-            @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
-        }
+    &:hover {
+        @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
     }
 }
 
-.global-nav__toggle-menu {
-    a {
-        &:after {
-            @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2');
-        }
+.global-nav__actions__toggle-menu {
+    &:after {
+        @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2');
+    }
 
-        &:hover:after {
-            @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_FFFFFF', true);
-        }
+    &:hover:after {
+        @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_FFFFFF', true);
     }
 }
 

@@ -35,12 +35,11 @@
 @mixin mq($property, $size) {
     $value: strip-unit($size);
 
-    @media only screen and (#{$property}: #{$size/16}rem) {
+    @media only screen and (#{$property}: #{$value/16}rem) {
         @content;
     }
 }
 
-// Vertical align
 @mixin vertical-align {
     position: relative;
     top: 50%;
@@ -56,24 +55,5 @@
         background-image: url(#{$file}.svg?embed), none;
     } @else {
         background-image: url(#{$file}.svg), none;
-    }
-}
-
-// Grid responsive
-
-@mixin grid($values...) {
-    $max: length($values); 
-
-    lost-column: 1/1;
-
-    @each $map in $values {
-
-        $mapBreakpoint: map-get($map, 'breakpoint');
-        $mapProperty: map-get($map, 'property');
-        $mapColumns: map-get($map, 'columns');
-
-        @include mq(#{$mapProperty}, $mapBreakpoint){
-            lost-column: #{$mapColumns};
-        }
     }
 }
