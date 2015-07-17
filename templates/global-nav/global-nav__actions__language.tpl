@@ -7,6 +7,6 @@
     action={
         dialog_open
         title=_"Taalkeuze"
-        template="global-nav/global-nav__actions__language__modal.tpl"
+        template="language-menu/language-menu.tpl"
     }
 %}

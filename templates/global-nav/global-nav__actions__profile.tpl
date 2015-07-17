@@ -7,6 +7,6 @@
     action={
         dialog_open
         title=_"Profiel"
-        template="global-nav/global-nav__actions__profile__modal.tpl"
+        template="profile-menu/profile-menu.tpl"
     }
-%}
+%} 
