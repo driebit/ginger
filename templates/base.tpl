@@ -46,5 +46,8 @@
 		{% endblock %}
 
 		{% all include "_js_include.tpl" %}
+		{% all include "_scripts.tpl" %}
+
+		{% script %}
 	</body>
 </html>
