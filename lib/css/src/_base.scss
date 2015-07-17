@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: $bodyBgColor;
+    color: $typographyColor;
+    line-height: 1.5;
+    font-family: $bodyFontFamily;
+    font-weight: 300;
+    @include size(font-size, 17);
+}
+
+a, a:hover, a:active {
+    color: $mainThemeColor;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 0;
+}
+
+h1, h2, h3, h4, p, ol, ul, table {
+    margin: 0 0 1em 0;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
