@@ -1,4 +1,4 @@
- <a href="" class="global-nav__actions__toggle-search">
+<a href="#" class="global-nav__actions__toggle-search">
     {_ Zoeken _} <i class="icon--profile"></i>
 </a>
 
@@ -23,4 +23,3 @@
     %}
     <div class="global-nav__actions__search__suggestions" id="global-nav__actions__search__suggestions-{{ identifier }}"></div>
 </form>
-

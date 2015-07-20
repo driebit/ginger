@@ -1,5 +1,5 @@
 <a id="{{ #language }}" href="#" class="global-nav__actions__language">
-    LANG <i class="icon--language"></i>
+    <i class="icon--language"></i> {{ z_language }}
 </a>
 
 {% wire
