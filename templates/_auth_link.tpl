@@ -17,9 +17,9 @@
     <a class="{{ class }}" id="{{ #signup }}" href="#">
     {% if icon %}
         {% if icon_before %}
-            <span class="{{ icon }}"></span> {{ label }}
+            <i class="{{ icon }}"></i> {{ label }}
         {% else %}
-            {{ label }} <span class="{{ icon }}"></span>
+            {{ label }} <i class="{{ icon }}"></i>
         {% endif %}
     {% else %}
         {{ label }}
