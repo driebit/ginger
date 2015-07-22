@@ -1,5 +1,10 @@
+<<<<<<< HEAD
  <a href="" class="global-nav__actions__toggle-search">
     {_ Zoeken _} <i class="icon--search"></i>
+=======
+<a href="#" class="global-nav__actions__toggle-search">
+    {_ Zoeken _} <i class="icon--profile"></i>
+>>>>>>> 9b0c278d4d087f035d12766937173b4602168b16
 </a>
 
 <form class="global-nav__actions__search {{ extraClasses }}" id="global-nav__actions__search-{{ identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">
@@ -23,4 +28,3 @@
     %}
     <div class="global-nav__actions__search__suggestions" id="global-nav__actions__search__suggestions-{{ identifier }}"></div>
 </form>
-
