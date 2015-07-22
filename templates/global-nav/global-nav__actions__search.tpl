@@ -1,5 +1,5 @@
  <a href="" class="global-nav__actions__toggle-search">
-    {_ Zoeken _} <i class="icon--profile"></i>
+    {_ Zoeken _} <i class="icon--search"></i>
 </a>
 
 <form class="global-nav__actions__search {{ extraClasses }}" id="global-nav__actions__search-{{ identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">

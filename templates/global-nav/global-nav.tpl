@@ -9,7 +9,7 @@
             {% include "global-nav/global-nav__actions__profile.tpl" %}
             {% include "global-nav/global-nav__actions__language.tpl" %}
             {% include "global-nav/global-nav__actions__search.tpl" %}
-            <a href="" class="global-nav__toggle-menu">Menu</a>
+            <a href="" class="global-nav__actions__toggle-menu">Menu <i class="icon--menu"></i></a>
         </div>
     {% endblock %}
 </nav>
