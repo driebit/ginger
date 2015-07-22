@@ -7,7 +7,7 @@
             <ul>
                 {% for id in cat %}
                     <li>
-                        <a href="{{ id.page_url }}">{% if id.title %}{{ id.title }}{% elif id.summary %}{{ id.summary|truncate:30}{% elif id.body %}{{ id.body|truncate:30}{% endif %}</a>
+                        <a href="{{ id.page_url }}">{% if id.title %}{{ id.title }}{% elif id.summary %}{{ id.summary|truncate:30 }}{% elif id.body %}{{ id.body|truncate:30 }}{% endif %}</a>
                     </li>
                 {% endfor %}
             </ul>
