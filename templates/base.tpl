@@ -34,6 +34,12 @@
 		{% endblock %}
 
 		{% all include "_html_head_extra.tpl" %}
+
+		<style>
+		.global-nav {
+			display: none;
+		}
+		</style>
 	</head>
 
 	<body class="{{ id.category.name }} {% block body_class %}{% endblock %}">
@@ -46,6 +52,8 @@
 		{% endblock %}
 		
 		{% block content %}{% endblock %}
+
+		<div style="height: 1200px"></div>
 
 		{% block footer %}
 			{# include "_footer.tpl" #}
