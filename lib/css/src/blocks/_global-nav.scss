@@ -15,6 +15,7 @@
     // .page__wrapper has a higher stacking order and thus the top falls over
     // the box shadow of .global-nav. This :after thingamabob is just here to
     // get the box shadow right
+
     &:after {
         content: '';
         display: block;
@@ -34,17 +35,16 @@
 }
 
 .global-nav__logo {
-    display: inline-block;
-    @include size(padding-left, 25);
-    @include size(padding-right, 24);
+    display: block;
+    width: 50%;
     height: 100%;
-
-    img {
-        @include vertical-align;
-    }
+    position: relative;
+    margin-left: 2.5%;    
 }
 
 .global-nav__actions {
+    width: 100%;
+    background: red;
     li {
         border-left: 1px solid $mainNavActionsSeperator;
     }
@@ -279,53 +279,44 @@
 
 .global-nav__actions__toggle-search,
 .global-nav__actions__toggle-menu {
-    position: absolute;
     display: block;
     @include size(width, 40);
     @include size(height, 40);
     padding: 0;
-    border-radius: 5px;
+    position: absolute;
     overflow: hidden;
+    border-radius: 5px;
     border: 1px solid $mainNavActionsSeperator;
     text-indent: -9999px;
 
     &:after {
         @extend .has-icon;
-        @include size(left, 19);
-        @include size(top, 20);
-        @include size(margin-left, -15);
-        @include size(margin-top, -15);
-
         @include size(width, 30);
         @include size(height, 30);
-        background-size: 22px 22px;
-        background-position: center center;
+        @include size(margin-left, -15);
+        @include size(margin-top, -15);
+        @include size(left, 19);
+        @include size(top, 20);
+        @include size(line-height, 30);
+        @include size(font-size, 20);
+        color: $mainThemeColor;
     }
 
     &:hover {
         background-color: $mainThemeColor;
+
+        &:after {
+            color: $white;
+        }
     }
 }
 
-.icon--search {
-    display: block;
-    width: 15px;
-    height: 15px;
-    @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
-
-    &:hover {
-        @include combinedSvgPngBackground('/lib/images/icon_search_FFFFFF', true);
-    }
+.global-nav__actions__toggle-search:after {
+    content: "\e60e";
 }
 
-.global-nav__actions__toggle-menu {
-    &:after {
-        @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_0087D2');
-    }
-
-    &:hover:after {
-        @include combinedSvgPngBackground('/lib/images/icon_toggle-menu_FFFFFF', true);
-    }
+.global-nav__actions__toggle-menu:after {
+    content: "\e610";
 }
 
 @mixin mainNavGt1100 {
