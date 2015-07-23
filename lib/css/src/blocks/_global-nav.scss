@@ -1,7 +1,7 @@
 .global-nav {
     position: fixed;
-    @include size(height, $mainNavMobileHeight);
-    @include size(line-height, $mainNavMobileHeight);
+    @include size(height, $globalNavMobileHeight);
+    @include size(line-height, $globalNavMobileHeight);
     @include size(font-size, 15);
     font-weight: 400;
     box-shadow: 0 2px 4px rgba(0,0,0, .13);
@@ -21,7 +21,7 @@
         display: block;
         position: absolute;
         height: 10px;
-        top: $mainNavMobileHeight - 10px;
+        top: $globalNavMobileHeight - 10px;
         z-index: 1;
         left: 0;
         width: 100%;
@@ -52,7 +52,7 @@
     transform: translateX(100%);
     width: 100%;
     height: 100%;
-    @include size(top, $mainNavMobileHeight);
+    @include size(top, $globalNavMobileHeight);
     right: 0;
     background-color: $menuMobileBgColor;
     transition: all 250ms ease-out;
@@ -192,7 +192,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    @include size(height, $mainNavMobileHeight);
+    @include size(height, $globalNavMobileHeight);
     transform: translateX(100%);
     transition: all 250ms ease-out;
     background-color: $white;
@@ -221,7 +221,7 @@
         background-repeat: no-repeat;
         background-size: 30px 30px;
         @include size(font-size, 18);
-        @include size(line-height, $mainNavMobileHeight);
+        @include size(line-height, $globalNavMobileHeight);
         @include size(padding, 0, 50);
     }
 
@@ -361,11 +361,11 @@
     .global-nav {
         //display: table;
         overflow: hidden;
-        @include size(height, $mainNavHeight);
-        @include size(line-height, $mainNavHeight);
+        @include size(height, $globalNavHeight);
+        @include size(line-height, $globalNavHeight);
 
         &:after {
-            top: $mainNavHeight - 10px;
+            top: $globalNavHeight - 10px;
         }
 
         &__logo,
@@ -398,7 +398,7 @@
             li {
                 display: inline-block;
                 border-bottom: 0;
-                @include size(line-height, $mainNavHeight);
+                @include size(line-height, $globalNavHeight);
             }
 
             &:after {
@@ -460,7 +460,7 @@
         &__search {
             #search-form {
                 [type=text] {
-                    @include size(height, $mainNavHeight);
+                    @include size(height, $globalNavHeight);
                 }
             }
         }

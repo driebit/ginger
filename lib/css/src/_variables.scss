@@ -16,8 +16,10 @@ $mainNavPagesColor: #8d8d8d;
 $mainNavActionsColor: $mainThemeColor;
 $mainNavActionsSeperator: $alto;
 
-$mainNavHeight: 70;
-$mainNavMobileHeight: $mainNavHeight * (2.5/3);
+$globalNavHeight: 70;
+$globalNavMobileHeight: $globalNavHeight * (2.5/3);
+
+$contentGroupNavHeight: 75;
 
 $paginationBackground: #5B5B6B;
 $paginationActiveBackground: darken($paginationBackground, 10);
