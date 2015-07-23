@@ -47,7 +47,7 @@
 		
 		{% block content %}{% endblock %}
 
-		<div style="height: 1200px"></div>
+		<div style="height: 1200px">dit zit in de body</div>
 
 		{% block footer %}
 			{# include "_footer.tpl" #}
