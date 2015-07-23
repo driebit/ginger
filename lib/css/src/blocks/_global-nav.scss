@@ -187,6 +187,47 @@
     }
 }
 
+// Actions
+
+.global-nav__actions {
+    width: 100%;
+    background: darken($menuMobileBgColor, 5);    
+}
+
+.btn--nav-actions {
+    float: left;
+    @include size(padding, 0, 15);
+    border-right: 1px solid $white;    
+}
+
+.login--global-nav,
+.global-nav__actions__language,
+.global-nav__actions__profile {
+    @extend .btn--nav-actions;
+}
+
+.login--global-nav {
+    &:before {
+        content: '\e610';
+        margin-right: 3px;
+        font-family: 'icomoon';
+        position: relative;
+        top: 2px;
+    }
+}
+
+.global-nav__actions__language {
+    &:before {
+        content: '\e60a';
+        margin-right: 3px;
+        font-family: 'icomoon';
+        position: relative;
+        top: 1px;
+    }
+}
+
+// Search
+
 .global-nav__actions__search {
     position: fixed;
     top: 0;
@@ -203,7 +244,7 @@
 
         &:before {
             @extend .has-icon;
-            content: "\e60e";
+            content: "\e617";
             position: absolute;
             top: 14px;
             left: 10px;
@@ -252,7 +293,7 @@
         }
     }
 
-    &.is-scrolable {
+    &.is-scrollable {
         height: 350px;
         overflow: scroll;
         overflow-x: hidden;
@@ -260,7 +301,7 @@
 }
 
 @media (max-height: 400px) {
-    .global-nav__actions__search__suggestions.is-scrolable {
+    .global-nav__actions__search__suggestions.is-scrollable {
         height: 200px;
     }
 }
@@ -272,6 +313,7 @@
     @include size(width, 40);
     @include size(height, 40);
     padding: 0;
+    float: none;
     position: absolute;
     top: 9px;
     right: 15px;
@@ -314,17 +356,6 @@
 
 .global-nav__actions__toggle-menu:after {
     content: "\e619";
-}
-
-// Actions
-
-.global-nav__actions {
-    width: 100%;
-    background: darken($menuMobileBgColor, 5);    
-}
-
-.login--global-nav {
-
 }
 
 
