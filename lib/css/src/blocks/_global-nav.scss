@@ -296,7 +296,8 @@
     right: 65px;
 
     &:after {
-        content: "\e60e";
+        content: "\e617";
+        @include size(font-size, 25);
     }
 
     &.is-active {
@@ -306,13 +307,13 @@
         color: $mainThemeColor;
 
         &:after {
-            content: "\e603";
+            content: "\e604";
         }
     }
 }
 
 .global-nav__actions__toggle-menu:after {
-    content: "\e610";
+    content: "\e619";
 }
 
 // Actions
@@ -323,12 +324,43 @@
 }
 
 .login--global-nav {
-    
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @mixin mainNavGt1100 {
     .global-nav {
-        display: table;
+        //display: table;
+        overflow: hidden;
         @include size(height, $mainNavHeight);
         @include size(line-height, $mainNavHeight);
 
