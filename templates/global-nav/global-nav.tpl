@@ -2,8 +2,9 @@
     {% include "global-nav/global-nav__logo.tpl" %}
 
     {% block nav_actions %}
-        <div class="global-nav__actions">
+        <div class="global-nav__actions cf">
             {% include "_auth_link.tpl" class="login--global-nav" icon="none" %}
+            {% include "global-nav/global-nav__actions__profile.tpl" %}
             {% include "global-nav/global-nav__actions__profile.tpl" %}
             {% include "global-nav/global-nav__actions__language.tpl" %}
             {% include "global-nav/global-nav__actions__search.tpl" %}

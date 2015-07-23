@@ -11,14 +11,12 @@ as
 %}
 
 <a href="{{ href }}" id="{{ id }}" class="{{ class }}" >
-    <i>
+    
         {% if image_dep %}
             {% image image_dep mediaclass="avatar" class=image_class %}
         {% else %}
-            FALLBACK ICON
-            {# TODO: fallback icon #}
+            <i class="icon-profile"></i>
         {% endif %}
-    </i>
     {% if label %}
         {{ label }}
     {% endif %}
