@@ -39,15 +39,11 @@
     width: 50%;
     height: 100%;
     position: relative;
-    margin-left: 2.5%;    
+    margin-left: 15px;    
 }
 
-.global-nav__actions {
-    width: 100%;
-    background: red;
-    li {
-        border-left: 1px solid $mainNavActionsSeperator;
-    }
+.global-nav__menu {
+    background-color: $menuMobileBgColor;
 }
 
 .global-nav__off-canvas {
@@ -191,7 +187,7 @@
     }
 }
 
-.global-nav__search {
+.global-nav__actions__search {
     position: fixed;
     top: 0;
     left: 0;
@@ -202,80 +198,73 @@
     background-color: $white;
     z-index: 500;
 
-    .ginger-search_form-group {
-       @include size(height, 70);
-    }
-
-    #search-form {
-        float: none !important;
-        margin: 0;
-        padding: 0;
-        border: none;
-
-        .form-group {
-            display: block;
-        }
-
-        [type=text] {
-            border: 0;
-            width: 100%;
-            @include size(height, $mainNavMobileHeight);
-            display: block;
-        }
-    }
-
-    &.is-shown {
+    &.is-visible {
         transform: translateX(0);
+
+        &:before {
+            @extend .has-icon;
+            content: "\e60e";
+            position: absolute;
+            top: 14px;
+            left: 10px;
+            font-size: 30px;
+            color: $mainThemeColor;
+        }
     }
 
     [type=text] {
         border: none;
         width: 100%;
-        @include combinedSvgPngBackground('/lib/images/icon_search_0087D2');
+        height: 100%;
         background-color: #FFF;
         background-position: 10px center;
         background-repeat: no-repeat;
         background-size: 30px 30px;
         @include size(font-size, 18);
-        @include size(font-size, 25);
+        @include size(line-height, $mainNavMobileHeight);
         @include size(padding, 0, 50);
     }
 
     [type=submit] {
         display: none;
     }
+}
 
-    &__close-btn {
-        position: absolute;
-        display: block;
-        @include size(top, 15);
-        @include size(right, 15);
-        height: 0;
-        @include size(width, 40);
-        @include size(padding-top, 40);
-        overflow: hidden;
-        border: 0;
-        background: none;
+.global-nav__actions__search__suggestions {
+    @include size(padding, 10, 15);
+    background: $white;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
-        &:after {
-            @extend .has-icon;
+    h4 {
+        @include size(margin, 0, 0, 4, 0);
+    }
 
-            @include size(top, 5);
-            @include size(left, 5);
-            background-size: 30px 30px;
-            @include size(width, 30);
-            @include size(padding-top, 30);
+    ul {
+        @include size(padding-left, 20);
+        @include size(margin, 0, 0, 15, 0);
 
-            @include combinedSvgPngBackground('/lib/images/icon_close_0087D2');
+        li {
+            list-style-type: none;
+            @include size(font-size, 14);
+            @include size(line-height, 18);
         }
+    }
+
+    &.is-scrolable {
+        height: 350px;
+        overflow: scroll;
+        overflow-x: hidden;
     }
 }
 
-.global-nav__actions {
-    float: right;
-    display: inline-block;
-    @include size(margin-right, 5);
+@media (max-height: 400px) {
+    .global-nav__actions__search__suggestions.is-scrolable {
+        height: 200px;
+    }
 }
+
 
 .global-nav__actions__toggle-search,
 .global-nav__actions__toggle-menu {
@@ -284,6 +273,8 @@
     @include size(height, 40);
     padding: 0;
     position: absolute;
+    top: 9px;
+    right: 15px;
     overflow: hidden;
     border-radius: 5px;
     border: 1px solid $mainNavActionsSeperator;
@@ -291,32 +282,48 @@
 
     &:after {
         @extend .has-icon;
-        @include size(width, 30);
-        @include size(height, 30);
-        @include size(margin-left, -15);
-        @include size(margin-top, -15);
-        @include size(left, 19);
-        @include size(top, 20);
-        @include size(line-height, 30);
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        @include size(line-height, 40);
         @include size(font-size, 20);
         color: $mainThemeColor;
     }
+}
 
-    &:hover {
-        background-color: $mainThemeColor;
+.global-nav__actions__toggle-search {
+    right: 65px;
+
+    &:after {
+        content: "\e60e";
+    }
+
+    &.is-active {
+        right: 15px;
+        z-index: 600;
+        background: $white;
+        color: $mainThemeColor;
 
         &:after {
-            color: $white;
+            content: "\e603";
         }
     }
 }
 
-.global-nav__actions__toggle-search:after {
-    content: "\e60e";
-}
-
 .global-nav__actions__toggle-menu:after {
     content: "\e610";
+}
+
+// Actions
+
+.global-nav__actions {
+    width: 100%;
+    background: darken($menuMobileBgColor, 5);    
+}
+
+.login--global-nav {
+    
 }
 
 @mixin mainNavGt1100 {
