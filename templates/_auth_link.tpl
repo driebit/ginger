@@ -14,15 +14,17 @@
         label
     %}
 
-    <a class="{{ class }}" id="{{ #signup }}" href="#">
-    {% if icon %}
+    <a class="{{ class }}" id="{{ #signup }}" href="#" title="{_ Login/Registeer _}">
+    {% if icon == 'none' %}
+        <span class="main-nav__login-register-button__label">{{ label }}</span>
+    {% elseif icon %}
         {% if icon_before %}
-            <i class="{{ icon }}"></i> {{ label }}
+            <i class="{{ icon }}"></i> <span class="main-nav__login-register-button__label">{{ label }}</span>
         {% else %}
-            <i class="{{ icon }}"></i> <span class="main-nav__login-register-button__label">{{ label }}</span> 
+            <span class="main-nav__login-register-button__label">{{ label }}</span> <i class="{{ icon }}"></i> 
         {% endif %}
     {% else %}
-        <i class="main-nav__login-register-button__label">{{ label }}</i>
+        <span class="main-nav__login-register-button__label">{{ label }}</span>
     {% endif %}
     </a>
 
