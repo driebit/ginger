@@ -47,6 +47,8 @@
 		
 		{% block content %}{% endblock %}
 
+		<div style="height: 1200px"></div>
+
 		{% block footer %}
 			{# include "_footer.tpl" #}
 		{% endblock %}
