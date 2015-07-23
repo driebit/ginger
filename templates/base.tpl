@@ -37,8 +37,12 @@
 	</head>
 
 	<body class="{{ id.category.name }} {% block body_class %}{% endblock %}">
-		{% block nav %}
+		{% block global_nav %}
 			{% include "global-nav/global-nav.tpl" %}
+		{% endblock %}
+
+		{% block content_group_nav %}
+			{% include "content-group-nav/content-group-nav.tpl" %}
 		{% endblock %}
 		
 		{% block content %}{% endblock %}
