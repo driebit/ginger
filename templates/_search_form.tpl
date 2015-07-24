@@ -14,6 +14,7 @@
             data-param-container="ginger-search-form-{{ identifier }}"  />
     </div>
     <button type="submit" class="ginger-search_submit-btn" title="zoek"><span class="z-icon z-icon-search"></span></button>
+
     {% wire name="show-suggestions-"++identifier
         action={update target="ginger-search-suggestions-"++identifier template="_search_suggestions.tpl" context=context}
     %}

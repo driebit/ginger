@@ -2,6 +2,7 @@
     <div class="ginger-search_form-group">
         <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
+        <input type="hidden" name="qcg" value="{{ cg_name }}" />
         <input type="text" 
             class="ginger-search_form-control do_ginger_search"
             name="qs" 
