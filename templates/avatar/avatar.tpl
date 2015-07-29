@@ -18,7 +18,7 @@ as
             <i class="icon-profile"></i>
         {% endif %}
     {% if label %}
-        {{ label }}
+        <span class="{{ class }}__label">{{ label }}</span>
     {% endif %}
 </a>
 
