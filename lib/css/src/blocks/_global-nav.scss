@@ -197,7 +197,11 @@
 .btn--nav-actions {
     float: left;
     @include size(padding, 0, 15);
-    border-right: 1px solid $white;    
+    border-right: 1px solid $white;  
+
+    img {
+        vertical-align: middle;
+    }
 }
 
 .login--global-nav,
@@ -206,12 +210,22 @@
     @extend .btn--nav-actions;
 }
 
+.global-nav__actions__profile {
+    img {
+        display: inline-block;
+        position: absolute;
+        top: -4px;
+        border-radius: 50%;
+        border: 2px solid $mainThemeColor;
+    }
+}
+
 .login--global-nav {
     &:before {
         content: '\e610';
         margin-right: 3px;
         font-family: 'icomoon';
-        position: relative;
+        position: ;
         top: 2px;
     }
 }
