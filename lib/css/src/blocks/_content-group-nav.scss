@@ -1,12 +1,13 @@
+
 body.has-content-group {
-    padding-top: 145px;
+    padding-top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
 }
 
 .content-group-nav__banner {
     width: 100%;
-    height: 75px;
+    @include size(height, $contentGroupNavHeight);
     position: fixed;
-    top: 70px;
+    @include size(top, $globalNavHeight);
     z-index: 200;
     background-size: cover;
     background-position: center center;
@@ -24,14 +25,14 @@ body.has-content-group {
         width: 100%;
         height: 100%;
         position: absolute;
-        top: 0px;
-        left: 0px;
+        @include size(top, 0);
+        @include size(left, 0);
         z-index: 200;
         background-color: rgba($mainThemeColor, .4);
     }
 
     &.is-minified {
-        height: 50px;
+        @include size(height, 50);
     }
 }
 
@@ -39,8 +40,8 @@ body.has-content-group {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    @include size(top, 0);
+    @include size(left, 0);
     z-index: 100;
     background-size: cover;
     background-position: center center;
@@ -58,12 +59,24 @@ body.has-content-group {
     font-family: Arial;
     text-transform: uppercase;
     text-shadow: 0px 1px 10px rgba(50, 50, 50, 1);
-    
     @include vertical-align();
+
+    &:after {
+        content: '';
+        display: inline-block;
+        border-top: 8px dashed; 
+        border-right: 8px solid transparent; 
+        border-left: 8px solid transparent; 
+        display: inline-block;
+        top: -6px;
+        left: 10px;
+        position: relative;
+    }
 }
 
 .content-group-nav__menu { 
-    min-height: 55px;
+
+    @include size(min-height, 55);
     padding: 18px 10px 12px 10px;
     background-color: $mainThemeColor;
 
@@ -76,7 +89,7 @@ body.has-content-group {
 
     li {
         display: block;
-        margin: 0;
+        @include size(margin, 0);
         list-style-type: none;
         @include size(font-size, 14);
         vertical-align: top;
