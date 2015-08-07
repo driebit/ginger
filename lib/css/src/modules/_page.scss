@@ -23,7 +23,7 @@
         @include size(margin-bottom, 40);
         background-size: cover;
         background-position: 0px 0px;
-        overflow: hidden;
+        overflow: hidden; 
     }
 
     &__content {
@@ -33,6 +33,7 @@
         position: relative;
         background-color: $white;
         transition: all 0.4s;
+        overflow: hidden;
 
         &:after {
             content: ' ';

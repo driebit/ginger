@@ -44,7 +44,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   background-position: center center; }
 
 /* abstract css class */
-.ginger-btn-pill, .ginger-btn-pill--primary, .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .btn-primary, #comments-area .btn, .ginger-btn-pill--secondary, .ginger-btn-pill--anchor, .ginger-btn-pill--next, .btn-default, .nav-pills > li > a {
+.ginger-btn-pill, .ginger-btn-pill--primary, .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .btn-primary, #comments-area .btn, .btn.ginger-edit-save, .ginger-btn-pill--secondary, .ginger-btn-pill--anchor, .ginger-btn-pill--next, .btn-default, .btn.ginger-edit-cancel, .btn.ginger-edit-delete, .nav-pills > li > a {
   display: inline-block;
   padding: 9px 20px 6px 20px;
   padding: 0.9rem 2rem 0.6rem 2rem;
@@ -58,7 +58,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   /* 'secondary' variant of ginger-btn-pill */
   /* button/link to jump to comments */
   /* the show more button in correlating items */ }
-  .ginger-btn-pill:hover, .ginger-btn-pill--primary:hover, .btn-primary:hover, #comments-area .btn:hover, .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover, .nav-pills > li > a:hover, .ginger-btn-pill:active, .ginger-btn-pill--primary:active, .btn-primary:active, #comments-area .btn:active, .ginger-btn-pill--secondary:active, .ginger-btn-pill--anchor:active, .ginger-btn-pill--next:active, .btn-default:active, .nav-pills > li > a:active, .ginger-btn-pill:focus, .ginger-btn-pill--primary:focus, .btn-primary:focus, #comments-area .btn:focus, .ginger-btn-pill--secondary:focus, .ginger-btn-pill--anchor:focus, .ginger-btn-pill--next:focus, .btn-default:focus, .nav-pills > li > a:focus {
+  .ginger-btn-pill:hover, .ginger-btn-pill--primary:hover, .btn-primary:hover, #comments-area .btn:hover, .btn.ginger-edit-save:hover, .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover, .btn.ginger-edit-cancel:hover, .btn.ginger-edit-delete:hover, .nav-pills > li > a:hover, .ginger-btn-pill:active, .ginger-btn-pill--primary:active, .btn-primary:active, #comments-area .btn:active, .btn.ginger-edit-save:active, .ginger-btn-pill--secondary:active, .ginger-btn-pill--anchor:active, .ginger-btn-pill--next:active, .btn-default:active, .btn.ginger-edit-cancel:active, .btn.ginger-edit-delete:active, .nav-pills > li > a:active, .ginger-btn-pill:focus, .ginger-btn-pill--primary:focus, .btn-primary:focus, #comments-area .btn:focus, .btn.ginger-edit-save:focus, .ginger-btn-pill--secondary:focus, .ginger-btn-pill--anchor:focus, .ginger-btn-pill--next:focus, .btn-default:focus, .btn.ginger-edit-cancel:focus, .btn.ginger-edit-delete:focus, .nav-pills > li > a:focus {
     text-decoration: none; }
   .ginger-btn-pill__icon-left:after, .ginger-btn-pill__icon-right:after, .ginger-btn-pill--anchor:after, .ginger-btn-pill--next:after {
     top: 50%;
@@ -80,19 +80,19 @@ h1, h2, h3, h4, p, ol, ul, table {
     .ginger-btn-pill__icon-right:after, .ginger-btn-pill--anchor:after, .ginger-btn-pill--next:after {
       right: 8px;
       right: 0.8rem; }
-  .ginger-btn-pill--primary, .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .btn-primary, #comments-area .btn {
+  .ginger-btn-pill--primary, .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover, .btn-primary, #comments-area .btn, .btn.ginger-edit-save {
     background: #0087D2;
     color: #FFF; }
-    .ginger-btn-pill--primary:hover, .nav-pills > li.active > a:hover, .btn-primary:hover, #comments-area .btn:hover, .ginger-btn-pill--primary:active, .nav-pills > li.active > a:active, .btn-primary:active, #comments-area .btn:active, .ginger-btn-pill--primary:focus, .nav-pills > li.active > a:focus, .btn-primary:focus, #comments-area .btn:focus {
+    .ginger-btn-pill--primary:hover, .nav-pills > li.active > a:hover, .btn-primary:hover, #comments-area .btn:hover, .btn.ginger-edit-save:hover, .ginger-btn-pill--primary:active, .nav-pills > li.active > a:active, .btn-primary:active, #comments-area .btn:active, .btn.ginger-edit-save:active, .ginger-btn-pill--primary:focus, .nav-pills > li.active > a:focus, .btn-primary:focus, #comments-area .btn:focus, .btn.ginger-edit-save:focus {
       background-color: #005685;
       color: #FFF; }
   .ginger-btn-pill--anchor, .ginger-btn-pill--next {
     position: relative; }
-  .ginger-btn-pill--secondary, .ginger-btn-pill--anchor, .ginger-btn-pill--next, .btn-default {
+  .ginger-btn-pill--secondary, .ginger-btn-pill--anchor, .ginger-btn-pill--next, .btn-default, .btn.ginger-edit-cancel, .btn.ginger-edit-delete {
     background: #FFF;
     color: #0087D2;
     border: 1px solid #CFCCD0; }
-    .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover {
+    .ginger-btn-pill--secondary:hover, .ginger-btn-pill--anchor:hover, .ginger-btn-pill--next:hover, .btn-default:hover, .btn.ginger-edit-cancel:hover, .btn.ginger-edit-delete:hover {
       border-color: #0087D2; }
   .ginger-btn-pill--anchor:after {
     background-image: url(/lib/images/icon_arrow-down_0087D2.png);
@@ -1085,7 +1085,8 @@ h1, h2, h3, h4, p, ol, ul, table {
   margin: 0 auto;
   position: relative;
   background-color: #FFF;
-  transition: all 0.4s; }
+  transition: all 0.4s;
+  overflow: hidden; }
   .page__content:after {
     content: ' ';
     width: 100%;
@@ -1599,7 +1600,7 @@ h1, h2, h3, h4, p, ol, ul, table {
     padding: 20px 0; }
   .ginger-edit .widget {
     background: none;
-    border: solid 1px red; }
+    border: solid 1px #0087D2; }
   .ginger-edit .widget ul.nav-tabs li.active > a {
     background-image: none;
     border: none; }

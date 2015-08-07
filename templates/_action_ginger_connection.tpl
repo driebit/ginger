@@ -4,7 +4,6 @@
 
     {% with m.rsc[category].id as cat_id %}
     {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
-    asdasdasd
         <a id="{{ #connect.predicate }}" class="ginger-btn-pill--primary" href="#connect">+ {_ add my  _} {{cat_title }} {_ to this  _}</a>
 
         {% if direction=='in' %}
