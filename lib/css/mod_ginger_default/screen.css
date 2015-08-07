@@ -1075,8 +1075,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   margin-bottom: 40px;
   margin-bottom: 4rem;
   background-size: cover;
-  background-position: 0px 0px;
-  overflow: hidden; }
+  background-position: 0px 0px; }
 .page__content {
   max-width: 718px;
   max-width: 71.8rem;
@@ -1085,8 +1084,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   margin: 0 auto;
   position: relative;
   background-color: #FFF;
-  transition: all 0.4s;
-  overflow: hidden; }
+  transition: all 0.4s; }
   .page__content:after {
     content: ' ';
     width: 100%;
@@ -1107,7 +1105,8 @@ h1, h2, h3, h4, p, ol, ul, table {
   .page__content.collapsed {
     max-height: 575px;
     max-height: 57.5rem;
-    position: relative; }
+    position: relative;
+    overflow: hidden; }
     .page__content.collapsed:after {
       height: 150px;
       height: 15rem;

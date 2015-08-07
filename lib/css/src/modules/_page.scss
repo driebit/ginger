@@ -23,7 +23,6 @@
         @include size(margin-bottom, 40);
         background-size: cover;
         background-position: 0px 0px;
-        overflow: hidden; 
     }
 
     &__content {
@@ -33,7 +32,6 @@
         position: relative;
         background-color: $white;
         transition: all 0.4s;
-        overflow: hidden;
 
         &:after {
             content: ' ';
@@ -53,6 +51,7 @@
         &.collapsed {
             @include size(max-height, 575);
             position: relative;
+            overflow: hidden;
 
             &:after {
                 @include size(height, 150);
