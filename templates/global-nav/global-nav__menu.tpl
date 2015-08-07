@@ -1,5 +1,3 @@
-adfadsfsdf
-
 {% if menu %}
 {% with id|menu_trail:menu_id as parents %}
     <ul class="global-nav__menu {{ extraClasses }}">
