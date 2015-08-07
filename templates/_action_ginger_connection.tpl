@@ -3,11 +3,16 @@
 {% block widget_content %}
 
     {% with btn_class|default:"btn btn-small btn-add-thing" as btn_class %}
-    {% with m.rsc[category].id as cat_id %}
-    {% with	new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
-    {% with	modal_cat_title|default:cat_title as modal_cat_title %}
-
-        <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">+ {_ add _} {{cat_title }} {_ toe _}</a>
+    {% with cat|default:m.rsc[category].id as cat_id %}
+    {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
+    {% with modal_cat_title|default:cat_title as modal_cat_title %}
+        <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">
+            {% if btn_title %}
+                {{ btn_title }}
+            {% else %}
+                + {_ add _} {{cat_title }} {_ toe _}
+            {% endif %}
+        </a>
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
@@ -37,8 +42,6 @@
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% endif %}
-
-
     {% endwith %}
     {% endwith %}
     {% endwith %}

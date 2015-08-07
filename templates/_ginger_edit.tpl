@@ -57,7 +57,8 @@
 			{# </div> #}
             <div class="tab-pane publication-dates" id="meta-pubdate">
                 <label for="is_published" class="checkbox-inline">
-                    <input type="checkbox" id="is_published" name="is_published" value="1" {% if id.is_published %}checked="checked"{% endif %}/>
+                    {# TODO: if you make a new rsc the rsc is not published (there was a if id is published around the checked=checked) #}
+                    <input type="checkbox" id="is_published" name="is_published" value="1" checked="checked"/>
                     {_ Published _}
                 </label>
 
