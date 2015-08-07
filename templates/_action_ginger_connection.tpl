@@ -3,20 +3,20 @@
 {% block widget_content %}
 
     {% with btn_class|default:"btn btn-small btn-add-thing" as btn_class %}
-    {% with cat|default:m.rsc[category].id as cat_id %}
+    {% with m.rsc[category].id as cat_id %}
     {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
     {% with modal_cat_title|default:cat_title as modal_cat_title %}
         <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">
             {% if btn_title %}
                 {{ btn_title }}
             {% else %}
-                + {_ add _} {{cat_title }} {_ toe _}
+                + {_ add _} {{cat_title }} {_ to _}
             {% endif %}
         </a>
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add", " ", modal_cat_title, " ", _"toe "]
+                            title=[_"add ", " ", modal_cat_title, " ", _" to "]
                             logon_required
                             object_id=id
                             cat=cat_id
@@ -30,7 +30,7 @@
         {% else %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add", " ", modal_cat_title , " ", _"toe"]
+                            title=[_"add ", " ", modal_cat_title , " ", _" to "]
                             logon_required
                             subject_id=id
                             cat=cat_id
