@@ -30,6 +30,15 @@
 				<label class="control-label" for="website">{_ Website _}</label>
 				<input class="form-control" id="website" type="url" name="website" value="{{ r.website }}">
 			</div>
+	        <div class="form-group checkbox">
+                <label>
+                    <input type="checkbox" id="field-is-website=redirect" name="is_website_redirect" value="1"
+                        {% if r.is_website_redirect %}checked{% endif %}
+                        {% if not is_editable %}disabled="disabled"{% endif %}
+                    />
+                    {_ Redirect to website on page view _}
+                </label>
+	        </div>
 			<div class="form-group address_twitter">
 				<label class="control-label" for="twitter">{_ Twitter _}</label>
 				<input class="form-control" id="twitter" type="text" name="twitter" value="{{ r.twitter }}">

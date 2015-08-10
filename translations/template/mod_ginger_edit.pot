@@ -368,7 +368,7 @@ msgid ""
 "Your new password is too short."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:9 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:13 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:27 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:10 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:14 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:28 
 msgid ""
 "add"
 msgstr ""
@@ -393,12 +393,12 @@ msgid ""
 "till"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:9 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:27 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:10 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:28 
 msgid ""
 "toe"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:13 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:14 
 msgid ""
 "toe "
 msgstr ""

@@ -3,7 +3,7 @@
 
 -mod_title("Ginger frontend edit module").
 -mod_description("Provides Ginger frontend editing and adding dialogs").
--mod_prio(500).
+-mod_prio(200).
 
 -include_lib("zotonic.hrl").
 
