@@ -10,7 +10,6 @@
     "js/modules/z.inputoverlay.js"
     "js/modules/jquery.loadmask.js"
     "js/modules/z.feedback.js"
-    "js/ginger_session.js"
     "js/modules/z.popupwindow.js"
 %}
 
