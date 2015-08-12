@@ -98,7 +98,6 @@
     			{% endblock %}
     		</div>
 
-            {% include "_js_include_jquery.tpl" %}
     		{% include "_js_include.tpl" %}
             
     		{% all include "_script.tpl" %}
@@ -106,15 +105,6 @@
     		{% script %}
 
             {% lib
-                    "js/apps/zotonic-1.0.js"
-                    "js/apps/z.widgetmanager.js"
-                    "js/modules/ubf.js"
-                    "js/modules/z.notice.js"
-                    "js/modules/z.imageviewer.js"
-                    "js/modules/z.dialog.js"
-                    "js/modules/livevalidation-1.3.js"
-                    "js/modules/z.inputoverlay.js"
-                    "js/modules/jquery.loadmask.js"
                     "bootstrap/js/bootstrap.min.js"
                     "js/modules/responsive.js"
                     "js/ginger-search.js"
@@ -134,15 +124,7 @@
 
             {% block _js_include_extra %}{% endblock %}
 
-    		{#
-            <script type="text/javascript">
-                $(function()
-                {
-                    $.widgetManager();
-                });
-            </script>
-    		#}
-
+    		
             {% if m.site.hostname|match:".*\.dev$" %}
         		<!--[if (gt IE 9)|!(IE)]><!-->
         			<script src="//192.168.33.10:35729/livereload.js"></script>
