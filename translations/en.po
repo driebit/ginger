@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-06-04 10:17+0100\n"
-"PO-Revision-Date: 2015-06-04 10:26+0100\n"
+"POT-Creation-Date: 2015-08-13 16:51+0100\n"
+"PO-Revision-Date: 2015-08-13 16:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,29 +17,9 @@ msgstr ""
 msgid " to "
 msgstr "to"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:27
-msgid " toe"
-msgstr " "
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:13
-msgid " toe "
-msgstr " "
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:42
-msgid "6 characters or more."
-msgstr "6 characters or more."
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:32
-msgid "A valid email addres"
-msgstr "A valid email addres"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:32
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:34
 msgid "About"
 msgstr "About"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:27
-msgid "Add "
-msgstr "Add "
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 msgid "Add a "
@@ -70,7 +50,7 @@ msgid "Basic"
 msgstr "Basic"
 
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:37
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:30
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -98,14 +78,6 @@ msgstr "Delete this page."
 msgid "Disconnect"
 msgstr "Disconnect"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:25
-msgid "E-mail"
-msgstr "E-mail"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:19
-msgid "E-mail address or username"
-msgstr "E-mail address or username"
-
 #: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:12
 msgid "E-mail/User not found"
 msgstr "E-mail/User not found"
@@ -122,18 +94,6 @@ msgstr "E-mail/password already registered"
 msgid "Edit"
 msgstr "Edit"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:22
-msgid "Email"
-msgstr "Email"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:16
-msgid ""
-"Enter your e-mail address or username below and we will send you an e-mail "
-"with password reset instructions."
-msgstr ""
-"Enter your e-mail address or username below and we will send you an e-mail "
-"with password reset instructions."
-
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:23
 msgid "Events"
 msgstr "Events"
@@ -149,10 +109,6 @@ msgstr "Find Page"
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:2
 msgid "Find an existing page to connect"
 msgstr "Find an existing page to connect"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:19
-msgid "Forgot my password"
-msgstr "Forgot my password"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:38
 msgid "From"
@@ -191,6 +147,10 @@ msgstr "Like"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:32
+msgid "Live query, send notifications when matching items are updated or inserted."
+msgstr "Live query, send notifications when matching items are updated or inserted."
+
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:10
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:11
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:14
@@ -199,12 +159,7 @@ msgstr "LinkedIn"
 msgid "Location"
 msgstr "Location"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:11
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:43
-msgid "Log in"
-msgstr "Log in"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:33
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:31
 msgid "Make"
 msgstr "Make"
 
@@ -228,20 +183,15 @@ msgstr "Not allowed"
 msgid "Organized by"
 msgstr "Organized by"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:26
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:28
 msgid "Part of"
 msgstr "Part of"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:29
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:38
-msgid "Password"
-msgstr "Password"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:77
 msgid "Postcode"
 msgstr "Postcode"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:38
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:40
 msgid "Posted in"
 msgstr "Posted in"
 
@@ -253,14 +203,18 @@ msgstr "Publication"
 msgid "Published"
 msgstr "Published"
 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:22
+msgid "Query"
+msgstr "Query"
+
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:36
+msgid "Query preview"
+msgstr "Query preview"
+
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:51
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:56
 msgid "Remarks"
 msgstr "Remarks"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:38
-msgid "Remember me"
-msgstr "Remember me"
 
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109
@@ -279,25 +233,13 @@ msgstr "Save and view the page."
 msgid "Save this page."
 msgstr "Save this page."
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:36
-msgid "Send me instructions"
-msgstr "Send me instructions"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_authenticate.tpl:15
-msgid "Sign up"
-msgstr "Sign up"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:48
-msgid "Signup"
-msgstr "Signup"
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:6
+msgid "Search query"
+msgstr "Search query"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:81
 msgid "State"
 msgstr "State"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_logon.tpl:36
-msgid "Stay logged on unless I log off."
-msgstr "Stay logged on unless I log off."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:67
 msgid "Street Line 1"
@@ -319,7 +261,7 @@ msgstr "The two passwords should be equal. Please retype them."
 msgid "Till"
 msgstr "Till"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:22
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:20
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5
 msgid "Title"
 msgstr "Title"
@@ -354,30 +296,29 @@ msgstr "Yes"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:7
 msgid "You entered an unknown username or e-mail address.  Please try again."
-msgstr ""
-"You entered an unknown username or e-mail address.  Please try again."
+msgstr "You entered an unknown username or e-mail address.  Please try again."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:3
 msgid "You entered an unknown username or password.  Please try again."
 msgstr "You entered an unknown username or password.  Please try again."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:5
-msgid ""
-"You have to confirm your account first.  Please see the email send to you."
-msgstr ""
-"You have to confirm your account first.  Please see the email send to you."
+msgid "You have to confirm your account first.  Please see the email send to you."
+msgstr "You have to confirm your account first.  Please see the email send to you."
 
 #: /vagrant/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24
 msgid "You need to log on"
 msgstr "You need to log on"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_signup.tpl:17
-msgid "Your name"
-msgstr "Your name"
-
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:9
 msgid "Your new password is too short."
 msgstr "Your new password is too short."
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:10
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:14
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:28
+msgid "add"
+msgstr "add"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:24
 msgid "add a connection"
@@ -388,35 +329,89 @@ msgstr "add a connection"
 msgid "add media item"
 msgstr "add media item"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:9
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:13
-msgid "add my"
-msgstr "add my"
-
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:9
 msgid "has been disconnected."
 msgstr "has been disconnected."
-
-#: /vagrant/modules/mod_ginger_edit/templates/_nav_logon.tpl:15
-msgid "logon or register"
-msgstr "logon or register"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_nav_logon.tpl:11
-msgid "logon/register"
-msgstr "logon/register"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:65
 msgid "till"
 msgstr "till"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:9
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:10
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:28
 msgid "toe"
 msgstr " "
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:14
+msgid "toe "
+msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3
 msgid "undo"
 msgstr "undo"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_forgot.tpl:26
-msgid "user@example.com"
-msgstr "user@example.com"
+#~ msgid " toe"
+#~ msgstr " "
+
+#~ msgid " toe "
+#~ msgstr " "
+
+#~ msgid "6 characters or more."
+#~ msgstr "6 characters or more."
+
+#~ msgid "A valid email addres"
+#~ msgstr "A valid email addres"
+
+#~ msgid "Add "
+#~ msgstr "Add "
+
+#~ msgid "E-mail"
+#~ msgstr "E-mail"
+
+#~ msgid "E-mail address or username"
+#~ msgstr "E-mail address or username"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Enter your e-mail address or username below and we will send you an e-mail with password reset instructions."
+#~ msgstr "Enter your e-mail address or username below and we will send you an e-mail with password reset instructions."
+
+#~ msgid "Forgot my password"
+#~ msgstr "Forgot my password"
+
+#~ msgid "Log in"
+#~ msgstr "Log in"
+
+#~ msgid "Password"
+#~ msgstr "Password"
+
+#~ msgid "Remember me"
+#~ msgstr "Remember me"
+
+#~ msgid "Send me instructions"
+#~ msgstr "Send me instructions"
+
+#~ msgid "Sign up"
+#~ msgstr "Sign up"
+
+#~ msgid "Signup"
+#~ msgstr "Signup"
+
+#~ msgid "Stay logged on unless I log off."
+#~ msgstr "Stay logged on unless I log off."
+
+#~ msgid "Your name"
+#~ msgstr "Your name"
+
+#~ msgid "add my"
+#~ msgstr "add my"
+
+#~ msgid "logon or register"
+#~ msgstr "logon or register"
+
+#~ msgid "logon/register"
+#~ msgstr "logon/register"
+
+#~ msgid "user@example.com"
+#~ msgstr "user@example.com"
