@@ -10,16 +10,20 @@ as
     label
 %}
 
-<a href="{{ href }}" id="{{ id }}" class="{{ class }}" >
-    
+{% block button %}
+    <a href="{{ href }}" id="{{ id }}" class="{{ class }} {{ extraClasses }}" >
+        
         {% if image_dep %}
             {% image image_dep mediaclass="avatar" class=image_class %}
         {% else %}
             <i class="icon-profile"></i>
         {% endif %}
-    {% if label %}
-        <span class="{{ class }}__label">{{ label }}</span>
-    {% endif %}
-</a>
+
+        {% if label %}
+            <span class="{{ class }}__label">{{ label }}</span>
+        {% endif %}
+
+    </a>
+{% endblock %}
 
 {% endwith %}
