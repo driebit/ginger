@@ -10,7 +10,7 @@
             {% if btn_title %}
                 {{ btn_title }}
             {% else %}
-                + {_ add _} {{cat_title }} {_ to _}
+                + {_ add _} {{cat_title }} {_ toe _}
             {% endif %}
         </a>
         {% if direction=='in' %}
