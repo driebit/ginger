@@ -16,7 +16,7 @@
         {% if direction=='in' %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add ", " ", modal_cat_title, " ", _" to "]
+                            title=[_"add ", " ", modal_cat_title, " ", _" toe "]
                             logon_required
                             object_id=id
                             cat=cat_id
@@ -30,7 +30,7 @@
         {% else %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add ", " ", modal_cat_title , " ", _" to "]
+                            title=[_"add ", " ", modal_cat_title , " ", _" toe "]
                             logon_required
                             subject_id=id
                             cat=cat_id
