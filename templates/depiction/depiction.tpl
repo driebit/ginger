@@ -6,30 +6,13 @@
     {% with m.rsc[first_media_id]|default:m.rsc[icon_id] as dep_rsc %}
     
         {% if dep_rsc and dep_rsc.is_a.image %}
-            <a href="/image/{{ dep_rsc.id.medium.filename }}" class="depiction lightbox" rel="fancybox-group"
-                {% if dep_rsc.title %}
-                    title="{{ dep_rsc.title }}"
-                {% elif dep_rsc.summary %}
-                    title = "{{ dep_rsc.summary }}"
-                {% endif %}
-            >
-                <figure>
-                    {% if dep_rsc.medium.width > 750 %}
-                        {% image dep_rsc.id mediaclass="article-depiction-width" class="img-responsive" alt="" crop=dep_rsc.crop_center %}
-                    {% elif dep_rsc.medium.height > 750 %}
-                         {% image dep_rsc.id mediaclass="article-depiction-height" class="img-responsive" alt="" crop=dep_rsc.crop_center %}
-                    {% else %}
-                        {% image dep_rsc.id class="img-auto" alt="" crop=dep_rsc.id.crop_center %}
-                    {% endif %}
-                    <figcaption>{% if dep_rsc.title %}{{ dep_rsc.title }}{% endif %}</figcaption>
-                </figure>
-            </a>
+            {% include "depiction/depiction-image.tpl" %}
         {% else %}
             {% if dep_rsc.is_a.document %}
-                {% catinclude "_media_item.tpl" dep_rsc.id %}
+                {% catinclude "depiction/depiction-media-item.tpl" dep_rsc.id %}
             {% else %}
-                <a href="{{ dep.id.page_url }}">
-                    {% include "_media_item.tpl" dep=dep_rsc %}
+                <a class="depiction__media-item" href="{{ dep.id.page_url }}">
+                    {% include "depiction/depiction-media-item.tpl" dep=dep_rsc %}
                 </a>
             {% endif %}
         {% endif %}
