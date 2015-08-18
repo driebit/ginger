@@ -37,10 +37,10 @@
 		
 	</head>
 
-	<body class="{{ id.category.name }} {% block body_class %}{% endblock %}">
+	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation">
 		
 		{% block global_nav %}
-			{% include "global-nav/global-nav.tpl" %}
+			{#% include "global-nav/global-nav.tpl" %#}
 		{% endblock %}
 
 		{% block content_group_nav %}
@@ -50,7 +50,7 @@
 		{% block content %}{% endblock %}
 
 		{% block footer %}
-			{# include "_footer.tpl" #}
+			{% include "footer/footer.tpl" %}
 		{% endblock %}
 
 		{% all include "_js_include.tpl" %}

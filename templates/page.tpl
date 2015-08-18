@@ -9,41 +9,47 @@
         
         {% with id as article %}
 
-            {#% block masthead %#}
-                {#% include "_masthead.tpl" article=article %#}
-            {#% endblock %#}
+            {% block masthead %}
+                {% include "masthead/masthead.tpl" article=article %}
+            {% endblock %}
 
             <main role="main" class="">
 
                 <article class="do_article_foldout">
 
-                    <button type="button" class="btn-article-foldout" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>
-
-                    {% block page_actions %}
-
+                    {% block foldout %}
+                        {% include "foldout/foldout.tpl" %}
                     {% endblock %}
 
-                    {% block title %}
+                    {% block page_actions %}
+                        {% include "page-actions/page-actions.tpl" id=id %}
+                    {% endblock %}
+
+                    {% block page_title %}
                         <h1 class="">{{ article.title }}</h1>
                     {% endblock %}
 
-                    {% if article.summary %}
-                        <div class="">
-                            {{ article.summary }}
-                        </div>
-                    {% endif %}
+                    {% block summary %}
+                        {% if article.summary %}
+                            <div class="">
+                                {{ article.summary }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
 
-                    {% block page_depiction %}
+                    {% block depiction %}
                         {% catinclude "depiction/depiction.tpl" id %}
                     {% endblock %}
 
-                    <div class="">
-                        {{ article.body|show_media }}
-                    </div>
+                    {% block body %}
+                        <div class="">
+                            {{ article.body|show_media }}
+                        </div>
+                    {% endblock %}
 
-                    {#% block page_blocks %#}
-                        {% include "_blocks.tpl" %}
-                    {#% endblock %#}
+                    {% block page_blocks %}
+                        {% include "blocks/blocks.tpl" %}
+                    {% endblock %}
 
                     {% block comments %}
                         {% if article.s.comment %}
