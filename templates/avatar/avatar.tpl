@@ -1,29 +1,26 @@
 {% with
-    class|default:"#",
-    href|if_undefined:"#",
-    image_class|default:"avatar",
+    user,
+    href|default:user.page_url,
+    image_class|default:"avatar__image",
     label
 as
-    class,
+    user,
     href,
     image_class,
     label
 %}
 
-{% block button %}
-    <a href="{{ href }}" id="{{ id }}" class="{{ class }} {{ extraClasses }}" >
-        
-        {% if image_dep %}
-            {% image image_dep mediaclass="avatar" class=image_class %}
-        {% else %}
-            <i class="icon-profile"></i>
-        {% endif %}
+<a href="{{ href }}" class="avatar" >
+  {% if user.depiction %}
+      {% image user.depiction mediaclass="avatar" class=image_class %}
+  {% else %}
+      <i class="icon-profile"></i>
+  {% endif %}
 
-        {% if label %}
-            <span class="{{ class }}__label">{{ label }}</span>
-        {% endif %}
+  {% if label %}
+      <span class="avatar__label">{{ label }}</span>
+  {% endif %}
 
-    </a>
-{% endblock %}
+</a>
 
 {% endwith %}
