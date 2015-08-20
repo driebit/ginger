@@ -1,8 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-08-20 14:57+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.1\n"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9
+msgid "Check our Terms of Service and Privacy policies"
+msgstr "Controleer onze Gebruiksvoorwaarden en Privacy beleid"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_date_of_birth.tpl:3
+msgid "Date of birth"
+msgstr "Geboortedatum"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:25
+msgid "Forgot my password"
+msgstr "Wachtwoord vergeten"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:2
+msgid "Gender"
+msgstr "Geslacht"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22
+msgid "I agree to the"
+msgstr "Ik ga akkoord met de"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:15
+msgid "Log in"
+msgstr "Log in"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:33
+msgid "Log in or sign up"
+msgstr "Log in of meld je aan"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22
+msgid "Privacy policies"
+msgstr "Privacybeleid"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_nav_logon.tpl:27
+msgid "Sign out"
+msgstr "Log uit"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:20
+msgid "Sign up"
+msgstr "Registreer"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:14
+msgid "To sign up you must agree with the Terms of Service and Privacy policies."
+msgstr "Om u te melden moet u akkoord met de Algemene Voorwaarden en Privacy-beleid."
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:13
+msgid "We will be very careful with all the information given to us and will never "
+msgstr "We zullen heel voorzichtig zijn met alle informatie aan ons gegeven."
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25
+msgid "You must agree to the Terms in order to sign up."
+msgstr "U moet akkoord gaan met de Algemene Voorwaarden om aan te melden."
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:6
+msgid "female"
+msgstr "vrouw"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:9
 msgid "logon/signup"
 msgstr "Log in / registreer"
 
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:5
 msgid "male"
 msgstr "man"
 
-msgid "female"
-msgstr "vrouw"
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:7
+msgid "other"
+msgstr "anders"

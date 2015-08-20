@@ -18,19 +18,44 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:21 
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9 
+msgid ""
+"Check our Terms of Service and Privacy policies"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_date_of_birth.tpl:3 
+msgid ""
+"Date of birth"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:25 
 msgid ""
 "Forgot my password"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:11 
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:2 
+msgid ""
+"Gender"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22 
+msgid ""
+"I agree to the"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:15 
 msgid ""
 "Log in"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:31 
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:33 
 msgid ""
 "Log in or sign up"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22 
+msgid ""
+"Privacy policies"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_nav_logon.tpl:27 
@@ -38,12 +63,44 @@ msgid ""
 "Sign out"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:16 
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:20 
 msgid ""
 "Sign up"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:14 
+msgid ""
+"To sign up you must agree with the Terms of Service and Privacy policies."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:13 
+msgid ""
+"We will be very careful with all the information given to us and will never "
+"give your name or address away without your permission.\n    We do have "
+"some rules that we need you to agree with."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25 
+msgid ""
+"You must agree to the Terms in order to sign up."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:6 
+msgid ""
+"female"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:9 
 msgid ""
 "logon/signup"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:5 
+msgid ""
+"male"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:7 
+msgid ""
+"other"
 msgstr ""
