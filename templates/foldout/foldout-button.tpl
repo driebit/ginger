@@ -1,0 +1,1 @@
+<button type="button" class="foldout__button" alt="{_ Lees meer _}" title="{_ Lees meer _}"></button>

@@ -1,6 +1,6 @@
 <div class="share">
     {% block button %}
-        <button class="">
+        <button class="share__button">
             {_ Delen _} 
         </button>
     {% endblock %}

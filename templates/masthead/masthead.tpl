@@ -1,45 +1,41 @@
-{% with m.rsc[id].media|without_embedded_media:id as media_without_embedded %}
-{% with media_without_embedded[1] as first_media_id %}
-{% with m.rsc[id].o.hasicon[1] as icon_id %}
+{% extends "depiction/with_depiction.tpl" %}
 
-{% if article %}
-    {% if type == 'map' %}
-        <div class="masthead do_ginger_default_masthead_map"
-            data-street1="{{ article.address_street_1 }}"
-            data-street2="{{ article.address_street_2 }}"
-            data-city="{{ article.address_city }}"
-            data-postcode="{{ article.address_postcode }}"
-            data-country="{{ article.address_country }}"
+{% block with_depiction %}
+
+<style>
+.masthead {
+    background-size: cover;
+    height: 300px;
+}
+</style>
+
+{% if id %}
+
+    {% if id.address_street_1 %}
+    
+        <div class="masthead--map do_masthead_map"
+            data-street1="{{ resource.address_street_1 }}"
+            data-street2="{{ resource.address_street_2 }}"
+            data-city="{{ resource.address_city }}"
+            data-postcode="{{ resource.address_postcode }}"
+            data-country="{{ resource.address_country }}"
         ></div>
+    
     {% else %}
-        {% if first_media_id or icon_id %}
 
-             {% with m.rsc[first_media_id]|default:m.rsc[icon_id] as dep_rsc %}
-                
-                {% if dep_rsc %}
-
-                    {% if dep_rsc.medium.width > 500 %}
-                        <div class="masthead do_ginger_default_paralax" style="background-image: url({% image_url dep_rsc.id mediaclass='img-header' crop %}); background-size: cover;"></div>
-                    {% else %}
-                        <div class="masthead"></div>
-                    {% endif %}
-                {% else %}
-                    <div class="masthead"></div>
-                {% endif %}
-
-            {% endwith %}
-        {% else %}
-            {% if m.rsc[id].header %}
-                <div class="masthead do_ginger_default_paralax" style="background-image: url({% image_url m.rsc[id].header.id mediaclass='img-header' crop %}); background-size: cover;"></div>
-            {% elseif article.header %}
-                <div class="masthead do_ginger_default_paralax" style="background-image: url({% image_url article.header.id mediaclass='img-header' crop %}); background-size: cover;"></div>
+        {% if dep_rsc %}
+            {% if dep_rsc.medium.width > 500 and dep_rsc.name|lower != "fallback" %}
+                <div class="masthead do_ginger_default_paralax" style="background-image: url({% image_url dep_rsc.id mediaclass='masthead' crop %});"></div>
             {% else %}
                 <div class="masthead"></div>
             {% endif %}
+        {% else %}
+            <div class="masthead"></div>
         {% endif %}
+
     {% endif %}
+
 {% endif %}
 
-{% endwith %}
-{% endwith %}
-{% endwith %}
+{% endblock %}
+
