@@ -1,6 +1,8 @@
 {% with m.comment.rsc[id] as comments %}
   <div class="comments">
-      <h3 class="comments__header">{{ comments|length }} reacties</h3>
+
+        {% include "comments/comments-header.tpl" id=id %}
+
           {% if comments %}
               {% with m.rsc[id].creator_id as creator_id %}
                   <ul id="comments-list" class="comments__list">
@@ -13,6 +15,7 @@
               {% endwith %}
           {% endif %}
 
-      {% include "comments/_comments_form.tpl" %}
+      {% include "comments/_comments_form.tpl" id=id %}
+
   </div>
 {% endwith %}

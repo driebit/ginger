@@ -2,7 +2,7 @@
 
 {% block with_depiction %}
 
-<li style="display: inline-block; height: 300px; width: 300px; border: 2px solid blue">
+<li class="list-item" style="display: inline-block; height: 300px; width: 300px; border: 2px solid blue">
     
     <a href="{{ id.page_url }}" class=" {{ extraClasses }}">
 

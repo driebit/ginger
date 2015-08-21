@@ -15,7 +15,7 @@ as
   {% endif %}
   id="comment-{{ comment.id }}">
   {% with m.rsc[comment.user_id] as user %}
-    {% include "avatar/avatar.tpl" user=user %}
+    {% include "avatar/avatar.tpl" id=user %}
     <h3><a name="#comment-{{ comment.id }}"></a>{{ comment.name|default:user.title }}</h3>
   {% endwith %}
   <p class="comment__meta">{_ Posted _} {{ comment.created|timesince }}.</p>
