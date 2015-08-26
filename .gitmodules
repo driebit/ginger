@@ -25,3 +25,6 @@
 [submodule "modules/mod_ginger_rdf"]
 	path = modules/mod_ginger_rdf
 	url = https://github.com/driebit/mod_ginger_rdf.git
+[submodule "modules/mod_ginger_base"]
+	path = modules/mod_ginger_base
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_base.git
