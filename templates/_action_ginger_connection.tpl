@@ -7,6 +7,10 @@
     {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
     {% with modal_cat_title|default:cat_title as modal_cat_title %}
         <a id="{{ #connect.predicate }}" class="{{ btn_class }}" href="#connect">
+            {% if icon %}
+                <i class="icon {{ icon }}"></i>
+            {% endif %}
+
             {% if btn_title %}
                 {{ btn_title }}
             {% else %}
