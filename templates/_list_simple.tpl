@@ -1,4 +1,4 @@
-<p class="involved_item_keywords">
+<p class="involved_item_keywords {{ class }}">
 	{% for id in ids %}
         {% if id and id.is_visible and id.is_published %}
             <span class="list_item_simple">

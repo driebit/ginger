@@ -17,6 +17,8 @@
             {% block page_actions %}{% catinclude "_page_actions.tpl" id %}{% endblock %}
 
 			<h1 id="article-title">{{ id.title }}</h1> 
+
+            {% block author %}{% endblock %}
 		
 			{% block page_depiction %}
                 {% if id.depiction %}
