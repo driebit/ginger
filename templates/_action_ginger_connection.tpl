@@ -30,7 +30,7 @@
         {% else %}
             {% wire id=#connect.predicate 
                 action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add", " ", modal_cat_title , " ", _"toe "]
+                            title=[_"add", " ", modal_cat_title , " ", _"to "]
                             logon_required
                             subject_id=id
                             cat=cat_id
