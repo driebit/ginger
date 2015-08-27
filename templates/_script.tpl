@@ -1,7 +1,6 @@
 {% lib 
-    "bootstrap/js/bootstrap.min.js"
-    "js/global-search.js"
     "js/global-nav.js"
+    "js/global-search.js"
     "js/content-group-nav.js"
     "js/foldout.js"
     "js/foundation.js"

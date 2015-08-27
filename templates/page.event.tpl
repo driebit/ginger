@@ -41,17 +41,6 @@
                             <a href="#" id="all-participants">alle deelnemers</a>
                             {% wire id="all-participants" type="click" action={update target="participants" template="event/event-participants.tpl" id=id} %}
 
-                            <h1> related test </h1>
-
-                            {% if resource.o.fixed_context %}
-                                {% with resource.o.fixed_context as result %}
-                                    {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
-                                {% endwith %}
-                            {% elif resource.subject %}
-                                {% with m.search[{match_objects id=id pagelen=5}]|make_list|element:1 as result %}
-                                    {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
-                                {% endwith %}
-                            {% endif %}
                                   
                     </article>
 
