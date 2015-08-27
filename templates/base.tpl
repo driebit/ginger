@@ -37,7 +37,13 @@
 		
 	</head>
 
-	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation">
+	<style>
+		html, body {
+			color: grey;
+		}
+	</style>
+
+	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation" style="background-image:url('/lib/images/testbg.jpg'); background-size: cover; margin-top: 100px" >
 		
 		{% block global_nav %}
 			{#% include "global-nav/global-nav.tpl" %#}
@@ -54,7 +60,7 @@
 		{% endblock %}
 
 		{% all include "_js_include.tpl" %}
-		{% all include "_scripts.tpl" %}
+		{% all include "_script.tpl" %}
 
 		{% script %}
 		

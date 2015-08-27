@@ -2,50 +2,44 @@
 
 {% block title %}{{ id.title }}{% endblock %}
 
-{% block body_class %}page{% endblock %}
+{% block body_class %}{% endblock %}
 
 {% block content %}
 
     <div class="">
         
-        {% with id as article %}
+        {% with m.rsc[id] as resource %}
 
-            {% include "masthead/masthead.tpl" article=article %}
+            {% include "masthead/masthead.tpl" id=id %}
 
             <main role="main" class="">
 
-                <div class="foldout">
+                <div class="foldout do_foldout">
 
-                    <article class="do_article_foldout">
+                    {% include "foldout/foldout-button.tpl" %}
 
-                        {% include "foldout/foldout.tpl" %}
+                    <article class="">
+
                         {% include "page-actions/page-actions.tpl" id=id %}
 
-                            <h1 class="">{{ article.title }}</h1>
+                            <h1 class="">{{ resource.title }}</h1>
 
-                            {% if article.summary %}
-                                <div class="">{{ article.summary }}</div>
+                            <h1>aantal reacties test</h1>
+
+                            {% include "comments-button/comments-button.tpl" id=id %}
+
+                            {% if resource.summary %}
+                                <div class="">{{ resource.summary }}</div>
                             {% endif %}
-                                             
-                            {#% catinclude "depiction/depiction.tpl" id %#}
-                         
-                            <div class="">{{ article.body|show_media }}</div>
+
+                            <h1>first depiction</h1>
+                            {% with id.depiction.id as first_dep %}
+                                {% catinclude "media/media.tpl" first_dep %}
+                            {% endwith %}
+
+                            <div class="">{{ resource.body|show_media }}</div>
 
                             {% include "blocks/blocks.tpl" %}
-
-                                <h1>test normal depiction</h1>
-                                
-                                {% include "depiction/depiction.tpl" id=342 context="content" %}
-                                
-                                <h1>test list depiction</h1>
-
-                                <ul style="width: 100%">
-                                    {% for rsc in m.rsc.listtest.o.haspart %}
-                                        <li style="width: 30%; display: inline-block">
-                                            {% include "depiction/depiction.tpl" context="related" id=rsc %}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
 
                                 <style>
                                     .carousel li {
@@ -59,21 +53,43 @@
                                 {% include "carousel/carousel.tpl" 
                                     items=m.rsc.gallerytest.o.haspart 
                                     itemtemplate="carousel/carousel-item.tpl"
+                                    pagertemplate="carousel/carousel-pager-item.tpl"
                                     extraClasses=""
+                                    carousel_id="testcarousel"
                                     config="{
                                       infinite: true,
                                       slidesToShow: 3,
-                                      slidesToScroll: 3
+                                      slidesToScroll: 1,
+                                      arrows: false
                                     }"
-                                    carousel_id="testcarousel"
                                 %}
 
-                            
-                        
-                            {% if article.s.comment %}
-                                {% include "comments/comments.tpl" comments=article.s.comment %}
-                            {% endif %}
-                        
+                                <h1> related test </h1>
+
+                                {% if resource.o.fixed_context %}
+                                    {% with resource.o.fixed_context as result %}
+                                        {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
+                                    {% endwith %}
+                                {% elif resource.subject %}
+                                    {% with m.search[{match_objects id=id pagelen=5}]|make_list|element:1 as result %}
+                                        {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
+                                    {% endwith %}
+                                {% endif %}
+
+                                <h1>comments</h1>
+
+                                {% include "comments/comments.tpl" id=id %}
+
+                                <h1>load more test</h1>
+
+                                {% with m.search[{query hassubject=[338,'fixed_context'] pagelen=2}] as result %}
+                                      {% include "list/list.tpl" cols=3 items=result list_id="testlist" %}
+                                      {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
+                                        target="testlist"
+                                        template="list/list-item.tpl"}
+                                        %}
+                                {% endwith %}
+                                  
                     </article>
 
                 </div>
