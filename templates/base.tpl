@@ -36,17 +36,11 @@
 		{% all include "_html_head_extra.tpl" %}
 		
 	</head>
-
-	<style>
-		html, body {
-			color: grey;
-		}
-	</style>
-
+	
 	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation" style="background-image:url('/lib/images/testbg.jpg'); background-size: cover; margin-top: 100px" >
 		
 		{% block global_nav %}
-			{#% include "global-nav/global-nav.tpl" %#}
+			{% include "global-nav/global-nav.tpl" %}
 		{% endblock %}
 
 		{% block content_group_nav %}
