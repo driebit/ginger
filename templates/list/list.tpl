@@ -2,7 +2,7 @@
     items,
     cols,
     extraClasses,
-    list_id
+    list_id|default:""
 as
     items,
     cols,

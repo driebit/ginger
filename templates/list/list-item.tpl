@@ -19,7 +19,7 @@
             </span>
 
             <div>
-                {{ id.category.name }}
+                CAT: {{ id.category.name }}
             </div>
 
             <p>
@@ -29,13 +29,10 @@
                     {{ id.body|striptags|truncate:200 }}
                 {% endif %}
             </p>
+            
         </div>
     </a>
 
 </li>
 
 {% endblock %}
-
-
-
-

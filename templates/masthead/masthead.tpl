@@ -18,14 +18,14 @@
             data-street2="{{ resource.address_street_2 }}"
             data-city="{{ resource.address_city }}"
             data-postcode="{{ resource.address_postcode }}"
-            data-country="{{ resource.address_country }}"
-        ></div>
+            data-country="{{ resource.address_country }}">
+        </div>
     
     {% else %}
 
         {% if dep_rsc %}
             {% if dep_rsc.medium.width > 500 and dep_rsc.name|lower != "fallback" %}
-                <div class="masthead do_ginger_default_paralax" style="background-image: url({% image_url dep_rsc.id mediaclass='masthead' crop %});"></div>
+                <div class="masthead do_parallax" style="background-image: url({% image_url dep_rsc.id mediaclass='masthead' crop %}); background-size: cover;"></div>
             {% else %}
                 <div class="masthead"></div>
             {% endif %}
@@ -38,4 +38,3 @@
 {% endif %}
 
 {% endblock %}
-

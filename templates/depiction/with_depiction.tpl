@@ -1,5 +1,3 @@
-{# id: the resource itself #}
-
 {% with
     id
 as
