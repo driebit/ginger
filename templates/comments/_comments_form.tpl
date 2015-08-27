@@ -20,33 +20,33 @@
                 <fieldset>
 
 	                {% if not user_id %}
-                        <div class="form-group row">
-	                        <label class="control-label col-md-3" for="name">{_ Name _}</label>
-                            <div class="col-md-9">
+                        <div class="form-group">
+	                        <label class="control-label" for="name">{_ Name _}</label>
+                            <div class="">
 		                        <input type="text" name="name" id="name" class="col-lg-4 col-md-4 form-control" />
 		                        {% validate id="name" type={presence} %}
 	                        </div>
                         </div>
                         
-                        <div class="form-group row">
-	                        <label class="control-label col-md-3" for="mail">{_ E-mail _}</label>
-                            <div class="col-md-9">
+                        <div class="form-group">
+	                        <label class="control-label" for="mail">{_ E-mail _}</label>
+                            <div class="">
 		                        <input type="text" name="mail" id="mail" class="col-lg-4 col-md-4 form-control" />
 		                        {% validate id="mail" type={presence} type={email} %}
 	                        </div>
 	                    </div>
 	                {% endif %}
 
-                    <div class="form-group row">
-	                    <label class="control-label col-md-3" for="message">{_ Message _}</label>
-	                    <div class="col-md-9">
+                    <div class="form-group">
+	                    <label class="control-label" for="message">{_ Message _}</label>
+	                    <div class="">
 		                    <textarea name="message" id="message" cols="60" rows="8" class="col-lg-4 col-md-4 form-control"></textarea>
 		                    {% validate id="message" type={presence} %}
 	                    </div>
                     </div>
                     
-                    <div class="form-group row">
-	                    <div class="col-md-9 col-md-offset-3">
+                    <div class="form-group">
+	                    <div class=" col-md-offset-3">
 		                    <button class="btn btn-primary" type="submit">{_ Send _}</button>
 	                    </div>
 	                </div>
