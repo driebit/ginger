@@ -1,14 +1,16 @@
 {% with btn_class|default:"btn btn-default btn-rsvp pull-left" as btn_class %}
+
 {% if id.action_rsvp %}
     {# Show an RSVP button, for events #}
         {% if m.acl.user %}
             {# If the user is logged in, show its RSVP status #}
             {% with m.acl.user.id, id as user, event %}
+
                 {% if m.edge.id[user].participant[event]|is_defined %}
                     {# User has RSVPd #}
                     {% button
                         text=_"Afmelden"
-                        class=btn_class
+                        class=rsvp-button
                         action={
                             unlink
                             subject_id=user
@@ -24,7 +26,7 @@
                     {# User did not RSVP #}
                     {% button
                         text=_"Aanmelden"
-                        class=btn_class
+                        class=rsvp-button
                         action={
                             link
                             subject_id=user
@@ -42,7 +44,7 @@
             {# The user is not logged in. Clicking on RSVP only logs in, nothing else. #}
             {% button
                 text=_"Aanmelden"
-                class=btn_class
+                class=rsvp-button
                 action={
                     dialog_open
                     title=_"logon or register"
