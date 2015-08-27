@@ -2,15 +2,14 @@
 
 {% with 
     limit|default:9999,
-    id.o.participates
+    id.s.participant
 as
     limit,
-    participants
+    participant
 %}
 
-    {% for p in participants|slice:[,limit] %}
+    {% for p in participant|slice:[,limit] %}
         {{ p.title }}, 
     {% endfor %}
 
 {% endwith %}
-
