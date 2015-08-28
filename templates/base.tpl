@@ -37,7 +37,9 @@
 		
 	</head>
 	
-	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base" style="background-image:url('/lib/images/testbg.jpg'); background-size: cover; margin-top: 100px" >
+	{% with m.rsc[id.content_group_id] as content_group %}
+
+		<body class="{% if content_group %}has-contentgroup {% endif %}{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base">
 		
 		{% block global_nav %}
 			{% include "global-nav/global-nav.tpl" %}
@@ -58,5 +60,6 @@
 
 		{% script %}
 		
+	{% endwith %}		
 	</body>
 </html>

@@ -1,4 +1,3 @@
-
 body.has-content-group {
     padding-top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
 }
@@ -9,14 +8,16 @@ body.has-content-group {
     position: fixed;
     @include size(top, $globalNavHeight);
     z-index: 200;
+    background-color: $white;
     background-size: cover;
     background-position: center center;
     text-align: center;
-    background-color: $white;
     box-shadow: 3px 3px 10px 2px rgba(0,0,0,0.15);
     transition: all 0.5s;
 
-    &:hover, &:focus, &:active {
+    &:hover, 
+    &:focus, 
+    &:active {
         text-decoration: none;
     }    
 
@@ -43,39 +44,38 @@ body.has-content-group {
     @include size(top, 0);
     @include size(left, 0);
     z-index: 100;
+    background-color: $white;
     background-size: cover;
     background-position: center center;
     text-align: center;
-    background-color: $white;
     filter: grayscale(100%);
     -webkit-filter: grayscale(100%);  /* For Webkit browsers */
     filter: gray;  /* For IE 6 - 9 */
 }
 
  .content-group-nav__banner__title {
+    @include vertical-align();
     z-index: 300;
     @include size(font-size, 28);
     color: $white;
     font-family: Arial;
     text-transform: uppercase;
     text-shadow: 0px 1px 10px rgba(50, 50, 50, 1);
-    @include vertical-align();
 
     &:after {
         content: '';
         display: inline-block;
+        position: relative;
+        top: -6px;
+        left: 10px;
         border-top: 8px dashed; 
         border-right: 8px solid transparent; 
         border-left: 8px solid transparent; 
         display: inline-block;
-        top: -6px;
-        left: 10px;
-        position: relative;
     }
 }
 
 .content-group-nav__menu { 
-
     @include size(min-height, 55);
     padding: 18px 10px 12px 10px;
     background-color: $mainThemeColor;
@@ -89,11 +89,11 @@ body.has-content-group {
 
     li {
         display: block;
+        width: 100%;
         @include size(margin, 0);
         list-style-type: none;
         @include size(font-size, 14);
         vertical-align: top;
-        width: 100%;
         text-align: left;
 
         &.active a {
@@ -102,6 +102,7 @@ body.has-content-group {
     }
 
     a {
+        display: block;
         padding: 5px 10px;
         @include size(font-size, 14);
         color: $white;
