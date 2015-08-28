@@ -1,21 +1,18 @@
 {% if m.acl.user %}
     
     {% with #profile as profile_wire_id %} 
-    {% with m.rsc[m.acl.user].depiction as image_dep %}
-
-        {% block avatar %}
-            {% include 
-                "avatar/avatar.tpl" 
-                href="#" 
-                label=_"Profiel" 
-                id=profile_wire_id 
-                class="button-profile"
-                image_dep=image_dep
-                image_class="avatar"
+  
+        <a href="#" id="{{ profile_wire_id }}">
+            
+            {% include "avatar/avatar.tpl"
+                id=m.rsc[m.acl.user]
+                fallback_rsc_id=m.rsc.custom_fallback.id
             %}
-        {% endblock %}
 
-    {% endwith %}
+            {_ Profiel _}
+
+        </a>
+
     {% endwith %} 
 
     {% wire
