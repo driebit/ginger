@@ -209,7 +209,8 @@
 
 .login--global-nav,
 .global-nav__actions__language,
-.global-nav__actions__profile {
+.global-nav__actions__profile,
+.language--global-nav {
     @extend .btn--nav-actions;
 }
 
@@ -220,26 +221,6 @@
         top: -4px;
         border-radius: 50%;
         border: 2px solid $mainThemeColor;
-    }
-}
-
-.login--global-nav {
-    &:before {
-        content: '\e610';
-        margin-right: 3px;
-        font-family: 'icomoon';
-        /*position: ;*/
-        top: 2px;
-    }
-}
-
-.global-nav__actions__language {
-    &:before {
-        content: '\e60a';
-        margin-right: 3px;
-        font-family: 'icomoon';
-        position: relative;
-        top: 1px;
     }
 }
 

@@ -6,7 +6,7 @@
 
     {% block actions %}
         <div class="global-nav__actions cf">
-            {% include "_auth_link.tpl" class="login--global-nav" icon="none" %}
+            {% include "_auth_link.tpl" class="login--global-nav" label_class=" " icon="icon--login" icon_before="icon_before" %}
             {% include "dialog-profile/button-profile.tpl" %}
             {% include "dialog-language/button-language.tpl" %}
             {% include "global-search/search.tpl" identifier="global-nav" %}
