@@ -2,13 +2,6 @@
 
 {% block with_depiction %}
 
-<style>
-.masthead {
-    background-size: cover;
-    height: 300px;
-}
-</style>
-
 {% if id %}
 
     {% if id.address_street_1 %}
