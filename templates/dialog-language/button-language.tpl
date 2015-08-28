@@ -1,7 +1,7 @@
 
 {% block button %}
     <a id="{{ #language }}" href="#" class="language--global-nav {{ extraClasses }}">
-        <i class="icon--language"></i> {{ z_language }}
+        <i class="icon--flag"></i> {{ z_language }}
     </a>
 {% endblock %}
 

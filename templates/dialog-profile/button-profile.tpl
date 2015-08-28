@@ -2,7 +2,7 @@
     
     {% with #profile as profile_wire_id %} 
   
-        <a href="#" id="{{ profile_wire_id }}">
+        <a href="#" id="{{ profile_wire_id }}" class="profile--global-nav">
             
             {% include "avatar/avatar.tpl"
                 id=m.rsc[m.acl.user]
