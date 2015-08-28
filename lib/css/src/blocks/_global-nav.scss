@@ -43,127 +43,15 @@
 }
 
 .global-nav__menu {
-    background-color: $menuMobileBgColor;
-}
-
-
-/*
-.global-nav__off-canvas {
-    position: fixed;
     display: block;
-    transform: translateX(100%);
     width: 100%;
-    height: 100%;
-    @include size(top, $globalNavMobileHeight);
+    position: fixed;
+    @include size(top, ($globalNavMobileHeight + 60));
     right: 0;
-    background-color: $menuMobileBgColor;
-    transition: all 250ms ease-out;
     z-index: 10000;
-
-    .global-nav__actions {
-        display: block;
-        clear: both;
-        float: none;
-        margin: 0px;
-        background: $menuMobileActionsBgColor;
-
-        li {
-            float: left;
-            padding: 0px 14px 0px 14px;
-            border-right: 1px solid $white;
-
-            a {
-                color: $mainNavPagesColor;
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-
-            
-            i {
-               @include size(margin-right, 8);
-               color: $mainNavPagesColor;
-            }
-        }
-
-
-        &__language {
-            white-space: nowrap;
-
-            a {
-                line-height: initial;
-
-                &:hover {
-                    text-decoration: none;
-
-                    span {
-                        text-decoration: underline;
-                    }
-                }
-
-                &:before {
-                    content: '/ ';
-                }
-
-                &:first-child:before {
-                    content: '';
-                }
-
-                &.active span {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-    }
-
-    &.is-shown {
-        transform: translateX(0);
-
-        &:after {
-            display: block;
-            opacity: 0.75;
-        }
-    }
-
-    &:after {
-        content: '';
-        display: none;
-        position: absolute;
-        @include size(width, 1000);
-        top: 0;
-        left: 0;
-        height: 100%;
-        transition: opacity 250ms linear;
-        transform: translateX(-1000px);
-        background-color: $black;
-        opacity: 0;
-    }
-
-    .dropdown-menu {
-        left: auto;
-        right: 10px;
-
-        li {
-            display: block;
-
-            a {
-                @include size(padding, 10);
-                text-align: left;
-                &:hover,
-                &:focus {
-                    text-decoration: none;
-                    color: $mainNavPagesColor;
-                    background-color: transparent;
-                }
-            }
-        }
-    }
-}
-*/
-
-.global-nav__menu {
-    display: block;
+    background-color: $menuMobileBgColor;
+    transform: translateX(100%);
+    transition: all 250ms ease-out;
 
     li {
         display: block;
@@ -188,13 +76,33 @@
             text-decoration: none;
         }
     }
+
+    .is-open & {
+        transform: translateX(0);
+    }
+
+    ul {
+        display: none;
+    }
 }
 
 // Actions
 
 .global-nav__actions {
     width: 100%;
-    background: darken($menuMobileBgColor, 5);    
+    @include size(height, 60);
+    position: fixed;
+    @include size(top, $globalNavMobileHeight);
+    right: 0;
+    z-index: 1000;
+    background: darken($menuMobileBgColor, 5);
+    @include size(line-height, 60);
+    transform: translateX(100%);
+    transition: all 250ms ease-out;
+
+    .is-open & {
+        transform: translateX(0);
+    }
 }
 
 .btn--nav-actions {
@@ -205,20 +113,25 @@
     img {
         vertical-align: middle;
     }
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
 }
 
 .login--global-nav,
-.global-nav__actions__language,
-.global-nav__actions__profile,
+.profile--global-nav,
 .language--global-nav {
     @extend .btn--nav-actions;
 }
 
-.global-nav__actions__profile {
+.profile--global-nav {
     img {
         display: inline-block;
-        position: absolute;
-        top: -4px;
+        position: relative;
+        top: -2px;
         border-radius: 50%;
         border: 2px solid $mainThemeColor;
     }
@@ -305,9 +218,8 @@
     }
 }
 
-
-.global-search__toggle-search,
-.toggle-menu {
+.toggle-menu,
+.global-search__toggle-search {
     display: block;
     @include size(width, 40);
     @include size(height, 40);
@@ -333,6 +245,10 @@
     }
 }
 
+.toggle-menu:after {
+    content: "\e619";
+}
+
 .global-search__toggle-search {
     right: 65px;
 
@@ -343,7 +259,7 @@
 
     &.is-active {
         right: 15px;
-        z-index: 600;
+        z-index: 1100;
         background: $white;
         color: $mainThemeColor;
 
@@ -353,11 +269,112 @@
     }
 }
 
-.toggle-menu:after {
-    content: "\e619";
+@include mq(min-width, 900) {
+    .logo {
+        width: auto;
+        @include size(margin-right, 15);
+        float: left;
+    }
+
+    .global-nav__menu {
+        width: auto;
+        float: left;
+        position: relative;
+        top: 0px;
+        z-index: 300;
+        transform: none;
+        background: none;
+        overflow: hidden;
+
+        > li {
+            float: left;
+            border: none;
+            line-height: inherit;
+        }
+
+        a {
+            @include size(padding, 0, 15);
+
+        }
+
+        li:hover {
+            ul {
+                display: block;
+                background: $white;
+
+                li {
+                    padding: 10px 0;  
+                }
+            }
+        }
+    }
+
+    .global-nav__actions {
+        width: auto;
+        float: right;
+        position: static;
+        transform: none;
+        background: none;
+    }
+
+    .btn--nav-actions {
+        border-left: 1px solid $mainNavActionsSeperator; 
+        border-right: 0px;
+    }
+
+    .toggle-menu {
+        display: none;
+    }
+
+    .global-search__toggle-search {
+        width: auto;
+        height: 100%;
+        float: right;
+        @include size(padding-left, 15);
+        @include size(padding-right, 15);
+        position: static;
+        border-bottom: none;
+        border-right: none;
+        border-top: none;
+        text-indent: 0px;
+        text-decoration: none;
+        border-radius: 0px;
+        @include size(line-height, $globalNavMobileHeight);
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:after {
+            display: none;
+        }
+
+        i {
+            margin-right: 5px;
+            position: relative;
+            top: 2px;
+
+            &:before {
+                @include size(font-size, 16);
+            }
+        }
+
+        &.is-active {
+            width: 40px;
+            height: 40px;
+            margin-right: 0;
+            position: absolute;
+            right: 15px;
+            top: 9px;
+            text-indent: -9999px;
+            border: none;
+
+            &:after {
+                display: block;
+            }
+        }
+    }
 }
-
-
 
 
 
@@ -541,10 +558,6 @@
     }
 }
 
-@media only screen and (min-width: 1100px) {
-    @include mainNavGt1100();
-}
-
 .ie8 {
     @include mainNavGt1100();
 
@@ -577,46 +590,6 @@
     @include size(width, 30);
     border-radius: 50%;
     filter: grayscale(100%);
-}
-
-@media only screen and (max-width: 1099px) {
-    .global-nav {
-        &__pages {
-            li {
-                border-bottom: none;
-                border-top: 1px solid lighten($typographyColor, 60%);
-            }
-        }
-
-        &__off-canvas {
-            .dropdown-menu {
-                position: relative;
-                top: auto;
-                left: auto;
-                display: block;
-                float: none;
-                border: none;
-                box-shadow: none;
-                margin: 0;
-                padding: 0;
-                background-color: transparent;
-                border-radius: 0;
-                @include size(margin-right, -10);
-
-                li a {
-                    text-align: left;
-                }
-
-                > li > a {
-                    @include size(padding, 12, 54);
-                }
-            }
-
-            .caret {
-                display: none;
-            }
-        }
-    }
 }
 
 .navicon-logout {
