@@ -37,7 +37,7 @@
 		
 	</head>
 	
-	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation" style="background-image:url('/lib/images/testbg.jpg'); background-size: cover; margin-top: 100px" >
+	<body class="{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base" style="background-image:url('/lib/images/testbg.jpg'); background-size: cover; margin-top: 100px" >
 		
 		{% block global_nav %}
 			{% include "global-nav/global-nav.tpl" %}

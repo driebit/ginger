@@ -1,4 +1,5 @@
 {% lib 
+    "js/base.js"
     "js/global-nav.js"
     "js/global-search.js"
     "js/content-group-nav.js"
