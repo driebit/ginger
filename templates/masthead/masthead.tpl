@@ -1,6 +1,3 @@
-{% extends "depiction/with_depiction.tpl" %}
-
-{% block with_depiction %}
 
 {% if id %}
 
@@ -16,18 +13,24 @@
     
     {% else %}
 
-        {% if dep_rsc %}
-            {% if dep_rsc.medium.width > 500 and dep_rsc.name|lower != "fallback" %}
-                <div class="masthead do_parallax" style="background-image: url({% image_url dep_rsc.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+
+        {% with 
+            id.o.hasbanner[1].depiction|default:id.depiction as banner %}
+
+            {% if banner %}
+                {% if banner.width > 500 %}
+                    <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+                {% else %}
+                    <div class="masthead"></div>
+                {% endif %}
             {% else %}
                 <div class="masthead"></div>
             {% endif %}
-        {% else %}
-            <div class="masthead"></div>
-        {% endif %}
+
+        {% endwith %}
 
     {% endif %}
 
 {% endif %}
 
-{% endblock %}
+
