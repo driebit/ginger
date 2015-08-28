@@ -5,7 +5,7 @@
             <li>
                 <a href="{{ content_group.page_url }}" class="
                 {% if id == content_group.id %} active {% endif %}
-                "><i class="content-group-nav__menu__home"></i>&nbsp; {% if content_group.short_title %}{{ content_group.short_title }}{% else %}{{ content_group.title }}{% endif %}</a></li>
+                "><i class="icon--home"></i>&nbsp; {% if content_group.short_title %}{{ content_group.short_title }}{% else %}{{ content_group.title }}{% endif %}</a></li>
             {% for subnav_id in subnav_ids %}
                 {% if m.rsc[subnav_id].is_a.collection %}
                     {% for part_id in m.rsc[subnav_id].o.haspart %}
