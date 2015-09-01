@@ -31,3 +31,6 @@
 [submodule "modules/mod_ginger_tagger"]
 	path = modules/mod_ginger_tagger
 	url = https://github.com/driebit/mod_ginger_tagger.git
+[submodule "modules/mod_oauth2"]
+	path = modules/mod_oauth2
+	url = https://github.com/driebit/mod_oauth2.git
