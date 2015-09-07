@@ -14,9 +14,12 @@
 file(Filename, Context) ->
     filename:join([z_path:site_dir(Context), "files/fixtures/", Filename]).
 
-%% @doc Reset database schema
+%% @doc Compile and reset database schema
 -spec reset(#context{}) -> ok.
-reset(Context) ->
+reset(Site) when is_atom(Site) ->
+    Context = z_context:new(Site),
+    reset(Context);
+reset(Context) when is_record(Context, context) ->
     z:m(),
     z_module_manager:reinstall(z_context:site(Context), Context).
 
