@@ -34,3 +34,6 @@
 [submodule "modules/mod_oauth2"]
 	path = modules/mod_oauth2
 	url = https://github.com/driebit/mod_oauth2.git
+[submodule "modules/mod_ginger_export"]
+	path = modules/mod_ginger_export
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_export.git
