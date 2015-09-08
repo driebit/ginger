@@ -27,9 +27,11 @@ reset(Context) when is_record(Context, context) ->
 -spec create_identity_if_not_exists(atom(), string(), string(), #context{}) -> ok.
 create_identity_if_not_exists(Name, Username, Password, Context) ->
     Resource = m_rsc:rid(Name, Context),
-    case m_identity:get(Resource, Context) of
-        undefined ->
+    case m_identity:is_user(Resource, Context) of
+        false ->
+            %% Create new credentials
             m_identity:set_username_pw(Resource, Username, Password, Context);
-        _ ->
+        true ->
+            %% Already has credentials, so don't change them
             ok
     end.
