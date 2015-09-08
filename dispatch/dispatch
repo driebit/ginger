@@ -3,7 +3,7 @@
 [
  %% The home page, just shows the "home.tpl" template.
  {home, [], controller_template, [ {template, "home.tpl"} ]},
- 
+
  %% Normal page to show a resource.
  {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
  {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
@@ -24,6 +24,12 @@
  {closepopup, ["closepopup"], controller_template, [ {template, "close_popup.tpl"} ]},
 
  %% comments overview page
- {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]}
+ {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]},
+
+    %% Override controller_api for https://github.com/zotonic/zotonic/commit/dbd9b9ab1a37e0cc72343325248c92acc184c860
+    %% Can be removed when 0.13.3 is released.
+    {api,     ["api", module, method], controller_api_0_13_x, [{ssl, any}]},
+    {api,     ["api", module],        controller_api_0_13_x, [{ssl, any}]}
+
 
 ].
