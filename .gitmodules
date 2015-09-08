@@ -15,7 +15,7 @@
 	url = git@gitlab.driebit.nl:driebit/mod_ginger_site.git
 [submodule "modules/mod_ginger_oai_pmh"]
 	path = modules/mod_ginger_oai_pmh
-	url = git@github.com:driebit/mod_ginger_oai_pmh.git
+	url = https://github.com/driebit/mod_ginger_oai_pmh.git
 [submodule "modules/mod_ginger_xml"]
 	path = modules/mod_ginger_xml
 	url = https://github.com/driebit/mod_ginger_xml.git
@@ -28,3 +28,15 @@
 [submodule "modules/mod_ginger_foundation"]
 	path = modules/mod_ginger_foundation
 	url = git@gitlab.driebit.nl:driebit/mod_ginger_foundation.git
+[submodule "modules/mod_ginger_base"]
+	path = modules/mod_ginger_base
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_base.git
+[submodule "modules/mod_ginger_tagger"]
+	path = modules/mod_ginger_tagger
+	url = https://github.com/driebit/mod_ginger_tagger.git
+[submodule "modules/mod_oauth2"]
+	path = modules/mod_oauth2
+	url = https://github.com/driebit/mod_oauth2.git
+[submodule "modules/mod_ginger_export"]
+	path = modules/mod_ginger_export
+	url = git@gitlab.driebit.nl:driebit/mod_ginger_export.git
