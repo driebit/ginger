@@ -30,7 +30,7 @@ create_identity_if_not_exists(Name, Username, Password, Context) ->
     case m_identity:is_user(Resource, Context) of
         false ->
             %% Create new credentials
-            m_identity:set_username_pw(Resource, Username, Password, Context);
+            ok = m_identity:set_username_pw(Resource, Username, Password, z_acl:sudo(Context));
         true ->
             %% Already has credentials, so don't change them
             ok
