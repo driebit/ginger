@@ -29,10 +29,14 @@ process_post(_ReqData, Context) ->
                         undefined ->
                             {error, missing_arg, "object_id"};
                         ObjectId ->
+                            lager:info(
+                                "[~p] received RFID action for RFIDs ~p (users ~p) with oject ~p",
+                                [z_context:site(Context), Rfids, Users, ObjectId]
+                            ),
                             Response = z_notifier:first(
                                 #tagger_action{
                                     media = MediaId,
-                                    rfids = z_context:get_q("rfids", Context),
+                                    rfids = Rfids,
                                     users = Users,
                                     object = ObjectId
                                 },
@@ -45,7 +49,7 @@ process_post(_ReqData, Context) ->
     end.
 
 get_object(Context) ->
-    z_context:get_q("object_id", Context).
+    z_convert:to_integer(z_context:get_q("object_id", Context)).
 
 %% @doc Accept both multipart/form files and base64-encoded files.
 -spec process_file(#context{}) -> undefined | integer().
