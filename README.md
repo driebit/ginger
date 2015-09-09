@@ -1,7 +1,7 @@
 mod_ginger_tagger
 =================
 
-Ginger module for performing actions as a result of scanning RFID tags. 
+Ginger module for performing actions as a result of scanning RFID tags.
 
 Usage
 -----
@@ -12,13 +12,13 @@ such a token.
 
 ### Get user RFID
 
-Get user that an RFID belongs to: 
+Get user that an RFID belongs to:
 
 ```http
 GET /rfids/{id} HTTP/1.1
 Authorization: Bearer {Client OAuth2 token}
 ```
- 
+
 ### Add RFID to user
 
 Attach a RFID to a user. This requires a [user access token](https://github.com/driebit/mod_oauth2#authorization-code-grant):
@@ -52,6 +52,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
+    "rfids": [
+        "ABC12345",
+        "DEF78901"
+    ],
     "file": "base64-encoded image contents"
 }
 ```
