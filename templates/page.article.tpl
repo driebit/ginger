@@ -14,10 +14,10 @@
 
             {% include "foldout/foldout-button.tpl" %}
 
-            <article class="">  
+            <article class="">
                 {% include "page-title/page-title.tpl" id=id %}
 
-                {% include "page-actions/page-actions.tpl" id=id %}
+                {% catinclude "page-actions/page-actions.tpl" id %}
 
                 {% include "comments-button/comments-button.tpl" id=id %}
 
@@ -34,8 +34,8 @@
 
                     <h1>carousel</h1>
 
-                    {% include "carousel/carousel.tpl" 
-                        items=m.rsc.gallerytest.o.haspart 
+                    {% include "carousel/carousel.tpl"
+                        items=m.rsc.gallerytest.o.haspart
                         itemtemplate="carousel/carousel-item.tpl"
                         pagertemplate="carousel/carousel-pager-item.tpl"
                         extraClasses=""

@@ -24,23 +24,23 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="{{ z_language|default:"en"|escape }}">
 <!--<![endif]-->
+    {% include "head/head.tpl" %}
 	<head>
 		{% all include "_html_head.tpl" %}
 
 		{% block css %}
-			{% lib 
+			{% lib
 				"css/site/screen.css"
 			%}
 		{% endblock %}
 
 		{% all include "_html_head_extra.tpl" %}
-		
 	</head>
-	
+
 	{% with m.rsc[id.content_group_id] as content_group %}
 
 		<body class="{% if content_group %}has-contentgroup {% endif %}{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base">
-		
+
 		{% block global_nav %}
 			{% include "global-nav/global-nav.tpl" %}
 		{% endblock %}
@@ -48,7 +48,7 @@
 		{% block content_group_nav %}
 			{% include "content-group-nav/content-group-nav.tpl" %}
 		{% endblock %}
-		
+
 		{% block content %}{% endblock %}
 
 		{% block footer %}
@@ -59,7 +59,7 @@
 		{% all include "_script.tpl" %}
 
 		{% script %}
-		
-	{% endwith %}		
+
+	{% endwith %}
 	</body>
 </html>
