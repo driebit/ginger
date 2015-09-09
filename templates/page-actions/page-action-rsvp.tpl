@@ -1,4 +1,4 @@
-{% with btn_class|default:"btn--default" as btn_class %}
+{% with btn_class|default:"page-action--rsvp" as btn_class %}
 
 {% if id.action_rsvp %}
     {# Show an RSVP button, for events #}
@@ -10,7 +10,7 @@
                     {# User has RSVPd #}
                     {% button
                         text=_"Afmelden"
-                        class=rsvp-button
+                        class=btn_class
                         action={
                             unlink
                             subject_id=user
@@ -26,7 +26,7 @@
                     {# User did not RSVP #}
                     {% button
                         text=_"Aanmelden"
-                        class=rsvp-button
+                        class=btn_class
                         action={
                             link
                             subject_id=user
@@ -44,7 +44,7 @@
             {# The user is not logged in. Clicking on RSVP only logs in, nothing else. #}
             {% button
                 text=_"Aanmelden"
-                class=btn--default
+                class=btn--secondary
                 action={
                     dialog_open
                     title=_"logon or register"
