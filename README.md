@@ -60,4 +60,15 @@ Accept: application/json
 }
 ```
 
-### Storing RFID actions
+You also override the default object by specifying its id or URI:
+
+```http
+POST /tagger/actions
+Authorization: Bearer {Client OAuth2 token}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "object_id": "http://yoursite.com/
+}
+```
