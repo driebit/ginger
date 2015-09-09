@@ -21,8 +21,6 @@
 
                 {% include "comments-button/comments-button.tpl" id=id %}
 
-                {% include "content/content.tpl" id=id %}
-
                 {% include "blocks/blocks.tpl" %}
 
                     <style>
