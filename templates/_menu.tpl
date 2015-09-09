@@ -27,7 +27,7 @@
                     <ul>
             {% else %}
                 {% if mid.is_visible %}
-                    <li class="{% if mid|member:parents %}is-active{% endif %}">
+                    <li class="{% if mid|member:parents %} is-active{% endif %}">
                         <a href="{{ mid.page_url }}">
                             {{ mid.short_title|default:mid.title }}
                         </a>
