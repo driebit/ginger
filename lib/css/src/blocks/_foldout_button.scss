@@ -1,0 +1,16 @@
+.foldout__button {
+    display: block;
+    width: 64px;
+    height: 37px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    z-index: 100;
+    background-color: $white;
+    text-align: center;
+    border: none;
+    transform: rotate(0deg);
+}

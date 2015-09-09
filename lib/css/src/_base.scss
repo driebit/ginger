@@ -11,7 +11,7 @@ body {
     line-height: 1.5;
     font-family: $bodyFontFamily;
     font-weight: 300;
-    @include size(font-size, 17);
+    @include size(font-size, 16);
 }
 
 a, a:hover, a:active {
@@ -28,7 +28,24 @@ h1, h2, h3, h4, p, ol, ul, table {
 }
 
 h1 {
+    @include size(font-size, 32);
+    @include size(line-height, 36);
+}
+
+h2 {
     @include size(font-size, 28);
+    @include size(line-height, 30);
+}
+
+h3 {
+    @include size(font-size, 25);
+    @include size(line-height, 28);
+}
+
+@include mq(min-width, 900){
+    h1 {
+        @include size(font-size, 41);
+    }
 }
 
 .cf:before,
@@ -45,9 +62,31 @@ h1 {
     *zoom: 1;
 }
 
+figure {
+    @include size(margin-bottom, 30);
+}
 
-@include mq(min-width, 768){
-    h1 {
-        @include size(font-size, 41);
-    }
+figcaption {
+    @include size(margin-top, 5);
+    @include size(font-size, 14);
+}
+
+// Editor generated
+
+img.left,
+p.left,
+ul.left {
+    clear: left;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+img.right,
+p.right,
+ul.right {
+    clear: right;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
 }

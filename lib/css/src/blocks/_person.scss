@@ -1,0 +1,22 @@
+.person-author {
+    display: inline-block;
+
+    .avatar__image {
+        width: 40px;
+        margin-right: 5px;
+        border-radius: 50%;
+        vertical-align: top;
+    }
+
+    + .person-author {
+        margin-top: 10px;
+    }
+}
+
+.person-author__text {
+    display: inline-block;
+
+    span {
+        display: block;
+    }
+}

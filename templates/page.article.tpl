@@ -10,18 +10,20 @@
 
     <main role="main" class="content-wrapper">
 
-        <div class="foldout do_foldout">
+        <div class="foldout do_foldout ">
 
             {% include "foldout/foldout-button.tpl" %}
 
-            <article class="">
+            <article class="article-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
-                {% include "comments-button/comments-button.tpl" id=id %}
-
                 {% include "summary/summary.tpl" id=id %}
+
+                {% include "body/body.tpl" id=id %}
+
+                <h1>comments</h1>
 
                <!--  {% include "blocks/blocks.tpl" %}
 
@@ -48,6 +50,18 @@
                         }"
                     %} -->
             </article>
+
+            {% include "comments/comments.tpl" id=id %}
+
+            <h1>load more test</h1>
+
+            {% with m.search[{query hassubject=[338,'fixed_context'] pagelen=2}] as result %}
+                  {% include "list/list.tpl" cols=3 items=result list_id="testlist" %}
+                  {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
+                    target="testlist"
+                    template="list/list-item.tpl"}
+                    %}
+            {% endwith %}
         </div>
         <aside class="page-aside">
                 <h1> related test </h1>
@@ -61,20 +75,6 @@
                         {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
                     {% endwith %}
                 {% endif %}
-
-                <h1>comments</h1>
-
-                {% include "comments/comments.tpl" id=id %}
-
-                <h1>load more test</h1>
-
-                {% with m.search[{query hassubject=[338,'fixed_context'] pagelen=2}] as result %}
-                      {% include "list/list.tpl" cols=3 items=result list_id="testlist" %}
-                      {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
-                        target="testlist"
-                        template="list/list-item.tpl"}
-                        %}
-                {% endwith %}
         </aside>
     </main>
 {% endblock %}

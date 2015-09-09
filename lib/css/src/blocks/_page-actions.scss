@@ -1,0 +1,5 @@
+.page-action--edit,
+.page-action--add,
+.page-action--rsvp {
+    @extend .btn--secondary;
+}

@@ -1,0 +1,24 @@
+.foldout {
+    width: 90%;
+    @include size(max-width, 720);
+    margin: 0 auto;
+    position: relative;
+    background-color: $white;
+    transition: all 0.4s;
+
+    &.collapsed {
+        border-bottom: 2px solid $mainThemeColor;
+
+        .foldout__button {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+
+@include mq(min-width, 900) {
+    .foldout {
+        @include size(padding, 25, 30);
+    }
+
+}

@@ -5,3 +5,9 @@
 .toggle-menu:after {
     content: "\e619";
 }
+
+@include mq(min-width, 900) {
+    .toggle-menu {
+        display: none;
+    }
+}

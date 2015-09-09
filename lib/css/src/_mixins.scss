@@ -60,12 +60,12 @@
 
 // Grid responsive
 @mixin grid($values...) {
-    $max: length($values); 
+    $max: length($values);
 
     lost-column: 1/1;
 
     @each $map in $values {
-        
+
         $mapBreakpoint: map-get($map, 'breakpoint');
         $mapProperty: map-get($map, 'property');
         $mapColumns: map-get($map, 'columns');

@@ -1,0 +1,98 @@
+/* abstract css class */
+.btn {
+    display: inline-block;
+    @include size(padding, 9, 20, 6, 20);
+    border-radius: 18px;
+    @include size(font-size, 14);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.btn--primary {
+    @extend .btn;
+    background: $pillBtnColor;
+    color: $white;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: darken($pillBtnColor, 15);
+        color: $white;
+    }
+}
+
+
+.btn--secondary,
+.btn--anchor,
+.btn--next {
+        @extend .btn;
+}
+
+.btn--anchor,
+.btn--next {
+    position: relative;
+
+    @extend .btn--secondary;
+}
+
+.btn--secondary {
+    background: $white;
+    color: $pillBtnColor;
+    border: 1px solid $pillBtnBorder;
+
+    &:hover {
+        border-color: $pillBtnColor;
+    }
+}
+
+/* button/link to jump to comments */
+.btn--anchor {
+    &:after {
+        @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true);
+    }
+
+    &:hover {
+        background-color: $mainThemeColor;
+        color: $white;
+
+        &:after {
+            content: '';
+            display: block;
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_FFFFFF', true);
+        }
+    }
+}
+
+/* the show more button in correlating items */
+.btn--next {
+    &:after {
+        @include combinedSvgPngBackground('/lib/images/icon_arrow-right_FFFFFF', true);
+    }
+}
+
+/* Buttons in login modal */
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    @extend .btn--primary;
+}
+
+.nav-pills > li > a {
+    @extend .btn;
+}
+
+.btn-primary {
+    @extend .btn--primary;
+}
+
+.btn-default {
+    @extend .btn--secondary;
+}
