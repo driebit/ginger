@@ -27,6 +27,10 @@ h1, h2, h3, h4, p, ol, ul, table {
     margin: 0 0 1em 0;
 }
 
+h1 {
+    @include size(font-size, 28);
+}
+
 .cf:before,
 .cf:after {
     content: " "; /* 1 */
@@ -39,4 +43,11 @@ h1, h2, h3, h4, p, ol, ul, table {
 
 .cf {
     *zoom: 1;
+}
+
+
+@include mq(min-width, 768){
+    h1 {
+        @include size(font-size, 41);
+    }
 }

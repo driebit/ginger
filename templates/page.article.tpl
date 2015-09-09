@@ -21,7 +21,9 @@
 
                 {% include "comments-button/comments-button.tpl" id=id %}
 
-                {% include "blocks/blocks.tpl" %}
+                {% include "summary/summary.tpl" id=id %}
+
+               <!--  {% include "blocks/blocks.tpl" %}
 
                     <style>
                         .carousel li {
@@ -44,7 +46,7 @@
                           slidesToScroll: 1,
                           arrows: false
                         }"
-                    %}
+                    %} -->
             </article>
         </div>
         <aside class="page-aside">

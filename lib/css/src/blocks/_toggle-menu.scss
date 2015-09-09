@@ -1,0 +1,7 @@
+.toggle-menu {
+    @extend .global-nav-toggle;
+}
+
+.toggle-menu:after {
+    content: "\e619";
+}
