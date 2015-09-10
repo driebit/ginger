@@ -15,8 +15,6 @@ main {
     @extend .main-content-extend;
     @include size(padding, 25, 15);
     background-color: $white;
-    height: 500px;
-    overflow: hidden;
 }
 
 

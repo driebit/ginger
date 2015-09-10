@@ -18,3 +18,7 @@
     @include size(margin-bottom, 30);
     background: $white;
 }
+
+.list__item__content {
+    @include size(padding, 15);
+}

@@ -9,6 +9,17 @@
         .foldout__button {
             transform: rotate(0deg);
         }
+
+        &:after {
+            content: '';
+            width: 100%;
+            @include size(height, 150);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 3%, #ffffff 100%);
+        }
     }
 
     .main-content {
