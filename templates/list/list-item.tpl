@@ -18,7 +18,7 @@
 
                 {% block list_item_cat %}
                     <div class="list__item__content__category">
-                        {{ id.category.name }}
+                        <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
                     </div>
                 {% endblock %}
 
