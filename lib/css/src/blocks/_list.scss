@@ -39,3 +39,7 @@
         vertical-align: middle;
     }
 }
+
+@include mq(min-width, $mediumBreakpoint) {
+
+}
