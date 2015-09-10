@@ -9,8 +9,13 @@
     right: 0;
     bottom: 0px;
     z-index: 100;
-    background-color: $white;
+    background-color: $mainThemeColor;
     text-align: center;
     border: none;
-    transform: rotate(0deg);
+    transform: rotate(180deg);
+    border-radius: $btnRadius;
+
+    i {
+        color: $white;
+    }
 }

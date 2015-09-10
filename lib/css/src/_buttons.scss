@@ -2,7 +2,7 @@
 .btn {
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
-    border-radius: 18px;
+    border-radius: $btnBorderRadius;
     @include size(font-size, 14);
     text-transform: uppercase;
     border: none;
@@ -17,13 +17,13 @@
 
 .btn--primary {
     @extend .btn;
-    background: $pillBtnColor;
+    background: $mainThemeColor;
     color: $white;
 
     &:hover,
     &:active,
     &:focus {
-        background-color: darken($pillBtnColor, 15);
+        background-color: darken($mainThemeColor, 15);
         color: $white;
     }
 }
@@ -32,7 +32,7 @@
 .btn--secondary,
 .btn--anchor,
 .btn--next {
-        @extend .btn;
+    @extend .btn;
 }
 
 .btn--anchor,
@@ -44,11 +44,11 @@
 
 .btn--secondary {
     background: $white;
-    color: $pillBtnColor;
-    border: 1px solid $pillBtnBorder;
+    color: $mainThemeColor;
+    border: 1px solid $mainThemeColor;
 
     &:hover {
-        border-color: $pillBtnColor;
+        border-color: $mainThemeColor;
     }
 }
 

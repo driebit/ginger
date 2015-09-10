@@ -6,11 +6,16 @@
     background-color: $white;
     transition: all 0.4s;
 
-    &.collapsed {
+    &.is-collapsed {
         border-bottom: 2px solid $mainThemeColor;
 
         .foldout__button {
-            transform: rotate(180deg);
+            transform: rotate(0deg);
+            background-color: $white;
+
+            i {
+                color: $mainThemeColor;
+            }
         }
     }
 }
