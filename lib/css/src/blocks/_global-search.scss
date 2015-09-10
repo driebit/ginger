@@ -101,7 +101,7 @@
     }
 }
 
-@include mq(min-width, 900) {
+@include mq(min-width, $largeBreakpoint) {
     .global-search__toggle-search {
         width: auto;
         height: 100%;

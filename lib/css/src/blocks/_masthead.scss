@@ -10,18 +10,17 @@ body.has-content-group .masthead {
     left: 0;
     z-index: 10;
     background: #FFF url(/lib/images/bg_rectangle.png?embed) center center repeat;
-    background-size: cover;
     transition: height 0.3s;
 }
 
 
-@include mq(min-width, 900) {
+@include mq(min-width, $mediumBreakpoint) {
     .masthead {
         @include size(height, 450);
     }
 }
 
-@include mq(min-width, 1100) {
+@include mq(min-width, $largeBreakpoint) {
     .masthead {
         @include size(height, 650);
     }

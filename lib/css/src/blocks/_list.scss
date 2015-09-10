@@ -16,19 +16,31 @@
 
 .list__item {
     @include size(margin-bottom, 30);
+    position: relative;
     background: $white;
+    overflow: hidden;
+
+    img {
+        display: block;
+    }
 }
 
 .list__item__content {
+    width: 100%;
     @include size(padding, 15);
     position: relative;
+    background: $white;
+
+    p {
+        margin: 0;
+    }
 }
 
 .list__item__content__category {
     @include size(height, 30);
     @include size(padding, 0, 10);
     position: absolute;
-    @include size(top, -29);
+    @include size(top, -30);
     left: 0px;
     background: $mainThemeColor;
     color: $white;
@@ -40,6 +52,33 @@
     }
 }
 
-@include mq(min-width, $mediumBreakpoint) {
+.list__more {
+    display: block;
+    width: 75%;
+    @extend .btn;
+    margin: 0 auto;
+    background: $mainThemeColor;
+    color: $white;
+    border-radius: $interfaceRadius;
+}
 
+@include mq(min-width, $mediumBreakpoint) {
+    .list__item {
+        &:hover {
+            .list__item__content {
+                bottom: 0px;
+            }
+        }
+    }
+    .list__item__content {
+        position: absolute;
+        bottom: -300px;
+        left: 0px;
+        transition: bottom 0.4s ease-in-out;
+        background: rgba($white, 0.9);
+    }
+
+    .list__more {
+        @include size(padding, 19, 20, 16);
+    }
 }

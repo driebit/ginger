@@ -20,7 +20,7 @@ main {
 
 @include mq(min-width, 900) {
     main {
-        @include size(padding-top, 300);
+        @include size(padding-top, 250);
     }
 
     .main-content {

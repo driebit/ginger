@@ -32,19 +32,6 @@
         margin-bottom: 0;
         list-style-type: none;
     }
-
-    &.is-open {
-        &:before {
-            content: '';
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            @include size(top, $globalNavHeight);
-            left: 0px;
-            z-index: 400;
-            background: rgba(0,0,0, 0.5);
-        }
-    }
 }
 
 .logo {
@@ -143,6 +130,8 @@
 .profile--global-nav {
     img {
         display: inline-block;
+        @include size(width, 30);
+        @include size(margin-right, 3);
         position: relative;
         top: -2px;
         border-radius: 50%;
@@ -150,7 +139,15 @@
     }
 }
 
-@include mq(min-width, 900) {
+@include mq(min-width, $smallBreakpoint){
+    .global-nav__menu,
+    .global-nav__actions {
+        width: 35%;
+        height: 100%;
+    }
+}
+
+@include mq(min-width, $largeBreakpoint) {
     .logo {
         width: auto;
         @include size(margin-right, 15);
@@ -165,7 +162,6 @@
         z-index: 300;
         transform: none;
         background: none;
-        overflow: hidden;
 
         > li {
             float: left;
@@ -175,12 +171,14 @@
 
         a {
             @include size(padding, 0, 15);
-
         }
 
         li:hover {
             ul {
                 display: block;
+                position: absolute;
+                top: $globalNavHeight;
+
                 background: $white;
 
                 li {
