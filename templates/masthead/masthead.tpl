@@ -4,11 +4,12 @@
     {% if id.address_street_1 %}
     
         <div class="masthead--map do_masthead_map"
-            data-street1="{{ resource.address_street_1 }}"
-            data-street2="{{ resource.address_street_2 }}"
-            data-city="{{ resource.address_city }}"
-            data-postcode="{{ resource.address_postcode }}"
-            data-country="{{ resource.address_country }}">
+            data-street1="{{ id.address_street_1 }}"
+            data-street2="{{ id.address_street_2 }}"
+            data-city="{{ id.address_city }}"
+            data-postcode="{{ id.address_postcode }}"
+            data-country="{{ id.address_country }}"
+            data-main-content-class="foldout">
         </div>
     
     {% else %}
