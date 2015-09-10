@@ -26,9 +26,9 @@
 
                 <p>
                     {% if id.summary %}
-                        {{ id.summary|striptags|truncate:150 }}
+                        {{ id.summary|striptags|truncate:100 }}
                     {% else %}
-                        {{ id.body|striptags|truncate:150 }}
+                        {{ id.body|striptags|truncate:100 }}
                     {% endif %}
                 </p>
             </div>

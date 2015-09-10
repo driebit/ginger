@@ -8,9 +8,10 @@
 
         {% block avatar %}
             <a class="dialog-profile__avatar" href="{{ user.page_url }}">
-                {% include 
-                    "avatar/avatar.tpl" 
+                {% include
+                    "avatar/avatar.tpl"
                     id=m.rsc[m.acl.user]
+                    fallback_rsc_id=m.rsc.custom_avatar_fallback.id
                 %}
             </a>
         {% endblock %}
@@ -26,7 +27,7 @@
                 <a href="{% url logoff %}">{{ logoff_label|if_undefined:_"Uitloggen" }} <i class="#"></i> </a>
             </div>
         {% endblock %}
-    
+
     {% endwith %}
 
 {% endif %}
