@@ -2,35 +2,38 @@
 
 {% block with_depiction %}
 
-<li class="list__item" style="display: inline-block; height: 300px; width: 300px; border: 2px solid blue">
+<li class="list__item">
 
     <a href="{{ id.page_url }}" class=" {{ extraClasses }}">
+        <article>
+            {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+            <div class="list__item__content">
+                <h3 class="list__item__content__title">
+                    {% if id.short_title %}
+                        {{ id.short_title }}
+                    {% else %}
+                        {{ id.title }}
+                    {% endif %}
+                </h3>
 
-        {% image dep_rsc.id mediaclass="list-image" class="img-responsive" alt="" title="" crop=dep_rsc.crop_center %}
+                {% block list_item_cat %}
+                    <div class="list__item__content__category">
+                        {{ id.category.name }}
+                    </div>
+                {% endblock %}
 
-        <div class="">
+                {% block list_item_date %}{% endblock %}
 
-            <span>
-                {% if id.short_title %}
-                    {{ id.short_title }}
-                {% else %}
-                    {{ id.title }}
-                {% endif %}
-            </span>
+                <p>
+                    {% if id.summary %}
+                        {{ id.summary|striptags|truncate:200 }}
+                    {% else %}
+                        {{ id.body|striptags|truncate:200 }}
+                    {% endif %}
+                </p>
 
-            <div>
-                CAT: {{ id.category.name }}
             </div>
-
-            <p>
-                {% if id.summary %}
-                    {{ id.summary|striptags|truncate:200 }}
-                {% else %}
-                    {{ id.body|striptags|truncate:200 }}
-                {% endif %}
-            </p>
-
-        </div>
+        </article>
     </a>
 
 </li>
