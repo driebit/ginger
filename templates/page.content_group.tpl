@@ -26,8 +26,6 @@
                 {% include "body/body.tpl" id=id %}
 
                 {% include "blocks/blocks.tpl" id=id %}
-
-                {% include "comments/comments.tpl" id=id %}
             </article>
         </div>
         <aside class="main-aside">
@@ -53,7 +51,6 @@
                     {% endwith %}
                 {% endwith %}
             {% endif %}
-
         </aside>
     </main>
 {% endblock %}

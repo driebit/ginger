@@ -32,19 +32,6 @@
         margin-bottom: 0;
         list-style-type: none;
     }
-
-    &.is-open {
-        &:before {
-            content: '';
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            @include size(top, $globalNavHeight);
-            left: 0px;
-            z-index: 400;
-            background: rgba(0,0,0, 0.5);
-        }
-    }
 }
 
 .logo {
@@ -175,7 +162,6 @@
         z-index: 300;
         transform: none;
         background: none;
-        overflow: hidden;
 
         > li {
             float: left;
@@ -185,12 +171,14 @@
 
         a {
             @include size(padding, 0, 15);
-
         }
 
         li:hover {
             ul {
                 display: block;
+                position: absolute;
+                top: $globalNavHeight;
+
                 background: $white;
 
                 li {
