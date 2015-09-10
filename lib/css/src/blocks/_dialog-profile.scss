@@ -1,0 +1,33 @@
+.dialog-profile__logged-in-as {
+}
+
+.dialog-profile__avatar,
+.dialog-profile__usertitle {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.dialog-profile__avatar {
+
+    border: 2px solid $mainThemeColor;
+    @include size(width, 100);
+    @include size(height, 100);
+    border-radius: 50px;
+    overflow: hidden;
+
+}
+
+.dialog-profile__usertitle {
+    @include size(margin-top, 45);
+    @include size(margin-left, 10);
+}
+
+.dialog-profile__log-off {
+
+    text-align: right;
+
+    a {
+        @extend .btn--primary;
+    }
+
+}

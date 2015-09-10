@@ -13,3 +13,5 @@
     "js/vendors/flowplayer-3.2.12.min.js"
     "js/vendors/slick.min.js"
 %}
+
+<script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>

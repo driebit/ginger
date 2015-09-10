@@ -2,6 +2,7 @@
     @extend .main-content-extend;
 
     &.is-collapsed {
+
         border-bottom: 2px solid $mainThemeColor;
 
         .foldout__button {
