@@ -1,5 +1,5 @@
 {% with m.comment.rsc[id] as comments %}
-  <div class="comments">
+  <div id="comments" class="comments">
 
         {% include "comments/comments-header.tpl" id=id %}
 

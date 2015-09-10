@@ -2,12 +2,12 @@
 
 {% block with_depiction %}
 
-<li class="list-item" style="display: inline-block; height: 300px; width: 300px; border: 2px solid blue">
-    
+<li class="list__item" style="display: inline-block; height: 300px; width: 300px; border: 2px solid blue">
+
     <a href="{{ id.page_url }}" class=" {{ extraClasses }}">
 
         {% image dep_rsc.id mediaclass="list-image" class="img-responsive" alt="" title="" crop=dep_rsc.crop_center %}
-       
+
         <div class="">
 
             <span>
@@ -29,7 +29,7 @@
                     {{ id.body|striptags|truncate:200 }}
                 {% endif %}
             </p>
-            
+
         </div>
     </a>
 
