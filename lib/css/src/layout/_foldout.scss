@@ -1,14 +1,15 @@
 .foldout {
+    @extend .main-content-extend;
+
     &.is-collapsed {
         border-bottom: 2px solid $mainThemeColor;
 
         .foldout__button {
             transform: rotate(0deg);
-            background-color: $white;
-
-            i {
-                color: $mainThemeColor;
-            }
         }
+    }
+
+    .main-content {
+        width: 100%;
     }
 }

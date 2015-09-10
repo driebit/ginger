@@ -1,0 +1,11 @@
+.list {
+    lost-utility: clearfix;
+    lost-utility: edit;
+
+    .list__item {
+        @include grid(
+            (breakpoint: $mediumBreakpoint, property: 'min-width', columns: '1/2'),
+            (breakpoint: $largeBreakpoint, property: 'min-width', columns: '1/3')
+        );
+    }
+}

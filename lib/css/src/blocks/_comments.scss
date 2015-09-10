@@ -19,3 +19,9 @@
         vertical-align: middle;
     }
 }
+
+.comments {
+    button[type="submit"] {
+        @include size(margin-top, 10);
+    }
+}

@@ -3,19 +3,22 @@ main {
     z-index: 100;
 }
 
-.main-content {
+.main-content-extend {
     width: 90%;
     @include size(max-width, 720);
-    @include size(padding, 25, 15);
     margin: 0 auto;
     position: relative;
+}
+
+.main-content {
+    @extend .main-content-extend;
+    @include size(padding, 25, 15);
     background-color: $white;
-    transition: all 0.4s;
 }
 
 
 @include mq(min-width, 900) {
-    .content-wrapper {
-        padding-top: 300px;
+    main {
+        @include size(padding-top, 300);
     }
 }
