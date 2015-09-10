@@ -14,7 +14,7 @@
             {% else %}
                 {% image id.id mediaclass="default" class="img-auto" alt="" crop=id.id.crop_center %}
             {% endif %}
-            <figcaption>{{ id.title }}</figcaption>{% endif %}
+            <figcaption>{{ id.title }}</figcaption>
         </figure>
     {% endblock %}
 </a>
