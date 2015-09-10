@@ -6,7 +6,7 @@
     content: "\e619";
 }
 
-@include mq(min-width, 900) {
+@include mq(min-width, $largeBreakpoint) {
     .toggle-menu {
         display: none;
     }

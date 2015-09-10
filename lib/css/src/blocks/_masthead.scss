@@ -15,13 +15,13 @@ body.has-content-group .masthead {
 }
 
 
-@include mq(min-width, 900) {
+@include mq(min-width, $mediumBreakpoint) {
     .masthead {
         @include size(height, 450);
     }
 }
 
-@include mq(min-width, 1100) {
+@include mq(min-width, $largeBreakpoint) {
     .masthead {
         @include size(height, 650);
     }

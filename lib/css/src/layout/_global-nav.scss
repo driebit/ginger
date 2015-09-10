@@ -150,7 +150,15 @@
     }
 }
 
-@include mq(min-width, 900) {
+@include mq(min-width, $smallBreakpoint){
+    .global-nav__menu,
+    .global-nav__actions {
+        width: 35%;
+        height: 100%;
+    }
+}
+
+@include mq(min-width, $largeBreakpoint) {
     .logo {
         width: auto;
         @include size(margin-right, 15);
