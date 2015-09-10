@@ -1,9 +1,3 @@
 {% for blk in m.rsc[id].blocks %}
-    {% if blk.style == 'quote' %}
-        <blockquote>
-            {{ blk.body|show_media }}
-        </blockquote>
-    {% else %}
-        <div class="block--text {% if blk.style == 'aside' %}block--aside{% endif %}">{{ blk.body|show_media }}</div>
-    {% endif %}
+    {% include ["blocks/_block_view_",blk.type,".tpl"]|join blk=blk id=id first=forloop.first last=forloop.last %}
 {% endfor %}
