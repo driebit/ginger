@@ -1,11 +1,16 @@
-.content-wrapper {
+main {
     position: relative;
     z-index: 100;
 }
 
-.article-content {
-    position: relative;
+.main-content {
+    width: 90%;
+    @include size(max-width, 720);
     @include size(padding, 25, 15);
+    margin: 0 auto;
+    position: relative;
+    background-color: $white;
+    transition: all 0.4s;
 }
 
 

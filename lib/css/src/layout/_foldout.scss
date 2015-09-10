@@ -1,11 +1,4 @@
 .foldout {
-    width: 90%;
-    @include size(max-width, 720);
-    margin: 0 auto;
-    position: relative;
-    background-color: $white;
-    transition: all 0.4s;
-
     &.is-collapsed {
         border-bottom: 2px solid $mainThemeColor;
 
@@ -18,12 +11,4 @@
             }
         }
     }
-}
-
-
-@include mq(min-width, 900) {
-    .foldout {
-        @include size(padding, 25, 30);
-    }
-
 }

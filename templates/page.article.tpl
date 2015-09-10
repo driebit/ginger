@@ -8,13 +8,13 @@
 
     {% include "masthead/masthead.tpl" id=id %}
 
-    <main role="main" class="content-wrapper">
+    <main role="main">
 
         <div class="foldout do_foldout ">
 
             {% include "foldout/foldout-button.tpl" %}
 
-            <article class="article-content">
+            <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}

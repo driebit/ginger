@@ -2,7 +2,7 @@
 .btn {
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
-    border-radius: $btnBorderRadius;
+    border-radius: $btnRadius;
     @include size(font-size, 14);
     text-transform: uppercase;
     border: none;
