@@ -26,3 +26,8 @@ body.has-content-group .masthead {
         @include size(height, 650);
     }
 }
+
+.masthead--map {
+    @extend .masthead;
+    background: none;
+}

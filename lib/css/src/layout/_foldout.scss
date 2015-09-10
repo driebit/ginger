@@ -2,6 +2,7 @@
     @extend .main-content-extend;
 
     &.is-collapsed {
+
         @include size(height, 550);
         overflow: hidden;
         border-bottom: 2px solid $mainThemeColor;
