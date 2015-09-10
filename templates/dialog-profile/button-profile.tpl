@@ -1,19 +1,19 @@
 {% if m.acl.user %}
-    
-    {% with #profile as profile_wire_id %} 
-  
+
+    {% with #profile as profile_wire_id %}
+
         <a href="#" id="{{ profile_wire_id }}" class="profile--global-nav">
-            
+
             {% include "avatar/avatar.tpl"
                 id=m.rsc[m.acl.user]
-                fallback_rsc_id=m.rsc.custom_fallback.id
+                fallback_rsc_id=m.rsc.custom_avatar_fallback.id
             %}
 
             {_ Profiel _}
 
         </a>
 
-    {% endwith %} 
+    {% endwith %}
 
     {% wire
         id=#profile
@@ -22,7 +22,7 @@
             title=_"Profiel"
             template="dialog-profile/dialog-profile.tpl"
         }
-    %} 
+    %}
 {% endif %}
 
 
