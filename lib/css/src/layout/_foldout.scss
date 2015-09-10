@@ -2,6 +2,8 @@
     @extend .main-content-extend;
 
     &.is-collapsed {
+        @include size(height, 550);
+        overflow: hidden;
         border-bottom: 2px solid $mainThemeColor;
 
         .foldout__button {
@@ -11,5 +13,12 @@
 
     .main-content {
         width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .foldout {
+        @include size(padding-top, 40);
     }
 }

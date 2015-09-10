@@ -26,13 +26,12 @@ $paginationActiveBackground: darken($paginationBackground, 10);
 $metadataPrimaryBgColor: $secondaryThemeColor;
 $metadataSecondaryBgColor: #24242B;
 
+$listBgColor: #EBEBEB;
+$listHeaderBgColor: darken($listBgColor, 10);
+
 $relatedItemsBgColor: #1F1F25;
 $relatedItemsTextColor: $white;
 $relatedItemsHeaderBgColor: #2C2E36;
-
-$correlatedItemsBgColor: #EBEBEB;
-$correlatedItemsHeaderBgColor: $alto;
-$correlatedItemsShownButtonBgColor: #EBEBEB;
 
 $footerBgColor: #23232A;
 $footerTextColor: #919194;
@@ -44,5 +43,5 @@ $menuMobileActionsBgColor: #e0e0e0;
 $menuMobileBgColor: #f1f1f1;
 
 $mediumBreakpoint: 800;
-$largeBreakPoint: 1024;
-$hugeBreakPoint: 1200;
+$largeBreakpoint: 1024;
+$hugeBreakpoint: 1200;

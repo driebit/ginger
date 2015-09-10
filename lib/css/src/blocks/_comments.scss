@@ -15,12 +15,13 @@
     font-weight: 600;
 
     i {
-        margin-right: 10px;
+        @include size(margin-right, 10);
         vertical-align: middle;
     }
 }
 
 .comments {
+    @include size(margin-top, 40);
     button[type="submit"] {
         @include size(margin-top, 10);
     }

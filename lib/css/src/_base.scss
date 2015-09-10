@@ -71,6 +71,11 @@ figcaption {
     @include size(font-size, 14);
 }
 
+blockquote {
+    @include size(font-size, 18);
+    border-left: 5px solid $mainThemeColor;
+}
+
 // Editor generated
 
 img.left,

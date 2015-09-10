@@ -1,6 +1,10 @@
 .list {
+    width: 90%;
+    @include size(max-width, 1000);
+    margin: 0 auto;
     lost-utility: clearfix;
-    lost-utility: edit;
+    //lost-utility: edit;
+    list-style: none;
 
     .list__item {
         @include grid(
@@ -8,4 +12,9 @@
             (breakpoint: $largeBreakpoint, property: 'min-width', columns: '1/3')
         );
     }
+}
+
+.list__item {
+    @include size(margin-bottom, 30);
+    background: $white;
 }
