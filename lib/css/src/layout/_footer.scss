@@ -1,0 +1,4 @@
+.main-footer {
+    @include size(min-height, 200);
+    background: $footerBgColor;
+}

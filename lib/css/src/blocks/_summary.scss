@@ -1,4 +1,10 @@
 .summary {
     @include size(margin-bottom, 30);
-    font-size: 1.375em;
+    @include size(font-size, 19);
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .summary {
+        @include size(font-size, 22);
+    }
 }

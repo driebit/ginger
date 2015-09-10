@@ -21,15 +21,19 @@
 
 .share__menu {
     display: none;
+    @include size(margin-top, 2);
     position: absolute;
     top: 100%;
     left: 0;
     z-index: 99;
-    margin: 1px 3px;
-    padding: 6px 12px;
+    background: #fff;
     border: solid 1px #ccc;
     border-radius: 3px;
-    background: #fff;
     list-style: none;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+
+    a {
+        display: block;
+        @include size(padding, 3, 12);
+    }
 }

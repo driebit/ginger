@@ -15,8 +15,6 @@
 
 @include mq(min-width, 900) {
     .page-actions__author {
-        display: inline-block;
-        @include size(margin-right, 10);
-        vertical-align: middle;
+        @include size(margin-bottom, 10);
     }
 }

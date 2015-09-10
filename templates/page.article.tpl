@@ -17,11 +17,15 @@
             <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
+                {% include "part-of/part-of.tpl" id=id %}
+
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
+
+                {% include "blocks/blocks.tpl" id=id %}
 
                 {% include "comments/comments.tpl" id=id %}
 
@@ -61,18 +65,19 @@
                     %} -->
             </article>
         </div>
-        <aside class="page-aside">
-                <h1> related test </h1>
-
-                {% if id.o.fixed_context %}
-                    {% with id.o.fixed_context as result %}
-                        {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
-                    {% endwith %}
-                {% elif id.subject %}
-                    {% with m.search[{match_objects id=id pagelen=5}]|make_list|element:1 as result %}
-                        {% include "list/list.tpl" items=result cols=3 extraClasses="" %}
-                    {% endwith %}
-                {% endif %}
+        <aside class="main-aside">
+            <div class="list-header">
+                <h2 class="list-header__title">{_ Gerelateerd _}</h2>
+            </div>
+            {% if id.o.fixed_context %}
+                {% with id.o.fixed_context as result %}
+                    {% include "list/list.tpl" items=result extraClasses="" %}
+                {% endwith %}
+            {% elif id.subject %}
+                {% with m.search[{match_objects id=id pagelen=5}]|make_list|element:1 as result %}
+                    {% include "list/list.tpl" items=result extraClasses="" %}
+                {% endwith %}
+            {% endif %}
         </aside>
     </main>
 {% endblock %}
