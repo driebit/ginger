@@ -1,5 +1,5 @@
 .foldout__button {
-    display: block;
+    display: none;
     @include size(width, 64);
     @include size(height, 37);
     position: absolute;

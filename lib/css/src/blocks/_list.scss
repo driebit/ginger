@@ -21,4 +21,21 @@
 
 .list__item__content {
     @include size(padding, 15);
+    position: relative;
+}
+
+.list__item__content__category {
+    @include size(height, 30);
+    @include size(padding, 0, 10);
+    position: absolute;
+    @include size(top, -29);
+    left: 0px;
+    background: $mainThemeColor;
+    color: $white;
+    @include size(line-height, 30);
+
+    i {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
 }

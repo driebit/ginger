@@ -31,15 +31,15 @@
 
                 <h1>load more test</h1>
 
-                {% with m.search[{query hassubject=[338,'fixed_context'] pagelen=2}] as result %}
-                      {% include "list/list.tpl" cols=3 items=result list_id="testlist" %}
+                {% with m.search[{query hassubject=[929,'fixed_context'] pagelen=2}] as result %}
+                      {% include "list/list.tpl" items=result list_id="testlist" %}
                       {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
                         target="testlist"
                         template="list/list-item.tpl"}
                         %}
                 {% endwith %}
 
-               <!--  {% include "blocks/blocks.tpl" %}
+               <!--
 
                     <style>
                         .carousel li {
@@ -70,12 +70,20 @@
                 <h2 class="list-header__title">{_ Gerelateerd _}</h2>
             </div>
             {% if id.o.fixed_context %}
-                {% with id.o.fixed_context as result %}
-                    {% include "list/list.tpl" items=result extraClasses="" %}
+                {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
+                    {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" %}
+                    {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
+                        target="list--fixed-context"
+                        template="list/list-item.tpl"}
+                        %}
                 {% endwith %}
             {% elif id.subject %}
-                {% with m.search[{match_objects id=id pagelen=5}]|make_list|element:1 as result %}
-                    {% include "list/list.tpl" items=result extraClasses="" %}
+                {% with m.search[{match_objects id=id pagelen=6}] as result %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" %}
+                    {% button class="list__more" text="LOAD MORE..." action={moreresults result=result
+                        target="list--match-objects"
+                        template="list/list-item.tpl"}
+                        %}
                 {% endwith %}
             {% endif %}
         </aside>
