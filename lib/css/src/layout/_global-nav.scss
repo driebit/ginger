@@ -66,14 +66,25 @@
         text-align: left;
 
         &:link,
-        &:visited,
-        &:hover,
-        &:active {
+        &:visited{
             color: $mainNavPagesColor;
         }
 
-        &:hover {
+        &:hover,
+        &:active,
+        &:focus {
+            color: $mainThemeColor;
             text-decoration: none;
+        }
+    }
+
+    .is-active > a {
+        color: $mainThemeColor;
+
+        a:hover,
+        &:active,
+        &:focus {
+            color: inherit;
         }
     }
 
