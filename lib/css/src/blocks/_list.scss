@@ -30,6 +30,10 @@
     @include size(padding, 15);
     position: relative;
     background: $white;
+
+    p {
+        margin: 0;
+    }
 }
 
 .list__item__content__category {

@@ -119,8 +119,7 @@ body.has-content-group {
     }
 }
 
-
-@media only screen and (min-width: 700px) {
+@include mq(min-width, $mediumBreakpoint) {
     .content-group-nav__menu {
         li {
             margin: 0px 10px 0px 10px;
