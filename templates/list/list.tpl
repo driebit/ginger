@@ -13,7 +13,7 @@ as
     <ul id="{{ list_id }}" class="list {{ extraClasses }}">
 
         {% for item in items %}
-            {% catinclude "list/list-item.tpl" item cols=cols %}
+            {% catinclude "list/list-item.tpl" item %}
         {% endfor %}
 
     </ul>
