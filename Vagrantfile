@@ -7,6 +7,7 @@ zotonic_source = ENV["ZOTONIC_SOURCE"]
 zotonic_version = ENV["ZOTONIC_VERSION"]
 puppet_node = app + ENV['USER'] + ".dev"
 puppet_master = "puppet.driebit.net"
+memory = ENV["MEMORY"] || 1536
 
 VAGRANTFILE_API_VERSION = "2"
 
@@ -27,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 1536
+    v.memory = memory
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
 
