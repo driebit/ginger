@@ -1,4 +1,3 @@
-/* abstract css class */
 .btn {
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
@@ -46,33 +45,12 @@
     color: $mainThemeColor;
     border: 1px solid $mainThemeColor;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
         border-color: $mainThemeColor;
-    }
-}
-
-/* button/link to jump to comments */
-.btn--anchor {
-    &:after {
-        @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true);
-    }
-
-    &:hover {
-        background-color: $mainThemeColor;
         color: $white;
-
-        &:after {
-            content: '';
-            display: block;
-            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_FFFFFF', true);
-        }
-    }
-}
-
-/* the show more button in correlating items */
-.btn--next {
-    &:after {
-        @include combinedSvgPngBackground('/lib/images/icon_arrow-right_FFFFFF', true);
+        background-color: $mainThemeColor;
     }
 }
 
