@@ -11,7 +11,7 @@
  %% Simple search page
  {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
 
-  %% TODO: DESCRIPTION
+  %% Collection page to show resources with keywords
  {all-in, ["all-in"], controller_template, [ {template, "all-in.tpl"} ]},
 
  %% comments overview page
