@@ -14,7 +14,6 @@
     
     {% else %}
 
-
         {% with 
             id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
