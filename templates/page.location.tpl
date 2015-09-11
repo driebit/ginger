@@ -19,12 +19,16 @@
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
+                <div class="main-content__meta">
+                    {% include "meta/meta-location.tpl" id=id %}
+                </div>
+
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
-             
+
             </article>
         </div>
-        
+
     </main>
 {% endblock %}

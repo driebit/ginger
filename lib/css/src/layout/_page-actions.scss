@@ -7,9 +7,12 @@
 .page-action--rsvp,
 .share,
 .favorite,
-.comments-anchor,
-#link-button {
+.comments-anchor {
     @extend .page-action-elements;
+}
+
+#link-button {
+    display: inline-block;
 }
 
 
