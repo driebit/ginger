@@ -7,7 +7,7 @@
 
                 <ul class="keywords__list">
                     {% for id in results %}
-                        <li><a href="/all-in/?id={{id.id}}&type=subject&direction=object">{{ m.rsc[id].title }}</a></li>
+                        <li><a href="/all_in/?id={{id.id}}&type=subject&direction=object">{{ m.rsc[id].title }}</a></li>
                     {% endfor %}
                 </ul>
 

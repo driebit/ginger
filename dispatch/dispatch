@@ -11,8 +11,8 @@
  %% Simple search page
  {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
 
-  %% TODO: DESCRIPTION
- {all-in, ["all-in"], controller_template, [ {template, "all-in.tpl"} ]},
+%% Custom all-in set
+{all_in, ["all_in"], controller_template, [ {template, "all-in.tpl"} ]},
 
  %% comments overview page
  {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]},
@@ -21,6 +21,5 @@
     %% Can be removed when 0.13.3 is released.
     {api,     ["api", module, method], controller_api_0_13_x, [{ssl, any}]},
     {api,     ["api", module],        controller_api_0_13_x, [{ssl, any}]}
-
 
 ].
