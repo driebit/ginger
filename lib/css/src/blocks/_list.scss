@@ -21,8 +21,12 @@
     overflow: hidden;
 
     img {
-        display: block;
+        width: 100%;
     }
+}
+
+.list__item__content__title {
+    margin: 0;
 }
 
 .list__item__content {
@@ -32,7 +36,7 @@
     background: $white;
 
     p {
-        margin: 0;
+        margin: 1em 0 0;
     }
 }
 
@@ -60,6 +64,12 @@
     background: $mainThemeColor;
     color: $white;
     border-radius: $interfaceRadius;
+
+    &:hover,
+    &:active,
+    &:focus {
+        @extend .btn--primary:hover;
+    }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
