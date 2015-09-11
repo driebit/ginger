@@ -16,6 +16,8 @@
 
             <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
+                {{ id.subtitle }}
+                {% include "subtitle/subtitle.tpl" id=id %}
 
                 {% include "part-of/part-of.tpl" id=id %}
 
@@ -31,38 +33,26 @@
             </article>
 
         </div>
-        <aside class="main-aside">
-            {% if id.o.fixed_context %}
+        {% if id.o.fixed_context %}
+            <aside class="main-aside">
                 {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
 
-                    {% if result|length > 0 %}
-                        {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                        {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
-
-                        {% button class="list__more" text="Toon meer resultaten..." action={moreresults result=result
-                            target="list--fixed-context"
-                            template="list/list-item.tpl"}
-                            %}
-                    {% endif %}
+                    {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
 
                 {% endwith %}
-            {% elif id.subject %}
+            </aside>
+        {% elif id.subject %}
+            <aside class="main-aside">
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}
-                    {% if result|length > 0 %}
-                        {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                        {% include "keywords/keywords.tpl" id=id %}
+                    {% include "keywords/keywords.tpl" id=id items=result %}
 
-                        {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
-
-                        {% button class="list__more" text=_"Toon meer resultaten..." action={moreresults result=result
-                            target="list--match-objects"
-                            template="list/list-item.tpl"}
-                            %}
-                    {% endif %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
                 {% endwith %}
-            {% endif %}
-        </aside>
+            </aside>
+        {% endif %}
     </main>
 {% endblock %}

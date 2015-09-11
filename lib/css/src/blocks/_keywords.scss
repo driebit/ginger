@@ -1,6 +1,6 @@
 .keywords {
     @extend .container;
-    @include size(margin-bottom, 30);
+    @include size(margin-top, 30);
 }
 
 .keywords__label {

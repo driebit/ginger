@@ -6,46 +6,53 @@
 
 {% block content %}
 
-    <div class="">
-        
-        {% with m.rsc[id] as resource %}
+    {% include "masthead/masthead.tpl" id=id %}
 
-            {% include "masthead/masthead.tpl" id=id %}
+    <main role="main">
 
-            <main role="main" class="">
+        <div class="foldout do_foldout">
 
-                <div class="foldout do_foldout">
+            {% include "foldout/foldout-button.tpl" %}
 
-                    {% include "foldout/foldout-button.tpl" %}
+            <article class="main-content">
+                {% include "page-title/page-title.tpl" id=id %}
 
-                    <article class="">
+                {% include "subtitle/subtitle.tpl" id=id %}
 
-                        {% include "page-actions/page-actions.tpl" id=id %}
+                {% include "event/event-participants.tpl" limit=1 id=id %}
 
-                            <h1 class="">{{ resource.title }}</h1>
+                {% catinclude "page-actions/page-actions.tpl" id %}
 
-                            {% if resource.summary %}
-                                <div class="">{{ resource.summary }}</div>
-                            {% endif %}
+                {% include "summary/summary.tpl" id=id %}
 
-                            <div class="">{{ resource.body|show_media }}</div>
+                {% include "body/body.tpl" id=id %}
 
-                            {% include "blocks/blocks.tpl" %}
+                {% include "blocks/blocks.tpl" id=id %}
 
+                {% include "comments/comments.tpl" id=id %}
+            </article>
 
-                            <h1>deelnemers</h1>
-                           
-                            <div style="border: 2px solid blue" id="participants">
-                                {% include "event/event-participants.tpl" limit=1 id=id %}
-                            </div>
-                            <a href="#" id="all-participants">alle deelnemers</a>
-                            {% wire id="all-participants" type="click" action={update target="participants" template="event/event-participants.tpl" id=id} %}
+        </div>
+        {% if id.o.fixed_context %}
+            <aside class="main-aside">
+                {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
 
-                                  
-                    </article>
+                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                </div>
-            </main>
-        {% endwith %}
-    </div>
+                    {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
+
+                {% endwith %}
+            </aside>
+        {% elif id.subject %}
+            <aside class="main-aside">
+                {% with m.search[{match_objects id=id pagelen=6}] as result %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
+
+                    {% include "keywords/keywords.tpl" id=id items=result %}
+
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
+                {% endwith %}
+            </aside>
+        {% endif %}
+    </main>
 {% endblock %}

@@ -20,7 +20,15 @@ main {
 
 @include mq(min-width, 900) {
     main {
+        min-height: 100%;
         @include size(padding-top, 250);
+        margin-bottom: -$footerHeight;
+
+        &:after {
+            content: "";
+            display: block;
+            height: $footerHeight;
+        }
     }
 
     .main-content {

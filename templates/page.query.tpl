@@ -5,7 +5,6 @@
 {% block body_class %}{% endblock %}
 
 {% block content %}
-
     {% include "masthead/masthead.tpl" id=id %}
 
     <main role="main">
@@ -26,19 +25,13 @@
                 {% include "body/body.tpl" id=id %}
 
                 {% include "blocks/blocks.tpl" id=id %}
-
-                {% include "comments/comments.tpl" id=id %}
             </article>
 
         </div>
-        {% if id.o.haspart %}
-            <aside class="main-aside">
-                {% with m.search[{query hassubject=[id,'haspart'] pagelen=6}] as result %}
-                    {% include "list/list-header.tpl" id=id list_title=_"Inhoud" items=result %}
-
-                    {% include "list/list.tpl" list_id="list--haspart" items=result extraClasses="" list_title=_"Inhoud" id=id %}
-                {% endwith %}
-            </aside>
-        {% endif %}
+        <aside class="main-aside">
+            {% with m.search[{query query_id=id pagelen=6 page=q.page}] as result %}
+                {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
+            {% endwith %}
+        </aside>
     </main>
 {% endblock %}

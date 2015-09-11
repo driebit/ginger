@@ -1,6 +1,7 @@
 .list {
     width: 90%;
     @include size(max-width, 1000);
+    @include size(padding-top, 30);
     margin: 0 auto;
     lost-utility: clearfix;
     //lost-utility: edit;
@@ -23,6 +24,12 @@
     img {
         width: 100%;
     }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
 }
 
 .list__item__content__title {
@@ -40,20 +47,32 @@
     }
 }
 
-.list__item__content__category {
+.list__item__content__meta {
     @include size(height, 30);
-    @include size(padding, 0, 10);
     position: absolute;
     @include size(top, -30);
     left: 0px;
+    @include size(line-height, 30);
+}
+
+.list__item__content__category {
+    display: inline-block;
+    @include size(padding, 0, 10);
     background: $mainThemeColor;
     color: $white;
-    @include size(line-height, 30);
 
     i {
         margin-right: 5px;
         vertical-align: middle;
     }
+}
+
+.list__item__content__date {
+    display: inline-block;
+    @include size(padding, 0, 10);
+    @include size(margin-left, -4);
+    background: lighten($black, 5);
+    color: $white;
 }
 
 .list__more {

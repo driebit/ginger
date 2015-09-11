@@ -1,6 +1,5 @@
 .list-header {
     @include size(padding, 30, 0);
-    @include size(margin-bottom, 30);
     text-transform: uppercase;
     background: $listHeaderBgColor;
 }
