@@ -77,7 +77,7 @@
 }
 
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-	background-image: url('fancybox_sprite.png');
+	background-image: url('/lib/images/fancybox_sprite.png');
 }
 
 #fancybox-loading {
@@ -95,7 +95,7 @@
 #fancybox-loading div {
 	width: 44px;
 	height: 44px;
-	background: url('fancybox_loading.gif') center center no-repeat;
+	background: url('/lib/images/fancybox_loading.gif') center center no-repeat;
 }
 
 .fancybox-close {
@@ -185,7 +185,7 @@
 	overflow: hidden;
 	display: none;
 	z-index: 8010;
-	background: url('fancybox_overlay.png');
+	background: url('/lib/images/fancybox_overlay.png');
 }
 
 .fancybox-overlay-fixed {
@@ -264,12 +264,12 @@
 	   only screen and (min-device-pixel-ratio: 1.5){
 
 	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-		background-image: url('fancybox_sprite@2x.png');
+		background-image: url('/lib/images/fancybox_sprite@2x.png');
 		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 
 	#fancybox-loading div {
-		background-image: url('fancybox_loading@2x.gif');
+		background-image: url('/lib/images/fancybox_loading@2x.gif');
 		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
 	}
 }

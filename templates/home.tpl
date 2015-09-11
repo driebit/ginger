@@ -1,5 +1,3 @@
-
-
 {% extends "base.tpl" %}
 
 {% block title %}{{ id.title }}{% endblock %}

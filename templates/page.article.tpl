@@ -44,7 +44,7 @@
                     {% button class="list__more" text="Toon meer resultaten..." action={moreresults result=result
                         target="list--fixed-context"
                         template="list/list-item.tpl"}
-                        %}
+                    %}
                 {% endwith %}
             {% elif id.subject %}
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}

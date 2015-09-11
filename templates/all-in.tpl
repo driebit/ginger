@@ -1,24 +1,13 @@
-<h1>ALL IN</h1>
+{% extends "base.tpl" %}
 
-{% if q.direction == 'subject' %}
+{% block title %}{{ id.title }}{% endblock %}
 
-    {% with m.search.paged[{query hassubject=[q.id, q.type] pagelen=24 page=q.page}] as result %}
+{% block body_class %}{% endblock %}
 
-        {{ result | pprint }}
+{% block content %}
 
-        {% if result %}
-            {% include "list/list.tpl" list_id="list--all-in" items=result extraClasses="" %}
-        {% else %}
-            <p class="query-results__no-results">{_ Geen resultaten _}</p>
-        {% endif %}
-    {% endwith %}
+    <h1>all in</h1>
 
-{% elseif q.direction == 'object' %}
-    {% with m.search.paged[{query hasobject=[q.id, q.type] pagelen=24 page=q.page}] as result %}
-        {% if result %}
-            {% include "list/list.tpl" list_id="list--all-in" items=result extraClasses="" %}
-        {% else %}
-            <p class="query-results__no-results">{_ Geen resultaten _}</p>
-        {% endif %}
-    {% endwith %}
-{% endif %}
+   {% include "all-in/all-in.tpl" %}
+
+{% endblock %}
