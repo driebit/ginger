@@ -1,5 +1,6 @@
 .foldout {
     @extend .main-content-extend;
+    @include size(padding-top, 10);
 
     &.is-collapsed {
 
@@ -33,6 +34,12 @@
     .main-content {
         width: 100%;
         margin-bottom: 0;
+    }
+}
+
+@include mq(min-width, $smallBreakpoint) {
+    .foldout {
+        @include size(padding-top, 20);
     }
 }
 
