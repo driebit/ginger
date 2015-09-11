@@ -24,13 +24,11 @@
 
                 {% block list_item_date %}{% endblock %}
 
-                <p>
-                    {% if id.summary %}
-                        {{ id.summary|striptags|truncate:100 }}
-                    {% else %}
-                        {{ id.body|striptags|truncate:100 }}
-                    {% endif %}
-                </p>
+                {% if id.summary %}
+                    <p>{{ id.summary|striptags|truncate:100 }}</p>
+                {% else %}
+                    <p>{{ id.body|striptags|truncate:100 }}</p>
+                {% endif %}
             </div>
         </article>
     </a>
