@@ -1,0 +1,54 @@
+.meta {
+    @include size(padding, 10, 0);
+    position: relative;
+    border-top: 1px solid $mainThemeColor;
+    border-bottom: 1px solid $mainThemeColor;
+
+    [class*="__header" ] {
+        @include size(margin-bottom, 10);
+
+        i {
+            @include size(margin-right, 10);
+            vertical-align: middle;
+        }
+    }
+
+    [class*="__link"] {
+        display: block;
+        text-align: right;
+    }
+}
+
+.meta-location {
+    @extend .meta;
+    border-bottom: 0px;
+}
+
+.meta-participants {
+    @extend .meta;
+}
+
+
+@include mq(min-width, $mediumBreakpoint){
+    .meta {
+        @include size(padding, 20, 0);
+        overflow: hidden;
+
+        [class*="__header" ] {
+            width: 30%;
+            margin-bottom: 0;
+            float: left;
+        }
+
+        [class*="__content" ] {
+            width: 70%;
+            float: left;
+        }
+
+        [class*="__link"] {
+            position: absolute;
+            right: 0px;
+            bottom: 10px;
+        }
+    }
+}

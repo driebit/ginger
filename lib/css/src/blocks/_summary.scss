@@ -1,5 +1,5 @@
 .summary {
-    @include size(margin-bottom, 30);
+    @include size(margin-bottom, $standardOffset);
     @include size(font-size, 19);
 }
 

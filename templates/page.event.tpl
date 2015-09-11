@@ -19,9 +19,12 @@
 
                 {% include "subtitle/subtitle.tpl" id=id %}
 
-                {% include "event/event-participants.tpl" limit=1 id=id %}
-
                 {% catinclude "page-actions/page-actions.tpl" id %}
+
+                <div class="main-content--event__meta">
+                    {% include "event/event-location.tpl" id=id %}
+                    {% include "event/event-participants.tpl" id=id %}
+                </div>
 
                 {% include "summary/summary.tpl" id=id %}
 

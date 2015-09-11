@@ -1,7 +1,7 @@
 .list {
     width: 90%;
     @include size(max-width, 1000);
-    @include size(padding-top, 30);
+    @include size(padding-top, $standardOffset);
     margin: 0 auto;
     lost-utility: clearfix;
     //lost-utility: edit;
@@ -16,7 +16,7 @@
 }
 
 .list__item {
-    @include size(margin-bottom, 30);
+    @include size(margin-bottom, $standardOffset);
     position: relative;
     background: $white;
     overflow: hidden;

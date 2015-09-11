@@ -32,6 +32,6 @@ main {
     }
 
     .main-content {
-        @include size(padding, 30, 25);
+        @include size(padding, 30);
     }
 }
