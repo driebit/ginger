@@ -16,13 +16,14 @@
                     {% endif %}
                 </h3>
 
-                {% block list_item_cat %}
-                    <div class="list__item__content__category">
-                        <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
-                    </div>
-                {% endblock %}
-
-                {% block list_item_date %}{% endblock %}
+                <div class="list__item__content__meta">
+                    {% block list_item_cat %}
+                        <div class="list__item__content__category">
+                            <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+                        </div>
+                    {% endblock %}
+                    {% block list_item_date %}{% endblock %}
+                </div>
 
                 {% if id.summary %}
                     <p>{{ id.summary|striptags|truncate:100 }}</p>
