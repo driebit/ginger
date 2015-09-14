@@ -160,7 +160,7 @@ a:hover {
 
 .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled],
 .btn-primary:focus {
-    background-color: #ec6e01 !important;
+    background-color: #ec6e01;
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -210,18 +210,18 @@ a:hover {
 
 /* Nav */
 
-.t-cms .navbar.navbar-brandeds .navbar-toggle {
+.t-cms .navbar .navbar-toggle {
     background: #ba5b15;
     border: none;
 }
 
-.t-cms .navbar.navbar-branded .navbar-toggle:hover,
-.t-cms .navbar.navbar-branded .navbar-toggle:active,
-.t-cms .navbar.navbar-branded .navbar-toggle:focus {
+.t-cms .navbar .navbar-toggle:hover,
+.t-cms .navbar .navbar-toggle:active,
+.t-cms .navbar .navbar-toggle:focus {
     background: #aa5415;
 }
 
-.t-cms .navbar.navbar-branded {
+.t-cms .navbar-default {
     background-color: #ff7600;
     background-image: none;
     border-bottom: 1px solid #ba5b15;
@@ -234,16 +234,16 @@ a:hover {
 }
 
 
-.t-cms .navbar.navbar-branded .navbar-nav>.open>a,
-.t-cms .navbar.navbar-branded .navbar-nav>.open>a:hover,
-.t-cms .navbar.navbar-branded .navbar-nav>.open>a:focus,
-.t-cms .navbar.navbar-branded .navbar-nav > .open > a, 
-.t-cms .navbar.navbar-branded .navbar-nav > .active> a {
+.t-cms .navbar-default .navbar-nav>.open>a,
+.t-cms .navbar-default .navbar-nav>.open>a:hover,
+.t-cms .navbar-default .navbar-nav>.open>a:focus,
+.t-cms .navbar-default .navbar-nav > .open > a, 
+.t-cms .navbar-default .navbar-nav > .active> a {
     background: #ba5b15;
 }
 
-.t-cms .navbar.navbar-branded .navbar-collapse, 
-.t-cms .navbar.navbar-branded .navbar-form {
+.t-cms .navbar-default .navbar-collapse, 
+.t-cms .navbar-default .navbar-form {
     border-color: #ba5b15;
 }
 
@@ -258,8 +258,7 @@ a:hover {
     color: #fff;
 }
 
-.t-cms .navbar.navbar-branded .nav > li a:hover {
-    background: #ba5b15;
+.t-cms .navbar .nav > li a:hover {
     color: #fff;
 }
 
@@ -286,7 +285,7 @@ a:hover {
     border-radius: 3px;
 }
 
-.t-cms .navbar.navbar-branded .navbar-brand .zotonic-logo {
+.t-cms div.navbar .brand img {
     width: 175px;
     height: 31px;
 }
@@ -295,9 +294,6 @@ a:hover {
     z-index: 10;
 }
 
-.t-cms .navbar.admin-navbar-fixed-save {
-    background-color: #e8e8e8;
-}
 .t-cms .navbar-fixed-save .btn-primary {
     background: #fff;
     color: #ff7600;
