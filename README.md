@@ -56,7 +56,7 @@ Accept: application/json
         "ABC12345",
         "DEF78901"
     ],
-    "file": "base64-encoded image contents"
+    "attachment": "base64-encoded image contents"
 }
 ```
 
@@ -69,6 +69,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
+    "rfids": [
+        "ABC12345"
+    ],
     "object_id": "http://yoursite.com/
 }
 ```

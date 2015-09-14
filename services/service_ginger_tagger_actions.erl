@@ -21,12 +21,18 @@ process_post(_ReqData, Context) ->
             {error, syntax, Message};
         {ok, MediaId} ->
 
-            case z_context:get_q("rfids", Context) of
+            case z_context:get_q_all("rfids", Context) of
+                [] ->
+                    {error, missing_arg, "rfids"};
                 undefined ->
                     {error, missing_arg, "rfids"};
                 Rfids ->
                     case lookup_users(Rfids, Context) of
                         [] ->
+                            lager:error(
+                                "[~p] RFIDs ~p not known",
+                                [z_context:site(Context), Rfids]
+                            ),
                             {error, syntax, "None of the RFIDs are known"};
                         Users ->
                             case get_object(Context) of
@@ -59,7 +65,7 @@ get_object(Context) ->
 %% @doc Accept both multipart/form files and base64-encoded files.
 -spec process_file(#context{}) -> undefined | integer().
 process_file(Context) ->
-    Upload = case z_context:get_q("file", Context) of
+    Upload = case z_context:get_q("attachment", Context) of
         undefined ->
             undefined;
         File = #upload{} ->
@@ -73,7 +79,7 @@ process_file(Context) ->
             catch
                 _Type:_Reason ->
                     %% Not a valid base64-encoded string
-                    {error, "File is not a valid base64-encoded string"}
+                    {error, "Attachment is not a valid base64-encoded string"}
             end
     end,
 
