@@ -57,7 +57,7 @@
 	<div class="row">	
 		<div class="form-group visit_address_country col-xs-12">
 			<label class="control-label" for="address_country">{_ Country _}</label>
-            <span class="widget-header">{_ (to add an address choose a country first) _}</span>
+            <span class="admin-text-header">{_ (to add an address choose a country first) _}</span>
 			{% if m.modules.active.mod_l10n %}
 				<select class="form-control" id="address_country" name="address_country">
 					<option value=""></option>
