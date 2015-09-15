@@ -1,0 +1,72 @@
+.ginger-correlated-items__keywords {
+    background: lighten($relatedItemsHeaderBgColor, 2);
+    color: #fff;
+}
+
+.keywords {
+    width: 90%;
+    padding: 0 0 20px 0;
+    margin: 0 auto;
+    //overflow: hidden;
+}
+
+.keywords__label {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+}
+
+.keywords__list {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li {
+        display: inline-block;
+        margin-top: 5px;
+        opacity: 0.8;
+
+        + li {
+
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+}
+
+.keywords__list__btn {
+    background: $relatedItemsHeaderBgColor;
+    text-transform: none;
+}
+
+@include mq(min-width, 900) {
+    .keywords {
+        padding: 0 0 10px 0;
+        overflow: hidden;
+    }
+
+    .keywords__label {
+        width: 300px;
+        @include size(padding, 9, 20, 6, 20);
+        text-align: left;
+        float: left;
+        vertical-align: middle;
+    }
+
+    .keywords__list {
+        width: 70%;
+        float: left;
+        text-align: left;
+        vertical-align: middle;
+
+        li {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+    }
+}

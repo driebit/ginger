@@ -77,7 +77,7 @@
 		{% block head_extra %}{% endblock %}
 	</head>
     {% with m.rsc[id.content_group_id] as content_group %}
-        {% if content_group.o.hassubnav %}
+            {% if content_group.o.hassubnav %}
                 <body class="{% block page_class %}{% endblock %} has-content-group">
             {% else %}
                 <body class="{% block page_class %}{% endblock %}">

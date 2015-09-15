@@ -1,4 +1,4 @@
-{% with m.rsc[id.content_group_id] as content_group %}
+    {% with m.rsc[id.content_group_id] as content_group %}
         {% if content_group and content_group.name != "system_content_group" and content_group.name != "default_content_group" %}
                 {% if content_group.o.hasbanner %}
                     {% with content_group.o.hasbanner.depiction as banner_dep %}               
