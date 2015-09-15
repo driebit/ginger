@@ -16,25 +16,24 @@
 process_post(_ReqData, Context) ->
     %% Look up configuration (not yet used)
 
-    case process_file(Context) of
-        {error, Message} ->
-            {error, syntax, Message};
-        {ok, MediaId} ->
-
-            case z_context:get_q_all("rfids", Context) of
+    case z_context:get_q_all("rfids", Context) of
+        [] ->
+            {error, missing_arg, "rfids"};
+        undefined ->
+            {error, missing_arg, "rfids"};
+        Rfids ->
+            case lookup_users(Rfids, Context) of
                 [] ->
-                    {error, missing_arg, "rfids"};
-                undefined ->
-                    {error, missing_arg, "rfids"};
-                Rfids ->
-                    case lookup_users(Rfids, Context) of
-                        [] ->
-                            lager:error(
-                                "[~p] RFIDs ~p not known",
-                                [z_context:site(Context), Rfids]
-                            ),
-                            {error, syntax, "None of the RFIDs are known"};
-                        Users ->
+                    lager:error(
+                        "[~p] RFIDs ~p not known",
+                        [z_context:site(Context), Rfids]
+                    ),
+                    {error, syntax, "None of the RFIDs are known"};
+                Users ->
+                    case process_file(Context) of
+                        {error, Message} ->
+                            {error, syntax, Message};
+                        {ok, MediaId} ->
                             case get_object(Context) of
                                 undefined ->
                                     {error, missing_arg, "object_id"};
