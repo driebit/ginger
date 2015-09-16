@@ -6,7 +6,7 @@ as
 
     <form action="{{ url }}" method="post" target="_blank" novalidate>
 
-        <div class="form-group">
+        <div class="form-group mailchimp-signup">
             <label for="mailchimp-email">{{ _"E-mail address" }}</label>
             <input type="email" value="" name="EMAIL" class="form-control" id="mailchimp-email" placeholder="{{ _"E-mail address" }}">
         </div>
