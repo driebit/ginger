@@ -32,8 +32,6 @@
 
     {% all include "_html_head.tpl" %}
 
-    {# {% include "head/_html_head.tpl" id=id %} #}
-
     {% block css %}
         {% lib
             "css/site/screen.css"
