@@ -1,4 +1,4 @@
-<div id="signup_gender"class="form-group">
+<div id="signup_gender" class="form-group">
     <label for="gender" class="control-label">{_ Gender _}</label>
     <div class="controls">
         <select name="gender" id="gender">
