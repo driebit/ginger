@@ -4,11 +4,18 @@
 -include_lib("zotonic.hrl").
 
 -export([
+    load/2,
     file/2,
     reset/1,
     create_identity_if_not_exists/4,
     create_identity_type_if_not_exists/4
 ]).
+
+load(Datamodel = #datamodel{}, Context) ->
+    z_datamodel:manage(
+        z_context:site(Context),
+        Datamodel, z_context:prune_for_spawn(Context)
+    ).
 
 %% @doc Locate file in fixtures directory
 -spec file(string(), #context{}) -> string().
