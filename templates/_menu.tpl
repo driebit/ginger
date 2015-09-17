@@ -1,10 +1,11 @@
 {% if menu %}
+{% with menu_class|default:"global-menu" as class %}
 {% with id|menu_trail:menu_id as parents %}
-    <ul class="global-nav__menu {{ extraClasses }}">
+    <ul class="{{ class }} {{ extraClasses }}">
     {% for mid, path, action in menu %}
         {% if mid %}
             {% if mid.is_a.collection and mid.o.haspart %}
-                <li class="global-nav__menu__dropdown{% if mid|member:parents %} is-active{% endif %}">
+                <li class="{{ class }}__dropdown{% if mid|member:parents %} is-active{% endif %}">
                     <a href="{% if context %}/{{ context }}/{{ mid.id }}{%else %}{{ mid.page_url }}{% endif %}">
                         {{ mid.short_title|default:mid.title }}
                     </a>
@@ -20,14 +21,14 @@
                         {% endfor %}
                     </ul>
             {% elif action==`down` %}
-                <li class="global-nav__menu__dropdown{% if mid|member:parents %} is-active{% endif %}">
+                <li class="{{ class }}__dropdown{% if mid|member:parents %} is-active{% endif %}">
                     <a href="{{ mid.page_url }}" class="is-disabled">
                         {{ mid.short_title|default:mid.title }}
                     </a>
                     <ul>
             {% else %}
                 {% if mid.is_visible %}
-                    <li class="{% if mid|member:parents %}is-active{% endif %}">
+                    <li class="{% if mid|member:parents %} is-active{% endif %}">
                         <a href="{{ mid.page_url }}">
                             {{ mid.short_title|default:mid.title }}
                         </a>
@@ -39,5 +40,6 @@
         {% endif %}
     {% endfor %}
     </ul>
+{% endwith %}
 {% endwith %}
 {% endif %}

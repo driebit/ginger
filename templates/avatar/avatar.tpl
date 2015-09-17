@@ -1,25 +1,18 @@
-{% with
-    class|default:"#",
-    href|if_undefined:"#",
-    image_class|default:"avatar",
-    label
-as
-    class,
-    href,
-    image_class,
-    label
-%}
+{% extends "depiction/with_depiction.tpl" %}
 
-<a href="{{ href }}" id="{{ id }}" class="{{ class }}" >
-    
-        {% if image_dep %}
-            {% image image_dep mediaclass="avatar" class=image_class %}
-        {% else %}
-            <i class="icon-profile"></i>
-        {% endif %}
-    {% if label %}
-        <span class="{{ class }}__label">{{ label }}</span>
-    {% endif %}
-</a>
+{% block with_depiction %}
 
-{% endwith %}
+  {% with
+    image_class|default:"avatar__image"
+  as
+      image_class
+  %}
+  
+  {% if dep_rsc %}
+    {% image dep_rsc.id mediaclass="avatar" class=image_class %}
+  {% endif %}
+
+  {% endwith %}
+
+{% endblock %}
+

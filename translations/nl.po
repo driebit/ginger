@@ -1,0 +1,338 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46
+msgid ""
+"Aanmelden"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12
+msgid ""
+"Afmelden"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:63
+msgid ""
+"All rights reserved"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:2
+msgid ""
+"Copyrights"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-participants.tpl:3
+msgid ""
+"Deelnemers"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:4
+msgid ""
+"Delen"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:23 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6
+msgid ""
+"Door:"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:31 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6
+msgid ""
+"E-mail"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:9
+msgid ""
+"Edit"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:7 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:7
+msgid ""
+"Edit page"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18
+msgid ""
+"Email"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9
+msgid ""
+"Facebook"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:48
+msgid ""
+"Ga naar Facebook"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:58
+msgid ""
+"Ga naar LinkedIn"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:68
+msgid ""
+"Ga naar Twitter"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:38
+msgid ""
+"Ga naar website"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10
+msgid ""
+"Help about page actions"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:6
+msgid ""
+"Ingelogd als"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:23
+msgid ""
+"Kaart tonen"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/dialog-language.tpl:4
+msgid ""
+"Kies je taal"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:15
+msgid ""
+"Leave a comment"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/foldout/foldout-button.tpl:1 /vagrant/modules/mod_ginger_base/templates/foldout/foldout-button.tpl:1
+msgid ""
+"Lees meer"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15
+msgid ""
+"LinkedIn"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:4
+msgid ""
+"Locatie"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:59
+msgid ""
+"Log on or sign up to comment"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/toggle-menu/toggle-menu.tpl:2
+msgid ""
+"Menu"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:40
+msgid ""
+"Message"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:26
+msgid ""
+"Mobiel"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:23
+msgid ""
+"Name"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10
+msgid ""
+"Need more help?"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:17
+msgid ""
+"Note: Comments are moderated"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:16
+msgid ""
+"Nothing found"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of.tpl:4
+msgid ""
+"Onderdeel van:"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5
+msgid ""
+"Op basis van deze trefwoorden:"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:5
+msgid ""
+"Page actions"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comment/comment.tpl:21
+msgid ""
+"Posted"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:12 /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:22
+msgid ""
+"Profiel"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:17
+msgid ""
+"RSVP"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:47
+msgid ""
+"Send"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:32
+msgid ""
+"Short title"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:18
+msgid ""
+"Subtitle"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:25
+msgid ""
+"Summary"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12
+msgid ""
+"Taalkeuze"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16
+msgid ""
+"Telefoon"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10
+msgid ""
+"This event is able to accept RSVP's."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6
+msgid ""
+"Title"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:7
+msgid ""
+"Toon meer resultaten..."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12
+msgid ""
+"Twitter"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:27
+msgid ""
+"Uitloggen"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36
+msgid ""
+"Website"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:56
+msgid ""
+"You may use the work freely"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:28
+msgid ""
+"You must give the original author credit"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:14
+msgid ""
+"You must give the original author credit, this work must be licensed under "
+"an identical license if used"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:21
+msgid ""
+"You must give the original author credit, you may not alter, transform, "
+"or build upon this work."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:42
+msgid ""
+"You must give the original author credit, you may not use this work for "
+"commercial purposes"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:49
+msgid ""
+"You must give the original author credit, you may not use this work for "
+"commercial purposes, this work must be licensed under an identical license "
+"if used"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:35
+msgid ""
+"You must give the original author credit, you may not use this work for "
+"commercial purposes, you may not alter, transform, or build upon this work"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:7
+msgid ""
+"Your comment has been saved and will be subject to review before it is "
+"displayed to other visitors of the website. Thank you for your comment!"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10 /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16 /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2
+msgid ""
+"Zoeken"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:50
+msgid ""
+"logon or register"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:14
+msgid "mailchimp-sign-up"
+msgstr "Aanmelden"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1
+msgid ""
+"reacties"
+msgstr ""
+
+msgid "E-mail address"
+msgstr "E-mailadres"
