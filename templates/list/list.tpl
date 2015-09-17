@@ -2,6 +2,7 @@
     items,
     cols,
     extraClasses,
+    class|default:"list",
     list_id|default:"",
     hide_button|default:0,
     button_text|default:_"Toon meer resultaten..."
@@ -9,12 +10,13 @@ as
     items,
     cols,
     extraClasses,
+    class,
     list_id,
     hide_button,
     button_text
 %}
     {% if items %}
-        <ul id="{{ list_id }}" class="list {{ extraClasses }}">
+        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
 
             {% for r in items %}
                 {% if r|length == 2 %}

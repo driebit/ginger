@@ -1,18 +1,21 @@
 {% if m.acl.user %}
-
+    {% with title|default:_"Profiel" as title %}
+    {% with class|default:"profile--global-nav" as class %}
     {% with #profile as profile_wire_id %}
 
-        <a href="#" id="{{ profile_wire_id }}" class="profile--global-nav">
+        <a href="#" id="{{ profile_wire_id }}" class="{{ class }}">
 
             {% include "avatar/avatar.tpl"
                 id=m.rsc[m.acl.user]
                 fallback_rsc_id=m.rsc.custom_avatar_fallback.id
             %}
 
-            {_ Profiel _}
+            {{ title }}
 
         </a>
 
+    {% endwith %}
+    {% endwith %}
     {% endwith %}
 
     {% wire
