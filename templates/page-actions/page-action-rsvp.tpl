@@ -1,6 +1,6 @@
 {% with btn_class|default:"page-action--rsvp" as btn_class %}
 
-{% if id.action_rsvp %}
+{% if id.action_rsvp or id.action_rsvp == undefined %}
     {# Show an RSVP button, for events #}
         {% if m.acl.user %}
             {# If the user is logged in, show its RSVP status #}
@@ -44,7 +44,7 @@
             {# The user is not logged in. Clicking on RSVP only logs in, nothing else. #}
             {% button
                 text=_"Aanmelden"
-                class=btn--secondary
+                class=btn_class
                 action={
                     dialog_open
                     title=_"logon or register"

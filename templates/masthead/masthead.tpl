@@ -1,8 +1,8 @@
 
 {% if id %}
 
-    {% if id.address_street_1 %}
-    
+    {% if id.category.name == 'location' and id.address_street_1 %}
+
         <div class="masthead--map do_masthead_map"
             data-street1="{{ id.address_street_1 }}"
             data-street2="{{ id.address_street_2 }}"
@@ -11,10 +11,10 @@
             data-country="{{ id.address_country }}"
             data-main-content-class="foldout">
         </div>
-    
+
     {% else %}
 
-        {% with 
+        {% with
             id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
             {% if banner %}

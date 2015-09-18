@@ -1,3 +1,3 @@
 {% if id.subtitle %}
-    <h2 class="page-subtitle">{{ id.subtitle }}</h2>
+    <h2 class="subtitle">{{ id.subtitle }}</h2>
 {% endif %}
