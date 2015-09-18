@@ -1,5 +1,5 @@
 .keywords {
-    @extend .container;
+    @extend .main-container;
     @include size(margin-top, $standardOffset);
 }
 
@@ -24,13 +24,15 @@
     }
 
     .keywords__label {
-        width: 25%;
+        width: 30%;
+        @extend .btn;
         float: left;
         margin-bottom: 0;
+        cursor: auto;
     }
 
     .keywords__list {
-        width: 75%;
+        width: 70%;
         margin-bottom: 0;
         float: left;
     }

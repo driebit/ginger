@@ -1,0 +1,10 @@
+.home-button {
+    @include size(margin-right, 10);
+    @include size(margin-bottom, 5);
+}
+
+.home__title {
+    @extend .foldout;
+    padding: 0;
+    margin: 0;
+}

@@ -17,6 +17,8 @@
             <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
+                {% include "subtitle/subtitle.tpl" id=id %}
+
                 {% include "part-of/part-of.tpl" id=id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
@@ -44,7 +46,7 @@
         {% elif id.subject %}
             <aside class="main-aside">
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}
-                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
                     {% include "keywords/keywords.tpl" id=id items=result %}
 

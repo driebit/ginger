@@ -15,6 +15,13 @@
     }
 }
 
+.list--vertical {
+    width: 90%;
+    @include size(max-width, 1000);
+    @include size(padding-top, $standardOffset);
+    margin: 0 auto;
+}
+
 .list__item {
     @include size(margin-bottom, $standardOffset);
     position: relative;
@@ -25,15 +32,18 @@
         width: 100%;
     }
 
+    a,
     a:hover,
     a:active,
     a:focus {
+        color: $typographyColor;
         text-decoration: none;
     }
 }
 
 .list__item__content__title {
     margin: 0;
+    color: $mainThemeColor;
 }
 
 .list__item__content {
@@ -91,6 +101,39 @@
     }
 }
 
+.list__item--vertical {
+    @extend .list__item;
+
+    .list__item__content__meta {
+        width: 100%;
+        height: auto;
+        @include size(padding, 20, 15, 0);
+        background: $white;
+        position: static;
+    }
+
+    .list__item__content {
+        padding-top: 0;
+    }
+
+    .list__item__content__date {
+        padding: 0;
+        @include size(margin, 5, 0, 0);
+        background: none;
+        color: $mainThemeColor;
+    }
+
+    .list__item__content__location {
+        margin: 0 0 1em 0;
+    }
+}
+
+.list__item__content__location {
+    span {
+        color: $mainThemeColor;
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint) {
     .list__item {
         &:hover {
@@ -99,6 +142,7 @@
             }
         }
     }
+
     .list__item__content {
         position: absolute;
         bottom: -300px;
@@ -109,5 +153,33 @@
 
     .list__more {
         @include size(padding, 19, 20, 16);
+    }
+
+    .list__item--vertical {
+        display: block;
+        width: 100%;
+
+        a {
+            display: block;
+        }
+
+        .list__item__image {
+            width: 35%;
+            float: left;
+            vertical-align: top;
+        }
+
+        .list__item__content__meta {
+            width: 15%;
+            float: left;
+            vertical-align: top;
+        }
+
+        .list__item__content {
+            width: 50%;
+            float: left;
+            position: static;
+            vertical-align: top;
+        }
     }
 }

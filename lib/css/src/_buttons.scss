@@ -2,10 +2,12 @@
     display: inline-block;
     @include size(padding, 9, 20, 6, 20);
     border-radius: $btnRadius;
-    @include size(font-size, 14);
+    @include size(font-size, 16);
     text-transform: uppercase;
     border: none;
     cursor: pointer;
+    line-height: 1;
+    font-weight: 400;
 
     &:hover,
     &:active,
@@ -18,12 +20,15 @@
     @extend .btn;
     background: $mainThemeColor;
     color: $white;
+    border: 1px solid $mainThemeColor;
 
     &:hover,
     &:active,
-    &:focus {
-        background-color: darken($mainThemeColor, 15);
+    &:focus,
+    &:focus:active {
+        background-color: darken($mainThemeColor, 5);
         color: $white;
+        border-color: darken($mainThemeColor, 5);
     }
 }
 
@@ -52,6 +57,19 @@
         color: $white;
         background-color: $mainThemeColor;
     }
+}
+
+.home-button {
+    @extend .btn--secondary;
+}
+
+[class^="btn--"], [class*=" btn--"] {
+    @extend .btn--primary;
+}
+
+.btn--cancel,
+.btn--delete {
+    @extend .btn--secondary;
 }
 
 /* Buttons in zotonic */
