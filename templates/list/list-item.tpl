@@ -2,9 +2,9 @@
 
 {% block with_depiction %}
 
-<li class="list__item">
+<li class="list__item {{ extraClasses }}">
 
-    <a href="{{ id.page_url }}" class=" {{ extraClasses }}">
+    <a href="{{ id.page_url }}">
         <article>
             {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
             <div class="list__item__content">
