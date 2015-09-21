@@ -23,7 +23,7 @@
 manage_schema(install, Context) ->
     PreferredConfigs = [
         {mod_signup, username_equals_email, true},
-        {mod_signup, request_confirm, false}
+        {mod_signup, request_confirm, true}
     ],
     lists:foreach(
         fun({Mod, Key, Value}) ->
