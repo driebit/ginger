@@ -25,7 +25,7 @@
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
-
+                
                 {% include "home/home-buttons.tpl" id=id %}
             </article>
 
