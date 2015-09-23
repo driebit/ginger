@@ -1,0 +1,28 @@
+.comments-anchor {
+    @extend .btn--secondary;
+
+    i {
+        margin-left: 5px;
+        font-size: 10px;
+    }
+}
+
+.comments__header {
+    @include size(padding, 15);
+    border-top: 1px solid $mainThemeColor;
+    border-bottom: 1px solid $mainThemeColor;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    i {
+        @include size(margin-right, 10);
+        vertical-align: middle;
+    }
+}
+
+.comments {
+    @include size(margin-top, 40);
+    button[type="submit"] {
+        @include size(margin-top, 10);
+    }
+}

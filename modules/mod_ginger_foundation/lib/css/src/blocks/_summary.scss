@@ -1,0 +1,10 @@
+.summary {
+    @include size(margin-bottom, $standardOffset);
+    @include size(font-size, 19);
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .summary {
+        @include size(font-size, 22);
+    }
+}

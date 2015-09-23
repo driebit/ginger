@@ -1,0 +1,39 @@
+.keywords {
+    @extend .main-container;
+    @include size(margin-top, $standardOffset);
+}
+
+.keywords__label {
+    font-weight: 600;
+}
+
+.keywords__list {
+    li {
+        display: inline-block;
+        @include size(margin-bottom, 4);
+    }
+}
+
+.keywords__list__btn {
+    @extend .btn--secondary;
+}
+
+@include mq(min-width, $mediumBreakpoint){
+    .keywords {
+        overflow: hidden;
+    }
+
+    .keywords__label {
+        width: 30%;
+        @extend .btn;
+        float: left;
+        margin-bottom: 0;
+        cursor: auto;
+    }
+
+    .keywords__list {
+        width: 70%;
+        margin-bottom: 0;
+        float: left;
+    }
+}

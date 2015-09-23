@@ -1,0 +1,50 @@
+.foldout {
+    @extend .main-content-extend;
+    @include size(padding-top, 10);
+
+    &.is-collapsed {
+
+        @include size(height, 550);
+        overflow: hidden;
+        border-bottom: 2px solid $mainThemeColor;
+
+        .foldout__button {
+            display: block;
+            transform: rotate(0deg);
+        }
+
+        &:after {
+            content: '';
+            width: 100%;
+            @include size(height, 150);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 3%, #ffffff 100%);
+        }
+    }
+
+    &.is-expanded {
+        .foldout__button {
+            display: block;
+        }
+    }
+
+    .main-content {
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+@include mq(min-width, $smallBreakpoint) {
+    .foldout {
+        @include size(padding-top, 20);
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .foldout {
+        @include size(padding-top, 40);
+    }
+}

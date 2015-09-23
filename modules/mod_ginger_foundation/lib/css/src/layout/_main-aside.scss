@@ -1,0 +1,4 @@
+.main-aside {
+    @include size(padding-bottom, 30);
+    background: $listBgColor;
+}

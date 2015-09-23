@@ -1,0 +1,38 @@
+.share {
+
+}
+
+.share__button {
+    position: relative;
+    background: none;
+    cursor: none;
+    border: none;
+
+    &:hover {
+        .share__menu {
+            display: block;
+        }
+    }
+}
+
+.share__button__title {
+    @extend .btn--secondary;
+}
+
+.share__menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+    background: #fff;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+    list-style: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+
+    a {
+        display: block;
+        @include size(padding, 3, 12);
+    }
+}

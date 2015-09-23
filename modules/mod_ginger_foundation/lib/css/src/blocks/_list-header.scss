@@ -1,0 +1,9 @@
+.list-header {
+    @include size(padding, 30, 0);
+    text-transform: uppercase;
+    background: $listHeaderBgColor;
+}
+
+.list-header__title {
+    @extend .main-container;
+}

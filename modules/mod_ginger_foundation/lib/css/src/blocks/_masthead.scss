@@ -1,0 +1,32 @@
+body.has-content-group .masthead {
+    top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+}
+
+.masthead {
+    width: 100%;
+    @include size(height, 300);
+    position: absolute;
+    @include size(top, $globalNavHeight);
+    left: 0;
+    z-index: 10;
+    background: #FFF url(/lib/images/bg_rectangle.png?embed) center center repeat;
+    transition: height 0.3s;
+}
+
+
+@include mq(min-width, $mediumBreakpoint) {
+    .masthead {
+        @include size(height, 450);
+    }
+}
+
+@include mq(min-width, $largeBreakpoint) {
+    .masthead {
+        @include size(height, 650);
+    }
+}
+
+.masthead--map {
+    @extend .masthead;
+    background: none;
+}

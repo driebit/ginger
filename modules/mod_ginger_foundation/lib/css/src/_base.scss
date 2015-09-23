@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body {
+    height: 100%;
+}
+
+body {
+    @include size(padding-top, $globalNavHeight);
+    background: $bodyBgColor;
+    color: $typographyColor;
+    line-height: 1.5;
+    font-family: $bodyFontFamily;
+    font-weight: 300;
+    @include size(font-size, 16);
+
+    &.is-menu-visible:before {
+        content: '';
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        @include size(top, $globalNavHeight);
+        left: 0px;
+        z-index: 400;
+        background: rgba(0,0,0, 0.5);
+    }
+}
+
+a, a:hover, a:active {
+    color: $mainThemeColor;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 0;
+}
+
+h1, h2, h3, h4, p, ol, ul, table {
+    margin: 0 0 1em 0;
+}
+
+h1 {
+    @include size(font-size, 32);
+    @include size(line-height, 36);
+}
+
+h2 {
+    @include size(font-size, 28);
+    @include size(line-height, 30);
+}
+
+h3 {
+    @include size(font-size, 25);
+    @include size(line-height, 28);
+}
+
+@include mq(min-width, 900){
+    h1 {
+        @include size(font-size, 41);
+        @include size(line-height, 44);
+    }
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+figure {
+    @include size(margin-bottom, 30);
+}
+
+figcaption {
+    @include size(margin-top, 5);
+    @include size(font-size, 14);
+}
+
+blockquote {
+    @include size(font-size, 18);
+    border-left: 5px solid $mainThemeColor;
+}
+
+// Editor generated
+
+img.left,
+p.left,
+ul.left {
+    clear: left;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+img.right,
+p.right,
+ul.right {
+    clear: right;
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}

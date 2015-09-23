@@ -1,0 +1,93 @@
+.btn {
+    display: inline-block;
+    @include size(padding, 9, 20, 6, 20);
+    border-radius: $btnRadius;
+    @include size(font-size, 16);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    font-weight: 400;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.btn--primary {
+    @extend .btn;
+    background: $mainThemeColor;
+    color: $white;
+    border: 1px solid $mainThemeColor;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus:active {
+        background-color: darken($mainThemeColor, 5);
+        color: $white;
+        border-color: darken($mainThemeColor, 5);
+    }
+}
+
+.btn--secondary,
+.btn--anchor,
+.btn--next {
+    @extend .btn;
+}
+
+.btn--anchor,
+.btn--next {
+    position: relative;
+
+    @extend .btn--secondary;
+}
+
+.btn--secondary {
+    background: $white;
+    color: $mainThemeColor;
+    border: 1px solid $mainThemeColor;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: $mainThemeColor;
+        color: $white;
+        background-color: $mainThemeColor;
+    }
+}
+
+.home-button {
+    @extend .btn--secondary;
+}
+
+[class^="btn--"], [class*=" btn--"] {
+    @extend .btn--primary;
+}
+
+.btn--cancel,
+.btn--delete {
+    @extend .btn--secondary;
+}
+
+/* Buttons in zotonic */
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    @extend .btn--primary;
+}
+
+.nav-pills > li > a {
+    @extend .btn;
+}
+
+.btn-primary {
+    @extend .btn--primary;
+}
+
+.btn-default {
+    @extend .btn--secondary;
+}

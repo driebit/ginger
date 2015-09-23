@@ -1,0 +1,131 @@
+body.has-content-group {
+    padding-top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+}
+
+.content-group-nav__banner {
+    width: 100%;
+    @include size(height, $contentGroupNavHeight);
+    position: fixed;
+    @include size(top, $globalNavHeight);
+    z-index: 200;
+    background-color: $white;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    box-shadow: 3px 3px 10px 2px rgba(0,0,0,0.15);
+    transition: height 0.3s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+
+    &:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        @include size(top, 0);
+        @include size(left, 0);
+        z-index: 200;
+        background-color: rgba($mainThemeColor, .4);
+    }
+
+    &.is-minified {
+        @include size(height, 50);
+    }
+}
+
+.content-group-nav__banner__bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    @include size(top, 0);
+    @include size(left, 0);
+    z-index: 100;
+    background-color: $white;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);  /* For Webkit browsers */
+    filter: gray;  /* For IE 6 - 9 */
+}
+
+ .content-group-nav__banner__title {
+    @include vertical-align();
+    z-index: 300;
+    @include size(font-size, 28);
+    color: $white;
+    font-family: Arial;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 10px rgba(50, 50, 50, 1);
+
+    &:after {
+        content: '';
+        display: inline-block;
+        position: relative;
+        top: -6px;
+        left: 10px;
+        border-top: 8px dashed;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        display: inline-block;
+    }
+}
+
+.content-group-nav__menu {
+    @include size(min-height, 55);
+    padding: 18px 10px 12px 10px;
+    background-color: $mainThemeColor;
+    position: relative;
+    z-index: 20;
+
+    ul {
+        @include size(padding, 0);
+        @include size(margin, 0);
+        @include size(font-size, 0);
+        text-align: center;
+    }
+
+    li {
+        display: block;
+        width: 100%;
+        @include size(margin, 0);
+        list-style-type: none;
+        @include size(font-size, 14);
+        vertical-align: top;
+        text-align: left;
+
+        &.active a {
+            background: darken($mainThemeColor, 5);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 5px 10px;
+        @include size(font-size, 14);
+        color: $white;
+        border-radius: 4px;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background: darken($mainThemeColor, 5);
+            text-decoration: none;
+        }
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .content-group-nav__menu {
+        li {
+            margin: 0px 10px 0px 10px;
+            width: auto;
+            display: inline-block;
+        }
+    }
+}
+

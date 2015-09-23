@@ -1,0 +1,23 @@
+.page-actions {
+    @include size(margin-bottom, 30);
+}
+
+.page-action--edit,
+.page-action--add,
+.page-action--rsvp,
+.share,
+.favorite,
+.comments-anchor {
+    @extend .page-action-elements;
+}
+
+#link-button {
+    display: inline-block;
+}
+
+
+@include mq(min-width, 900) {
+    .page-actions__author {
+        @include size(margin-bottom, 10);
+    }
+}

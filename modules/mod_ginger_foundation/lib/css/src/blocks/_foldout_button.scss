@@ -1,0 +1,21 @@
+.foldout__button {
+    display: none;
+    @include size(width, 64);
+    @include size(height, 37);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    z-index: 100;
+    background-color: $white;
+    text-align: center;
+    border: none;
+    transform: rotate(180deg);
+    border-radius: $interfaceRadius;
+
+    i {
+        color: $mainThemeColor;
+    }
+}
