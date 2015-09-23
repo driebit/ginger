@@ -1,0 +1,38 @@
+.bx-wrapper {
+    margin-bottom: 10px;
+}
+
+.bx-wrapper .bx-viewport {
+    left: 0px;
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+.carousel-pager {
+    list-style: none;
+    padding: 0;
+}
+
+.carousel-pager li {
+    display: inline-block;
+    margin-right: 6px;
+}
+
+.carousel-pager li:last-child {
+    margin-right: 0;
+}
+
+.carousel-pager img,
+.carousel-pager a {
+    display: block;
+}
+
+.carousel_item h2 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+}
