@@ -1,0 +1,76 @@
+.ginger-pagination {
+    position: relative;
+    background-color: $paginationBackground;
+    color: $white;
+    @include size(font-size, 14);
+
+    a {
+        &:link,
+        &:visited {
+            color: $white;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active {
+            text-decoration: underline;
+        }
+    }
+
+    &__previous,
+    &__next {
+        position: absolute;
+        @include size(line-height, 28);
+        @include size(top, 7);
+
+        &:after {
+            @extend .has-icon;
+            @include size(top, 4);
+            @include size(width, 20);
+            @include size(height, 20);
+        }
+    }
+
+    &__previous {
+        @include size(left, 10);
+        @include size(padding-left, 25);
+
+        &:after {
+            left: 0;
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-left_FFFFFF', true);
+        }
+    }
+
+    &__next {
+        @include size(right, 10);
+        @include size(padding-right, 25);
+
+        &:after {
+            right: 0;
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-right_FFFFFF', true);
+        }
+    }
+
+    &__pages {
+        @include size(padding, 0, 100);
+        text-align: center;
+        @include size(padding, 7);
+        margin: 0;
+    }
+
+    &__page,
+    &__seperator {
+        display: inline-block;
+        list-style-type: none;
+        @include size(min-width, 28);
+        @include size(height, 28);
+        @include size(line-height, 28);
+        vertical-align: middle;
+    }
+
+    &__page--active {
+        @extend .ginger-pagination__page;
+        border-radius: 2px;
+        background-color: $paginationActiveBackground;
+    }
+}

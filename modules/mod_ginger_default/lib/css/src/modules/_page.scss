@@ -1,0 +1,582 @@
+.page {
+    &__masthead {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        background: #FFF url(/lib/images/bg_rectangle.png?embed) top center repeat;
+        @include size(max-height, 650);
+        padding-top: 50%;
+        @include size(min-height, 300);
+        z-index: 10;
+        transform: translateX(0);
+    }
+
+    &__content-wrapper {
+        position: relative;
+        padding-top: 300px;
+    }
+
+    &__main-content {
+        position: relative;
+        z-index: 100;
+        @include size(margin-bottom, 40);
+        background-size: cover;
+        background-position: 0px 0px;
+    }
+
+    &__content {
+        @include size(max-width, 718);
+        @include size(padding, 25, 30);
+        margin: 0 auto;
+        position: relative;
+        background-color: $white;
+        transition: all 0.4s;
+
+        &:after {
+            content: ' ';
+            width: 100%;
+            height: 0px;
+            @include size(margin, 0);
+            position: absolute;
+            @include size(bottom, 0);
+            @include size(left, 0);
+            text-align: center;
+            background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 3%,rgba(255,255,255,1) 100%); /* W3C */
+            border-bottom: 2px solid $mainThemeColor;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        &.collapsed {
+            @include size(max-height, 575);
+            position: relative;
+            overflow: hidden;
+
+            &:after {
+                @include size(height, 150);
+                padding: 30px 0;
+                opacity: 1;
+            }
+
+            .btn-article-foldout {
+                transform: rotate(0);
+            }
+        }
+
+        .btn-article-foldout {
+            width: 64px;
+            height: 37px;
+            position: absolute;
+            z-index: 100;
+            display: block;
+            @include combinedSvgPngBackground('/lib/images/arrow-fold-content-out_0087D2', true);
+            background-size: 35px 16px;
+            background-color: #FFF;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            border: none;
+            transform: rotate(180deg);
+            transition: all linear 250ms;
+        }
+
+        &__title {
+            @include size(margin, 0, 0, 25, 0);
+            @include size(font-size, 43);
+            @include size(line-height, 40);
+            color: $black;
+            font-weight: 300;
+        }
+
+        &__intro {
+            @include size(font-size, 20);
+            @include size(line-height, 28);
+            margin-bottom: 1em;
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &__body {
+            ul {
+                @include size(margin-left, 20);
+            }
+        }
+
+        &__about {
+            position: relative;
+            border-top: 3px dotted #DDD;
+            border-bottom: 3px dotted #DDD;
+            @include size(margin, 0, -30, 45, -30);
+            @include size(padding, 15, 30);
+
+            + .page__content__about {
+                border-top: none;
+                @include size(margin-top, -45);
+            }
+
+            &__header,
+            &__content,
+            &__link {
+                display: inline-block;
+                vertical-align: top;
+                margin-bottom: 0;
+                @include size(font-size, 15);
+                @include size(line-height, 19);
+                font-weight: 600;
+            }
+
+            &__header {
+                position: absolute;
+                @include size(top, 15);
+                @include size(left, 25);
+                width: 19.5%;
+                @include size(padding-left, 25);
+                text-transform: uppercase;
+                color: $aboutHeaderTextColor;
+
+                &:after {
+                    @extend .has-icon;
+                    @include size(width, 20);
+                    @include size(height, 20);
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            &__content,
+            &__link {
+                width: 80%;
+                font-weight: 400;
+                margin-left: 19.5%;
+                @include size(padding-left, 25);
+            }
+
+            &__content {
+                color: $aboutContentTextColor;
+            }
+
+            &__link {
+                font-weight: 400;
+            }
+
+            &--location {
+                .page__content__about__header:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_location_4A4A4A', true);
+                    background-size: 13px 19px;
+                }
+            }
+
+            &--people {
+                .page__content__about__header:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
+                    background-size: 15px auto;
+                }
+            }
+        }
+
+        &__person-details {
+            @include size(margin-left, -30);
+            @include size(margin-right, -30);
+        }
+
+        &__person-detail {
+            @include size(padding, 10, 20);
+            border-top: 2px dotted $alto;
+            border-bottom: 2px dotted $alto;
+            display: block;
+            @include size(font-size, 15);
+            @include size(line-height, 19);
+            font-weight: 400;
+            list-style-type: none;
+
+            + .page__content__person-detail {
+                border-top: 0;
+            }
+
+            &__label,
+            &__value {
+                display: inline-block;
+            }
+
+            &__label {
+                width: 33%;
+                @include size(padding-left, 30);
+                position: relative;
+
+                &:after {
+                    @extend .has-icon;
+                    @include size(width, 20);
+                    @include size(height, 20);
+                    left: 0;
+                    top: 0;
+                }
+            }
+
+            &__value {
+                width: 65%; // the 33% and 65% don't add up to 100% to leave space for whitespace characters between elements
+            }
+
+            &--email,
+            &--mobile,
+            &--phone,
+            &--website {
+                @extend .page__content__person-detail;
+            }
+
+
+            &--email .page__content__person-detail__label:after {
+                @include combinedSvgPngBackground('/lib/images/icon_envelope_4A4A4A', true);
+            }
+
+            &--phone,
+            &--mobile {
+                .page__content__person-detail__label:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_phone-horn_4A4A4A', true);
+                }
+            }
+
+            &--website .page__content__person-detail__label:after {
+                @include combinedSvgPngBackground('/lib/images/icon_pointer_4A4A4A', true);
+            }
+        }
+
+        &__metadata {
+            @include size(margin-bottom, 30);
+
+            &__depiction,
+            &__name,
+            &__actions {
+                display: inline-block;
+                vertical-align: middle;
+                margin: 0;
+                list-style-type: none;
+            }
+
+            &__depiction {
+                @include size(width, 46);
+                @include size(height, 46);
+                border-radius: 50%;
+            }
+
+            &__actions li {
+                list-style-type: none;
+                display: inline-block;
+            }
+        }
+
+        &__comments {
+            &__wrapper {
+                @include size(margin-left, -30);
+                @include size(margin-right, -30);
+            }
+
+            &__header {
+                position: relative;
+                border-top: 5px solid $bodyBgColor;
+                @include size(padding, 18, 0, 18, 56);
+                text-transform: uppercase;
+                @include size(font-size, 15);
+                @include size(line-height, 19);
+                font-weight: 600;
+                margin-bottom: 0;
+
+                &:after {
+                    @extend .has-icon;
+                    @include size(width, 18);
+                    @include size(height, 19);
+                    @include size(left, 24);
+                    @include size(top, 18);
+
+                    @include combinedSvgPngBackground('/lib/images/icon_comments_35353F');
+                }
+            }
+        }
+
+        &__comment {
+            position: relative;
+            @include size(font-size, 15);
+            @include size(line-height, 24);
+            list-style-type: none;
+            border-top: 2px dotted #B7B7B7;
+            @include size(padding, 30, 30, 30, 173);
+            @include size(min-height, 120);
+
+            &:first-child {
+                border-top: none;
+            }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+            &__about,
+            &__body {
+                float: left;
+            }
+
+            &__about {
+                position: absolute;
+                @include size(top, 30);
+                left: 0;
+                @include size(font-size, 12);
+                @include size(line-height, 18);
+                text-align: center;
+                @include size(width, 162);
+                color: #B0B0B0;
+                @include size(padding, 0, 10);
+
+                &__avatar {
+                    @include size(height, 50);
+                    @include size(width, 50);
+                    border-radius: 50%;
+                }
+
+                &.has-no-avatar {
+                    &:before {
+                        @extend .has-icon;
+                        @include size(width, 50);
+                        @include size(height, 50);
+                        border-radius: 50%;
+                        background-color: $bodyBgColor;
+                        margin: 0 auto;
+                        position: relative;
+                        @include combinedSvgPngBackground('/lib/images/icon_person_4A4A4A', true);
+                        background-size: 20px 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__share {
+        display: inline-block;
+        position: relative;
+
+        &:hover {
+            ul {
+                display: block;
+            }
+        }
+    }
+
+    &__share__menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 99;
+        margin: 1px 3px;
+        padding: 6px 12px;
+        border: solid 1px #ccc;
+        border-radius: 3px;
+        background: #fff;
+        list-style: none;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+
+        li {
+            display: block;
+        }
+
+        a {
+            display: block;
+            padding: 3px 12px;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__avatar {
+        position: relative;
+        border-radius: 50%;
+        border: 5px solid $white;
+        left: 50%;
+        @include size(margin-left, -80);
+        @include size(margin-bottom, 25);
+        @include size(width, 160);
+        @include size(height, 160);
+    }
+
+    &--home {
+        &.page__content-wrapper {
+            @include size(padding-top, 38);
+        }
+
+        &__header {
+            @include size(height, 200);
+
+            h1 {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .page {
+            &__header {
+                &__title,
+                &__tagline {
+                    text-align: center;
+                    display: block;
+                    text-shadow: 5px 5px 10px rgba(0, 0, 0, .2);
+                    color: $white;
+                    font-weight: 600;
+                    font-style: italic;
+                }
+
+                &__title {
+                    @include size(font-size, 30);
+                    line-height: 1.15em;
+                }
+
+                &__tagline {line-height: 1.15em;
+                    @include size(font-size, 28);
+                    @include size(line-height, 34);
+                }
+            }
+
+            &__content__body {
+                @include size(font-size, 22);
+                @include size(line-height, 26);
+            }
+
+            &__links {
+                li {
+                    display: inline-block;
+                    list-style-type: none;
+                    @include size(margin-left, 13);
+
+                    &:first-child {
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            &__main-content {
+                @include size(margin-top, 20);
+            }
+        }
+    }
+
+    &--person {
+        &.page__content-wrapper {
+            @include size(padding-top, 90);
+        }
+    }
+
+    &--query {
+        .query-results {
+            position: relative;
+            z-index: 20;
+
+            .page__content {
+                @include size(margin-bottom, 30);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 300px) {
+    .page--home .page__header__title  {
+        @include size(font-size, 50);
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .page--home {
+        &.page__content-wrapper {
+            padding-top: 19%;
+        }
+
+        .page {
+            &__header__title  {
+                @include size(font-size, 35);
+            }
+
+            &__main-content {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .page--home .page__header__title  {
+        @include size(font-size, 45);
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .page {
+        &__content-wrapper {
+            padding-top: 22%;
+        }
+    }
+
+    .page--home {
+
+        .page {
+            &__header__title {
+                @include size(font-size, 50);
+            }
+
+            &__content {
+                @include size(padding, 25, 70);
+
+                &__title {
+                    @include size(margin-left, -40);
+                    @include size(margin-right, -40);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .page--home .page__header__title  {
+        @include size(font-size, 70);
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .page--home .page__header__title  {
+        @include size(font-size, 80);
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .page--home .page__header__title  {
+        @include size(font-size, 80);
+    }
+
+    .page--home {
+         &.page__content-wrapper {
+              padding-top: 22%;
+        }
+    }
+
+}
+
+@media only screen and (min-width: 1024px) {
+    .page__masthead {
+        /*@include size(top, $mainNavHeight);*/
+    }
+
+    .page--home__header {
+        height: auto;
+        h1 {
+            top: auto;
+            transform: none;
+            @include size(margin-top, 50);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.query-results {
+    &__title {
+        @include size(margin, 50);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__no-results {
+        width: 100%;
+        text-align: center;
+    }
+}

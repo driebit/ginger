@@ -1,0 +1,277 @@
+$headerHeight: 70;
+
+.ginger-correlated-items {
+    background-color: $correlatedItemsBgColor;
+    position: relative;
+    z-index: 100;
+
+    &__header {
+        @extend .cf;
+        @include size(padding-left, 30);
+        background-color: $correlatedItemsHeaderBgColor;
+    }
+
+    &__title {
+        @include size(font-size, 22);
+        @include size(line-height, $headerHeight);
+        @include size(height, $headerHeight);
+        text-transform: uppercase;
+        float: left;
+        margin: 0;
+    }
+
+    &__navigation {
+        float: right;
+
+        ul {
+            font-size: 0;
+            list-style-type: none;
+        }
+
+        &-item {
+            &--list,
+            &--tiles {
+                display: inline-block;
+
+                button {
+                    position: relative;
+                    @include size(padding-top, 60);
+                    @include size(height, $headerHeight);
+                    @include size(width, $headerHeight);
+                    display: block;
+                    @include size(font-size, 15);
+                    @include size(line-height, 18);
+                    border: 0;
+                    background-color: transparent;
+
+                    &:after {
+                        @extend .has-icon;
+                        @include size(width, 30);
+                        @include size(height, 30);
+                        background-size: 28px 28px;
+                        left: 50%;
+                        top: 50%;
+                        @include size(margin-left, -15);
+                        @include size(margin-top, -20);
+                    }
+                }
+
+                &.is-shown {
+                    background-color: $correlatedItemsShownButtonBgColor;
+                }
+            }
+
+            &--list button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_list_9B9B9B', true);
+            }
+
+            &--tiles button:after {
+                @include combinedSvgPngBackground('/lib/images/icon_collection_9B9B9B', true);
+            }
+        }
+
+        &__show-more {
+            @include size(padding, 0, 30);
+            text-align: right;
+        }
+    }
+
+    &__tiles {
+        list-style-type: none;
+        padding: 0;
+        @include size(margin, 0, -12);
+    }
+
+    &__list,
+    &__tiles-wrapper {
+        @include size(padding, 30, 30, 18, 30); // the 18px is to correct for the 12px bottom margin from the last tile
+    }
+
+    &__tile,
+    &__list-item {
+        display: block;
+        width: 100%;
+        @include size(margin-bottom, 18);
+
+        a {
+            background-color: $white;
+            display: block;
+
+            &:link,
+            &:visited,
+            &:hover,
+            &:active {
+                color: $black;
+                text-decoration: none;
+            }
+        }
+
+        &__content,
+        &__title {
+            @include size(font-size, 14);
+            @include size(line-height, 20);
+        }
+
+        &__title {
+            color: $secondaryThemeColor;
+            margin: 0;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+        }
+    }
+
+    &__tile {
+        @include size(padding, 0, 12);
+        &__illustration,
+        &__content,
+        &__title {
+            display: block;
+            transition: background-color 500ms, color 500ms;
+        }
+
+        &__illustration {
+            position: relative;
+
+            img {
+                display: block;
+                max-width: 100%;
+            }
+        }
+
+        &__content {
+            background-color: $white;
+            @include size(padding, 15);
+        }
+
+        &:hover {
+            .ginger-correlated-items__tile__content {
+                background-color: $secondaryThemeColor;
+                color: $white;
+
+                p {
+                    opacity: 0.7;
+                }
+            }
+
+            .ginger-correlated-items__tile__title {
+                color: $white;
+            }
+        }
+    }
+
+    &__list-item {
+        &__illustration,
+        &__content {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        &__illustration {
+            width: 25%;
+
+        }
+
+        &__content {
+            width: 66%;
+            @include size(padding, 30);
+            color: $typographyColor;
+        }
+
+        &__title {
+            font-weight: 400;
+            @include size(font-size, 25);
+            @include size(line-height, 30);
+            color: $black;
+        }
+
+        &:hover {
+            .ginger-correlated-items__list-item__title {
+                color: $secondaryThemeColor;
+            }
+        }
+    }
+
+    [data-section] {
+        display: none;
+
+        &.is-shown {
+            display: block;
+        }
+    }
+
+    &__show-more {
+        margin: 0;
+        text-align: right;
+        @include size(padding, 0, 30, 30, 30);
+    }
+
+    &--related {
+        @extend .ginger-correlated-items;
+        background-color: $relatedItemsBgColor;
+
+        .ginger-correlated-items {
+            &__header {
+                background-color: $relatedItemsHeaderBgColor;
+                color: $relatedItemsTextColor;
+            }
+
+            &__navigation-item {
+                &--list,
+                &--tiles {
+                    &.is-shown {
+                        background-color: $relatedItemsBgColor
+                    }
+                }
+
+                &--list button:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_list_FFFFFF', true);
+                }
+
+                &--tiles button:after {
+                    @include combinedSvgPngBackground('/lib/images/icon_collection_FFFFFF', true);
+                }
+            }
+        }
+
+        [data-section] {
+            display: none;
+
+            &.is-shown {
+                display: block;
+            }
+        }
+
+        .ginger-btn-pill--next {
+            background-color: $relatedItemsBgColor;
+            color: $white;
+            border-color: $white;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 50%;
+        }
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 25%;
+        }
+    }
+}
+
+.ie8 {
+    .ginger-correlated-items,
+    .ginger-correlated-items--related {
+        &__tile {
+            width: 25%;
+        }
+    }
+}

@@ -1,0 +1,128 @@
+/* abstract css class */
+.ginger-btn-pill {
+    display: inline-block;
+    @include size(padding, 9, 20, 6, 20);
+    border-radius: 18px;
+    @include size(font-size, 14);
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: none;
+    }
+
+    &__icon-left,
+    &__icon-right {
+        &:after {
+            @extend .has-icon;
+            top: 50%;
+            @include size(margin-top, -10);
+            @include size(width, 20);
+            @include size(height, 20);
+        }
+    }
+
+    &__icon-left {
+        @include size(padding-left, 30);
+
+        &:after {
+            @include size(left, 8);
+        }
+    }
+
+    &__icon-right {
+        @include size(padding-right, 30);
+
+        &:after {
+            @include size(right, 8);
+        }
+    }
+
+    /* 'primary' variant of ginger-btn-pill */
+    &--primary {
+        @extend .ginger-btn-pill;
+        background: $pillBtnColor;
+        color: $white;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: darken($pillBtnColor, 15);
+            color: $white;
+        }
+    }
+
+
+    &--secondary,
+    &--anchor,
+    &--next {
+        @extend .ginger-btn-pill;
+    }
+
+    &--anchor,
+    &--next {
+        position: relative;
+
+        @extend .ginger-btn-pill--secondary;
+        @extend .ginger-btn-pill__icon-right;
+    }
+
+    /* 'secondary' variant of ginger-btn-pill */
+    &--secondary {
+        background: $white;
+        color: $pillBtnColor;
+        border: 1px solid $pillBtnBorder;
+
+        &:hover {
+            border-color: $pillBtnColor;
+        }
+    }
+
+    /* button/link to jump to comments */
+    &--anchor {
+        &:after {
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-down_0087D2', true);
+        }
+
+        &:hover {
+            background-color: $mainThemeColor;
+            color: $white;
+
+            &:after {
+                content: '';
+                display: block;
+                @include combinedSvgPngBackground('/lib/images/icon_arrow-down_FFFFFF', true);
+            }
+        }
+    }
+
+    /* the show more button in correlating items */
+    &--next {
+        &:after {
+            @include combinedSvgPngBackground('/lib/images/icon_arrow-right_FFFFFF', true);
+        }
+    }
+}
+
+/* Buttons in login modal */
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:focus,
+.nav-pills > li.active > a:hover {
+    @extend .ginger-btn-pill--primary;
+}
+
+.nav-pills > li > a {
+    @extend .ginger-btn-pill;
+}
+
+.btn-primary {
+    @extend .ginger-btn-pill--primary;
+}
+
+.btn-default {
+    @extend .ginger-btn-pill--secondary;
+}

@@ -1,0 +1,59 @@
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function px-to-rem($value) {
+    @return  $value/10;
+}
+
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+@mixin size($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $pxValues: #{$pxValues + $value}px;
+        $remValues: #{$remValues + px-to-rem($value)}rem;
+
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+            $remValues: #{$remValues + " "};
+        }
+    }
+
+    @if ($pxValues == $remValues) {
+        #{$property}: $pxValues;
+    } @else {
+        #{$property}: $pxValues;
+        #{$property}: $remValues;
+    }
+}
+
+/* Creates a mediaquery based on property and size in pixels */
+@mixin mq($property, $size) {
+    $value: strip-unit($size);
+
+    @media only screen and (#{$property}: #{$value/16}rem) {
+        @content;
+    }
+}
+
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin combinedSvgPngBackground($file, $embedSvg: false) {
+    background-image: url(#{$file}.png);
+
+    // SVG support correlates to multiple background support so browser that do not support SVG will
+    // ignore these rule because of the multiple background notation
+    @if $embedSvg == true {
+        background-image: url(#{$file}.svg?embed), none;
+    } @else {
+        background-image: url(#{$file}.svg), none;
+    }
+}

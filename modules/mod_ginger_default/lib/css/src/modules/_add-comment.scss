@@ -1,0 +1,28 @@
+#comments-area {
+    @include size(padding-left, 30);
+    @include size(padding-right, 30);
+
+    h2 {
+        @include size(padding, 18, 0, 18, 30);
+        text-transform: uppercase;
+        @include size(font-size, 15);
+        @include size(line-height, 19);
+        font-weight: 600;
+        @include size(margin, 0, -30, 18);
+        text-align: center;
+        font-family: Serifa, sans-serif;
+    }
+
+    .btn {
+        @extend .ginger-btn-pill--primary;
+    }
+
+    label {
+        font-weight: normal;
+        color: #555;
+    }
+
+    .has-error .form-control {
+        border-color: #EE3399;
+    }
+}
