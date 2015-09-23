@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ./user/modules/mod_ginger_site/templates/_aside.story.tpl:5 ./user/modules/mod_ginger_site/templates/_aside.tpl:33 
+msgid ""
+"About"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:12 
+msgid ""
+"Dimensions"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:26 
+msgid ""
+"Download file"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:4 
+msgid ""
+"Filename"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:15 
+msgid ""
+"Keywords"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:24 
+msgid ""
+"Links"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:8 
+msgid ""
+"Mime"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/search.tpl:18 
+msgid ""
+"No results"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:49 
+msgid ""
+"Related"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/search.tpl:6 
+msgid ""
+"Searching for"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_aside.tpl:42 
+msgid ""
+"See Also"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:16 
+msgid ""
+"Size"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:20 
+msgid ""
+"Uploaded"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:28 
+msgid ""
+"View in browser"
+msgstr ""
+
+#: ./user/modules/mod_ginger_site/templates/_media_info.tpl:13 
+msgid ""
+"pixels"
+msgstr ""

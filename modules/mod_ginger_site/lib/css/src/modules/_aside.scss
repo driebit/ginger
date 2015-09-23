@@ -1,0 +1,17 @@
+aside {
+	.well ul {
+        @include size(padding-left, 20);
+	}
+}
+
+.aside_block {
+    @include size(margin-bottom, 20);
+
+    .list-group {
+        margin-bottom: 0;
+    }
+
+    .list_item.last {
+        margin-bottom: 0;
+    }
+}

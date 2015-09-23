@@ -1,0 +1,160 @@
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+/* Creates a mediaquery based on property and size in pixels */
+html, body {
+  font-size: 16px;
+  font-family: verdana; }
+
+footer {
+  padding: 10px 0px;
+  padding: 0.625rem 0rem; }
+
+.title {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+
+.well {
+  border: none;
+  background: #f0f0f0;
+  box-shadow: none; }
+
+article #nav-edit {
+  margin: 0 0 0 15px; }
+
+.page-title {
+  font-style: normal; }
+
+.btn {
+  font-size: inherit; }
+
+.aside_partof .list_item {
+  padding: 15px 5px;
+  background: #f7f7f7; }
+  .aside_partof .list_item h3 {
+    background: none; }
+
+.section-title {
+  font-size: 18px;
+  font-size: 1.125rem; }
+
+article {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+  margin-bottom: 20px; }
+  article img {
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem; }
+  article .summary {
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
+    font-size: 17px;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1.25; }
+  article .body {
+    margin-bottom: 20px;
+    margin-bottom: 1.25rem; }
+
+.article_images img {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0px; }
+
+aside .well ul {
+  padding-left: 20px;
+  padding-left: 1.25rem; }
+
+.aside_block {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+  .aside_block .list-group {
+    margin-bottom: 0; }
+  .aside_block .list_item.last {
+    margin-bottom: 0; }
+
+.list_item {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+  .list_item a {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden; }
+  .list_item h3 {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    padding: 0.625rem;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    color: #428bca; }
+  .list_item .content {
+    position: absolute;
+    bottom: -200px;
+    bottom: -12.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    padding: 0.625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    -webkit-transition: bottom 0.4s;
+            transition: bottom 0.4s; }
+  .list_item:hover .content {
+    bottom: 0; }
+  .list_item.no-image .content {
+    bottom: 0; }
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/lib/fonts/glyphicons-halflings-regular.eot');
+  src: url('/lib/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/lib/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/lib/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/lib/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg'); }
+
+.nav-logon {
+  float: right; }
+
+.nav-edit {
+  margin-right: 0.3125rem;
+  float: right; }
+
+.carousel-pager {
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem; }
+
+.comments-list {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+  .comments-list li {
+    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
+    overflow: hidden; }
+    .comments-list li img {
+      width: 20%;
+      max-width: 130px;
+      max-width: 8.125rem;
+      margin-right: 5%;
+      float: left;
+      border-radius: 50%; }
+    .comments-list li .comment_content {
+      width: 70%;
+      float: left;
+      margin-bottom: 0; }
+    .comments-list li h3 {
+      margin-bottom: 0;
+      font-size: 1em;
+      font-size: 1rem; }
+
+.comment_meta {
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: gray; }
+
+#comments-area {
+  padding: 20px;
+  padding: 1.25rem; }

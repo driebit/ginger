@@ -1,0 +1,25 @@
+article {
+	@include size(margin-bottom, 20);margin-bottom: 20px;
+
+	img {
+		@include size(margin-bottom, 20);
+	}
+
+	.summary {
+		@include size(margin-bottom, 20);
+		@include size(font-size, 17);
+		font-weight: 700;
+		line-height: 1.25;
+	}
+
+	.body {
+		@include size(margin-bottom, 20);
+	}
+}
+
+.article_images img {
+	padding: 0;
+	border-radius: 0;
+	box-shadow: none;
+	border: 0px;
+}

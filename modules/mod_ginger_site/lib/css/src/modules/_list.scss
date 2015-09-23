@@ -1,0 +1,47 @@
+.list_item {
+	@include size(margin-bottom, 20);
+
+	a {
+		display: block;
+		text-decoration: none;
+		position: relative;
+		overflow: hidden;
+	}
+
+	h3 {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		margin: 0;
+		@include size(padding, 10);
+		background: #fff;
+		background: rgba(255, 255, 255, 0.9);
+		color: $twitter_blue;
+	}
+
+	.content {
+		position: absolute;
+		@include size(bottom, -200);
+		width: 100%;
+		margin: 0;
+		@include size(padding, 10);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		background: #fff;
+		background: rgba(255, 255, 255, 0.9);
+		color: $text_default;
+		transition: bottom 0.4s; 
+	}
+
+	&:hover {
+		.content {
+			bottom: 0;
+		}
+	}
+
+	&.no-image {
+		.content {
+			bottom: 0;
+		}
+	}
+}

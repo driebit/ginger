@@ -1,0 +1,39 @@
+html, body {
+    font-size: 16px;
+    font-family: verdana;
+}
+
+footer { 
+	@include size(padding, 10, 0);
+}
+
+.title {
+	@include size(margin-bottom, 20);
+}
+
+.well {
+	border: none;
+	background: $twitter_gray;
+	box-shadow: none;
+}
+
+article #nav-edit {
+    margin: 0 0 0 15px;
+}
+
+.page-title {
+    font-style: normal;
+}
+
+.btn {
+    font-size: inherit;
+}
+
+.aside_partof .list_item {
+    padding: 15px 5px;
+    background: #f7f7f7;
+
+    h3 {
+        background: none;
+    }
+}
