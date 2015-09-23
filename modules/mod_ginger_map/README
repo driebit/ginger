@@ -1,0 +1,24 @@
+This modules provides 3 base templates:
+
+	_map_single.tpl
+	_map_nearby.tpl
+	_map_multiple.tpl
+
+Usage:
+
+    {% include "_map_single.tpl" id=id container=STRING height=INT %}
+
+This will display a single location on the map. To also show the
+nearest neighbours, use:
+
+	{% include "_map_nearby.tpl" id=id limit=INT container=STRING height=INT %}
+
+if limit=5, this tempate will show the nearest 5 locations.
+
+To display a collection of resources, do:
+
+	{% include "_map_multiple.tpl" ids=COLLECTION container=STRING height=INT %}
+
+Note that container must be a unique string and that the height
+parameter, which specifies the container height (in px) is optional and
+defaults to 100%.
