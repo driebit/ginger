@@ -1,0 +1,11 @@
+Provides frontend editing and resource connecting.
+
+Registring:
+Add a config key: mod_signup.request_confirm  false
+
+Usage:
+Add includes to your templates like:
+
+{% include "_action_ginger_connection.tpl" predicate='author' category='person' new_rsc_title='author' %}
+
+to get a "Add my author" button

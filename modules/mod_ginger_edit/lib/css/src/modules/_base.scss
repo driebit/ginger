@@ -1,0 +1,53 @@
+html, body {
+	
+}
+
+body {
+	color: #000000;
+	line-height: 1.5;
+    font-family: 'myriad pro';
+}
+
+a, a:hover, a:active {
+	color: $blue;
+} 
+
+img {
+	max-width: 100%;
+	border-radius: 0px;
+}
+
+h1, h2, h3, h4 {
+	margin: 0 0 1em 0;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.page-title {
+    @include size(margin-bottom, 10);
+    @include size(font-size, 26);
+    color: #58595b;
+    font-style: italic;
+    font-weight: 400;
+    font-family: 'myriad pro';
+}
+
+.row + .row {
+    margin-top: 20px;
+}

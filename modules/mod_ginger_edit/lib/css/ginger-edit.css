@@ -1,0 +1,198 @@
+input, textarea, .form-control {
+    font: inherit;
+}
+
+.navbar-inner {
+    font-weight: normal !important;
+}
+
+.btn {
+    padding: 8px 14px;
+    background-color: #d0d2d3;
+    background-image: none;
+    border: medium none;
+    color: #58595b;
+    font-size: 1em;
+    line-height: 1;
+    text-shadow: none;
+    transition: background-color 0.4s ease 0s;
+}
+
+.btn-primary {
+    padding: 8px 14px;
+    font-size: 1em;
+    line-height: 1;
+    text-shadow: none;
+    background-color: #ff7600;
+    background-image: none;
+    border: medium none;
+    color: #fff;
+}
+
+.btn-thing {
+    margin-bottom: 20px;
+    margin-top: 7px;
+}
+
+.btn-mini {
+    padding: 4px 4px;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+#editcol {
+	max-width: 800px;
+}
+nav.navbar .checkbox.inline {
+    padding-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+	color: white;
+}
+
+.meta-data .checkbox.inline {
+	padding-top: 0;
+}
+
+.meta-data {
+	color: #777;
+}
+
+.meta-extra {
+	margin-left: 10px;
+}
+
+.publication-dates {
+	display: block;
+	margin-top: 4px;
+}
+
+input.do_timepicker {
+	width: 40px;
+}
+
+.unlink-wrapper {
+    position: relative;
+}
+
+.unlink-wrapper .edit-btns {
+    position: absolute;
+    top: 6px;
+    right: 22px;
+}
+
+.unlink-wrapper .edit-btns a {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.nav-logon {
+    margin: 15px 0px 15px 0px;
+    float: right;
+}
+
+.nav-edit {
+    margin: 15px 15px 15px 0px;
+    float: right;
+}
+
+.list-group {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.tab-content {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mce-path {
+    display: none !important;
+}
+
+.mce-path-item {
+    display: none !important;
+}
+
+#logon_error {
+    display: none;
+    width: 260px; 
+    height: 120px; 
+    padding-right: 18px;
+    margin: 0 18px 18px 0px;
+    float: left; 
+    text-align: left;
+    border-right: 1px solid #ccc;
+}
+
+#logon_error h2, 
+#logon_error h3 {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    color: #d80000;
+}
+
+#signup_error {
+    display: none;
+    width: 260px; 
+    height: 200px; 
+    padding-right: 18px;
+    margin: 0 18px 18px 0px;
+    float: left; 
+    text-align: left;
+    border-right: 1px solid #ccc;
+}
+
+#signup_error h2, 
+#signup_error h3 {
+    font-size: 1.1em;
+    line-height: 1.2em;
+    color: #d80000;
+}
+
+#logon_methods {
+    overflow: hidden;
+    list-style-type: none;
+    padding-left: 0;
+}
+#logon_methods li {
+    float: left;
+    margin: 0 10px 20px 0;
+}
+#logon_methods li a {
+    padding-top: 1em;
+}
+#logon_methods li a span {
+    font-size: 2em;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin: -0.3em 10px 0 0;
+}
+
+.aside_partof .list_item {
+    padding: 15px 5px;
+    background: #f7f7f7;
+}
+
+.aside_partof .list_item a:hover h3 {
+    text-decoration: underline;
+}
+
+.aside_partof .list_item h3 {
+    padding: 0;
+    position: static;
+    color: #000;
+    background: none;
+}
+
+.date-range_start input,
+.date-range_stop input {
+    width: 120px;
+}   
+
+.date-range_start input + input,
+.date-range_stop input + input {
+    width: 80px;
+}   

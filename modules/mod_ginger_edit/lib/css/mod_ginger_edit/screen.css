@@ -1,0 +1,111 @@
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+/* Creates a mediaquery based on property and size in pixels */
+body {
+  color: #000000;
+  line-height: 1.5;
+  font-family: 'myriad pro'; }
+
+a, a:hover, a:active {
+  color: #89bae7; }
+
+img {
+  max-width: 100%;
+  border-radius: 0px; }
+
+h1, h2, h3, h4 {
+  margin: 0 0 1em 0; }
+
+p {
+  margin: 0 0 1em 0; }
+
+.cf:before, .cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.cf:after {
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+.page-title {
+  margin-bottom: 10px;
+  margin-bottom: 0.55556rem;
+  font-size: 26px;
+  font-size: 1.44444rem;
+  color: #58595b;
+  font-style: italic;
+  font-weight: 400;
+  font-family: 'myriad pro'; }
+
+.row + .row {
+  margin-top: 20px; }
+
+.btn {
+  border-radius: 0;
+  font-size: inherit;
+  border: none;
+  line-height: 1; }
+
+.btn-edit-primary {
+  padding: 8px 14px;
+  padding: 0.44444rem 0.77778rem;
+  padding-top: 10px;
+  padding-top: 0.55556rem;
+  background: #89bae7;
+  transition: opacity 0.4s;
+  color: #fff;
+  box-shadow: none;
+  line-height: 1;
+  text-transform: uppercase;
+  border: 1px solid #74afe3;
+  font-weight: 300;
+  border-radius: 4px; }
+  .btn-edit-primary:hover, .btn-edit-primary:active, .btn-edit-primary:focus {
+    color: #fff;
+    background: #74afe3;
+    border-color: #74afe3; }
+  .btn-edit-primary.disabled {
+    background: #89bae7;
+    border: none;
+    opacity: 0.7; }
+
+.btn-edit-secondary {
+  padding: 8px 14px;
+  padding: 0.44444rem 0.77778rem;
+  padding-top: 10px;
+  padding-top: 0.55556rem;
+  background: #f0f0f0;
+  border-radius: 0;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  border-radius: 4px;
+  color: #333; }
+  .btn-edit-secondary:hover, .btn-edit-secondary:active, .btn-edit-secondary:focus {
+    background: #ddd; }
+
+#logon_methods {
+  padding: 0;
+  margin: 0px 0px 20px 0px;
+  margin: 0rem 0rem 1.11111rem 0rem;
+  list-style: none; }
+  #logon_methods li {
+    display: inline-block; }
+  #logon_methods .z-btn-social {
+    padding: 10px 10px 10px 30px;
+    padding: 0.55556rem 0.55556rem 0.55556rem 1.66667rem;
+    margin-bottom: 5px;
+    margin-bottom: 0.27778rem;
+    transition: opacity 0.3s;
+    color: #fff; }
+    #logon_methods .z-btn-social:hover {
+      color: #fff;
+      opacity: 0.8; }
+
+.tab-content {
+  margin-top: 15px;
+  margin-top: 0.83333rem;
+  margin-bottom: 15px;
+  margin-bottom: 0.83333rem; }
