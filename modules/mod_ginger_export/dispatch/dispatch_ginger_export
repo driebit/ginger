@@ -1,0 +1,15 @@
+[
+	{ admin_ginger_export, ["admin", "ginger", "export"], controller_admin, [
+		{ selected, "admin_ginger_export" },
+		{ template, "admin_ginger_export.tpl" },
+		{ ssl, true }
+	]},
+	{ admin_ginger_export_csv, ["admin", "ginger", "export", "csv"], controller_ginger_export, [
+		{ content_type, "text/csv" },
+		{ ssl, true }
+	]},
+	{ admin_ginger_export_users, ["admin", "ginger", "export", "users", categories], controller_ginger_export_users, [
+		{ content_type, "text/csv" },
+		{ ssl, true }
+	]}
+].
