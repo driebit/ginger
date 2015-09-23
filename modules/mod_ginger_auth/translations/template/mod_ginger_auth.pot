@@ -1,0 +1,177 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9 
+msgid ""
+"Check our Terms of Service and Privacy policies"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_date_of_birth.tpl:3 
+msgid ""
+"Date of birth"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:10 
+msgid ""
+"Enter a password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:20 
+msgid ""
+"For security reasons, password reset codes are only kept for a limited "
+"amount of time and can only be used once."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:25 
+msgid ""
+"Forgot my password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:2 
+msgid ""
+"Gender"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22 
+msgid ""
+"I agree to the"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:22 
+msgid ""
+"I forgot my password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:34 
+msgid ""
+"Keep me signed in"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:15 
+msgid ""
+"Log in"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:35 
+msgid ""
+"Log in or sign up"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:17 
+msgid ""
+"Login/Registeer"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13 
+msgid ""
+"Minimum characters: "
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:7 
+msgid ""
+"New password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22 
+msgid ""
+"Privacy policies"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:21 
+msgid ""
+"Repeat password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:24 
+msgid ""
+"Repeat your password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:41 
+msgid ""
+"Reset password and Sign in"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_nav_logon.tpl:27 
+msgid ""
+"Sign out"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:20 
+msgid ""
+"Sign up"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:21 
+msgid ""
+"Simply try again:"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:19 
+msgid ""
+"Sorry, your password reset code is unknown or expired"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:25 
+msgid ""
+"This does not match the first password"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:14 
+msgid ""
+"To sign up you must agree with the Terms of Service and Privacy policies."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:13 
+msgid ""
+"We will be very careful with all the information given to us and will never "
+"give your name or address away without your permission.\n    We do have "
+"some rules that we need you to agree with."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25 
+msgid ""
+"You must agree to the Terms in order to sign up."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13 
+msgid ""
+"Your password is too short."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:6 
+msgid ""
+"female"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:9 
+msgid ""
+"logon/signup"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:5 
+msgid ""
+"male"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:7 
+msgid ""
+"other"
+msgstr ""
