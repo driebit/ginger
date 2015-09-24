@@ -1,558 +1,137 @@
-/* Specific styles for Ginger admin */
-
-body {
-    padding: 0;
+.navbar.navbar-branded {
+    background: #ff7600;
 }
 
-body.t-cms {
-    font: 400 14px/1.4 "myriad-pro", arial;
-    color: #58595b;
+.btn.btn-primary:hover {
+    background: #ff9133;
+    border-color: #cc5e00;
 }
 
-.t-cms .form-group:before,
-.t-cms .form-group:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+.navbar.navbar-branded .nav > li > a:hover,
+.navbar.navbar-branded .nav > li > a:focus,
+.navbar.navbar-branded .navbar-nav > .open > a,
+.navbar.navbar-branded .navbar-nav > .active > a {
+    background: #ff9133;
 }
 
-.t-cms .form-group:after {
-     clear: both;
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    background: #eee;
 }
 
-.t-cms .admin-logon input,
-.t-cms .admin-logon button,
-.t-cms .admin-logon select,
-.t-cms .admin-logon textarea {
-    font: inherit;
+.minimalTabs li.active > a,
+.minimalTabs li.active > a:focus,
+.minimalTabs li.active > a:hover,
+.nav.nav-pills li.active > a,
+.nav.nav-pills li.active > a:focus,
+.nav.nav-pills li.active > a:hover,
+.widget ul.nav-tabs li.active > a,
+.widget ul.nav-tabs li.active > a:focus,
+.widget ul.nav-tabs li.active > a:hover {
+    border-bottom-color: #ff7600;
 }
 
-.t-cms .admin-logon textarea,
-.t-cms .admin-logon input,
-.t-cms .admin-logon select {
-    font-weight: 300;
+.navbar.navbar-branded .collapse.in .nav > .dropdown.open .dropdown-menu > li > a:hover {
+    background: #ff9133;
 }
 
-.t-cms .admin-logon label,
-.t-cms .admin-logon input,
-.t-cms .admin-logon button,
-.t-cms .admin-logon select, 
-.t-cms .admin-logon textarea {
-    font-size: 1em;
-    font-weight: normal;
+.navbar.admin-navbar-fixed-save {
+    background: rgba(255,118,0, 0.8);
 }
 
-.t-cms .admin-logon select, textarea, 
-.t-cms .admin-logon input[type="text"], 
-.t-cms .admin-logon input[type="password"], 
-.t-cms .admin-logon input[type="datetime"], 
-.t-cms .admin-logon input[type="datetime-local"], 
-.t-cms .admin-logon input[type="date"], 
-.t-cms .admin-logon input[type="month"], 
-.t-cms .admin-logon input[type="time"], 
-.t-cms .admin-logon input[type="week"], 
-.t-cms .admin-logon input[type="number"], 
-.t-cms .admin-logon input[type="email"], 
-.t-cms .admin-logon input[type="url"], 
-.t-cms .admin-logon input[type="search"], 
-.t-cms .admin-logon input[type="tel"], 
-.t-cms .admin-logon input[type="color"], 
-.t-cms .admin-logon .uneditable-input {
-    font-size: 1em;
-}
-
-a {
+.widget.widget-expanded .widget-header .widget-header-tools .z-btn-help,
+.widget.dark.widget-expanded .widget-header .widget-header-tools .z-btn-help {
     color: #ff7600;
 }
 
-a:hover {
-    color: #ec6e01;
-}
-
-.t-cms h2 {
-    font-size: 2.286em;
-    font-weight: bold;
-}
-
-.t-cms h4 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.t-cms img {
-    max-width: 100%;
-}
-
-.t-cms .admin-logon textarea:focus, 
-.t-cms .admin-logon input[type="text"]:focus,
-.t-cms .admin-logon input[type="password"]:focus,
-.t-cms .admin-logon input[type="datetime"]:focus,
-.t-cms .admin-logon input[type="datetime-local"]:focus,
-.t-cms .admin-logon input[type="date"]:focus,
-.t-cms .admin-logon input[type="month"]:focus,
-.t-cms .admin-logon input[type="time"]:focus,
-.t-cms .admin-logon input[type="week"]:focus,
-.t-cms .admin-logon input[type="number"]:focus,
-.t-cms .admin-logon input[type="email"]:focus,
-.t-cms .admin-logon input[type="url"]:focus,
-.t-cms .admin-logon input[type="search"]:focus,
-.t-cms .admin-logon input[type="tel"]:focus,
-.t-cms .admin-logon input[type="color"]:focus,
-.t-cms .admin-logon .uneditable-input:focus {
-    border-color: #ff7600;
-}
-
-.t-cms::selection {
-    background: #ff7600;
-    color: #58595b;
-}
-
-.t-cms h2 {
-    margin: 0 0 0.5em 0;
-}
-.t-cms .alert-info {
-    background: #fdcea6;
-    color: #ff7500;
-    border: 1px solid #ff7500;
-}
-
-/* buttons
---------------------------------------------------------- */
-
-.btn {
-    padding: 8px 14px;
-    background-color: #d0d2d3;
-    background-image: none;
-    border: none;
-    font-size: 14px;
-    line-height: 1;
-    color: #58595b;
-    text-shadow: none;
-    transition: background-color 0.4s;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background: #cacaca;
-    text-shadow: none;
-}
-
-.btn-primary {
-    padding: 8px 14px;
-    background-color: #ff7600;
-    background-image: none;
-    border: none;
-    border-radius: 3px;
-    color: #fff;
-}
-
-.btn-small {
-    font-size: 1em;
-}
-
-.btn-xs {
-    padding: 4px;
-}
-
-#delete-button {
-    color: #a6a8ab;
-    background: #fff;
-}
-
-.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled],
-.btn-primary:focus {
-    background-color: #ec6e01;
-}
-
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+.navbar.navbar-branded .collapse {
     background: #ff7600;
 }
 
-#changecategory {
-    display: inline-block;
-    padding: 8px 30px 8px 14px;
-    margin-bottom: 20px;
+.navbar-brand {
+    width: 205px;
+    height: 30px;
+    padding: 0;
+    margin-left: 20px;
     position: relative;
-    background-color: #ff7600;
-    font-size: 1em;
-    line-height: 1;
-    color: #58595b;
-    text-shadow: none;
+    top: 8px;
+    background: #fff;
     border-radius: 3px;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.4s;
-}
-
-#changecategory:before {
-    content: '';
-    width: 11px;
-    height: 6px;
-    margin-top: -3px;
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    background-repeat: no-repeat;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAYAAAAVMmT4AAAASElEQVQY02PYGaWuAMQNQCzAgAWAxKHyCiCOAxD/B+ILQGyAReEFqLwDTHABVOADTAOawgXo1iFrSIDSmAqxaPiPVyEWDRgKAWyPRFkti1kpAAAAAElFTkSuQmCC);
-    border: none;
-    opacity: 1;
-}
-
-.btn-group>.btn+.dropdown-toggle {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    margin-left: 10px;
-}
-
-.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle),
-.btn-group>.btn:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
-    border-radius: 3px;
-}
-
-/* Nav */
-
-.t-cms .navbar .navbar-toggle {
-    background: #ba5b15;
-    border: none;
-}
-
-.t-cms .navbar .navbar-toggle:hover,
-.t-cms .navbar .navbar-toggle:active,
-.t-cms .navbar .navbar-toggle:focus {
-    background: #aa5415;
-}
-
-.t-cms .navbar-default {
-    background-color: #ff7600;
-    background-image: none;
+    border-top: 1px solid #ba5b15;
+    border-left: 1px solid #ba5b15;
+    border-right: 1px solid #ba5b15;
     border-bottom: 1px solid #ba5b15;
-    box-shadow: none;
-}
-
-.t-cms .navbar-fixed-top .navbar-collapse, 
-.t-cms .navbar-fixed-bottom .navbar-collapse {
-    max-height: 1000px;
-}
-
-
-.t-cms .navbar-default .navbar-nav>.open>a,
-.t-cms .navbar-default .navbar-nav>.open>a:hover,
-.t-cms .navbar-default .navbar-nav>.open>a:focus,
-.t-cms .navbar-default .navbar-nav > .open > a, 
-.t-cms .navbar-default .navbar-nav > .active> a {
-    background: #ba5b15;
-}
-
-.t-cms .navbar-default .navbar-collapse, 
-.t-cms .navbar-default .navbar-form {
-    border-color: #ba5b15;
-}
-
-.t-cms .navbar .nav.pull-right {
-    margin-right: 15px;
-}
-
-.t-cms .dropdown-menu li > a:hover,
-.t-cms .dropdown-menu .active > a,
-.t-cms .dropdown-menu .active > a:hover {
-    background: #ff7600;
-    color: #fff;
-}
-
-.t-cms .navbar .nav > li a:hover {
-    color: #fff;
-}
-
-.t-cms .dropdown-menu {
-    padding: 10px 0;
-    border-radius: 2px;
-    border: none;
-    font-size: 1em;
-}
-
-.t-cms .navbar .nav > li a {
     text-shadow: none;
-    padding-right: 10px;
+    text-align: center;
+    text-indent: -9999px;
 }
 
-.t-cms .navbar .dropdown-menu:before {
+.navbar.navbar-branded .navbar-brand .zotonic-logo {
+    display: block;
+    width: 175px;
+    height: 31px;
+    position: absolute;
+    top: 2px;
+    left: 16px;
+    background: url('/lib/images/admin_ginger.png');
+}
+
+.navbar-brand .zotonic-logo em {
     display: none;
 }
 
-.t-cms div.navbar .brand {
-    padding: 8px 14px;
-    margin-left: 0;
-    background: #fff;
-    border-radius: 3px;
+/* Logon */
+
+html,body {
+    height: 100%;
 }
 
-.t-cms div.navbar .brand img {
-    width: 175px;
-    height: 31px;
+.t-login {
+    font-family: 'myriad-pro';
 }
 
-.t-cms .navbar-fixed-save {
-    z-index: 10;
-}
-
-.t-cms .navbar-fixed-save .btn-primary {
-    background: #fff;
-    color: #ff7600;
-}
-
-.t-cms .navbar .nav li.dropdown {
-    padding-right: 20px;
-}
-
-.t-cms .navbar-default .nav li.dropdown .dropdown-toggle .caret, 
-.t-cms .navbar-default .nav li.dropdown.open .caret {
-    width: 11px;
-    height: 6px;
-    margin-top: -3px;
-    position: absolute;
-    top: 50%;
-    right: 0px;
-    background-repeat: no-repeat;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAGCAYAAAAVMmT4AAAASElEQVQY02PYGaWuAMQNQCzAgAWAxKHyCiCOAxD/B+ILQGyAReEFqLwDTHABVOADTAOawgXo1iFrSIDSmAqxaPiPVyEWDRgKAWyPRFkti1kpAAAAAElFTkSuQmCC);
+.t-login .admin-logon {
+    margin-bottom: 70px;
     border: none;
-    opacity: 1;
+
 }
 
-.t-cms .nav-list > li > a, .nav-list .nav-header {
-    text-shadow: none;
+.t-login #logon_facebook {
+    max-width: 200px;
 }
 
-@media (max-width: 979px) {
-    .t-cms .nav-collapse .nav > li > a:hover, .nav-collapse .dropdown-menu a:hover {
-        background: #ba5b15;
-    }
+.t-login #logon_facebook a {
+    color: #fff;
 }
 
-@media (min-width: 980px) {
-    .t-cms .navbar {
-        height: 42px;
-        min-height: 10px;
-    }
-
-    .t-cms .navbar .nav > li:first-child {
-        margin-left: 0;
-    }
-
-    .t-cms .navbar .nav > li a {
-        color: #58595b;
-    }
-
-    .t-cms .navbar .nav > li > a {
-        padding: 0 20px 0 0;
-        font-weight: 300;
-        letter-spacing: 0.05em;
-        line-height: 42px;
-        color: #fff;
-        text-shadow: none;
-    }
-    .t-cms .navbar .nav > li {
-        height: 42px;
-    }
-
-    .t-cms .navbar .nav > li:first-child {
-        margin-left: 20px;
-    }
-
-    .t-cms .navbar-collapse,
-    .t-cms .navbar-collapse.collapse { 
-        height: 42px !important; 
-    }
-
-    .t-cms .navbar-header {
-        margin-left: 20px;
-    }
-
-    .t-cms .navbar-default .navbar-nav>.open>a,
-    .t-cms .navbar-default .navbar-nav>.open>a:hover,
-    .t-cms .navbar-default .navbar-nav>.open>a:focus,
-    .t-cms .navbar-default .navbar-nav > .open > a,
-    .t-cms .navbar-default .navbar-nav > .active> a {
-        background: none;
-        box-shadow: none;
-    }
-
-    .t-cms .navbar .dropdown-menu:after {
-        position: absolute;
-        top: -6px;
-        left: 10px;
-        display: inline-block;
-        border-right: 6px solid transparent;
-        border-bottom: 6px solid #ffffff;
-        border-left: 6px solid transparent;
-        content: '';
-    }
-
-    .t-cms .navbar-brand {
-        width: 205px;
-        height: 30px;
-        padding: 0;
-        padding-bottom: 0;
-        position: relative;
-        top: 10px;
-        background: #fff;
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 0px;
-        border-bottom-left-radius: 0px;
-        border-top: 1px solid #ba5b15;
-        border-left: 1px solid #ba5b15;
-        border-right: 1px solid #ba5b15;
-        text-shadow: none;
-        text-align: center;
-        text-indent: -9999px;
-    }
-
-    .navbar-brand .zotonic-logo {
-        display: block;
-        width: 175px;
-        height: 31px;
-        position: absolute;
-        top: 8px;
-        left: 16px;
-        background: url('/lib/images/admin_ginger.png');
-    }
-
-    .t-cms .navbar-default .navbar-brand:hover, 
-    .t-cms .navbar-default .navbar-brand:focus {
-        background: #fff;
-    }
-
-    .t-cms .navbar-brand img {
-        display: inline;
-        width: auto !important;
-        height: auto !important;
-        margin: 0;
-        position: relative;
-        top: 8px;
-    }
-
-    .t-cms .navbar-brand:after {
-        content: '';
-        width: 100%;
-        height: 18px;
-        background: #fff;
-        position: absolute;
-        bottom: -18px;
-        left: 0px;
-        z-index: -1;
-        border-bottom-right-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
+.z-logon-support a {
+    color: #333;
 }
 
-.t-cms div.widget {
-    background: #fff;
-    box-shadow: none;
-    border: 1px solid #d0d2d3;
-    border-radius: 3px;
+.t-login .navbar {
+    display: none;
 }
 
-.t-cms div.widget > ul.nav,
-.t-cms div.widget h3.widget-header,
-.t-cms li h3.widget-header {
-    background-color: #f1f1f2;
+.t-login .admin-container {
+    box-sizing: border-box;
+    padding-top: 100px;
+    margin: 0;
 }
 
-.t-cms .admin-logon textarea,
-.t-cms .admin-logon input[type="text"],
-.t-cms .admin-logon input[type="password"],
-.t-cms .admin-logon input[type="datetime"],
-.t-cms .admin-logon input[type="datetime-local"],
-.t-cms .admin-logon input[type="date"],
-.t-cms .admin-logon input[type="month"],
-.t-cms .admin-logon input[type="time"],
-.t-cms .admin-logon input[type="week"],
-.t-cms .admin-logon input[type="number"],
-.t-cms .admin-logon input[type="email"],
-.t-cms .admin-logon input[type="url"],
-.t-cms .admin-logon input[type="search"],
-.t-cms .admin-logon input[type="tel"],
-.t-cms .admin-logon input[type="color"],
-.t-cms .admin-logon .uneditable-input {
-    border: 2px solid #e7e8e9;
-    box-shadow: none;
-    border-radius: 4px;
+.t-login .admin-logon {
+    margin-top: 0px;
+    background: none;
 }
 
-.t-cms div.widget > ul.nav,
-.t-cms div.widget h3.widget-header,
-.t-cms li h3.widget-header,
-.t-cms div.widget.dark .widget-header,
-.t-cms div.widget.dark {
-    background: #f1f1f2;
-}
-
-.t-cms #sidebar-publish-page {
-    border: none;
-}
-
-.t-cms .nav-list > li > a,
-.t-cms .nav-list .nav-header {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.t-cms .pagination > li >a,
-.t-cms .pagination > li > span {
-    color: #58595b;
-}
-
-.t-cms .pagination > .active > a,
-.t-cms .pagination > .active > span,
-.t-cms .pagination > .active > a:hover,
-.t-cms .pagination > .active > span:hover,
-.t-cms .pagination > .active > a:focus,
-.t-cms .pagination > .active > span:focus {
-    background: #ff7600;
-}
-
-.t-cms .pagination > .active > a,
-.t-cms .pagination > .active > span,
-.t-cms .pagination > .active > a:hover,
-.t-cms .pagination > .active > span:hover,
-.t-cms .pagination > .active > a:focus,
-.t-cms .pagination > .active > span:focus {
-    border-color: #ff7600;
-}
-
-.t-cms .div.widget ul.nav-tabs li.active > a {
-    background: #fff;
-}
-
-.t-cms .admin-logon {
-    width: 90%;
-    max-width: 471px;
-    margin-top: 20px;
-    position: relative;
-    border: none !important;
-}
-
-.logon-logo {
-    text-align: center;
+.t-login .admin-logon input {
+    height: 51px;
     margin-bottom: 20px;
+    line-height: 51px;
+    font-size: 1.5em;
 }
 
-body .admin-logon {
-    border: none;
-}
-
-.admin-logon form {
-    padding: 0;
-}
-
-.admin-logon form div a {
-    position: absolute;
-    bottom: 202px;
-    font-size: 1.1em;
-    right: 22px;
-    font-weight: 300;
-}
-
-.t-cms .admin-logon label {
+.t-login .admin-logon label {
     margin-bottom: 10px;
     font-size: 1.7em;
     font-weight: 300;
@@ -560,78 +139,37 @@ body .admin-logon {
     text-transform: lowercase;
 }
 
-.t-cms #logon_box form input[type="text"],
-.t-cms #logon_box form input[type="password"] {
-    height: 51px;
-    margin-bottom: 20px;
-    line-height: 51px;
-    font-size: 1.5em;
-}
-
-.t-cms #logon_box .alert {
-    width: 80%;
-    position: static;
-    margin-bottom: 0;
-}
-
-.t-cms #logon_box .alert p {
-    margin: 0 0 1em 0;
-}
-
-.t-cms #logon_box div#logon_error {
-    padding: 0 10px;
-    margin: 0 10px;
-    float: none;
-}
-
-.t-cms .admin-logon input[type="checkbox"] {
-    height: auto;
-    margin-left: 0;
-    position: relative;
-    top: -2px;
-}
-
-.t-cms .admin-logon .checkbox {
+.t-login .checkbox {
     width: auto;
     float: right;
     margin-right: 20px;
+
 }
 
-.t-cms .admin-logon .checkbox label {
-    padding-left: 0px;
-    margin-top: 5px;
-    font-size: 1.286em;
+.t-login .checkbox label {
+    font-size: 1.286em
 }
- 
-.t-cms #logon_box .btn {
+
+.t-login .checkbox input {
+    height: auto;
+}
+
+.t-login .form-group + .form-group {
+    clear: right;
+}
+
+.t-login .admin-logon .btn {
     height: 51px;
     margin: 0 0 0 10px;
-    padding: 0 30px;
-    line-height: 51px;
+    padding: 6px 30px 9px;
     font-size: 2em;
     text-transform: lowercase;
     font-weight: 300;
+    line-height: 1;
 }
 
-.t-cms .admin-logon button + label {
-    font-size: 1.1em;
-    margin: 0 20px 0 0;
-    float: right;
-    position: relative;
-    top: 15px;
-    font-weight: 300;
-    line-height: 20px;
-}
-
-.t-cms .admin-logon button {
-    position: relative;
-    z-index: 100;
-}
-
-.t-cms .admin-logon button + label input {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+.t-login .z-logon-box .alert a {
+    color: black;
 }
 
 .logon-footer {
@@ -653,21 +191,10 @@ body .admin-logon {
     margin-bottom: 20px;
 }
 
-.t-cms #content-location img {
-    max-width: none;
-}
-
 @media (min-width: 560px) {
-    .admin-logon { 
-        margin-top: 40px;
-    }
-
-    .logon-logo {
-        margin-bottom: 40px;
-    }
-
     .logon-footer {
         height: 170px;
+        margin-top: 0;
         padding-bottom: 0;
         box-shadow: 0px -1px 0px 1px #d3671a, 0px -1px 0 2px #ba5b15, 0px -1px 0 3px #dcad8a;
     }
@@ -679,95 +206,34 @@ body .admin-logon {
     .logon-footer a + a {
         float: right;
     }
+
+    .t-login .admin-container {
+        min-height: 100%;
+        margin-bottom: -170px;
+    }
+
+    .t-login .admin-container:after {
+        content: "";
+        display: block;
+        height: 170px;
+    }
 }
 
-/* Blocks */
 
-.t-cms ul.blocks.ui-sortable .form-control.block-name {
-    margin-top: 15px;
-}
+@media (min-width: 560px) {
+    .navbar-brand {
+        top: 15px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top: 1px solid #ba5b15;
+        border-left: 1px solid #ba5b15;
+        border-right: 1px solid #ba5b15;
+        border-bottom: 0;
+    }
 
-.t-cms .block-name {
-    display: none;
-}
-
-.t-cms .block .widget-content {
-    padding-left: 1px;
-    padding-right: 1px;
-}
-
-.t-cms .block .widget-content .tab-pane {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-.t-cms .block .widget-content .widget {
-    border: none;
-}
-
-.block-relation {
-    margin-top: 30px;
-}
-
-.block-relation_item {
-    display: none;
-}
-
-.block-relation_item.is-visible {
-    display: block;
-}
-
-.block-relation_item {
-    width: 50%;
-    padding: 8px 8px;
-    margin: 10px 0;
-    position: relative;
-    background: #ffffff;
-    background: -moz-linear-gradient(top, #ffffff 0%, #f5f5f5 50%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f5f5f5));
-    background: -webkit-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
-    background: -o-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
-    background: -ms-linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
-    background: linear-gradient(top, #ffffff 0%,#f5f5f5 50%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 );
-    border-radius: 4px;
-    border: 1px solid #E0E0E0;
-}
-
-.block-relation_item .z-btn-remove {
-    display: block;
-    position: absolute;
-    top: 9px;
-    right: 8px;
-}
-
-ul.tree-list li.menu-item .z-icon-drag {
-    left: 15px;
-}
-
-/* / Ginger */
-
-/* Logon */
-
-
-.admin-logon {
-    margin-bottom: 70px;
-    border: none;
-}
-
-.t-login #logon_facebook {
-    max-width: 200px;
-}
-
-.t-login #logon_facebook a {
-    color: #fff;
-}
-
-.t-login .btn-primary {
-    max-width: 200px;
-    background: #666;
-}
-
-.z-logon-support a {
-    color: #333;
+    .navbar.navbar-branded .navbar-brand .zotonic-logo {
+        top: 8px;
+    }
 }
