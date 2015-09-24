@@ -7,7 +7,9 @@
     <div class="content-group-nav {{ extraClasses }} do_content_group_nav">
 
         {% block banner %}
-            {% include "content-group-nav/content-group-nav-banner.tpl" %}
+            {% if content_group.o.hassubnav %}
+                {% include "content-group-nav/content-group-nav-banner.tpl" %}
+            {% endif %}
         {% endblock %}
 
         {% block subnav %}
