@@ -11,6 +11,7 @@
     <main role="main">
 
         <div class="foldout do_foldout">
+            {% catinclude "category-of/category-of.tpl" id %}
 
             {% include "foldout/foldout-button.tpl" %}
 
@@ -42,7 +43,7 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
+                    {% include "list/list.tpl" list_id="list--fixed-context" items=result extraClasses="" id=id %}
 
                 {% endwith %}
             </aside>
@@ -53,7 +54,7 @@
 
                     {% include "keywords/keywords.tpl" id=id items=result %}
 
-                    {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" list_title=_"Gerelateerd" id=id %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result extraClasses="" id=id %}
                 {% endwith %}
             </aside>
         {% endif %}

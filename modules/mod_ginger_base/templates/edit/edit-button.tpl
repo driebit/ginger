@@ -1,4 +1,9 @@
-<a class="edit-button {{ extraClasses }}" href="
+{% with
+    class|default:"edit-button"
+as
+    class
+%}
+<a class="{{ class }} {{ extraClasses }}" href="
     {% if id.is_editable %}
         {% url admin_edit_rsc id=id %}
     {% else %}
@@ -6,6 +11,8 @@
     {% endif %}
 " title="{_ Edit page _}" >
 {% block label %}
-    {_Edit_}
+    {_ Edit _}
 {% endblock %}
 </a>
+
+{% endwith %}

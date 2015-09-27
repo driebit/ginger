@@ -28,9 +28,20 @@
 
                 {% include "person/person-details.tpl" person=id %}
 
-
             </article>
         </div>
+
+        {% if id.s.author %}
+            <aside class="main-aside">
+                {% with m.search[{query hasobject=[id,'author'] pagelen=6}] as result %}
+
+                    {% include "list/list-header.tpl" id=id list_title=_"Authored" items=result %}
+
+                    {% include "list/list.tpl" list_id="list--authored" items=result extraClasses="" id=id %}
+
+                {% endwith %}
+            </aside>
+        {% endif %}
 
     </main>
 {% endblock %}

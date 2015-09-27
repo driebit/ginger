@@ -11,6 +11,7 @@
     <main role="main">
 
         <div class="foldout do_foldout">
+            {% catinclude "category-of/category-of.tpl" id %}
 
             {% include "foldout/foldout-button.tpl" %}
 

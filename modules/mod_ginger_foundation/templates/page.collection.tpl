@@ -36,7 +36,7 @@
                 {% with m.search[{query hassubject=[id,'haspart'] pagelen=6}] as result %}
                     {% include "list/list-header.tpl" id=id list_title=_"Inhoud" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--haspart" items=result extraClasses="" list_title=_"Inhoud" id=id %}
+                    {% include "list/list.tpl" list_id="list--haspart" items=result extraClasses="" id=id %}
                 {% endwith %}
             </aside>
         {% endif %}

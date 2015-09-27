@@ -4,6 +4,8 @@
 
 <li class="list__item {{ extraClasses }}">
 
+{% include "edit/edit-button.tpl" class="edit-button--list-item" id=id %}
+
     <a href="{{ id.page_url }}">
         <article>
             {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}

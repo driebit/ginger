@@ -1,0 +1,40 @@
+.category-of {
+    display: inline-block;
+    @include size(padding, 10, 15);
+    background: $mainThemeColor;
+    color: $white;
+    line-height: 1;
+
+    i {
+        @include size(margin-right, 8);
+        vertical-align: middle;
+        color: darken($mainThemeColor, 20);
+    }
+}
+
+.category-of__left {
+    @extend .category-of;
+}
+
+.category-of__right {
+    display: inline-block;
+    @include size(padding, 10, 15);
+    @include size(margin-left, -4);
+    background: $typographyColor;
+    color: $white;
+}
+
+.category-of--event {
+    display: inline-block;
+    line-height: 1;
+}
+
+.category-of__date,
+.category-of__cat {
+    @extend .category-of__left;
+}
+
+.category-of__time,
+.category-of__location {
+    @extend .category-of__right;
+}
