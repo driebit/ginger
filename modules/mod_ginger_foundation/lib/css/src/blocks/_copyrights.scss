@@ -1,0 +1,16 @@
+.copyrights {
+    display: block;
+
+    text-align: right;
+
+    i {
+        @include size(font-size, 20);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: none;
+        opacity: 0.9;
+    }
+}

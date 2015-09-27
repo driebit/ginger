@@ -3,6 +3,9 @@
 as
     class
 %}
+
+{# TODO: check if user has rights to edit #}
+
 <a class="{{ class }} {{ extraClasses }}" href="
     {% if id.is_editable %}
         {% url admin_edit_rsc id=id %}

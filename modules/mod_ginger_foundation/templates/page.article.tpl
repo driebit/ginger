@@ -31,6 +31,8 @@
 
                 {% include "blocks/blocks.tpl" id=id %}
 
+                {% include "copyrights/copyrights.tpl" id=id %}
+
                 {% include "comments/comments.tpl" id=id %}
             </article>
 
