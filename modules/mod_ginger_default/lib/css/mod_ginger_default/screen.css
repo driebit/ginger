@@ -930,7 +930,7 @@ h1, h2, h3, h4, p, ol, ul, table {
   top: auto;
   right: auto; }
 
-.profile-avatar {
+.miniature, .profile-avatar {
   height: 30px;
   height: 3rem;
   width: 30px;
