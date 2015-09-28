@@ -23,7 +23,7 @@
         {% if icon_before %}
             <i class="{{ icon }}"></i> <span class="{{ label_class }}">{{ label }}</span>
         {% else %}
-            <span class="{{ label_class }}">{{ label }}</span> <i class="{{ icon }}"></i> 
+            <span class="{{ label_class }}">{{ label }}</span> <i class="{{ icon }}"></i>
         {% endif %}
     {% else %}
         <span class="{{ label_class }}">{{ label }}</span>
@@ -38,6 +38,7 @@
             template=dialog_template|default:"_action_dialog_authenticate.tpl"
             tab=tab|default:"logon"
             redirect=m.req.path
+            action=action
         }
     %}
 

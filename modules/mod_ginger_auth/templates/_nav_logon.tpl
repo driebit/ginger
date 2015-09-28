@@ -1,32 +1,22 @@
-{#
-Render login/register link when user is logged out,
-or link to user profile when user is logged in.
-
-Params:
-show_picture: whether to show the user’s picture
-informal: greet user by on first name basis
-greeting: label that greets logged in user
-#}
-
 <div id="nav-logon" class="nav-logon">
-    {% with m.rsc[id].uri as page %}
-        {% if m.acl.user %}
-            <a href="{{ m.rsc[m.acl.user].page_url }}">
-                {% if show_picture %}
-                    {% with m.rsc[m.acl.user].depiction as dep %}
-                        {% image dep mediaclass="miniature" %}
-                    {% endwith %}
-                {% endif %}
-                {{ greeting }}
-                {% if informal and m.rsc[m.acl.user].name_first %}
-                    {{ m.rsc[m.acl.user].name_first }}
-                {% else %}
-                    {{ m.rsc[m.acl.user].title }}
-                {% endif %}
-            </a>&nbsp;
-            <a href="{% url logoff %}">{{ logoff_label|if_undefined:_"Sign out" }} <i class="glyphicon glyphicon-log-out"></i></a>
-        {% else %}
-            {% include "_auth_link.tpl" %}
-        {% endif %}
-    {% endwith %}
+{% if zotonic_dispatch == `logon` or zotonic_dispatch == `signup` %}
+    {# Don't show logon/signup link on logon and signup pages #}
+{% else %}
+    {% live template="_nav_logon_live.tpl"
+        topic="~pagesession/session"
+        target="nav-logon"
+        id=id
+        action=action
+        show_picture=show_picture
+        informal=informal
+        greeting=greeting
+    %}
+
+    {% javascript %}
+        pubzub.subscribe("~pagesession/session", function (state) {
+            z_event("ginger_post_logon");
+        });
+    {% endjavascript %}
+
+{% endif %}
 </div>

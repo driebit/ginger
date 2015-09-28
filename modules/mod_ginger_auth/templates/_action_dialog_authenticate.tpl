@@ -30,3 +30,5 @@ redirect: URL to redirect to after succesful login
 <div id="tab-content" class="tab-content">
     {% include "_logon_modal.tpl" logon_state=tab page=redirect %}
 </div>
+
+{% wire name="ginger_post_logon" action=action %}
