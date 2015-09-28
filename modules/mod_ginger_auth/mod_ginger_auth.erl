@@ -15,7 +15,7 @@
 -export([
     manage_schema/2,
     observe_signup_form_fields/3,
-     observe_logon_actions/3
+    observe_logon_actions/3
 ]).
 
 %% @doc Set preferred default settings (but don't overwrite if they're already set)
@@ -41,6 +41,7 @@ manage_schema(install, Context) ->
 %% @doc Check the action template argument for post-logon continuation actions
 %% -spec observe_logon_actions(#logon_actions{}, list(), #context{}) -> undefined | list().
 observe_logon_actions(#logon_actions{args=Args}, _Acc, _Context) ->
+    %% Can probably be removed when https://github.com/zotonic/zotonic/pull/1043 is resolved.
     proplists:get_value(action, Args).
 
 %% @doc Persist custom fields if they are included in the signup template
