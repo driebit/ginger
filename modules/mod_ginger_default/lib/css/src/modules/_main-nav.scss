@@ -520,7 +520,7 @@
     }
 }
 
-.profile-avatar {
+.miniature, .profile-avatar {
     @include size(height, 30);
     @include size(width, 30);
     border-radius: 50%;
