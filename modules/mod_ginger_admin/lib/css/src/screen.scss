@@ -1,0 +1,153 @@
+@import "variables";
+@import "mixins";
+@import "pages/logon"; 
+
+a {
+    color: $orange; 
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:active:hover {
+        color: darken($orange, 10); 
+    }
+}
+
+.navbar.navbar-branded {
+    background: $orange;
+}
+
+.btn-primary, 
+.btn.btn-primary {
+    background: $orange;
+    border: $orange;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:active:hover {
+        background: darken($orange, 10); 
+        border-color: $orange;
+    }
+}
+
+.navbar.navbar-branded .nav > li > a:hover,
+.navbar.navbar-branded .nav > li > a:focus,
+.navbar.navbar-branded .navbar-nav > .open > a,
+.navbar.navbar-branded .navbar-nav > .active > a,
+.dropdown-menu > li.active > a, 
+.dropdown-menu > li.active > a:hover, 
+.dropdown-menu > li > a:hover {
+    background: $orange;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    background: #eee;
+}
+
+.minimalTabs li.active > a,
+.minimalTabs li.active > a:focus,
+.minimalTabs li.active > a:hover,
+.nav.nav-pills li.active > a,
+.nav.nav-pills li.active > a:focus,
+.nav.nav-pills li.active > a:hover,
+.widget ul.nav-tabs li.active > a,
+.widget ul.nav-tabs li.active > a:focus,
+.widget ul.nav-tabs li.active > a:hover {
+    border-bottom-color: $orange;
+}
+
+.navbar.navbar-branded .collapse.in .nav > .dropdown.open .dropdown-menu > li > a:hover {
+    background: $orange;
+}
+
+.navbar.admin-navbar-fixed-save {
+    background: rgba(255,118,0, 0.8);
+}
+
+.widget.widget-expanded .widget-header .widget-header-tools .z-btn-help,
+.widget.dark.widget-expanded .widget-header .widget-header-tools .z-btn-help {
+    color: $orange;
+}
+
+.navbar.navbar-branded .collapse {
+    background: $orange;
+}
+
+.navbar-brand {
+    width: 205px;
+    height: 30px;
+    padding: 0;
+    margin-left: 20px;
+    position: relative;
+    top: 8px;
+    background: #fff;
+    border-radius: 3px;
+    border-top: 1px solid #ba5b15;
+    border-left: 1px solid #ba5b15;
+    border-right: 1px solid #ba5b15;
+    border-bottom: 1px solid #ba5b15;
+    text-shadow: none;
+    text-align: center;
+    text-indent: -9999px;
+}
+
+.navbar.navbar-branded .navbar-brand .zotonic-logo {
+    display: block;
+    width: 175px;
+    height: 31px;
+    position: absolute;
+    top: 2px;
+    left: 16px;
+    background: url('/lib/images/admin_ginger.png');
+}
+
+.navbar-brand .zotonic-logo em {
+    display: none;
+}
+
+.pagination > li > a, 
+.pagination > li > span {
+    color: $orange;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: darken($orange, 10);
+    }
+}
+
+.pagination > .active > a, 
+.pagination > .active > span {
+    color: $white;
+    background: $orange;
+    border-color: $orange;  
+
+
+    &:focus,
+    &:hover {
+        color: $white;  
+        background: darken($orange, 10);
+        border-color: $orange; 
+    }
+}
+
+@include mq(min-width, 560) {
+    .navbar-brand {
+        top: 15px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top: 1px solid #ba5b15;
+        border-left: 1px solid #ba5b15;
+        border-right: 1px solid #ba5b15;
+        border-bottom: 0;
+    }
+
+    .navbar.navbar-branded .navbar-brand .zotonic-logo {
+        top: 8px;
+    }
+}

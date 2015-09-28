@@ -14,7 +14,7 @@
         {% lib
             "admin-bootstrap3/css/bootstrap.min.css"
         %}
-
+        
         {% lib
             "css/jquery-ui.datepicker.css"
             "css/jquery.timepicker.css"
@@ -24,6 +24,7 @@
             "css/logon.css"
             "css/jquery.loadmask.css"
             "css/zotonic-admin.css"
+            "css/mod_ginger_admin/screen.css"
         %}
 
         {% all include "_html_head_admin.tpl" %}
