@@ -44,6 +44,9 @@
                         </div>
                     {% endif %}
 
+                    {# Fix article with just media #}
+                    {% catinclude "_depiction_media.tpl" id %}
+
                     <div class="page__content__body">
                         {{ article.body|show_media }}
                     </div>

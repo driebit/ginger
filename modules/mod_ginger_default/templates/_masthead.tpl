@@ -16,7 +16,7 @@
 
              {% with m.rsc[first_media_id]|default:m.rsc[icon_id] as dep_rsc %}
                 
-                {% if dep_rsc %}
+                {% if dep_rsc and dep_rsc.is_a.image %}
 
                     {% if dep_rsc.medium.width > 500 %}
                         <div class="page__masthead do_ginger_default_paralax" style="background-image: url({% image_url dep_rsc.id mediaclass='img-header' crop %}); background-size: cover;"></div>
