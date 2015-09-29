@@ -52,15 +52,18 @@ Git branches/releases
 ---------------------
 voor bugfixes:
 switch je dev naar laatste release branch
+```
  $ git fetch
  $ git branch -a
  $ git checkout release-0.1.0 (laatste) 
+```
 update ginger-test
+```
  $ sudo -su zotonic
  $ cd /srv/zotonic/
  $ git pull
+```
 ginger-acceptatie wordt elke week ge-update (door david)
  $ 
 ginger01 wordt de week daarna ge-update (door david)
  %
-
