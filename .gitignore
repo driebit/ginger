@@ -1,3 +1,4 @@
 .DS_Store
 .vagrant
 sites/*
+modules/mod_am_default
