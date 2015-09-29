@@ -104,13 +104,8 @@
             {% block module_script %}{% endblock %}
     		{% script %}
 
-            {% lib
-                    "bootstrap/js/bootstrap.min.js"
-                    "js/modules/responsive.js"
-                    "js/ginger-search.js"
-                    %}
-
     		{% lib
+                "bootstrap/js/bootstrap.min.js"
     			"js/vendor/masonry.js"
     			"js/vendor/imagesloaded.js"
     			"js/src/ginger-default_toggle-navigation.js"
