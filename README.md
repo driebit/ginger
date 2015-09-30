@@ -58,7 +58,7 @@ Fetching changes
 ```
 $ git fetch
 $ git rebase
-`
+```
 
 Making changes
 --------------
