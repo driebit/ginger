@@ -89,6 +89,8 @@ ginger-test or ginger-acceptatie):
 $ ssh ginger-test.driebit.net
 $ cd /srv/zotonic/
 $ z git pull
+$ z zotonic shell
+$ z:m().
 ```
 
 ### Feature developments
