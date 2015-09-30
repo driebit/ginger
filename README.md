@@ -1,7 +1,11 @@
 Ginger
 ======
 
-This is the Ginger Zotonic edition.
+This is the Ginger Zotonic edition. This repository contains:
+
+* (most) Ginger modules
+* Vagrant configuration
+* shell scripts
 
 Development environment
 -----------------------
@@ -48,22 +52,50 @@ $ sudo -u postgres psql
 \c
 ```
 
-Git branches/releases
----------------------
-voor bugfixes:
-switch je dev naar laatste release branch
+Fetching changes
+----------------
+
 ```
- $ git fetch
- $ git branch -a
- $ git checkout release-0.1.0 (laatste) 
+$ git fetch
+$ git rebase
+`
+
+Making changes
+--------------
+
+### Commit messages
+
+Please follow the [Driebit guidelines for commit messages](https://gitlab.driebit.nl/driebit/docs/blob/master/git.md#commit-messages).
+Additionally, prefix your message with the module that your change applies to.
+For instance:
+
 ```
-update ginger-test
+[admin] Fix login form styling
+[foundation] Add carousel template
 ```
- $ sudo -su zotonic
- $ cd /srv/zotonic/
- $ git pull
+
+### Bugfixes to the release branch
+
+When you are fixing a bug in the current release branch (as it is published on
+ginger-test or ginger-acceptatie):
+
+1. Fetch changes: `$ git fetch`.
+2. View [branches](https://gitlab.driebit.nl/driebit/ginger/branches): `$ git branch -a`.
+3. Switch to the latest release branch: `$ git checkout release-0.1.0`.
+4. Make, commit and push your changes.
+5. Optionally, update ginger-test with the your changes to the release branch:
+
 ```
-ginger-acceptatie wordt elke week ge-update (door david)
- $ 
-ginger01 wordt de week daarna ge-update (door david)
- %
+$ ssh ginger-test.driebit.net
+$ cd /srv/zotonic/
+$ z git pull
+```
+
+### Feature developments
+
+When working on (larger) features and fixes that should not be part of the
+current release:
+
+1. Fetch changes: `$ git fetch`.
+2. Switch to master: `$ git checkout master`.
+3. Make, commit and push your changes.
