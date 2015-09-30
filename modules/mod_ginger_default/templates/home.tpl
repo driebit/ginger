@@ -8,7 +8,7 @@
     <div class="page--home page__content-wrapper">
 
         {% with m.rsc.home_article as home %}
-            {% include "_masthead.tpl" article=home %}
+            {% include "_masthead.tpl" article=home id=home.id %}
 
             <main role="main" class="page__main-content">
 
