@@ -52,6 +52,24 @@ $ sudo -u postgres psql
 \c
 ```
 
+### Importing a database
+
+From a file:
+
+```bash
+$ scripts/import.sh site-name site-name.sql
+```
+
+From a remote backup:
+
+```bash
+$ scripts/import-backup.sh ginger01.driebit.net site-name
+```
+
+Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
+`ginger01.driebit.net` depending on the environment that you want to import
+the latest backup from.
+
 Fetching changes
 ----------------
 
@@ -85,7 +103,7 @@ ginger-test or ginger-acceptatie):
 4. Make, commit and push your changes.
 5. Optionally, update ginger-test with the your changes to the release branch:
 
-```
+```bash
 $ ssh ginger-test.driebit.net
 $ cd /srv/zotonic/
 $ z git pull
