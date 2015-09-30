@@ -12,11 +12,11 @@ BACKUP_DIR="/srv/zotonic/sites/$SITE/files/backup"
 DOWNLOAD_DIR="/tmp"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")" && pwd )"
 
-RECENT_BACKUP=`ssh zotonic@$URL ls "$BACKUP_DIR/*.sql" -t | head -n1 | xargs -n1 basename`
+RECENT_BACKUP=`ssh $URL ls "$BACKUP_DIR/*.sql" -t | head -n1 | xargs -n1 basename`
 
 if [ ! -f "$DOWNLOAD_DIR/$RECENT_BACKUP" ]; then
     echo "Downloading $RECENT_BACKUP from $URL..."
-    scp zotonic@$URL:$BACKUP_DIR/$RECENT_BACKUP $DOWNLOAD_DIR
+    scp $URL:$BACKUP_DIR/$RECENT_BACKUP $DOWNLOAD_DIR
 fi
 
 echo "Importing $RECENT_BACKUP..."

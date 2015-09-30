@@ -60,15 +60,21 @@ From a file:
 $ scripts/import.sh site-name site-name.sql
 ```
 
-From a remote backup:
+In ginger.dev environment, from a remote backup:
 
 ```bash
-$ scripts/import-backup.sh ginger01.driebit.net site-name
+$ scripts/import-backup.sh your-username@ginger01.driebit.net site-name
 ```
 
 Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
 `ginger01.driebit.net` depending on the environment that you want to import
 the latest backup from.
+
+On ginger-test, you can leave out `your-username`:
+
+```
+$ scripts/import-backup.sh ginger01.driebit.net site-name
+```
 
 Fetching changes
 ----------------
