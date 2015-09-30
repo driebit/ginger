@@ -1,8 +1,0 @@
-<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g fill="#9B9B9B">
-        <rect x="11" y="0" width="9" height="9"></rect>
-        <rect x="11" y="11" width="9" height="9"></rect>
-        <rect x="0" y="11" width="9" height="9"></rect>
-        <rect x="0" y="0" width="9" height="9"></rect>
-    </g>
-</svg>
