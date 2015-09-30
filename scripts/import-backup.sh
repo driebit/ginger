@@ -10,6 +10,7 @@ PASSWORD="ginger"
 SCHEMA="public"
 BACKUP_DIR="/srv/zotonic/sites/$SITE/files/backup"
 DOWNLOAD_DIR="/tmp"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")" && pwd )"
 
 RECENT_BACKUP=`ssh zotonic@$URL ls "$BACKUP_DIR/*.sql" -t | head -n1 | xargs -n1 basename`
 
@@ -19,4 +20,4 @@ if [ ! -f "$DOWNLOAD_DIR/$RECENT_BACKUP" ]; then
 fi
 
 echo "Importing $RECENT_BACKUP..."
-./import.sh $SITE $DOWNLOAD_DIR/$RECENT_BACKUP
+$DIR/import.sh $SITE $DOWNLOAD_DIR/$RECENT_BACKUP
