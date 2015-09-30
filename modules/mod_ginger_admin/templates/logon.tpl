@@ -10,11 +10,10 @@
 {% block body_class %}t-login{% endblock %}
 
 {% block head_extra %}
-    {% lib  
+    {% lib
         "css/z.modal.css"
         "css/z.icons.css"
         "css/logon.css"
-        "css/ginger-admin.css"
     %}
 {% endblock %}
 
@@ -34,7 +33,7 @@
 
             {# >= 0.13 #}
             {% optional include "_logon_modal.tpl" style_boxed=1 style_width="600px" %}
-            
+
         {% endif %}
     </div>
 </div>
