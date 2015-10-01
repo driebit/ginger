@@ -1,0 +1,76 @@
+.edit-copyrights {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.edit-copyrights li {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.edit-copyrights label {
+    display: block;
+}
+
+.edit-copyrights input {
+    display: inline-block;
+    margin: -1px 10px 0 2px;
+}
+
+.edit-copyrights__icons {
+    display: inline-block;
+    margin-right: 4px;
+    position: relative;
+    top: 3px;
+}
+
+.icon--cc-sa {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-sa.svg');
+    background-size: 100%;
+}
+
+.icon--cc-pd {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-pd.svg');
+    background-size: 100%;
+}
+
+.icon--cc-nc {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-nc.svg');
+    background-size: 100%;
+}
+
+.icon--cc-nd {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-nd.svg');
+    background-size: 100%;
+}
+
+.icon--cc-by {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-by.svg');
+    background-size: 100%;
+}
+
+.icon--cc:before {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc.svg');
+    background-size: 100%;
+}
