@@ -14,5 +14,5 @@
         {% endwith %}
     {% endwith %}
 
-    {% include "_comments_form.tpl" %}
+    {% optional include "_comments_form.tpl" %}
 {% endif %}

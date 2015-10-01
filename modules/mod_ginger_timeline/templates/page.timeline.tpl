@@ -42,10 +42,10 @@
                         {
 
                             {% if dep %}
-                                "media":"{% image_url dep mediaclass="list-image" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
+                                "media":"{% image_url dep mediaclass="list-image" alt=id.title class="img-responsive" crop=dep.id.crop_center %}",
                             {% endif %}
                             "credit":"",
-                            "thumbnail":"{% image_url dep mediaclass="thumbnail" alt=id.title class="img-responsive" crop=id.depiction.id.crop_center %}",
+                            "thumbnail":"{% image_url dep mediaclass="thumbnail" alt=id.title class="img-responsive" crop=dep.id.crop_center %}",
                             "caption":""
                         }
                         {% endwith %}
