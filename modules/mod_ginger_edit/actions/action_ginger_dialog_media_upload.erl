@@ -2,9 +2,20 @@
 %% @copyright 2009 Marc Worrell
 %% Date: 2009-04-27
 %% @doc Open a dialog with some fields to upload a new media.
-%% Temporary overwrite to handle contentgroup inheritance
-%% Will be fixed in 0.13.5 - remove after 0.13.5 on production
 
+%% Copyright 2009 Marc Worrell
+%%
+%% Licensed under the Apache License, Version 2.0 (the "License");
+%% you may not use this file except in compliance with the License.
+%% You may obtain a copy of the License at
+%%
+%%     http://www.apache.org/licenses/LICENSE-2.0
+%%
+%% Unless required by applicable law or agreed to in writing, software
+%% distributed under the License is distributed on an "AS IS" BASIS,
+%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%% See the License for the specific language governing permissions and
+%% limitations under the License.
 
 -module(action_ginger_dialog_media_upload).
 -author("Marc Worrell <marc@worrell.nl").
@@ -100,7 +111,7 @@ event(#submit{message={media_url, EventProps}}, Context) ->
 add_content_group(EventProps, Props, Context) ->
     case proplists:get_value(subject_id, EventProps) of
         undefined ->
-            [ {proplists:get_value(content_group_id, EventProps)} | Props ];
+            [ {content_group_id, proplists:get_value(content_group_id, EventProps)} | Props ];
         SubjectId when is_integer(SubjectId) ->
             ContentGroupdId = case proplists:get_value(content_group_id, EventProps) of
                                     undefined -> m_rsc:p_no_acl(SubjectId, content_group_id, Context);
