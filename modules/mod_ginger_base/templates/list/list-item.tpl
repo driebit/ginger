@@ -4,7 +4,7 @@
 
 <li class="list__item {{ extraClasses }}">
 
-{% include "edit/edit-button.tpl" class="edit-button--list-item" id=id %}
+    {% include "edit/edit-button.tpl" class="edit-button--list-item" id=id %}
 
     <a href="{{ id.page_url }}">
         <article>

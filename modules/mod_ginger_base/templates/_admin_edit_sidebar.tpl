@@ -5,7 +5,7 @@
 
 {% block widget_content %}
 {% with m.rsc[id] as r %}
-    {% include "frontend-edit/edit-copyrights.tpl" %}
+    {% catinclude "frontend-edit/edit-copyrights.tpl" id %}
 {% endwith %}
 {% endblock %}
 
