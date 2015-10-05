@@ -5,7 +5,7 @@
     class|default:"list",
     list_id|default:"",
     hide_button|default:0,
-    button_text|default:_"Toon meer resultaten...",
+    button_text|default:_"Show more results...",
     list_template|default:"list/list-item.tpl"
 as
     items,

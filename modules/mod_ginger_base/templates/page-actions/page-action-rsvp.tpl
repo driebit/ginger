@@ -9,7 +9,7 @@
                 {% if m.edge.id[user].participant[event]|is_defined %}
                     {# User has RSVPd #}
                     {% button
-                        text=_"Afmelden"
+                        text=_"Sign out"
                         class=btn_class
                         action={
                             unlink
@@ -25,7 +25,7 @@
                 {% else %}
                     {# User did not RSVP #}
                     {% button
-                        text=_"Aanmelden"
+                        text=_"Sign up"
                         class=btn_class
                         action={
                             link
@@ -43,7 +43,7 @@
         {% else %}
             {# The user is not logged in. Clicking on RSVP only logs in, nothing else. #}
             {% button
-                text=_"Aanmelden"
+                text=_"Sign up"
                 class=btn_class
                 action={
                     dialog_open

@@ -33,6 +33,11 @@ msgid ""
 "By:"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12 
+msgid ""
+"Choose language"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/dialog-language/dialog-language.tpl:4 
 msgid ""
 "Choose your language"
@@ -43,7 +48,7 @@ msgid ""
 "Copyrights"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:31 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:31 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
 msgid ""
 "E-mail"
 msgstr ""
@@ -61,11 +66,6 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:15 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:7 
 msgid ""
 "Edit page"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
-msgid ""
-"Email"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9 
@@ -218,6 +218,11 @@ msgid ""
 "Show map"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:8 
+msgid ""
+"Show more results..."
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:27 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12 
 msgid ""
 "Sign out"
@@ -238,11 +243,6 @@ msgid ""
 "Summary"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12 
-msgid ""
-"Taalkeuze"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16 
 msgid ""
 "Telephone number"
@@ -256,11 +256,6 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6 
 msgid ""
 "Title"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:8 
-msgid ""
-"Toon meer resultaten..."
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12 
