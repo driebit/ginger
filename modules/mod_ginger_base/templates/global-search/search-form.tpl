@@ -7,13 +7,13 @@
             class="do_global_search"
             name="qs" 
             value="{{q.qs|escape}}" 
-            placeholder="{_ Zoeken _}" 
+            placeholder="{_ Search _}" 
             autocomplete="off"
             data-param-wire="show-suggestions-{{ identifier }}" 
             data-param-results="global-search__suggestions-{{ identifier }}" 
             data-param-container="global-search-{{ identifier }}"  />
     </div>
-    <button type="submit" class="global-search__submit" title="zoek">{_ Zoeken _}</button>
+    <button type="submit" class="global-search__submit" title="zoek">{_ Search _}</button>
     {% wire name="show-suggestions-"++identifier
         action={update target="global-search__suggestions-"++identifier template="global-search/search-suggestions.tpl" context=context}
     %}

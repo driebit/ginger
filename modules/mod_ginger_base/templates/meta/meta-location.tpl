@@ -1,7 +1,7 @@
 {% with id.o.located_in as edgeLocation %}
 {% with edgeLocation|default:id as location %}
     <div class="meta-location">
-        <h4 class="meta-location__header"><i class="icon--location"></i>{_ Locatie _}</h4>
+        <h4 class="meta-location__header"><i class="icon--location"></i>{_ Location _}</h4>
         <div class="meta-location__content">
             <p>
                 {{ location.title }}<br>
@@ -20,7 +20,7 @@
                 {% endif %}
             </p>
             {% if location.location_lat and location.location_lng %}
-                <a href="http://maps.google.com/maps?q=loc:{{ location.location_lat }}+{{ location.location_lng }}" target="_blank" class="meta-location__content__link">{_ Kaart tonen _}</a>
+                <a href="http://maps.google.com/maps?q=loc:{{ location.location_lat }}+{{ location.location_lng }}" target="_blank" class="meta-location__content__link">{_ Show map _}</a>
             {% endif %}
         </div>
     </div>

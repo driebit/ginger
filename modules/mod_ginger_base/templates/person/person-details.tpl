@@ -13,7 +13,7 @@
         <li class="person-detail--phone">
             <span class="person-detail__label">
                 <i class="icon--phone-horn"></i> 
-                {_ Telefoon _}
+                {_ Telephone number _}
             </span>
             <a class="" href="tel:{{ person.phone }}">{{ person.phone }}</a>
         </li>
@@ -23,7 +23,7 @@
         <li class="person-detail--mobile">
             <span class="person-detail__label">
                 <i class="icon--phone-horn"></i>
-                {_ Mobiel _}
+                {_ Mobile number _}
             </span>
             <a class="" href="tel:{{ person.phone_mobile }}">{{ person.phone_mobile }}</a>
         </li>
@@ -35,7 +35,7 @@
                 <i class="icon--pointer"></i>
                 {_ Website _}
             </span>
-            <a class="" href="{{ person.website }}">{_ Ga naar website _}</a>
+            <a class="" href="{{ person.website }}">{_ Go to website _}</a>
         </li>
     {% endif %}
 
@@ -45,7 +45,7 @@
                 <i class="icon--facebook"></i>
                 {_ Facebook _}
             </span>
-            <a class="" href="{{ person.facebook }}">{_ Ga naar Facebook _}</a>
+            <a class="" href="{{ person.facebook }}">{_ Go to Facebook _}</a>
         </li>
     {% endif %}
 
@@ -55,7 +55,7 @@
                 <i class="icon--linkedin"></i>
                 {_ LinkedIn _}
             </span>
-            <a class="" href="{{ person.linkedin }}">{_ Ga naar LinkedIn _}</a>
+            <a class="" href="{{ person.linkedin }}">{_ Go to LinkedIn _}</a>
         </li>
     {% endif %}
     
@@ -65,7 +65,7 @@
                 <i class="icon--twitter"></i>
                 {_ Twitter _}
             </span>
-            <a class="" href="{{ person.twitter }}">{_ Ga naar Twitter _}</a>
+            <a class="" href="{{ person.twitter }}">{_ Go to Twitter _}</a>
         </li>
     {% endif %} 
 

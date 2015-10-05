@@ -2,7 +2,7 @@
     {% with id.o.subject as results %}
         {% if results|length > 0 %}
                 <div class="keywords">
-                    <p class="keywords__label">{_ Op basis van deze trefwoorden: _}</p>
+                    <p class="keywords__label">{_ Based on these keywords: _}</p>
 
                     <ul class="keywords__list">
                         {% for id in results %}

@@ -1,7 +1,7 @@
 {% with m.translation.language_list_enabled as languages %}
     {% if languages %}
         {% block title %}
-            <h2>{_ Kies je taal _}</h2>
+            <h2>{_ Choose your language _}</h2>
         {% endblock %}
         {% block list %}
             <ul class="dialog-language">

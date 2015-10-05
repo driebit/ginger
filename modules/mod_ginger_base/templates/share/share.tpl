@@ -1,7 +1,7 @@
 <div class="share">
     {% block button %}
         <button class="share__button">
-            <span class="share__button__title">{_ Delen _}</span>
+            <span class="share__button__title">{_ Share _}</span>
 
              {% block menu %}
                 <ul class="share__menu">

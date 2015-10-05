@@ -28,7 +28,7 @@
             </div>
             <div class="list__item__content">
                 {% if id.o.located_in %}
-                    <p class="list__item__content__location">{_ Locatie _}: <span>{{ id.o.located_in.title }}</span></p>
+                    <p class="list__item__content__location">{_ Location _}: <span>{{ id.o.located_in.title }}</span></p>
                 {% endif %}
 
                 <h3 class="list__item__content__title">

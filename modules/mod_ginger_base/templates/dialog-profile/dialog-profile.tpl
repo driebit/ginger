@@ -3,7 +3,7 @@
     {% with m.rsc[m.acl.user] as user %}
 
         {% block logged_in_as %}
-            <p class="dialog-profile__logged-in-as" >{_ Ingelogd als _}:</p>
+            <p class="dialog-profile__logged-in-as" >{_ Logged in as _}:</p>
         {% endblock %}
 
         {% block avatar %}
@@ -24,7 +24,7 @@
 
         {% block log_off %}
             <div class="dialog-profile__log-off">
-                <a href="{% url logoff %}">{{ logoff_label|if_undefined:_"Uitloggen" }} <i class="#"></i> </a>
+                <a href="{% url logoff %}">{{ logoff_label|if_undefined:_"Sign out" }} <i class="#"></i> </a>
             </div>
         {% endblock %}
 
