@@ -3,6 +3,17 @@
 ## 0.1.0
 
 - Upgrade Zotonic to [0.13.4](https://github.com/zotonic/zotonic/releases/tag/release-0.13.4)
+- 12851d4 [edit] Fix media upload (Dorien)
+- e2620d1 Add remote backup import script (David de Boer)
+- 4c1bc56 [admin] Move admin readme to general Ginger docs (David de Boer)
+- 66bd765 [timeline] Fixed crop center (Fred Pook)
+- 17b874d Added release docs (Fred Pook)
+- 5b866bb Support for video and documents (Fred Pook)
+- 2ce23cb [admin, styling issue] (Dorien)
+- dd85d71 [default] Fix nav_logon styling (Fred Pook)
+- 5853028 Add readme (David de Boer)
+- 549d258 Add changelog (David de Boer)
+- 47f6bcc Remove controller_api.erl override (David de Boer)
 - 93d5220 [auth] Implement post-logon actions in templates instead of controller_logon (David de Boer)
 - 6d05e9b [auth] Show sign up link in non-modal logon form (David de Boer)
 - b850763 [admin] Upgrade for Zotonic 0.13.4 (David de Boer)
