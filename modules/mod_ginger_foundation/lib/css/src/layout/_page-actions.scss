@@ -15,6 +15,9 @@
     display: inline-block;
 }
 
+#comments-button-wrapper {
+    display: inline-block;
+}
 
 @include mq(min-width, 900) {
     .page-actions__author {
