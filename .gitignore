@@ -1,4 +1,9 @@
 .DS_Store
 .vagrant
 sites/*
+modules/mod_geo
 modules/mod_am_default
+modules/mod_import_anymeta
+modules/mod_import_anymeta_dispatch
+modules/mod_alternative_uris
+
