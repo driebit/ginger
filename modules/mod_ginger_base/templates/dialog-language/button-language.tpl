@@ -9,7 +9,7 @@
     id=#language
     action={
         dialog_open
-        title=_"Taalkeuze"
+        title=_"Choose language"
         template="dialog-language/dialog-language.tpl"
     }
 %}
