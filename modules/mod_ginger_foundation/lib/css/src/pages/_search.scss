@@ -1,0 +1,79 @@
+.t--search {
+    .foldout {
+        width: 100%;
+        max-width: 100%;
+        @include size(padding-bottom, 30);
+        margin-bottom: 0;
+        border-bottom: 30px solid $mainThemeColor;
+    }
+}
+
+.search-form--page {
+    width: 90%;
+    @include size(max-width, 555);
+    margin: 0 auto;
+    @include size(margin-top, 40);
+    position: relative;
+
+    input {
+        width: 100%;
+        @include size(height, 55);
+        @include size(padding, 0, 45, 0, 15);
+        @include size(line-height, 55);
+        @include size(font-size, 20);
+        border: none;
+        border-left: 1px solid #E4E4E4;
+        border-bottom: 2px solid #E4E4E4;
+        outline: none;
+
+        &:focus,
+        &:active {
+            border-color: darken(#E4E4E4, 10);
+        }
+    }
+}
+
+.btn--search {
+    display: block;
+    @include size(width, 45);
+    @include size(height, 55);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: none;
+    color: $mainThemeColor;
+    border: none;
+    @include size(font-size, 40);
+    line-height: 1;
+    text-align: center;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:focus:active {
+        background: none;
+        color: $secondaryThemeColor;
+    }
+}
+
+
+@include mq(min-width, $mediumBreakpoint) {
+    .t--search {
+        main {
+            @include size(padding-top, 30);
+        }
+
+        .foldout {
+            width: 100%;
+            max-width: 100%;
+            @include size(padding-bottom, 100);
+            border-bottom: 70px solid $mainThemeColor;
+        }
+    }
+
+    .search-form--page {
+        input {
+            @include size(font-size, 25);
+        }
+    }
+}

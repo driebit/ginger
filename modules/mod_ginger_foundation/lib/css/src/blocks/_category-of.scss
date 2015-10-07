@@ -1,9 +1,10 @@
 .category-of {
     display: inline-block;
-    @include size(padding, 10, 15);
+    @include size(height, 35);
+    @include size(padding, 0, 15);
     background: $mainThemeColor;
     color: $white;
-    line-height: 1;
+    @include size(line-height, 35);
 
     i {
         @include size(margin-right, 8);
@@ -18,10 +19,12 @@
 
 .category-of__right {
     display: inline-block;
-    @include size(padding, 10, 15);
-    @include size(margin-left, -4);
+    @include size(height, 35);
+    @include size(padding, 0, 15);
+    @include size(margin-left, -5);
     background: $typographyColor;
     color: $white;
+    @include size(line-height, 35);
 }
 
 .category-of--event {

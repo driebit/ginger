@@ -45,16 +45,19 @@ h1, h2, h3, h4, p, ol, ul, table {
 h1 {
     @include size(font-size, 32);
     @include size(line-height, 36);
+    @include size(margin-bottom, 10);
 }
 
 h2 {
     @include size(font-size, 28);
     @include size(line-height, 30);
+    @include size(margin-bottom, 10);
 }
 
 h3 {
     @include size(font-size, 25);
     @include size(line-height, 28);
+    @include size(margin-bottom, 0);
 }
 
 @include mq(min-width, 900){

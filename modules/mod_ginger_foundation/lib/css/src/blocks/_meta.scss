@@ -26,6 +26,12 @@
 
 .meta-participants {
     @extend .meta;
+
+    .icon--person {
+        position: relative;
+        top: -2px;
+        @include size(font-size, 16);
+    }
 }
 
 
