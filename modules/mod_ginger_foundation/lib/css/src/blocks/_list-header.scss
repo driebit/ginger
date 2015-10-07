@@ -7,3 +7,9 @@
 .list-header__title {
     @extend .main-container;
 }
+
+@include mq(min-width, $mediumBreakpoint) {
+	.list-header__title {
+		@include size(font-size, 31);
+	}
+}
