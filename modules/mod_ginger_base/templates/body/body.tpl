@@ -1,3 +1,5 @@
 {% if id.body %}
-    {{ id.body|show_media }}
+    <div class="body-text">
+        {{ id.body|show_media }}
+    </div>
 {% endif %}
