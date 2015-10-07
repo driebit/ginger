@@ -1,7 +1,9 @@
 {% with m.comment.rsc[id] as comments %}
   <div id="comments" class="comments">
 
-        {% include "comments/comments-header.tpl" id=id %}
+        <div id="comments-header" class="comments__header">
+          {% include "comments/comments-header.tpl" id=id %}
+        </div>
 
           <ul id="comments-list" class="comments__list">
             {% if comments %}
