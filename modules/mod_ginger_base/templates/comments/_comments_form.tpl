@@ -8,7 +8,11 @@
             </div>
             {% wire id="comments-form" type="submit" postback={newcomment id=id} delegate="mod_comment" action={fade_out target="comments-area"} action={slide_fade_in target="comments-moderation-notice"} %}
         {% else %}
-            {% wire id="comments-form" type="submit" postback={newcomment id=id comment_template="comment/comment.tpl" action={update target="comments-header" template="comments/comments-header.tpl" id=id} } delegate="mod_comment" %}
+            {% wire id="comments-form" type="submit" postback=
+            {newcomment id=id comment_template="comment/comment.tpl" 
+            action={update target="comments-header" template="comments/comments-header.tpl" id=id} 
+            action={update target="comments-button-wrapper" template="comments-button/comments-button.tpl" id=id}
+            } delegate="mod_ginger_base" %}
         {% endif %}
 
         <div id="comments-area">

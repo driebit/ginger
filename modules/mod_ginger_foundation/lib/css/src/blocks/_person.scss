@@ -22,10 +22,10 @@
 }
 
 .person-profile {
-
-    margin: 0px auto;
     @include size(width, 150);
     @include size(height, 150);
+    margin: 0 auto;
+    @include size(margin-top, 20);
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid $mainThemeColor;
@@ -39,7 +39,7 @@
 
     li {
         float: left;
-        
+
         /*width: 100%;*/
 
         @include mq(min-width, $mediumBreakpoint) {

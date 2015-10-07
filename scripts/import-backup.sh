@@ -5,8 +5,6 @@ URL=$1
 SITE=$2
 
 HOST="localhost"
-USER="zotonic"
-PASSWORD="ginger"
 SCHEMA="public"
 BACKUP_DIR="/srv/zotonic/sites/$SITE/files/backup"
 DOWNLOAD_DIR="/tmp"

@@ -35,6 +35,7 @@ as
         </ul>
 
         {% if hide_button == '0' %}
+            {# TODO: deze moet een catinclude doen ipv letterlijk het template #}
             {% button class="list__more" text=button_text action={moreresults result=result
                 target=list_id
                 template=list_template}

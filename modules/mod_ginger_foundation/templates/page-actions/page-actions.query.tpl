@@ -4,6 +4,5 @@
     </div>
     {% include "share/share.tpl" %}
     {% include "favorite/favorite.tpl" %}
-    {% include "page-actions/page-action-add-thing.tpl" %}
     {% include "page-actions/page-action-edit-thing.tpl" %}
 </div>

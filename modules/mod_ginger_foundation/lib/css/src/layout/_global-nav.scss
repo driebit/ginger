@@ -117,9 +117,11 @@
 }
 
 .btn--nav-actions {
+    width: 50%;
     float: left;
     @include size(padding, 0, 15);
     border-right: 1px solid $white;
+    text-align: center;
 
     img {
         vertical-align: middle;
@@ -129,6 +131,11 @@
     &:active,
     &:focus {
         text-decoration: none;
+        color: $mainThemeColor;
+
+        img {
+            border-color: $mainThemeColor;
+        }
     }
 }
 
@@ -208,8 +215,10 @@
     }
 
     .btn--nav-actions {
+        width: auto;
         border-left: 1px solid $mainNavActionsSeperator;
         border-right: 0px;
+        text-align: left;
     }
 
     .toggle-menu {

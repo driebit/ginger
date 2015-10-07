@@ -1,10 +1,10 @@
 #!/bin/bash
 
-USER="zotonic"
-HOST="localhost"
 DB=$1
 FILE=$2
-PASSWORD="ginger"
+HOST="localhost"
+USER="zotonic"
+PASSWORD="zotonic"
 SCHEMA="public"
 
 # Do service instead of systemctl to be compatible with ginger-test,
