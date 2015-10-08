@@ -10,6 +10,7 @@
     @include size(font-size, 15);
     font-weight: 400;
     box-shadow: 0 2px 4px rgba(0,0,0, .13);
+    text-transform: lowercase;
 
     // because .global-nav has no positioning and .page__wrapper does,
     // .page__wrapper has a higher stacking order and thus the top falls over
@@ -64,11 +65,7 @@
         @include size(padding, 12, 14);
         transition: background 250ms linear;
         text-align: left;
-
-        &:link,
-        &:visited {
-            color: $mainNavPagesColor;
-        }
+        color: $mainNavPagesColor;
 
         &:hover,
         &:active,
@@ -167,7 +164,7 @@
 
 @include mq(min-width, $largeBreakpoint) {
     .logo {
-        width: auto;
+        @include size(max-width, 100);
         @include size(margin-right, 15);
         float: left;
     }

@@ -8,6 +8,7 @@ $bodyFontFamily: 'myriad pro';
 $typographyColor: #35353F;
 $mainThemeColor: #0087D2;
 $secondaryThemeColor: #0087D2;
+$tertiaryThemeColor: #0087D2;
 
 $btnRadius: 18px;
 $interfaceRadius: 4px;
@@ -19,12 +20,6 @@ $mainNavActionsSeperator: $alto;
 $globalNavHeight: 60;
 
 $contentGroupNavHeight: 75;
-
-$paginationBackground: #5B5B6B;
-$paginationActiveBackground: darken($paginationBackground, 10);
-
-$metadataPrimaryBgColor: $secondaryThemeColor;
-$metadataSecondaryBgColor: #24242B;
 
 $listBgColor: #EBEBEB;
 $listHeaderBgColor: darken($listBgColor, 10);
