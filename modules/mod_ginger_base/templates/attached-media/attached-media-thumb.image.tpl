@@ -1,5 +1,5 @@
 <div class="">
-    <a href="{% image_url id %}" class="lightbox" rel="attached-media-group" 
+    <a href="{% image_url id %}" class="lightbox" rel="attached-media" 
         {% if id.summary %}
             title="{{ id.summary }}"
         {% elif id.title %}

@@ -12,7 +12,7 @@
 
     {% elif id.medium.oembed.provider_name|lower == "vimeo" %}
 
-         <a href="https://player.vimeo.com/video/{{ id.medium.oembed.video_id }} " class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media">
+        <a href="https://player.vimeo.com/video/{{ id.medium.oembed.video_id }} " class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media">
         {% image id mediaclass="attached-media" title=id.title alt=id.title %}
             <i class="fa fa-play-circle"></i>
         </a> 
