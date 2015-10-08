@@ -33,35 +33,63 @@
 }
 
 .person-details {
-
+    width: 100%;
     list-style-type: none;
     lost-utility: clearfix;
 
     li {
-        float: left;
+        display: block;
+        width: 100%;
+        @include size(padding, 10, 0);
+        lost-utility: clearfix;
 
-        /*width: 100%;*/
-
-        @include mq(min-width, $mediumBreakpoint) {
-            width: 40%;
+        + li {
+            border-top: 2px dotted $alto;
         }
-
     }
 }
 
 
 .person-detail__label {
+    width: 25%;
+    position: relative;
     float: left;
-    width: 40%;
+    text-transform: lowercase;
+    text-indent: -9999px;
 
     i {
-        display: inline-block;
-        width: 30px;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-indent: 0;
+        //@include size(width, 30);
+        @include size(font-size, 16);
+
+        &.icon--envelope {
+            @include size(font-size, 14);
+        }
     }
 }
 
 .person-detail__link {
+    width: 75%;
     float: left;
-    width: 60%;
 }
 
+@include mq(min-width, $smallBreakpoint) {
+    .person-detail__label {
+        width: 40%;
+        text-indent: 0;
+
+        i {
+            display: inline-block;
+            @include size(width, 30);
+            position: static;
+        }
+    }
+
+    .person-detail__link {
+        width: 60%;
+    }
+}

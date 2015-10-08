@@ -17,6 +17,10 @@
         display: block;
         text-align: right;
     }
+
+    p {
+        margin: 0;
+    }
 }
 
 .meta-location {
@@ -26,6 +30,7 @@
 
 .meta-participants {
     @extend .meta;
+    border-top: 0px;
 
     .icon--person {
         position: relative;
@@ -54,7 +59,7 @@
         [class*="__link"] {
             position: absolute;
             right: 0px;
-            bottom: 10px;
+            bottom: 20px;
         }
     }
 }
