@@ -112,7 +112,8 @@ body.has-content-group {
 
         &:focus,
         &:active,
-        &:hover {
+        &:hover,
+        &.is-active {
             background: darken($mainThemeColor, 5);
             text-decoration: none;
         }

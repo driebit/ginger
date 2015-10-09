@@ -3,7 +3,6 @@
     @include size(padding-top, 10);
 
     &.is-collapsed {
-
         @include size(height, 550);
         overflow: hidden;
         border-bottom: 2px solid $mainThemeColor;
@@ -35,6 +34,11 @@
         width: 100%;
         margin-bottom: 0;
     }
+}
+
+.foldout--sided {
+    @extend .foldout;
+    @include size(max-width, 645);
 }
 
 @include mq(min-width, $smallBreakpoint) {

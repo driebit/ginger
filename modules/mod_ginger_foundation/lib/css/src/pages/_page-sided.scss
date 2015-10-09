@@ -1,0 +1,6 @@
+.page--sided {
+    padding-top: 0;
+    @include size(max-width, 995);
+    margin-left: auto;
+    margin-right: auto;
+}

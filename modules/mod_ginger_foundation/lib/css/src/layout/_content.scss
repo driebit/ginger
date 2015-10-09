@@ -1,4 +1,5 @@
 main {
+    lost-utility: clearfix;
     position: relative;
     z-index: 100;
 }
@@ -17,6 +18,11 @@ main {
     background-color: $white;
 }
 
+.main-content--sided {
+    @extend .main-content;
+    @include size(max-width, 645);
+    @include size(margin-top, 80);
+}
 
 @include mq(min-width, 900) {
     main {
@@ -33,5 +39,11 @@ main {
 
     .main-content {
         @include size(padding, 30);
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .main-content--sided {
+        float: left;
     }
 }

@@ -1,3 +1,13 @@
+.part-of--aside {
+    @include size(padding, 15);
+    @include size(margin-bottom, 30);
+    background: $white;
+
+    .part-of__title {
+        @extend .main-aside__title;
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint){
     .part-of {
         @include size(height, 30);

@@ -10,8 +10,8 @@
 
     <main role="main">
 
-        <div class="foldout do_foldout">
-        
+        <div class="foldout">
+
             {% catinclude "category-of/category-of.tpl" id %}
 
             {% include "foldout/foldout-button.tpl" %}

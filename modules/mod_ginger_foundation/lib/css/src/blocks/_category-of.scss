@@ -41,3 +41,10 @@
 .category-of__location {
     @extend .category-of__right;
 }
+
+.category-of--sided {
+    @extend .category-of;
+    position: absolute;
+    @include size(top, -35);
+    left: 0px;
+}
