@@ -37,7 +37,6 @@
 
                 {% include "attached-media/attached-media.tpl" id=id %}
 
-
             </article>
 
         </div>

@@ -1,0 +1,1 @@
+<a class="media-download" href="/media/attachment/{{ id.medium.filename }}">download</a>
