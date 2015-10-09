@@ -16,10 +16,11 @@
             $(".lightbox").fancybox({
                     'openEffect': "fade",
                     'autoScale': true,
-                    autoCenter: true,
-                    helpers : {
-                        overlay : {
-                            css : {
+                    'margin': 50,
+                    'autoCenter': true,
+                    'helpers' : {
+                        'overlay' : {
+                            'css' : {
                                 'background' : 'rgba(246, 246, 246, 0.75)'
                             },
                         locked: false
