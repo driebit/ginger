@@ -1,3 +1,5 @@
-<a href="/image/{{ id.medium.filename }}" target="_blank">
-    {% image id mediaclass="attached-media" title=id.title alt=id.title %}
-</a>
+<li>
+    <a href="/image/{{ id.medium.filename }}" target="_blank">
+        <i class="icon--download"></i> {{ id.title }}
+    </a>
+</li>

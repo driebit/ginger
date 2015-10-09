@@ -3,32 +3,35 @@
 
     {% if deps or docs %}
 
-        <h3>ATTACHED MEDIA</h3>
-
         <div class="attached-media">
 
-            {% if deps or docs %}
-                <div class="">
-                    {{ id | pprint }}
-                    {% with deps|without_embedded_media:id|make_list++docs|without_embedded_media:id|make_list as list %}
+            <h2 class="attached-media__title">{_ Media gallery _}</h2>
 
-                        <h1>media</h1>
+            {% if deps or docs %}
+                {% with deps|without_embedded_media:id|make_list++docs|without_embedded_media:id|make_list as list %}
+                    <div class="attached-media__media">
+                        <h3 class="attached-media__subtitle">{_ Media _}</h3>
+
                         {% for item in list %}
                             {% if item|is_not_a:"document" %}
                                 {% catinclude "attached-media/attached-media-thumb.tpl" item %}
                             {% endif %}
                         {% endfor %}
-                       
-                        <h1>docs</h1>
-                        {% for item in list %}
-                            {% if item|is_a:"document" %}
-                                {% catinclude "attached-media/attached-media-thumb.tpl" item %}
-                            {% endif %}
-                        {% endfor %}
+                    </div>
 
-                    {% endwith %}   
+                    <div class="attached-media__documents">
+                        <h3 class="attached-media__subtitle">{_ Documents _}</h3>
 
-                </div>
+                        <ul>
+                            {% for item in list %}
+                                {% if item|is_a:"document" %}
+                                    {% catinclude "attached-media/attached-media-thumb.tpl" item %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                {% endwith %}
             {% endif %}
 
         </div>
