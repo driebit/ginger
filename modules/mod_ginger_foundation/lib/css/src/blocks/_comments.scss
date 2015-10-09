@@ -26,3 +26,69 @@
         @include size(margin-top, 10);
     }
 }
+
+.comment {
+    @include size(padding, 20, 0);
+    lost-utility: clearfix;
+    position: relative;
+    @include size(font-size, 14);
+    list-style-type: none;
+
+    + .comment {
+        border-top: 2px dotted #B7B7B7;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+
+    .avatar__image {
+        @include size(height, 50);
+        @include size(width, 50);
+        border-radius: 50%;
+    }
+}
+
+.comment__body {
+    width: 60%;
+    margin-left: 5%;
+    float: left;
+}
+
+.comment__about {
+    width: 35%;
+    @include size(padding, 0, 10);
+    float: left;
+    @include size(font-size, 12);
+    @include size(line-height, 18);
+    text-align: center;
+    color: #B0B0B0;
+    @include size(font-size, 14);
+    line-height: 1;
+
+    h3 {
+        margin: 0;
+        @include size(margin-top, 5);
+        @include size(font-size, 14);
+        line-height: 1;
+    }
+}
+
+.comment__meta {
+    @include size(max-width, 140);
+    margin: 0 auto;
+}
+
+.comment--author {
+    @extend .comment;
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .comment {
+        @include size(padding, 30, 0);
+    }
+
+    .comment__body {
+        margin-left: 0;
+    }
+}
