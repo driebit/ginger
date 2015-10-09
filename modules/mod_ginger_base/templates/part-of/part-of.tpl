@@ -1,4 +1,4 @@
-{% with id.s.haspart as collections %}
+{% with id.s.haspart|exclude:`name`:"navigation" as collections %}
     {% if collections %}
         <p class="part-of">
             <span>{_ Part of: _}</span>
@@ -8,5 +8,3 @@
         </p>
     {% endif %}
 {% endwith %}
-
-

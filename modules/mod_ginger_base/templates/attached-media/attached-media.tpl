@@ -9,8 +9,8 @@
 
             {% if deps or docs %}
 
-                {% with deps|without_embedded_media:id|is_not_a:"document"|make_list++docs|without_embedded_media:id|is_not_a:"document"|make_list as deps_list %}
-                {% with deps|without_embedded_media:id|is_a:"document"|make_list++docs|without_embedded_media:id|is_a:"document"|make_list as docs_list %}
+                {% with deps|is_not_a:"document"|make_list++docs|is_not_a:"document"|make_list as deps_list %}
+                {% with deps|is_a:"document"|make_list++docs|is_a:"document"|make_list as docs_list %}
 
                     {% if deps_list %}
                         <div class="attached-media__media">
