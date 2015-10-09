@@ -260,22 +260,12 @@
     }
 
     .list__item__content {
-        position: absolute;
-        @include size(bottom, -300);
-        left: 0px;
+        position: relative;
+        bottom: auto;
+        left: auto;
         transition: bottom 0.4s ease-in-out;
         background: rgba($white, 0.9);
     }
-
-    // TODO: in the beach zetten
-
-    // .list__item__content {
-    //     position: absolute;
-    //     @include size(bottom, -300);
-    //     left: 0px;
-    //     transition: bottom 0.4s ease-in-out;
-    //     background: rgba($white, 0.9);
-    // }
 
     .list__more {
         @include size(padding, 19, 20, 16);
