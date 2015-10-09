@@ -1,0 +1,93 @@
+.fancybox-btn {
+    @include size(width, 40);
+    @include size(height, 40);
+    background: $white;
+    border: 2px solid $mainThemeColor;
+    border-radius: 50%;
+    @include size(line-height, 42);
+    cursor: pointer;
+    z-index: 8040;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        background: $mainThemeColor;
+        color: $white;
+    }
+}
+
+.fancybox-nav {
+    width: 10%;
+
+    span {
+        @extend .fancybox-btn;
+        @include size(margin-top, -20);
+        position: absolute;
+        top: 50%;
+        visibility: hidden;
+
+        &:before {
+            @extend .has-icon;
+            position: relative;
+        }
+    }
+}
+
+.fancybox-prev {
+    left: -15px;
+
+    span {
+        left: -10px;
+
+        &:before {
+            @extend .icon--arrow-left:before;
+            left: -1px;
+        }
+    }
+}
+
+.fancybox-next {
+    right: -15px;
+
+    span {
+        right: -10px;
+
+        &:before {
+            @extend .icon--arrow-right:before;
+            left: 1px;
+        }
+    }
+}
+
+.fancybox-close {
+    @extend .fancybox-btn;
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    @include size(line-height, 39);
+
+    &:before {
+        @extend .has-icon;
+        @extend .icon--close:before;
+        @include size(font-size, 14);
+    }
+}
+
+.fancybox-title-float-wrap .child {
+    background: rgba($mainThemeColor, 0.8);
+    text-shadow: none;
+}
+
+
+@include mq(min-width, $smallBreakpoint) {
+    .fancybox-prev {
+        left: -30px;
+    }
+
+    .fancybox-next {
+        right: -30px;
+    }
+}

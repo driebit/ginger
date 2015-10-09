@@ -8,20 +8,24 @@
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/menu-extends';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/page-actions-extends';
 
+//Vendors
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/vendors/jquery.fancybox';
 
 // Blocks
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/attached-media';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/category-of';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/comments';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/content-group-nav';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/copyrights';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/dialog-language';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/dialog-profile';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/fancybox';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/favorite';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/foldout-button';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/global-search';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/keywords';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/list';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/list-header'
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/list-header';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/masthead';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/meta';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/page-actions';
@@ -30,7 +34,6 @@
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/share';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/summary';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/toggle-menu';
-
 
 // Layout
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/content';

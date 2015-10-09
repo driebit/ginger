@@ -33,10 +33,9 @@
 
                 {% include "copyrights/copyrights.tpl" id=id %}
 
-                {% include "comments/comments.tpl" id=id %}
-
                 {% include "attached-media/attached-media.tpl" id=id %}
 
+                {% include "comments/comments.tpl" id=id %}
             </article>
 
         </div>

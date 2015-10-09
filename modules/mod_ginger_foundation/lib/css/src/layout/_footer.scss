@@ -39,6 +39,10 @@
 
     li {
         display: inline-block;
+
+        + li {
+            @include size(margin-left, 5);
+        }
     }
 
     a {
