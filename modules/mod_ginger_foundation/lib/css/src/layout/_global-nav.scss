@@ -119,6 +119,7 @@
     @include size(padding, 0, 15);
     border-right: 1px solid $white;
     text-align: center;
+    @include size(line-height, $globalNavHeight);
 
     img {
         vertical-align: middle;

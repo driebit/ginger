@@ -1,5 +1,5 @@
 {% if m.acl.user %}
-    {% with title|default:_"Profiel" as title %}
+    {% with title|default:_"Profile" as title %}
     {% with class|default:"profile--global-nav" as class %}
     {% with #profile as profile_wire_id %}
 
@@ -22,7 +22,7 @@
         id=#profile
         action={
             dialog_open
-            title=_"Profiel"
+            title=_"Profile"
             template="dialog-profile/dialog-profile.tpl"
         }
     %}

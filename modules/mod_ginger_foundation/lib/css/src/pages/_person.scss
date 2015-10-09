@@ -1,6 +1,5 @@
 .t--person {
     main {
-
         @include size(padding-top, 20);
 
         @include mq(min-width, $smallBreakpoint) {
@@ -10,7 +9,5 @@
         @include mq(min-width, $largeBreakpoint) {
             @include size(padding-top, 60);
         }
-
     }
-
 }

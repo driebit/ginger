@@ -1,5 +1,6 @@
 .page-actions {
-    @include size(margin-bottom, 30);
+    @include size(margin-top, 30);
+    @include size(margin-bottom, 20);
 }
 
 .page-action--edit,

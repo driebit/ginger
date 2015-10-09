@@ -6,331 +6,318 @@
 # NB: Consider using poEdit <http://poedit.sourceforge.net>
 #
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-10-08 15:03+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:44 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:100 
-msgid ""
-"All rights reserved"
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:44
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:100
+msgid "All rights reserved"
+msgstr "Alle rechten voorbehouden"
+
+#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5
+msgid "Based on these keywords:"
+msgstr "Gebaseerd op deze trefwoorden:"
+
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:23
+#: /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6
+msgid "By:"
+msgstr "Door:"
+
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12
+msgid "Cancel RSVP"
+msgstr "Afmelden"
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12
+msgid "Choose language"
+msgstr "Kies je taal"
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/dialog-language.tpl:4
+msgid "Choose your language"
+msgstr "Kies je taal"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:2
+msgid "Copyrights"
+msgstr "Copyrights"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:35
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18
+msgid "E-mail"
+msgstr "E-mail"
+
+#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:10
+#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:11
+msgid "E-mail address"
+msgstr "E-mail adres"
+
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:9
+msgid "Edit"
+msgstr "Bewerk"
+
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:7
+msgid "Edit page"
+msgstr "Bewerk pagina"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9
+msgid "Facebook"
+msgstr "Facebook"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:48
+msgid "Go to Facebook"
+msgstr "Ga naar Facebook"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:58
+msgid "Go to LinkedIn"
+msgstr "Ga naar Linkedin"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:68
+msgid "Go to Twitter"
+msgstr "Ga naar Twitter"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:38
+msgid "Go to website"
+msgstr "Ga naar website"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12
+msgid "Help about page actions"
+msgstr "Hulp met pagina acties"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:19
+msgid "Leave a comment"
+msgstr "Laat een bericht achter"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15
+msgid "LinkedIn"
+msgstr "Linkedin"
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:16
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:4
+msgid "Location"
+msgstr "Locatie"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:63
+msgid "Log on or sign up to comment"
+msgstr "Login of registreer om een bericht achter te laten"
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:6
+msgid "Logged in as"
+msgstr "Ingelogd als"
+
+#: /vagrant/modules/mod_ginger_base/templates/toggle-menu/toggle-menu.tpl:2
+msgid "Menu"
+msgstr "Menu"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:44
+msgid "Message"
+msgstr "Bericht"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:26
+msgid "Mobile number"
+msgstr "Mobiele nummer"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:27
+msgid "Name"
+msgstr "Naam"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12
+msgid "Need more help?"
+msgstr "Meer hulp nodig?"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:21
+msgid "Note: Comments are moderated"
+msgstr "Berichten worden gemodereerd"
+
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:16
+msgid "Nothing found"
+msgstr "Geen resultaten"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10
+msgid "Page actions"
+msgstr "Pagina acties"
+
+#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of.tpl:4
+msgid "Part of:"
+msgstr "Onderdeel van:"
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-participants.tpl:3
+msgid "Participants"
+msgstr "Deelnemers"
+
+#: /vagrant/modules/mod_ginger_base/templates/comment/comment.tpl:21
+msgid "Posted"
+msgstr "Geplaatst"
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:2
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:25
+msgid "Profile"
+msgstr "Profiel"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46
+msgid "RSVP"
+msgstr "Aanmelden"
+
+#: /vagrant/modules/mod_ginger_base/templates/foldout/foldout-button.tpl:1
+msgid "Read more"
+msgstr "Lees meer"
+
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16
+#: /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2
+msgid "Search"
+msgstr "Zoeken"
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:51
+msgid "Send"
+msgstr "Verzenden"
+
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:4
+msgid "Share"
+msgstr "Delen"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:32
+msgid "Short title"
+msgstr "Korte titel"
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:23
+msgid "Show map"
+msgstr "Toon kaart"
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:8
+msgid "Show more results..."
+msgstr "Toon meer"
+
+#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:27
+msgid "Sign out"
+msgstr "Log uit"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:18
+msgid "Subtitle"
+msgstr "Subtitel"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:25
+msgid "Summary"
+msgstr "Inleiding"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16
+msgid "Telephone number"
+msgstr "Telefoonnummer"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12
+msgid "This event is able to accept RSVP."
+msgstr "Bezoekers kunnen zich aanmelden voor dit evenement"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6
+msgid "Title"
+msgstr "Titel"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66
+#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12
+msgid "Twitter"
+msgstr "Twitter"
+
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36
+msgid "Website"
+msgstr "Website"
+
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:37
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:88
+msgid "You may use the work freely"
+msgstr "Het werk mag vrijblijvend gebruikt worden"
+
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:15
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:13
+msgid "You must give the original author credit"
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden"
 
-#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
-msgid ""
-"Based on these keywords:"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:23 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6 
-msgid ""
-"By:"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-language/dialog-language.tpl:4 
-msgid ""
-"Choose your language"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:2 
-msgid ""
-"Copyrights"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:31 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 
-msgid ""
-"E-mail"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:10 /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:11 
-msgid ""
-"E-mail address"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:17 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:9 
-msgid ""
-"Edit"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:15 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:7 
-msgid ""
-"Edit page"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
-msgid ""
-"Email"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9 
-msgid ""
-"Facebook"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:48 
-msgid ""
-"Go to Facebook"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:58 
-msgid ""
-"Go to LinkedIn"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:68 
-msgid ""
-"Go to Twitter"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:38 
-msgid ""
-"Go to website"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12 
-msgid ""
-"Help about page actions"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:15 
-msgid ""
-"Leave a comment"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15 
-msgid ""
-"LinkedIn"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:31 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:4 
-msgid ""
-"Location"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:59 
-msgid ""
-"Log on or sign up to comment"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:6 
-msgid ""
-"Logged in as"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/toggle-menu/toggle-menu.tpl:2 
-msgid ""
-"Menu"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:40 
-msgid ""
-"Message"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:26 
-msgid ""
-"Mobile number"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:23 
-msgid ""
-"Name"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12 
-msgid ""
-"Need more help?"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:17 
-msgid ""
-"Note: Comments are moderated"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:16 
-msgid ""
-"Nothing found"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10 
-msgid ""
-"Page actions"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of.tpl:4 
-msgid ""
-"Part of:"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-participants.tpl:3 
-msgid ""
-"Participants"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comment/comment.tpl:21 
-msgid ""
-"Posted"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:2 /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:25 
-msgid ""
-"Profiel"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 
-msgid ""
-"RSVP"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/foldout/foldout-button.tpl:1 /vagrant/modules/mod_ginger_base/templates/foldout/foldout-button.tpl:1 
-msgid ""
-"Read more"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10 /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16 /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2 
-msgid ""
-"Search"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:47 
-msgid ""
-"Send"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:4 
-msgid ""
-"Share"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:32 
-msgid ""
-"Short title"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:23 
-msgid ""
-"Show map"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:27 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12 
-msgid ""
-"Sign out"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46 
-msgid ""
-"Sign up"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:18 
-msgid ""
-"Subtitle"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:25 
-msgid ""
-"Summary"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12 
-msgid ""
-"Taalkeuze"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16 
-msgid ""
-"Telephone number"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12 
-msgid ""
-"This event is able to accept RSVP."
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6 
-msgid ""
-"Title"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:8 
-msgid ""
-"Toon meer resultaten..."
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12 
-msgid ""
-"Twitter"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36 
-msgid ""
-"Website"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:37 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:88 
-msgid ""
-"You may use the work freely"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:15 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:13 
-msgid ""
-"You must give the original author credit"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:5 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:63 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:5
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:63
 msgid ""
 "You must give the original author credit, this work must be licensed under "
 "an identical license if used"
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
+"indien de gebruiker het werk bewerkt kan het daaruit ontstane werk "
+"uitsluitend krachtens dezelfde licentie als de onderhavige licentie worden "
+"verspreid."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:10 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:25 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:10
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:25
 msgid ""
-"You must give the original author credit, you may not alter, transform, "
-"or build upon this work."
+"You must give the original author credit, you may not alter, transform, or "
+"build upon this work."
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
+"de gebruiker mag het werk niet bewerken."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:26 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:38 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:26
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:38
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes"
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
+"de gebruiker mag het werk niet voor commerciële doeleinden gebruiken"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:31 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:76 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:31
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:76
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes, this work must be licensed under an identical license "
 "if used"
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
+"de gebruiker mag het werk niet voor commerciële doeleinden gebruiken, indien "
+"de gebruiker het werk bewerkt kan het daaruit ontstane werk uitsluitend "
+"krachtens dezelfde licentie als de onderhavige licentie worden verspreid."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:20 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:50 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:20
+#: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:50
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes, you may not alter, transform, or build upon this work"
 msgstr ""
+"De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
+"de gebruiker mag het werk niet voor commerciële doeleinden gebruiken, de "
+"gebruiker mag het werk niet bewerken"
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:7 
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:7
 msgid ""
 "Your comment has been saved and will be subject to review before it is "
 "displayed to other visitors of the website. Thank you for your comment!"
 msgstr ""
+"Je bericht is opgeslagen en zal bekeken worden door de moderator voordat het "
+"geplaatst zal worden. Bedankt voor je bericht!"
 
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:50 
-msgid ""
-"logon or register"
-msgstr ""
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:50
+msgid "logon or register"
+msgstr "Login of registreer"
 
-#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:17 
-msgid ""
-"mailchimp-sign-up"
-msgstr ""
+#: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:17
+msgid "mailchimp-sign-up"
+msgstr "mailchimp-sign-up"
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1 
-msgid ""
-"reactions"
-msgstr ""
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1
+msgid "reactions"
+msgstr "reacties"
+
+#~ msgid "Email"
+#~ msgstr "E-mail"
+
+#~ msgid "Sign up"
+#~ msgstr "Log in"
