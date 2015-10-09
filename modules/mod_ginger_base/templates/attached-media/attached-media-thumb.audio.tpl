@@ -1,5 +1,5 @@
 <a class="lightbox" rel="attached-media" href="#audio-{{ id.id}} ">
-     {% image id mediaclass="attached-media" title=id.title alt=id.title %}
+     {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
 </a>
 
 <div id="audio-{{ id.id}}" style="display: none">

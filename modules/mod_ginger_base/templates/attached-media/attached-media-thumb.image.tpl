@@ -5,5 +5,5 @@
         title = "{{ id.title }}"
     {% endif %}
     >
-    {% image id mediaclass="attached-media" class="" title=id.title alt=id.title crop=id.depiction.id.crop_center %}
+    {% image id mediaclass="media-thumb" class="" title=id.title alt=id.title crop=id.depiction.id.crop_center %}
 </a>
