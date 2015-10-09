@@ -1,7 +1,7 @@
-<figure>
+<figure class="align-{{ align }}" >
 
     {% if link %} 
-         <a href="{{ id.page_url }}" class="media--image {{ extraClasses }} align-{{ align }}
+         <a href="{{ id.page_url }}" class="media--image {{ extraClasses }} 
         " 
         {% if id.title %}
             title="{{ id.title }}"
