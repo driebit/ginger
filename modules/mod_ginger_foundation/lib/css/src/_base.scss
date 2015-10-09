@@ -100,30 +100,33 @@ blockquote {
     border-left: 5px solid $mainThemeColor;
 }
 
-.align-left {
-    float: left;
+iframe {
+    width: 100%;
+    @include size(height, 370);
 }
 
-.align-right {
-    float: right;
+@include mq(max-width, $smallBreakpoint) {
+    iframe {
+        @include size(height, 250);
+    }
+}
+
+.body-text {
+    ul {
+        @include size(margin-left, 20);
+    }
 }
 
 // Editor generated
 
-img.left,
-p.left,
-ul.left {
+.align-left {
     clear: left;
     float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
+    @include size(margin-right, 10);
 }
 
-img.right,
-p.right,
-ul.right {
+.align-right {
     clear: right;
     float: right;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    @include size(margin-right, 10);
 }

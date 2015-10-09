@@ -3,8 +3,7 @@
         {% include "person/person-author.tpl" id=id %}
     </div>
     {% include "share/share.tpl" %}
-    {% include "favorite/favorite.tpl" %}
-    
+
     {% if m.modules.enabled|index_of:"mod_comment" %}
         <div id="comments-button-wrapper">{% include "comments-button/comments-button.tpl" id=id %}</div>
     {% endif %}

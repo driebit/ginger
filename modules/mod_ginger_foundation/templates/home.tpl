@@ -8,8 +8,7 @@
 {% with m.rsc.home.id as id %}
     {% include "masthead/masthead.tpl" id=id %}
 
-    <main role="main">
-
+    <main role="main" page-id="{{ id|pprint }}">
         <div class="foldout">
 
             {% include "foldout/foldout-button.tpl" %}
@@ -25,7 +24,7 @@
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
-                
+
                 {% include "home/home-buttons.tpl" id=id %}
             </article>
 
