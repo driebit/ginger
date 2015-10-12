@@ -8,10 +8,18 @@
 -mod_description("Ginger Base").
 -mod_prio(250).
 
--export([event/2]).
+-export([
+    event/2,
+    init/1
+]).
 
 -include("zotonic.hrl").
-    
+
+%% @doc Initialize mod_ginger_base
+-spec init(#context{}) -> ok.
+init(Context) ->
+    ginger_config:install_config(Context).
+
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
     ExtraActions = proplists:get_all_values(action, Args),
