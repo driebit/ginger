@@ -124,7 +124,7 @@
     position: absolute;
     @include size(top, -30);
     left: 0px;
-    @include size(line-height, 30);
+    line-height: 1;
 }
 
 .list__item__content__category {
@@ -132,9 +132,12 @@
     @include size(padding, 0, 10);
     background: $mainThemeColor;
     color: $white;
+    line-height: 1;
 
     i {
-        margin-right: 5px;
+        @include size(margin-right, 10);
+        position: relative;
+        top: -3px;
         vertical-align: middle;
     }
 }
@@ -149,7 +152,6 @@
 
 .list__more {
     display: block;
-    width: 75%;
     @extend .btn;
     margin: 0 auto;
     background: $mainThemeColor;
@@ -173,14 +175,16 @@
     .list__item__content__meta {
         width: 100%;
         height: auto;
-        @include size(margin-top, 10);
+        @include size(padding, 15);
+        padding-bottom: 0;
+        margin-bottom: 0;
         background: $white;
         position: static;
     }
 
     .list__item__content {
-        width: 100%;
-        padding: 0;
+        padding-top: 0;
+        margin-top: 0;
     }
 
     .list__item__content__date {
@@ -188,10 +192,6 @@
         @include size(margin, 5, 0, 0);
         background: none;
         color: $mainThemeColor;
-    }
-
-    .list__item__content__location {
-        margin: 0 0 1em 0;
     }
 }
 

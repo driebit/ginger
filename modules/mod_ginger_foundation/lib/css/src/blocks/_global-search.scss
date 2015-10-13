@@ -102,6 +102,14 @@
 }
 
 @include mq(min-width, $largeBreakpoint) {
+    .global-search__searchform {
+        &.is-visible {
+            &:before {
+                top: 22px;
+            }
+        }
+    }
+
     .global-search__toggle-search {
         width: auto;
         height: 100%;
@@ -141,7 +149,7 @@
             margin-right: 0;
             position: absolute;
             right: 15px;
-            top: 9px;
+            top: 17px;
             text-indent: -9999px;
             border: none;
 

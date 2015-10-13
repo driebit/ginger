@@ -1,17 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="17.937px" height="20px" viewBox="0 0 17.937 20" enable-background="new 0 0 17.937 20" xml:space="preserve">
-<g>
-	<path fill="#054163" d="M0.618,8.774v9.408c0,1,0.818,1.817,1.818,1.817h13.682c1,0,1.818-0.817,1.818-1.817V8.774H0.618z
-		 M12.627,14.86L12.627,14.86l-0.007,0.005c-0.036,0.028-0.075,0.054-0.118,0.073l-4.559,2.806
-		c-0.021,0.017-0.044,0.028-0.067,0.042l-0.023,0.014l-0.001-0.001c-0.08,0.039-0.169,0.063-0.264,0.063
-		c-0.335,0-0.606-0.271-0.606-0.606V11.52c0-0.335,0.271-0.607,0.606-0.607c0.116,0,0.224,0.035,0.316,0.092h0.001l0.018,0.01
-		c0.001,0.001,0.003,0.002,0.005,0.003l4.589,2.827c0.035,0.018,0.068,0.038,0.099,0.062l0.012,0.007v0.002
-		c0.139,0.111,0.229,0.281,0.229,0.473C12.856,14.58,12.766,14.749,12.627,14.86"/>
-	<path fill="#054163" d="M1.068,7.627l15.798-5.065c0.191-0.061,0.297-0.267,0.236-0.457l-0.594-1.853
-		c-0.062-0.19-0.268-0.296-0.458-0.235L0.253,5.082c-0.19,0.061-0.297,0.267-0.235,0.457l0.594,1.853
-		C0.673,7.582,0.879,7.688,1.068,7.627"/>
-</g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="9px" height="10px" viewBox="0 0 9 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>Imported Layers Copy 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Style-guides" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M0.5,1.22946667 C0.5,0.734344444 0.878095106,0.333333333 1.34492329,0.333333333 C1.4898924,0.333333333 1.58162166,0.373422222 1.74330024,0.441744444 L7.67032419,4.09912222 C7.94585769,4.27255556 8.07365637,4.55097778 8.12274766,4.87181111 L8.12274766,4.96201111 C8.07365637,5.28284444 7.94585769,5.56114444 7.67032419,5.73445556 L1.74330024,9.39158889 C1.58162166,9.45991111 1.4898924,9.5 1.34492329,9.5 C0.878095106,9.5 0.5,9.09898889 0.5,8.60386667 L0.5,1.22946667" id="Imported-Layers-Copy-2" fill="#000000" sketch:type="MSShapeGroup"></path>
+    </g>
 </svg>
