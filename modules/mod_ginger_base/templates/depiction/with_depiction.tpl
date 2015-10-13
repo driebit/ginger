@@ -12,13 +12,9 @@ as
     {% with id.o.hasicon[1] as icon_id %}
     {% with fallback_rsc_id|default:m.rsc.fallback.id as fallback_id %}
 
-    {% if first_media_id or icon_id or depiction_id or fallback_id %}
-
         {% with m.rsc[first_media_id]|default:m.rsc[icon_id]|default:m.rsc[depiction_id]|default:m.rsc[fallback_id] as dep_rsc %}
             {% block with_depiction %}{% endblock %}
         {% endwith %}
-
-    {% endif %}
 
     {% endwith %}
     {% endwith %}
