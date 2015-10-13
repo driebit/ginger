@@ -3,8 +3,8 @@
 {% with btn_like_text|default:_"Like" as btn_like_text %}
 
     {% if m.edge.id[subject_id].interest[object_id]|is_defined %}
-        <div id='link-button'>
-            {% button text=btn_unlike_text class=btn_class
+        <div id='link-button' class='active'>
+            {% button text=btn_unlike_text class=btn_class++ " is-active"
                         action={
                             unlink
                             subject_id=subject_id
