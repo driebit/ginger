@@ -1,4 +1,3 @@
-
 {% if id %}
 
     {% if id.category.name == 'location' and id.address_street_1 %}
@@ -32,5 +31,3 @@
     {% endif %}
 
 {% endif %}
-
-
