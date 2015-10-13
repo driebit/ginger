@@ -4,8 +4,8 @@
             <h3 class="part-of__title">{_ Part of: _}</h3>
             <ul>
                 {% for collection in collections %}
-                {% include "list/list-item.tpl" id=collection %}
-            {% endfor %}
+                    {% include "list/list-item.tpl" id=collection %}
+                {% endfor %}
             </ul>
         </div>
     {% endif %}
