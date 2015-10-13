@@ -14,7 +14,7 @@
     {% else %}
 
         {% with
-            id.o.hasbanner[1].depiction|default:id.depiction as banner %}
+            id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
 
             {% if banner %}
                 {% if banner.width > 500 %}
