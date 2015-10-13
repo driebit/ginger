@@ -4,7 +4,9 @@
     </div>
     {% include "share/share.tpl" %}
     {% include "page-actions/page-action-rsvp.tpl" %}
-    {% include "comments-button/comments-button.tpl" id=id %}
+    {% if m.modules.enabled|index_of:"mod_comment" %}
+        <div id="comments-button-wrapper">{% include "comments-button/comments-button.tpl" id=id %}</div>
+    {% endif %}
 
     {% include "page-actions/page-action-edit-thing.tpl" %}
 </div>

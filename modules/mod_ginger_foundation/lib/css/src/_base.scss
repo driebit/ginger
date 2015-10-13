@@ -9,7 +9,7 @@ html,body {
 }
 
 body {
-    @include size(padding-top, $globalNavHeight);
+    @include size(padding-top, 60);
     background: $bodyBgColor;
     color: $typographyColor;
     line-height: 1.5;
@@ -22,10 +22,20 @@ body {
         width: 100%;
         height: 100vh;
         position: fixed;
-        @include size(top, $globalNavHeight);
+        @include size(top, 60);
         left: 0px;
         z-index: 400;
         background: rgba(0,0,0, 0.5);
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    body {
+        @include size(padding-top, $globalNavHeight);
+
+        &.is-menu-visible:before {
+            @include size(top, $globalNavHeight);
+        }
     }
 }
 

@@ -11,11 +11,13 @@
     <main role="main">
 
         <div class="foldout do_foldout">
+
             {% catinclude "category-of/category-of.tpl" id %}
 
             {% include "foldout/foldout-button.tpl" %}
 
             <article class="main-content">
+
                 {% include "page-title/page-title.tpl" id=id %}
 
                 {% include "subtitle/subtitle.tpl" id=id %}

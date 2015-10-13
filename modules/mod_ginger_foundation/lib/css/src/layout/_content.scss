@@ -8,7 +8,7 @@ main {
     width: 90%;
     @include size(max-width, 720);
     margin: 0 auto;
-    @include size(margin-bottom, 100);
+    @include size(margin-bottom, $standardOffset);
     position: relative;
 }
 

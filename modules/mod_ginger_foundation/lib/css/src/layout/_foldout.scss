@@ -1,11 +1,11 @@
 .foldout {
     @extend .main-content-extend;
     @include size(padding-top, 10);
+    border-bottom: 2px solid $mainThemeColor;
 
     &.is-collapsed {
         @include size(height, 550);
         overflow: hidden;
-        border-bottom: 2px solid $mainThemeColor;
 
         .foldout__button {
             display: block;

@@ -1,12 +1,12 @@
 body.has-content-group .masthead {
-    top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+    top: calc(60px + #{$contentGroupNavHeight}px);
 }
 
 .masthead {
     width: 100%;
     @include size(height, 300);
     position: absolute;
-    @include size(top, $globalNavHeight);
+    @include size(top, 60);
     left: 0;
     z-index: 10;
     background: #FFF url(/lib/images/bg_rectangle.png?embed) center center repeat;
@@ -15,8 +15,13 @@ body.has-content-group .masthead {
 
 
 @include mq(min-width, $mediumBreakpoint) {
+    body.has-content-group .masthead {
+        top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+    }
+
     .masthead {
         @include size(height, 450);
+        @include size(top, $globalNavHeight);
     }
 }
 

@@ -8,5 +8,6 @@
         <div id="comments-button-wrapper">{% include "comments-button/comments-button.tpl" id=id %}</div>
     {% endif %}
 
+    {% include "page-actions/page-action-add-thing.tpl" %}
     {% include "page-actions/page-action-edit-thing.tpl" %}
 </div>

@@ -1,0 +1,57 @@
+.home__search {
+    @include size(padding, 40, 0);
+    position: relative;
+    background: $secondaryThemeColor;
+    color: $white;
+
+    input {
+        width: 100%;
+        @include size(height, 45);
+        @include size(padding, 0, 55, 0, 10);
+        @include size(line-height, 45);
+        border: none;
+        color: $typographyColor;
+        border-radius: 3px;
+    }
+
+    .btn--search {
+        @include size(height, 45);
+        background: $mainThemeColor;
+        color: $white;
+        @include size(font-size, 29);
+        text-indent: -9999px;
+        border-radius: 0;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        @include size(padding-top, 6);
+
+        i {
+            text-indent: 0;
+            position: absolute;
+            top: 8px;
+            left: 16px;
+        }
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .home__search {
+        .main-container {
+            @include size(max-width, 700);
+        }
+
+        .btn--search {
+            width: auto;
+            text-indent: 0px;
+            @include size(font-size, 24);
+            text-transform: none;
+
+            i {
+                @include size(margin-right, 5);
+                position: static;
+                @include size(font-size, 20);
+                font-weight: 900;
+            }
+        }
+    }
+}

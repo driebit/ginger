@@ -28,12 +28,13 @@
                 {% include "blocks/blocks.tpl" id=id %}
 
                 {% include "comments/comments.tpl" id=id %}
-                
+
             </article>
 
         </div>
         {% if id.o.haspart %}
             <aside class="main-aside">
+                {# TODO: nu houd hij de volgorde van de collectie niet meer aan #}
                 {% with m.search[{query hassubject=[id,'haspart'] pagelen=6}] as result %}
 
                     {% include "list/list-header.tpl" id=id list_title=_"Inhoud" items=result %}

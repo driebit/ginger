@@ -1,12 +1,12 @@
 .global-nav {
     width: 100%;
-    @include size(height, $globalNavHeight);
+    @include size(height, 60);
     position: fixed;
     top: 0;
     left: 0;
     z-index: 500;
     background-color: $white;
-    @include size(line-height, $globalNavHeight);
+    @include size(line-height, 60);
     @include size(font-size, 15);
     font-weight: 400;
     box-shadow: 0 2px 4px rgba(0,0,0, .13);
@@ -23,7 +23,7 @@
         width: 100%;
         height: 10px;
         position: absolute;
-        top: $globalNavHeight - 10px;
+        top: 50px;
         left: 0;
         z-index: 1;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .13);
@@ -41,6 +41,7 @@
     height: 100%;
     position: relative;
     margin-left: 15px;
+    text-transform: none;
 }
 
 .global-nav__menu {
@@ -100,10 +101,10 @@
     width: 100%;
     @include size(height, 60);
     position: fixed;
-    @include size(top, $globalNavHeight);
+    @include size(top, 60);
     right: 0;
     z-index: 1000;
-    background: darken($menuMobileBgColor, 5);
+    background: $mainThemeColor;
     @include size(line-height, 60);
     transform: translateX(100%);
     transition: all 250ms ease-out;
@@ -119,7 +120,8 @@
     @include size(padding, 0, 15);
     border-right: 1px solid $white;
     text-align: center;
-    @include size(line-height, $globalNavHeight);
+    @include size(line-height, 60);
+    color: $white;
 
     img {
         vertical-align: middle;
@@ -133,10 +135,10 @@
     &:active,
     &:focus {
         text-decoration: none;
-        color: $mainThemeColor;
+        color: $secondaryThemeColor;
 
         img {
-            border-color: $mainThemeColor;
+            border-color: $secondaryThemeColor;
         }
     }
 }
@@ -147,10 +149,9 @@
         @include size(width, 24);
         @include size(height, 24);
         border-radius: 50%;
-        border: 2px solid $secondaryThemeColor;
+        border: 2px solid $white;
         text-align: center;
         @include size(font-size, 12);
-        color: $mainThemeColor;
         @include size(line-height, 21);
     }
 }
@@ -182,6 +183,15 @@
 }
 
 @include mq(min-width, $largeBreakpoint) {
+    .global-nav {
+        @include size(height, $globalNavHeight);
+        @include size(line-height, $globalNavHeight);
+
+        &:after {
+            top: $globalNavHeight - 10px;
+        }
+    }
+
     .logo {
         @include size(max-width, 100);
         @include size(margin-right, 15);
@@ -235,6 +245,15 @@
         border-left: 1px solid $mainNavActionsSeperator;
         border-right: 0px;
         text-align: left;
+        color: $mainThemeColor;
+        @include size(line-height, $globalNavHeight);
+    }
+
+    .login--global-nav {
+        i:before {
+            color: $mainThemeColor;
+            border-color: $mainThemeColor;
+        }
     }
 
     .toggle-menu {
