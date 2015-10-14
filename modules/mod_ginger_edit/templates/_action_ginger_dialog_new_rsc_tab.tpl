@@ -1,3 +1,4 @@
+
 {% wire id=#form type="submit"
 	postback={
         new_page
@@ -5,7 +6,7 @@
         objects=objects|default:[]
         predicate=predicate
         redirect=redirect
-        actions=[{redirect dispatch="ginger_edit_rsc" id=id}]
+        actions=actions|default:[{redirect dispatch="ginger_edit_rsc" id=id}]
         callback=callback
     }
 	delegate=delegate
@@ -15,6 +16,7 @@
 
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
 	<input type="hidden" name="redirect" value="1" />
+	<input type="hidden" name="actions" value="{{ actions }}"/>
 
 	<div class="form-group row">
 	    <label class="control-label col-md-3" for="new_rsc_title">{_ Title _}</label>

@@ -23,12 +23,14 @@
                             title=[_"add", " ", modal_cat_title, " ", _"toe "]
                             logon_required
                             object_id=id
+                            objects=objects
                             cat=cat_id
                             findtab=findtab
                             newtab=newtab
                             callback=callback
                             predicate=predicate
                             direction=direction
+                            actions=actions
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
@@ -37,12 +39,14 @@
                             title=[_"add", " ", modal_cat_title , " ", _"to "]
                             logon_required
                             subject_id=id
+                            objects=objects
                             cat=cat_id
                             findtab=findtab
                             newtab=newtab
                             callback=callback
                             predicate=predicate
                             direction=direction
+                            actions=actions
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% endif %}
