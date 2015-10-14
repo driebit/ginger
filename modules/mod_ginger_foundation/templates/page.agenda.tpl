@@ -2,7 +2,7 @@
 
 {% block title %}{{ id.title }}{% endblock %}
 
-{% block body_class %}{% endblock %}
+{% block body_class %}t--agenda{% endblock %}
 
 {% block content %}
     {% include "masthead/masthead.tpl" id=id %}

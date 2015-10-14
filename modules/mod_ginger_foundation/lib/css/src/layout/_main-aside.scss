@@ -1,16 +1,17 @@
 .main-aside {
-    @include size(padding-bottom, 30);
+    @include size(padding-bottom, $standardOffset);
     background: $listBgColor;
 }
 
 .main-aside__title {
     color: $mainThemeColor;
-    @include size(font-size, 16);
-    font-style: italic;
+    font-family: $secondaryFontFamily;
+    @include size(font-size, 20);
 }
 
 .main-aside--sided {
     width: 90%;
+    @include size(padding-bottom, $standardOffset);
     margin: 0 auto;
     position: relative;
     background: none;
@@ -40,7 +41,7 @@
 @include mq(min-width, $mediumBreakpoint) {
     .main-aside--sided {
         @include size(margin-top, 80);
-        @include size(margin-left, 30);
+        @include size(margin-left, $standardOffset);
         float: left;
     }
 }

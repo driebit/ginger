@@ -1,6 +1,7 @@
 .foldout {
     @extend .main-content-extend;
     @include size(padding-top, 10);
+    @include size(margin-bottom, 70);
     border-bottom: 2px solid $mainThemeColor;
 
     &.is-collapsed {
@@ -20,7 +21,7 @@
             bottom: 0;
             left: 0;
             text-align: center;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 3%, #ffffff 100%);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 3%, #ffffff 80%);
         }
     }
 
@@ -33,6 +34,14 @@
     .main-content {
         width: 100%;
         margin-bottom: 0;
+    }
+}
+
+.t--event {
+    .foldout {
+        &.is-collapsed {
+            @include size(height, 700);
+        }
     }
 }
 

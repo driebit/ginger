@@ -77,6 +77,10 @@ h3 {
     }
 }
 
+.page-title {
+    @include size(margin-bottom, 0);
+}
+
 .subtitle {
     @include size(margin-top, 10);
     margin-bottom: 0;
@@ -103,6 +107,7 @@ figure {
 figcaption {
     @include size(margin-top, 5);
     @include size(font-size, 14);
+    color: lighten($typographyColor, 50%);
 }
 
 blockquote {
