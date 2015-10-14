@@ -1,11 +1,18 @@
 Provides frontend editing and resource connecting.
 
-Registring:
-Add a config key: mod_signup.request_confirm  false
-
 Usage:
 Add includes to your templates like:
 
-{% include "_action_ginger_connection.tpl" predicate='author' category='person' new_rsc_title='author' %}
+```{% include "_action_ginger_connection.tpl" predicate='author' category='person' new_rsc_title='author' %}```
+to get a "Add author" button
 
-to get a "Add my author" button
+```{% include "_action_ginger_connection.tpl" predicate='partof' category='article' objects=[[m.acl.user, `author`]] %}```
+to get a "Add article" button and automatically add the current user as the author 
+
+add btn_class='your-class' to give the button a custom class name
+
+add cg_id=id.content_group_id if you want the new rsc to inherit the content group from the current page
+
+add direction=in to make a connection from the new rsc to the current rsc
+for blogs
+```{% include "_action_ginger_connection.tpl" category='article' cg_id=id.content_group_id predicate='blogposting' direction='in' objects=[[m.acl.user, `author`]] %}```
