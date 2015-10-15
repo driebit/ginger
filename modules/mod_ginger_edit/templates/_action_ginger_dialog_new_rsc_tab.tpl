@@ -6,7 +6,7 @@
         objects=objects|default:[]
         predicate=predicate
         redirect=redirect
-        actions=actions|default:[{redirect dispatch="ginger_edit_rsc" id=id}]
+        actions=actions
         callback=callback
     }
 	delegate=delegate

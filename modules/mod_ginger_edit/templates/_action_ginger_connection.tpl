@@ -25,8 +25,7 @@
                             object_id=id
                             objects=objects
                             cat=cat_id
-                            findtab=findtab
-                            newtab=newtab
+                            tabs_enabled=tabs_enabled
                             callback=callback
                             predicate=predicate
                             direction=direction
@@ -41,8 +40,7 @@
                             subject_id=id
                             objects=objects
                             cat=cat_id
-                            findtab=findtab
-                            newtab=newtab
+                            tabs_enabled=tabs_enabled
                             callback=callback
                             predicate=predicate
                             direction=direction

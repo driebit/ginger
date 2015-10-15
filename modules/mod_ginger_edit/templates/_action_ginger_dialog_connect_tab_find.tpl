@@ -27,7 +27,6 @@
             predicate=predicate
             callback=callback
             language=language
-            action=action
             actions=actions
         }
     }
