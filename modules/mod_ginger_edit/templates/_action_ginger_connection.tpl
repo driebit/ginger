@@ -2,6 +2,7 @@
 
 {% block widget_content %}
 
+    {% with objects|default:[] as objects %}
     {% with btn_class|default:"btn btn-small btn-add-thing" as btn_class %}
     {% with m.rsc[category].id as cat_id %}
     {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
@@ -30,6 +31,8 @@
                             predicate=predicate
                             direction=direction
                             actions=actions
+                            dispatch=dispatch
+                            page=page
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
@@ -45,9 +48,12 @@
                             predicate=predicate
                             direction=direction
                             actions=actions
+                            dispatch=dispatch
+                            page=page
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% endif %}
+    {% endwith %}
     {% endwith %}
     {% endwith %}
     {% endwith %}

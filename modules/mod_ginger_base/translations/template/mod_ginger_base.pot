@@ -28,7 +28,7 @@ msgid ""
 "Based on these keywords:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:23 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6 
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:27 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6 
 msgid ""
 "By:"
 msgstr ""
@@ -38,19 +38,19 @@ msgid ""
 "Cancel RSVP"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:12 
+#: /vagrant/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:15 
 msgid ""
 "Choose language"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_base/templates/dialog-language/dialog-language.tpl:4 
-msgid ""
-"Choose your language"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:2 
 msgid ""
 "Copyrights"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:25 
+msgid ""
+"Documents"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:35 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
@@ -63,12 +63,12 @@ msgid ""
 "E-mail address"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:9 
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:10 
 msgid ""
 "Edit"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:7 
+#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:8 
 msgid ""
 "Edit page"
 msgstr ""
@@ -113,7 +113,12 @@ msgid ""
 "LinkedIn"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:16 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:4 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:32 
+msgid ""
+"Locatie"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:4 
 msgid ""
 "Location"
 msgstr ""
@@ -126,6 +131,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:6 
 msgid ""
 "Logged in as"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:8 
+msgid ""
+"Media"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/toggle-menu/toggle-menu.tpl:2 
@@ -168,7 +178,7 @@ msgid ""
 "Page actions"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of.tpl:4 
+#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of-aside.tpl:4 /vagrant/modules/mod_ginger_base/templates/part-of/part-of.tpl:4 
 msgid ""
 "Part of:"
 msgstr ""
@@ -178,17 +188,12 @@ msgid ""
 "Participants"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/comment/comment.tpl:21 
-msgid ""
-"Posted"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:2 /vagrant/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:25 
 msgid ""
 "Profile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46 /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 
 msgid ""
 "RSVP"
 msgstr ""
@@ -315,6 +320,21 @@ msgid ""
 "displayed to other visitors of the website. Thank you for your comment!"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:6 
+msgid ""
+"Zoeken"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1 
+msgid ""
+"comment(s)"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/comments-button/comments-button.tpl:2 
+msgid ""
+"comments:"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:50 
 msgid ""
 "logon or register"
@@ -325,7 +345,7 @@ msgid ""
 "mailchimp-sign-up"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1 
+#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:5 
 msgid ""
-"reactions"
+"type bijvoorbeeld 'viool' of 'let it be'"
 msgstr ""

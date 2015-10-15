@@ -5,13 +5,13 @@
             <section class="aside_block aside_stories">
 
                 <header><h3 class="section-title">{_ Keyword _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' new_rsc_title=_'Keyword' tabs_enabled=["find","new"] actions=[] %}
+                {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' new_rsc_title=_'Keyword' actions=[] dispatch=zotonic_dispatch %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.subject.id] %}
 				<header><h3 class="section-title">{_ Author _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='person' predicate='author' new_rsc_title=_'Author' actions=[] %}
+                {% include "_action_ginger_connection.tpl" category='person' predicate='author' new_rsc_title=_'Author' actions=[] dispatch=zotonic_dispatch %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.author.id] %}
 				<header><h3 class="section-title">{_ Location _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='location' predicate='located_in' new_rsc_title=_'Location' tabs_enabled=["find","new"] actions=[] %}
+                {% include "_action_ginger_connection.tpl" category='location' predicate='located_in' new_rsc_title=_'Location' actions=[] dispatch=zotonic_dispatch %}
                 {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.located_in.id] %}
 
                 {% if m.rsc[id.category_id].name != "person" %}

@@ -24,6 +24,7 @@
         postback={admin_connect_select
             id=id
             subject_id=subject_id
+            object_id=object_id
             predicate=predicate
             callback=callback
             language=language
