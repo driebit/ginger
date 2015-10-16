@@ -28,11 +28,6 @@
         z-index: 1;
         box-shadow: 0 2px 4px rgba(0, 0, 0, .13);
     }
-
-    ul {
-        margin-bottom: 0;
-        list-style-type: none;
-    }
 }
 
 .logo {
@@ -54,6 +49,11 @@
     background-color: $menuMobileBgColor;
     transform: translateX(100%);
     transition: all 250ms ease-out;
+
+    ul {
+        margin-bottom: 0;
+        list-style-type: none;
+    }
 
     li {
         display: block;
@@ -111,6 +111,11 @@
 
     .is-open & {
         transform: translateX(0);
+    }
+
+    ul {
+        margin-bottom: 0;
+        list-style-type: none;
     }
 }
 

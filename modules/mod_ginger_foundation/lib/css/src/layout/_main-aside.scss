@@ -30,6 +30,10 @@
     .list {
         padding-top: 0;
     }
+
+    .list-header:first-child {
+        @include size(margin-top, 20);
+    }
 }
 
 @include mq(min-width, $smallBreakpoint) {

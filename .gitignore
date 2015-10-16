@@ -10,3 +10,4 @@ modules/mod_import_anymeta/
 modules/mod_import_anymeta_dispatch
 modules/mod_import_utils/
 modules/mod_springy_graph/
+*.pot

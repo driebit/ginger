@@ -33,8 +33,6 @@
 
                 {% include "blocks/blocks.tpl" id=id %}
 
-                {% catinclude "media/media.tpl" id %}
-
                 {% include "comments/comments.tpl" id=id %}
             </article>
 

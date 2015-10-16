@@ -29,7 +29,7 @@ body {
     }
 }
 
-@include mq(min-width, $mediumBreakpoint) {
+@include mq(min-width, $largeBreakpoint) {
     body {
         @include size(padding-top, $globalNavHeight);
 
@@ -126,7 +126,8 @@ iframe {
     }
 }
 
-.body-text {
+.body-text,
+.block--text {
     ul {
         @include size(margin-left, 20);
     }
