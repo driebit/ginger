@@ -1,0 +1,7 @@
+.map_canvas div {
+    line-height: normal !important;
+}
+
+.map_canvas img {
+    max-width: none;
+}

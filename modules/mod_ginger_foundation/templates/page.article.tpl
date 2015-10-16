@@ -8,6 +8,7 @@
     <main role="main" class="page--sided">
 
         <article class="main-content--sided">
+        
             {% catinclude "published/published.tpl" id %}
 
             {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
@@ -29,6 +30,7 @@
             {% include "attached-media/attached-media.tpl" id=id %}
 
             {% include "comments/comments.tpl" id=id %}
+
         </article>
 
         <aside class="main-aside--sided">
