@@ -19,9 +19,19 @@ $.widget( "ui.googlemap", {
             mcOptions = {
                 styles: [
                 {
-                    height: 53,
-                    width: 53,
-                    url: "http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/images/m1.png"
+                    height: 28,
+                    width: 28,
+                    url: "/lib/images/cluster-default-small.svg"
+                },
+                {
+                    height: 45,
+                    width: 45,
+                    url: "/lib/images/cluster-default.svg"
+                },
+                {
+                    height: 54,
+                    width: 54,
+                    url: "/lib/images/cluster-default-large.svg"
                 }
             ]},
             markers = [];
@@ -45,8 +55,8 @@ $.widget( "ui.googlemap", {
 
         // Show multiple markers with info windows
         for (i = 0; i < locations.length; i++) {
-           
-            icon = '/lib/images/marker-default.png';
+
+            icon = '/lib/images/marker-default.svg';
 
             // Add marker
             marker = new google.maps.Marker({
