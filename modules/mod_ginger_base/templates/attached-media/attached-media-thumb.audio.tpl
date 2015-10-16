@@ -1,4 +1,4 @@
-<a class="lightbox" rel="attached-media" href="#audio-{{ id.id}} ">
+<a class="lightbox" rel="attached-media" href="#audio-{{ id.id}}" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
      {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
 </a>
 
