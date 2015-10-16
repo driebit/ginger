@@ -1,7 +1,48 @@
-.map_canvas div {
-    line-height: normal !important;
-}
-
 .map_canvas img {
     max-width: none;
+}
+
+.marker {
+    display: block;
+    width: 250px;
+    height: 200px;
+    position: relative;
+    color: #000;
+}
+
+.marker:hover,
+.marker:focus,
+.marker:active {
+    color: #000;
+}
+
+.marker__item {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.marker__item__content {
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: rgba(255,255,255, 0.8);
+    line-height: 1.2;
+}
+
+.marker__item__content time {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.marker__item__content p {
+    margin: 0;
+}
+
+.marker__item__title {
+    margin-bottom: 5px;
+    font-size: 16px;
+    line-height: 1;
 }
