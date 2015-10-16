@@ -134,7 +134,8 @@
 }
 
 .icon--source:before,
-.icon--document:before {
+.icon--document:before,
+.icon--query:before {
     content: "\e618";
 }
 
@@ -219,7 +220,8 @@
     .icon--video:before,
     .icon--person:before,
     .icon--event:before,
-    .icon--image:before {
+    .icon--image:before,
+    .icon--query:before {
         @extend .has-rounded-icon;
     }
 
