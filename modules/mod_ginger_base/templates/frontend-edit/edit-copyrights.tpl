@@ -1,7 +1,3 @@
-{% lib
-    "css/edit-copyrights.css"
-%}
-
 <ul id="thing-cc" class="edit-copyrights">
     <li>
         <label for="rights-by">
