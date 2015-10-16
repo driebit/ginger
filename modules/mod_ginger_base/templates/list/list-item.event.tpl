@@ -3,3 +3,30 @@
 {% block list_item_date %}
     <time datetime="{{ id.start_date|date:"Y-F-jTH:i" }}" class="list__item__content__date">{{ id.date_start|date:"j M Y - H:i" }}</time>
 {% endblock %}
+
+{% block list_item_location %}
+    {% with
+        id.o.located_in,
+        id.o.presented_at
+
+    as
+
+        located,
+        presented
+    %}
+
+        {% with located|make_list++presented|make_list as locations %}
+
+            {% if locations %}
+                <p class="list__item__locations">
+                    <i class="icon--location"></i>
+                    {% for r in locations %}
+                        {{ r.title }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+            {% endif %}
+
+        {% endwith %}
+
+    {% endwith %}
+{% endblock %}

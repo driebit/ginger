@@ -1,13 +1,18 @@
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Driebit" />
 
     <title>
-        {% if id.seo_title %}
-            {{ id.seo_title }}
+        {% if id %}
+            {% if id.seo_title %}
+                {{ id.seo_title }}
+            {% else %}
+                {% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}
+            {% endif %}
         {% else %}
-            {% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}
+            {{ m.config.site.title.value }}
         {% endif %}
     </title>
 

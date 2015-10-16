@@ -1,6 +1,6 @@
 .published {
     display: block;
     color: $mainThemeColor;
-    @include size(margin-bottom, 30);
+    @include size(margin-bottom, 15);
     @include size(font-size, 15);
 }

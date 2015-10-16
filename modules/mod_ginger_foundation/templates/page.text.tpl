@@ -21,6 +21,8 @@
 
             {% include "summary/summary.tpl" id=id %}
 
+            {% include "media/media.image.tpl" id=id %}
+
             {% include "body/body.tpl" id=id %}
 
             {% include "blocks/blocks.tpl" id=id %}
@@ -48,7 +50,7 @@
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_button="1" id=id %}
                 {% endwith %}
             {% endif %}
         </aside>

@@ -7,14 +7,39 @@
         <article class="cf">
             <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
                 {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+
+                <div class="list__item__content__category">
+                    <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+                </div>
             </div>
 
             {% block list_item_meta %}{% endblock %}
 
             <div class="list__item__content">
-                {% if id.o.located_in %}
-                    <p class="list__item__content__location">{_ Location _}: <span>{{ id.o.located_in.title }}</span></p>
-                {% endif %}
+                {% block list_item_location %}
+                    {% with
+                        id.o.located_in,
+                        id.o.presented_at
+                    as
+                        located,
+                        presented
+                    %}
+
+                        {% with located|make_list++presented|make_list as locations %}
+
+                            {% if locations %}
+                                <p class="list__item__locations">
+                                    {_ Locatie _}:
+                                    {% for r in locations %}
+                                        {{ r.title }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </p>
+                            {% endif %}
+
+                        {% endwith %}
+
+                    {% endwith %}
+                {% endblock %}
 
                 <h3 class="list__item__content__title">
                     {% if id.short_title %}

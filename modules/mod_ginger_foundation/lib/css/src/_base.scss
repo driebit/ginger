@@ -9,7 +9,7 @@ html,body {
 }
 
 body {
-    @include size(padding-top, $globalNavHeight);
+    @include size(padding-top, 60);
     background: $bodyBgColor;
     color: $typographyColor;
     line-height: 1.5;
@@ -22,10 +22,20 @@ body {
         width: 100%;
         height: 100vh;
         position: fixed;
-        @include size(top, $globalNavHeight);
+        @include size(top, 60);
         left: 0px;
         z-index: 400;
         background: rgba(0,0,0, 0.5);
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    body {
+        @include size(padding-top, $globalNavHeight);
+
+        &.is-menu-visible:before {
+            @include size(top, $globalNavHeight);
+        }
     }
 }
 
@@ -67,6 +77,10 @@ h3 {
     }
 }
 
+.page-title {
+    @include size(margin-bottom, 0);
+}
+
 .subtitle {
     @include size(margin-top, 10);
     margin-bottom: 0;
@@ -93,6 +107,7 @@ figure {
 figcaption {
     @include size(margin-top, 5);
     @include size(font-size, 14);
+    color: lighten($typographyColor, 50%);
 }
 
 blockquote {

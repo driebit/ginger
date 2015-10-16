@@ -2,6 +2,7 @@
 
 {% block widget_content %}
 
+    {% with objects|default:[] as objects %}
     {% with btn_class|default:"btn btn-small btn-add-thing" as btn_class %}
     {% with m.rsc[category].id as cat_id %}
     {% with new_rsc_title|default:m.rsc[cat_id].title|lower as cat_title %}
@@ -23,12 +24,15 @@
                             title=[_"add", " ", modal_cat_title, " ", _"toe "]
                             logon_required
                             object_id=id
+                            objects=objects
                             cat=cat_id
-                            findtab=findtab
-                            newtab=newtab
+                            tabs_enabled=tabs_enabled
                             callback=callback
                             predicate=predicate
                             direction=direction
+                            actions=actions
+                            dispatch=dispatch
+                            page=page
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
@@ -37,15 +41,19 @@
                             title=[_"add", " ", modal_cat_title , " ", _"to "]
                             logon_required
                             subject_id=id
+                            objects=objects
                             cat=cat_id
-                            findtab=findtab
-                            newtab=newtab
+                            tabs_enabled=tabs_enabled
                             callback=callback
                             predicate=predicate
                             direction=direction
+                            actions=actions
+                            dispatch=dispatch
+                            page=page
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% endif %}
+    {% endwith %}
     {% endwith %}
     {% endwith %}
     {% endwith %}

@@ -22,12 +22,12 @@
     }
 }
 
-.global-search__searchform  {
+.global-search__searchform {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    @include size(height, $globalNavHeight);
+    @include size(height, 60);
     transform: translateX(100%);
     transition: all 250ms ease-out;
     background-color: $white;
@@ -56,7 +56,7 @@
         background-repeat: no-repeat;
         background-size: 30px 30px;
         @include size(font-size, 18);
-        @include size(line-height, $globalNavHeight);
+        @include size(line-height, 60);
         @include size(padding, 0, 50);
     }
 
@@ -101,6 +101,16 @@
     }
 }
 
+@include mq(min-width, $mediumBreakpoint) {
+    .global-search__searchform {
+        @include size(height, $globalNavHeight);
+
+        [type=text] {
+            @include size(line-height, $globalNavHeight);
+        }
+    }
+}
+
 @include mq(min-width, $largeBreakpoint) {
     .global-search__searchform {
         &.is-visible {
@@ -127,6 +137,7 @@
 
         &:hover {
             text-decoration: none;
+            color: $secondaryThemeColor;
         }
 
         &:after {

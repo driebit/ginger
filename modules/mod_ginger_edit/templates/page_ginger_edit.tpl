@@ -9,11 +9,11 @@
     {% if id.is_editable %}
         <div class="row page-ginger_edit_content_row_class">
             <div class="col-sm-8 col-md-8">
-                {% catinclude "_ginger_edit.tpl" id %}
+                {% catinclude "_ginger_edit.tpl" id page=page %}
             </div>
 
             <div class="col-sm-4 col-md-4">
-                {% catinclude "_aside_ginger_edit.tpl" id page="edit" %}
+                {% catinclude "_aside_ginger_edit.tpl" id page=page %}
             </div>
         </div>
         <div class="footer row">
@@ -34,7 +34,7 @@
 						  action={script script="$('#save_view').click();"}
 				 %}
 
-				{% button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" %}
+				{# button class="btn pull-right ginger-edit-cancel" text=_"Cancel" action={redirect back} tag="a" #}
 				{#	<a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
 
                 {% ifnotequal id 1 %}

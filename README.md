@@ -116,6 +116,14 @@ $ z git pull
 $ z zotonic shell
 $ z:m().
 ```
+6. Optionally, the release branch to master:
+
+```
+git checkout master
+git pull
+git merge release-0.#.0 (latest release branch)
+git push
+```
 
 ### Feature developments
 

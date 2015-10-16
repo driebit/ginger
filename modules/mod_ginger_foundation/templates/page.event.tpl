@@ -2,7 +2,7 @@
 
 {% block title %}{{ id.title }}{% endblock %}
 
-{% block body_class %}{% endblock %}
+{% block body_class %}t--event{% endblock %}
 
 {% block content %}
 

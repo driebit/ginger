@@ -5,6 +5,10 @@
 
     .part-of__title {
         @extend .main-aside__title;
+
+        + ul {
+            @include size(margin-top, 10);
+        }
     }
 }
 

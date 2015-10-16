@@ -18,25 +18,33 @@
 	</div>
 </div>
 
+{% wire name="dialog_connect_find"
+    action={postback
+        delegate=delegate|default:"mod_admin"
+        postback={admin_connect_select
+            id=id
+            subject_id=subject_id
+            object_id=object_id
+            predicate=predicate
+            callback=callback
+            language=language
+            actions=actions
+        }
+    }
+%}
 {% javascript %}
     $('#dialog-connect-find').change();
-    
-     $('a[data-toggle="tab"]').click(function(){
-           var id = $(this).data('id');
-           $('#find_category').val(id);
-           $('#dialog-connect-find').change();
-        });
 
-    $("#dialog-connect-found").on('click', '.thumbnail', function() {
-        z_notify("admin-connect-select", { 
-        z_delegate: "mod_admin", 
-        select_id: $(this).data('id'),
-        predicate: '{{ predicate }}',
-        subject_id: '{{ subject_id }}',
-        object_id: '{{ object_id }}',
-        callback: '{{ callback }}',
-        language: '{{ language }}'
-        });
+    $('a[data-toggle="tab"]').click(function(){
+        var id = $(this).data('id');
+        $('#find_category').val(id);
+        $('#dialog-connect-find').change();
     });
 
+    $("#dialog-connect-found").on('click', '.thumbnail', function(e) {
+    	e.preventDefault();
+        z_event('dialog_connect_find', { 
+            select_id: $(this).data('id')
+        });
+    });
 {% endjavascript %}

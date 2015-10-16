@@ -39,12 +39,9 @@
     @include size(line-height, 21);
 }
 
-.icon--arrow-down:before {
-    content: "\e600";
-}
-
+.icon--arrow-down:before,
 .icon--arrow-fold-content-out:before {
-    content: "\e601";
+    content: "\e600";
 }
 
 .icon--arrow-left:before {
@@ -220,7 +217,14 @@
     .icon--collection:before,
     .icon--audio:before,
     .icon--video:before,
-    .icon--person:before {
+    .icon--person:before,
+    .icon--event:before,
+    .icon--image:before {
         @extend .has-rounded-icon;
+    }
+
+    .icon--event:before,
+    .icon--image:before {
+        @include size(font-size, 12);
     }
 }

@@ -5,7 +5,7 @@
         objects=objects|default:[]
         predicate=predicate
         redirect=redirect
-        actions=[{redirect dispatch="ginger_edit_rsc" id=id}]
+        actions=actions|default:[{redirect dispatch="ginger_edit_rsc" id=id page=page dispatch=dispatch}]
         callback=callback
     }
 	delegate=delegate
@@ -14,7 +14,9 @@
 <form id="{{ #form }}" method="POST" action="postback" class="form">
 
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
-	<input type="hidden" name="redirect" value="1" />
+	<input type="hidden" name="redirect" value="{{ redirect }}" />
+	<input type="hidden" name="page" value="{{ page }}" />
+	<input type="hidden" name="actions" value="{{ actions }}"/>
 
 	<div class="form-group row">
 	    <label class="control-label col-md-3" for="new_rsc_title">{_ Title _}</label>

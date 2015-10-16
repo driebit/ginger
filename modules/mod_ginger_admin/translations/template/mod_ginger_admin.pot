@@ -93,3 +93,8 @@ msgstr ""
 msgid ""
 "request a new password reset code"
 msgstr ""
+
+#: /vagrant/modules/mod_ginger_admin/templates/admin_logon.tpl:12 
+msgid ""
+"visit site"
+msgstr ""

@@ -21,7 +21,8 @@ $mainNavActionsSeperator: $alto;
 
 $globalNavHeight: 70;
 
-$contentGroupNavHeight: 75;
+$contentGroupNavHeight: 85;
+$minifiedcontentGroupNavHeight: 75;
 
 $listBgColor: #EBEBEB;
 $listHeaderBgColor: darken($listBgColor, 10);
@@ -36,7 +37,7 @@ $menuMobileBgColor: #f1f1f1;
 $footerHeight: 300px;
 $footerBgColor: #23232A;
 
-$standardOffset: 30px;
+$standardOffset: 30;
 
 $smallBreakpoint: 600;
 $mediumBreakpoint: 800;

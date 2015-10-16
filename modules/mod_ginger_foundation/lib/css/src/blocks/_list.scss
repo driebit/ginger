@@ -75,8 +75,18 @@
     background: $white;
     overflow: hidden;
 
+    &:hover,
+    &:focus,
+    &:hover {
+        img {
+            filter: none;
+        }
+    }
+
     img {
         width: 100%;
+        filter: grayscale(100%);
+        transition: filter 0.3s;
     }
 
     a,
@@ -105,7 +115,9 @@
 
 .list__item__content__title {
     margin: 0;
-    color: $mainThemeColor;
+    color: $typographyColor;
+    @include size(font-size, 21);
+    line-height: 1;
 }
 
 .list__item__content {
@@ -115,22 +127,32 @@
     background: $white;
 
     p {
-        margin: 1em 0 0;
+        margin: 0;
+        @include size(margin-top, 7);
     }
 }
 
 .list__item__content__meta {
-    @include size(height, 30);
+    width: 100%;
+    @include size(height, 50);
+    @include size(padding, 15, 5);
     position: absolute;
-    @include size(top, -30);
+    @include size(top, -50);
     left: 0px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+0,0.65+100 */
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.45))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.45) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
     line-height: 1;
 }
 
 .list__item__content__category {
     display: inline-block;
     @include size(padding, 0, 10);
-    background: $mainThemeColor;
     color: $white;
     line-height: 1;
 
@@ -143,11 +165,11 @@
 }
 
 .list__item__content__date {
-    display: inline-block;
-    @include size(padding, 0, 10);
-    @include size(margin-left, -4);
-    background: lighten($black, 5);
-    color: $white;
+    display: block;
+    @include size(margin-bottom, 7);
+    color: lighten($typographyColor, 50%);
+    @include size(font-size, 15);
+    font-weight: 300;
 }
 
 .list__more {
@@ -192,10 +214,34 @@
         @include size(margin, 5, 0, 0);
         background: none;
         color: $mainThemeColor;
+        text-transform: lowercase;
+    }
+
+    .list__item__content__category {
+        width: 100%;
+        @include size(height, 50);
+        @include size(padding, 15, 5);
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+0,0.65+100 */
+        background: -moz-linear-gradient(top,  rgba(0,0,0,0.45) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.45)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+        line-height: 1;
+    }
+
+    .list__item__locations {
+        @include size(margin-bottom, 10);
     }
 }
 
 .list__item--vertical__image {
+    position: relative;
     background: none;
 }
 
@@ -238,6 +284,19 @@
     .list__item__content__title {
         @include size(font-size, 11);
         line-height: 1;
+    }
+}
+
+.list__item__locations {
+    @include size(font-size, 15);
+    color: lighten($typographyColor, 50%);
+
+    .icon--location:before {
+        width: auto;
+        height: auto;
+        background: none;
+        border: none;
+        color: inherit;
     }
 }
 
@@ -321,7 +380,6 @@
         height: 100%;
         position: relative;
         line-height: 1.1;
-        text-transform: uppercase;
     }
 
     .list__item__content__date__day {

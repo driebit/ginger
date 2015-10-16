@@ -1,4 +1,3 @@
-
 {% if id %}
 
     {% if id.category.name == 'location' and id.address_street_1 %}
@@ -15,7 +14,7 @@
     {% else %}
 
         {% with
-            id.o.hasbanner[1].depiction|default:id.depiction as banner %}
+            id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
 
             {% if banner %}
                 {% if banner.width > 500 %}
@@ -32,5 +31,3 @@
     {% endif %}
 
 {% endif %}
-
-

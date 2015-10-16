@@ -1,7 +1,7 @@
 .DS_Store
 .vagrant
 sites/*
-modules/mod_alternative_uri
+modules/mod_alternative_uris
 modules/mod_am_default
 modules/mod_filmfonds_allotment
 modules/mod_geo
