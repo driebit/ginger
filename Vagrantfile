@@ -7,7 +7,7 @@ zotonic_source = ENV["ZOTONIC_SOURCE"]
 zotonic_version = ENV["ZOTONIC_VERSION"]
 puppet_node = app + ENV['USER'] + ".dev"
 puppet_master = "puppet.driebit.net"
-memory = ENV["MEMORY"] || 1536
+memory = ENV["MEMORY"] || 2048
 
 VAGRANTFILE_API_VERSION = "2"
 
