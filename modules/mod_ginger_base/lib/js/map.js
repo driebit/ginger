@@ -1,5 +1,5 @@
 
-$.widget( "ui.map", {
+$.widget( "ui.googlemap", {
 
     _create: function() {
 
