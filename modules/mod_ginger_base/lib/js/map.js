@@ -14,8 +14,9 @@ $.widget( "ui.googlemap", {
              info = new google.maps.InfoWindow({maxWidth: 250}),
              marker,
              icon,
-             i;
-
+             i,
+             mc,
+             markers = [];
 
         options = jQuery.parseJSON(widgetElement.data('mapoptions'));
 
@@ -42,8 +43,7 @@ $.widget( "ui.googlemap", {
             // Add marker
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
-                icon: icon,
-                map: map
+                icon: icon
             });
 
             // Add an info window to the marker
@@ -58,7 +58,11 @@ $.widget( "ui.googlemap", {
             if (locations.length > 1) {
                 bounds.extend(marker.position);
             }
+
+            markers.push(marker);
          }
+
+         mc = new MarkerClusterer(map, markers);
 
          if (locations.length > 1) {
              // Center map on all locations

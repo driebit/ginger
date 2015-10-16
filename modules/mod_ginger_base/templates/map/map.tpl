@@ -6,8 +6,6 @@
 
         <div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="do_googlemap map_canvas {{ class }}"
 
-
-
             data-locations='
             [
                 {% for id in items|filter:`location_lat` %}
@@ -29,8 +27,6 @@
                     "blackwhite": {{ blackwhite }}
                 }
             '
-
-
 
        ></div>
    {% endif %}
