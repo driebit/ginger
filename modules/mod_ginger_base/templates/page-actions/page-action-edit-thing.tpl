@@ -1,8 +1,8 @@
 {% if m.acl.user %}
     <a class="page-action--edit {{ extraClasses }}" href="
-        {% if id.is_editable %}
+        {% if id.is_editable and m.acl.is_allowed.use.mod_admin %}
             {% url admin_edit_rsc id=id %}
-        {% else %}
+        {% elif id.is_editable and not m.acl.is_allowed.use.mod_admin %}
             /edit/{{ m.rsc[id].id }}
         {% endif %}
     " title="{_ Edit page _}" >
