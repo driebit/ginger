@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="33px" height="47px" viewBox="0 0 33 47" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch -->
+    <title>Marker</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Style-guides" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Marker" sketch:type="MSLayerGroup" transform="translate(0.500000, 0.000000)">
+            <ellipse id="Oval" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="16.5986535" cy="16.0012553" rx="9.95919207" ry="9.60075319"></ellipse>
+            <path d="M15.9722389,8.06672949 C11.6561484,8.04616395 8.18451044,11.4009163 8.14020275,15.6425571 C8.09850139,19.8559204 11.5518951,23.3649142 15.8002208,23.4240401 C20.121524,23.4780246 23.6817774,20.0204447 23.7000218,15.7479555 C23.7208724,11.5191681 20.2700851,8.08472433 15.9722389,8.06672949 M15.9539946,46.5911113 C14.0279132,43.9227336 12.2086914,41.537132 10.5145738,39.0564147 C6.59203985,33.2980659 2.94838374,27.3829049 0.795551164,20.7016779 C-2.51710042,10.4240535 4.90574121,0.179848165 15.8236779,0.0024704564 C26.379334,-0.182619327 34.2009448,10.0641567 31.2062661,20.1335551 C29.3870444,26.2620835 26.1916779,31.7248028 22.6887638,37.0178564 C20.5854516,40.1849483 18.3127276,43.2492125 15.9539946,46.5911113" id="Imported-Layers-3" fill="#ED174F" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

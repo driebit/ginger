@@ -11,7 +11,8 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &.is-active {
         text-decoration: none;
     }
 }
@@ -25,7 +26,8 @@
     &:hover,
     &:active,
     &:focus,
-    &:focus:active {
+    &:focus:active,
+    &.is-active {
         background-color: darken($mainThemeColor, 5);
         color: $white;
         border-color: darken($mainThemeColor, 5);
@@ -52,7 +54,9 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus,
+    &:active:focus,
+    &.is-active {
         border-color: $mainThemeColor;
         color: $white;
         background-color: $mainThemeColor;

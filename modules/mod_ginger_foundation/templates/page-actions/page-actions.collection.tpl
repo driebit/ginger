@@ -9,5 +9,6 @@
     {% endif %}
 
     {% catinclude "page-actions/page-action-add-thing.tpl" id %}
+
     {% include "page-actions/page-action-edit-thing.tpl" %}
 </div>

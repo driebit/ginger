@@ -18,6 +18,7 @@ as
     list_template
 %}
     {% if items %}
+
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
 
             {% for r in items %}

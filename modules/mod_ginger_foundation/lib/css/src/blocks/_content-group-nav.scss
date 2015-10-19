@@ -1,12 +1,12 @@
 body.has-content-group {
-    padding-top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+    padding-top: calc(60px + #{$contentGroupNavHeight}px);
 }
 
 .content-group-nav__banner {
     width: 100%;
     @include size(height, $contentGroupNavHeight);
     position: fixed;
-    @include size(top, $globalNavHeight);
+    @include size(top, 60);
     z-index: 200;
     background-color: $white;
     background-size: cover;
@@ -76,7 +76,7 @@ body.has-content-group {
 
 .content-group-nav__menu {
     @include size(min-height, 55);
-    padding: 18px 10px 12px 10px;
+    @include size(padding, 12, 10);
     background-color: $mainThemeColor;
     position: relative;
     z-index: 20;
@@ -126,6 +126,16 @@ body.has-content-group {
             width: auto;
             display: inline-block;
         }
+    }
+}
+
+@include mq(min-width, $largeBreakpoint) {
+    body.has-content-group {
+        padding-top: calc(#{$globalNavHeight}px + #{$contentGroupNavHeight}px);
+    }
+
+    .content-group-nav__banner {
+        @include size(top, $globalNavHeight);
     }
 }
 

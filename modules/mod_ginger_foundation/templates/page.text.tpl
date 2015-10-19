@@ -8,6 +8,7 @@
     <main role="main" class="page--sided">
 
         <article class="main-content--sided">
+        
             {% catinclude "published/published.tpl" id %}
 
             {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
@@ -20,7 +21,9 @@
 
             {% include "summary/summary.tpl" id=id %}
 
-            {% include "media/media.image.tpl" id=id %}
+            {% with id.media|without_embedded_media:id|first as dep %}
+                {% include "media/media.image.tpl" id=dep %}
+            {% endwith %}
 
             {% include "body/body.tpl" id=id %}
 
@@ -31,6 +34,7 @@
             {% include "attached-media/attached-media.tpl" id=id %}
 
             {% include "comments/comments.tpl" id=id %}
+
         </article>
 
         <aside class="main-aside--sided">

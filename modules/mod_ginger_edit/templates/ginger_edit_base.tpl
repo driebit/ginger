@@ -6,7 +6,7 @@
 		<meta name="author" content="Driebit" />
         <title>{% block title %}{% endblock%}</title>
 		<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" /> 
+		<link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
         {% lib
             "bootstrap/css/bootstrap.min.css"
@@ -23,9 +23,11 @@
             "css/zotonic-admin.css"
         %}
 
+        {% all include "_html_head.tpl" %}
         {% all include "_ginger_html_head_admin.tpl" %}
+
         {% include "_js_include_jquery.tpl" %}
-        
+
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -51,7 +53,7 @@
     %}
     {% optional include "_ginger_edit_js_extra.tpl" %}
 
-        
+
     {% block ua_probe %}
         {% include "_ua_probe.tpl"%}
     {% endblock %}

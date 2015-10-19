@@ -2,8 +2,6 @@
     .btn-default {
 
     }
-
-
 }
 
 // Zotonic defaults
@@ -34,4 +32,95 @@ ul.tree-list li.menu-item {
         border: none;
         color: darken($mainThemeColor, 5);
     }
+}
+
+.thumbnails {
+    list-style: none;
+    padding: 0;
+
+    .thumbnail {
+        min-height: 72px;
+        max-height: 72px;
+        overflow: hidden;
+        border-radius: 2px;
+        box-shadow: none;
+        cursor: pointer;
+        margin-bottom: 12px;
+        padding: 5px;
+        font-size: 12px;
+        line-height: 1.1em;
+        position: relative;
+        color: lighten(black, 20%);
+
+        img {
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0 7.5px 0 0;
+        }
+
+        .z-thumbnail-text {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            margin-right: 5px;
+            height: 60px;
+            max-height: 60px;
+            overflow: hidden;
+        }
+
+        h6,
+        h5,
+        p {
+            text-transform: lowercase;
+            font-size: 12px;
+            line-height: 1.1em;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        h6 {
+            color: $black;
+        }
+
+        h5 {
+            font-weight: bold;
+            color: $black;
+        }
+    }
+}
+
+.thumbnails .thumbnail img + .z-thumbnail-text {
+    left: 92.5px;
+}
+
+img.admin-list-overview {
+    width: 80px;
+    height: 60px;
+}
+
+.connect-results {
+    max-height: 400px;
+    margin-top: 15px;
+    padding: 10px 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .row {
+        margin-left: -6px;
+        margin-right: -6px;
+    }
+}
+
+.thumbnails [class*="col-"] {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.modal-dialog {
+    margin: 0 !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
 }

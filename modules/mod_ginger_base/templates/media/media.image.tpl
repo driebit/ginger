@@ -1,8 +1,8 @@
 <figure class="align-{{ align }}" >
 
-    {% if link %} 
-         <a href="{{ id.page_url }}" class="media--image {{ extraClasses }} 
-        " 
+    {% if link %}
+         <a href="{{ id.page_url }}" class="media--image {{ extraClasses }}
+        "
         {% if id.title %}
             title="{{ id.title }}"
         {% elif id.summary %}
@@ -22,11 +22,9 @@
     {% if link %}
         </a>
     {% endif %}
-    
-    {% if m.rsc[id].title %}
-        <figcaption>{{ m.rsc[id].title }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</figcaption>
-    {% elif m.rsc[id].summary %}
-        <figcaption>{{ m.rsc[id].summary }}</figcaption>
+
+    {% if m.rsc[id].summary %}
+        <figcaption>{{ m.rsc[id].summary }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</figcaption>
     {% endif %}
 
 </figure>
