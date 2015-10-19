@@ -22,10 +22,11 @@
             {% endif %}
         {% else %}
             {% if "find"|member:tabs_enabled %}
-                {% if m.category[m.rsc.keyword.id].tree1 %}
-                    <li {% if tab == "find" %}class="active"{% endif %}>
-                        <a data-toggle="tab" data-id="{{m.rsc["keyword"].id}}" data-name="keyword" href="#{{ #tab }}-find" id='tab-button-keyword'>{_ All _}</a>
-                    </li>
+                {% with m.category[m.rsc.keyword.id].tree1 as hassubs %}
+                <li {% if tab == "find" %}class="active"{% endif %}>
+                    <a data-toggle="tab" data-id="{{m.rsc["keyword"].id}}" data-name="keyword" href="#{{ #tab }}-find" id='tab-button-keyword'>{% if hassubs %}{_ All _}{% else %}{_ Find _}{% endif %}</a>
+                </li>
+                {% if hassubs %}
                     {% for child in m.category[m.rsc.keyword.id].tree1 %}
                         {% with m.rsc[child.id].name as name %}
                         <li {% if tab == "{{ name }}" %}class="active"{% endif %}>
@@ -34,6 +35,7 @@
                         {% endwith %}
                     {% endfor %}
                 {% endif %}
+                {% endwith %}
             {% endif %}
             {% if m.acl.insert[cat_name] and "new"|member:tabs_enabled %}
                 <li {% if tab == "new" %}class="active"{% endif %}>
