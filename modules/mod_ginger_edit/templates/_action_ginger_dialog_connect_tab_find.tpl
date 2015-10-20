@@ -28,23 +28,23 @@
             predicate=predicate
             callback=callback
             language=language
+            action=action
             actions=actions
         }
     }
 %}
 {% javascript %}
     $('#dialog-connect-find').change();
-
-    $('a[data-toggle="tab"]').click(function(){
-        var id = $(this).data('id');
-        $('#find_category').val(id);
-        $('#dialog-connect-find').change();
-    });
-
     $("#dialog-connect-found").on('click', '.thumbnail', function(e) {
     	e.preventDefault();
         z_event('dialog_connect_find', { 
             select_id: $(this).data('id')
         });
+    });
+
+    $('a[data-toggle="tab"]').click(function(){
+        var id = $(this).data('id');
+        $('#find_category').val(id);
+        $('#dialog-connect-find').change();
     });
 {% endjavascript %}
