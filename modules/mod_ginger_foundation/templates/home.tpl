@@ -8,7 +8,7 @@
 {% with m.rsc.home.id as id %}
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
-    <main role="main" page-id="{{ id|pprint }}">
+    <main role="main" data-page-id="{{ id }}">
         {% if banner %}
             {% if banner.width > 500 %}
                 <div class="home__header do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;">

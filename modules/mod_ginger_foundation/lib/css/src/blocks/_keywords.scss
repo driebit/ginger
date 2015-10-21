@@ -19,6 +19,14 @@
     @extend .btn--secondary;
 }
 
+.keywords--aside {
+    @include size(margin-bottom, $standardOffset);
+
+    .keywords__label {
+        text-transform: none;
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint){
     .keywords {
         overflow: hidden;
@@ -30,11 +38,25 @@
         float: left;
         margin-bottom: 0;
         cursor: auto;
+        font-family: $secondaryFontFamily;
     }
 
     .keywords__list {
         width: 70%;
         margin-bottom: 0;
         float: left;
+    }
+
+    .keywords--aside {
+        .keywords__label {
+            width: 100%;
+            float: none;
+            text-transform: none;
+        }
+
+        .keywords__list {
+            width: 100%;
+            float: none;
+        }
     }
 }

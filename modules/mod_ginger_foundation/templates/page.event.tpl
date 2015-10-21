@@ -20,6 +20,8 @@
 
                 {% include "subtitle/subtitle.tpl" id=id %}
 
+                {% include "part-of/part-of.tpl" id=id %}
+
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
                 <div class="main-content--event__meta">

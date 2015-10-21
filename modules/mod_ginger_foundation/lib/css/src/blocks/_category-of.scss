@@ -51,3 +51,7 @@
     @include size(top, -35);
     left: 0px;
 }
+
+.category-of__day:first-letter {
+    text-transform: uppercase;
+}
