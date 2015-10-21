@@ -12,11 +12,13 @@
     {% endif %}
 
         {% if id.medium.width > 750 %}
-            {% image id.id mediaclass="article-depiction-width" class="size-{{ sizename }}" alt="" crop=id.crop_center %}
+            {% image id.id mediaclass="landscape-"++sizename alt="" crop=id.crop_center %}
         {% elif id.medium.height > 750 %}
-             {% image id.id mediaclass="article-depiction-height" class="size-{{ sizename }}" alt="" crop=id.crop_center %}
+             {% image id.id mediaclass="portrait-"++sizename alt="" crop=id.crop_center %}
+        {% elif sizename %}
+            {% image id.id mediaclass="landscape-"++sizename alt="" crop=id.id.crop_center %}
         {% else %}
-            {% image id.id mediaclass="default" class="img-auto" alt="size-{{ sizename }}" crop=id.id.crop_center %}
+            {% image id.id mediaclass="landscape-large" alt="" crop=id.id.crop_center %}
         {% endif %}
 
     {% if link %}
