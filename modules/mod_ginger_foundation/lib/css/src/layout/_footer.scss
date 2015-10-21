@@ -86,7 +86,7 @@
 
 @include mq(min-width, $mediumBreakpoint) {
     .main-footer {
-        height: $footerHeight;
+        min-height: $footerHeight;
         @include size(padding, 50, 0);
         lost-utility: clearfix;
     }

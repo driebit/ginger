@@ -1,5 +1,11 @@
-{% with id.o.located_in as edgeLocation %}
-{% with edgeLocation|default:id as location %}
+{% with
+    id.o.located_in,
+    id.o.presented_at
+as
+    edgeLocation,
+    edgePresented
+%}
+{% with edgeLocation|default:edgePresented|default:id as location %}
     <div class="meta-location">
         <h4 class="meta-location__header"><i class="icon--location"></i>{_ Location _}</h4>
         <div class="meta-location__content">
@@ -17,6 +23,9 @@
                 {% endif %}
                 {% if location.address_city %}
                     {{ location.address_city }}
+                {% endif %}
+                {% if location.website %}
+                    <br><a href="{{ location.website }}" target="_blank">website</a>
                 {% endif %}
             </p>
             {% if location.location_lat and location.location_lng %}
