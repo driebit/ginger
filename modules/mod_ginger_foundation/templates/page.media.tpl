@@ -21,7 +21,7 @@
 
                 {% include "subtitle/subtitle.tpl" id=id %}
 
-                {% include "part-of/part-of.tpl" id=id %}
+                {% catinclude "part-of/part-of.tpl" id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
 

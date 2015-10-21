@@ -1,8 +1,9 @@
 {% with callback|default:(dispatch=="ginger_edit")|if:"zAdminConnectDone":"window.zConnectDoneReload" as callback %}
+{% with tabs_enabled|default:(dispatch=="ginger_edit")|if:["find"]:["find","new"] as tabs_enabled %}
 {% with actions|default:[] as actions %}
 {% with stay or callback or subject_id as stay %}
-{% with tabs_enabled|default:["find","new"] as tabs_enabled %}
-{% with tabs_enabled|first|default:"find" as tab %}
+{% with tabs_enabled|first|default:"find" as firsttab %}
+{% with tab|default:firsttab as tab %}
 {% with m.rsc[cat].name as cat_name %}
 
     <ul class="nav nav-pills">
@@ -73,6 +74,7 @@
         {% endblock %}
     </div>
 
+{% endwith %}
 {% endwith %}
 {% endwith %}
 {% endwith %}
