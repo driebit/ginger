@@ -1,46 +1,14 @@
 <aside>
 
-	{% block action_ginger_connections %}
-        {% if id.is_editable %}
-            <section class="aside_block aside_stories">
-
-                <header><h3 class="section-title">{_ Keyword _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='keyword' predicate='subject' new_rsc_title=_'Keyword' actions=[] dispatch=zotonic_dispatch %}
-                {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.subject.id] %}
-				<header><h3 class="section-title">{_ Author _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='person' predicate='author' new_rsc_title=_'Author' actions=[] dispatch=zotonic_dispatch %}
-                {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.author.id] %}
-				<header><h3 class="section-title">{_ Location _}</h3></header>
-                {% include "_action_ginger_connection.tpl" category='location' predicate='located_in' new_rsc_title=_'Location' actions=[] dispatch=zotonic_dispatch %}
-                {% include "_ginger_connection_widget.tpl" predicate_ids=[m.rsc.located_in.id] %}
-
-                {% if m.rsc[id.category_id].name != "person" %}
-                    {% include "_admin_edit_content_date_range.tpl" show_header is_editable %}
-                {% endif %}
-
-            </section>
-        {% endif %}
-	{% endblock %}
+    {% if id.is_editable %}
+        {% include "aside-connection/aside-add-connection.tpl" id=id cat="keyword" predicate="subject" %}
+        {% include "aside-connection/aside-add-connection.tpl" id=id cat="person" predicate="author" title=_'Author' %}
+        {% include "aside-connection/aside-add-connection.tpl" id=id cat="location" predicate="located_in" title=_'Location' %}
+        {# include "_admin_edit_content_date_range.tpl" show_header is_editable #}
+    {% endif %}
 	
-	{% block aside_connections %}
-		{% if id.s.haspart %} 
-			<section class="aside_block aside_partof">
-				<header><h3 class="section-title">{_ Part of _}</h3></header>
-				{% include "_list.tpl" class="list-about" items=id.s.haspart %}
-			</section>
-		{% endif %}	
-		{% if id.o.about %}
-			<section class="aside_block aside_about">
-				<header><h3 class="section-title">{_ About _}</h3></header>
-				{% include "_list.tpl" class="list-about" items=id.o.about %}
-			</section>
-		{% endif %}	
-		{% if id.o.blogposting %} 
-			<section class="aside_block aside_about">
-				<header><h3 class="section-title">{_ Posted in _}</h3></header>
-				{% include "_list.tpl" class="list-about" items=id.o.blogposting %}
-			</section>
-		{% endif %}	
-	{% endblock %}
-
+    {% include "aside-connection/aside-show-connection.tpl" id=id predicate="haspart" title=_"Part of" %}
+    {% include "aside-connection/aside-show-connection.tpl" id=id predicate="about" title=_"About" direction="out" %}
+    {% include "aside-connection/aside-show-connection.tpl" id=id predicate="blogposting" title=_"Posted in" direction="out" %}
+	
 </aside>

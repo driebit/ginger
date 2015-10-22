@@ -1,8 +1,9 @@
 {% with callback|default:(dispatch=="ginger_edit")|if:"zAdminConnectDone":"window.zConnectDoneReload" as callback %}
+{% with tabs_enabled|default:(dispatch=="ginger_edit")|if:["find"]:["find","new"] as tabs_enabled %}
 {% with actions|default:[] as actions %}
 {% with stay or callback or subject_id as stay %}
-{% with tabs_enabled|default:["find","new"] as tabs_enabled %}
-{% with tabs_enabled|first|default:"find" as tab %}
+{% with tabs_enabled|first|default:"find" as firsttab %}
+{% with tab|default:firsttab as tab %}
 {% with m.rsc[cat].name as cat_name %}
 
     <ul class="nav nav-pills">
@@ -55,7 +56,7 @@
                     {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]]++objects title=""
                             cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" actions=actions redirect=1 %}
                 {% endif %}
-                {% if "find"|member:tabs_enabled %}{{ object_id|pprint }}
+                {% if "find"|member:tabs_enabled %}
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate object_id=object_id redirect=redirect
                             cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
                 {% endif %}
@@ -73,6 +74,7 @@
         {% endblock %}
     </div>
 
+{% endwith %}
 {% endwith %}
 {% endwith %}
 {% endwith %}

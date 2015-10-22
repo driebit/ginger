@@ -40,26 +40,32 @@
             </div>
         </div>
         {% if id.o.haspart %}
-            {% for r in id.o.haspart %}
-                {% if r.o.haspart %}
-                    {% with m.search[{query hassubject=[r.id,'haspart'] pagelen=3 }] as result %}
+                {% for r in id.o.haspart %}
+                    {% if r.o.haspart %}
 
-                        {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
+                        {% with r.id, "seq", 3 as query_id, sort, pagelen %}                       
+                        {% with m.search[{query query_id=query_id sort=sort pagelen=pagelen }] as result %}
 
-                        {% include "list/list.tpl" items=result id=id hide_button=1 %}
+                            {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
+                            {% include "list/list.tpl" items=result id=id hide_button="1" list_id="list-"++r.id query_id=query_id sort=sort %}
 
-                    {% endwith %}
-                {% else %}
-                    {% with m.search[{query query_id=r pagelen=3 page=q.page sort='-rsc.pivot_date_start'}] as result %}
+                        {% endwith %}
+                        {% endwith %}
 
-                        {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
+                    {% else %}
 
-                        {% include "list/list.tpl" items=result id=id hide_button=1 %}
+                        {% with r, '-rsc.pivot_date_start', 10, q.page as query_id, sort, pagelen, page %} 
+                        {% with m.search[{query query_id=query_id sort=sort pagelen=10 page=page }] as result %}
 
-                    {% endwith %}
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+                            {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
+                            {% include "list/list.tpl" items=result id=id hide_button="1" list_id="list-"++r.id query_id=query_id sort=sort page=page %}
+
+                        {% endwith %}
+                        {% endwith %}
+
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
     </main>
 {% endwith %}
 {% endwith %}

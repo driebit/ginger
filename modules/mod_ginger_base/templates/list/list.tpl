@@ -4,44 +4,73 @@
     extraClasses,
     class|default:"list",
     list_id|default:"",
-    hide_button|default:0,
-    button_text|default:_"Show more results...",
-    list_template|default:"list/list-item.tpl"
+    hide_showmore_button,
+    hide_showall_button,
+    showmore_button_text|default:_"Show more results...",
+    showall_button_text|default:_"Show all...",
+    list_template|default:"list/list-item.tpl",
+    query_id,
+    sort,
+    page
 as
     items,
     cols,
     extraClasses,
     class,
     list_id,
-    hide_button,
-    button_text,
-    list_template
+    hide_showmore_button,
+    hide_showall_button,
+    showmore_button_text,
+    showall_button_text,
+    list_template,
+    query_id,
+    sort,
+    page
 %}
+
     {% if items %}
 
-        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
+            <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
 
-            {% for r in items %}
-                {% if r|length == 2 %}
-                    {% with r|element:1 as item %}
-                        {% catinclude list_template item %}
-                    {%  endwith %}
-                {% else %}
-                    {% with r as item %}
-                        {% catinclude list_template item %}
-                    {% endwith %}
-                {% endif %}
-            {% endfor %}
+                {% for r in items %}
+                    {% if r|length == 2 %}
+                        {% with r|element:1 as item %}
+                            {% catinclude list_template item %}
+                        {%  endwith %}
+                    {% else %}
+                        {% with r as item %}
+                            {% catinclude list_template item %}
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
 
-        </ul>
+            </ul> 
+                            
+            {% if not hide_showmore_button or not hide_showall_button %}
 
-        {% if hide_button == '0' %}
-            {# TODO: deze moet een catinclude doen ipv letterlijk het template #}
-            {% button class="list__more" text=button_text action={moreresults result=result
-                target=list_id
-                template=list_template}
-                %}
-        {% endif %}
+                <div id="{{ list_id }}-buttons">
+                        
+                    {% if not hide_showmore_button %} 
+                        {% button class="list__more" text=showmore_button_text action={moreresults result=result
+                            target=list_id
+                            template=list_template
+                            catinclude }
+                            %}
+                    {% endif %}
+
+                    {% if not hide_showall_button %} 
+                        {% button class="list__more" text=showall_button_text 
+                            action={replace target=list_id template="list/list-all.tpl" query_id=query_id sort=sort page=page}
+                            action={hide target=list_id++"-buttons" }
+                        %}
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+        </div>   
+
+
     {% endif %}
 
 {% endwith %}
