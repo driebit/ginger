@@ -1,14 +1,26 @@
+
 {% if
     id.medium.mime == "text/html-oembed" or
-    id.medium.mime == "text/html-video-embed" and
-    id.medium.oembed_url %}
+    id.medium.mime == "text/html-video-embed" %}
 
+
+
+
+    
+    {# oembed case #}
     {% if id.medium.oembed.provider_name|lower == "youtube" %}
 
-        <a href="{{ id.medium.oembed_url|replace:["https://youtu.be/","http://www.youtube.com/embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
+        <a href="{{ id.medium.oembed_url|replace:["watch\\?v=","embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
             {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
             <i class="fa fa-play-circle"></i>
         </a>
+
+    {% elif id.medium.video_embed_service|lower == "youtube" %}
+
+    HOI
+
+    {% print id.medium %}
+        
 
     {% elif id.medium.oembed.provider_name|lower == "vimeo" %}
 

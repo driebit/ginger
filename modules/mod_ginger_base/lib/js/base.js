@@ -39,9 +39,11 @@
 
             if (!$(event.target).closest('.global-nav').length) {
 
-                var globalSearchWidget = $(':ui-global_search').data('ui-global_search');
+                try {
+                    var globalSearchWidget = $(':ui-global_search').data('ui-global_search');
+                } catch (e) {}
 
-                if (globalSearchWidget.isVisible()) {
+                if (globalSearchWidget && globalSearchWidget.isVisible()) {
                     $(document).trigger('search:close');
                 }
 

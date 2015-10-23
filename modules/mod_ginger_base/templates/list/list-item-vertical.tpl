@@ -3,6 +3,7 @@
 {% block with_depiction %}
 
 <li class="{% block class %} list__item--vertical{% endblock %} {{ extraClasses }}">
+
     <a href="{{ id.page_url }}">
         <article class="cf">
             <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
