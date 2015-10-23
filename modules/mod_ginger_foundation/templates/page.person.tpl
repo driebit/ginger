@@ -49,7 +49,7 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Favorites" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--authored" items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--favorited" items=result extraClasses="" id=id %}
 
                 {% endwith %}
             </aside>
