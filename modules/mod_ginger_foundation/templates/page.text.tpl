@@ -45,7 +45,7 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" id=id hide_showmore_button hide_showall_button %}
 
                 {% endwith %}
             {% elif id.subject %}
@@ -55,7 +55,7 @@
 
                     {% include "keywords/keywords-aside.tpl" id=id items=result %}
 
-                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_button="1" id=id %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_showmore_button hide_showall_button id=id %}
                 {% endwith %}
             {% endif %}
         </aside>

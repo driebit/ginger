@@ -17,9 +17,11 @@
 
 .attached-media__list {
     @include size(margin, 0, 0, 30);
+
     a {
         display: inline-block;
         @include size(width, 120);
+        @include size(margin, 0, 6, 10, 0);
         border: 2px solid $mainThemeColor;
     }
 }
@@ -59,9 +61,5 @@
 @include mq(min-width, $mediumBreakpoint) {
     .attached-media__title {
         @include size(font-size, 40);
-    }
-
-    .attached-media {
-
     }
 }
