@@ -36,7 +36,7 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Inhoud" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--haspart" items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--haspart" hide_showall_button items=result extraClasses="" id=id %}
                 {% endwith %}
             </aside>
         {% endif %}
