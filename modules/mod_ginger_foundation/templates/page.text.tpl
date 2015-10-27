@@ -40,6 +40,8 @@
         <aside class="main-aside--sided">
             {% include "part-of/part-of-aside.tpl" id=id %}
 
+            {% include "about/about.tpl" id=id %}
+
             {% if id.o.fixed_context %}
                 {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
 
