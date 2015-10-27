@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-21 12:10+0100\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9
 msgid "Check our Terms of Service and Privacy policies"
@@ -43,6 +43,13 @@ msgstr "Geslacht"
 msgid "I agree to the"
 msgstr "Ik ga akkoord met de"
 
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_block_email.tpl:5
+msgid ""
+"I do not want to receive emails from other users or the editorial office"
+msgstr ""
+"Ik wil geen emails ontvangen van andere gebruikers van deze website of van "
+"de redactie"
+
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:22
 msgid "I forgot my password"
 msgstr "Wachtwoord vergeten?"
@@ -55,11 +62,11 @@ msgstr "Login onthouden"
 msgid "Log in"
 msgstr "Log in"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:35
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:37
 msgid "Log in or sign up"
 msgstr "Log in of meld je aan"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:17
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:19
 msgid "Login/Registeer"
 msgstr "Login / Registeer"
 
@@ -87,7 +94,7 @@ msgstr "Herhaal wachtwoord"
 msgid "Reset password and Sign in"
 msgstr "Verander wachtwoord en login"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_nav_logon.tpl:27
+#: /vagrant/modules/mod_ginger_auth/templates/_nav_logon_live.tpl:26
 msgid "Sign out"
 msgstr "Log uit"
 
@@ -118,7 +125,12 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:13
 msgid ""
 "We will be very careful with all the information given to us and will never "
-msgstr "We zullen heel voorzichtig zijn met alle informatie aan ons gegeven."
+"give your name or address away without your permission.\n"
+"    We do have some rules that we need you to agree with."
+msgstr ""
+"We zullen zeer zorgvuldig met uw gegevens omgaan en zullen deze ook niet aan "
+"derde overdragen zonder uw permissie. \n"
+"We hebben wel een aantal regels waar we uw toestemming voor nodig hebben"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25
 msgid "You must agree to the Terms in order to sign up."
@@ -132,7 +144,7 @@ msgstr "Je nieuwe wachtwoord is te kort."
 msgid "female"
 msgstr "vrouw"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:9
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:10
 msgid "logon/signup"
 msgstr "Log in / registreer"
 
@@ -143,3 +155,9 @@ msgstr "man"
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:7
 msgid "other"
 msgstr "anders"
+
+#~ msgid ""
+#~ "We will be very careful with all the information given to us and will "
+#~ "never "
+#~ msgstr ""
+#~ "We zullen heel voorzichtig zijn met alle informatie aan ons gegeven."
