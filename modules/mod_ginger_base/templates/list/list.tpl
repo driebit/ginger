@@ -8,10 +8,7 @@
     hide_showall_button,
     showmore_button_text|default:_"Show more results...",
     showall_button_text|default:_"Show all...",
-    list_template|default:"list/list-item.tpl",
-    query_id,
-    sort,
-    page
+    list_template|default:"list/list-item.tpl"
 as
     items,
     cols,
@@ -22,10 +19,7 @@ as
     hide_showall_button,
     showmore_button_text,
     showall_button_text,
-    list_template,
-    query_id,
-    sort,
-    page
+    list_template
 %}
 
     {% if items %}
@@ -46,7 +40,7 @@ as
 
             </ul> 
                             
-            {% if not hide_showmore_button or not hide_showall_button %}
+            {% if not hide_showmore_button %}
 
                 <div id="{{ list_id }}-buttons">
                         
@@ -58,12 +52,16 @@ as
                             %}
                     {% endif %}
 
+                    {#
                     {% if not hide_showall_button %} 
+
                         {% button class="list__more" text=showall_button_text 
-                            action={replace target=list_id template="list/list-all.tpl" query_id=query_id sort=sort page=page}
+                            action={replace target=list_id template="list/list-all.tpl"}
                             action={hide target=list_id++"-buttons" }
                         %}
+
                     {% endif %}
+                    #}
 
                 </div>
 
