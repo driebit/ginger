@@ -359,3 +359,6 @@ msgstr "Zoeken"
 
 #~ msgid "Sign up"
 #~ msgstr "Log in"
+
+msgid "Show all..."
+msgstr "Toon alles..."
