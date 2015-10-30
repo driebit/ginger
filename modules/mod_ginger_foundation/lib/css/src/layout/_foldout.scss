@@ -5,7 +5,7 @@
     border-bottom: 2px solid $mainThemeColor;
 
     &.is-collapsed {
-        @include size(height, 550);
+        @include size(height, 700);
         overflow: hidden;
 
         .foldout__button {
@@ -34,14 +34,6 @@
     .main-content {
         width: 100%;
         margin-bottom: 0;
-    }
-}
-
-.t--event {
-    .foldout {
-        &.is-collapsed {
-            @include size(height, 700);
-        }
     }
 }
 

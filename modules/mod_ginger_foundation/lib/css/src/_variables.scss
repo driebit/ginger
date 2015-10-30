@@ -3,9 +3,9 @@ $white: #FFF;
 $alto: #DDD;
 
 $bodyBgColor: #EBEBEB;
-$bodyFontFamily: 'myriad pro';
-$primaryFontFamily: $bodyFontFamily;
-$secondaryFontFamily: 'myriad pro';
+$bodyFontFamily: 'myriad pro', arial, times;
+$primaryFontFamily: $bodyFontFamily, arial, times;
+$secondaryFontFamily: 'myriad pro', arial, times;
 
 $typographyColor: #35353F;
 $mainThemeColor: #0087D2;

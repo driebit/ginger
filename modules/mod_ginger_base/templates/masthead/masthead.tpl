@@ -15,7 +15,6 @@
 
         {% with
             id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
-
             {% if banner %}
                 {% if banner.width > 500 %}
                     <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
