@@ -10,7 +10,8 @@
 
 -export([
     event/2,
-    init/1
+    init/1,
+    observe_custom_pivot/2
 ]).
 
 -include("zotonic.hrl").
@@ -18,7 +19,8 @@
 %% @doc Initialize mod_ginger_base
 -spec init(#context{}) -> ok.
 init(Context) ->
-    ginger_config:install_config(Context).
+    ginger_config:install_config(Context),
+    z_pivot_rsc:define_custom_pivot(ginger_findable, [{is_excluded_from_search, "boolean not null default false"}], Context).
 
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
@@ -65,3 +67,7 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
         {error, _} ->
             Context
     end.
+
+observe_custom_pivot({custom_pivot, Id}, Context) ->
+    Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),
+    {ginger_findable, [{is_excluded_from_search, Excluded}]}.
