@@ -16,9 +16,7 @@
             </form>
         </div>
         <aside class="main-aside">
-            {% with m.search.paged[{query text=q.qs pagelen=10 page=q.page}] as result %}
-                {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
-            {% endwith %}
+            {% include "global-search/search-query.tpl" results_template="global-search/search-results.tpl" %}
         </aside>
     </main>
 {% endblock %}

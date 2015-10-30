@@ -359,3 +359,9 @@ msgstr "Zoeken"
 
 #~ msgid "Sign up"
 #~ msgstr "Log in"
+
+msgid "Show all..."
+msgstr "Toon alles..."
+
+msgid "Exclude from search results"
+msgstr "Niet tonen in zoekresultaten"
