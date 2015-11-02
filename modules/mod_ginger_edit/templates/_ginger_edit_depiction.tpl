@@ -15,7 +15,7 @@
                     <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>
                     {% wire id=#connect 
                         action={dialog_open template="_action_dialog_connect.tpl" 
-                            title=[_"Add a ", m.rsc.depiction.title|lower , _" to ", id.title]
+                            title=[_"Add a ", m.rsc.depiction.title|lower, " ", _"toe " ]
                             subject_id=id
                             edge_template="_rsc_edge_media.tpl"
                             predicate=`depiction`
