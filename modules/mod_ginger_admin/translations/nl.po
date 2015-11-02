@@ -9,16 +9,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-08-21 12:42+0100\n"
-"PO-Revision-Date: 2015-08-21 12:47+0100\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-10-27 17:43+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: nl\n"
 
 #: /vagrant/modules/mod_ginger_admin/templates/admin_base.tpl:5
 msgid "Admin"
@@ -85,3 +85,7 @@ msgstr "Uw wachtwoord wordt gereset en u zal worden aangemeld als"
 #: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:48
 msgid "request a new password reset code"
 msgstr "Vraag een wachtwoord reset code aan."
+
+#: /vagrant/modules/mod_ginger_admin/templates/admin_logon.tpl:12
+msgid "visit site"
+msgstr "bezoek site"

@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_search/templates/_search_suggestions.tpl:16 
+#: /vagrant/modules/mod_ginger_search/templates/_search_suggestions.tpl:15 
 msgid ""
 "Nothing found"
 msgstr ""
