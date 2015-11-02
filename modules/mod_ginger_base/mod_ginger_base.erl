@@ -11,7 +11,8 @@
 -export([
     event/2,
     init/1,
-    observe_custom_pivot/2
+    observe_custom_pivot/2,
+    observe_acl_is_allowed/2
 ]).
 
 -include("zotonic.hrl").
@@ -21,6 +22,12 @@
 init(Context) ->
     ginger_config:install_config(Context),
     z_pivot_rsc:define_custom_pivot(ginger_findable, [{is_excluded_from_search, "boolean not null default false"}], Context).
+
+%% @doc Workaround until 0.13.6 is released: https://github.com/zotonic/zotonic/pull/1073
+observe_acl_is_allowed(#acl_is_allowed{action=use, object=mod_import_cvs}, Context) ->
+    z_acl:is_allowed(use, mod_import_csv, Context);
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
 
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
