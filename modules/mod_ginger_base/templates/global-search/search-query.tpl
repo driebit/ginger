@@ -19,7 +19,7 @@
         pagelen
 %}
     {% if paged %}
-        {% with m.search.paged[{query cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen custompivot="ginger_findable" filter=["is_excluded_from_search", `=`, "f"]}}] as result %}
+        {% with m.search.paged[{query cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen custompivot="ginger_findable" filter=["is_excluded_from_search", `=`, "f"]}] as result %}
             {% include results_template %}
         {% endwith %}
     {% else %}
