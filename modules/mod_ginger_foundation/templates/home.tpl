@@ -42,27 +42,23 @@
         {% if id.o.haspart %}
                 {% for r in id.o.haspart %}
                     {% if r.o.haspart %}
-
-                        {% with r.id, "seq", 3 as query_id, sort, pagelen %}                       
-                        {% with m.search[{query query_id=query_id sort=sort pagelen=pagelen }] as result %}
+                        {% with m.search[{query hassubject=[r,'haspart'] sort="-seq" pagelen=6}] as result %}
 
                             {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
-                            {% include "list/list.tpl" items=result id=id hide_button="1" list_id="list-"++r.id query_id=query_id sort=sort %}
 
-                        {% endwith %}
+                            {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
+
                         {% endwith %}
 
                     {% else %}
 
-                        {% with r, '-rsc.pivot_date_start', 10, q.page as query_id, sort, pagelen, page %} 
-                        {% with m.search[{query query_id=query_id sort=sort pagelen=10 page=page }] as result %}
+                        {% with m.search[{query query_id=id sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
 
                             {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
-                            {% include "list/list.tpl" items=result id=id hide_button="1" list_id="list-"++r.id query_id=query_id sort=sort page=page %}
+
+                            {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
 
                         {% endwith %}
-                        {% endwith %}
-
                     {% endif %}
                 {% endfor %}
             {% endif %}
