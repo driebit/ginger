@@ -18,11 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
-msgid ""
-" to "
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60 
 msgid ""
 "(to add an address choose a country first)"
@@ -38,17 +33,12 @@ msgid ""
 "Access control"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
-msgid ""
-"Add a "
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4 /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30 
 msgid ""
 "Add a connection: "
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
 msgid ""
 "Add:"
 msgstr ""
@@ -233,7 +223,12 @@ msgid ""
 "Mobile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43 
+msgid ""
+"New"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20 
 msgid ""
 "New Page"
 msgstr ""

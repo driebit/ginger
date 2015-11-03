@@ -40,7 +40,7 @@
             {% endif %}
             {% if m.acl.insert[cat_name] and "new"|member:tabs_enabled %}
                 <li {% if tab == "new" %}class="active"{% endif %}>
-                    <a data-toggle="tab" href="#{{ #tab }}-new">{_ New Page _}</a>
+                    <a data-toggle="tab" href="#{{ #tab }}-new">{_ New _}</a>
                 </li>
             {% endif %}
         {% endif %}

@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2015-11-03 12:41+0100\n"
-"PO-Revision-Date: 2015-11-03 12:44+0100\n"
+"POT-Creation-Date: 2015-11-03 17:15+0100\n"
+"PO-Revision-Date: 2015-11-03 17:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -19,10 +19,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
-msgid " to "
-msgstr " tot"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60
 msgid "(to add an address choose a country first)"
@@ -36,10 +32,6 @@ msgstr "Over"
 msgid "Access control"
 msgstr "Toegangs rechten"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
-msgid "Add a "
-msgstr "Voeg een "
-
 #: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30
 msgid "Add a connection: "
@@ -48,6 +40,7 @@ msgstr "Een verbinding toevoegen:"
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 msgid "Add:"
 msgstr "Toevoegen:"
 
@@ -207,8 +200,11 @@ msgstr "Media titel"
 msgid "Mobile"
 msgstr "Mobiel"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43
+msgid "New"
+msgstr "Nieuw"
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20
 msgid "New Page"
 msgstr "Nieuwe pagina"
 
@@ -417,6 +413,12 @@ msgstr "tot"
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3
 msgid "undo"
 msgstr "ongedaan maken"
+
+#~ msgid " to "
+#~ msgstr " tot"
+
+#~ msgid "Add a "
+#~ msgstr "Voeg een "
 
 #~ msgid "add"
 #~ msgstr "Voeg"
