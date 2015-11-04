@@ -4,7 +4,7 @@
 
 <li class="list__item--member {{ extraClasses }}">
 
-    {% include "edit/edit-button.tpl" class="edit-button--list-item" id=id %}
+    {#% include "edit/edit-button.tpl" class="edit-button--list-item" id=id %#}
 
     <a href="{{ id.page_url }}" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image-member" alt="" title="" crop=dep_rsc.crop_center %})">
         <article>

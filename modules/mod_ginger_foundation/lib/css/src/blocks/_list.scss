@@ -86,7 +86,8 @@
     img {
         width: 100%;
         filter: grayscale(100%);
-        transition: filter 0.3s;
+        //transition: filter 0.3s;
+        // TODO: gives strange movement bug
     }
 
     a,
@@ -184,6 +185,11 @@
     &:active,
     &:focus {
         @extend .btn--primary:hover;
+    }
+
+    + .list__more {
+        margin-top: 20px;
+        background: lighten($mainThemeColor, 20);
     }
 }
 

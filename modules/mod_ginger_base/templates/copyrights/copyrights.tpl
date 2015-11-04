@@ -3,12 +3,12 @@
     <div class="copyrights">
         {% if id.rights|upper=="BY,SA" %}
             <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, this work must be licensed under an identical license if used _}">
-                <i class="icon--cc-by-sa"></i>
+                <i class="icon--cc-by"></i><i class="icon--cc-sa"></i>
             </a>
 
         {% elif id.rights|upper=="BY,ND" %}
             <a href="http://creativecommons.org/licenses/by-nd/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, you may not alter, transform, or build upon this work. _}">
-                <i class="icon--cc-by-nd"></i>
+                <i class="icon--cc-by"></i><i class="icon--cc-nd"></i>
             </a>
 
         {% elif id.rights|upper=="BY" %}
@@ -18,19 +18,21 @@
 
         {% elif id.rights|upper=="BY,NC,ND" %}
             <a href="http://creativecommons.org/licenses/by-nc-nd/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, you may not use this work for commercial purposes, you may not alter, transform, or build upon this work _}">
-                <i class="icon--cc-by-nc"></i>
-                <i class="icon--cc-by-nd"></i>
+                <i class="icon--cc-by"></i>
+                <i class="icon--cc-nc"></i>
+                <i class="icon--cc-nd"></i>
             </a>
 
         {% elif id.rights|upper=="BY,NC" %}
             <a href="http://creativecommons.org/licenses/by-nc/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, you may not use this work for commercial purposes _}">
-                <i class="icon--cc-by-nc"></i>
+                <i class="icon--cc-by"></i><i class="icon--cc-nc"></i>
             </a>
 
         {% elif id.rights|upper=="BY,NC,SA" %}
             <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, you may not use this work for commercial purposes, this work must be licensed under an identical license if used _}">
-                <i class="icon--cc-by-nc"></i>
-                <i class="icon--cc-by-sa"></i>
+                <i class="icon--cc-by"></i>
+                <i class="icon--cc-nc"></i>
+                <i class="icon--cc-sa"></i>
             </a>
 
         {% elif id.rights|upper=="PD" %}

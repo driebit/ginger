@@ -30,7 +30,7 @@
 
                             {% if locations %}
                                 <p class="list__item__locations">
-                                    {_ Locatie _}:
+                                    {_ Location _}:
                                     {% for r in locations %}
                                         {{ r.title }}{% if not forloop.last %}, {% endif %}
                                     {% endfor %}

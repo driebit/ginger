@@ -414,33 +414,6 @@ msgstr "tot"
 msgid "undo"
 msgstr "ongedaan maken"
 
-#~ msgid " to "
-#~ msgstr " tot"
-
-#~ msgid "Add a "
-#~ msgstr "Voeg een "
-
-#~ msgid "add"
-#~ msgstr "Voeg"
-
-#~ msgid "add:"
-#~ msgstr "Toevoegen:"
-
-#~ msgid "to "
-#~ msgstr "tot"
-
-#~ msgid "toe"
-#~ msgstr "toe"
-
-#~ msgid "Keyword"
-#~ msgstr "Keyword"
-
-#~ msgid "Organized by"
-#~ msgstr "Georganiseerd door"
-
-#~ msgid "toe "
-#~ msgstr "toe"
-
 #~ msgid "6 characters or more."
 #~ msgstr "6 karakters of meer"
 

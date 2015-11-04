@@ -18,453 +18,453 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60
 msgid ""
 "(to add an address choose a country first)"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:11 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:11
 msgid ""
 "About"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:21 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:21
 msgid ""
 "Access control"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4 /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30 
+#: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4 /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30
 msgid ""
 "Add a connection: "
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
 msgid ""
 "Add:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:5
 msgid ""
 "Address"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28
 msgid ""
 "All"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:5
 msgid ""
 "Alternative uris"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:3 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:3
 msgid ""
 "Attached media"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.media.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.media.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:5
 msgid ""
 "Author"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics.tpl:3
 msgid ""
 "Basic"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:36 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:36 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32
 msgid ""
 "Cancel"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:82 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:82
 msgid ""
 "City"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:59 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:59
 msgid ""
 "Country"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:5
 msgid ""
 "Date range"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:41 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:41
 msgid ""
 "Delete"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:41 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:41
 msgid ""
 "Delete this page."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:13 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:13
 msgid ""
 "Disconnect"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:12 
+#: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:12
 msgid ""
 "E-mail/User not found"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:4 
+#: /vagrant/modules/mod_ginger_edit/templates/_signup_error.tpl:4
 msgid ""
 "E-mail/password already registered"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_button.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:7 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:6 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:8 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_button.tpl:3 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:7 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:6 /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:8
 msgid ""
 "Edit"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:8 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:8
 msgid ""
 "Events"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:23 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:23
 msgid ""
 "Facebook"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28
 msgid ""
 "Find"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:15 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:15
 msgid ""
 "Find Page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:2 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:2
 msgid ""
 "Find an existing page to connect"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:38 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:38
 msgid ""
 "From"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:24 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:24
 msgid ""
 "Go to"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:24 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:24
 msgid ""
 "Home"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:9 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.location.tpl:9
 msgid ""
 "Is here"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:47 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:47
 msgid ""
 "Language"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_like.tpl:3 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_like.tpl:3
 msgid ""
 "Like"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:47 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:47
 msgid ""
 "LinkedIn"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:32 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:32
 msgid ""
 "Live query, send notifications when matching items are updated or inserted."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:6 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:6
 msgid ""
 "Location"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:20 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:20
 msgid ""
 "Main"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:33 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:33
 msgid ""
 "Make"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_new.tpl:2 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_new.tpl:2
 msgid ""
 "Make a new page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:28 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:28
 msgid ""
 "Media file"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:20 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:20
 msgid ""
 "Media title"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:19 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:19
 msgid ""
 "Mobile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43
 msgid ""
 "New"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20
 msgid ""
 "New Page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_person_connect.tpl:10 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_person_connect.tpl:10
 msgid ""
 "No"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:23 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:23
 msgid ""
 "Not allowed"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.media.tpl:8 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.media.tpl:8
 msgid ""
 "On page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:6 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:6
 msgid ""
 "Organiser"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:10 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:10
 msgid ""
 "Part of"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:87 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:87
 msgid ""
 "Postcode"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12
 msgid ""
 "Posted in"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:50 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:50
 msgid ""
 "Publication"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:64 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:64
 msgid ""
 "Published"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:22 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:22
 msgid ""
 "Query"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:36 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:36
 msgid ""
 "Query preview"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:39 /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:20 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:39 /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:20
 msgid ""
 "Redirect to website on page view"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:51 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:56 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:51 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:56
 msgid ""
 "Remarks"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:69 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109 
+#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:33 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:69 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109
 msgid ""
 "Save"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:112 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:112
 msgid ""
 "Save &amp; view"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:112 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:112
 msgid ""
 "Save and view the page."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:109
 msgid ""
 "Save this page."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:6 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content.blog.tpl:6
 msgid ""
 "Search query"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:91 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:91
 msgid ""
 "State"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:77 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:77
 msgid ""
 "Street Line 1"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:15 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:15
 msgid ""
 "Telephone"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:9 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:9
 msgid ""
 "The page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:11 
+#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:11
 msgid ""
 "The two passwords should be equal. Please retype them."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:42 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:42
 msgid ""
 "Till"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:22 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:22 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5
 msgid ""
 "Title"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:43 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:43
 msgid ""
 "Twitter"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:7 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:7
 msgid ""
 "Type text to search"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:32 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:32
 msgid ""
 "Unique name"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_like.tpl:2 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_like.tpl:2
 msgid ""
 "Unlike"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:6 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:6
 msgid ""
 "Upload a file from your computer."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:37 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:37
 msgid ""
 "Upload file"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114
 msgid ""
 "View"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114
 msgid ""
 "View this page."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:67 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:67
 msgid ""
 "Visit full edit page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:30 /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:12 
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:30 /vagrant/modules/mod_ginger_edit/templates/__admin_edit_content_advanced.tpl:12
 msgid ""
 "Website"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_person_connect.tpl:19 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_person_connect.tpl:19
 msgid ""
 "Yes"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:7 
+#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:7
 msgid ""
 "You entered an unknown username or e-mail address.  Please try again."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:3 
+#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:3
 msgid ""
 "You entered an unknown username or password.  Please try again."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:5
 msgid ""
 "You have to confirm your account first.  Please see the email send to you."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:8 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:8
 msgid ""
 "You have to specify a description of the file to make it easier to find "
 "and share."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24 
+#: /vagrant/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24
 msgid ""
 "You need to log on"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:9 
+#: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:9
 msgid ""
 "Your new password is too short."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:24 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:24
 msgid ""
 "add a connection"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:1 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15 
+#: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:1 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15
 msgid ""
 "add media item"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:9 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:9
 msgid ""
 "has been disconnected."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:68 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:68
 msgid ""
 "till"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3
 msgid ""
 "undo"
 msgstr ""
