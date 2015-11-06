@@ -33,7 +33,7 @@ msgid ""
 "Favorites"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:48 /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:56 /vagrant/modules/mod_ginger_foundation/templates/page.tpl:43 /vagrant/modules/mod_ginger_foundation/templates/page.tpl:52 
+#: /vagrant/modules/mod_ginger_foundation/templates/page.article.tpl:42 /vagrant/modules/mod_ginger_foundation/templates/page.article.tpl:49 /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:46 /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:55 /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:48 /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:56 /vagrant/modules/mod_ginger_foundation/templates/page.tpl:43 /vagrant/modules/mod_ginger_foundation/templates/page.tpl:52 
 msgid ""
 "Gerelateerd"
 msgstr ""

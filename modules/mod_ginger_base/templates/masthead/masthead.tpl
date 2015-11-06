@@ -2,14 +2,7 @@
 
     {% if id.category.name == 'location' and id.address_street_1 %}
 
-        <div class="masthead--map do_masthead_map"
-            data-street1="{{ id.address_street_1 }}"
-            data-street2="{{ id.address_street_2 }}"
-            data-city="{{ id.address_city }}"
-            data-postcode="{{ id.address_postcode }}"
-            data-country="{{ id.address_country }}"
-            data-main-content-class="foldout">
-        </div>
+        {% include "map/map-location.tpl" id=id type="map" fallback recenter %}  
 
     {% else %}
 
