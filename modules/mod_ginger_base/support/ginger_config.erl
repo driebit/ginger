@@ -32,6 +32,7 @@ install_config(Config, Context) ->
 -spec get_config() -> list().
 get_config() ->
     [
+        {i18n, language, nl},
         {mod_l10n, timezone, <<"Europe/Berlin">>},
         {mod_l10n, timezone_is_fixed, true}
     ].

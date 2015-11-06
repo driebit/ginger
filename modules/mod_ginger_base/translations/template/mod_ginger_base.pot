@@ -23,7 +23,7 @@ msgid ""
 "About:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:44 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:96 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:46 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:96 
 msgid ""
 "All rights reserved"
 msgstr ""
@@ -48,7 +48,7 @@ msgid ""
 "Choose language"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.tpl:2 
+#: /vagrant/modules/mod_ginger_base/templates/admin/admin-edit-copyrights.tpl:2 
 msgid ""
 "Copyrights"
 msgstr ""
@@ -76,6 +76,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:8 
 msgid ""
 "Edit page"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:12 
+msgid ""
+"Exclude from search results"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9 
@@ -168,7 +173,7 @@ msgid ""
 "Note: Comments are moderated"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:16 
+#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:13 
 msgid ""
 "Nothing found"
 msgstr ""
@@ -203,7 +208,7 @@ msgid ""
 "Read more"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10 /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16 /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:6 
+#: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10 /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16 /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:6 
 msgid ""
 "Search"
 msgstr ""
@@ -278,7 +283,7 @@ msgid ""
 "Website"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:37 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:84 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:39 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:84 
 msgid ""
 "You may use the work freely"
 msgstr ""
@@ -300,13 +305,13 @@ msgid ""
 "or build upon this work."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:26 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:34 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:27 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:34 
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:31 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:72 
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:32 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:72 
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes, this work must be licensed under an identical license "

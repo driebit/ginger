@@ -13,9 +13,9 @@
             <div class="form-group clearfix">
                 <div class="pull-right">
                     <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>
-                    {% wire id=#connect 
-                        action={dialog_open template="_action_dialog_connect.tpl" 
-                            title=[_"Add a ", m.rsc.depiction.title|lower, " ", _"toe " ]
+                    {% wire id=#connect
+                        action={dialog_open template="_action_dialog_connect.tpl"
+                            title=[_"Add:", " ", m.rsc.depiction.title|lower]
                             subject_id=id
                             edge_template="_rsc_edge_media.tpl"
                             predicate=`depiction`
