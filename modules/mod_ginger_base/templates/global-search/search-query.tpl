@@ -5,7 +5,7 @@
         results_template,
         cat,
         paged|default:true,
-        cat_exclude|default:['meta', 'menu'],
+        cat_exclude|default:['meta', 'menu', 'admin_content_query'],
         search_text|default:q.value|default:q.qs,
         cg_name,
         pagelen|default:10
