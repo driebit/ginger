@@ -38,7 +38,7 @@ manage_schema(install, Context) ->
     z_datamodel:manage(?MODULE, Datamodel, Context),
 
     %% Update some predicates so they can refer to category RDF, too
-    case m_rsc:uri_lookup("http://xmlns.com/foaf/0.1/depiction", Context) of 
+    case m_rsc:uri_lookup("http://xmlns.com/foaf/0.1/depiction", Context) of
         undefined -> noop;
         PredId ->
             Objects = m_predicate:objects(PredId, Context),
@@ -58,6 +58,8 @@ pid_observe_rsc_update_done(Pid, #rsc_update_done{id=Id, post_is_a=CatList}, _Co
 
 %% @doc When asked for properties of an RDF resource, ask the RDF data source to
 %%      provide extra properties
+observe_rsc_get(#rsc_get{}, [], _Context) ->
+    [];
 observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
 
     %% Only act on non-authoritative resources
@@ -67,7 +69,7 @@ observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
         false ->
             RscUri = proplists:get_value(uri, Props),
             case z_utils:is_empty(RscUri) of
-                true -> 
+                true ->
                     Props;
                 false ->
                     z_notifier:foldl(#rdf_get{uri=RscUri}, Props, Context)
