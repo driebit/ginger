@@ -7,10 +7,13 @@
 -mod_title("Ginger Base").
 -mod_description("Ginger Base").
 -mod_prio(250).
+-mod_depends[mod_content_groups, mod_acl_user_groups].
+-mod_schema(1).
 
 -export([
-    event/2,
     init/1,
+    event/2,
+    manage_schema/2,
     observe_custom_pivot/2,
     observe_acl_is_allowed/2
 ]).
@@ -21,7 +24,31 @@
 -spec init(#context{}) -> ok.
 init(Context) ->
     ginger_config:install_config(Context),
+    ginger_acl:install(Context),
     z_pivot_rsc:define_custom_pivot(ginger_findable, [{is_excluded_from_search, "boolean not null default false"}], Context).
+
+%% @doc When ACL is enabled, create a default user in the editors group
+manage_schema(_Version, Context) ->
+    case ginger_acl:is_enabled(Context) of
+        false ->
+            ok;
+        true ->
+            Datamodel = #datamodel{
+                resources = [
+                    {editor_dev, person, [
+                        {title, "Redacteur"},
+                        {name_first, "Redacteur"},
+                        {email, "redactie@ginger.nl"}
+                    ]}
+                ],
+                edges = [
+                    {editor_dev, hasusergroup, acl_user_group_editors}
+                ]
+            },
+            z_datamodel:manage(?MODULE, Datamodel, Context),
+            schema:create_identity_if_not_exists(editor_dev, "redacteur", "redacteur", Context)
+    end,
+    ok.
 
 %% @doc Workaround until 0.13.6 is released: https://github.com/zotonic/zotonic/pull/1073
 observe_acl_is_allowed(#acl_is_allowed{action=use, object=mod_import_cvs}, Context) ->

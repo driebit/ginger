@@ -1,5 +1,5 @@
 {% with callback|default:(dispatch=="ginger_edit")|if:"zAdminConnectDone":"window.zConnectDoneReload" as callback %}
-{% with tabs_enabled|default:(dispatch=="ginger_edit")|if:["find"]:["find","new"] as tabs_enabled %}
+{% with tabs_enabled|default:((dispatch=="ginger_edit")|if:["find"]:["find","new"]) as tabs_enabled %}
 {% with actions|default:[] as actions %}
 {% with stay or callback or subject_id as stay %}
 {% with tabs_enabled|first|default:"find" as firsttab %}
@@ -40,7 +40,7 @@
             {% endif %}
             {% if m.acl.insert[cat_name] and "new"|member:tabs_enabled %}
                 <li {% if tab == "new" %}class="active"{% endif %}>
-                    <a data-toggle="tab" href="#{{ #tab }}-new">{_ New Page _}</a>
+                    <a data-toggle="tab" href="#{{ #tab }}-new">{_ New _}</a>
                 </li>
             {% endif %}
         {% endif %}
