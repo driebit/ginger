@@ -1,9 +1,8 @@
 
 {% block map %}
-    {% with content_template|default:"map/map-content.tpl" as content_template %}
+    {% with con tent_template|default:"map/map-content.tpl" as content_template %}
 
     {% if items|length > 0 %}
-
         <div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="do_googlemap map_canvas {{ class }}"
 
             data-locations='

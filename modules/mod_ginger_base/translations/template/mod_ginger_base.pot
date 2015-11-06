@@ -68,12 +68,12 @@ msgid ""
 "E-mail address"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:10 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:10 
 msgid ""
 "Edit"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/edit/edit-button.tpl:9 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:8 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:8 
 msgid ""
 "Edit page"
 msgstr ""
