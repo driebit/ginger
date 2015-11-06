@@ -2,7 +2,8 @@
 -author("Driebit <tech@driebit.nl").
 
 -export([
-    install_config/1
+    install_config/1,
+    install_config/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -10,6 +11,9 @@
 %% @doc Set preferred default config (but don't overwrite if already set)
 -spec install_config(#context{}) -> ok.
 install_config(Context) ->
+    install_config(get_config(), Context).
+
+install_config(Config, Context) ->
     lists:foreach(
         fun({Mod, Key, Value}) ->
             m_config:get(Mod, Key, Context),
@@ -20,7 +24,7 @@ install_config(Context) ->
                     noop
             end
         end,
-        get_config()
+        Config
     ),
     ok.
 
