@@ -43,7 +43,7 @@ msgid ""
 "Hello from Zotonic"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_foundation/templates/page.collection.tpl:37 /vagrant/modules/mod_ginger_foundation/templates/page.content_group.tpl:33 
+#: /vagrant/modules/mod_ginger_foundation/templates/page.collection.tpl:36 /vagrant/modules/mod_ginger_foundation/templates/page.content_group.tpl:33 
 msgid ""
 "Inhoud"
 msgstr ""
