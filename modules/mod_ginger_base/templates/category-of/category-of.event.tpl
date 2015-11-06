@@ -1,3 +1,4 @@
+{% if id.date_start|date:"Y" %}
 <div class="category-of--event cf">
     <time datetime="{{ id.start_date|date:"Y-F-jTH:i" }}" class="category-of__date">
         <i class="icon--{{ id.category.name }}"></i>
@@ -10,3 +11,4 @@
         </time>
     {% endif %}
 </div>
+{% endif %}

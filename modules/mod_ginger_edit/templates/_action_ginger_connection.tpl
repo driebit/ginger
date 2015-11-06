@@ -15,13 +15,13 @@
             {% if btn_title %}
                 {{ btn_title }}
             {% else %}
-                + {_ add _} {{cat_title }} {_ toe _}
+                + {_ Add: _} {{cat_title }}
             {% endif %}
         </a>
         {% if direction=='in' %}
-            {% wire id=#connect.predicate 
-                action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add", " ", modal_cat_title, " ", _"toe "]
+            {% wire id=#connect.predicate
+                action={dialog_open template="_action_ginger_dialog_connect.tpl"
+                            title=[_"Add:", " ", modal_cat_title]
                             logon_required
                             object_id=id
                             objects=objects
@@ -36,9 +36,9 @@
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
-            {% wire id=#connect.predicate 
-                action={dialog_open template="_action_ginger_dialog_connect.tpl" 
-                            title=[_"add", " ", modal_cat_title , " ", _"to "]
+            {% wire id=#connect.predicate
+                action={dialog_open template="_action_ginger_dialog_connect.tpl"
+                            title=[_"Add:", " ", modal_cat_title]
                             logon_required
                             subject_id=id
                             objects=objects

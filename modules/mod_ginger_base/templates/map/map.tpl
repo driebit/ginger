@@ -10,6 +10,7 @@ as
 %}
 
     {% block map %}
+    
         {% with content_template|default:"map/map-content.tpl" as content_template %}
 
         {% if items|length > 0 %}
