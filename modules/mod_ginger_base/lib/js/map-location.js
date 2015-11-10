@@ -99,7 +99,7 @@
 
                 if (me.options.recenter == true) {
                     google.maps.event.addListenerOnce(me.map, "projection_changed", function() {
-                        me.recenterMap();
+                        me.recenterMap(me.map);
                     });
                 }
 
@@ -113,12 +113,17 @@
                     STREETVIEW_MAX_DISTANCE = 100;
 
                 streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
+
+                    var panoramaLatLng = streetViewPanoramaData.location.latLng,
+                        heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
+
                     if (status === google.maps.StreetViewStatus.OK) {
                           me.panorama = new google.maps.StreetViewPanorama(
                           me.element[0], {
                             position: latLng,
-                            pov: {heading: 165, pitch: 0},
-                            zoom: 1
+                            pov: {heading: heading, pitch: 0},
+                            zoom: 1,
+                            disableDefaultUI: true
                           });
                     } else {
                         if (me.options.fallback == true) {
@@ -132,18 +137,21 @@
 
             recenterMap: function(map) {
 
-                /* todo */
-                return false;
-
                 var me = this,
-                    masthead = $(me.element),
+                    mainContentEl = $('.' + me.element.data('main-content-class'));
+                    console.log(mainContentEl);
+                    if (mainContentEl.size() == 0) return false;
+
+                    var masthead = $(me.element),
                     mastheadHeight = masthead[0].clientHeight,
                     mastheadOffsetTop = masthead[0].offsetTop,
-                    mainContentOffsetTop = $('.' + me.element.data('main-content-class'))[0].offsetTop,
+                    mainContentOffsetTop = mainContentEl[0].offsetTop,
                     offsetY = (mastheadHeight / 2) - ((mainContentOffsetTop - mastheadOffsetTop) / 2),
                     centerPoint = map.getProjection().fromLatLngToPoint(map.getCenter()),
                     offsetPoint = new google.maps.Point(0, offsetY / Math.pow(2, map.getZoom())),
                     newCenterPoint = new google.maps.Point(centerPoint.x, centerPoint.y + offsetPoint.y);
+
+                    console.log(centerPoint);
 
                     map.setCenter(map.getProjection().fromPointToLatLng(newCenterPoint));
             }
