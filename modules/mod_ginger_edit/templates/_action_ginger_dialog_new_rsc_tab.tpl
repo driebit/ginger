@@ -19,6 +19,7 @@
 <form id="{{ #form }}" method="POST" action="postback" class="form">
 
 	<input type="hidden" name="category_id" value="{{ cat }}"/>
+	<input type="hidden" name="content_group_id" value="{{ cg_id }}"/>
 	<input type="hidden" name="redirect" value="{{ redirect }}" />
 	<input type="hidden" name="page" value="{{ page }}" />
 	<input type="hidden" name="actions" value="{{ actions }}"/>
