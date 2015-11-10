@@ -18,34 +18,10 @@
     }
 }
 
-.btn--primary {
-    @extend .btn;
-    background: $mainThemeColor;
-    color: $white;
-    border: 1px solid $mainThemeColor;
-
-    &:hover,
-    &:active,
-    &:focus,
-    &:focus:active,
-    &.is-active {
-        background-color: darken($mainThemeColor, 5);
-        color: $white;
-        border-color: darken($mainThemeColor, 5);
-    }
-}
-
 .btn--secondary,
 .btn--anchor,
 .btn--next {
     @extend .btn;
-}
-
-.btn--anchor,
-.btn--next {
-    position: relative;
-
-    @extend .btn--secondary;
 }
 
 .btn--secondary {
@@ -61,6 +37,29 @@
         border-color: $mainThemeColor;
         color: $white;
         background-color: $mainThemeColor;
+    }
+}
+
+.btn--anchor,
+.btn--next {
+    position: relative;
+    @extend .btn--secondary;
+}
+
+.btn--primary {
+    @extend .btn;
+    background: $mainThemeColor;
+    color: $white;
+    border: 1px solid $mainThemeColor;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus:active,
+    &.is-active {
+        background-color: darken($mainThemeColor, 5);
+        color: $white;
+        border-color: darken($mainThemeColor, 5);
     }
 }
 

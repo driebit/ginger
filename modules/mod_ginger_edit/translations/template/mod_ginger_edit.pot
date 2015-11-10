@@ -18,7 +18,14 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60
+=======
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:60 
+>>>>>>> Stashed changes
 msgid ""
 "(to add an address choose a country first)"
 msgstr ""
@@ -73,7 +80,15 @@ msgid ""
 "Basic"
 msgstr ""
 
+<<<<<<< HEAD
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32 
+=======
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:36 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32
+=======
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:32 
+>>>>>>> Stashed changes
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
 msgid ""
 "Cancel"
 msgstr ""
@@ -208,6 +223,9 @@ msgid ""
 "Make a new page"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:28
 msgid ""
 "Media file"
@@ -219,6 +237,10 @@ msgid ""
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:19
+=======
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
+#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:19 
+>>>>>>> Stashed changes
 msgid ""
 "Mobile"
 msgstr ""
@@ -378,6 +400,9 @@ msgid ""
 "Unlike"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:6
 msgid ""
 "Upload a file from your computer."
@@ -389,6 +414,10 @@ msgid ""
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114
+=======
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:114 
+>>>>>>> Stashed changes
 msgid ""
 "View"
 msgstr ""
@@ -428,6 +457,9 @@ msgid ""
 "You have to confirm your account first.  Please see the email send to you."
 msgstr ""
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_media_upload_tab_upload.tpl:8
 msgid ""
 "You have to specify a description of the file to make it easier to find "
@@ -435,6 +467,10 @@ msgid ""
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24
+=======
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
+#: /vagrant/modules/mod_ginger_edit/actions/action_ginger_edit_dialog_open.erl:24 
+>>>>>>> Stashed changes
 msgid ""
 "You need to log on"
 msgstr ""
@@ -464,7 +500,30 @@ msgid ""
 "till"
 msgstr ""
 
+<<<<<<< Updated upstream
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3
+=======
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 
+msgid ""
+"to"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 
+msgid ""
+"to "
+msgstr ""
+
+<<<<<<< HEAD
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
+=======
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
+>>>>>>> 554b343fdea5cb1fa760197c2a6735c0ba94e0a8
+msgid ""
+"toe "
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3 
+>>>>>>> Stashed changes
 msgid ""
 "undo"
 msgstr ""

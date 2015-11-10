@@ -38,6 +38,8 @@ $.widget( "ui.googlemap", {
 
         options = jQuery.parseJSON(widgetElement.data('mapoptions'));
 
+        if (!id) return false;
+
         if (options.blackwhite == true) {
             options.styles = [{
                "stylers": [

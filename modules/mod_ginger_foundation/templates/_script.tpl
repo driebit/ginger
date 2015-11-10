@@ -7,7 +7,7 @@
     "js/foldout.js"
     "js/foundation.js"
     "js/carousel.js"
-    "js/masthead-map.js"
+    "js/map-location.js"
     "js/parallax.js"
     "js/anchor.js"
     "js/vendors/markerclusterer.js"

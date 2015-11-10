@@ -1,35 +1,51 @@
 
-{% block map %}
-    {% with content_template|default:"map/map-content.tpl" as content_template %}
+{% with
+    scrollwheel|default:"false",
+    blackwhite|default:"false",
+    container,
+    height|default:"600"
+as
+    scrollwheel,
+    blackwhite,
+    container,
+    height
+%}
 
-    {% if items|length > 0 %}
+    {% block map %}
 
-        <div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="do_googlemap map_canvas {{ class }}"
+        {% with content_template|default:"map/map-content.tpl" as content_template %}
 
-            data-locations='
-                {% filter replace:"'":"\\&#39;" %}
-                    [
-                        {% for id, event_ids in items %}
-                            {
-                                "lat": "{{ id.location_lat }}",
-                                "lng": "{{ id.location_lng }}",
-                                "zoom": "{{ id.location_zoom_level }}",
-                                "content": {% include content_template id=id event_ids=event_ids %}
-                            }
-                            {% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                    ]
-                {% endfilter %}
-            '
+        {% if items|length > 0 %}
+            <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
 
-            data-mapoptions='
-                {
-                    "scrollwheel": {{ scrollwheel }},
-                    "blackwhite": {{ blackwhite }}
-                }
-            '
+                data-locations='
+                    {% filter replace:"'":"\\&#39;" %}
+                        [
+                            {% for item in items|location_defined %}
+                             {% with item[1]|default:item as item_id %}
+                                {
+                                    "lat": "{{ item_id.location_lat }}",
+                                    "lng": "{{ item_id.location_lng }}",
+                                    "zoom": "{{ item_id.location_zoom_level }}",
+                                    "content": {% include content_template id=item_id item=item %}
+                                }
+                                {% if not forloop.last %},{% endif %}
+                            {% endwith %}
+                            {% endfor %}
+                        ]
+                    {% endfilter %}
+                '
 
-       ></div>
-   {% endif %}
-   {% endwith %}
-{% endblock %}
+                data-mapoptions='
+                    {
+                        "scrollwheel": {{ scrollwheel }},
+                        "blackwhite": {{ blackwhite }}
+                    }
+                '
+
+           ></div>
+       {% endif %}
+       {% endwith %}
+    {% endblock %}
+
+{% endwith %}

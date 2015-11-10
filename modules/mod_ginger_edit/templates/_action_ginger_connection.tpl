@@ -19,8 +19,8 @@
             {% endif %}
         </a>
         {% if direction=='in' %}
-            {% wire id=#connect.predicate 
-                action={dialog_open template="_action_ginger_dialog_connect.tpl" 
+            {% wire id=#connect.predicate
+                action={dialog_open template="_action_ginger_dialog_connect.tpl"
                             title=[_"Add:", " ", modal_cat_title]
                             logon_required
                             object_id=id
@@ -36,8 +36,8 @@
                             cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
             %}
         {% else %}
-            {% wire id=#connect.predicate 
-                action={dialog_open template="_action_ginger_dialog_connect.tpl" 
+            {% wire id=#connect.predicate
+                action={dialog_open template="_action_ginger_dialog_connect.tpl"
                             title=[_"Add:", " ", modal_cat_title]
                             logon_required
                             subject_id=id

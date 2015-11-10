@@ -1,32 +1,34 @@
-{% if id %}
 
-    {% if id.category.name == 'location' and id.address_street_1 %}
+{% with 
+    main_content_class|default:"foldout",
+    maptype|default:"map"
+as
+    main_content_class,
+    maptype
+%}
 
-        <div class="masthead--map do_masthead_map"
-            data-street1="{{ id.address_street_1 }}"
-            data-street2="{{ id.address_street_2 }}"
-            data-city="{{ id.address_city }}"
-            data-postcode="{{ id.address_postcode }}"
-            data-country="{{ id.address_country }}"
-            data-main-content-class="foldout">
-        </div>
+    {% if id %}
 
-    {% else %}
+        {% if id.category.is_a.location %}
+            {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
+        {% else %}
 
-        {% with
-            id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
-            {% if banner %}
-                {% if banner.width > 500 %}
-                    <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+            {% with
+                id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
+                {% if banner %}
+                    {% if banner.width > 500 %}
+                        <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+                    {% else %}
+                        <div class="masthead"></div>
+                    {% endif %}
                 {% else %}
                     <div class="masthead"></div>
                 {% endif %}
-            {% else %}
-                <div class="masthead"></div>
-            {% endif %}
 
-        {% endwith %}
+            {% endwith %}
+
+        {% endif %}
 
     {% endif %}
 
-{% endif %}
+{% endwith %}
