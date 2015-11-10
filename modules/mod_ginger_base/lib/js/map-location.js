@@ -17,8 +17,8 @@
             me.map = map;
 
             me.checkGoogleVar();
-        },
 
+        },
 
         checkGoogleVar: function() {
 
@@ -38,14 +38,16 @@
 
                 var me = this,
                     geocoder = new google.maps.Geocoder(),
-                    address;
+                    address,
+                    regexp = new RegExp('^(.* [^0-9]*[0-9]+)(.*)$');
 
                 address = [
-                    [me.element.attr('data-street1'), me.element.attr('data-street2')].join(' '),
+                    me.element.attr('data-street').replace(regexp, '$1'),
                     me.element.attr('data-postcode'),
                     me.element.attr('data-city'),
                     me.element.attr('data-country')
                 ];
+
                 geocoder.geocode({
                     address: address.join(', ')
                 }, function(results, status) {
@@ -54,7 +56,6 @@
                     }
                 });
             },
-
 
             initView: function(geometry) {
 
@@ -70,32 +71,44 @@
 
             },
 
-
             buildMap: function(latLng) {
 
                 var me = this,
-                    marker;
+                    marker,
+                    options = {
+                        zoom: 14,
+                        center: latLng,
+                        disableDoubleClickZoom: true,
+                        disableDefaultUI: true,
+                        keyboardShortcuts: false,
+                        draggable: false,
+                        scrollwheel: false,
+                        panControl: false,
+                        rotateControl: false,
+                        scaleControl: false,
+                        componentRestrictions: {}
+                    };
 
-              me.map = new google.maps.Map(me.element[0], {
-                    zoom: 14,
-                    center: latLng,
-                    disableDoubleClickZoom: true,
-                    disableDefaultUI: true,
-                    keyboardShortcuts: false,
-                    draggable: false,
-                    scrollwheel: false,
-                    panControl: false,
-                    rotateControl: false,
-                    scaleControl: false,
-                    componentRestrictions: {}
-                });
+                if (me.options.blackwhite == true) {
+                    options.styles = [{
+                       "stylers": [
+                             { "saturation": -100 },
+                             { "lightness": -8 },
+                             { "gamma": 1.18 }
+                         ]
+                      }
+                    ];
+                }
+
+                me.map = new google.maps.Map(me.element[0], options);
 
                 marker = new google.maps.Marker({
                     map: me.map,
                     draggable: true,
-                    position: latLng
-                });
+                    position: latLng,
+                    icon: '/lib/images/marker-default.png'
 
+                });
 
                 if (me.options.recenter == true) {
                     google.maps.event.addListenerOnce(me.map, "projection_changed", function() {
@@ -118,6 +131,7 @@
                         heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
 
                     if (status === google.maps.StreetViewStatus.OK) {
+
                           me.panorama = new google.maps.StreetViewPanorama(
                           me.element[0], {
                             position: latLng,
@@ -139,7 +153,7 @@
 
                 var me = this,
                     mainContentEl = $('.' + me.element.data('main-content-class'));
-                    console.log(mainContentEl);
+
                     if (mainContentEl.size() == 0) return false;
 
                     var masthead = $(me.element),
@@ -150,8 +164,6 @@
                     centerPoint = map.getProjection().fromLatLngToPoint(map.getCenter()),
                     offsetPoint = new google.maps.Point(0, offsetY / Math.pow(2, map.getZoom())),
                     newCenterPoint = new google.maps.Point(centerPoint.x, centerPoint.y + offsetPoint.y);
-
-                    console.log(centerPoint);
 
                     map.setCenter(map.getProjection().fromPointToLatLng(newCenterPoint));
             }

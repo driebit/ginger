@@ -1,16 +1,16 @@
 
 {% with 
     main_content_class|default:"foldout",
-    type|default:"map"
+    maptype|default:"map"
 as
     main_content_class,
-    type
+    maptype
 %}
 
     {% if id %}
 
-        {% if id.category.is_a.location and id.address_street_1 %}
-            {% include "map/map-location.tpl" id=id type=type main_content_class=main_content_class fallback recenter %}
+        {% if id.category.is_a.location %}
+            {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
         {% else %}
 
             {% with
