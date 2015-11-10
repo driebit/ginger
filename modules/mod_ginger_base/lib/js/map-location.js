@@ -39,10 +39,12 @@
                 var me = this,
                     geocoder = new google.maps.Geocoder(),
                     address,
-                    regexp = new RegExp('^(.* [^0-9]*[0-9]+)(.*)$');
+                    street = me.element.attr('data-street').trim();
+
+                if (!street || street == '') return false;
 
                 address = [
-                    me.element.attr('data-street').replace(regexp, '$1'),
+                    street = /\s*\w+(?:\s+\d+)?/.exec(street)[0],
                     me.element.attr('data-postcode'),
                     me.element.attr('data-city'),
                     me.element.attr('data-country')
@@ -107,7 +109,6 @@
                     draggable: true,
                     position: latLng,
                     icon: '/lib/images/marker-default.png'
-
                 });
 
                 if (me.options.recenter == true) {
@@ -125,7 +126,7 @@
                     streetViewService = new google.maps.StreetViewService(),
                     STREETVIEW_MAX_DISTANCE = 100;
 
-                streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
+                    streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
 
                     var panoramaLatLng = streetViewPanoramaData.location.latLng,
                         heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
@@ -144,6 +145,7 @@
                             me.buildMap(latLng);
                         }
                     }
+
                 });
 
             },
