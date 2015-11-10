@@ -108,7 +108,7 @@
                     map: me.map,
                     draggable: true,
                     position: latLng,
-                    icon: '/lib/images/marker-default.png'
+                    icon: '/lib/images/marker-default.svg'
                 });
 
                 if (me.options.recenter == true) {
@@ -169,6 +169,6 @@
 
                     map.setCenter(map.getProjection().fromPointToLatLng(newCenterPoint));
             }
-            
+
     });
 })(jQuery);
