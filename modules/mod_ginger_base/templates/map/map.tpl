@@ -16,13 +16,12 @@ as
         {% with content_template|default:"map/map-content.tpl" as content_template %}
 
         {% if items|length > 0 %}
-
             <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
 
                 data-locations='
                     {% filter replace:"'":"\\&#39;" %}
                         [
-                            {% for item in items|filter:`location_lat` %}
+                            {% for item in items|location_defined %}
                              {% with item[1]|default:item as item_id %}
                                 {
                                     "lat": "{{ item_id.location_lat }}",
