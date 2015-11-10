@@ -55,7 +55,6 @@ $.widget( "ui.googlemap", {
 
         map = new google.maps.Map(document.getElementById(id), options);
 
-
         // Show multiple markers with info windows
         for (i = 0; i < locations.length; i++) {
 

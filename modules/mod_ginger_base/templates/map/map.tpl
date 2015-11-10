@@ -1,27 +1,29 @@
 
-{% with 
+{% with
     scrollwheel|default:"false",
     blackwhite|default:"false",
-    container
-as 
+    container,
+    height|default:"600"
+as
     scrollwheel,
     blackwhite,
-    container
+    container,
+    height
 %}
 
     {% block map %}
-    
+
         {% with content_template|default:"map/map-content.tpl" as content_template %}
 
         {% if items|length > 0 %}
 
-            <div id="{{ container }}" style="height: {% if height %}{{ height }}px{% else %}100%{% endif %}" class="do_googlemap map_canvas {{ class }}"
+            <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
 
                 data-locations='
                     {% filter replace:"'":"\\&#39;" %}
                         [
-                            {% for item in items %}
-                            {% with item[1]|default:item as item_id %}
+                            {% for item in items|filter:`location_lat` %}
+                             {% with item[1]|default:item as item_id %}
                                 {
                                     "lat": "{{ item_id.location_lat }}",
                                     "lng": "{{ item_id.location_lng }}",
