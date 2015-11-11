@@ -76,6 +76,13 @@
     @extend .btn--secondary;
 }
 
+.page-action--edit,
+.page-action--add,
+.page-action--rsvp {
+    @extend .btn--secondary;
+}
+
+
 /* Buttons in zotonic */
 
 .nav-pills > li.active > a,

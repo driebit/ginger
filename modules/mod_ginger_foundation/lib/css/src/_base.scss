@@ -53,7 +53,7 @@ h1, h2, h3, h4, p, ol, ul, table {
 }
 
 h1 {
-    @include size(font-size, 32);
+    @include size(font-size, 35);
     @include size(line-height, 36);
     @include size(margin-bottom, 10);
 }
