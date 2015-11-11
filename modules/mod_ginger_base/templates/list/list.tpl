@@ -23,9 +23,7 @@ as
 %}
 
     {% if items %}
-
             <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-
                 {% for r in items %}
                     {% if r|length == 2 %}
                         {% with r|element:1 as item %}
@@ -66,7 +64,8 @@ as
                 </div>
 
             {% endif %}
-
+    {% else %}
+        <p class="no-results">{_ No results _}</p>
     {% endif %}
 
 {% endwith %}
