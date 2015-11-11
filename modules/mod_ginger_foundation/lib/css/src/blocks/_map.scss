@@ -1,0 +1,9 @@
+.map--location {
+    @extend .masthead;
+    background: none;
+
+     > div {
+        bottom: -25px !important;
+    }
+
+}
