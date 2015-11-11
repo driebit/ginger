@@ -44,11 +44,13 @@
                 if (!street || street == '') return false;
 
                 address = [
-                    street = /\s*\w+(?:\s+\d+)?/.exec(street)[0],
-                    me.element.attr('data-postcode'),
+                    /\s*[^0-9]+\d*/.exec(street)[0],
+                    // me.element.attr('data-postcode'),
                     me.element.attr('data-city'),
                     me.element.attr('data-country')
                 ];
+
+                console.log(address.join(', '));
 
                 geocoder.geocode({
                     address: address.join(', ')
@@ -131,14 +133,23 @@
                     var panoramaLatLng = streetViewPanoramaData.location.latLng,
                         heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
 
+                        console.log(heading);
+
                     if (status === google.maps.StreetViewStatus.OK) {
 
                           me.panorama = new google.maps.StreetViewPanorama(
                           me.element[0], {
                             position: latLng,
-                            pov: {heading: heading, pitch: 0},
+                            pov: {
+                                heading: heading, 
+                                pitch: 0
+                            },
                             zoom: 1,
-                            disableDefaultUI: true
+                            disableDefaultUI: true,
+                            panControl: false,
+                            addressControl: false,
+                            linksControl: false,
+                            zoomControlOptions: false
                           });
                     } else {
                         if (me.options.fallback == true) {
