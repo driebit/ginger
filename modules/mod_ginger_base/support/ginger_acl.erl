@@ -4,7 +4,9 @@
 
 -export([
     install/1,
-    is_enabled/1
+    is_enabled/1,
+    ensure_acl_rule/2,
+    ensure_acl_rule/3
 ]).
 
 -include_lib("zotonic.hrl").
