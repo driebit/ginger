@@ -38,13 +38,13 @@ as
                     {% endif %}
                 {% endfor %}
 
-            </ul> 
-                            
+            </ul>
+
             {% if not hide_showmore_button %}
 
                 <div id="{{ list_id }}-buttons">
-                        
-                    {% if not hide_showmore_button %} 
+
+                    {% if not hide_showmore_button %}
                         {% button class="list__more" text=showmore_button_text action={moreresults result=result
                             target=list_id
                             template=list_template
@@ -53,9 +53,9 @@ as
                     {% endif %}
 
                     {#
-                    {% if not hide_showall_button %} 
+                    {% if not hide_showall_button %}
 
-                        {% button class="list__more" text=showall_button_text 
+                        {% button class="list__more" text=showall_button_text
                             action={replace target=list_id template="list/list-all.tpl"}
                             action={hide target=list_id++"-buttons" }
                         %}
@@ -66,8 +66,6 @@ as
                 </div>
 
             {% endif %}
-        </div>   
-
 
     {% endif %}
 
