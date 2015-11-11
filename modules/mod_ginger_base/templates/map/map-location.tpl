@@ -3,18 +3,20 @@
     type|default:"map",
     fallback|default:"false",
     recenter|default:"false",
-    blackwhite|default:"false"
+    blackwhite|default:"false",
+    main_content_class|default:"foldout"
 as
     id,
     type,
     fallback,
     recenter,
-    blackwhite
+    blackwhite,
+    main_content_class
 %}
 
     {% if id.category.is_a.location %}
-
-           <div class="masthead--map do_map_location"
+    
+           <div class="map--location do_map_location"
                 data-street="
                 {% if id.address_street_2 %}
                     {{ id.address_street_2 }}

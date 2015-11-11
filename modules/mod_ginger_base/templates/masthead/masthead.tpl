@@ -1,10 +1,16 @@
 
 {% with 
     main_content_class|default:"foldout",
-    maptype|default:"map"
+    maptype|default:"map",
+    recenter|default:"true",
+    blackwhite|default:"true",
+    main_content_class|default:"foldout"
 as
     main_content_class,
-    maptype
+    maptype,
+    recenter,
+    blackwhite,
+    main_content_class
 %}
 
     {% if id %}

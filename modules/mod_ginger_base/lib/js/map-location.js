@@ -45,12 +45,12 @@
 
                 address = [
                     /\s*[^0-9]+\d*/.exec(street)[0],
-                    // me.element.attr('data-postcode'),
+                    me.element.attr('data-postcode'),
                     me.element.attr('data-city'),
                     me.element.attr('data-country')
                 ];
 
-                console.log(address.join(', '));
+                console.log(address.join(', '))
 
                 geocoder.geocode({
                     address: address.join(', ')
@@ -132,8 +132,6 @@
 
                     var panoramaLatLng = streetViewPanoramaData.location.latLng,
                         heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
-
-                        console.log(heading);
 
                     if (status === google.maps.StreetViewStatus.OK) {
 
