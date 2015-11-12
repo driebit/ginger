@@ -31,7 +31,7 @@
         </div>
         {% if id.o.haspart %}
             <aside class="main-aside">
-                {% with m.search[{query hassubject=[id,'haspart'] sort="-seq" pagelen=6}] as result %}
+                {% with m.search[{query hassubject=[id,'haspart'] sort="seq" pagelen=6}] as result %}
 
                     {% include "list/list-header.tpl" id=id list_title=_"Inhoud" items=result %}
 

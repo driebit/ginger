@@ -8,7 +8,7 @@
     <main role="main" class="page--sided">
 
         <article class="main-content--sided">
-        
+
             {% catinclude "published/published.tpl" id %}
 
             {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
@@ -41,14 +41,14 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" hide_showmore_button hide_showall_button id=id %}
 
                 {% endwith %}
             {% elif id.subject %}
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
-                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_showmore_button hide_showall_button id=id %}
                 {% endwith %}
             {% endif %}
         </aside>
