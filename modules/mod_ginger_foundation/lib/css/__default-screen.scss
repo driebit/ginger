@@ -1,3 +1,28 @@
+// If you have globbing
+
+// Global
+
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/variables';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/mixins';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/base';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/icons';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/buttons';
+
+//Vendors
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/jquery.fancybox';
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/slick';
+
+// Blocks
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/*';
+
+// Layout
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/*';
+
+// Pages
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/*';
+
+// Otherwise, these are te
+
 // Global
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/variables';
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/mixins';
@@ -9,7 +34,8 @@
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/page-actions-extends';
 
 //Vendors
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/vendors/jquery.fancybox';
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/jquery.fancybox';
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/slick';
 
 // Blocks
 @import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/attached-media';

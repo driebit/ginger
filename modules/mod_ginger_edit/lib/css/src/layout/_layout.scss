@@ -1,0 +1,40 @@
+.ginger-edit {
+    @include size(padding-top, 20);
+}
+
+.ginger-edit__header {
+    @include size(padding-top, 20);
+    @include size(padding-bottom, 20);
+    @include size(margin-bottom, 20);
+    overflow: hidden;
+    border-bottom: 2px solid $grey;
+}
+
+.ginger-edit__nav {
+    @include size(margin-bottom, 20);
+    overflow: hidden;
+
+    .btn--cancel {
+        float: left;
+    }
+
+    .btn--save {
+        float: right;
+    }
+}
+
+.ginger-edit__nav--footer {
+    @include size(padding-top, 15);
+    @include size(padding-bottom, 150);
+    @include size(margin-top, 35);
+    border-top: 2px solid $grey;
+
+    .btn--save,
+    .btn--cancel {
+        display: none;
+    }
+}
+
+div.modal .modal-footer {
+    font-size: inherit;
+}

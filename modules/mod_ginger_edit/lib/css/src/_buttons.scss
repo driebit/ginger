@@ -1,0 +1,45 @@
+.btn--save,
+.btn--delete,
+.btn--cancel {
+    @extend .btn-edit-secondary;
+}
+
+.btn-edit-secondary {
+    @include size(padding, 8, 14);
+    background: $grey;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    color: #333;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: #ddd;
+        text-decoration: none;
+    }
+}
+
+.btns {
+    .btn-xs {
+        padding: 5px;
+        border-radius: 0;
+        background: transparent;
+
+        i {
+            color: rgba(darken($grey, 50%), 0.8);
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:focus:active {
+            background: transparent;
+
+            i {
+                color: rgba(darken($grey, 50%), 1);
+            }
+        }
+    }
+}

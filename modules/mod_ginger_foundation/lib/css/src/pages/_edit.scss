@@ -1,9 +1,3 @@
-.ginger-edit {
-    .btn-default {
-
-    }
-}
-
 // Zotonic defaults
 
 .minimalTabs li.active > a,
@@ -123,4 +117,18 @@ img.admin-list-overview {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
+}
+
+.ginger-edit__aside {
+    @include size(padding, 20);
+    @include size(margin-bottom, $standardOffset);
+    background: darken($bodyBgColor, 2.5%);
+
+    h3 {
+        @include size(margin-bottom, 20);
+    }
+}
+
+[class^="ginger-edit__aside"], [class*=" ginger-edit__aside"] {
+    @extend .ginger-edit__aside;
 }

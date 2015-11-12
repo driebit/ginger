@@ -6,40 +6,43 @@ as
     direction
 %}
 
-<div class="ginger-edit__aside--{{ predicate }}">
-    {# TODO styling #}<br/>
+
+    {# TODO styling #}
 
     {% if direction == 'in' %}
         {% if `mod_ginger_base`|member:m.modules.enabled %}
             {% with m.search[{query hassubject=[id, predicate|stringify] pagelen=6}] as result %}
                 {% if result %}
-                    <h3 class="section-title">{{ title }}</h3>
-                    {% optional include "list/list.tpl" class="ginger-edit__list" items=result hide_edit_button hide_showmore_button hide_showall_button %}
-                {% endif %}	
+                    <div class="ginger-edit__aside--{{ predicate }}">
+                        <h3 class="section-title">{{ title }}</h3>
+                        {% optional include "list/list.tpl" class="ginger-edit__list" items=result hide_edit_button hide_showmore_button hide_showall_button %}
+                    </div>
+                {% endif %}
             {% endwith %}
         {% else %}
-            <section class="aside_block aside_{{ predicate }}">
                 {% if id.s[predicate] %}
-                    <h3 class="section-title">{{ title }}</h3>
-                    {% optional include "_list.tpl" class="list-about" items=id.s[predicate] %}
-                {% endif %}	
-            </section>
-        {% endif %}	
+                    <div class="ginger-edit__aside--{{ predicate }}">
+                        <h3 class="section-title">{{ title }}</h3>
+                        {% optional include "_list.tpl" class="list-about" items=id.s[predicate] %}
+                    </div>
+                {% endif %}
+        {% endif %}
     {% else %}
         {% if `mod_ginger_base`|member:m.modules.enabled %}
             {% with m.search[{query hasobject=[id, predicate|stringify] pagelen=6}] as result %}
-                 {% optional include "list/list.tpl" class="ginger-edit__list" items=result hide_button=1 %}
+                {% if result %}
+                    <div class="ginger-edit__aside--{{ predicate }}">
+                        {% optional include "list/list.tpl" class="ginger-edit__list" items=result hide_button=1 %}
+                    </div>
+                {% endif %}
             {% endwith %}
         {% else %}
-            <section class="aside_block aside_{{ predicate }}">
-                {% if id.o[predicate] %}
+            {% if id.o[predicate] %}
+                <div class="ginger-edit__aside--{{ predicate }}">
                     <header><h3 class="section-title">{{ title }}</h3></header>
                     {% optional include "_list.tpl" class="list-about" items=id.o[predicate] %}
-                {% endif %}	
-            </section>
-        {% endif %}	
+                </div>
+            {% endif %}
+        {% endif %}
     {% endif %}
-
-</div>
-
 {% endwith %}

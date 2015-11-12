@@ -1,5 +1,5 @@
 html, body {
-	
+
 }
 
 body {
@@ -10,7 +10,7 @@ body {
 
 a, a:hover, a:active {
 	color: $blue;
-} 
+}
 
 img {
 	max-width: 100%;
@@ -40,12 +40,7 @@ p {
 }
 
 .page-title {
-    @include size(margin-bottom, 10);
-    @include size(font-size, 26);
-    color: #58595b;
-    font-style: italic;
-    font-weight: 400;
-    font-family: 'myriad pro';
+    @include size(margin-bottom, 0);
 }
 
 .row + .row {

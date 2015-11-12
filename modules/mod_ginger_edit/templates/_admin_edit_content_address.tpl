@@ -54,10 +54,10 @@
 			{% catinclude "_admin_edit_content_address_email.tpl" r.id %}
 		</div>
 	</div>
-	<div class="row">	
+	<div class="row">
 		<div class="form-group visit_address_country col-xs-12">
 			<label class="control-label" for="address_country">{_ Country _}</label>
-            <span class="admin-text-header">{_ (to add an address choose a country first) _}</span>
+            <span class="admin-text-header"></span>
 			{% if m.modules.active.mod_l10n %}
 				<select class="form-control" id="address_country" name="address_country">
 					<option value=""></option>
@@ -67,15 +67,8 @@
 				<input class="form-control" id="address_country" type="text" name="address_country" value="{{ r.address_country }}">
 			{% endif %}
 		</div>
-		{% wire id="address_country" 
-				type="change" 
-				action={script script="
-					if ($(this).val() != '') $('#visit_address').slideDown();
-					else $('#visit_address').slideUp();
-				"}
-		%}
-	
-		<div id="visit_address" class="visit-address" {% if not r.address_country %}style="display:none"{% endif %}>
+
+		<div id="visit_address" class="visit-address">
 			<div class="form-group address_street col-lg-6 col-md-6">
 				<label class="control-label" for="address_street_1">{_ Street Line 1 _}</label>
 				<input class="form-control" id="address_street_1" type="text" name="address_street_1" value="{{ r.address_street_1 }}">
@@ -89,7 +82,7 @@
 			<div class="form-group address_zipcode col-lg-6 col-md-6">
 				<label class="control-label" for="address_postcode">{_ Postcode _}</label>
 				<input class="form-control" id="address_postcode" type="text" name="address_postcode" value="{{ r.address_postcode }}">
-			</div>			
+			</div>
 			<div class="form-group address_state col-lg-6 col-md-6">
 				<label class="control-label" for="address_state">{_ State _}</label>
 				<input class="form-control" id="address_state" type="text" name="address_state" value="{{ r.address_state }}">

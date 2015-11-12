@@ -1,5 +1,7 @@
+@import 'variables';
 @import 'mixins';
+@import 'base';
+@import 'buttons';
 
-@import 'modules/variables';
-@import 'modules/base';
-@import 'modules/buttons';
+@import 'layout/layout';
+@import 'layout/aside';
