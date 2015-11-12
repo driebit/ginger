@@ -1,0 +1,24 @@
+.ginger-edit__aside,
+.aside_block {
+    @include size(padding, 15, 0);
+    border: none;
+    border-bottom: 1px solid darken($grey, 10);
+    border-radius: 3px;
+
+    hr {
+        display: none;
+    }
+
+    h3 {
+        @include size(margin-bottom, 10);
+    }
+
+    + .ginger-edit__aside,
+    + .aside_block {
+        margin-top: 20px;
+    }
+}
+
+[class^="ginger-edit__aside--"] {
+    @extend .ginger-edit__aside;
+}

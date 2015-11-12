@@ -11,8 +11,8 @@
         {% if p.id|member:pred_shown %}
 
            <div class="unlink-wrapper">
-                {% sorter id=["links",id|format_integer,name]|join:"-" 
-                          tag={object_sorter predicate=name id=id} 
+                {% sorter id=["links",id|format_integer,name]|join:"-"
+                          tag={object_sorter predicate=name id=id}
                           group="edges"
                           delegate=`controller_admin_edit`
                 %}
@@ -26,7 +26,7 @@
                        id=#connect.name
                        action={
                           dialog_open
-                          template="_action_dialog_connect.tpl" 
+                          template="_action_dialog_connect.tpl"
                           title=[_"Add a connection: ", p.title]
                           subject_id=id
                           predicate=name

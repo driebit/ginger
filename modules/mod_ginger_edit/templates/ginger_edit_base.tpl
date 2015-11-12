@@ -21,6 +21,7 @@
             "css/z.modal.css"
             "css/jquery.loadmask.css"
             "css/zotonic-admin.css"
+            "css/mod_ginger_edit/screen.css"
         %}
 
         {% all include "_html_head.tpl" %}
