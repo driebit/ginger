@@ -5,7 +5,7 @@
         options: {
             collapsedClass: 'is-collapsed',
             expandedClass: 'is-expanded',
-            cutoff: 500
+            cutoff: 700
         },
         _create: function() {
 
@@ -23,6 +23,8 @@
             $('[href=#comments]').on('click', function () {
                 me.expand();
             });
+
+            console.log(elementHeight);
 
             if (elementHeight - commentsHeight > me.options.cutoff) {
                 me.collapse();
