@@ -50,8 +50,6 @@
                     me.element.attr('data-country')
                 ];
 
-                console.log(address.join(', '))
-
                 geocoder.geocode({
                     address: address.join(', ')
                 }, function(results, status) {
@@ -139,7 +137,7 @@
                           me.element[0], {
                             position: latLng,
                             pov: {
-                                heading: heading, 
+                                heading: heading,
                                 pitch: 0
                             },
                             zoom: 1,
