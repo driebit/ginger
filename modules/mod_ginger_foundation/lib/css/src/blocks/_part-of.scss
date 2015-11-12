@@ -14,11 +14,11 @@
 
 @include mq(min-width, $mediumBreakpoint){
     .part-of {
-        @include size(height, 30);
+        @include size(height, 35);
         @include size(padding, 5, 15);
         position: absolute;
         right: 0px;
-        @include size(top, -30);
+        @include size(top, -35);
         background: $white;
         @include size(line-height, 30);
     }

@@ -48,7 +48,6 @@
 		{% all include "_script.tpl" %}
 
 		{% script %}
-
 	{% endwith %}
 	</body>
 </html>

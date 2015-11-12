@@ -15,7 +15,8 @@
     event/2,
     manage_schema/2,
     observe_custom_pivot/2,
-    observe_acl_is_allowed/2
+    observe_acl_is_allowed/2,
+    observe_search_query/2
 ]).
 
 -include("zotonic.hrl").
@@ -105,3 +106,6 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),
     {ginger_findable, [{is_excluded_from_search, Excluded}]}.
+    
+observe_search_query(#search_query{}=Q, Context) ->
+    ginger_geo_search:search_query(Q, Context).

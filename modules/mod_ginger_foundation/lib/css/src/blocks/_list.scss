@@ -260,9 +260,10 @@
     }
 
     .list__item__content {
+        @include size(padding, 5);
         position: absolute;
         bottom: 0px;
-        @include size(padding, 5);
+        background: $white;
         z-index: 100;
     }
 
@@ -301,7 +302,7 @@
 
     .edit-button--list-item {
         display: inline-block;
-        right: -100px;
+        right: -200px;
         left: auto;
         transition: right 0.3s;
     }
