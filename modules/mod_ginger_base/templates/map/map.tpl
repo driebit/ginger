@@ -1,4 +1,3 @@
-
 {% with
     scrollwheel|default:"false",
     blackwhite|default:"false",
@@ -13,24 +12,22 @@ as
 
     {% block map %}
 
-        {% with content_template|default:"map/map-content.tpl" as content_template %}
+        {% print container %}
 
-            {% if items|length > 0 %}
+            {% if result|length > 0 %}
+
                 <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
 
                     data-locations='
                         {% filter replace:"'":"\\&#39;" %}
                             [
-                                {% for item in items|location_defined %}
-                                 {% with item[1]|default:item as item_id %}
+                                {% for rid, lat, lng, cat in result %}
                                     {
-                                        "lat": "{{ item_id.location_lat }}",
-                                        "lng": "{{ item_id.location_lng }}",
-                                        "zoom": "{{ item_id.location_zoom_level }}",
-                                        "id": "{{ item_id.id }}"
+                                        "lat": "{{ lat }}",
+                                        "lng": "{{ lng }}",
+                                        "id": "{{ rid }}"
                                     }
                                     {% if not forloop.last %},{% endif %}
-                                {% endwith %}
                                 {% endfor %}
                             ]
                         {% endfilter %}
@@ -51,7 +48,7 @@ as
             {% wire name="map_infobox" postback={map_infobox} delegate="mod_ginger_base" %}
 
 
-        {% endwith %}
+
     {% endblock %}
 
 {% endwith %}

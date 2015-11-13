@@ -99,7 +99,7 @@ $.widget( "ui.googlemap", {
 			return false;
 		 });
 
-
+			console.log(locations.length);
 		  if (locations.length > 1) {
 			  // Center map on all locations
 			  map.fitBounds(bounds);

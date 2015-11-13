@@ -16,7 +16,9 @@
         content_group,
         result_template
 %}
-    {% for rid, lat, lng, cat in m.search[{ginger_geo cat_exclude=cat_exclude content_group=content_group text=search_text}] %}
-        {% include result_template rid=rid lat=lat lng=lng cat=cat %}
-    {% endfor %}
+    
+    {% with m.search[{ginger_geo cat_exclude=cat_exclude content_group=content_group text=search_text}] as result %}
+        {% include result_template result=result %}
+    {% endwith %}
+
 {% endwith %}
