@@ -152,7 +152,6 @@ $.widget( "ui.googlemap", {
 
     	z_event('map_infobox', {ids: ids, element: me.id});
 
-		me.showInfoWindow(markerList[0].zotonic_id, html);
 	},
 
 
