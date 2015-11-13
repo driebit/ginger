@@ -12,7 +12,6 @@ $.widget( "ui.googlemap", {
 			map,
 			bounds = new google.maps.LatLngBounds(),
 			info = new google.maps.InfoWindow({maxWidth: 250}),
-			marker,
 			icon,
 			i,
 			mc,
@@ -36,6 +35,7 @@ $.widget( "ui.googlemap", {
 			],
 			zoomOnClick: false
 		  },
+
 		markers = [];
         me.id = id;
 		options = jQuery.parseJSON(widgetElement.data('mapoptions'));
@@ -58,6 +58,7 @@ $.widget( "ui.googlemap", {
 		map = new google.maps.Map(document.getElementById(id), options);
 		me.map = map;
 		me.infowindow = null;
+		me.markers = markers;
 
 		// Show multiple markers with info windows
 		for (i = 0; i < locations.length; i++) {
@@ -65,23 +66,17 @@ $.widget( "ui.googlemap", {
 			icon = '/lib/images/marker-default.svg';
 
 			// Add marker
-			marker = new google.maps.Marker({
+			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 				icon: icon,
 				zotonic_id: parseInt(locations[i].id)
 			});
 
-			//TODO: generic
-
-			// Add an info window to the marker
-			google.maps.event.addListener(marker, 'click', (function(marker, i) {
-
-
-				return function() {
-				    info.setContent(locations[i].content);
-				    info.open(map, marker);
-				}
-			})(marker, i));
+			marker.addListener('click', function() {
+				var markerList = [];
+				markerList.push(this);
+				me.startShowInfoWindow(markerList);
+			});
 
 			// Extend map bounds
 			if (locations.length > 1) {
@@ -95,11 +90,10 @@ $.widget( "ui.googlemap", {
 		me.mc = mc;
 
 		google.maps.event.addListener(mc, "clusterclick", function(cluster) {
-			$.proxy(me.clicked(cluster), me);
+			$.proxy(me.clusterClicked(cluster), me);
 			return false;
-		 });
+		});
 
-			console.log(locations.length);
 		  if (locations.length > 1) {
 			  // Center map on all locations
 			  map.fitBounds(bounds);
@@ -112,22 +106,20 @@ $.widget( "ui.googlemap", {
 	},
 
 
-	clicked: function(cluster) {
+	clusterClicked: function(cluster) {
 
-	  var me = this,
-		  markers = cluster.getMarkers(),
-		  posCoordList = [],
-		  markerList = [],
-		  zoom = me.map.getZoom(),
-		  clusterBounds = new google.maps.LatLngBounds();
+	var me = this,
+		markers = cluster.getMarkers(),
+		posCoordList = [],
+		markerList = [],
+		zoom = me.map.getZoom(),
+		clusterBounds = new google.maps.LatLngBounds();
 
 		$.each(markers, function(index, marker) {
-		  clusterBounds.extend(marker.position);
-		  posCoordList.push(marker.position.G + ', ' + marker.position.K);
-		  markerList.push(marker);
+			clusterBounds.extend(marker.position);
+			posCoordList.push(marker.position.G + ', ' + marker.position.K);
+			markerList.push(marker);
 		});
-
-	  me.markerList = markerList;
 
 	  posCoordList = me.unique(posCoordList);
 
@@ -154,20 +146,18 @@ $.widget( "ui.googlemap", {
 		  html = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum elit felis, sit amet finibus risus scelerisque et. Pellentesque dignissim urna vel est lacinia, vel pulvinar ex laoreet. Vestibulum in mauris a nisl sodales placerat. Cras lobortis volutpat nisi vitae bibendum. Phasellus ac velit sit amet ligula sagittis aliquam. Sed id erat non nulla egestas porttitor. Mauris nulla sem, eleifend vel risus sed, sollicitudin imperdiet neque. Nunc aliquet, nulla nec porttitor sagittis, ante nunc dapibus sem, semper lobortis nulla nisi eu nisi. Curabitur egestas est pretium sodales convallis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed non nisi sit amet massa pretium fringilla.Phasellus sed porttitor arcu. Suspendisse potenti. Aenean pharetra aliquet faucibus. Morbi placerat, ante maximus elementum pulvinar, enim turpis luctus massa, sed pellentesque ipsum nibh nec tellus. Aenean efficitur dui a magna posuere elementum. Vestibulum suscipit nisl mi, eget sagittis elit tempus ut. Vestibulum vel fermentum libero, a';
 		  marker = markerList[0];
 
-	  var ids = $.map(markerList, function(val, i) {
-		return val.zotonic_id;
-	  });
+		var ids = $.map(markerList, function(val, i) {
+			return val.zotonic_id;
+	  	});
 
-      z_event('map_infobox', {ids: ids, element: me.id});
+    	z_event('map_infobox', {ids: ids, element: me.id});
 
-	  //tmp call
-	  me.showInfoWindow(markerList[0].zotonic_id, html);
-
+		me.showInfoWindow(markerList[0].zotonic_id, html);
 	},
 
 
 	showInfoWindow: function(zotonic_id, contentHTML) {
-
+	
 	  var me = this,
 		  marker = me.getMarker(zotonic_id),
 		  ibOptions = {
@@ -176,11 +166,11 @@ $.widget( "ui.googlemap", {
 			maxWidth: 0,
 			pixelOffset: new google.maps.Size(-140, 0),
 			zIndex: null,
-			boxStyle: { 
-			 background: "red"
-			 ,opacity: 0.75
-			 ,width: "280px"
-			 ,height: "300px"
+			boxStyle: {
+				background: "red",
+				opacity: 0.75,
+				width: "280px",
+				height: "300px"
 			},
 			closeBoxMargin: "10px 2px 2px 2px",
 			closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
@@ -201,17 +191,13 @@ $.widget( "ui.googlemap", {
 
 	  var me = this,
 		  marker;
-	  
-	  $.each(me.markerList, function(i, val) {
+
+	  $.each(me.markers, function(i, val) {
 		if (val.zotonic_id == zotonic_id) marker = val;
 	  });
 
 	  return marker;
-
 	}
-
-
-
 
 });
 
