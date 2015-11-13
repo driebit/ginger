@@ -13,20 +13,12 @@ try_search(Context) ->
 search_query(#search_query{search={ginger_geo, Args}}, Context) ->
         
     BaseSearch = search_query:search(Args, Context),
-    
-    WhereLoc = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
-    
-    NewWhereStr = case BaseSearch#search_sql.where of
-        undefined ->
-            WhereLoc;
-        OldWhereStr ->
-            OldWhereStr ++ " AND " ++ WhereLoc
-    end,
+    WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
            
     BaseSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
         limit="Limit ALL",
-        where=NewWhereStr
+        where=lists:merge(BaseSearch#search_sql.where, WhereStr)
     };
 
 search_query(#search_query{}, _Context) ->
