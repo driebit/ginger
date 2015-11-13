@@ -36,8 +36,8 @@ $.widget( "ui.googlemap", {
 			],
 			zoomOnClick: false
 		  },
-			markers = [];
-
+		markers = [];
+        me.id = id;
 		options = jQuery.parseJSON(widgetElement.data('mapoptions'));
 
 		if (!id) return false;
@@ -158,7 +158,7 @@ $.widget( "ui.googlemap", {
 		return val.zotonic_id;
 	  });
 
-	  z_event('map_infobox', {ids: ids} );
+      z_event('map_infobox', {ids: ids, element: me.id});
 
 	  //tmp call
 	  me.showInfoWindow(markerList[0].zotonic_id, html);

@@ -101,7 +101,26 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
             end;
         {error, _} ->
             Context
-    end.
+    end;
+event(#postback{message={map_infobox, _Args}}, Context) ->    
+    Ids = z_context:get_q(ids, Context),
+    Element = z_context:get_q(element, Context),
+    % Out = z_template:render("map/map-infobox.tpl", [{result, Ids}], Context),
+    Out = "aapnoot",
+    JS = lists:concat(
+        [
+            "$('#",
+            Element,
+            "').data('ui-googlemap').showInfoWindow(",
+            z_convert:to_list(lists:last(Ids)),
+            ", \"",
+            Out,
+            "\");"
+        ]
+    ),
+    ?DEBUG(JS),
+    z_transport:page(javascript, JS, Context),
+    Context.
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),

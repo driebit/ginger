@@ -45,7 +45,15 @@ as
                 <p class="no-results">{_ No results _}</p>
             {% endif %} 
 
-            {% wire name="map_infobox" postback={map_infobox} delegate="mod_ginger_base" %}
+            {% wire name="map_infobox"
+                    action={
+                        postback
+                        postback={
+                            map_infobox
+                        }
+                        delegate="mod_ginger_base"
+                    }
+                    %}
 
 
 
