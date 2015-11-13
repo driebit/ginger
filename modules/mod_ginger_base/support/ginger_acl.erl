@@ -105,6 +105,7 @@ is_enabled(Context) ->
 -spec can_view(integer(), #context{}) -> boolean() | undefined.
 can_view(Id, Context) ->
     case m_rsc:p_no_acl(Id, is_published, Context) of
+        undefined -> undefined;
         true -> undefined;
         false ->
             case z_acl:is_allowed(update, Id, Context) of
