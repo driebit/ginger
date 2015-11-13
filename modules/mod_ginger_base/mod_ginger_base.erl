@@ -105,20 +105,19 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
 event(#postback{message={map_infobox, _Args}}, Context) ->    
     Ids = z_context:get_q(ids, Context),
     Element = z_context:get_q(element, Context),
-    % Out = z_template:render("map/map-infobox.tpl", [{result, Ids}], Context),
-    Out = "aapnoot",
-    JS = lists:concat(
+    Render = z_template:render("map/map-infobox.tpl", [{results, Ids}], Context),
+    EscapedRender = edoc_lib:escape_uri(z_convert:to_list(z_convert:to_binary(Render))),
+    JS = erlang:iolist_to_binary(
         [
-            "$('#",
+            <<"$('#">>,
             Element,
-            "').data('ui-googlemap').showInfoWindow(",
-            z_convert:to_list(lists:last(Ids)),
-            ", \"",
-            Out,
-            "\");"
+            <<"').data('ui-googlemap').showInfoWindow(">>,
+            z_convert:to_binary(lists:last(Ids)),
+            <<", \"">>,
+            z_convert:to_binary(EscapedRender),
+            <<"\");">>
         ]
     ),
-    ?DEBUG(JS),
     z_transport:page(javascript, JS, Context),
     Context.
 

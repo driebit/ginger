@@ -14,11 +14,18 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
         
     BaseSearch = search_query:search(Args, Context),
     WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
+    
+    Where = case BaseSearch#search_sql.where of
+        [] ->
+            [WhereStr];
+        OldWhere ->
+            lists:append(OldWhere, " And " ++ WhereStr)
+    end,
            
     BaseSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
         limit="Limit ALL",
-        where=lists:merge(BaseSearch#search_sql.where, WhereStr)
+        where=Where
     };
 
 search_query(#search_query{}, _Context) ->

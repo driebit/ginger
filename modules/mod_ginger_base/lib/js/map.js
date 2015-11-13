@@ -160,7 +160,7 @@ $.widget( "ui.googlemap", {
 	  var me = this,
 		  marker = me.getMarker(zotonic_id),
 		  ibOptions = {
-			content: contentHTML,
+            content: decodeURIComponent(contentHTML),
 			disableAutoPan: false,
 			maxWidth: 0,
 			pixelOffset: new google.maps.Size(-140, 0),
@@ -178,7 +178,7 @@ $.widget( "ui.googlemap", {
 			pane: "floatPane",
 			enableEventPropagation: false
 		};
-
+        
 		if (me.infowindow) me.infowindow.close();
 
 		me.infowindow = new InfoBox(ibOptions);
