@@ -23,14 +23,11 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
             OldWhereStr ++ " AND " ++ WhereLoc
     end,
            
-    NewSearch = BaseSearch#search_sql{
+    BaseSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
         limit="Limit ALL",
         where=NewWhereStr
-    },
-    
-    ?DEBUG(NewSearch#search_sql.where),
-    NewSearch;
+    };
 
 search_query(#search_query{}, _Context) ->
     undefined. %% fall through
