@@ -27,7 +27,7 @@ as
                                         "lat": "{{ item_id.location_lat }}",
                                         "lng": "{{ item_id.location_lng }}",
                                         "zoom": "{{ item_id.location_zoom_level }}",
-                                        "content": {% include content_template id=item_id item=item %}
+                                        "id": "{{ item_id.id }}"
                                     }
                                     {% if not forloop.last %},{% endif %}
                                 {% endwith %}
@@ -46,7 +46,11 @@ as
                ></div>
             {% else %}
                 <p class="no-results">{_ No results _}</p>
-            {% endif %}
+            {% endif %} 
+
+            {% wire name="map_infobox" postback={map_infobox} delegate="mod_ginger_base" %}
+
+
         {% endwith %}
     {% endblock %}
 

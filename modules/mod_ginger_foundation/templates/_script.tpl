@@ -1,3 +1,5 @@
+<script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>
+
 {% lib
     "bootstrap/js/bootstrap.min.js"
     "js/base.js"
@@ -10,6 +12,7 @@
     "js/map-location.js"
     "js/parallax.js"
     "js/anchor.js"
+    "js/vendors/infobox_packed.js"
     "js/vendors/markerclusterer.js"
     "js/map.js"
     "js/vendors/jquery.fancybox.min.js"
@@ -17,5 +20,5 @@
     "js/vendors/slick.min.js"
 %}
 
-<script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>
+
 
