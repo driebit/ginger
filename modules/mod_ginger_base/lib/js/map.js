@@ -108,27 +108,27 @@ $.widget( "ui.googlemap", {
 
 	clusterClicked: function(cluster) {
 
-	var me = this,
-		markers = cluster.getMarkers(),
-		posCoordList = [],
-		markerList = [],
-		zoom = me.map.getZoom(),
-		clusterBounds = new google.maps.LatLngBounds();
+		var me = this,
+			markers = cluster.getMarkers(),
+			posCoordList = [],
+			markerList = [],
+			zoom = me.map.getZoom(),
+			clusterBounds = new google.maps.LatLngBounds();
 
-		$.each(markers, function(index, marker) {
-			clusterBounds.extend(marker.position);
-			posCoordList.push(marker.position.G + ', ' + marker.position.K);
-			markerList.push(marker);
-		});
+			$.each(markers, function(index, marker) {
+				clusterBounds.extend(marker.position);
+				posCoordList.push(marker.position.G + ', ' + marker.position.K);
+				markerList.push(marker);
+			});
 
-	  posCoordList = me.unique(posCoordList);
+		  posCoordList = me.unique(posCoordList);
 
-		if (posCoordList.length == 1 || zoom >= 21) {
-			me.startShowInfoWindow(markerList);
-			return false;
-		} else {
-			me.map.fitBounds(clusterBounds);
-		}
+			if (posCoordList.length == 1 || zoom >= 21) {
+				me.startShowInfoWindow(markerList);
+				return false;
+			} else {
+				me.map.fitBounds(clusterBounds);
+			}
 
 	},
 
@@ -153,7 +153,6 @@ $.widget( "ui.googlemap", {
     	z_event('map_infobox', {ids: ids, element: me.id});
 
 	},
-
 
 	showInfoWindow: function(zotonic_id, contentHTML) {
 	

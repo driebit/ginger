@@ -12,8 +12,6 @@ as
 
     {% block map %}
 
-        {% print container %}
-
             {% if result|length > 0 %}
 
                 <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
@@ -54,8 +52,6 @@ as
                         delegate="mod_ginger_base"
                     }
                     %}
-
-
 
     {% endblock %}
 
