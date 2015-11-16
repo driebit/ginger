@@ -78,10 +78,8 @@ $.widget( "ui.googlemap", {
 				me.startShowInfoWindow(markerList);
 			});
 
-			// Extend map bounds
-			if (locations.length > 1) {
-				bounds.extend(marker.position);
-			}
+
+			bounds.extend(marker.position);
 
 			markers.push(marker);
 		 }
@@ -94,15 +92,15 @@ $.widget( "ui.googlemap", {
 			return false;
 		});
 
-		  if (locations.length > 1) {
-			  // Center map on all locations
-			  map.fitBounds(bounds);
-		 } else {
-			  //Center map on single location
-			  options.center = new google.maps.LatLng(locations[0].lat, locations[0].lng);
-			  options.zoom = !locations[0].zoom ? 10 : parseInt(locations[0].zoom);
-			  map.setOptions(options);
-		 }
+		if (locations.length == 1) {
+			var zoomLevel = (!locations[0].zoom ? 15 : parseInt(locations[0].zoom));
+			google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+				this.setZoom(zoomLevel);
+			});
+		}
+
+		map.fitBounds(bounds);
+
 	},
 
 
