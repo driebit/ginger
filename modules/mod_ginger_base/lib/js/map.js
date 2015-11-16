@@ -39,6 +39,7 @@ $.widget( "ui.googlemap", {
 		markers = [];
         me.id = id;
 		options = jQuery.parseJSON(widgetElement.data('mapoptions'));
+		options.draggable = false;
 
 		if (!id) return false;
 
