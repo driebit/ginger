@@ -1,7 +1,7 @@
 mod_ginger_rdf
 ==============
 
-A Zotonic module for retrieving, working with, and producing RDF triples. 
+A Zotonic module for retrieving, working with, and producing RDF triples.
 
 Usage
 -----
@@ -14,7 +14,7 @@ Notifications
 
 ### Adding links
 
-On `rsv_pivot_done`, the RDF module will send a `find_links` notification. You 
+On `rsv_pivot_done`, the RDF module will send a `find_links` notification. You
 can subscribe to this notifcation to enrich Zotonic resources with RDF links
 to external resources. You should return a list of `#triple` records from your
 observer.
@@ -37,7 +37,7 @@ observe_find_links(#find_links{id=Id, is_a=CatList}, Links, _Context) ->
             predicate="http://xmlns.com/foaf/0.1/depiction",
             object="http://example.com/some/external/resource.rdf"
         },
-                
+
         %% An incoming link
         #triple{
             type=resource,
@@ -59,8 +59,8 @@ If the URLs point to real linked data sources, the URL should be sufficient
 for further data retrieval. Unfortunately, this is not always the case, so you
 may want to store additional properties in either subject or object by adding
 `subject_props` or `object_props`:
- 
- 
+
+
 ```erlang
         #triple{
             type=resource,
@@ -75,10 +75,10 @@ may want to store additional properties in either subject or object by adding
 
 ### On-demand linked data retrieval
 
-On `rsc_get` this module will send a `rdf_get` notification for all 
+On `rsc_get` this module will send a `rdf_get` notification for all
 non-authoritative resources that have a URI.
 
-Observe this notification to dynamically retrieve RDF from external data 
+Observe this notification to dynamically retrieve RDF from external data
 sources:
 
 ```erlang
@@ -86,18 +86,38 @@ sources:
     observe_rdf_get/3
 ]).
 
-%% Props is the set of 
+%% Props is the set of
 observe_rdf_get(#rdf_get{uri=Uri}, Props, _Context) ->
     RdfProperties = do_http_request(Uri),
-    
-    %% Return the original (Zotonic) resource properties combined with the 
+
+    %% Return the original (Zotonic) resource properties combined with the
     %% dynamically fetched linked data.
     Props ++ RdfProperties.
 ```
 
 You can then render the RDF properties in a template:
- 
+
 ```dtl
 <p>Creator: {{ m.rsc[id]['dc:creator'] }}</p>
 <p>Description: {{ m.rsc[id]['dc:description'] }}</p>
 ```
+
+View models
+-----------
+
+### m.rdf
+
+Render RDF properties in your templates:
+
+```dtl
+{{ m.rdf[id]['http://purl.org/dc/elements/1.1/title'] }}
+```
+
+You can also use certain shortcuts to namespaced RDF properties. For instance:
+
+```dtl
+{{ m.rdf[id].thumbnail }}
+```
+
+looks at `foaf:thumbnail` first, then `edm:isShownBy`, `schema:image` and
+`edm:object` to try to find a suitable value.
