@@ -4,7 +4,10 @@
 
 -export([
     install/1,
-    is_enabled/1
+    is_enabled/1,
+    ensure_acl_rule/2,
+    ensure_acl_rule/3,
+    can_view/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -96,3 +99,17 @@ acl_rule_exists(Kind, Props, Context) ->
 is_enabled(Context) ->
     Modules = z_module_manager:active(Context),
     lists:member(mod_content_groups, Modules) and lists:member(mod_acl_user_groups, Modules).
+
+%% @doc When a resource is unpublished, only allow users with update rights on
+%%      it to view the resource.
+-spec can_view(integer(), #context{}) -> boolean() | undefined.
+can_view(Id, Context) ->
+    case m_rsc:p_no_acl(Id, is_published, Context) of
+        undefined -> undefined;
+        true -> undefined;
+        false ->
+            case z_acl:is_allowed(update, Id, Context) of
+                true -> undefined;
+                false -> false
+            end
+    end.
