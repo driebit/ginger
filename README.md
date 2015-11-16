@@ -1,7 +1,8 @@
 mod_ginger_rdf
 ==============
 
-A Zotonic module for retrieving, working with, and producing RDF triples.
+A Zotonic module for retrieving, working with, and producing RDF triples. This
+module supports both XML and JSON-LD serialization formats.
 
 Usage
 -----
