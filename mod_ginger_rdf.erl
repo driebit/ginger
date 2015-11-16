@@ -18,13 +18,15 @@
     manage_schema/2,
     pid_observe_rsc_update_done/3,
     observe_rsc_get/3,
+    observe_search_query/2,
     init/1,
     handle_call/3,
     handle_cast/2,
     handle_info/2,
     terminate/2,
     code_change/3,
-    start_link/1
+    start_link/1,
+    event/2
 ]).
 
 -record(state, {context}).
@@ -75,6 +77,37 @@ observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
                     z_notifier:foldl(#rdf_get{uri=RscUri}, Props, Context)
             end
     end.
+
+observe_search_query(#search_query{} = Query, Context) ->
+    ginger_rdf_search:search_query(Query, Context).
+
+%% @doc Find related items in linked data
+-spec event(#postback_notify{}, #context{}) -> list().
+event(#postback_notify{message = "feedback", trigger = "dialog-connect-find-linked-data", target = TargetId, data = _Data}, Context) ->
+    Vars = [
+        {text, z_context:get_q(find_text, Context)},
+        {template, z_context:get_q("template", Context)},
+        {target, TargetId}
+    ],
+
+    z_render:wire(
+        [
+            {remove_class, [{target, TargetId}, {class, "loading"}]},
+            {update, Vars}
+        ],
+        Context
+    );
+event(#postback{message = {admin_connect_select, Args}}, Context) ->
+    Triple = #triple{
+        subject = proplists:get_value(subject_id, Args),
+        predicate = proplists:get_value(predicate, Args),
+        object = z_context:get_q("object", Context),
+        object_props = [
+            {title, z_context:get_q("object_title", Context)}
+        ]
+    },
+    m_rdf_triple:insert(Triple, Context),
+    z_render:dialog_close(Context).
 
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).
