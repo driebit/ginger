@@ -4,3 +4,4 @@
         {% catinclude "list/list-item-map.tpl" id %}
     {% endfor %}
 </ul>
+

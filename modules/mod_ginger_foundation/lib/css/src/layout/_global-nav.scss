@@ -171,6 +171,7 @@
     img {
         display: inline-block;
         @include size(width, 30);
+        @include size(height, 30);
         @include size(margin-right, 3);
         position: relative;
         top: -2px;

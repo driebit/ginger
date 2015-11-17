@@ -160,7 +160,7 @@ $.widget( "ui.googlemap", {
 	  var me = this,
 		  marker = me.getMarker(zotonic_id),
 		  ibOptions = {
-            content: decodeURIComponent(contentHTML),
+            content: contentHTML,
 			disableAutoPan: false,
 			maxWidth: 0,
 			maxHeight: 200,

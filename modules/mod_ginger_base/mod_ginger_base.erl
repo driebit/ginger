@@ -54,6 +54,12 @@ manage_schema(_Version, Context) ->
 %% @doc Workaround until 0.13.6 is released: https://github.com/zotonic/zotonic/pull/1073
 observe_acl_is_allowed(#acl_is_allowed{action=use, object=mod_import_cvs}, Context) ->
     z_acl:is_allowed(use, mod_import_csv, Context);
+observe_acl_is_allowed(#acl_is_allowed{object=undefined}, _Context) ->
+    undefined;
+%% @doc Users without access to the admin should not be able to view unpublished
+%%      resources
+observe_acl_is_allowed(#acl_is_allowed{action=view, object=Id}, Context) ->
+    ginger_acl:can_view(Id, Context);
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
 
@@ -106,7 +112,7 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
     Ids = z_context:get_q(ids, Context),
     Element = z_context:get_q(element, Context),
     Render = z_template:render("map/map-infobox.tpl", [{results, Ids}], Context),
-    EscapedRender = edoc_lib:escape_uri(z_convert:to_list(z_convert:to_binary(Render))),
+    EscapedRender = z_utils:js_escape(iolist_to_binary(Render)),
     JS = erlang:iolist_to_binary(
         [
             <<"$('#">>,
@@ -118,8 +124,7 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
             <<"\");">>
         ]
     ),
-    z_transport:page(javascript, JS, Context),
-    Context.
+    z_render:wire({script, [{script, JS}]}, Context).
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),
