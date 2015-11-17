@@ -15,8 +15,8 @@
 -record(triple, {
     type :: resource | literal,
     subject :: binary(),
-    subject_props :: list(),
+    subject_props = [] :: list(),
     predicate :: binary(),
     object :: binary(),
-    object_props :: list()
+    object_props = [] :: list()
 }).
