@@ -15,7 +15,29 @@ $.widget( "ui.googlemap", {
 			icon,
 			i,
 			mc,
-			mcOptions = {
+			mcOptions;
+
+		markers = [];
+        me.id = id;
+		options = jQuery.parseJSON(widgetElement.data('mapoptions'));
+
+		if (!id) return false;
+
+		if (options.blackwhite == true) {
+			options.styles = [{
+			   "stylers": [
+					 { "saturation": -100 },
+					 { "lightness": -8 },
+					 { "gamma": 1.18 }
+				 ]
+			  }
+			];
+
+			delete options.blackwhite;
+		}
+
+		mcOptions = {
+				
 				styles: [
 				{
 					height: 28,
@@ -35,26 +57,6 @@ $.widget( "ui.googlemap", {
 			],
 			zoomOnClick: false
 		  },
-
-		markers = [];
-        me.id = id;
-		options = jQuery.parseJSON(widgetElement.data('mapoptions'));
-		options.draggable = false;
-
-		if (!id) return false;
-
-		if (options.blackwhite == true) {
-			options.styles = [{
-			   "stylers": [
-					 { "saturation": -100 },
-					 { "lightness": -8 },
-					 { "gamma": 1.18 }
-				 ]
-			  }
-			];
-
-			delete options.blackwhite;
-		}
 
 		map = new google.maps.Map(document.getElementById(id), options);
 		me.map = map;
@@ -161,16 +163,10 @@ $.widget( "ui.googlemap", {
             content: decodeURIComponent(contentHTML),
 			disableAutoPan: false,
 			maxWidth: 0,
+			maxHeight: 200,
 			pixelOffset: new google.maps.Size(-140, 0),
 			zIndex: null,
-			boxStyle: {
-				background: "red",
-				opacity: 0.75,
-				width: "280px",
-				height: "300px"
-			},
-			closeBoxMargin: "10px 2px 2px 2px",
-			closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif",
+				closeBoxURL: "/lib/images/infobox-close.svg",
 			infoBoxClearance: new google.maps.Size(1, 1),
 			isHidden: false,
 			pane: "floatPane",
