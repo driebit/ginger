@@ -1,5 +1,10 @@
 -record(rdf_get, {uri}).
 
+-record(rdf_resource, {
+    id :: binary(),
+    triples :: list()
+}).
+
 -record(rdf_search, {
     source :: binary(),
     args :: list ()

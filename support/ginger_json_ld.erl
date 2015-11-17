@@ -15,14 +15,14 @@ open_file(File) ->
     open(Contents).
 
 %% @doc Read JSON file and return list of triples
--spec open(list()) -> list().
+-spec open(list()) -> #rdf_resource{}.
 open({struct, _Item} = Data) ->
-    {_Context, Triples} = read_json(Data),
-    Triples;
+    {_Context, Id, Triples} = read_json(Data),
+    #rdf_resource{id = Id, triples = Triples};
 open(Json) ->
     Data = mochijson2:decode(Json),
-    {_Context, Triples} = read_json(Data),
-    Triples.
+    {_Context, Id, Triples} = read_json(Data),
+    #rdf_resource{id = Id, triples = Triples}.
 
 read_json({struct, Json}) when is_list(Json) ->
     %% Read @context
@@ -39,10 +39,10 @@ read_json({struct, Json}) when is_list(Json) ->
     %% Read all properties, including @graph
     read_json(Properties, Id, Context, []).
 
-read_json([], _Id, Context, Triples) ->
-    {Context, Triples};
-read_json({<<"@graph">>, []}, _Id, Context, Triples) ->
-    {Context, Triples};
+read_json([], Id, Context, Triples) ->
+    {Context, Id, Triples};
+read_json({<<"@graph">>, []}, Id, Context, Triples) ->
+    {Context, Id, Triples};
 read_json({<<"@graph">>, [{struct, Props}|Rest]}, _Id, Context, Triples) ->
     GraphTriples = read_graph(Props, Context),
     read_json({<<"@graph">>, Rest}, _Id, Context, GraphTriples ++ Triples);

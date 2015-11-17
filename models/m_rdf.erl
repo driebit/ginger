@@ -16,9 +16,13 @@
     ensure_resource/3
 ]).
 
-m_find_value(Triples, #m{value = undefined} = M, _Context) when is_list(Triples) ->
-    M#m{value = Triples};
-m_find_value(Predicate, #m{value = Triples}, _Context) when is_list(Triples) ->
+m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
+    M#m{value = Rdf};
+m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
+    Id;
+m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
+    Id;
+m_find_value(Predicate, #m{value = #rdf_resource{id = _Id, triples = Triples}}, _Context) ->
     case lookup_triple(Predicate, Triples) of
         undefined -> undefined;
         Triple -> Triple#triple.object
@@ -74,6 +78,7 @@ create_resource(Uri, Props, Context) ->
         {name, z_string:to_name(Uri)},
         {category, rdf},
         {is_authoritative, false},
+        {is_dependent, true}, %% remove resource when it has no edges to it anymore
         {is_published, true},
         {uri, Uri}
     ] ++ Props,
