@@ -11,7 +11,7 @@
     m_find_value/3,
     m_to_list/2,
     m_value/2,
-    find/2,
+    find_resource/2,
     object/3,
     ensure_resource/3
 ]).
@@ -34,11 +34,6 @@ m_to_list(_, _Context) ->
 m_value(_Source, _Context) ->
     undefined.
 
-%% @doc Find a RDF resource by URI
--spec find(string(), #context{}) -> integer() | undefined.
-find(Uri, Context) ->
-    m_rsc:uri_lookup(Uri, Context).
-
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->
     %% Check depcache
@@ -53,22 +48,22 @@ object(Url, Predicate, Context) ->
             end,
     Value.
 
-%% @doc Ensure URI is a resource in Zotonic.
+%% @doc Find a RDF resource by URI or id
+-spec find_resource(string(), #context{}) -> integer() | undefined.
+find_resource(Uri, Context) when is_integer(Uri) ->
+    m_rsc:rid(Uri, Context);
+find_resource(Uri, Context) ->
+    m_rsc:uri_lookup(Uri, Context).
+
+%% @doc Ensure URI is a resource in Zotonic and update an existing resource
 -spec ensure_resource(string(), list(), #context{}) -> integer().
-ensure_resource(Uri, _Props, _Context) when is_integer(Uri) ->
-    Uri;
 ensure_resource(Uri, Props, Context) ->
-    case is_http_uri(Uri) of
-        false ->
-            m_rsc:rid(Uri, Context);
-        true ->
-            case find(Uri, Context) of
-                undefined ->
-                    create_resource(Uri, Props, Context);
-                Id ->
-                    {ok, Id} = m_rsc_update:update(Id, Props, Context),
-                    Id
-            end
+    case find_resource(Uri, Context) of
+        undefined ->
+            create_resource(Uri, Props, Context);
+        Id ->
+            {ok, Id} = m_rsc:update(Id, Props, Context),
+            Id
     end.
 
 %% @doc Create non-authoritative RDF resource
@@ -78,22 +73,12 @@ create_resource(Uri, Props, Context) ->
         {name, z_string:to_name(Uri)},
         {category, rdf},
         {is_authoritative, false},
-        {is_dependent, true}, %% remove resource when it has no edges to it anymore
+        {is_dependent, true}, %% remove resource when there are no longer edges to it
         {is_published, true},
         {uri, Uri}
     ] ++ Props,
     {ok, Id} = m_rsc_update:insert(AllProps, Context),
     Id.
-
-%% @doc Is String a valid URI?
--spec is_http_uri(string()) -> boolean().
-is_http_uri(String) ->
-    {Scheme, _, _, _, _} = mochiweb_util:urlsplit(z_convert:to_list(String)),
-    case Scheme of
-        "http" -> true;
-        "https" -> true;
-        _ -> false
-    end.
 
 %% @doc Fetch a RDF resource
 rsc(Url, Context) ->

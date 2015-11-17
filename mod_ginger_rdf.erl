@@ -87,7 +87,9 @@ event(#postback_notify{message = "feedback", trigger = "dialog-connect-find-link
     Vars = [
         {text, z_context:get_q(find_text, Context)},
         {template, z_context:get_q("template", Context)},
-        {target, TargetId}
+        {target, TargetId},
+        {subject_id, z_convert:to_integer(z_context:get_q(subject_id, Context))},
+        {predicate, z_context:get_q(predicate, Context, "")}
     ],
 
     z_render:wire(

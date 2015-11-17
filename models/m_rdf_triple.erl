@@ -1,16 +1,64 @@
 -module(m_rdf_triple).
 
+-behaviour(gen_model).
+
 -export([
-    insert/2
+    find/2,
+    insert/2,
+    m_find_value/3,
+    m_to_list/2,
+    m_value/2
 ]).
 
 -include_lib("zotonic.hrl").
 -include_lib("../include/rdf.hrl").
 
+m_find_value([#triple{} = Triple], #m{value=undefined} = M, _Context) ->
+    M#m{value=Triple};
+m_find_value(subject, #m{value=#triple{}=Triple}, _Context) ->
+    Triple#triple.subject;
+m_find_value(id, #m{value=undefined}, _Context) ->
+    fun(Subject, _IdContext) ->
+        fun(Predicate, _PredContext) ->
+            fun(Object, Context) ->
+                find(#triple{subject=Subject, predicate=Predicate, object=Object}, Context)
+            end
+        end
+    end;
+m_find_value(One, Two, _Context) ->
+    ?DEBUG(One),
+    ?DEBUG(Two).
+
+m_to_list(_, _Context) ->
+    [].
+
+m_value(_Source, _Context) ->
+    undefined.
+
+%% @doc Find a triple in the site's database
+-spec find(#triple{}, #context{}) -> integer() | undefined.
+find(#triple{subject=Subject, predicate=Predicate, object=Object}, Context) ->
+    case m_rdf:find_resource(Subject, Context) of
+        undefined ->
+            undefined;
+        SubjectId ->
+            case m_rdf:find_resource(Object, Context) of
+                undefined ->
+                    undefined;
+                ObjectId ->
+                    case find_predicate(Predicate, Context) of
+                        undefined ->
+                            undefined;
+                        PredicateId ->
+                            m_edge:get_id(SubjectId, PredicateId, ObjectId, Context)
+                    end
+            end
+    end.
+
 %% @doc Insert a triple, making sure no duplicates are created
 -spec insert(#triple{}, #context{}) -> {ok, integer()} | {error, string()}.
 insert(#triple{
-    type=Type,
+    type=_Type,
     subject=Subject,
     subject_props=SubjectProps,
     predicate=Predicate,
@@ -26,18 +74,26 @@ insert(#triple{
     ).
 
 %% @doc Ensure predicate exists. If it doesn't yet exist, create it.
-%% @spec ensure_predicate(Uri, Context) -> int()
 -spec ensure_predicate(string(), #context{}) -> integer().
 ensure_predicate(Uri, Context) ->
-    %% Find predicate by URI
+    case find_predicate(Uri, Context) of
+        undefined ->
+            {ok, Id} = create_predicate(Uri, Context),
+            Id;
+        Id ->
+            Id
+    end.
+
+%% @doc Find predicate by URI
+-spec find_predicate(string(), #context{}) -> integer() | undefined.
+find_predicate(Uri, Context) ->
     case m_rsc:uri_lookup(Uri, Context) of
         undefined ->
             %% Fall back to predicate name (instead of URI)
             case m_predicate:get(Uri, Context) of
                 undefined ->
                     %% predicate needs to be created
-                    {ok, Id} = create_predicate(Uri, Context),
-                    Id;
+                    undefined;
                 PredicateProps ->
                     proplists:get_value(id, PredicateProps)
             end;

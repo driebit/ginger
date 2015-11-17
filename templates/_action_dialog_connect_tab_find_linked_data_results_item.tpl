@@ -1,27 +1,28 @@
 {% with
-    m.rdf_resource[rdf].type,
-    m.rdf_resource[rdf].url,
-    m.rdf_resource[rdf].title,
-    m.rdf_resource[rdf].description,
-    m.rdf_resource[rdf].thumbnail,
-    m.rdf_resource[rdf].rights
+    m.rdf[rdf].id,
+    m.rdf[rdf].type,
+    m.rdf[rdf].uri,
+    m.rdf[rdf].title,
+    m.rdf[rdf].description,
+    m.rdf[rdf].thumbnail,
+    m.rdf[rdf].rights
 as
+    id,
     type,
-    url,
+    uri,
     title,
     description,
     thumbnail,
     rights
 %}
-
 <div class="col-lg-4 col-md-4">
-    <a href="{{ url }}" target="_blank" class="thumbnail" data-uri="{{ url }}" data-title="{{ title }}" data-thumbnail="{{ thumbnail }}">
+    <a href="{{ url }}" target="_blank" class="thumbnail{% if m.rdf_triple.id[subject_id][predicate][uri] %} thumbnail-connected{% endif %}" data-identifier="{{ id }}" data-uri="{{ uri }}" data-title="{{ title }}" data-thumbnail="{{ thumbnail }}">
         {% if thumbnail %}
             <img class="admin-list-overview thumb pull-left" src="{{ thumbnail }}">
         {% endif %}
 
         {% if rights %}
-        RIGHTS: {{ rights }}
+            {# TODO: show rights as banner? #}
         {% endif %}
 
         <div class="z-thumbnail-text">
@@ -30,8 +31,6 @@ as
             <p>{{ description|truncate:50 }}</p>
         </div>
     </a>
-
-    <a class="btn btn-default" href="#" role="button">Link</a>
 </div>
 
 {% endwith %}
