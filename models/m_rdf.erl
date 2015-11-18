@@ -13,7 +13,8 @@
     m_value/2,
     find_resource/2,
     object/3,
-    ensure_resource/3
+    ensure_resource/3,
+    lookup_triple/2
 ]).
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
