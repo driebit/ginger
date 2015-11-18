@@ -2,12 +2,14 @@
     scrollwheel|default:"false",
     blackwhite|default:"false",
     disabledefaultui|default:"false",
+    gridsize|default:"60",
     container,
     height
 as
     scrollwheel,
     blackwhite,
     disabledefaultui,
+    gridsize,
     container,
     height
 %}
@@ -43,7 +45,8 @@ as
                         {
                             "scrollwheel": {{ scrollwheel }},
                             "blackwhite": {{ blackwhite }},
-                            "disabledefaultui": {{ disabledefaultui }}
+                            "disabledefaultui": {{ disabledefaultui }},
+                            "gridsize": {{ gridsize }}
                         }
                     '
 

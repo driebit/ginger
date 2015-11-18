@@ -58,7 +58,11 @@ $.widget( "ui.googlemap", {
 				}
 			],
 			zoomOnClick: false
-		  },
+		  };
+
+		if (options.gridsize) {
+			mcOptions.gridSize = parseInt(options.gridsize);
+		}
 
 		map = new google.maps.Map(document.getElementById(id), options);
 		me.map = map;
@@ -196,6 +200,10 @@ $.widget( "ui.googlemap", {
 
 	enableUI: function() {
 		this.map.set('disableDefaultUI', false);
+	},
+
+	removeStyles: function() {
+		this.map.set('styles', '');
 	}
 
 });
