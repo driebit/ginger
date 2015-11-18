@@ -71,7 +71,6 @@ ensure_resource(Uri, Props, Context) ->
 -spec create_resource(string(), list(), #context{}) -> integer().
 create_resource(Uri, Props, Context) ->
     AllProps = [
-        {name, z_string:to_name(Uri)},
         {category, rdf},
         {is_authoritative, false},
         {is_dependent, true}, %% remove resource when there are no longer edges to it
