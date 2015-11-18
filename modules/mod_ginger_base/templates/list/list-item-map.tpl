@@ -21,19 +21,8 @@
                     {% else %}
                         {{ id.title }}
                     {% endif %}
-
-                    {% if id.address_street_2 or id.address_street_1 %}<br />({% endif %}
-
-                    {% if id.address_street_2 %}
-                        {{ id.address_street_2 }}
-                    {% elif id.address_street_1 %}
-                        {{ id.address_street_1 }}
-                    {% endif %}
-
-                    {% if id.address_street_2 or id.address_street_1 %}){% endif %}
-
                 </h3>
-
+                
             </div>
 
         </article>

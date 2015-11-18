@@ -1,11 +1,13 @@
 {% with
     scrollwheel|default:"false",
     blackwhite|default:"false",
+    disabledefaultui|default:"false",
     container,
-    height|default:"600"
+    height
 as
     scrollwheel,
     blackwhite,
+    disabledefaultui,
     container,
     height
 %}
@@ -14,7 +16,13 @@ as
 
             {% if result|length > 0 %}
 
-                <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
+                <div id="{{ container }}" style="
+                {% if height %}
+                    height: {{ height }}px
+                {% else %}
+                    height: 100%
+                {% endif %}
+                 " class="do_googlemap map_canvas {{ class }}"
 
                     data-locations='
                         {% filter replace:"'":"\\&#39;" %}
@@ -34,7 +42,8 @@ as
                     data-mapoptions='
                         {
                             "scrollwheel": {{ scrollwheel }},
-                            "blackwhite": {{ blackwhite }}
+                            "blackwhite": {{ blackwhite }},
+                            "disabledefaultui": {{ disabledefaultui }}
                         }
                     '
 

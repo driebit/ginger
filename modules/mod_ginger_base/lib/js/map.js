@@ -36,6 +36,8 @@ $.widget( "ui.googlemap", {
 			delete options.blackwhite;
 		}
 
+		if (options.disabledefaultui) options.disableDefaultUI = true;
+
 		mcOptions = {
 				
 				styles: [
@@ -81,7 +83,6 @@ $.widget( "ui.googlemap", {
 				me.startShowInfoWindow(markerList);
 			});
 
-
 			bounds.extend(marker.position);
 
 			markers.push(marker);
@@ -118,18 +119,18 @@ $.widget( "ui.googlemap", {
 
 			$.each(markers, function(index, marker) {
 				clusterBounds.extend(marker.position);
-				posCoordList.push(marker.position.G + ', ' + marker.position.K);
+				posCoordList.push(marker.position.lat() + ', ' + marker.position.lng());
 				markerList.push(marker);
 			});
 
 		  posCoordList = me.unique(posCoordList);
 
-			if (posCoordList.length == 1 || zoom >= 21) {
-				me.startShowInfoWindow(markerList);
-				return false;
-			} else {
-				me.map.fitBounds(clusterBounds);
-			}
+		if (posCoordList.length == 1 || zoom >= 21) {
+			me.startShowInfoWindow(markerList);
+			return false;
+		} else {
+			me.map.fitBounds(clusterBounds);
+		}
 
 	},
 
@@ -144,7 +145,6 @@ $.widget( "ui.googlemap", {
 	startShowInfoWindow: function(markerList) {
 
 	  var me = this,
-		  html = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse elementum elit felis, sit amet finibus risus scelerisque et. Pellentesque dignissim urna vel est lacinia, vel pulvinar ex laoreet. Vestibulum in mauris a nisl sodales placerat. Cras lobortis volutpat nisi vitae bibendum. Phasellus ac velit sit amet ligula sagittis aliquam. Sed id erat non nulla egestas porttitor. Mauris nulla sem, eleifend vel risus sed, sollicitudin imperdiet neque. Nunc aliquet, nulla nec porttitor sagittis, ante nunc dapibus sem, semper lobortis nulla nisi eu nisi. Curabitur egestas est pretium sodales convallis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed non nisi sit amet massa pretium fringilla.Phasellus sed porttitor arcu. Suspendisse potenti. Aenean pharetra aliquet faucibus. Morbi placerat, ante maximus elementum pulvinar, enim turpis luctus massa, sed pellentesque ipsum nibh nec tellus. Aenean efficitur dui a magna posuere elementum. Vestibulum suscipit nisl mi, eget sagittis elit tempus ut. Vestibulum vel fermentum libero, a';
 		  marker = markerList[0];
 
 		var ids = $.map(markerList, function(val, i) {
@@ -172,6 +172,8 @@ $.widget( "ui.googlemap", {
 			pane: "floatPane",
 			enableEventPropagation: false
 		};
+
+		me.map.setCenter(marker.getPosition());
         
 		if (me.infowindow) me.infowindow.close();
 
@@ -190,6 +192,10 @@ $.widget( "ui.googlemap", {
 	  });
 
 	  return marker;
+	},
+
+	enableUI: function() {
+		this.map.set('disableDefaultUI', false);
 	}
 
 });
