@@ -92,30 +92,23 @@ rsc(Url, Context) ->
         Context
     ).
 
-lookup_triple([Predicate | Rest], Triples) ->
-    case lookup_triple(Predicate, Triples) of
-        undefined -> lookup_triple(Rest, Triples);
-        Triple -> Triple
-    end;
-lookup_triple([], _Triples) ->
-    undefined;
 %% @doc Shortcuts for namespaced RDF properties
 lookup_triple(uri, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<"http://xmlns.com/foaf/0.1/page">>
         ],
         Triples
     );
 lookup_triple(title, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<"http://purl.org/dc/elements/1.1/title">>
         ],
         Triples
     );
 lookup_triple(description, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<"http://purl.org/dc/elements/1.1/description">>
         ],
@@ -129,7 +122,7 @@ lookup_triple(type, Triples) ->
         Triples
     );
 lookup_triple(thumbnail, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<"http://xmlns.com/foaf/0.1/thumbnail">>,
             <<"http://www.europeana.eu/schemas/edm/isShownBy">>,
@@ -139,12 +132,30 @@ lookup_triple(thumbnail, Triples) ->
         Triples
     );
 lookup_triple(rights, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<"http://www.europeana.eu/schemas/edm/rights">>
         ],
         Triples
     );
+lookup_triple(date, Triples) ->
+    case lookup_triples(
+        [
+            <<"http://purl.org/dc/elements/1.1/date">>
+        ],
+        Triples
+    ) of
+        undefined ->
+            undefined;
+        #triple{object = Object} = Triple ->
+            %% Replace object with date that Zotonic can work with
+            [Start|_End] = Object,
+            [Y, M, D] = binary:split(Start, <<"-">>, [global]),
+            Triple#triple{object = {z_convert:to_integer(Y), z_convert:to_integer(M), z_convert:to_integer(D)}}
+    end;
+lookup_triple(Predicate, Triples) when is_list(Predicate) ->
+    %% Predicates are stored as binaries
+    lookup_triple(z_convert:to_binary(Predicate), Triples);
 lookup_triple(Predicate, Triples) ->
     %% Find the requested predicate
     case lists:dropwhile(
@@ -156,3 +167,12 @@ lookup_triple(Predicate, Triples) ->
         [] -> undefined;
         [Triple | _] -> Triple
     end.
+
+lookup_triples([Predicate | Rest], Triples) ->
+    case lookup_triple(Predicate, Triples) of
+        undefined -> lookup_triple(Rest, Triples);
+        Triple -> Triple
+    end;
+lookup_triples([], _Triples) ->
+    undefined.
+
