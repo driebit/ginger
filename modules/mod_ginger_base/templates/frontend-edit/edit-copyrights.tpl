@@ -88,7 +88,7 @@
     </li>
     <li>
         <label for="rights-pd2">
-            <input type="radio" name="rights" id="rights-pd2" value="CR" {% if r.rights %} {% else %}checked{% endif %} />
+            <input type="radio" name="rights" id="rights-pd2" value="CR" {% if r.rights|upper == "CR" %}checked{% endif %} />
             <div class="edit-copyrights__icons">
                 <i class="icon--cc"></i>
             </div>
