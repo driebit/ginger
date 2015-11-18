@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Driebit" />
 
+    {% include "head/twitter.tpl" %}
+
     <title>
         {% if id %}
             {% if id.seo_title %}
