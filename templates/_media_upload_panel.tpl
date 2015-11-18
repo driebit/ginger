@@ -47,7 +47,7 @@
         $("#dialog-connect-found-linked-data").on('click', '.thumbnail', function(e) {
         	e.preventDefault();
             z_event('dialog_connect_find_linked_data', {
-                all: $(this).data(),
+                object_props: $(this).data(),
                 object: $(this).data('uri'),
                 object_title: $(this).data('title')
             });
