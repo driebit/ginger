@@ -30,10 +30,3 @@
     text-align: center;
     @include size(font-size, 13);
 }
-
-.cluster {
-    div {
-        color: $mainThemeColor !important;
-        font-family: 'Arial' !important;
-    }
-}

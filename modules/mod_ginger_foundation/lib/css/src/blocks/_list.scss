@@ -295,6 +295,7 @@
 
     .list__item__content__title {
         @include size(font-size, 18);
+        margin: 0px;
     }
 
     .list__item__content {
