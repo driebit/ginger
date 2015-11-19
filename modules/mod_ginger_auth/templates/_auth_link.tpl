@@ -7,13 +7,15 @@
         label_class|default:"main-nav__login-register-button__label",
         icon|if_undefined:"glyphicon glyphicon-log-in",
         icon_before,
-        label|default:_"logon/signup"
+        label|default:_"logon/signup",
+        action|default:{reload}
     as
         class,
         label_class,
         icon,
         icon_position,
-        label
+        label,
+        action
     %}
 
     <a class="{{ class }}" id="{{ #signup }}" href="#" title="{_ Login/Registeer _}">
