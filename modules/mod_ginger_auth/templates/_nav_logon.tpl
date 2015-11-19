@@ -12,11 +12,5 @@
         greeting=greeting
     %}
 
-    {% javascript %}
-        pubzub.subscribe("~pagesession/session", function (state) {
-            z_event("ginger_post_logon");
-        });
-    {% endjavascript %}
-
 {% endif %}
 </div>
