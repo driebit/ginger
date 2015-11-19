@@ -170,7 +170,7 @@ lookup_triple(Predicate, Triples) ->
 
 lookup_triples([Predicate | Rest], Triples) ->
     case lookup_triple(Predicate, Triples) of
-        undefined -> lookup_triple(Rest, Triples);
+        undefined -> lookup_triples(Rest, Triples);
         Triple -> Triple
     end;
 lookup_triples([], _Triples) ->
