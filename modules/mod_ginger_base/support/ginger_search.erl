@@ -26,7 +26,4 @@ search_query(#search_query{search={ginger_search, Args}}, Context) ->
     MergedArgs = lists:merge(DefaultArgs, Args),
     MergedArgs1 = withdefault({is_published, true}, MergedArgs),
     
-    search_query:search(MergedArgs1, Context);
-
-search_query(#search_query{}, _Context) ->
-    undefined. %% fall through
+    search_query:search(MergedArgs1, Context).
