@@ -26,7 +26,7 @@
 init(Context) ->
     ginger_config:install_config(Context),
     ginger_acl:install(Context),
-    z_pivot_rsc:define_custom_pivot(ginger_findable, [{is_excluded_from_search, "boolean not null default false"}], Context).
+    z_pivot_rsc:define_custom_pivot(ginger_search, [{is_unfindable, "boolean not null default false"}], Context).
 
 %% @doc When ACL is enabled, create a default user in the editors group
 manage_schema(_Version, Context) ->
@@ -127,8 +127,10 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
     z_render:wire({script, [{script, JS}]}, Context).
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
-    Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),
-    {ginger_findable, [{is_excluded_from_search, Excluded}]}.
-    
+    Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
+    {ginger_search, [{is_unfindable, Excluded}]}.
+
+observe_search_query(#search_query{search={ginger_search, _Args}}=Q, Context) ->
+    ginger_search:search_query(Q, Context);
 observe_search_query(#search_query{}=Q, Context) ->
     ginger_geo_search:search_query(Q, Context).
