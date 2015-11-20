@@ -33,12 +33,15 @@ parse_argument({keyword, Keywords}) when is_list(Keywords) ->
         Keywords
     );
 
-parse_argument({is_findable, Bool}) ->
+parse_argument({is_findable, Bool}) when is_boolean(Bool)->
     % TODO: Filter all resources within category if it is unfindable
     Is_unfindable = not Bool,
     [{custompivot, "ginger_search"},
      {filter, ["is_unfindable", Is_unfindable]}];
      
+parse_argument({is_findable, Val}) ->
+    parse_argument({is_findable, z_convert:to_bool(Val)});
+    
 parse_argument({cat_exclude_defaults, Bool}) ->
     case Bool of
         true ->
