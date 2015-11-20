@@ -11,7 +11,10 @@
     do_data_export/1,
     do_data_export/2,
     get_content_type/1,
-    set_filename/1
+    set_filename/1,
+    observe_export_resource_header/2,
+    observe_export_resource_encode/2,
+    observe_export_resource_data/2
 ]).
 
 -include_lib("include/zotonic.hrl").
@@ -130,3 +133,23 @@ rsc_fields() ->
         summary,
         body
     ].
+
+-spec observe_export_resource_header(#export_resource_header{}, #context{}) -> tuple().
+observe_export_resource_header(#export_resource_header{id = _Id}, _Context) ->
+    {ok, ginger_export_rsc:get_headers()}.
+
+-spec observe_export_resource_encode(#export_resource_encode{}, #context{}) -> {ok, list()}.
+observe_export_resource_encode(#export_resource_encode{content_type = "text/csv", data = Id}, Context) when is_integer(Id) ->
+    Data = ginger_export_rsc:export(Id, Context),
+    {ok, export_encode_csv:encode(Data, Context)}.
+
+%% @todo Can be removed when https://github.com/zotonic/zotonic/pull/1088 is merged
+-spec observe_export_resource_data(#export_resource_data{}, #context{}) -> {ok, list()}.
+observe_export_resource_data(#export_resource_data{id = Id}, Context) when is_integer(Id) ->
+    case m_rsc:is_a(Id, query, Context) of
+        true ->
+            {ok, z_search:query_([{query_id, Id}], Context)};
+        false ->
+            undefined
+    end.
+
