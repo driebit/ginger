@@ -29,8 +29,6 @@
 
                 {% catinclude "media/media.tpl" id %}
 
-                {% include "media/download-button.tpl" id=id %}
-
                 {% include "body/body.tpl" id=id %}
 
                 {% include "blocks/blocks.tpl" id=id %}

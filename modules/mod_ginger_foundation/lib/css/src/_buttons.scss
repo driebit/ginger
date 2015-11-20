@@ -18,10 +18,31 @@
     }
 }
 
+[class^="btn--"], [class*=" btn--"] {
+    @extend .btn--primary;
+}
+
+.btn--primary,
 .btn--secondary,
 .btn--anchor,
 .btn--next {
     @extend .btn;
+}
+
+.btn--primary {
+    background: $mainThemeColor;
+    color: $white;
+    border: 1px solid $mainThemeColor;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus:active,
+    &.is-active {
+        background-color: darken($mainThemeColor, 5);
+        color: $white;
+        border-color: darken($mainThemeColor, 5);
+    }
 }
 
 .btn--secondary {
@@ -46,29 +67,8 @@
     @extend .btn--secondary;
 }
 
-.btn--primary {
-    @extend .btn;
-    background: $mainThemeColor;
-    color: $white;
-    border: 1px solid $mainThemeColor;
-
-    &:hover,
-    &:active,
-    &:focus,
-    &:focus:active,
-    &.is-active {
-        background-color: darken($mainThemeColor, 5);
-        color: $white;
-        border-color: darken($mainThemeColor, 5);
-    }
-}
-
 .home-button {
     @extend .btn--secondary;
-}
-
-[class^="btn--"], [class*=" btn--"] {
-    @extend .btn--primary;
 }
 
 .btn--cancel,
