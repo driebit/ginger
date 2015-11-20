@@ -8,7 +8,9 @@
 %% Selects and filters locations data.
 search_query(#search_query{search={ginger_geo, Args}}, Context) ->
         
-    BaseSearch = search_query:search(Args, Context),
+    GingerArgs = ginger_search:merge_ginger_args(Args),    
+    BaseSearch = search_query:search(GingerArgs, Context),
+    
     WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
     
     Where = case BaseSearch#search_sql.where of
