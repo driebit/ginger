@@ -36,8 +36,7 @@ parse_argument({keyword, Keywords}) when is_list(Keywords) ->
 parse_argument({is_findable, Bool}) when is_boolean(Bool)->
     % TODO: Filter all resources within category if it is unfindable
     Is_unfindable = not Bool,
-    [{custompivot, "ginger_search"},
-     {filter, ["is_unfindable", Is_unfindable]}];
+    [{filter, ["is_unfindable", Is_unfindable]}];
      
 parse_argument({is_findable, Val}) ->
     parse_argument({is_findable, z_convert:to_bool(Val)});
@@ -56,16 +55,22 @@ parse_argument(Arg) ->
 %% @doc Process custom arguments and add defaults
 merge_ginger_args(Args) ->
 
+    % Always set these extra query arguments
+    ExtraArgs = [
+        {custompivot, "ginger_search"}
+    ],
+    MergedArgs = lists:merge(ExtraArgs, Args),
+
     % Associate default arguments
     DefaultArgs = [
-        {is_published, true},
         {is_findable, true},
+        {is_published, true},
         {cat_exclude_defaults, true}
     ],
-    MergedArgs = withdefault(DefaultArgs, Args),
+    MergedArgs1 = withdefault(DefaultArgs, MergedArgs),
 
     % Parse custom ginger_search arguments
-    lists:flatmap(fun parse_argument/1, MergedArgs).
+    lists:flatmap(fun parse_argument/1, MergedArgs1).
     
 %% @doc Supports all the usual query model arguments, adds default excludes.
 search_query(#search_query{search={ginger_search, Args}}, Context) ->
