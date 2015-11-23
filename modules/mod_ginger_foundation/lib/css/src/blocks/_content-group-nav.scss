@@ -80,12 +80,12 @@ body.has-content-group {
     background-color: $mainThemeColor;
     position: relative;
     z-index: 20;
+    text-align: center;
 
     ul {
         @include size(padding, 0);
         @include size(margin, 0);
         @include size(font-size, 0);
-        text-align: center;
     }
 
     li {

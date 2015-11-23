@@ -1,4 +1,4 @@
-{# can be romoved after release of zotonic 0.13.6 #}
+{# can be removed after release of zotonic 0.13.6 #}
 {% if medium.filename %}
     <p>
         {{ medium.mime }} 

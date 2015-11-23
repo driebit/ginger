@@ -29,6 +29,9 @@
             </article>
 
         </div>
+
+        {% include "page-nav/page-nav.tpl" %}
+
         {% if id.o.haspart %}
             <aside class="main-aside">
                 {% with m.search[{query hassubject=[id,'haspart'] sort="seq" pagelen=6}] as result %}

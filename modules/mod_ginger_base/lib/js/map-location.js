@@ -102,6 +102,8 @@
                     ];
                 }
 
+                options.draggable = false;
+
                 me.map = new google.maps.Map(me.element[0], options);
 
                 marker = new google.maps.Marker({

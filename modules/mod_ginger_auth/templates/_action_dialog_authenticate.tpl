@@ -32,12 +32,5 @@ redirect: URL to redirect to after succesful login
 </div>
 
 {# When the session changes (user logs in), run wire below. The wire will just
-   execute any post-logon actions passed to this template as parameter action. #}
-{% wire name="ginger_post_logon" action=action %}
-
-{% javascript %}
-    pubzub.subscribe("~pagesession/session", function (state) {
-        z_event("ginger_post_logon");
-    });
-{% endjavascript %}
-
+   execute any post-logon actions passed to this template as 'action'. #}
+{% wire type={mqtt topic="~pagesession/session"} action=action %}
