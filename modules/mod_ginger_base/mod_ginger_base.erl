@@ -16,8 +16,7 @@
     manage_schema/2,
     observe_custom_pivot/2,
     observe_acl_is_allowed/2,
-    observe_search_query/2,
-    search_query/2
+    observe_search_query/2
 ]).
 
 -include("zotonic.hrl").
@@ -27,7 +26,7 @@
 init(Context) ->
     ginger_config:install_config(Context),
     ginger_acl:install(Context),
-    z_pivot_rsc:define_custom_pivot(ginger_search, [{is_unfindable, "boolean not null default false"}], Context).
+    z_pivot_rsc:define_custom_pivot(ginger_findable, [{is_excluded_from_search, "boolean not null default false"}], Context).
 
 %% @doc When ACL is enabled, create a default user in the editors group
 manage_schema(_Version, Context) ->
@@ -108,37 +107,11 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
             end;
         {error, _} ->
             Context
-    end;
-event(#postback{message={map_infobox, _Args}}, Context) ->    
-    Ids = z_context:get_q(ids, Context),
-    Element = z_context:get_q(element, Context),
-    Render = z_template:render("map/map-infobox.tpl", [{results, Ids}], Context),
-    EscapedRender = z_utils:js_escape(iolist_to_binary(Render)),
-    JS = erlang:iolist_to_binary(
-        [
-            <<"$('#">>,
-            Element,
-            <<"').data('ui-googlemap').showInfoWindow(">>,
-            z_convert:to_binary(lists:last(Ids)),
-            <<", \"">>,
-            z_convert:to_binary(EscapedRender),
-            <<"\");">>
-        ]
-    ),
-    z_render:wire({script, [{script, JS}]}, Context).
+    end.
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
-    Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
-    {ginger_search, [{is_unfindable, Excluded}]}.
-
-observe_search_query(#search_query{search={ginger_search, _Args}}=Q, Context) ->
-    ginger_search:search_query(Q, Context);
-observe_search_query(#search_query{search={ginger_geo, _Args}}=Q, Context) ->
-    ginger_geo_search:search_query(Q, Context);
-observe_search_query(#search_query{search={ginger_geo_nearby, _Args}}=Q, Context) ->
-    ginger_geo_search:search_query(Q, Context);
+    Excluded = z_convert:to_bool(m_rsc:p(Id, is_excluded_from_search, Context)),
+    {ginger_findable, [{is_excluded_from_search, Excluded}]}.
+    
 observe_search_query(#search_query{}=Q, Context) ->
-    mod_ginger_base:search_query(Q, Context).
-
-search_query(#search_query{}, _Context) ->
-    undefined. %% fall through
+    ginger_geo_search:search_query(Q, Context).

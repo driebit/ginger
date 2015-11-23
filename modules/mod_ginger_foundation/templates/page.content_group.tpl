@@ -34,12 +34,20 @@
             </div>
             {% if content_group.o.hassubnav|length > 1 %}
                 {% with m.search[{query hassubject=[id,'hassubnav'] pagelen=6}] as result %}
-                    {% include "list/list.tpl" list_id="list--haspart" hide_showall_button items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--content-group" items=result extraClasses="" %}
+                    {% button class="list__more" text="Toon meer resultaten..." action={moreresults result=result
+                        target="list--content-group"
+                        template="list/list-item.tpl"}
+                        %}
                 {% endwith %}
             {% else %}
                 {% with content_group.o.hassubnav.id as subnavid %}
                     {% with m.search[{query hassubject=[subnavid,'haspart'] pagelen=6}] as result %}
-                        {% include "list/list.tpl" list_id="list--haspart" hide_showall_button items=result extraClasses="" id=id %}
+                        {% include "list/list.tpl" list_id="list--content-group" items=result extraClasses="" %}
+                        {% button class="list__more" text="Toon meer resultaten..." action={moreresults result=result
+                            target="list--content-group"
+                            template="list/list-item.tpl"}
+                            %}
                     {% endwith %}
                 {% endwith %}
             {% endif %}

@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="checkbox">
                 <label>
-                    <input name="is_unfindable" id="{{ #is_unfindable }}" type="checkbox" {% if id.is_unfindable %}checked{% endif %} /> {_ Exclude from search results _}
+                    <input name="is_excluded_from_search" id="{{ #is_excluded_from_search}}" type="checkbox" {% if id.is_excluded_from_search %}checked{% endif %} /> {_ Exclude from search results _}
                 </label>
             </div>
         </div>

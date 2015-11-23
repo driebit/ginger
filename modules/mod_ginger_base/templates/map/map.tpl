@@ -1,41 +1,36 @@
+
 {% with
     scrollwheel|default:"false",
     blackwhite|default:"false",
-    disabledefaultui|default:"false",
-    gridsize|default:"60",
     container,
-    height
+    height|default:"600"
 as
     scrollwheel,
     blackwhite,
-    disabledefaultui,
-    gridsize,
     container,
     height
 %}
 
     {% block map %}
 
-            {% if result|length > 0 %}
+        {% with content_template|default:"map/map-content.tpl" as content_template %}
 
-                <div id="{{ container }}" style="
-                {% if height %}
-                    height: {{ height }}px
-                {% else %}
-                    height: 100%
-                {% endif %}
-                 " class="do_googlemap map_canvas {{ class }}"
+            {% if items|length > 0 %}
+                <div id="{{ container }}" style="height: {{ height }}px" class="do_googlemap map_canvas {{ class }}"
 
                     data-locations='
                         {% filter replace:"'":"\\&#39;" %}
                             [
-                                {% for rid, lat, lng, cat in result %}
+                                {% for item in items|location_defined %}
+                                 {% with item[1]|default:item as item_id %}
                                     {
-                                        "lat": "{{ lat }}",
-                                        "lng": "{{ lng }}",
-                                        "id": "{{ rid }}"
+                                        "lat": "{{ item_id.location_lat }}",
+                                        "lng": "{{ item_id.location_lng }}",
+                                        "zoom": "{{ item_id.location_zoom_level }}",
+                                        "content": {% include content_template id=item_id item=item %}
                                     }
                                     {% if not forloop.last %},{% endif %}
+                                {% endwith %}
                                 {% endfor %}
                             ]
                         {% endfilter %}
@@ -44,27 +39,15 @@ as
                     data-mapoptions='
                         {
                             "scrollwheel": {{ scrollwheel }},
-                            "blackwhite": {{ blackwhite }},
-                            "disabledefaultui": {{ disabledefaultui }},
-                            "gridsize": {{ gridsize }}
+                            "blackwhite": {{ blackwhite }}
                         }
                     '
 
                ></div>
             {% else %}
                 <p class="no-results">{_ No results _}</p>
-            {% endif %} 
-
-            {% wire name="map_infobox"
-                    action={
-                        postback
-                        postback={
-                            map_infobox
-                        }
-                        delegate="mod_ginger_base"
-                    }
-                    %}
-
+            {% endif %}
+        {% endwith %}
     {% endblock %}
 
 {% endwith %}

@@ -33,6 +33,7 @@
     }
 }
 
+
 .main-footer__social {
     @extend .main-footer__column;
 
@@ -43,37 +44,37 @@
             @include size(margin-left, 5);
         }
     }
-}
 
-.main-footer__social__btn {
-    display: inline-block;
-    @include size(width, 35);
-    @include size(height, 35);
-    position: relative;
-    text-indent: -9999px;
-    color: $footerBgColor;
-    background: rgba($white, 0.5);
-    border-radius: 50%;
+    a {
+        display: inline-block;
+        @include size(width, 35);
+        @include size(height, 35);
+        position: relative;
+        text-indent: -9999px;
+        color: $footerBgColor;
+        background: rgba($white, 0.5);
+        border-radius: 50%;
 
-    &:hover,
-    &:focus,
-    &:active {
-        background: $white;
-    }
+        &:hover,
+        &:focus,
+        &:active {
+            background: $white;
+        }
 
-    i {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        text-indent: 0px;
-        text-align: center;
-        @include size(font-size, 18);
-        @include size(line-height, 35);
+        i {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-indent: 0px;
+            text-align: center;
+            @include size(font-size, 18);
+            @include size(line-height, 35);
 
-        &.icon--envelope {
-            @include size(font-size, 15);
+            &.icon--envelope {
+                @include size(font-size, 15);
+            }
         }
     }
 }
@@ -81,51 +82,6 @@
 .main-footer__copyright {
     @extend .main-footer__column;
     color: rgba($white, 0.44);
-}
-
-.main-footer__newsletter {
-    @include size(padding, 0, 15);
-    @include size(margin-top, 20);
-    color: rgba(255, 255, 255, 0.44);
-
-    p {
-        margin-bottom: 5px;
-    }
-
-    label {
-        display: none;
-    }
-
-    input {
-        display: inline-block;
-        width: 80%;
-        @include size(padding, 7, 10);
-        line-height: 1;
-        border-radius: $btnRadius;
-        border: 1px solid $white;
-        color: $black;
-    }
-
-    button {
-        display: inline-block;
-        width: 17%;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: center;
-    }
-
-    .mce_inline_error {
-        border: 1px solid red;
-    }
-
-    .response {
-        @include size(padding, 20);
-        @include size(margin-top, 20);
-        background: rgba($white, 0.8);
-        color: $typographyColor;
-        border-radius: 3px;
-        @include size(font-size, 13);
-    }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
@@ -141,11 +97,6 @@
 
     .main-footer__column {
         width: 33%;
-        float: left;
-    }
-
-    .main-footer__newsletter {
-        max-width: 33%;
         float: left;
     }
 }
