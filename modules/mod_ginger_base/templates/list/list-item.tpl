@@ -2,6 +2,7 @@
 
 {% block with_depiction %}
 
+{% if id.is_published or m.acl.is_allowed.use.mod_admin %}
 <li class="list__item {{ extraClasses }}">
 
     {% include "page-actions/page-action-edit-thing.tpl" extraClasses="edit-button--list-item" id=id %}
@@ -44,4 +45,6 @@
     </a>
 </li>
 
+{% endif %}
 {% endblock %}
+
