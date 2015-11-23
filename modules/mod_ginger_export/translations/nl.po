@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /vagrant/modules/mod_ginger_export/templates/_admin_edit_sidebar.tpl:2 /vagrant/modules/mod_ginger_export/templates/_admin_edit_sidebar.tpl:10
+msgid "ginger_export.admin.title"
+msgstr "Exporteren"
+
+msgid ""
+"Export"
+msgstr "Exporteer"
+
+#: /vagrant/modules/mod_ginger_export/templates/admin_ginger_export.tpl:13
+msgid ""
+"Export resources"
+msgstr "Exporteer pagina’s"
+
+#: /vagrant/modules/mod_ginger_export/templates/admin_ginger_export.tpl:3 /vagrant/modules/mod_ginger_export/templates/admin_ginger_export.tpl:8
+msgid ""
+"Export to CSV"
+msgstr "Exporteren naar CSV"
+
+#: /vagrant/modules/mod_ginger_export/templates/_admin_edit_sidebar.tpl:10
+msgid ""
+"to"
+msgstr "naar"
+
+msgid "ginger_export.admin.help"
+msgstr "Exporteer deze pagina naar een CSV-bestand. Je vindt het bestand onder ‘Downloads’ op je computer."
