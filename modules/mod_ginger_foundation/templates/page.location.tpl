@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    {% include "masthead/masthead.tpl" id=id %}
+    {% include "masthead/masthead.tpl" id=id maptype="map" %}
 
     <main role="main">
 
