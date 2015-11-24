@@ -12,7 +12,9 @@ as
     start_date
 %}
 
-    <div id="{{ #ginger_timeline }}"></div>
+    <div class="timeline">
+        <div id="{{ #ginger_timeline }}"></div>
+    </div>
 
     {% javascript %}
 
