@@ -27,7 +27,17 @@
             window.setTimeout(function () {
 
                 if (window.google) {
-                    me.geocodeAddress();
+
+                    // var lat = me.element.attr('data-lat'),
+                    //     lng = me.element.attr('data-lng');
+
+                    // if (lat && lat != "" && lng && lng != "") {
+                    //     var latLng = new google.maps.LatLng(lat,lng);
+                    //     me.initView(latLng);
+                    // } else {
+                        me.geocodeAddress();
+                    //}
+
                 } else {
                     me.checkGoogleVar();
                 }
@@ -42,7 +52,7 @@
                     street = me.element.attr('data-street').trim();
 
                 if (!street || street == '') return false;
-
+                
                 address = [
                     /\s*[^0-9]+\d*/.exec(street)[0],
                     me.element.attr('data-postcode'),
@@ -54,16 +64,16 @@
                     address: address.join(', ')
                 }, function(results, status) {
                     if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
-                        me.initView(results[0].geometry);
+                        me.initView(results[0].geometry.location);
                     }
                 });
+
             },
 
-            initView: function(geometry) {
+            initView: function(latLng) {
 
                 var me = this,
-                    marker,
-                    latLng = geometry.location;
+                    marker;
 
                 if (me.options.type.toLowerCase() == "streetview") {
                     me.buildStreetView(latLng);
