@@ -22,7 +22,7 @@
             {% include "summary/summary.tpl" id=id %}
 
             {% with id.media|without_embedded_media:id|first as dep %}
-                {% include "media/media.image.tpl" id=dep %}
+                {% include "media/media.image.tpl"  id=dep %}
             {% endwith %}
 
             {% include "body/body.tpl" id=id %}
