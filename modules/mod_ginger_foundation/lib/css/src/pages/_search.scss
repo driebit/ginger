@@ -31,13 +31,18 @@
         width: calc(100% - 47px);
         margin-right: 10px;
         float: left;
-        color: $secondaryThemeColor;
+        color: $typographyColor;
+    }
+
+    button[type="submit"] {
+        padding: 0;
     }
 }
 
 .global-search__submit {
     width: 37px;
     height: 37px;
+    padding: 0;
     position: relative;
     top: 1px;
     float: left;
@@ -48,7 +53,7 @@
         @extend .icon--search:before;
         position: absolute;
         top: 9px;
-        left: 9px;
+        left: 12px;
         color: $white;
         text-indent: 0px;
         @include size(font-size, 19);
@@ -57,9 +62,11 @@
 
 .btn--result-option {
     display: none;
+    //@include size(height, 38);
     background: $mainThemeColor;
     border-color: $mainThemeColor;
     color: $white;
+    text-transform: none;
 
     .icon--list {
         display: inline-block;
@@ -103,10 +110,99 @@
 }
 
 .search__filters {
-    //display: none;
+    //@include size(max-height, 45);
+    @include size(padding, 45, 20, 0);
+    position: relative;
+    overflow: hidden;
+    background: $alto;
+    transition: max-height 1s;
+
+    &.is-open {
+        max-height: 1000px;
+    }
 }
 
+.search__filters__mobile {
+    width: 100%;
+    @include size(height, 45);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: none;
+    border: none;
 
+    i {
+        margin-right: 7px;
+        position: relative;
+        top: 2px;
+        color: lighten($typographyColor, 15%);
+    }
+
+    &:after {
+        @extend .has-icon;
+        @extend .icon--arrow-down:before;
+        @include size(width, 20);
+        @include size(height, 20);
+        position: absolute;
+        top: 12px;
+        right: 20px;
+        background: $white;
+        border-radius: 50%;
+        color: $typographyColor;
+        @include size(font-size, 8);
+        @include size(line-height, 22);
+    }
+}
+
+.search__filters__section {
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"] + label {
+        position: relative;
+
+        &:before {
+            content: '';
+            display: inline-block;
+            @include size(width, 15px);
+            @include size(height, 15px);
+            @include size(margin-right, 5);
+            background: #FFFFFF;
+            border: 1px solid #979797;
+            box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.3);
+            border-radius: 2px;
+        }
+    }
+
+    input[type="checkbox"]:checked + label {
+        &:after {
+            content: '';
+            width: 5px;
+            height: 10px;
+            position: absolute;
+            top: 3px;
+            left: 5px;
+            border-right: 2px solid $white;
+            border-bottom: 2px solid $white;
+            transform: rotate(45deg);
+        }
+
+        &:before {
+            background: $mainThemeColor;
+        }
+    }
+}
+
+.search__filters__title {
+    @include size(font-size, 18);
+}
 
 .no-results {
     @include size(padding, 20);
@@ -152,19 +248,15 @@
     }
 
     .global-search__submit {
-        width: 48px;
+        @include size(width, 48);
 
         &:before {
-            left: 14px;
+            left: 18px;
         }
     }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
-    .search__top {
-        background: #DFDBD3;
-    }
-
     .btn--result-option {
         display: inline-block;
     }
@@ -184,8 +276,6 @@
         //     display: none;
         // }
     }
-
-
 
     .search__results {
         width: 75%;
@@ -303,3 +393,5 @@
 //         }
 //     }
 // }
+
+

@@ -18,7 +18,8 @@
     }
 }
 
-[class^="btn--"], [class*=" btn--"] {
+[class^="btn--"], [class*=" btn--"],
+button[type="submit"] {
     @extend .btn--primary;
 }
 
