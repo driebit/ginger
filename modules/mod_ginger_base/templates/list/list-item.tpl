@@ -10,7 +10,9 @@
 
         <a href="{{ id.page_url }}">
             <article>
-                {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+                <div class="list__item__image">
+                    {% image dep_rsc.id mediaclass="list-image" alt="" title="" crop=dep_rsc.crop_center %}
+                </div>
                 <div class="list__item__content">
                     {% block list_item_date %}
                         {% if id.publication_start %}
