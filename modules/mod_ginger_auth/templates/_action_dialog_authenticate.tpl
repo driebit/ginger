@@ -15,10 +15,12 @@ redirect: URL to redirect to after succesful login
             <a data-toggle="tab" id="tab-logon">{_ Log in _}</a>
         </li>
 
-        <li {% if tab == "signup" %}class="active"{% endif %}>
-            {% wire id="tab-signup" propagate action={replace target="z_logon_or_signup" template="_logon_modal.tpl" logon_state="signup" } %}
-            <a data-toggle="tab" href="#{{ #tab }}-signup" id="tab-signup">{_ Sign up _}</a>
-        </li>
+        {% if m.modules.active.mod_signup %}
+            <li {% if tab == "signup" %}class="active"{% endif %}>
+                {% wire id="tab-signup" propagate action={replace target="z_logon_or_signup" template="_logon_modal.tpl" logon_state="signup" } %}
+                <a data-toggle="tab" href="#{{ #tab }}-signup" id="tab-signup">{_ Sign up _}</a>
+            </li>
+        {% endif %}
 
         <li {% if tab == "forgot" %}class="active"{% endif %}>
             {% wire id="tab-forgot" propagate action={replace target="z_logon_or_signup" template="_logon_modal.tpl" logon_state="reminder" } %}

@@ -148,6 +148,9 @@ msgstr "vrouw"
 msgid "logon/signup"
 msgstr "Log in / registreer"
 
+msgid "logon"
+msgstr "Log in"
+
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:5
 msgid "male"
 msgstr "man"
