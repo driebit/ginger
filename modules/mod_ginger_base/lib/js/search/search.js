@@ -8,7 +8,7 @@ $.widget("ui.search", {
 
             var values = searchParameters.values,
                 type = searchParameters.type;
-                
+
             z_event('search-' + type, values);
 
 		});
