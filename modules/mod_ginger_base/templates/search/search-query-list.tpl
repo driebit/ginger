@@ -2,10 +2,10 @@
 
 {%
     with
-        cat,
+        cat|default:q.cat,
         paged|default:true,
         cat_exclude|default:q.cat_exclude|default:['meta', 'menu'],
-        search_text|default:q.search_text|default:q.qs,
+        search_text|default:q.qs|default:q.search_term,
         keyword|default:q.keyword,
         date_start_year|default:q.date_start_year,
         date_start_after|default:q.date_start_after,
@@ -27,7 +27,7 @@
         pagelen
 %}
 
-        {% with m.search.paged[{ginger_search cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword }] as result %}
+        {% with m.search.paged[{ginger_search cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat }] as result %}
            
             {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
 

@@ -109,8 +109,6 @@ $.widget( "ui.googlemap", {
 
 		map.fitBounds(bounds);
 
-		console.log(options);
-
 	},
 
 
