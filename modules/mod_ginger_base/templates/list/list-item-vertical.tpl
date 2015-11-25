@@ -2,62 +2,66 @@
 
 {% block with_depiction %}
 
-<li class="{% block class %} list__item--vertical{% endblock %} {{ extraClasses }}">
+{% if id.is_visible %}
 
-    <a href="{{ id.page_url }}">
-        <article class="cf">
-            <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
-                {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+    <li class="{% block class %} list__item--vertical{% endblock %} {{ extraClasses }}">
 
-                <div class="list__item__content__category">
-                    <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+        <a href="{{ id.page_url }}">
+            <article class="cf">
+                <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
+                    {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+
+                    <div class="list__item__content__category">
+                        <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+                    </div>
                 </div>
-            </div>
 
-            {% block list_item_meta %}{% endblock %}
+                {% block list_item_meta %}{% endblock %}
 
-            <div class="list__item__content">
-                {% block list_item_location %}
-                    {% with
-                        id.o.located_in,
-                        id.o.presented_at
-                    as
-                        located,
-                        presented
-                    %}
+                <div class="list__item__content">
+                    {% block list_item_location %}
+                        {% with
+                            id.o.located_in,
+                            id.o.presented_at
+                        as
+                            located,
+                            presented
+                        %}
 
-                        {% with located|make_list++presented|make_list as locations %}
+                            {% with located|make_list++presented|make_list|is_visible as locations %}
 
-                            {% if locations %}
-                                <p class="list__item__locations">
-                                    {_ Location _}:
-                                    {% for r in locations %}
-                                        {{ r.title }}{% if not forloop.last %}, {% endif %}
-                                    {% endfor %}
-                                </p>
-                            {% endif %}
+                                {% if locations %}
+                                    <p class="list__item__locations">
+                                        {_ Location _}:
+                                        {% for r in locations %}
+                                            {{ r.title }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+
+                            {% endwith %}
 
                         {% endwith %}
+                    {% endblock %}
 
-                    {% endwith %}
-                {% endblock %}
+                    <h3 class="list__item__content__title">
+                        {% if id.short_title %}
+                            {{ id.short_title }}
+                        {% else %}
+                            {{ id.title }}
+                        {% endif %}
+                    </h3>
 
-                <h3 class="list__item__content__title">
-                    {% if id.short_title %}
-                        {{ id.short_title }}
+                    {% if id.summary %}
+                        <p>{{ id.summary|striptags|truncate:150 }}</p>
                     {% else %}
-                        {{ id.title }}
+                        <p>{{ id.body|striptags|truncate:150 }}</p>
                     {% endif %}
-                </h3>
+                </div>
+            </article>
+        </a>
+    </li>
 
-                {% if id.summary %}
-                    <p>{{ id.summary|striptags|truncate:150 }}</p>
-                {% else %}
-                    <p>{{ id.body|striptags|truncate:150 }}</p>
-                {% endif %}
-            </div>
-        </article>
-    </a>
-</li>
+{% endif %}
 
 {% endblock %}

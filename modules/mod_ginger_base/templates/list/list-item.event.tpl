@@ -15,7 +15,7 @@
         presented
     %}
 
-        {% with located|make_list++presented|make_list as locations %}
+        {% with located|make_list++presented|make_list|is_visible as locations %}
 
             {% if locations %}
                 <p class="list__item__locations">
