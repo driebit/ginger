@@ -80,11 +80,14 @@ $.widget("ui.search_ui", {
             mergedValues = {};
 
         $.each(widgetEls, function(i, element){
-            var classnames = element.className.split(/\s+/);
+            var classnames = element.className.split(/\s+/),
+                element = $(element);
+
             $.each(classnames, function(j, classname) {
+
                 if (classname.match(/do_search_cmp/)) {
                     var widgetName = classname.replace(/^do_/, '');
-                    widgetRefs.push($(':ui-' + widgetName).data('ui-' + widgetName));
+                    widgetRefs.push(element.data('ui-' + widgetName));
                 }
             });
         });
