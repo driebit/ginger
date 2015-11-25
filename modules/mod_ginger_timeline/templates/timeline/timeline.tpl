@@ -12,7 +12,9 @@ as
     start_date
 %}
 
-    <div id="{{ #ginger_timeline }}"></div>
+    <div class="timeline">
+        <div id="{{ #ginger_timeline }}"></div>
+    </div>
 
     {% javascript %}
 
@@ -23,16 +25,14 @@ as
             }
         },
         "events": [
-            {% for item in items %}
-                {# Each Timeline event must have at least a start year #}
-                {% if item.date_start %}
-                    {
-                        {% catinclude "timeline/_text.tpl" item %}
-                        {% catinclude "timeline/_date.tpl" item name="start_date" date=item.date_start %}
-                        {% catinclude "timeline/_date.tpl" item name="end_date" date=item.date_end %}
-                        {% catinclude "timeline/_media.tpl" item %}
-                    },
-                {% endif %}
+            {# Each Timeline event must have at least a start year #}
+            {% for item in items|filter:`date_start` %}
+                {
+                    {% catinclude "timeline/_text.tpl" item %}
+                    {% catinclude "timeline/_date.tpl" item name="start_date" date=item.date_start %}
+                    {% catinclude "timeline/_date.tpl" item name="end_date" date=item.date_end %}
+                    {% catinclude "timeline/_media.tpl" item %}
+                }{% if not forloop.last %},{% endif %}
             {% endfor %}
         ]
     };

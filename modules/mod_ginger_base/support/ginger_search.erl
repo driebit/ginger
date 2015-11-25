@@ -33,7 +33,7 @@ parse_argument({keyword, Keywords}) when is_list(Keywords) ->
         Keywords
     );
 
-parse_argument({is_findable, Bool}) when is_boolean(Bool)->
+parse_argument({is_findable, Bool}) when is_boolean(Bool) ->
     % TODO: Filter all resources within category if it is unfindable
     Is_unfindable = not Bool,
     [{filter, ["is_unfindable", Is_unfindable]}];
@@ -41,20 +41,41 @@ parse_argument({is_findable, Bool}) when is_boolean(Bool)->
 parse_argument({is_findable, Val}) ->
     parse_argument({is_findable, z_convert:to_bool(Val)});
     
-parse_argument({cat_exclude_defaults, Bool}) ->
+parse_argument({cat_exclude_defaults, Bool}) when is_boolean(Bool) ->
     case Bool of
         true ->
             [{cat_exclude, [meta, menu, admin_content_query]}];
         false ->
             []
-    end;            
+    end;
+
+parse_argument({cat_exclude_defaults, Val}) ->
+    parse_argument({cat_exclude_defaults, z_convert:to_bool(Val)});
+
+% Filtering on undefined is supported from Zotonic 0.13.16
+parse_argument({has_geo, true}) ->
+    [{filter, ["pivot_location_lat", ne, undefined]},
+     {filter, ["pivot_location_lng", ne, undefined]}];
+    
+parse_argument({has_geo, false}) ->
+    [{filter, ["pivot_location_lat", eq, undefined]},
+     {filter, ["pivot_location_lng", eq, undefined]}];
+    
+parse_argument({has_geo, Val}) ->
+    parse_argument({has_geo, z_convert:to_bool(Val)});    
+
+parse_argument({_, undefined}) ->
+    [];
+    
+parse_argument({Key, <<"undefined">>}) ->
+    parse_argument({Key, undefined});
 
 parse_argument(Arg) ->
     [Arg].
     
 %% @doc Process custom arguments and add defaults
 merge_ginger_args(Args) ->
-
+    
     % Always set these extra query arguments
     ExtraArgs = [
         {custompivot, "ginger_search"}
