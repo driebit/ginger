@@ -104,7 +104,7 @@ is_enabled(Context) ->
 %%      it to view the resource.
 -spec can_view(integer(), #context{}) -> boolean() | undefined.
 can_view(Id, Context) ->
-    case m_rsc:p_no_acl(Id, is_published, Context) of
+    case m_rsc:p_no_acl(Id, is_published_date, Context) of
         undefined -> undefined;
         true -> undefined;
         false ->
