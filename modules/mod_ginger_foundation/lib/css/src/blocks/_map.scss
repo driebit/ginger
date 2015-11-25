@@ -7,26 +7,26 @@
     }
 }
 
-.infobox {
-    width: 400px;
+.infobox__header {
+    background-color: $mainThemeColor;
+    @include size(padding, 7);
+    color: $typographyColor;
+    text-align: center;
+    @include size(font-size, 13);
+}
+
+.infobox__results {
+    width: 300px;
     max-height: 350px;
     overflow-y: scroll;
     background-color: white;
 }
 
 .infoBox > img {
-    /* close button */
+    // close button
     width: 16px;
     height: 16px;
     position: absolute;
     right: 10px;
     top: 7px;
-}
-
-.infobox__results {
-    background-color: $mainThemeColor;
-    @include size(padding, 7);
-    color: $typographyColor;
-    text-align: center;
-    @include size(font-size, 13);
 }

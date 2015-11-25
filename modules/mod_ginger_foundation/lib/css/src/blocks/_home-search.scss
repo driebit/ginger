@@ -4,7 +4,7 @@
     background: $secondaryThemeColor;
     color: $white;
 
-    input {
+    input[type="text"] {
         width: 100%;
         @include size(height, 45);
         @include size(padding, 0, 55, 0, 10);
@@ -15,7 +15,11 @@
     }
 
     .btn--search {
+        @include size(width, 45);
         @include size(height, 45);
+        position: absolute;
+        top: 0px;
+        right: 0px;
         background: $mainThemeColor;
         color: $white;
         @include size(font-size, 29);
@@ -24,6 +28,7 @@
         border-top-right-radius: 3px;
         border-bottom-right-radius: 3px;
         @include size(padding-top, 6);
+        border: none;
 
         i {
             text-indent: 0;
@@ -40,8 +45,15 @@
             @include size(max-width, 700);
         }
 
+        input[type="text"] {
+            @include size(padding-right, 160);
+        }
+
         .btn--search {
             width: auto;
+            position: absolute;
+            top: 0px;
+            right: 0px;
             text-indent: 0px;
             @include size(font-size, 24);
             text-transform: none;
