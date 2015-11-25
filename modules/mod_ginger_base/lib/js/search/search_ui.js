@@ -33,10 +33,14 @@ $.widget("ui.search_ui", {
             me.doSearch(true);
         });
 
-
         $('.search__filters__mobile').on('click', function(event){
             event.preventDefault();
-            me.toggleSearchOptions(true);
+            me.toggleSearchOptions();
+        });
+
+        $('.search__filters__title').on('click', function(event){
+            event.preventDefault();
+            me.toggleSearchSection($(this));
         });
 
         me.searched = [];
@@ -117,6 +121,11 @@ $.widget("ui.search_ui", {
 
     toggleSearchOptions: function(){
         $('.search__filters').toggleClass('is-open');
+    },
+
+    toggleSearchSection: function(title){
+        $('.search__filters__section').removeClass('is-open');
+        title.parent().toggleClass('is-open');
     }
 
 });
