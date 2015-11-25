@@ -7,6 +7,19 @@
     }
 }
 
+.infoBox {
+    @include size(font-size, 14);
+}
+
+.infoBox > img {
+    // close button
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+}
+
 .infobox__header {
     background-color: $mainThemeColor;
     @include size(padding, 7);
@@ -20,13 +33,9 @@
     max-height: 350px;
     overflow-y: scroll;
     background-color: white;
-}
 
-.infoBox > img {
-    // close button
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    right: 10px;
-    top: 7px;
+    .list__item__image {
+        @include size(height, 140);
+        overflow: hidden;
+    }
 }
