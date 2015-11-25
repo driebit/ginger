@@ -3,7 +3,6 @@
 {%
     with
         cat|default:q.cat,
-        paged|default:true,
         cat_exclude|default:q.cat_exclude|default:['meta', 'menu'],
         search_text|default:q.qs|default:q.search_term,
         keyword|default:q.keyword,
@@ -15,7 +14,6 @@
         pagelen|default:10
     as
         cat,
-        paged,
         cat_exclude,
         search_text,
         keyword,
