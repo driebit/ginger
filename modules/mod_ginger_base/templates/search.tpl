@@ -46,7 +46,7 @@
             <div id="search-results" class="search__results">
 
                 <div id="search-list" class="search__results__list search__result__container"></div>
-                <div id="search-map" class="search_results__map search__result__container"></div>
+                <div id="search-map" class="search__results__map search__result__container"></div>
 
             </div>
         </div>
