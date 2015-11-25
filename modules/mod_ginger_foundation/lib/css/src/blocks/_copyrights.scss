@@ -1,9 +1,9 @@
 .copyrights {
     display: block;
-
     text-align: right;
 
     i {
+        background: none;
         @include size(font-size, 20);
     }
 
