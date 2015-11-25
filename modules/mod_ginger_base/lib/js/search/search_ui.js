@@ -15,7 +15,7 @@ $.widget("ui.search_ui", {
 
 		var me = this,
 			inputSearch = $(document).find('.input-search'),
-            queryString = $.url().param('searchterm');
+            queryString = $.url().param('qs');
 	
 		inputSearch.focus();
 		

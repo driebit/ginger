@@ -14,8 +14,8 @@ $.widget("ui.search_cmp_input_text", {
             }
         });
 
-        if($.url().param('search_text') != '') {
-            me.widgetElement.val($.url().param('search_text'));
+        if($.url().param('qs') != '') {
+            me.widgetElement.val($.url().param('qs'));
         }
 
     },
@@ -24,7 +24,7 @@ $.widget("ui.search_cmp_input_text", {
 
         var me = this;
         return [{
-            'type': 'search_text',
+            'type': 'qs',
             'values': me.widgetElement.val()
         }]
     }
