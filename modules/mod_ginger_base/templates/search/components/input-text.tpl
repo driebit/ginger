@@ -1,0 +1,1 @@
+<input class="input-search do_search_cmp_input_text" type="text" name="qs" value="" />

@@ -2,6 +2,9 @@
 
 {% lib
     "bootstrap/js/bootstrap.min.js"
+    "js/qlobber.js"
+    "js/pubzub.js"
+    "js/modules/z.live.js"
     "js/base.js"
     "js/global-nav.js"
     "js/global-search.js"
@@ -18,6 +21,10 @@
     "js/vendors/jquery.fancybox.min.js"
     "js/vendors/flowplayer-3.2.12.min.js"
     "js/vendors/slick.min.js"
+    "js/vendors/purl.js"
+    "js/search/search_ui.js"
+    "js/search/search.js"
+    "js/search/components/input-text.js"
 %}
 
 

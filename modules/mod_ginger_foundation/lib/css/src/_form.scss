@@ -1,0 +1,26 @@
+::placeholder {
+    color: $alto;
+}
+
+form {
+    input[type="text"],
+    input[type="website"] {
+        width: 100%;
+        @include size(padding, 4, 10, 0);
+        @include size(height, 38);
+        border: 1px solid darken($mainThemeColor, 15);
+        border-radius: 3px;
+        line-height: 1;
+        font-family: $primaryFontFamily;
+    }
+
+    select {
+        width: 100%;
+        @include size(padding, 0, 10);
+        @include size(height, 38);
+        border: 1px solid darken($mainThemeColor, 15);
+        border-radius: 3px;
+        @include size(line-height, 38);
+        font-family: $primaryFontFamily;
+    }
+}

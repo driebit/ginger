@@ -24,7 +24,7 @@ as
 
     {% if items %}
             <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-                {% for r in items %}
+                {% for r in items|is_visible %}
                     {% if r|length == 2 %}
                         {% with r|element:1 as item %}
                             {% catinclude list_template item %}

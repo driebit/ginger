@@ -334,7 +334,7 @@ msgstr "Login of registreer"
 
 #: /vagrant/modules/mod_ginger_base/templates/mailchimp/signup_form.tpl:17
 msgid "mailchimp-sign-up"
-msgstr "mailchimp-sign-up"
+msgstr "Aanmelden"
 
 #: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:6
 #, fuzzy

@@ -47,7 +47,12 @@
 		{% all include "_js_include.tpl" %}
 		{% all include "_script.tpl" %}
 
+        {% javascript %}
+            $(document).trigger('widgetmanager:loaded');
+        {% endjavascript %}
+
 		{% script %}
+
 	{% endwith %}
 	</body>
 </html>

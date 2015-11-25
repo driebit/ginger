@@ -1,0 +1,1 @@
+{% include "search/search-query-map.tpl" %}
