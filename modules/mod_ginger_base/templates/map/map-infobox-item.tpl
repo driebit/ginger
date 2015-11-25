@@ -1,1 +1,1 @@
-{% include "list/list-item.tpl" id=id %}
+{% catinclude "list/list-item.tpl" id %}
