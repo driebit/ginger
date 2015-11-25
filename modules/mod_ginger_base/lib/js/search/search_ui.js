@@ -2,7 +2,7 @@
 $.widget("ui.search_ui", {
 
 	_create: function() {
-        
+
         var me = this;
 
         $(document).on('widgetmanager:loaded', $.proxy(me.init, this));
@@ -16,9 +16,9 @@ $.widget("ui.search_ui", {
 		var me = this,
 			inputSearch = $(document).find('.input-search'),
             queryString = $.url().param('searchterm');
-	
+
 		inputSearch.focus();
-		
+
         $('.search__top__container').find('.btn--result-option').on('click', function() {
             $.proxy(me._toggleView($(this).attr('href').substring(1)), me);
             return false;
@@ -31,6 +31,12 @@ $.widget("ui.search_ui", {
 
         $(document).on('search:inputChanged', function() {
             me.doSearch(true);
+        });
+
+
+        $('.search__filters__mobile').on('click', function(event){
+            event.preventDefault();
+            me.toggleSearchOptions(true);
         });
 
         me.searched = [];
@@ -51,7 +57,7 @@ $.widget("ui.search_ui", {
         buttonEl.addClass('is-active');
         $('.search__result__container').hide();
         $('#search-' + type ).show();
-        $('#search-' + type ).css('visibility', 'visible'); 
+        $('#search-' + type ).css('visibility', 'visible');
 
         if (jQuery.inArray(type, me.searched) == -1) {
             me.doSearch();
@@ -74,13 +80,13 @@ $.widget("ui.search_ui", {
             $.each(classnames, function(j, classname) {
                 if (classname.match(/do_search_cmp/)) {
                     var widgetName = classname.replace(/^do_/, '');
-                    widgetRefs.push($(':ui-' + widgetName).data('ui-' + widgetName));                    
-                } 
+                    widgetRefs.push($(':ui-' + widgetName).data('ui-' + widgetName));
+                }
             });
         });
 
         $.each(widgetRefs, function(i, widget) {
-            
+
             var widgetVals = widget.getValues();
 
             if (Array.isArray(widgetVals) ) {
@@ -107,7 +113,10 @@ $.widget("ui.search_ui", {
     getType: function() {
         var el = $('.btn--result-option.is-active');
         return (el.size() > 0) ? el.attr('href').replace(/#/, '') : false;
-    }
+    },
 
+    toggleSearchOptions: function(){
+        $('.search__filters').toggleClass('is-open');
+    }
 
 });

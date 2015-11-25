@@ -14,7 +14,7 @@
 
                 <form class="search__top__form">
                     {% include "search/components/input-text.tpl" %}
-                    <button type="submit" class="global-search__submit" title="zoek">{_ Search _}</button>
+                    <button type="submit" class="global-search__submit" title="{_ Search _}">{_ Search _}</button>
                 </form>
 
                 <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
@@ -23,9 +23,10 @@
         </div>
 
         <div class="do_search do_search_ui search__filters">
-
-            {% block search_sidebar %}{% endblock %}
-
+            <div class="search__filters__container">
+                <button type="button" class="search__filters__mobile"><i class="icon--cog"></i>{_ Search options _}</button>
+                {% block search_sidebar %}{% endblock %}
+            </div>
         </div>
 
         {%  wire
