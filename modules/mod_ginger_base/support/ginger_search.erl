@@ -52,7 +52,7 @@ merge_ginger_args(Args, Context) ->
     MergedArgs1 = withdefault(DefaultArgs, MergedArgs),
 
     % Parse custom ginger_search arguments
-    ?DEBUG(lists:flatmap(
+    lists:flatmap(
         fun(Arg) ->
             case parse_argument(Arg) of
                 F when is_function(F) ->
@@ -62,7 +62,7 @@ merge_ginger_args(Args, Context) ->
             end
         end,
         MergedArgs1
-    )).
+    ).
 
 %% @doc Add property to proplist if not defined
 withdefault({Key, _} = Prop, Proplist) ->
