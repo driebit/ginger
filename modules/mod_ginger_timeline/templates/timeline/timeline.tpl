@@ -21,6 +21,11 @@ as
     {% javascript %}
 
         var data = {
+            "title": {
+                "text": {
+                    "headline": "{{ headline }}"
+                }
+            },
             "events": [
                 {# Each Timeline event must have at least a start year #}
                 {% for item in items|filter:`date_start` %}
