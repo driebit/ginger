@@ -80,6 +80,12 @@ withdefault(Defaults, Proplist) when is_list(Defaults) ->
         Defaults).
 
 %% @doc Parse custom argument into Zotonic argument
+parse_argument({_, undefined}) ->
+    [];
+
+parse_argument({Key, <<"undefined">>}) ->
+    parse_argument({Key, undefined});
+
 parse_argument({keyword, Keyword})
     when is_integer(Keyword); is_atom(Keyword) ->
         [{hasobject, [Keyword, subject]}];
@@ -132,12 +138,6 @@ parse_argument({has_geo, false}) ->
 
 parse_argument({has_geo, Val}) ->
     parse_argument({has_geo, z_convert:to_bool(Val)});
-
-parse_argument({_, undefined}) ->
-    [];
-
-parse_argument({Key, <<"undefined">>}) ->
-    parse_argument({Key, undefined});
 
 parse_argument(Arg) ->
     [Arg].
