@@ -4,14 +4,16 @@
     type|default:default,
     text|default:id.summary,
     start_date|default:"1980,1,1",
-    timenav_position|default:"top"
+    timenav_position|default:"bottom",
+    start_at_slide|default:0
 as
     items,
     headline,
     type,
     text,
     start_date,
-    timenav_position
+    timenav_position,
+    start_at_slide
 %}
 
     <div class="timeline">
@@ -41,7 +43,8 @@ as
 
         var options = {
             "language": "{{ z_language }}",
-            "timenav_position": "{{ timenav_position }}"
+            "timenav_position": "{{ timenav_position }}",
+            "start_at_slide": {{ start_at_slide }}
         };
 
         var timeline = new TL.Timeline('{{ #ginger_timeline }}', data, options);
