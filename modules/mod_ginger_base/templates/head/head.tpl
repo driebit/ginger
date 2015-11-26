@@ -5,6 +5,7 @@
     <meta name="author" content="Driebit" />
 
     {% include "head/twitter.tpl" %}
+    {% include "head/facebook.tpl" %}
 
     <title>
         {% if id %}
