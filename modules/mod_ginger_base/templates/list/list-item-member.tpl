@@ -2,6 +2,8 @@
 
 {% block with_depiction %}
 
+{% if id.is_visible %}
+
 <li class="list__item--member {{ extraClasses }}">
 
     <a href="{{ id.page_url }}" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image-member" alt="" title="" crop=dep_rsc.crop_center %})">
@@ -18,5 +20,7 @@
         </article>
     </a>
 </li>
+
+{% endif %}
 
 {% endblock %}
