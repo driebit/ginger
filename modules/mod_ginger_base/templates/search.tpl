@@ -19,6 +19,9 @@
 
                 <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
                 <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+
+                {% include "search/components/sort.tpl" %}
+
             </div>
         </div>
         <div class="search__bottom">
