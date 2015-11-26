@@ -28,7 +28,7 @@
 		<div class="col-lg-6 col-md-6">
 			<div class="form-group address_website">
 				<label class="control-label" for="website">{_ Website _}</label>
-				<input class="form-control" id="website" type="url" name="website" value="{{ r.website }}">
+				<input class="form-control" id="website" name="website" value="{{ r.website }}">
 			</div>
 	        <div class="form-group checkbox">
                 <label>
