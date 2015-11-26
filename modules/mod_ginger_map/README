@@ -1,3 +1,7 @@
+# DEPRECATED
+
+## This has been moved into mod_ginger_base
+
 This modules provides 3 base templates:
 
 	_map_single.tpl
