@@ -206,10 +206,8 @@
     select {
         @include size(padding, 0, 10);
         @include size(height, 38);
-        border: 1px solid darken($mainThemeColor, 15);
         border-radius: 3px;
         @include size(line-height, 38);
-        font-family: $primaryFontFamily;
     }
 
     input[type="checkbox"] + label {
@@ -220,7 +218,7 @@
             display: inline-block;
             @include size(width, 15px);
             @include size(height, 15px);
-            @include size(margin-right, 5);
+            @include size(margin-right, 15);
             position: relative;
             top: 2px;
             background: #FFFFFF;
@@ -238,13 +236,9 @@
             position: absolute;
             top: 3px;
             left: 5px;
-            border-right: 2px solid $white;
-            border-bottom: 2px solid $white;
+            border-right: 2px solid $mainThemeColor;
+            border-bottom: 2px solid $mainThemeColor;
             transform: rotate(45deg);
-        }
-
-        &:before {
-            background: $mainThemeColor;
         }
     }
 }
