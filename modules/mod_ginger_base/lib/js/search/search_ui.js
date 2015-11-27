@@ -127,7 +127,7 @@ $.widget("ui.search_ui", {
     },
 
     toggleSearchSection: function(title){
-        $('.search__filters__section').removeClass('is-open');
+        title.parent().siblings().removeClass('is-open');
         title.parent().toggleClass('is-open');
     }
 
