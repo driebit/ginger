@@ -9,11 +9,10 @@
         {% if id.depiction %}
             <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url id.depiction mediaclass="facebook-og" %}"/>
         {% endif %}
-        
     {% endif %}
 {% endif %}
 
-{% if id.depiction %}
+{% if id and id.depiction %}
     <meta property="og:image:width" content="450" /> {# Set in mod_ginger_base/templates/mediaclass.config #}
     <meta property="og:image:height" content="350" />
 {% endif %}
