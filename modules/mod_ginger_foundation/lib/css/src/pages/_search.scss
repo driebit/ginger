@@ -281,6 +281,10 @@
     @include size(padding-bottom, 40);
 }
 
+.search__results__sorting {
+    display: none;
+}
+
 @include mq(min-width, $smallBreakpoint) {
     .t--search {
         main {
@@ -335,7 +339,10 @@
         padding-top: 0;
     }
 
-    .search__bottom {
+    .search__container {
+        width: 100%;
+        @include size(max-width, 1100);
+        margin: 0 auto;
         display: flex;
     }
 
@@ -380,7 +387,9 @@
         position: relative;
 
         .list--vertical {
+            width: 100%;
             padding-top: 0;
+            @include size(padding-left, $standardOffset);
         }
     }
 
@@ -400,5 +409,12 @@
         left: 0px;
         right: 0px;
         bottom: 0px;
+    }
+
+    .search__results__sorting {
+        display: block;
+        @include size(margin-top, 20);
+        @include size(margin-bottom, 20);
+        float: right;
     }
 }

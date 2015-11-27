@@ -118,7 +118,8 @@
         list-style-type: none;
     }
 
-    > div {
+    div[id*='auth_link'],
+    div[id*='button_profile'] {
         float: left;
     }
 }
