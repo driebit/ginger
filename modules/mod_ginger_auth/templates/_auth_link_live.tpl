@@ -1,6 +1,6 @@
 {% if not m.acl.user %}
 
-    <a class="{{ class }}" id="{{ #signup }}" href="#" title="{_ Login/Registeer _}">
+    <a class="{{ class }}" id="{{ #signup }}" href="#" title="{{ label }}">
     {% if icon == 'none' %}
         <span class="{{ label_class }}">{{ label }}</span>
     {% elseif icon %}
