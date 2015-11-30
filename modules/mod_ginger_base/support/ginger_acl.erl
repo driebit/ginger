@@ -12,7 +12,7 @@
 
 -include_lib("zotonic.hrl").
 
-%% @doc Instal lGinger default ACL rules
+%% @doc Install Ginger default ACL rules
 -spec install(#context{}) -> any().
 install(Context) ->
     case is_enabled(Context) of
@@ -30,6 +30,28 @@ do_install(Context) ->
         ],
         Context
     ),
+
+    %% Members can edit their own profile. This requires insert rights on
+    %% category person because of acl_rsc_update_check:acl_rsc_update_check/3.
+    ensure_acl_rule(
+        [
+            {acl_user_group_id, m_rsc:rid(acl_user_group_members, Context)},
+            {actions, ["insert,link"]},
+            {category_id, m_rsc:rid(person, Context)}
+        ],
+        Context
+    ),
+
+    %% Members can upload media, for instance a profile picture.
+    ensure_acl_rule(
+        [
+            {acl_user_group_id, m_rsc:rid(acl_user_group_members, Context)},
+            {actions, ["insert,update,delete"]},
+            {category_id, m_rsc:rid(media, Context)}
+        ],
+        Context
+    ),
+
     %% Editors can edit everything, including resources created by other editors
     ensure_acl_rule(
         [
