@@ -53,7 +53,7 @@ merge_ginger_args(Args, Context) ->
 
     % Parse custom ginger_search arguments
 
-    ?DEBUG(lists:flatmap(
+    lists:flatmap(
         fun(Arg) ->
             case parse_argument(Arg) of
                 F when is_function(F) ->
@@ -63,7 +63,7 @@ merge_ginger_args(Args, Context) ->
             end
         end,
         MergedArgs1
-    )).
+    ).
 
 %% @doc Add property to proplist if not defined
 withdefault({Key, _} = Prop, Proplist) ->
@@ -126,7 +126,7 @@ parse_argument({cat_exclude_unfindable, Val}) ->
             false ->
                 []
         end
-    end;    
+    end;
 
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
