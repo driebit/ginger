@@ -1,3 +1,34 @@
+/* 
+
+example:
+
+return [
+    {
+        'type': 'filter',
+        'values': ['aaaa', 'gek'],
+        'merge': false
+    },
+    {
+        'type': 'filter',
+        'values': ['aap', 'noot'],
+        'merge': false
+    },
+    {
+        'type': 'sort',
+        'values': ['test']
+
+    }
+
+]
+
+merge is an optional
+always put values in an array
+
+//DONT MIX MERGE YES/NO WITHIN A SINGLE TYPE
+
+*/
+
+
 
 $.widget("ui.search_ui", {
 
@@ -91,6 +122,7 @@ $.widget("ui.search_ui", {
                 }
             });
         });
+        
 
         $.each(widgetRefs, function(i, widget) {
 
@@ -100,11 +132,20 @@ $.widget("ui.search_ui", {
 
             if (Array.isArray(widgetVals) ) {
                  $.each(widgetVals, function(j, val) {
-                    if (mergedValues[val.type]) {
+
+                    if (!mergedValues[val.type]) {
+                        if(Array.isArray(val.values)) {
+                            mergedValues[val.type] = [];
+                        }                        
+                    }
+
+                    if(Array.isArray(val.values)) {
                         mergedValues[val.type] = mergedValues[val.type].concat(val.values);
                     } else {
                         mergedValues[val.type] = val.values;
                     }
+
+
                 });
             }
         });

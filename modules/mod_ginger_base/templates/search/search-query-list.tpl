@@ -10,9 +10,10 @@
         date_start_after|default:q.date_start_after,
         date_start_before|default:q.date_start_before,
         is_findable|default:"true",
-        cg_name,
+        content_group|default:q.content_group,
         pagelen|default:10,
-        sort|default:q.sort
+        sort|default:q.sort,
+        filters|default:[['pivot_title', 'cohen']]
     as
         cat,
         cat_exclude,
@@ -24,10 +25,11 @@
         is_findable,
         content_group,
         pagelen,
-        sort
+        sort,
+        filters
 %}
-
-        {% with m.search.paged[{ginger_search cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort }] as result %}
+   
+        {% with m.search.paged[{ginger_search cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
            
             {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
 
