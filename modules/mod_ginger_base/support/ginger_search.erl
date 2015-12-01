@@ -128,6 +128,14 @@ parse_argument({cat_exclude_unfindable, Val}) ->
         end
     end;
 
+parse_argument({filters, Filters}) ->
+    lists:map(
+        fun(Filter) ->
+            {filter, Filter}
+        end,
+        Filters
+    );
+
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
     [{filter, ["pivot_location_lat", ne, undefined]},
