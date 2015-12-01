@@ -16,8 +16,7 @@
     manage_schema/2,
     observe_custom_pivot/2,
     observe_acl_is_allowed/2,
-    observe_search_query/2,
-    search_query/2
+    observe_search_query/2
 ]).
 
 -include("zotonic.hrl").
@@ -109,7 +108,7 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
         {error, _} ->
             Context
     end;
-event(#postback{message={map_infobox, _Args}}, Context) ->    
+event(#postback{message={map_infobox, _Args}}, Context) ->
     Ids = z_context:get_q(ids, Context),
     Element = z_context:get_q(element, Context),
     Render = z_template:render("map/map-infobox.tpl", [{results, Ids}], Context),
@@ -137,8 +136,5 @@ observe_search_query(#search_query{search={ginger_geo, _Args}}=Q, Context) ->
     ginger_geo_search:search_query(Q, Context);
 observe_search_query(#search_query{search={ginger_geo_nearby, _Args}}=Q, Context) ->
     ginger_geo_search:search_query(Q, Context);
-observe_search_query(#search_query{}=Q, Context) ->
-    mod_ginger_base:search_query(Q, Context).
-
-search_query(#search_query{}, _Context) ->
-    undefined. %% fall through
+observe_search_query(#search_query{}, _Context) ->
+    undefined.
