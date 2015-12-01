@@ -94,6 +94,8 @@ $.widget("ui.search_ui", {
 
         $.each(widgetRefs, function(i, widget) {
 
+            if (!widget.getValues || typeof widget.getValues != 'function') return;
+
             var widgetVals = widget.getValues();
 
             if (Array.isArray(widgetVals) ) {

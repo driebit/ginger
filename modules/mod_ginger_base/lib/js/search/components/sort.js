@@ -16,10 +16,13 @@ $.widget("ui.search_cmp_sort", {
     getValues: function() {
 
         var me = this;
-        return [{
-            'type': 'sort',
-            'values': me.widgetElement.val()
-        }]
+
+        if (me.widgetElement.val()) {
+             return [{
+                'type': 'sort',
+                'values': me.widgetElement.val()
+            }]
+        }       
     }
 
 });
