@@ -25,6 +25,7 @@
     "js/search/search_ui.js"
     "js/search/search.js"
     "js/search/components/input-text.js"
+    "js/search/components/sort.js"
 %}
 
 
