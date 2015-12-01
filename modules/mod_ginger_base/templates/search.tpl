@@ -19,9 +19,6 @@
 
                 <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
                 <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
-
-                {% include "search/components/sort.tpl" %}
-
             </div>
         </div>
         <div class="search__container">
@@ -47,6 +44,7 @@
 
 
             <div id="search-results" class="search__results">
+                {% block search_sorting %}{% endblock %}
 
                 <div id="search-list" class="search__results__list search__result__container"></div>
                 <div id="search-map" class="search__results__map search__result__container"></div>
