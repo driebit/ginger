@@ -13,7 +13,7 @@
         content_group|default:q.content_group,
         pagelen|default:10,
         sort|default:q.sort,
-        filters|default:[['pivot_title', 'cohen']]
+        filters|default:q.filters
     as
         cat,
         cat_exclude,
@@ -28,6 +28,8 @@
         sort,
         filters
 %}
+
+        {% print filters %}
    
         {% with m.search.paged[{ginger_search cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
            
