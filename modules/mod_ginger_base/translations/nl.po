@@ -127,7 +127,7 @@ msgstr "Hulp met pagina acties"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:19
 msgid "Leave a comment"
-msgstr "Laat een bericht achter"
+msgstr "Laat een reactie achter"
 
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56
 #: /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15
@@ -141,7 +141,7 @@ msgstr "Locatie"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:63
 msgid "Log on or sign up to comment"
-msgstr "Login of registreer om een bericht achter te laten"
+msgstr "Log in of registreer om een reactie achter te laten"
 
 #: /vagrant/modules/mod_ginger_base/templates/dialog-profile/dialog-profile.tpl:6
 msgid "Logged in as"
@@ -186,7 +186,7 @@ msgstr "Geen resultaten"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:21
 msgid "Note: Comments are moderated"
-msgstr "Berichten worden gemodereerd"
+msgstr "Reacties worden gemodereerd"
 
 #: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:13
 msgid "Nothing found"
@@ -429,6 +429,15 @@ msgstr "resultaten"
 #: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:6
 msgid "search"
 msgstr "zoeken"
+
+msgid "No comments"
+msgstr "Geen reacties"
+
+msgid "1 comment"
+msgstr "1 reactie"
+
+msgid "comments"
+msgstr "reacties"
 
 #, fuzzy
 #~ msgid "Locatie"
