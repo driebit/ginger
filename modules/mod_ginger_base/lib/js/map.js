@@ -39,7 +39,7 @@ $.widget( "ui.googlemap", {
 		if (options.disabledefaultui) options.disableDefaultUI = true;
 
 		mcOptions = {
-				
+
 				styles: [
 				{
 					height: 28,
@@ -72,9 +72,8 @@ $.widget( "ui.googlemap", {
 		// Show multiple markers with info windows
 		for (i = 0; i < locations.length; i++) {
 
-			icon = '/lib/images/marker-default.svg';
+			icon = '/lib/images/marker-default.png';
 
-			// Add marker
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 				icon: icon,
@@ -111,7 +110,6 @@ $.widget( "ui.googlemap", {
 
 	},
 
-
 	clusterClicked: function(cluster) {
 
 		var me = this,
@@ -127,7 +125,7 @@ $.widget( "ui.googlemap", {
 				markerList.push(marker);
 			});
 
-		  posCoordList = me.unique(posCoordList);
+		posCoordList = me.unique(posCoordList);
 
 		if (posCoordList.length == 1 || zoom >= 21) {
 			me.startShowInfoWindow(markerList);
@@ -139,11 +137,15 @@ $.widget( "ui.googlemap", {
 	},
 
 	unique: function(list) {
+
 	  var result = [];
-	  $.each(list, function(i, e) {
+
+      $.each(list, function(i, e) {
 		  if ($.inArray(e, result) == -1) result.push(e);
 	  });
+
 	  return result;
+
 	},
 
 	startShowInfoWindow: function(markerList) {
@@ -160,7 +162,7 @@ $.widget( "ui.googlemap", {
 	},
 
 	showInfoWindow: function(zotonic_id, contentHTML) {
-	
+
 	  var me = this,
 		  marker = me.getMarker(zotonic_id),
 		  ibOptions = {
@@ -178,7 +180,7 @@ $.widget( "ui.googlemap", {
 		};
 
 		me.map.setCenter(marker.getPosition());
-        
+
 		if (me.infowindow) me.infowindow.close();
 
 		me.infowindow = new InfoBox(ibOptions);

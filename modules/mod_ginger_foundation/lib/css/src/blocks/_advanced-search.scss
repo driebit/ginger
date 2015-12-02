@@ -27,6 +27,12 @@
         select {
             width: 100%;
         }
+
+        .advanced-search__rule__date {
+            select {
+                width: 32.5%;
+            }
+        }
     }
 
     .global-search__submit {
@@ -53,13 +59,18 @@
     + .advanced-search__rule {
         @include size(margin-top, 10);
         @include size(padding-top, 10);
-        border-top: 1px solid $sisal;
+        border-top: 1px solid $alto;
     }
 }
 
-
 .advanced-search__rule__and {
     display: none;
+}
+
+.advanced-search__rule__date {
+    select {
+        width: 32.5%;
+    }
 }
 
 @include mq(min-width, $mediumBreakpoint) {

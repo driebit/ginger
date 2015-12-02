@@ -17,9 +17,9 @@ search_query(#search_query{search={ginger_search, Args}}, Context) ->
         undefined ->
             Args1 = Args;
         Filters ->
-            Args1 = list:append([Args, [{filters, Filters}]])
+            Args1 = lists:append([Args, [{filters, Filters}]])
     end,
-            
+
     QueryArgs = merge_ginger_args(Args1, Context),
     search_query:search(QueryArgs, Context).
 
@@ -139,7 +139,12 @@ parse_argument({cat_exclude_unfindable, Val}) ->
 parse_argument({filters, Filters}) ->
     lists:map(
         fun(Filter) ->
-            {filter, Filter}
+            % Map binaries to list to ensure filter is working
+            Filter1 = lists:map(
+                fun z_convert:to_list/1,
+                Filter
+            ),
+            {filter, Filter1}
         end,
         Filters
     );

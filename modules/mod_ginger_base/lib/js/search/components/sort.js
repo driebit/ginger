@@ -17,23 +17,23 @@ $.widget("ui.search_cmp_sort", {
 
         var me = this;
 
-        // if (me.widgetElement.val()) {
-        //      return [{
-        //         'type': 'sort',
-        //         'values': me.widgetElement.val()
-        //     }]
-        // }
+        if (me.widgetElement.val()) {
+             return [{
+                'type': 'sort',
+                'values': me.widgetElement.val()
+            }]
+        }
 
-        return [
-            {
-                'type': 'filters',
-                'values': [['hallo', 'gek']]
-            },
-            {
-                'type': 'filters',
-                'values': [['aap', 'noot']]
-            }
-        ]
+        // return [
+        //     {
+        //         'type': 'filters',
+        //         'values': [['hallo', 'gek']]
+        //     },
+        //     {
+        //         'type': 'filters',
+        //         'values': [['aap', 'noot']]
+        //     }
+        // ]
 
 
     }

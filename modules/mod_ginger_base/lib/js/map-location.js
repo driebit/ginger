@@ -52,7 +52,7 @@
                     street = me.element.attr('data-street').trim();
 
                 if (!street || street == '') return false;
-                
+
                 address = [
                     /\s*[^0-9]+\d*/.exec(street)[0],
                     me.element.attr('data-postcode'),
@@ -120,7 +120,7 @@
                     map: me.map,
                     draggable: true,
                     position: latLng,
-                    icon: '/lib/images/marker-default.svg'
+                    icon: '/lib/images/marker-default.png'
                 });
 
                 if (me.options.recenter == true) {

@@ -279,6 +279,10 @@
     display: none;
 }
 
+.search__results__map {
+    clear: right;
+}
+
 @include mq(min-width, $smallBreakpoint) {
     .t--search {
         main {
@@ -365,6 +369,7 @@
 
             ul {
                 max-height: none;
+                overflow: hidden;
             }
         }
     }
@@ -394,15 +399,6 @@
 
     .search_results__list {
         display: none;
-    }
-
-    .search_results__map {
-        visibility: hidden;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
     }
 
     .search__results__sorting {

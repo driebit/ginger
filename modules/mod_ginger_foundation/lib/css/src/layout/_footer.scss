@@ -43,10 +43,6 @@
             @include size(margin-left, 5);
         }
     }
-
-    a {
-        @extend .main-footer__social__btn;
-    }
 }
 
 .main-footer__social__btn {
