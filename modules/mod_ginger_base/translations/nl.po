@@ -396,7 +396,7 @@ msgstr "Commentaar"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments-button/comments-button.tpl:3
 msgid "comments:"
-msgstr "commentaar: "
+msgstr "reacties:"
 
 #: /vagrant/modules/mod_ginger_base/templates/media/download-button.tpl:2
 msgid "download"
