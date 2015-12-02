@@ -28,6 +28,7 @@
     left: 0;
     width: 100%;
     @include size(height, 60);
+    -webkit-transform: translateX(100%);
     transform: translateX(100%);
     transition: all 250ms ease-out;
     background-color: $white;
