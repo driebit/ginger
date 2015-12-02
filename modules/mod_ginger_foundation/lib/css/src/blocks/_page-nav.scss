@@ -24,9 +24,5 @@
     .page-nav {
         @include size(margin, 60, 0, 20);
         @include size(padding, 60, 15);
-
-        a {
-            margin-bottom: 0;
-        }
     }
 }
