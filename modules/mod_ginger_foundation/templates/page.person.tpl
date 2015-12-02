@@ -18,7 +18,7 @@
 
             <article class="main-content">
 
-                {% include "page-title/page-title.tpl" id=id %}
+                {% catinclude "page-title/page-title.tpl" id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
