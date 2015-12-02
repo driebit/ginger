@@ -12,7 +12,15 @@
 
 %% @doc Supports all the usual query model arguments, adds default excludes.
 search_query(#search_query{search={ginger_search, Args}}, Context) ->
-    QueryArgs = merge_ginger_args(Args, Context),
+    % This is a special use case that needs a better solution in Zotonic
+    case z_context:get_q(filters, Context) of
+        undefined ->
+            Args1 = Args;
+        Filters ->
+            Args1 = lists:append([Args, [{filters, Filters}]])
+    end,
+            
+    QueryArgs = merge_ginger_args(Args1, Context),
     search_query:search(QueryArgs, Context).
 
 %% @doc Get categories marked unfindable that must be excluded from search results
@@ -127,6 +135,19 @@ parse_argument({cat_exclude_unfindable, Val}) ->
                 []
         end
     end;
+
+parse_argument({filters, Filters}) ->
+    lists:map(
+        fun(Filter) ->
+            % Map binaries to list to ensure filter is working
+            Filter1 = lists:map(
+                fun z_convert:to_list/1,
+                Filter
+            ),
+            {filter, Filter1}
+        end,
+        Filters
+    );
 
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
