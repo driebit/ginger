@@ -12,7 +12,15 @@
 
 %% @doc Supports all the usual query model arguments, adds default excludes.
 search_query(#search_query{search={ginger_search, Args}}, Context) ->
-    QueryArgs = merge_ginger_args(Args, Context),
+    % This is a special use case that needs a better solution in Zotonic
+    case z_context:get_q(filters, Context) of
+        undefined ->
+            Args1 = Args;
+        Filters ->
+            Args1 = list:append([Args, [{filters, Filters}]])
+    end,
+            
+    QueryArgs = merge_ginger_args(Args1, Context),
     search_query:search(QueryArgs, Context).
 
 %% @doc Get categories marked unfindable that must be excluded from search results
