@@ -22,7 +22,7 @@
 <!--[if IE 8 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie8"> <![endif]-->
 <!--[if IE 9 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="{{ z_language|default:"en"|escape }}">
+<html lang="{{ z_language|default:"en"|escape }}" class="{% block html_class %} {% endblock %}">
 <!--<![endif]-->
     {% include "head/head.tpl" id=id %}
 
