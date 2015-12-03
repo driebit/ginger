@@ -149,6 +149,17 @@ parse_argument({filters, Filters}) ->
         Filters
     );
 
+parse_argument({custompivots, []}) ->
+    [];
+    
+parse_argument({custompivots, Pivots}) ->
+    lists:map(
+        fun(Pivot) ->
+            {custompivot, Pivot}
+        end,
+        Pivots
+    );
+
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
     [{filter, ["pivot_location_lat", ne, undefined]},
