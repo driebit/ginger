@@ -53,6 +53,8 @@
 
 		{% script %}
 
+        {% block extra_scripts %}{% endblock %}
+
 	{% endwith %}
 	</body>
 </html>
