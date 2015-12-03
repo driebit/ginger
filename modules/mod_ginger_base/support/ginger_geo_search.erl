@@ -7,9 +7,8 @@
 %% @doc Supports all the usual query model arguments
 %% Selects and filters locations data.
 search_query(#search_query{search={ginger_geo, Args}}, Context) ->
-        
-    GingerArgs = ginger_search:merge_ginger_args(Args, Context),
-    BaseSearch = search_query:search(GingerArgs, Context),
+
+    BaseSearch = ginger_search:search_query(#search_query{search={ginger_search, Args}}, Context),
     
     WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
     
