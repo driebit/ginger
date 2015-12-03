@@ -19,7 +19,7 @@ search_query(#search_query{search={ginger_search, Args}}, Context) ->
         Filters ->
             Args1 = lists:append([Args, [{filters, Filters}]])
     end,
-            
+
     QueryArgs = merge_ginger_args(Args1, Context),
     search_query:search(QueryArgs, Context).
 
