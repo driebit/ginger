@@ -24,18 +24,6 @@ $.widget("ui.search_cmp_sort", {
             }]
         }
 
-        // return [
-        //     {
-        //         'type': 'filters',
-        //         'values': [['hallo', 'gek']]
-        //     },
-        //     {
-        //         'type': 'filters',
-        //         'values': [['aap', 'noot']]
-        //     }
-        // ]
-
-
     }
 
 });

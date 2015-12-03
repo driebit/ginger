@@ -1,33 +1,30 @@
-/* 
+/*
 
-example:
+every widget's getValues method must return an array of objects, like so:
 
-return [
-    {
-        'type': 'filter',
-        'values': ['aaaa', 'gek'],
-        'merge': false
-    },
-    {
-        'type': 'filter',
-        'values': ['aap', 'noot'],
-        'merge': false
-    },
-    {
-        'type': 'sort',
-        'values': ['test']
+- single value
 
-    }
+return [{
+   'type': 'cat',
+   'values': 'people'
+}]
 
-]
+- multiple values
 
-merge is an optional
-always put values in an array
+return [{
+   'type': 'cat',
+   'values': ['people', 'location']
+}]
 
-//DONT MIX MERGE YES/NO WITHIN A SINGLE TYPE
+- multiple values with grouping
+
+return [{
+   'type': 'filters',
+   'values': [['pivot_', '']]
+}]
+
 
 */
-
 
 
 $.widget("ui.search_ui", {
@@ -60,7 +57,7 @@ $.widget("ui.search_ui", {
             me.doSearch(true);
         });
 
-        $(document).on('search:inputChanged', function() {
+        $(document).on('search:inputChanged search:doSearch', function() {
             me.doSearch(true);
         });
 
@@ -145,7 +142,6 @@ $.widget("ui.search_ui", {
                         mergedValues[val.type] = val.values;
                     }
 
-
                 });
             }
         });
@@ -154,7 +150,7 @@ $.widget("ui.search_ui", {
 
         if (reset) me.searched = [];
 
-		$(document).trigger("search:doSearch", {'values': mergedValues, 'type': me.getType() });
+		$(document).trigger("search:doSearchWire", {'values': mergedValues, 'type': me.getType() });
 
         if (jQuery.inArray(type, me.searched) == -1) me.searched.push(type);
 	},
