@@ -1,31 +1,3 @@
-/*
-
-every widget's getValues method must return an array of objects, like so:
-
-- single value
-
-return [{
-   'type': 'cat',
-   'values': 'people'
-}]
-
-- multiple values
-
-return [{
-   'type': 'cat',
-   'values': ['people', 'location']
-}]
-
-- multiple values with grouping
-
-return [{
-   'type': 'filters',
-   'values': [['pivot_', '']]
-}]
-
-
-*/
-
 
 $.widget("ui.search_ui", {
 

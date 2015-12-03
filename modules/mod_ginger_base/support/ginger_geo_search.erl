@@ -21,7 +21,7 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
            
     BaseSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
-        limit="Limit ALL",
+        limit="Limit 5000",
         where=Where
     };
 
