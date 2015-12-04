@@ -118,7 +118,7 @@ parse_argument({is_findable, Val}) ->
 parse_argument({cat_exclude_defaults, Bool}) when is_boolean(Bool) ->
     case Bool of
         true ->
-            [{cat_exclude, [meta, menu, admin_content_query]}];
+            [{cat_exclude, [meta, media, menu, admin_content_query]}];
         false ->
             []
     end;
@@ -147,6 +147,17 @@ parse_argument({filters, Filters}) ->
             {filter, Filter1}
         end,
         Filters
+    );
+
+parse_argument({custompivots, []}) ->
+    [];
+    
+parse_argument({custompivots, Pivots}) ->
+    lists:map(
+        fun(Pivot) ->
+            {custompivot, Pivot}
+        end,
+        Pivots
     );
 
 % Filtering on undefined is supported from Zotonic 0.13.16

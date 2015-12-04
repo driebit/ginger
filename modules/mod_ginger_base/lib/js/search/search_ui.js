@@ -1,34 +1,3 @@
-/* 
-
-example:
-
-return [
-    {
-        'type': 'filter',
-        'values': ['aaaa', 'gek'],
-        'merge': false
-    },
-    {
-        'type': 'filter',
-        'values': ['aap', 'noot'],
-        'merge': false
-    },
-    {
-        'type': 'sort',
-        'values': ['test']
-
-    }
-
-]
-
-merge is an optional
-always put values in an array
-
-//DONT MIX MERGE YES/NO WITHIN A SINGLE TYPE
-
-*/
-
-
 
 $.widget("ui.search_ui", {
 
@@ -60,7 +29,7 @@ $.widget("ui.search_ui", {
             me.doSearch(true);
         });
 
-        $(document).on('search:inputChanged', function() {
+        $(document).on('search:inputChanged search:doSearch', function() {
             me.doSearch(true);
         });
 
@@ -145,7 +114,6 @@ $.widget("ui.search_ui", {
                         mergedValues[val.type] = val.values;
                     }
 
-
                 });
             }
         });
@@ -154,7 +122,7 @@ $.widget("ui.search_ui", {
 
         if (reset) me.searched = [];
 
-		$(document).trigger("search:doSearch", {'values': mergedValues, 'type': me.getType() });
+		$(document).trigger("search:doSearchWire", {'values': mergedValues, 'type': me.getType() });
 
         if (jQuery.inArray(type, me.searched) == -1) me.searched.push(type);
 	},

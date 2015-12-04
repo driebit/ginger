@@ -42,7 +42,7 @@
         {% if id.o.haspart %}
                 {% for r in id.o.haspart %}
                     {% if r.o.haspart %}
-                        {% with m.search[{query hassubject=[r,'haspart'] sort="-seq" pagelen=6}] as result %}
+                        {% with m.search[{query hassubject=[r,'haspart'] sort="+seq" pagelen=6}] as result %}
 
                             {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
 

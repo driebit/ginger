@@ -7,9 +7,8 @@
 %% @doc Supports all the usual query model arguments
 %% Selects and filters locations data.
 search_query(#search_query{search={ginger_geo, Args}}, Context) ->
-        
-    GingerArgs = ginger_search:merge_ginger_args(Args, Context),
-    BaseSearch = search_query:search(GingerArgs, Context),
+
+    BaseSearch = ginger_search:search_query(#search_query{search={ginger_search, Args}}, Context),
     
     WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
     
@@ -22,7 +21,7 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
            
     BaseSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
-        limit="Limit ALL",
+        limit="Limit 5000",
         where=Where
     };
 
@@ -31,5 +30,5 @@ search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
     BaseSearch = z_geo_search:search_query(#search_query{search={geo_nearby, Args}}, Context),
     BaseSearch#search_sql{
         select="r.id, r.pivot_location_lat, r.pivot_location_lng, r.pivot_category_nr",
-        limit="Limit ALL"
+        limit="Limit 5000"
     }.
