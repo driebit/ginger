@@ -8,8 +8,6 @@
 
 -include_lib("zotonic.hrl").
 
--compile(export_all).
-
 -define(GINGER_SEARCH_PIVOT, ginger_search).
 
 %% @doc Supports all the usual query model arguments, adds default excludes.
