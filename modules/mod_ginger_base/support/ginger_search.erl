@@ -8,6 +8,8 @@
 
 -include_lib("zotonic.hrl").
 
+-compile(export_all).
+
 -define(GINGER_SEARCH_PIVOT, ginger_search).
 
 %% @doc Supports all the usual query model arguments, adds default excludes.
@@ -60,8 +62,7 @@ merge_ginger_args(Args, Context) ->
     MergedArgs1 = withdefault(DefaultArgs, MergedArgs),
 
     % Parse custom ginger_search arguments
-
-    lists:flatmap(
+    MergedArgs2 = lists:flatmap(
         fun(Arg) ->
             case parse_argument(Arg) of
                 F when is_function(F) ->
@@ -71,7 +72,25 @@ merge_ginger_args(Args, Context) ->
             end
         end,
         MergedArgs1
-    ).
+    ),
+    
+    % Filter duplicate Args
+    remove_duplicates(MergedArgs2).
+
+% Removes duplicates but keeps order
+remove_duplicates(Args) ->
+    lists:reverse(lists:foldl(
+        fun(Arg, Acc) ->
+            case lists:member(Arg, Acc) of
+                true ->
+                    Acc;
+                false ->
+                    [Arg] ++ Acc
+            end
+        end, 
+        [], 
+        Args
+    )).
 
 %% @doc Add property to proplist if not defined
 withdefault({Key, _} = Prop, Proplist) ->
