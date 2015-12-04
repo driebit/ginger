@@ -118,7 +118,7 @@ parse_argument({is_findable, Val}) ->
 parse_argument({cat_exclude_defaults, Bool}) when is_boolean(Bool) ->
     case Bool of
         true ->
-            [{cat_exclude, [meta, menu, admin_content_query]}];
+            [{cat_exclude, [meta, media, menu, admin_content_query]}];
         false ->
             []
     end;
