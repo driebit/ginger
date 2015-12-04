@@ -174,7 +174,8 @@ parse_argument({custompivots, []}) ->
 parse_argument({custompivots, Pivots}) ->
     lists:map(
         fun(Pivot) ->
-            {custompivot, Pivot}
+            Pivot1 = z_convert:to_atom(Pivot),
+            {custompivot, Pivot1}
         end,
         Pivots
     );
