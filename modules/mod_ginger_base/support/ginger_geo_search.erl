@@ -30,5 +30,5 @@ search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
     BaseSearch = z_geo_search:search_query(#search_query{search={geo_nearby, Args}}, Context),
     BaseSearch#search_sql{
         select="r.id, r.pivot_location_lat, r.pivot_location_lng, r.pivot_category_nr",
-        limit="Limit ALL"
+        limit="Limit 5000"
     }.
