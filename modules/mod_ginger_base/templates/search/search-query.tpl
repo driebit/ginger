@@ -1,7 +1,6 @@
-{# Add one or more cat="NAME" to the query below to filter the result #}
-
 {%
     with
+        type|default:q.type,
         cat|default:q.cat,
         cat_exclude|default:q.cat_exclude,
         search_text|default:q.qs|default:q.search_term,
@@ -16,6 +15,7 @@
         filters|default:q.filters,
         custompivot|default:q.custompivot
     as
+        type,
         cat,
         cat_exclude,
         search_text,
@@ -30,11 +30,23 @@
         filters,
         custompivot
 %}
-  
+ 
+    {% if type == "list" %}
+
         {% with m.search.paged[{ginger_search custompivot=custompivot cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
-           
+
             {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
 
         {% endwith %}
+
+    {% else %}
+
+        {% with m.search[{ginger_geo cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group custompivot=custompivot }] as result %}
+
+            {% include "map/map.tpl" result=result container="map-results" blackwhite="true" height="600" %}
+        {% endwith %}
+
+    {% endif %}
+ 
 
 {% endwith %}

@@ -29,7 +29,7 @@
                     action={update target="search-list" text="<p style='margin-top:20px'>Loading...</p>"}
                     action={update
                             target="search-list"
-                            template="search/search-query-list-wrapper.tpl"
+                            template="search/search-query-wrapper.tpl"
                             cg_name="default_content_group" }
                     %}
 
@@ -38,7 +38,7 @@
                     action={update target="search-map" text="<p style='margin-top:20px'>Loading...</p>"}
                     action={update
                             target="search-map"
-                            template="search/search-query-map-wrapper.tpl"
+                            template="search/search-query-wrapper.tpl"
                             cg_name="default_content_group" }
                     %}
 

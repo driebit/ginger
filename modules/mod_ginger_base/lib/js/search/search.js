@@ -6,14 +6,12 @@ $.widget("ui.search", {
 
 		$(document).on('search:doSearchWire', function(event, searchParameters) {
 
-            var values = searchParameters.values,
-                type = searchParameters.type;
+            var values = searchParameters.values;
+            values.type = searchParameters.type;
 
             console.log(values);
-            z_event('search-' + type, values);
+            z_event('search-' + values.type , values);
 
 		});
-
 	}
-
 });
