@@ -7,6 +7,9 @@ This is the Ginger Zotonic edition. This repository contains:
 * Vagrant configuration
 * shell scripts
 
+For documentation, see below and further the [docs](https://gitlab.driebit.nl/driebit/ginger/blob/master/docs)
+directory.
+
 Development environment
 -----------------------
 
