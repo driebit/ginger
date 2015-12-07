@@ -30,7 +30,7 @@ msgstr "Over"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:21
 msgid "Access control"
-msgstr "Toegangs rechten"
+msgstr "Toegangsrechten"
 
 #: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30
