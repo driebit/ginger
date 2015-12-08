@@ -8,6 +8,8 @@ Ginger Guidelines
 2. When overriding a base/foundation template, use `{% overrules %}` if
    possible. <br>
    Only overwrite the blocks that you really need to overwrite.
+   
+3. Add JavaScript .js includes in `_script.tpl`.
 
     **Workflow**
 
