@@ -1,0 +1,7 @@
+{
+    "require": {
+        "behat/behat": "^3.0",
+        "behat/mink": "^1.7",
+        "behat/mink-extension": "^2.1"
+    }
+}
