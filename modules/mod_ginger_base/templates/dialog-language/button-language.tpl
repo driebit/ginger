@@ -13,6 +13,7 @@
                 action={
                     dialog_open
                     title=_"Choose language"
+                    raw_path=raw_path
                     template="dialog-language/dialog-language.tpl"
                 }
             %}
