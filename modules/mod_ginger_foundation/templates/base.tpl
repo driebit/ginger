@@ -44,7 +44,7 @@
 			{% include "footer/footer.tpl" %}
 		{% endblock %}
 
-		{% include "_js_include.tpl" %}
+		{% all include "_js_include.tpl" %}
 		{% all include "_script.tpl" %}
 
         {% javascript %}
