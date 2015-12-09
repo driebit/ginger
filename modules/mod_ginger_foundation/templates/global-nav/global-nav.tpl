@@ -16,7 +16,7 @@
                 {% include "_auth_link.tpl" class="login--global-nav" label_class=" " icon="icon--person" icon_before %}
                 {% include "dialog-profile/button-profile.tpl" %}
             {% endif %}
-            {% include "dialog-language/button-language.tpl" %}
+            {% include "dialog-language/button-language.tpl" raw_path=m.req.raw_path %}
         </div>
         {% include "global-search/search.tpl" identifier="global-nav" %}
     {% endblock %}
