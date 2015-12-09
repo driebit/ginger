@@ -24,14 +24,19 @@ as
 
     {% if items %}
             <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-                {% for r in items|is_visible %}
+                {# TODO after release of zotonic 0.13.6 we can loop over items|is_visible #}
+                {% for r in items %}
                     {% if r|length == 2 %}
                         {% with r|element:1 as item %}
-                            {% catinclude list_template item %}
+                            {% if item.is_visible %}
+                                {% catinclude list_template item %}
+                            {% endif %}
                         {%  endwith %}
                     {% else %}
                         {% with r as item %}
-                            {% catinclude list_template item %}
+                            {% if item.is_visible %}
+                                {% catinclude list_template item %}
+                            {% endif %}
                         {% endwith %}
                     {% endif %}
                 {% endfor %}
