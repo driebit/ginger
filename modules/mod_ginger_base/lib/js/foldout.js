@@ -24,8 +24,6 @@
                 me.expand();
             });
 
-            console.log(elementHeight);
-
             if (elementHeight - commentsHeight > me.options.cutoff) {
                 me.collapse();
             }

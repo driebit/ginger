@@ -420,7 +420,7 @@ msgstr "Aanmelden"
 
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:21
 msgid "map"
-msgstr "map"
+msgstr "kaart"
 
 #: /vagrant/modules/mod_ginger_base/templates/map/map-infobox.tpl:1
 msgid "results(s)"
