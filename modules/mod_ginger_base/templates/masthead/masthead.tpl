@@ -19,35 +19,17 @@ as
 
             {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
 
-        {% elif id.category.is_a.person %}
-        {# TODO: dit netjes maken #}
-            {% with
-                id.o.hasbanner[1].depiction|default:id.o.header[1].depiction as banner %}
-                {% if banner %}
-                    {% if banner.width > 500 %}
-                        <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
-                    {% else %}
-                        <div class="masthead"></div>
-                    {% endif %}
-                {% else %}
-                    <div class="masthead"></div>
-                {% endif %}
-            {% endwith %}
-
         {% else %}
 
-            {% with
-                id.o.hasbanner[1].depiction|default:id.o.header[1].depiction|default:id.depiction as banner %}
-                {% if banner %}
-                    {% if banner.width > 500 %}
-                        <div class="masthead do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;"></div>
-                    {% else %}
-                        <div class="masthead"></div>
-                    {% endif %}
-                {% else %}
-                    <div class="masthead"></div>
-                {% endif %}
-            {% endwith %}
+            {% if id.o.hasbanner[1].depiction.width > 500 %}
+                <div class="masthead do_parallax" style="background-image: url({% image_url id.o.hasbanner[1].depiction.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+            {% elif id.o.header[1].depiction.width > 500 %}
+                <div class="masthead do_parallax" style="background-image: url({% image_url id.o.header[1].depiction.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+            {% elif id.depiction.width > 500 and not (id.category.is_a.person or id.category.is_a.media) %}
+                <div class="masthead do_parallax" style="background-image: url({% image_url id.depiction.id mediaclass='masthead' crop %}); background-size: cover;"></div>
+            {% else %}
+                <div class="masthead"></div>
+            {% endif %}
 
         {% endif %}
 
