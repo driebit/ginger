@@ -37,6 +37,7 @@
 
     .global-search__submit {
         width: 100%;
+        @include size(max-width, 400);
         @include size(margin-top, 20);
         @include size(padding-top, 5);
         text-indent: 0px;
