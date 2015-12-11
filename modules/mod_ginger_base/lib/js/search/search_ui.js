@@ -15,7 +15,8 @@ $.widget("ui.search_ui", {
 
 		var me = this,
 			inputSearch = $(document).find('.input-search'),
-            queryString = $.url().param('searchterm');
+            queryString = $.url().param('searchterm'),
+            documentWidth = $(document).width();
 
 		inputSearch.focus();
 
@@ -42,6 +43,12 @@ $.widget("ui.search_ui", {
             event.preventDefault();
             me.toggleSearchSection($(this));
         });
+
+        if (documentWidth < 1024) {
+           $('.global-search__submit').on('click', function(){
+               me.toggleSearchOptions();
+            });
+        }
 
         me.searched = [];
 
@@ -91,7 +98,7 @@ $.widget("ui.search_ui", {
                 }
             });
         });
-        
+
 
         $.each(widgetRefs, function(i, widget) {
 
@@ -105,7 +112,7 @@ $.widget("ui.search_ui", {
                     if (!mergedValues[val.type]) {
                         if(Array.isArray(val.values)) {
                             mergedValues[val.type] = [];
-                        }                        
+                        }
                     }
 
                     if(Array.isArray(val.values)) {
