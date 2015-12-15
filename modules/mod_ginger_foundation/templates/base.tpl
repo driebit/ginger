@@ -27,34 +27,35 @@
     {% include "head/head.tpl" id=id %}
 
 	{% with m.rsc[id.content_group_id] as content_group %}
-
 		<body class="{% if content_group %}has-contentgroup {% endif %}{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base">
 
-		{% block global_nav %}
-			{% include "global-nav/global-nav.tpl" %}
-		{% endblock %}
+    		{% block global_nav %}
+    			{% include "global-nav/global-nav.tpl" %}
+    		{% endblock %}
 
-		{% block content_group_nav %}
-			{% include "content-group-nav/content-group-nav.tpl" %}
-		{% endblock %}
+    		{% block content_group_nav %}
+    			{% include "content-group-nav/content-group-nav.tpl" %}
+    		{% endblock %}
 
-		{% block content %}{% endblock %}
+            {% block content_area %}
+    	       {% block content %}{% endblock %}
+            {% endblock %}
 
-		{% block footer %}
-			{% include "footer/footer.tpl" %}
-		{% endblock %}
+    		{% block footer %}
+    			{% include "footer/footer.tpl" %}
+    		{% endblock %}
 
-		{% all include "_js_include.tpl" %}
-		{% all include "_script.tpl" %}
+    		{% all include "_js_include.tpl" %}
+    		{% all include "_script.tpl" %}
 
-        {% javascript %}
-            $(document).trigger('widgetmanager:loaded');
-        {% endjavascript %}
+            {% javascript %}
+                $(document).trigger('widgetmanager:loaded');
+            {% endjavascript %}
 
-		{% script %}
+    		{% script %}
 
-        {% block extra_scripts %}{% endblock %}
+            {% block extra_scripts %}{% endblock %}
 
-	{% endwith %}
-	</body>
+	   </body>
+    {% endwith %}
 </html>
