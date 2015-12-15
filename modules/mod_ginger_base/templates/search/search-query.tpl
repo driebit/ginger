@@ -13,7 +13,6 @@
         pagelen|default:10,
         sort|default:q.sort,
         filters|default:q.filters,
-        custompivot|default:q.custompivot,
         custompivots|default:q.custompivots
     as
         type,
@@ -29,13 +28,12 @@
         pagelen,
         sort,
         filters,
-        custompivot,
         custompivots
 %}
  
     {% if type == "list" %}
 
-        {% with m.search.paged[{ginger_search custompivots=custompivots custompivot=custompivot cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
+        {% with m.search.paged[{ginger_search custompivots=custompivots cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
 
             {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
 
@@ -43,7 +41,7 @@
 
     {% else %}
 
-        {% with m.search[{ginger_geo custompivots=custompivots custompivot=custompivot cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
+        {% with m.search[{ginger_geo custompivots=custompivots cat_exclude=cat_exclude content_group=content_group text=search_text pagelen=pagelen  date_start_year=date_start_year date_start_before=date_start_before date_start_after=date_start_after is_findable=is_findable keyword=keyword cat=cat sort=sort content_group=content_group }] as result %}
 
             {% include "map/map.tpl" result=result container="map-results" blackwhite="true" height="600" %}
         {% endwith %}

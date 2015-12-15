@@ -36,6 +36,7 @@
 
     {% lib
         "css/z.icons.css"
+        "css/logon.css"
     %}
 
     {% all include "_html_head.tpl" %}

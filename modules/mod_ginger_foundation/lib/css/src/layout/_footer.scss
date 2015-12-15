@@ -2,7 +2,6 @@
     @include size(min-height, 200);
     @include size(padding, 25, 0);
     position: relative;
-    z-index: 400;
     background: $footerBgColor;
 
     p {

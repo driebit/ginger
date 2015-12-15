@@ -1,0 +1,17 @@
+.help-block {
+    @include size(font-size, 15);
+}
+
+.form-survey {
+    .form-group {
+        lost-utility: clearfix;
+
+        + .form-group {
+            @include size(margin-top, 20);
+        }
+    }
+
+    .form-actions {
+        @include size(margin-top, 20);
+    }
+}

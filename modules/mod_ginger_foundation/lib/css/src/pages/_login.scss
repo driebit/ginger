@@ -1,0 +1,21 @@
+.main-content--login {
+    @extend .foldout;
+    @include size(padding, 20);
+    background: $white;
+}
+
+.global-nav + #signup_logon_box {
+    @extend .main-content--login;
+    @include size(margin-top, 50);
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .main-content--login {
+        @include size(padding, 40);
+    }
+
+    .global-nav + #signup_logon_box {
+        width: 600px !important;
+        @include size(margin-top, 100);
+    }
+}
