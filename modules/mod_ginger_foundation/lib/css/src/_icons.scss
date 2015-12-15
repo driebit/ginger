@@ -109,7 +109,8 @@
 }
 
 .icon--article:before,
-.icon--text:before {
+.icon--text:before,
+.icon--news:before {
     content: "\e612";
 }
 
@@ -234,7 +235,8 @@
     .icon--person,
     .icon--event,
     .icon--image,
-    .icon--query {
+    .icon--query,
+    .icon--news {
         @extend .has-rounded-icon;
 
         &:before {
