@@ -49,6 +49,7 @@
     }
 
     [type=text] {
+        display: block;
         border: none;
         width: 100%;
         height: 100%;
@@ -59,11 +60,20 @@
         @include size(font-size, 18);
         @include size(line-height, 60);
         @include size(padding, 0, 50);
+        border: 1px solid red;
+
+        &::-ms-clear {
+            display: none;
+        }
     }
 
     [type=submit] {
         display: none;
     }
+}
+
+.global-search__searchform__group {
+    height: 100%;
 }
 
 .global-search__suggestions {

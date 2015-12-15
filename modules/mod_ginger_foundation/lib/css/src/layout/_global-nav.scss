@@ -118,11 +118,6 @@
         margin-bottom: 0;
         list-style-type: none;
     }
-
-    div[id*='auth_link'],
-    div[id*='button_profile'] {
-        float: left;
-    }
 }
 
 .btn--nav-actions {
@@ -155,15 +150,24 @@
 }
 
 .login--global-nav {
-    i:before {
-        display: inline-block;
+    i {
+        @include size(margin-right, 8);
+        position: relative;
+        @include size(font-size, 12);
+    }
+
+    i:after {
+        content: '';
+        display: block;
         @include size(width, 24);
         @include size(height, 24);
+        position: absolute;
+        top: -5px;
+        left: -6px;
         border-radius: 50%;
-        border: 2px solid $white;
+        border: 2px solid $mainThemeColor;
         text-align: center;
-        @include size(font-size, 12);
-        @include size(line-height, 21);
+        line-height: 1;
     }
 }
 
@@ -260,8 +264,13 @@
         width: auto;
         float: right;
         position: static;
-        transform: none;
         background: none;
+        transform: none;
+
+        div[id*='auth_link'],
+        div[id*='button_profile'] {
+            float: left;
+        }
     }
 
     .btn--nav-actions {
