@@ -1,6 +1,6 @@
 <div class="share">
     {% block button %}
-        <button class="share__button">
+        <div class="share__button">
             <span class="share__button__title">{_ Share _}</span>
 
              {% block menu %}
@@ -19,6 +19,6 @@
                     </li>
                 </ul>
             {% endblock %}
-        </button>
+        </div>
     {% endblock %}
 </div>
