@@ -60,7 +60,6 @@
         @include size(font-size, 18);
         @include size(line-height, 60);
         @include size(padding, 0, 50);
-        border: 1px solid red;
 
         &::-ms-clear {
             display: none;
