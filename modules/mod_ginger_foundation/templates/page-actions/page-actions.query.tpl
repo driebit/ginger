@@ -1,7 +1,7 @@
 <div class="page-actions">
     <div class="page-actions__author">
-        {% include "person/person-author.tpl" id=id %}
+        {% catinclude "person/person-author.tpl" id %}
     </div>
-    {% include "share/share.tpl" %}
-    {% include "page-actions/page-action-edit-thing.tpl" %}
+    {% catinclude "share/share.tpl" id %}
+    {% catinclude "page-actions/page-action-edit-thing.tpl" id %}
 </div>

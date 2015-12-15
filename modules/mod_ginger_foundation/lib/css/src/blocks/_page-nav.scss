@@ -1,10 +1,11 @@
 .page-nav {
     @include size(padding, 30, 15);
     @include size(margin, 30, 0, 20);
-    background: $alto;
+    background: #EBEBEB;
     text-align: center;
 
     a {
+        margin-right: 10px;
         margin-bottom: 5px;
     }
 }

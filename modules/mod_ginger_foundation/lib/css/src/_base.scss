@@ -131,6 +131,10 @@ iframe {
     ul {
         @include size(margin-left, 20);
     }
+
+    h3 {
+        @include size(margin-bottom, 10);
+    }
 }
 
 // Editor generated
