@@ -4,6 +4,7 @@
 
 .toggle-menu:after {
     content: "\e619";
+    top: 9px;
 }
 
 @include mq(min-width, $largeBreakpoint) {

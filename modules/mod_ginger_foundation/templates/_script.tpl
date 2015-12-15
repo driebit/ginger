@@ -2,9 +2,13 @@
 
 {% lib
     "bootstrap/js/bootstrap.min.js"
+    "js/qlobber.js"
+    "js/pubzub.js"
+    "js/modules/z.live.js"
     "js/base.js"
     "js/global-nav.js"
     "js/global-search.js"
+    "js/home-search.js"
     "js/content-group-nav.js"
     "js/foldout.js"
     "js/foundation.js"

@@ -7,7 +7,7 @@
 -mod_title("Ginger Base").
 -mod_description("Ginger Base").
 -mod_prio(250).
--mod_depends[mod_content_groups, mod_acl_user_groups, mod_mqtt].
+-mod_depends[mod_content_groups, mod_acl_user_groups].
 -mod_schema(1).
 
 -export([
