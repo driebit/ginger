@@ -7,6 +7,7 @@
     is_enabled/1,
     ensure_acl_rule/2,
     ensure_acl_rule/3,
+    ensure_use_modules/3,
     can_view/2
 ]).
 
@@ -101,6 +102,24 @@ ensure_acl_rule(Kind, Props, Context) ->
                 z_acl:sudo(Context)
             )
     end.
+
+%% @doc Ensure that a user group can use a list of modules
+-spec ensure_use_modules(atom(), list(), #context{}) -> ok.
+ensure_use_modules(UserGroup, Modules, Context) ->
+    lists:foreach(
+        fun(Module) ->
+            ginger_acl:ensure_acl_rule(
+                module,
+                [
+                    {acl_user_group_id, m_rsc:rid(UserGroup, Context)},
+                    {actions, "use"},
+                    {module, Module}
+                ],
+                Context
+            )
+        end,
+        Modules
+    ).
 
 %% @doc A simplistic test: return true when (at least) one rule already exists
 %%      for the user group.
