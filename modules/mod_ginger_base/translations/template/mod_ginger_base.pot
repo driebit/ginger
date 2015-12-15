@@ -18,6 +18,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:6 
+msgid ""
+"1 comment"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/about/about.tpl:4 
 msgid ""
 "About:"
@@ -208,7 +213,12 @@ msgid ""
 "No Access"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:68 /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55 
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:4 
+msgid ""
+"No comments"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:73 /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55 
 msgid ""
 "No results"
 msgstr ""
@@ -415,9 +425,9 @@ msgid ""
 "displayed to other visitors of the website. Thank you for your comment!"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:1 
+#: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:8 
 msgid ""
-"comment(s)"
+"comments"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/comments-button/comments-button.tpl:3 

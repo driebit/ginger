@@ -21,6 +21,9 @@
                 <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
             </div>
         </div>
+
+        {% block search_intro %}{% endblock %}
+
         <div class="search__container">
             {% block search_filters %}{% endblock %}
 

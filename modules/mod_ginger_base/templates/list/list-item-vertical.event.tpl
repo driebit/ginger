@@ -13,6 +13,7 @@
                 <span class="list__item__content__date__day">{{ id.date_start|date:"D" }}</span>
                 {{ id.date_start|date:"j M" }}
                 <span class="list__item__content__date__year">{{ id.date_start|date:"Y" }}</span>
+                <span class="list__item__content__date__time">{{ id.date_start|date:"H:i" }}</span>
             </time>
         </div>
     </div>
