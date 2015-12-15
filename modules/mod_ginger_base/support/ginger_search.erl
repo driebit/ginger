@@ -3,7 +3,8 @@
 -export([
     search_query/2,
     get_unfindable_categories/1,
-    merge_ginger_args/2
+    merge_ginger_args/2,
+    withdefault/2
 ]).
 
 -include_lib("zotonic.hrl").
