@@ -1,7 +1,5 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ id.title }}{% endblock %}
-
 {% block body_class %}t--no-masthead{% endblock %}
 
 {% block content %}
