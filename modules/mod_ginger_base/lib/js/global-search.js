@@ -98,7 +98,5 @@
             var me = this;
             return me.searchForm.hasClass('is-visible');
         }
-
-
     });
 })(jQuery);
