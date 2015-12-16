@@ -54,6 +54,10 @@
                 timer = setTimeout(doSearch, 300);
             });
 
+            $(document).on('click', function(){
+                resultsElement.hide();
+            });
+
         }
     });
 })(jQuery);

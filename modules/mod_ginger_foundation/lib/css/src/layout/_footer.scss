@@ -12,6 +12,7 @@
 .main-footer__column {
     width: 100%;
     @include size(padding, 0, 15);
+    @include size(margin-bottom, 40);
 }
 
 .main-footer__nav {
@@ -29,6 +30,7 @@
 
     li {
         display: block;
+        margin-bottom: 8px;
     }
 }
 
@@ -37,6 +39,7 @@
 
     li {
         display: inline-block;
+        @include size(margin-bottom, 10);
 
         + li {
             @include size(margin-left, 5);
@@ -78,17 +81,19 @@
 }
 
 .main-footer__copyright {
-    @extend .main-footer__column;
+    @include size(margin-top, 40);
     color: rgba($white, 0.44);
+    @include size(font-size, 12);
 }
 
 .main-footer__newsletter {
-    @include size(padding, 0, 15);
-    @include size(margin-top, 20);
-    color: rgba(255, 255, 255, 0.44);
+    color: $white;
+    overflow: hidden;
 
     p {
-        margin-bottom: 5px;
+        margin-bottom: 15px;
+        font-family: $secondaryFontFamily;
+        @include size(font-size, 20);
     }
 
     label {
@@ -140,11 +145,6 @@
 
     .main-footer__column {
         width: 33%;
-        float: left;
-    }
-
-    .main-footer__newsletter {
-        max-width: 33%;
         float: left;
     }
 }

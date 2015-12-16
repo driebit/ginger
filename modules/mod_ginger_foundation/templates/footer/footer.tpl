@@ -4,8 +4,11 @@
 
         {% include "footer/footer-social.tpl" %}
 
-        {% include "footer/footer-copyrights.tpl" %}
+        <div class="main-footer__column">
 
-        {% optional include "footer/footer-newsletter-form.tpl" id=id %}
+            {% optional include "footer/footer-newsletter-form.tpl" id=id %}
+
+            {% include "footer/footer-copyrights.tpl" %}
+        </div>
     </div>
 </footer>

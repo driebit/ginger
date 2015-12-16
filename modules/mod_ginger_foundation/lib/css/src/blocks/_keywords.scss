@@ -23,6 +23,7 @@
     @include size(margin-bottom, $standardOffset);
 
     .keywords__label {
+        @include size(margin-bottom, 15);
         text-transform: none;
     }
 }
