@@ -1,6 +1,12 @@
 Ginger Guidelines
 =================
 
+Everyone is invited to make changes to this document.
+
+Please make a [merge request](https://gitlab.driebit.nl/driebit/ginger/merge_requests)
+to suggest improvements and add clarifications. Please use [issues](https://gitlab.driebit.nl/driebit/ginger/issues)
+to ask questions.
+
 ## Templates
 
 ### 1. Always check whether a resource is visible before displaying it.
