@@ -51,11 +51,6 @@ manage_schema(_Version, Context) ->
     end,
     ok.
 
-%% @doc Workaround until 0.13.6 is released: https://github.com/zotonic/zotonic/pull/1073
-observe_acl_is_allowed(#acl_is_allowed{action=use, object=mod_import_cvs}, Context) ->
-    z_acl:is_allowed(use, mod_import_csv, Context);
-observe_acl_is_allowed(#acl_is_allowed{object=undefined}, _Context) ->
-    undefined;
 %% @doc Users without access to the admin should not be able to view unpublished
 %%      resources
 observe_acl_is_allowed(#acl_is_allowed{action=view, object=Id}, Context) ->
