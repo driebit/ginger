@@ -5,6 +5,7 @@ app = ENV["APP"] || "ginger"
 debug = ENV["DEBUG"] || false
 zotonic_source = ENV["ZOTONIC_SOURCE"]
 zotonic_version = ENV["ZOTONIC_VERSION"]
+zotonic_local = ENV["ZOTONIC_LOCAL"]
 puppet_node = app + ENV['USER'] + ".dev"
 puppet_master = "puppet.driebit.net"
 memory = ENV["MEMORY"] || 2048
@@ -36,6 +37,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.synced_folder ".", "/vagrant"
   else
     config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["actimeo=1"]
+  end
+
+  if zotonic_local
+    config.vm.synced_folder zotonic_local, "/opt/zotonic", type: "nfs", mount_options: ["actimeo=1"]
   end
 
   # Remove old certificates
