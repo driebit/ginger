@@ -23,20 +23,26 @@ Then only overwrite the blocks that you really need to overwrite.
 
 `{% catinclude id %}` allows more specific template overrides. 
    
-## Workflow
+## Working on Ginger
 
-### 5. Commit *bugfixes* to the current release branch, for instance release-0.5.0.
+### 5. Be backwards compatible.
+
+When changing templates, parameter names etc. always think about backwards
+compatibility. Other people and sites depend on you to make sure their code
+still works after your changes.
+
+### 6. Commit *bugfixes* to the current release branch, for instance release-0.5.0.
 
 Then merge the release branch including your bugfix into master.
 
-### 6. Commit new *features* to the master branch.
+### 7. Commit new *features* to the master branch.
 
 They will then become part of the next Ginger release.
 
 ## Working on sites
 
-### 7. All sites run on mod_ginger_base. As many as possible run on mod_ginger_foundation.
+### 8. All sites run on mod_ginger_base. As many as possible run on mod_ginger_foundation.
 
 Make sure mod_ginger_base and mod_ginger_foundation are enabled.
 
-### 8. Place custom Erlang functionality in observers.
+### 9. Place custom Erlang functionality in observers.
