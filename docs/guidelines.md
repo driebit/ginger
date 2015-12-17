@@ -41,8 +41,9 @@ They will then become part of the next Ginger release.
 
 ## Working on sites
 
-### 8. All sites run on mod_ginger_base. As many as possible run on mod_ginger_foundation.
+### 8. Always enable mod_ginger_base. As often as possible, enable mod_ginger_foundation too.
 
-Make sure mod_ginger_base and mod_ginger_foundation are enabled.
+All sites run on mod_ginger_base. As many as possible run on 
+mod_ginger_foundation.
 
 ### 9. Place custom Erlang functionality in observers.
