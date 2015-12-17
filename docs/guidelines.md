@@ -1,14 +1,16 @@
 Ginger Guidelines
 =================
 
-## Templates 
+## Templates
 
 ### 1. Always check whether a resource is visible before displaying it.
 
 * For single resources, use `{% if id.is_visible %}`.
 * For lists, use the `items|is_visible` filter.
 
-### 2. Override only the templates you need and only the blocks you need.
+### 2. Override the smallest possible unit.
+
+Override only the templates you need and only the blocks you need. 
 
 When overriding a base/foundation template, use `{% overrules %}` where 
 possible. 
@@ -16,13 +18,25 @@ possible.
 Then only overwrite the blocks that you really need to overwrite. 
 
 ### 3. Add site-specific JavaScript files in _script.tpl.
+
+### 4. Prefer catinclude over include.
+
+`{% catinclude id %}` allows more specific template overrides. 
    
 ## Workflow
 
-### 4. Commit *bugfixes* to the current release branch, for instance release-0.5.0.
+### 5. Commit *bugfixes* to the current release branch, for instance release-0.5.0.
 
 Then merge the release branch including your bugfix into master.
 
-### 5. Commit new *features* to the master branch.
+### 6. Commit new *features* to the master branch.
 
 They will then become part of the next Ginger release.
+
+## Working on sites
+
+### 7. All sites run on mod_ginger_base. As many as possible run on mod_ginger_foundation.
+
+Make sure mod_ginger_base and mod_ginger_foundation are enabled.
+
+### 8. Place custom Erlang functionality in observers.
