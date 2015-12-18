@@ -27,8 +27,6 @@
 
             var me = this,
                 element = me.element;
-            
-            console.log("zus");
                     
             element.on('click', function() {
                 me._open(element);
