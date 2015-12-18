@@ -41,6 +41,8 @@ compatibility.
 Other people and sites depend on you to make sure their code
 still works after your changes.
 
+If you need to introduce a breaking change, document it in the CHANGELOG.md file.
+
 ### 7. Commit *bugfixes* to the current release branch, for instance release-0.5.0.
 
 Then merge the release branch including your bugfix into master.
