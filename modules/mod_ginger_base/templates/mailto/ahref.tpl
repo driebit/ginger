@@ -1,0 +1,1 @@
+<a class="mail-decode do_mail_decode" address="{{ address|mailencode }}" href="click.to.mail">{{ text|default:"mail" }}</a>
