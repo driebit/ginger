@@ -27,4 +27,4 @@ rot13(List) ->
     lists:map(F, List).
 
 mailencode(Address, _Context) ->
-    rot13(Address).
+    rot13(z_convert:to_list(Address)).
