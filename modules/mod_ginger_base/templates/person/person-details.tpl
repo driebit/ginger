@@ -5,7 +5,7 @@
                 <i class="icon--envelope"></i>
                 {_ E-mail _}:
             </span>
-            {% include "mailto/ahref.tpl" address=person.email text=_"email" %}
+            <a class="person-detail__link" href="mailto:{{ person.email }}">{{ person.email }}</a>
         </li>
     {% endif %}
 
