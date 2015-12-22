@@ -51,7 +51,7 @@
 
                 {% endwith %}
             {% elif id.subject %}
-                {% with m.search[{match_objects id=id pagelen=6}] as result %}
+                {% with m.search[{query match_objects=id is_published custompivot="ginger_search" filter=["is_unfindable", "false"] pagelen=6}] as result %}
 
                     {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
 
