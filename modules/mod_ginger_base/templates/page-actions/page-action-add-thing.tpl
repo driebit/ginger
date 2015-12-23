@@ -1,1 +1,1 @@
-{% include "_action_ginger_connection.tpl" category=category cg_id=id.content_group_id predicate=predicate direction='out' btn_class='page-action--add' title=title %}
+{% include "_action_ginger_connection.tpl" category=category cg_id=id.content_group_id predicate=predicate objects=[[m.acl.user, 'author']] direction='out' btn_class='page-action--add' title=title tab="new" tabs_enabled=["new"] %}

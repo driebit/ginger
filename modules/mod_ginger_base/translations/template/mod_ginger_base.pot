@@ -38,17 +38,17 @@ msgid ""
 "Arguments"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords-aside.tpl:5 /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
+#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
 msgid ""
 "Based on these keywords:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:29 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:6 
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:29 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:2 
 msgid ""
 "By:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:15 
 msgid ""
 "Cancel RSVP"
 msgstr ""
@@ -248,7 +248,7 @@ msgid ""
 "Part of:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-participants.tpl:11 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-participants.tpl:13 
 msgid ""
 "Participants"
 msgstr ""
@@ -258,7 +258,7 @@ msgid ""
 "Profile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:28 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:46 
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:32 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:52 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:58 
 msgid ""
 "RSVP"
 msgstr ""
@@ -271,6 +271,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:19 
 msgid ""
 "Reason"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords-aside.tpl:5 
+msgid ""
+"Related based on these keywords:"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:14 
@@ -455,7 +460,7 @@ msgid ""
 "list"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:50 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:56 
 msgid ""
 "logon or register"
 msgstr ""
@@ -468,6 +473,16 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:21 
 msgid ""
 "map"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:28 
+msgid ""
+"maximum participants"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:30 
+msgid ""
+"must be a number"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/map/map-infobox.tpl:1 
