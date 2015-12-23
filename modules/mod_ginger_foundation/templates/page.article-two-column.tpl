@@ -39,14 +39,14 @@
             {% if id.o.fixed_context %}
                 {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
 
-                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Related" items=result %}
 
                     {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" hide_showmore_button hide_showall_button id=id %}
 
                 {% endwith %}
             {% elif id.subject %}
                 {% with m.search[{match_objects id=id pagelen=6}] as result %}
-                    {% include "list/list-header.tpl" id=id list_title=_"Gerelateerd" items=result %}
+                    {% include "list/list-header.tpl" id=id list_title=_"Related" items=result %}
 
                     {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_showmore_button hide_showall_button id=id %}
                 {% endwith %}

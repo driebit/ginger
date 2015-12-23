@@ -2,6 +2,7 @@
     @include size(min-height, 200);
     @include size(padding, 25, 0);
     position: relative;
+    z-index: 400;
     background: $footerBgColor;
 
     p {
@@ -81,9 +82,12 @@
 }
 
 .main-footer__copyright {
-    @include size(margin-top, 40);
     color: rgba($white, 0.44);
     @include size(font-size, 12);
+}
+
+.main-footer__newsletter + .main-footer__copyright {
+    @include size(margin-top, 40);
 }
 
 .main-footer__newsletter {
