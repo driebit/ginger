@@ -20,9 +20,14 @@
 
         <div class="form-group">
             <label for="action_rsvp" class="checkbox-inline">
-                <input type="checkbox" id="action_rsvp" name="action_rsvp" value="1" {% if r.action_rsvp == undefined or r.action_rsvp == '1' %}checked="checked"{% endif %}/>
+                <input type="checkbox" id="action_rsvp" name="action_rsvp" value="1" {% if r.action_rsvp == '1' %}checked="checked"{% endif %}/>
                 {_ RSVP _}
             </label>
+        </div>
+        <div class="form-group">
+            <label for="rsvp_max_participants">{_ maximum participants _}</label>
+            <input type="text" id="rsvp_max_participants" name="rsvp_max_participants" value="{{r.rsvp_max_participants }}" size=5 />
+            {% validate id="rsvp_max_participants" type={numericality not_a_number_message=_"must be a number"} %}
         </div>
 
     {% endwith %}

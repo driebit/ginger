@@ -1,19 +1,23 @@
 
 {% with
-    limit|default:9999,
-    id.s.participant
+    limit|default:999,
+    id.s.participant,
+    id.rsvp_max_participants
 as
     limit,
-    participant
+    participants,
+    max_participants
 %}
-{% if participant %}
+{% if participants %}
     <div id="participants" class="meta-participants">
         <h4 class="meta-participants__header"><i class="icon--person"></i>{_ Participants _}</h4>
             <div class="meta-participants__content">
-                {% for p in participant|slice:[,limit] %}
+                {% for p in participants|slice:[,limit] %}
                     <a href="{{ p.page_url }}">{{ p.title }}</a>{% if not forloop.last %}, {% endif %}
                 {% endfor %}
+                ({{ participants|make_list|length }}{% if max_participants %}/{{ max_participants }}{% endif %})
             </div>
     </div>
 {% endif %}
+
 {% endwith %}
