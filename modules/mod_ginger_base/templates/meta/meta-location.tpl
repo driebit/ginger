@@ -10,7 +10,7 @@ as
         <h4 class="meta-location__header"><i class="icon--location"></i>{_ Location _}</h4>
         <div class="meta-location__content">
             <p>
-                {{ location.title }}<br>
+                <a href="{{ location.page_url }}">{{ location.title }}</a><br>
                 {% if location.address_street_1 %}
                     {{ location.address_street_1 }}
                 {% endif %}
