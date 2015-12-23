@@ -440,6 +440,11 @@ msgid ""
 "download"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:8 
+msgid ""
+"email"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:16 
 msgid ""
 "error"

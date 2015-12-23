@@ -7,10 +7,6 @@ as
         {% with content_group.o.hassubnav as subnav_ids %}
         <nav class="{{ class }}">
              <ul>
-                <li>
-                    <a href="{{ content_group.page_url }}" class="
-                    {% if id == content_group.id %} is-active {% endif %}
-                    "><i class="icon--home"></i> {% if content_group.short_title %}{{ content_group.short_title }}{% else %}{{ content_group.title }}{% endif %}</a></li>
                 {% for subnav_id in subnav_ids %}
                     {% if m.rsc[subnav_id].is_a.collection %}
                         {% for part_id in m.rsc[subnav_id].o.haspart %}
