@@ -198,6 +198,13 @@
     }
 }
 
+@media only screen and (min-width: 600px) and (max-height: 400px) {
+    .global-nav__menu {
+        height: calc(100% - 120px);
+        overflow: scroll;
+    }
+}
+
 @include mq(min-width, $largeBreakpoint) {
     .global-nav {
         @include size(height, $globalNavHeight);
