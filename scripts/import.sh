@@ -16,4 +16,4 @@ sudo -u postgres psql -c "create database $DB ENCODING 'UTF8' TEMPLATE template0
 sudo -u postgres psql ginger -c "GRANT ALL ON SCHEMA $SCHEMA TO $USER"
 PGPASSWORD="$PASSWORD" psql $DB -U $USER -h $HOST -f $FILE
 
-sudo service zotonic start
+zotonic debug
