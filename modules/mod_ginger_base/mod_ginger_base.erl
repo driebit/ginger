@@ -35,11 +35,51 @@ manage_schema(_Version, Context) ->
             ok;
         true ->
             Datamodel = #datamodel{
+                categories=[
+                    {agenda, query, [
+                      {title, {trans, [{nl, <<"Agenda">>},
+                                       {en, <<"Agenda">>}]}},
+                      {language, [en,nl]}
+                    ]},
+                    {communitymember, person, [
+                      {title, {trans, [{nl, <<"Communitylid">>},
+                                       {en, <<"Community member">>}]}},
+                      {language, [en,nl]}
+                    ]}
+                ],
                 resources = [
+                    % {uniquename, category, [
+                    %     {propname, propvalue}
+                    % ]},
                     {editor_dev, person, [
                         {title, "Redacteur"},
                         {name_first, "Redacteur"},
                         {email, "redactie@ginger.nl"}
+                    ]},
+                    {fallback, image, [
+                        {title, "Fallback image"}
+                    ]},
+                    {footer_menu, menu, [
+                        {title, "Footer menu"}
+                    ]},
+                    {home, collection, [
+                        {title, "Homepage"}
+                    ]}
+                ],
+                predicates = [
+                    {subnavigation, [
+                      {title, {trans, [{nl, <<"Subnavigatie">>},
+                                       {en, <<"Subnavigation">>}]}},
+                      {language, [en,nl]}
+                      ], [
+                      {contentgroup, collection}
+                    ]},
+                    {hasbanner, [
+                      {title, {trans, [{nl, <<"Banner">>},
+                                       {en, <<"Banner">>}]}},
+                      {language, [en,nl]}
+                      ], [
+                      {contentgroup, image}
                     ]}
                 ],
                 edges = [
