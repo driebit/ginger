@@ -12,6 +12,17 @@
     }
 }
 
+.part-of {
+    a {
+        display: inline-block;
+        width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: bottom;
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint){
     .part-of {
         @include size(height, 35);

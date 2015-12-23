@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-12-23 12:51+0100\n"
+"PO-Revision-Date: 2015-12-23 12:52+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/page.person.tpl:38
+msgid "Authored"
+msgstr "Geschreven door"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/all-in.tpl:13
+msgid "Everything for "
+msgstr "Alles voor"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/page.person.tpl:50
+msgid "Favorites"
+msgstr "Favorieten"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/email_base.tpl:4
+msgid "Hello from Zotonic"
+msgstr "Hallo van Ginger"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/page.collection.tpl:39
+#: /vagrant/modules/mod_ginger_foundation/templates/page.content_group.tpl:33
+#: /vagrant/modules/mod_ginger_foundation/templates/page.keyword.tpl:39
+msgid "Inhoud"
+msgstr "Inhoud"
+
+#: /vagrant/modules/mod_ginger_foundation/templates/page.article-two-column.tpl:42
+#: /vagrant/modules/mod_ginger_foundation/templates/page.article-two-column.tpl:49
+#: /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:46
+#: /vagrant/modules/mod_ginger_foundation/templates/page.article__top-to-bottom.tpl:55
+#: /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:46
+#: /vagrant/modules/mod_ginger_foundation/templates/page.event.tpl:55
+#: /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:44
+#: /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:53
+#: /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:48
+#: /vagrant/modules/mod_ginger_foundation/templates/page.text.tpl:56
+#: /vagrant/modules/mod_ginger_foundation/templates/page.tpl:43
+#: /vagrant/modules/mod_ginger_foundation/templates/page.tpl:52
+msgid "Related"
+msgstr "Gerelateerd"
+
+#~ msgid "Alles voor ‘"
+#~ msgstr "Everything before ‘"

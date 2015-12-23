@@ -12,11 +12,6 @@
     box-shadow: 0 2px 4px rgba(0,0,0, .13);
     text-transform: lowercase;
 
-    // because .global-nav has no positioning and .page__wrapper does,
-    // .page__wrapper has a higher stacking order and thus the top falls over
-    // the box shadow of .global-nav. This :after thingamabob is just here to
-    // get the box shadow right
-
     &:after {
         content: '';
         display: block;
@@ -249,7 +244,7 @@
             ul {
                 display: block;
                 position: absolute;
-                top: $globalNavHeight;
+                @include size(top, $globalNavHeight);
                 background: $white;
 
                 li {

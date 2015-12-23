@@ -4,7 +4,6 @@
 }
 
 .keywords__label {
-    font-weight: 600;
     padding-left: 0;
 }
 
@@ -23,7 +22,7 @@
     @include size(margin-bottom, $standardOffset);
 
     .keywords__label {
-        @include size(margin-bottom, 15);
+        @include size(margin-bottom, 5);
         text-transform: none;
     }
 }

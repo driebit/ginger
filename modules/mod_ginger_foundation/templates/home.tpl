@@ -52,9 +52,9 @@
 
                     {% else %}
 
-                        {% with m.search[{query query_id=id sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
+                        {% with m.search[{query query_id=r sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
 
-                            {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
+                            {% include "list/list-header.tpl" id=r list_title=r.title items=result %}
 
                             {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
 
