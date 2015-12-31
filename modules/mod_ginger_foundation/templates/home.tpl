@@ -1,7 +1,5 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ m.rsc.home.title }}{% endblock %}
-
 {% block body_class %}t--home{% endblock %}
 
 {% block content %}

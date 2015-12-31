@@ -1,9 +1,5 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ id.title }}{% endblock %}
-
-{% block body_class %}{% endblock %}
-
 {% block content %}
 
     {% include "masthead/masthead.tpl" id=id maptype="map" %}

@@ -8,15 +8,13 @@
     {% include "head/facebook.tpl" %}
 
     <title>
-        {% if id %}
-            {% if id.seo_title %}
-                {{ id.seo_title }}
+        {% block title %}
+            {% if id %}
+                {{ id.seo_title|default:id.title ++ " – " ++ m.config.site.title.value }}
             {% else %}
-                {% block title %}{{ id.title }}{% endblock %} &mdash; {{ m.config.site.title.value }}
+                {{ m.config.site.title.value }}
             {% endif %}
-        {% else %}
-            {{ m.config.site.title.value }}
-        {% endif %}
+        {% endblock %}
     </title>
 
     {% if id.seo_desc %}
@@ -40,6 +38,4 @@
     %}
 
     {% all include "_html_head.tpl" %}
-
-    {% all include "_html_head_extra.tpl" %}
 </head>

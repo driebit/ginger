@@ -1,9 +1,5 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ id.title }}{% endblock %}
-
-{% block body_class %}t--event{% endblock %}
-
 {% block content %}
 
     {% include "masthead/masthead.tpl" id=id %}

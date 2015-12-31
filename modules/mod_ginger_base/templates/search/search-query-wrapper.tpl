@@ -1,1 +1,1 @@
-{% include "search/search-query.tpl" cat_exclude=['image'] %}
+{% include "search/search-query.tpl" %}
