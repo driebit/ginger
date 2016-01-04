@@ -45,7 +45,7 @@
             </aside>
         {% elif id.subject %}
             <aside class="main-aside">
-                {% with m.search[{match_objects id=id pagelen=6}] as result %}
+                {% with m.search[{query match_objects=id cat="media" is_published custompivot="ginger_search" filter=["is_unfindable", "false"] pagelen=6}] as result %}
                     {% include "list/list-header.tpl" id=id list_title=_"Related" items=result %}
 
                     {% include "keywords/keywords.tpl" id=id items=result %}
