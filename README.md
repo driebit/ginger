@@ -12,6 +12,7 @@ Documentation
 
 * [Guidelines](docs/guidelines.md)
 * [Templates](docs/templates.md)
+* [Anymeta import](docs/anymeta-import.md)
 
 Getting started
 ---------------
