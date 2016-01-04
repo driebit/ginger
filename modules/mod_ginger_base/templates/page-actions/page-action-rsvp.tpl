@@ -10,6 +10,7 @@
         predicate='rsvp'
         btn_connect_text=_"RSVP"
         btn_cancel_text=_"Cancel RSVP"
+        can_connect=can_connect
         %}
 
     {% endwith %}
