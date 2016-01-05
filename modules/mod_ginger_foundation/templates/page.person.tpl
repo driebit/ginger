@@ -6,7 +6,7 @@
 
     <main role="main">
 
-        {% include "person/person-profile.tpl" %}
+        {% include "person/person-profile.tpl" id=id %}
 
         <div class="foldout do_foldout">
 
@@ -18,11 +18,13 @@
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
+                {% include "person/person-details.tpl" person=id %}
+                
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
 
-                {% include "person/person-details.tpl" person=id %}
+                {% include "attached-media/attached-media.tpl" id=id %}
 
             </article>
         </div>
