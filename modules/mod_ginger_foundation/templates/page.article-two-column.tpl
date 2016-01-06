@@ -32,23 +32,9 @@
         </article>
 
         <aside class="main-aside--sided">
-            {% include "part-of/part-of-aside.tpl" id=id %}
+            {% catinclude "part-of/part-of-aside.tpl" id %}
 
-            {% if id.o.fixed_context %}
-                {% with m.search[{query hassubject=[id,'fixed_context'] pagelen=6}] as result %}
-
-                    {% include "list/list-header.tpl" id=id list_title=_"Related" items=result %}
-
-                    {% include "list/list.tpl" list_id="list--fixed-context" class="list--sided" items=result extraClasses="" hide_showmore_button hide_showall_button id=id %}
-
-                {% endwith %}
-            {% elif id.subject %}
-                {% with m.search[{query match_objects=id is_published custompivot="ginger_search" filter=["is_unfindable", "false"] pagelen=6}] as result %}
-                    {% include "list/list-header.tpl" id=id list_title=_"Related" items=result %}
-
-                    {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" extraClasses="" hide_showmore_button hide_showall_button id=id %}
-                {% endwith %}
-            {% endif %}
+            {% catinclude "main-aside/main-aside.tpl" id %}
         </aside>
     </main>
 {% endblock %}

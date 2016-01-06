@@ -27,5 +27,7 @@
             </article>
         </div>
 
+        {% catinclude "main-aside/main-aside.tpl" id %}
+
     </main>
 {% endblock %}

@@ -1,1 +1,33 @@
-{% extends "page.location.tpl" %}
+{% extends "base.tpl" %}
+
+{% block content %}
+
+    {% include "masthead/masthead.tpl" id=id maptype="map" %}
+
+    <main role="main">
+
+        <div class="foldout do_foldout">
+            {% catinclude "category-of/category-of.tpl" id %}
+
+            {% include "foldout/foldout-button.tpl" %}
+
+            <article class="main-content">
+                {% include "page-title/page-title.tpl" id=id %}
+
+                {% catinclude "page-actions/page-actions.tpl" id %}
+
+                <div class="main-content__meta">
+                    {% include "meta/meta-location.tpl" id=id %}
+                </div>
+
+                {% include "summary/summary.tpl" id=id %}
+
+                {% include "body/body.tpl" id=id %}
+
+            </article>
+        </div>
+
+        {% catinclude "main-aside/main-aside.tpl" id %}
+
+    </main>
+{% endblock %}
