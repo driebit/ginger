@@ -15,7 +15,7 @@ as
 
     {% if id %}
 
-        {% if id.category.is_a.location %}
+        {% if (id.category.is_a.location or id.category.is_a.organization) and id.address_city %}
 
             {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
 

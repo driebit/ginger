@@ -28,7 +28,7 @@
 
         {% include "page-nav/page-nav.tpl" %}
 
-        {% with m.search[{query hasobject=[id,'subject'] sort="seq" pagelen=6}] as result %}
+        {% with m.search[{ginger_search hasobject=[id,'subject'] sort="seq" pagelen=6}] as result %}
         {% if result %}
             <aside class="main-aside">
 

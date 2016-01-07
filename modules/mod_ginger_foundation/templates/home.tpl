@@ -40,7 +40,7 @@
         {% if id.o.haspart %}
                 {% for r in id.o.haspart %}
                     {% if r.o.haspart %}
-                        {% with m.search[{query hassubject=[r,'haspart'] sort="+seq" pagelen=6}] as result %}
+                        {% with m.search[{ginger_search hassubject=[r,'haspart'] sort="+seq" pagelen=6}] as result %}
 
                             {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
 
@@ -50,7 +50,7 @@
 
                     {% else %}
 
-                        {% with m.search[{query query_id=r sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
+                        {% with m.search[{ginger_search query_id=r sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
 
                             {% include "list/list-header.tpl" id=r list_title=r.title items=result %}
 

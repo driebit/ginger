@@ -29,29 +29,7 @@
             </article>
         </div>
 
-        {% if id.s.author %}
-            <aside class="main-aside">
-                {% with m.search[{query hasobject=[id,'author'] pagelen=6}] as result %}
-
-                    {% include "list/list-header.tpl" id=id list_title=_"Authored" items=result %}
-
-                    {% include "list/list.tpl" list_id="list--authored" items=result extraClasses="" id=id %}
-
-                {% endwith %}
-            </aside>
-        {% endif %}
-
-        {% if id.o.interest %}
-            <aside class="main-aside">
-                {% with m.search[{query hassubject=[id,'interest'] pagelen=6}] as result %}
-
-                    {% include "list/list-header.tpl" id=id list_title=_"Favorites" items=result %}
-
-                    {% include "list/list.tpl" list_id="list--favorited" items=result extraClasses="" id=id %}
-
-                {% endwith %}
-            </aside>
-        {% endif %}
+        {% catinclude "main-aside/main-aside.tpl" id %}
 
     </main>
 {% endblock %}

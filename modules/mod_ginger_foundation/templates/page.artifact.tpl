@@ -20,7 +20,7 @@
             {% include "summary/summary.tpl" id=id %}
 
             {% with id.media|without_embedded_media:id|first as dep %}
-                {% catinclude "media/media.tpl" dep %}
+                {% catinclude "media/media.image.tpl" dep %}
             {% endwith %}
 
             {% include "body/body.tpl" id=id %}
