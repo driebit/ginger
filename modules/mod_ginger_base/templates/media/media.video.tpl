@@ -1,6 +1,6 @@
 {% if id.medium.mime=="video/mp4" or id.medium.mime=="video/webm" or id.medium.mime=="video/ogg" %}
     <div class="media--video video-wrapper">
-        <video width="640" height="480" controls>
+        <video width="600" height="400" controls>
           <source src="/media/attachment/{{ id.medium.filename }}" type="{{ id.medium.mime }}">
         </video>
     </div>
@@ -17,9 +17,9 @@
     </div>
 {% elseif id.medium.mime=="video/x-swv"%}
     <div class="media--video video-wrapper">
-        <video width="640" height="480" controls>
-        <object data="/media/attachment/{{ id.medium.filename }}" width="640" height="480">
-            <embed src="/media/attachment/{{ id.medium.filename }}" width="640" height="480">
+        <video width="600" height="400" controls>
+        <object data="/media/attachment/{{ id.medium.filename }}" width="600" height="400">
+            <embed src="/media/attachment/{{ id.medium.filename }}" width="600" height="400">
         </object>
         </video>
     </div>
