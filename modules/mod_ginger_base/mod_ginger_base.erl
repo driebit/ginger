@@ -37,14 +37,10 @@ manage_schema(_Version, Context) ->
             Datamodel = #datamodel{
                 categories=[
                     {agenda, query, [
-                      {title, {trans, [{nl, <<"Agenda">>},
-                                       {en, <<"Agenda">>}]}},
-                      {language, [en,nl]}
-                    ]},
-                    {communitymember, person, [
-                      {title, {trans, [{nl, <<"Communitylid">>},
-                                       {en, <<"Community member">>}]}},
-                      {language, [en,nl]}
+                        {title, {trans, [
+                            {nl, <<"Agenda">>},
+                            {en, <<"Agenda">>}]}},
+                        {language, [en, nl]}
                     ]}
                 ],
                 resources = [
@@ -68,18 +64,20 @@ manage_schema(_Version, Context) ->
                 ],
                 predicates = [
                     {subnavigation, [
-                      {title, {trans, [{nl, <<"Subnavigatie">>},
-                                       {en, <<"Subnavigation">>}]}},
-                      {language, [en,nl]}
-                      ], [
-                      {contentgroup, collection}
+                        {title, {trans, [
+                            {nl, <<"Subnavigatie">>},
+                            {en, <<"Subnavigation">>}]}},
+                        {language, [en, nl]}
+                    ], [
+                        {content_group, collection}
                     ]},
                     {hasbanner, [
-                      {title, {trans, [{nl, <<"Banner">>},
-                                       {en, <<"Banner">>}]}},
-                      {language, [en,nl]}
-                      ], [
-                      {contentgroup, image}
+                        {title, {trans, [
+                            {nl, <<"Banner">>},
+                            {en, <<"Banner">>}]}},
+                        {language, [en, nl]}
+                    ], [
+                        {content_group, image}
                     ]}
                 ],
                 edges = [
