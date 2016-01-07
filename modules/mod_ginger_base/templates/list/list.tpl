@@ -64,8 +64,6 @@ as
                 </div>
 
             {% endif %}
-    {% else %}
-        <p class="no-results">{_ No results _}</p>
     {% endif %}
 
 {% endwith %}
