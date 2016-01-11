@@ -14,6 +14,8 @@
             <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
+                {% include "subtitle/subtitle.tpl" id=id %}
+
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
                 <div class="main-content__meta">

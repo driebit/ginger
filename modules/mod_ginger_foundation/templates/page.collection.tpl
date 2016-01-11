@@ -13,6 +13,8 @@
             <article class="main-content">
                 {% include "page-title/page-title.tpl" id=id %}
 
+                {% include "subtitle/subtitle.tpl" id=id %}
+
                 {% include "part-of/part-of.tpl" id=id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
