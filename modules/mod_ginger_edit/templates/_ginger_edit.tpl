@@ -9,7 +9,6 @@
 {% with q.page|default:id.page_url as view_location %}
 {% wire id="rscform" type="submit" postback={rscform view_location=view_location} delegate=`controller_admin_edit` %}
 
-<form id="rscform" method="post" action="postback" class="form">
 	<input type="hidden" name="id" value="{{ id }}" />
     <input type="hidden" name="view_location" value="{{ view_location }}" />
 
@@ -116,7 +115,6 @@
     		{% endblock %}
     	</div>
     {% endblock %}
-</form>
 {% endwith %}
 {% endwith %}
 {% endwith %}
