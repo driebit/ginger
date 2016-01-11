@@ -16,6 +16,8 @@
 
                 {% catinclude "page-title/page-title.tpl" id %}
 
+                {% include "subtitle/subtitle.tpl" id=id %}
+
                 {% catinclude "page-actions/page-actions.tpl" id %}
 
                 {% include "person/person-details.tpl" person=id %}
