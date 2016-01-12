@@ -6,10 +6,12 @@ as
     edgePresented
 %}
 {% with edgeLocation|default:edgePresented|default:id as location %}
+{% if location.address_street_1 or location.address_street_2 or location.address_city %}
     <div class="meta-location">
         <h4 class="meta-location__header"><i class="icon--location"></i>{_ Location _}</h4>
         <div class="meta-location__content">
             <p>
+
                 <a href="{{ location.page_url }}">{{ location.title }}</a><br>
                 {% if location.address_street_1 %}
                     {{ location.address_street_1 }}
@@ -33,5 +35,6 @@ as
             {% endif %}
         </div>
     </div>
+{% endif %}
 {% endwith %}
 {% endwith %}
