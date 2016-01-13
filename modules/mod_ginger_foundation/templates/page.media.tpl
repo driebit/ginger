@@ -29,6 +29,8 @@
 
                 {% include "blocks/blocks.tpl" id=id %}
 
+                {% catinclude "list/list-simple.tpl" id items=id.o.actor header=_"Actors: " %}
+
                 {% include "comments/comments.tpl" id=id %}
             </article>
 
