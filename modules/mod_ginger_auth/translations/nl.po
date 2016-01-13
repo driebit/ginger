@@ -1,19 +1,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2016-01-13 10:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:12
+msgid "Bring me to my profile page"
+msgstr "Ga naar m’n profielpagina"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9
 msgid "Check our Terms of Service and Privacy policies"
 msgstr "Controleer onze Gebruiksvoorwaarden en Privacy beleid"
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:26
+msgid "Confirm key"
+msgstr "Bevestig code"
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:3
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:15
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:30
+msgid "Confirm my account"
+msgstr "Bevestig mijn profiel"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_date_of_birth.tpl:3
 msgid "Date of birth"
@@ -31,7 +45,7 @@ msgstr ""
 "Om veiligheidsredenen wordt het wachtwoord reset codes slechts bewaard voor "
 "een beperkte hoeveelheid tijd en kan slechts eenmaal gebruikt worden."
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:25
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:27
 msgid "Forgot my password"
 msgstr "Wachtwoord vergeten"
 
@@ -54,6 +68,14 @@ msgstr ""
 msgid "I forgot my password"
 msgstr "Wachtwoord vergeten?"
 
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:17
+msgid ""
+"In your e-mail you received a confirmation key. Please copy it in the input "
+"field below."
+msgstr ""
+"In uw email heeft u een bevestig code ontvangen. Kopieer deze a.u.b. in het "
+"veld hieronder."
+
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:34
 msgid "Keep me signed in"
 msgstr "Login onthouden"
@@ -62,13 +84,9 @@ msgstr "Login onthouden"
 msgid "Log in"
 msgstr "Log in"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:37
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link_live.tpl:21
 msgid "Log in or sign up"
 msgstr "Log in of meld je aan"
-
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:19
-msgid "Login/Registeer"
-msgstr "Login / Registeer"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13
 msgid "Minimum characters: "
@@ -98,13 +116,18 @@ msgstr "Verander wachtwoord en login"
 msgid "Sign out"
 msgstr "Log uit"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:20
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:21
 msgid "Sign up"
 msgstr "Registreer"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:21
 msgid "Simply try again:"
 msgstr "Probeer het opnieuw:"
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:20
+msgid "Sorry, I don't know that confirmation code. Did you copy it correctly?"
+msgstr ""
+"Sorry, deze bevestig code is ons niet bekend. Heeft u hem goed gekopieerd?"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:19
 msgid "Sorry, your password reset code is unknown or expired"
@@ -132,9 +155,17 @@ msgstr ""
 "derde overdragen zonder uw permissie. \n"
 "We hebben wel een aantal regels waar we uw toestemming voor nodig hebben"
 
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:8
+msgid "Welcome"
+msgstr "Welkom"
+
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25
 msgid "You must agree to the Terms in order to sign up."
 msgstr "U moet akkoord gaan met de Algemene Voorwaarden om aan te melden."
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:10
+msgid "Your account is confirmed. You can now continue on our site."
+msgstr "Uw profiel is bevestigd. U kunt nu verder gaan op de website."
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13
 msgid "Your password is too short."
@@ -144,12 +175,13 @@ msgstr "Je nieuwe wachtwoord is te kort."
 msgid "female"
 msgstr "vrouw"
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:10
-msgid "logon/signup"
-msgstr "Log in / registreer"
-
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:13
 msgid "logon"
 msgstr "Log in"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:13
+msgid "logon/signup"
+msgstr "Log in / registreer"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:5
 msgid "male"
@@ -158,6 +190,9 @@ msgstr "man"
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_gender.tpl:7
 msgid "other"
 msgstr "anders"
+
+#~ msgid "Login/Registeer"
+#~ msgstr "Login / Registeer"
 
 #~ msgid ""
 #~ "We will be very careful with all the information given to us and will "
