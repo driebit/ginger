@@ -18,9 +18,24 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:12 
+msgid ""
+"Bring me to my profile page"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:9 
 msgid ""
 "Check our Terms of Service and Privacy policies"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:26 
+msgid ""
+"Confirm key"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:3 /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:15 /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:30 
+msgid ""
+"Confirm my account"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_date_of_birth.tpl:3 
@@ -39,7 +54,7 @@ msgid ""
 "amount of time and can only be used once."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:25 
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:27 
 msgid ""
 "Forgot my password"
 msgstr ""
@@ -64,6 +79,12 @@ msgid ""
 "I forgot my password"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:17 
+msgid ""
+"In your e-mail you received a confirmation key. Please copy it in the input "
+"field below."
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:34 
 msgid ""
 "Keep me signed in"
@@ -74,14 +95,9 @@ msgid ""
 "Log in"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:37 
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link_live.tpl:21 
 msgid ""
 "Log in or sign up"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:19 
-msgid ""
-"Login/Registeer"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13 
@@ -119,7 +135,7 @@ msgid ""
 "Sign out"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:20 
+#: /vagrant/modules/mod_ginger_auth/templates/_action_dialog_authenticate.tpl:21 
 msgid ""
 "Sign up"
 msgstr ""
@@ -127,6 +143,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:21 
 msgid ""
 "Simply try again:"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:20 
+msgid ""
+"Sorry, I don't know that confirmation code. Did you copy it correctly?"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:19 
@@ -151,9 +172,19 @@ msgid ""
 "rules that we need you to agree with."
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:8 
+msgid ""
+"Welcome"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:25 
 msgid ""
 "You must agree to the Terms in order to sign up."
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:10 
+msgid ""
+"Your account is confirmed. You can now continue on our site."
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13 
@@ -166,7 +197,12 @@ msgid ""
 "female"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:10 
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:13 
+msgid ""
+"logon"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_auth/templates/_auth_link.tpl:13 
 msgid ""
 "logon/signup"
 msgstr ""

@@ -64,11 +64,6 @@ msgid ""
 "Reset your password"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_admin/templates/logon.tpl:7 
-msgid ""
-"Sign in to"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:45 
 msgid ""
 "Sorry, your password reset code is unknown or expired"

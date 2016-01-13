@@ -18,6 +18,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:56 
+msgid ""
+" "
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/comments/comments-header.tpl:6 
 msgid ""
 "1 comment"
@@ -38,6 +43,11 @@ msgid ""
 "Arguments"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:5 
+msgid ""
+"Authored"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
 msgid ""
 "Based on these keywords:"
@@ -48,7 +58,7 @@ msgid ""
 "By:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:15 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:12 
 msgid ""
 "Cancel RSVP"
 msgstr ""
@@ -68,12 +78,17 @@ msgid ""
 "Copyrights"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:5 
+msgid ""
+"Displayed in"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:25 
 msgid ""
 "Documents"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:35 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
+#: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:35 /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:6 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:6 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:18 
 msgid ""
 "E-mail"
 msgstr ""
@@ -93,14 +108,24 @@ msgid ""
 "Edit page"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:6 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.organization.tpl:6 
+msgid ""
+"Events"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:12 
 msgid ""
 "Exclude from search results"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:46 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:9 
 msgid ""
 "Facebook"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17 
+msgid ""
+"Favorites"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:75 
@@ -118,22 +143,22 @@ msgid ""
 "Function/ template"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:48 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:48 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:48 
 msgid ""
 "Go to Facebook"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:58 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:58 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:58 
 msgid ""
 "Go to LinkedIn"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:68 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:68 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:68 
 msgid ""
 "Go to Twitter"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:38 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:38 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:38 
 msgid ""
 "Go to website"
 msgstr ""
@@ -153,9 +178,19 @@ msgid ""
 "Leave a comment"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15 
+#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:4 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:4 
+msgid ""
+"Like"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:56 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:56 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:15 
 msgid ""
 "LinkedIn"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:18 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.organization.tpl:18 
+msgid ""
+"Located here"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:10 
@@ -188,7 +223,7 @@ msgid ""
 "Message"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:26 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:26 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:26 
 msgid ""
 "Mobile number"
 msgstr ""
@@ -218,7 +253,7 @@ msgid ""
 "No comments"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:73 /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55 
+#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55 
 msgid ""
 "No results"
 msgstr ""
@@ -258,7 +293,7 @@ msgid ""
 "Profile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:32 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:52 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:58 
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:11 
 msgid ""
 "RSVP"
 msgstr ""
@@ -271,6 +306,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:19 
 msgid ""
 "Reason"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:17 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.text.tpl:4 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:5 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:14 
+msgid ""
+"Related"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/keywords/keywords-aside.tpl:5 
@@ -353,7 +393,7 @@ msgid ""
 "Summary"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:16 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:16 
 msgid ""
 "Telephone number"
 msgstr ""
@@ -373,12 +413,17 @@ msgid ""
 "Title"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:66 /vagrant/modules/mod_ginger_base/templates/share/share.tpl:12 
 msgid ""
 "Twitter"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36 
+#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:5 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:5 
+msgid ""
+"Unlike"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:36 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36 
 msgid ""
 "Website"
 msgstr ""
@@ -445,7 +490,7 @@ msgid ""
 "download"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:8 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:8 /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:8 
 msgid ""
 "email"
 msgstr ""
@@ -460,7 +505,7 @@ msgid ""
 "list"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:56 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:54 
 msgid ""
 "logon or register"
 msgstr ""
