@@ -111,14 +111,6 @@ img.admin-list-overview {
     padding-right: 6px;
 }
 
-.modal-dialog {
-    margin: 0 !important;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) !important;
-}
-
 .ginger-edit__aside {
     @include size(padding, 20);
     @include size(margin-bottom, $standardOffset);

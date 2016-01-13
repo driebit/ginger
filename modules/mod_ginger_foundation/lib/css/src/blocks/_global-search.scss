@@ -25,7 +25,6 @@
 .global-search__searchform {
     position: fixed;
     top: 0;
-    left: 0;
     width: 100%;
     @include size(height, 60);
     -webkit-transform: translateX(100%);
@@ -35,7 +34,9 @@
     z-index: 500;
 
     &.is-visible {
+        -webkit-transform: translateX(0);
         transform: translateX(0);
+        border-color: green;
 
         &:before {
             @extend .has-icon;
