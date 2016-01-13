@@ -23,9 +23,12 @@
         color: rgba($white, 0.44);
 
         &:hover,
-        &:focus,
-        &:active {
+        &:focus {
             color: $white;
+        }
+
+        &:active {
+            color: rgba($white, 0.44);
         }
     }
 
@@ -59,9 +62,12 @@
     border-radius: 50%;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
         background: $white;
+    }
+
+    &:active {
+        background: rgba($white, 0.5);
     }
 
     i {
