@@ -1,0 +1,1 @@
+{% extends "main-aside/main-aside.text.tpl" %}

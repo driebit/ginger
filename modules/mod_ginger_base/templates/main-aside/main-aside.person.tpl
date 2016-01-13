@@ -1,6 +1,6 @@
         {% if id.s.author %}
             <aside class="main-aside">
-                {% with m.search[{ginger_search hasobject=[id,'author'] pagelen=6}] as result %}
+                {% with m.search[{ginger_search hasobject=[id,'author'] pagelen=6 sort='seq' }] as result %}
 
                     {% include "list/list-header.tpl" id=id list_title=_"Authored" items=result %}
 
