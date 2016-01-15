@@ -103,14 +103,16 @@ lookup_triple(uri, Triples) ->
 lookup_triple(title, Triples) ->
     lookup_triples(
         [
-            <<"http://purl.org/dc/elements/1.1/title">>
+            <<"http://purl.org/dc/terms/title">>,
+            <<"http://purl.org/dc/elements/1.1/title">> %% legacy
         ],
         Triples
     );
 lookup_triple(description, Triples) ->
     lookup_triples(
         [
-            <<"http://purl.org/dc/elements/1.1/description">>
+            <<"http://purl.org/dc/terms/description">>,
+            <<"http://purl.org/dc/elements/1.1/description">> %% legacy
         ],
         Triples
     );
@@ -141,7 +143,8 @@ lookup_triple(rights, Triples) ->
 lookup_triple(date, Triples) ->
     case lookup_triples(
         [
-            <<"http://purl.org/dc/elements/1.1/date">>
+            <<"http://purl.org/dc/terms/date">>,
+            <<"http://purl.org/dc/elements/1.1/date">> % legacy
         ],
         Triples
     ) of
@@ -175,4 +178,3 @@ lookup_triples([Predicate | Rest], Triples) ->
     end;
 lookup_triples([], _Triples) ->
     undefined.
-
