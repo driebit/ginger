@@ -128,6 +128,16 @@ parse_argument({hasobjects, Objects}) ->
         end,
         Objects
     );
+    
+parse_argument({anykeyword, Keyword})
+    when is_integer(Keyword); is_atom(Keyword) ->
+        [{hasanyobject, [Keyword, subject]}];
+
+parse_argument({anykeyword, Keywords}) when is_list(Keywords) ->
+    [{hasanyobject, lists:map(
+                        fun(Keyword) -> [Keyword, subject] end,
+                        Keywords
+                    )}];
 
 parse_argument({keyword, Keyword})
     when is_integer(Keyword); is_atom(Keyword) ->
