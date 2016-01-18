@@ -7,7 +7,8 @@
 
 -record(rdf_search, {
     source :: binary(),
-    args :: list ()
+    args :: list (),
+    query :: #search_query{}
 }).
 
 -record(find_links, {id, is_a}).
