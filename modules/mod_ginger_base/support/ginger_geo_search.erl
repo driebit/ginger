@@ -14,7 +14,7 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
     WhereSearch = and_where(BaseSearch, WhereStr),
     
     WhereSearch#search_sql{
-        select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.pivot_category_nr",
+        select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.category_id",
         limit="Limit 5000"
     };
 
