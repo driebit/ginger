@@ -72,7 +72,7 @@ merge_ginger_args(Args, Context) ->
         end,
         MergedArgs1
     ),
-    
+
     % Filter duplicate Args
     remove_duplicates(MergedArgs2).
 
@@ -86,8 +86,8 @@ remove_duplicates(Args) ->
                 false ->
                     [Arg] ++ Acc
             end
-        end, 
-        [], 
+        end,
+        [],
         Args
     )).
 
@@ -128,7 +128,7 @@ parse_argument({hasobjects, Objects}) ->
         end,
         Objects
     );
-    
+
 parse_argument({anykeyword, Keyword})
     when is_integer(Keyword); is_atom(Keyword) ->
         [{hasanyobject, [Keyword, subject]}];
@@ -195,7 +195,7 @@ parse_argument({filters, Filters}) ->
 
 parse_argument({custompivots, []}) ->
     [];
-    
+
 parse_argument({custompivots, Pivots}) ->
     lists:map(
         fun(Pivot) ->
