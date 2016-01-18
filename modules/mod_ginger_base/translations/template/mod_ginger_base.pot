@@ -193,7 +193,7 @@ msgid ""
 "Located here"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:10 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:11 
 msgid ""
 "Location"
 msgstr ""
@@ -353,7 +353,7 @@ msgid ""
 "Show all..."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:32 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:34 
 msgid ""
 "Show map"
 msgstr ""
@@ -500,7 +500,7 @@ msgid ""
 "error"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/search.tpl:20 
+#: /vagrant/modules/mod_ginger_base/templates/search/search-buttons.tpl:1 
 msgid ""
 "list"
 msgstr ""
@@ -515,7 +515,7 @@ msgid ""
 "mailchimp-sign-up"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/search.tpl:21 
+#: /vagrant/modules/mod_ginger_base/templates/search/search-buttons.tpl:2 
 msgid ""
 "map"
 msgstr ""
