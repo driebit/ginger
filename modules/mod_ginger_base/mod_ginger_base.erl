@@ -78,6 +78,14 @@ manage_schema(_Version, Context) ->
                         {language, [en, nl]}
                     ], [
                         {content_group, image}
+                    ]},
+                    {hasicon, [
+                        {title, {trans, [
+                            {nl, <<"Ikoon">>},
+                            {en, <<"Icon">>}]}},
+                        {language, [en, nl]}
+                    ], [
+                        {category, image}
                     ]}
                 ],
                 edges = [
