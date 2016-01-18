@@ -31,6 +31,7 @@
                     name="search-list"
                     action={update target="search-list" text="<p style='margin-top:20px'>Loading...</p>"}
                     action={update
+                            page=q.page
                             target="search-list"
                             template="search/search-query-wrapper.tpl"
                             cg_name="default_content_group" }
