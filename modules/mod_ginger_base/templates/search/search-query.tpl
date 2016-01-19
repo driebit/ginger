@@ -66,6 +66,30 @@
 
         {% endwith %}
 
+    {% elif type == "timeline" %}
+
+        {% with m.search[{ginger_search
+            finished
+            hassubjects=hassubjects
+            hasobjects=hasobjects
+            hascustompivots=custompivots
+            cat_exclude=cat_exclude
+            content_group=content_group
+            text=search_text
+            date_start_year=date_start_year
+            date_start_before=date_start_before
+            date_start_after=date_start_after
+            is_findable=is_findable
+            keyword=keyword
+            cat=cat
+            sort=sort 
+            content_group=content_group
+        }] as result %}
+
+            {% include "timeline/timeline.tpl" items=result timenav_position="" start_at_slide=0 %}
+
+        {% endwith %}
+
     {% else %}
 
         {% with m.search[{ginger_geo

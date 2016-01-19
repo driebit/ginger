@@ -19,6 +19,7 @@
 
                 <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
                 <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+                {% all include "search/search-buttons.tpl" %}
             </div>
         </div>
 
@@ -52,6 +53,7 @@
 
                 <div id="search-list" class="search__results__list search__result__container"></div>
                 <div id="search-map" class="search__results__map search__result__container"></div>
+                <div id="search-timeline" class="search__results__timeline search__result__container"></div>
 
             </div>
         </div>
