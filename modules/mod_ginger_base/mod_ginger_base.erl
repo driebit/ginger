@@ -81,7 +81,7 @@ manage_schema(_Version, Context) ->
                     ]},
                     {hasicon, [
                         {title, {trans, [
-                            {nl, <<"Ikoon">>},
+                            {nl, <<"Icoon">>},
                             {en, <<"Icon">>}]}},
                         {language, [en, nl]}
                     ], [
