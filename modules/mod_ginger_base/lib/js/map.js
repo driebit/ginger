@@ -15,6 +15,7 @@ $.widget( "ui.googlemap", {
 			icon,
 			i,
 			mc,
+			loadgeojson,
 			mcOptions;
 
 		markers = [];
@@ -105,6 +106,11 @@ $.widget( "ui.googlemap", {
 				this.setZoom(zoomLevel);
 			});
 		}
+
+        if (options.loadgeojson && options.datastyle) {
+			map.data.loadGeoJson(options.loadgeojson);
+			map.data.setStyle(options.datastyle);
+        }
 
 		map.fitBounds(bounds);
 
