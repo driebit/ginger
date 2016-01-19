@@ -1,4 +1,5 @@
-$.widget("ui.search_cmp_filters_keywords", {
+
+$.widget("ui.search_cmp_filters_anykeywords", {
 
     _create: function() {
 
@@ -19,7 +20,7 @@ $.widget("ui.search_cmp_filters_keywords", {
         var me = this,
             inputs = me.widgetElement.find('input:checked'),
             values;
-  
+ 
         values = $.map(inputs, function( input ) {
             return parseInt($(input).val());
         });

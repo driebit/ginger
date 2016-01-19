@@ -1,3 +1,5 @@
+alert('keywords');
+
 $.widget("ui.search_cmp_filters_keywords", {
 
     _create: function() {

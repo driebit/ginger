@@ -5,6 +5,7 @@
         cat_exclude|default:q.cat_exclude,
         search_text|default:q.qs|default:q.search_term,
         keyword|default:q.keyword,
+        anykeyword|default:q.anykeyword,
         date_start_year|default:q.date_start_year,
         date_start_after|default:q.date_start_after,
         date_start_before|default:q.date_start_before,
@@ -22,6 +23,7 @@
         cat_exclude,
         search_text,
         keyword,
+        anykeyword,
         date_start_year,
         date_start_after,
         date_start_before,
@@ -39,7 +41,6 @@
 
 {% with m.search.paged[{ginger_search
 
-        {% with m.search.paged[{ginger_search
             cat_exclude=cat_exclude
             content_group=content_group
             text=search_text
@@ -49,6 +50,7 @@
             date_start_after=date_start_after
             is_findable=is_findable
             keyword=keyword
+            anykeyword=anykeyword
             cat=cat
             sort=sort
             content_group=content_group
@@ -73,6 +75,7 @@
             date_start_after=date_start_after
             is_findable=is_findable
             keyword=keyword
+            anykeyword=anykeyword
             cat=cat
             sort=sort
             content_group=content_group

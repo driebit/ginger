@@ -91,8 +91,8 @@ $.widget("ui.search_ui", {
                 element = $(element);
 
             $.each(classnames, function(j, classname) {
-
                 if (classname.match(/do_search_cmp/)) {
+
                     var widgetName = classname.replace(/^do_/, '');
                     widgetRefs.push(element.data('ui-' + widgetName));
                 }
