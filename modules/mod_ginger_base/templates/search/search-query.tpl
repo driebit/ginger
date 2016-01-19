@@ -16,7 +16,8 @@
         filters|default:q.filters,
         hassubjects|default:q.hassubjects,
         hasobjects|default:q.hasobjects,
-        custompivots|default:q.custompivots
+        custompivots|default:q.custompivots,
+        ongoing_on_date|default:q.ongoing_on_date
     as
         type,
         cat,
@@ -34,7 +35,8 @@
         filters,
         hassubjects,
         hasobjects,
-        custompivots
+        custompivots,
+        ongoing_on_date
 %}
 
     {% if type == "list" %}
@@ -57,6 +59,7 @@
             hassubjects=hassubjects
             hasobjects=hasobjects
             custompivots=custompivots
+            ongoing_on_date=ongoing_on_date
         }] as result %}
 
             {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
@@ -82,6 +85,7 @@
             hassubjects=hassubjects
             hasobjects=hasobjects
             custompivots=custompivots
+            ongoing_on_date=ongoing_on_date
         }] as result %}
 
             {% include "map/map.tpl" result=result container="map-results" blackwhite="true" height="600" %}
