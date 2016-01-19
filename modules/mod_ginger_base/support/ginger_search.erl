@@ -204,6 +204,12 @@ parse_argument({custompivots, Pivots}) ->
         end,
         Pivots
     );
+    
+parse_argument({ongoing_on_date, Date}) ->
+    DayStartDT = z_datetime:to_datetime(Date),
+    DayEndDT = z_datetime:next_day(DayStartDT),
+    [{date_start_before, DayEndDT},
+     {date_end_after, DayStartDT}];   
 
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
