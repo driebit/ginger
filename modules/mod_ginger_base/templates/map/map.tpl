@@ -3,6 +3,8 @@
     blackwhite|default:"false",
     disabledefaultui|default:"false",
     gridsize|default:"60",
+    loadgeojson,
+    datastyle,
     container,
     height
 as
@@ -10,6 +12,8 @@ as
     blackwhite,
     disabledefaultui,
     gridsize,
+    loadgeojson,
+    datastyle,
     container,
     height
 %}
@@ -48,6 +52,8 @@ as
                             "blackwhite": {{ blackwhite }},
                             "disabledefaultui": {{ disabledefaultui }},
                             "gridsize": {{ gridsize }}
+                            {% if loadgeojson %},"loadgeojson": "{{ loadgeojson }}"{% endif %}
+                            {% if datastyle %},"datastyle": {{ datastyle }}{% endif %}
                         }
                     '
 
