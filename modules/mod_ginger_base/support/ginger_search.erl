@@ -206,7 +206,7 @@ parse_argument({custompivots, Pivots}) ->
     );
     
 parse_argument({ongoing_on_date, Date}) ->
-    DayStartDT = z_datetime:to_datetime(Date),
+    DayStartDT = z_datetime:prev_second(z_datetime:to_datetime(Date)),
     DayEndDT = z_datetime:next_day(DayStartDT),
     [{date_start_before, DayEndDT},
      {date_end_after, DayStartDT}];   
