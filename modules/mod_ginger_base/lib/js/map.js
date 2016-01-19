@@ -72,7 +72,11 @@ $.widget( "ui.googlemap", {
 		// Show multiple markers with info windows
 		for (i = 0; i < locations.length; i++) {
 
-			icon = '/lib/images/marker-default.png';
+			if (locations[i].icon) {
+			    icon = '/image/'+locations[i].icon;
+			} else {
+			    icon = '/lib/images/marker-default.png';
+			}
 
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
