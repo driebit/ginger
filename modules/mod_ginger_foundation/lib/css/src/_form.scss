@@ -24,3 +24,34 @@ form {
         font-family: $primaryFontFamily;
     }
 }
+
+.form-group.has-error {
+    position: relative;
+
+    input {
+        border: 1px solid $error;
+    }
+
+    .form-group__input:after {
+        content: '!';
+        display: block;
+        width: 25px;
+        height: 25px;
+        padding-left: 1px;
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        border-radius: 50%;
+        border: 2px solid $error;
+        text-align: center;
+        color: $error;
+        font-size: 15px;
+        line-height: 25px;
+        font-weight: bold;
+        font-family: $secondaryFontFamily;
+    }
+
+    label {
+        color: $error;
+    }
+}
