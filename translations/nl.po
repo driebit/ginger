@@ -1,0 +1,42 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /vagrant/modules/mod_ginger_rdf/templates/_media_upload_tab.tpl:1 /vagrant/modules/mod_ginger_rdf/templates/admin_rdf.tpl:3 /vagrant/modules/mod_ginger_rdf/templates/admin_rdf.tpl:8
+msgid ""
+"Linked Data"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_rdf/templates/_action_dialog_connect_tab_find_linked_data_results_loop.tpl:12
+msgid ""
+"No linked data found."
+msgstr "Geen linked data gevonden"
+
+#: /vagrant/modules/mod_ginger_rdf/templates/_admin_linked_data_search.tpl:18 /vagrant/modules/mod_ginger_rdf/templates/_media_upload_panel.tpl:9
+msgid ""
+"Search linked data"
+msgstr "Zoek linked data"
+
+#: /vagrant/modules/mod_ginger_rdf/templates/_action_dialog_connect_tab_find_linked_data_results.tpl:5
+msgid ""
+"results"
+msgstr "resultaten"
+
+msgid "all"
+msgstr "alle"

@@ -11,6 +11,18 @@
     query :: #search_query{}
 }).
 
+%% @doc Retrieve search facets based on search query
+-record(rdf_search_facets, {
+    search :: rdf_search
+}).
+
+-record(rdf_search_facet_value, {
+    label = <<>> :: binary(),
+    count :: integer(),
+    uri :: binary(),
+    value :: binary()
+}).
+
 -record(find_links, {id, is_a}).
 
 -record(triple, {

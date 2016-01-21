@@ -86,10 +86,12 @@ observe_search_query(#search_query{} = Query, Context) ->
 event(#postback_notify{message = "feedback", trigger = "dialog-connect-find-linked-data", target = TargetId, data = _Data}, Context) ->
     Vars = [
         {text, z_context:get_q(find_text, Context)},
+        {source, z_context:get_q(source, Context)},
         {template, z_context:get_q("template", Context)},
         {target, TargetId},
         {subject_id, z_convert:to_integer(z_context:get_q(subject_id, Context))},
-        {predicate, z_context:get_q(predicate, Context, "")}
+        {predicate, z_context:get_q(predicate, Context, "")},
+        {filters, lists:filtermap(fun filters/1, z_context:get_q_all_noz(Context))}
     ],
 
     z_render:wire(
@@ -163,3 +165,9 @@ terminate(_Reason, _State) ->
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
+
+%% Filter facet inputs from form inputs
+filters({"filter_" ++ Key, Value}) ->
+    {true, {Key, Value}};
+filters({_Key, _Value}) ->
+    false.
