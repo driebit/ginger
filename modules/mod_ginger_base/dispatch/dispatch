@@ -2,7 +2,7 @@
 %% Put your dispatch rules here.
 [
  %% The home page, just shows the "home.tpl" template.
- {home, [], controller_template, [ {template, "home.tpl"} ]},
+ {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
  %% Normal page to show a resource.
  {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},

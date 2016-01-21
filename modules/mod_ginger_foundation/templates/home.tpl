@@ -3,7 +3,6 @@
 {% block body_class %}t--home{% endblock %}
 
 {% block content %}
-{% with m.rsc.home.id as id %}
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
     <main role="main" data-page-id="{{ id }}">
@@ -61,6 +60,5 @@
                 {% endfor %}
             {% endif %}
     </main>
-{% endwith %}
 {% endwith %}
 {% endblock %}
