@@ -253,7 +253,7 @@ msgid ""
 "No comments"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55 
+#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:62 
 msgid ""
 "No results"
 msgstr ""
@@ -500,7 +500,7 @@ msgid ""
 "error"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/search/search-buttons.tpl:1 
+#: /vagrant/modules/mod_ginger_base/templates/search.tpl:20 
 msgid ""
 "list"
 msgstr ""
@@ -515,7 +515,7 @@ msgid ""
 "mailchimp-sign-up"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/search/search-buttons.tpl:2 
+#: /vagrant/modules/mod_ginger_base/templates/search.tpl:21 
 msgid ""
 "map"
 msgstr ""

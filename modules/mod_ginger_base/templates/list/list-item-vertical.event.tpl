@@ -10,10 +10,12 @@
         <div class="list__item--vertical__date">
             <time datetime="{{ id.start_date|date:"Y-F-jTH:i" }}" class="list__item__content__date">
 
-                <span class="list__item__content__date__day">{{ id.date_start|date:"D" }}</span>
+                <span class="list__item__content__date__day">{{ id.date_start|date:"D"|truncate:2:" " }}</span>
                 {{ id.date_start|date:"j M" }}
                 <span class="list__item__content__date__year">{{ id.date_start|date:"Y" }}</span>
-                <span class="list__item__content__date__time">{{ id.date_start|date:"H:i" }}</span>
+                {% if not id.date_is_all_day %}
+                    <span class="list__item__content__date__time">{{ id.date_start|date:"H:i" }}</span>
+                {% endif %}
             </time>
         </div>
     </div>
