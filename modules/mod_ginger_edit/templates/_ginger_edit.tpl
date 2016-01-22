@@ -64,7 +64,7 @@
                 </label>
 
                 {% include "_edit_date.tpl" date=id.publication_start name="publication_start" is_end=0 %}
-                {_ till _} 
+                {_ till _}
                 {% include "_edit_date.tpl" date=id.publication_end name="publication_end" is_end=1 %}
             </div>
 		</div>
@@ -88,7 +88,7 @@
         {% if id.category_id.feature_show_geodata|if_undefined:`true` %}
             {% optional include "_geomap_admin_location.tpl" %}
         {% endif %}
-        
+
 		{% if id.is_a.media or id.medium %}
 			{% include "_admin_edit_content_media.tpl" %}
 		{% endif %}
@@ -106,7 +106,7 @@
 
     		{% block buttons %}
     			{% button type="submit" id="save_stay" class="btn btn-primary" text=_"Save" title=_"Save this page." disabled=not id.is_editable %}
-    		
+
     			{% if id.is_editable %}
     				{% button type="submit" id="save_view" class="btn btn-default" text=_"Save &amp; view" title=_"Save and view the page." %}
     			{% else %}
@@ -118,7 +118,7 @@
 {% endwith %}
 {% endwith %}
 {% endwith %}
-    
+
 {% javascript %}
 	$("#save-buttons .brand").html($('#button-prompt').html());
 
