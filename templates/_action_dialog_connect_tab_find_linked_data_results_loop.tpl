@@ -8,6 +8,6 @@
             </div>
         {% endfor %}
     {% endwith %}
-{% else %}
+{% elseif show_no_results %}
     {_ No linked data found. _}
 {% endif %}

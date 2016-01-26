@@ -18,6 +18,7 @@
                 {% include "_action_dialog_connect_tab_find_linked_data_results_loop.tpl"
                     id
                     result=result
+                    show_no_results
                 %}
             </div>
             {% lazy
