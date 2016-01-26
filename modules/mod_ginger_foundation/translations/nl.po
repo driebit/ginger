@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2016-01-25 14:23+0100\n"
-"PO-Revision-Date: 2016-01-25 14:24+0100\n"
+"PO-Revision-Date: 2016-01-26 10:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -25,7 +25,7 @@ msgstr "Acteurs:"
 
 #: /vagrant/modules/mod_ginger_foundation/templates/all-in.tpl:11
 msgid "Everything for "
-msgstr "Alles voor"
+msgstr "Alles voor "
 
 #: /vagrant/modules/mod_ginger_foundation/templates/email_base.tpl:4
 msgid "Hello from Zotonic"
