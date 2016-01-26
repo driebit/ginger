@@ -6,8 +6,7 @@
     tab|default:'find',
     actions|default:[],
     direction|default:'out',
-    dispatch|default:zotonic_dispatch,
-    required|default:"false"
+    dispatch|default:zotonic_dispatch
 as
     cat,
     predicate,
@@ -16,8 +15,7 @@ as
     tab,
     actions,
     direction,
-    dispatch,
-    required
+    dispatch
 %}
 
 {% if id.is_editable %}
@@ -26,7 +24,7 @@ as
         {% include "_ginger_connection_widget.tpl" predicate_ids=[predicate.id] %}
         {% include "_action_ginger_connection.tpl" category=cat.name predicate=predicate.name new_rsc_title=title tabs_enabled=tabs_enabled tab=tab direction=direction actions=actions dispatch=dispatch %}
         
-        {% if required == "true" %}
+        {% if required %}
         
             <input type="hidden" id="{{ #predicate.name }}" value="0" />
         
