@@ -52,10 +52,21 @@
                         {% endif %}
                     </h3>
 
-                    {% if id.summary %}
-                        <p>{{ id.summary|striptags|truncate:150 }}</p>
+                    {% if id.subtitle %}
+                        <p><b>{{ id.subtitle|striptags }}</b></p>
+                        {% if id.subtitle|length<35 %}
+                            {% if id.summary %}
+                                <p>{{ id.summary|striptags|truncate:70 }}</p>
+                            {% else %}
+                                <p>{{ id.body|striptags|truncate:70 }}</p>
+                            {% endif %}
+                        {% endif %}
                     {% else %}
-                        <p>{{ id.body|striptags|truncate:150 }}</p>
+                        {% if id.summary %}
+                            <p>{{ id.summary|striptags|truncate:150 }}</p>
+                        {% else %}
+                            <p>{{ id.body|striptags|truncate:150 }}</p>
+                        {% endif %}
                     {% endif %}
                 </div>
             </article>
