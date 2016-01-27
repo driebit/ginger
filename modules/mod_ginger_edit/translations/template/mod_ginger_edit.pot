@@ -128,6 +128,11 @@ msgid ""
 "Facebook"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:31 /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:31 
+msgid ""
+"Field is required"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
 msgid ""
 "Find"
