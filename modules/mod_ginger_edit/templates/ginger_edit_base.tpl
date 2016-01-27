@@ -59,6 +59,10 @@
         {% include "_ua_probe.tpl"%}
     {% endblock %}
 
+    {% javascript %}
+        $(document).trigger('widgetmanager:loaded');
+    {% endjavascript %}
+
     {% script %}
 
     </body>
