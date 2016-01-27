@@ -1,11 +1,12 @@
 .person-author {
     display: inline-block;
+    margin-bottom: 20px;
 
     .avatar__image {
         width: 40px;
         margin-right: 5px;
         border-radius: 50%;
-        vertical-align: top;
+        vertical-align: middle;
     }
 
     + .person-author {
