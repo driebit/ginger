@@ -29,6 +29,7 @@
                 var val = me.element.val();
 
                 if (val.length == 0) {
+                    me.suggestions.hide();
                     return;
                 }
 
