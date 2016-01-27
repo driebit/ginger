@@ -33,11 +33,6 @@
                     return;
                 }
 
-                if (prevVal && val == prevVal || !val.length) {
-                    return;
-                }
-
-                prevVal = val;
                 z_event(paramWire, {value: val});
 
                 setTimeout(function(){
