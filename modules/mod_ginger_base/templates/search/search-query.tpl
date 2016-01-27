@@ -16,6 +16,7 @@
         filters|default:q.filters,
         hassubjects|default:q.hassubjects,
         hasobjects|default:q.hasobjects,
+        hasanyobject|default:q.hasanyobject,
         custompivots|default:q.custompivots,
         ongoing_on_date|default:q.ongoing_on_date
     as
@@ -35,6 +36,7 @@
         filters,
         hassubjects,
         hasobjects,
+        hasanyobject,
         custompivots,
         ongoing_on_date
 %}
@@ -58,6 +60,7 @@
             content_group=content_group
             hassubjects=hassubjects
             hasobjects=hasobjects
+            hasanyobject=hasanyobject
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
         }] as result %}
@@ -82,7 +85,7 @@
             is_findable=is_findable
             keyword=keyword
             cat=cat
-            sort=sort 
+            sort=sort
             content_group=content_group
         }] as result %}
 
@@ -108,6 +111,7 @@
             content_group=content_group
             hassubjects=hassubjects
             hasobjects=hasobjects
+            hasanyobject=hasanyobject
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
         }] as result %}

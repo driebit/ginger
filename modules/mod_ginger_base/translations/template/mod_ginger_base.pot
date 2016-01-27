@@ -353,7 +353,7 @@ msgid ""
 "Show all..."
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:34 
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:22 
 msgid ""
 "Show map"
 msgstr ""

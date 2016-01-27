@@ -13,6 +13,7 @@
 
 %% @doc Supports all the usual query model arguments, adds default excludes.
 search_query(#search_query{search={ginger_search, Args}}, Context) ->
+
     % This is a special use case that needs a better solution in Zotonic
     case z_context:get_q(filters, Context) of
         undefined ->
@@ -204,12 +205,12 @@ parse_argument({custompivots, Pivots}) ->
         end,
         Pivots
     );
-    
+
 parse_argument({ongoing_on_date, Date}) ->
     DayStartDT = z_datetime:prev_second(z_datetime:to_datetime(Date)),
     DayEndDT = z_datetime:next_day(DayStartDT),
     [{date_start_before, DayEndDT},
-     {date_end_after, DayStartDT}];   
+     {date_end_after, DayStartDT}];
 
 % Filtering on undefined is supported from Zotonic 0.13.16
 parse_argument({has_geo, true}) ->
