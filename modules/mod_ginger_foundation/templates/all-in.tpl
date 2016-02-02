@@ -8,7 +8,7 @@
         <div class="foldout do_foldout">
 
             <article class="main-content">
-                {% include "page-title/page-title.tpl" id=id title=_"Everything for "++"'"++id.title++"’" %}
+                {% include "page-title/page-title.tpl" id=id title=_"Everything for "++"'"++id.title++"'" %}
             </article>
 
         </div>
