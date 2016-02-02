@@ -263,6 +263,14 @@
     }
 }
 
+.search__intro {
+    @include size(max-width, 700);
+    @include size(margin-left, 15);
+    font-family: $secondaryFontFamily;
+
+    @extend .summary;
+}
+
 .no-results {
     @include size(padding, 20);
 }
