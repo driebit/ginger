@@ -10,10 +10,11 @@
             <article class="cf">
                 <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
                     {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
-
-                    <div class="list__item__content__category">
-                        <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
-                    </div>
+                    {% block list_item_cat %}
+                        <div class="list__item__content__category">
+                            <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+                        </div>
+                    {% endblock %}
                 </div>
 
                 {% block list_item_meta %}{% endblock %}

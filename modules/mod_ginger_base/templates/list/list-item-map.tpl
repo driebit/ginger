@@ -12,7 +12,7 @@
             <div class="list__item__content">
 
                 <div class="list__item__content__category">
-                    <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
+                    <i class="icon--location"></i>{{ m.rsc[id.category.id].title }}
                 </div>
 
                 <h3 class="list__item__content__title">
@@ -22,7 +22,7 @@
                         {{ id.title }}
                     {% endif %}
                 </h3>
-                
+
             </div>
 
         </article>

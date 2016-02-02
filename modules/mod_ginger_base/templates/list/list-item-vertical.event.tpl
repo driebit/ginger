@@ -20,3 +20,9 @@
         </div>
     </div>
 {% endblock %}
+
+{% block list_item_cat %}
+    <div class="list__item__content__category">
+        <i class="icon--event"></i>{{ m.rsc[id.category.id].title }}
+    </div>
+{% endblock %}

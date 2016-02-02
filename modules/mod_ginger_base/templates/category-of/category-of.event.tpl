@@ -11,10 +11,10 @@
                 {% with id.date_end|date:"H:i"!="00:00" and id.date_end|date:"H:i"!="23:59" and not id.date_is_all_day as show_end_time %}
                     {% if show_end_date or show_end_time %}- {% endif %}
                     {% if show_end_date %}
-                        {% if id.date_is_all_day %}{{ id.date_end|date:"d-m-Y":"UTC" }}{% else %}{{ id.date_end|date:"d-m-Y" }}{% endif %} 
+                        {% if id.date_is_all_day %}{{ id.date_end|date:"d-m-Y":"UTC" }}{% else %}{{ id.date_end|date:"d-m-Y" }}{% endif %}
                     {% endif %}
                     {% if show_end_time %}
-                        {{ id.date_end|date:"H:i" }} 
+                        {{ id.date_end|date:"H:i" }}
                     {% endif %}
                 {% endwith %}
                 {% endwith %}
