@@ -8,7 +8,9 @@
         anykeyword|default:q.anykeyword,
         date_start_year|default:q.date_start_year,
         date_start_after|default:q.date_start_after,
+        date_end_after|default:q.date_end_after,
         date_start_before|default:q.date_start_before,
+        date_end_before|default:q.date_end_before,
         is_findable|default:"true",
         content_group|default:q.content_group,
         pagelen|default:10,
@@ -28,7 +30,9 @@
         anykeyword,
         date_start_year,
         date_start_after,
+        date_end_after,
         date_start_before,
+        date_end_before,
         is_findable,
         content_group,
         pagelen,
@@ -51,7 +55,9 @@
             pagelen=pagelen
             date_start_year=date_start_year
             date_start_before=date_start_before
+            date_end_before=date_end_before
             date_start_after=date_start_after
+            date_end_after=date_end_after
             is_findable=is_findable
             keyword=keyword
             anykeyword=anykeyword
@@ -81,7 +87,9 @@
             text=search_text
             date_start_year=date_start_year
             date_start_before=date_start_before
+            date_end_before=date_end_before
             date_start_after=date_start_after
+            date_end_after=date_end_after
             is_findable=is_findable
             keyword=keyword
             cat=cat
@@ -102,7 +110,9 @@
             pagelen=pagelen
             date_start_year=date_start_year
             date_start_before=date_start_before
+            date_end_before=date_end_before
             date_start_after=date_start_after
+            date_end_after=date_end_after
             is_findable=is_findable
             keyword=keyword
             anykeyword=anykeyword
