@@ -1,9 +1,9 @@
-{# Add one or more cat="NAME" to the query below to filter the result #}
+{# Search suggestions query #}
 
 {%
     with
         results_template,
-        cat,
+        cat|default:'',
         paged|default:true,
         cat_exclude|default:['meta', 'menu', 'admin_content_query'],
         search_text|default:q.value|default:q.qs,
@@ -19,11 +19,11 @@
         pagelen
 %}
     {% if paged %}
-        {% with m.search.paged[{ginger_search content_group=content_group text=search_text pagelen=pagelen}] as result %}
+        {% with m.search.paged[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen}] as result %}
             {% include results_template %}
         {% endwith %}
     {% else %}
-        {% with m.search[{ginger_search content_group=content_group text=search_text pagelen=pagelen page=q.page}] as result %}
+        {% with m.search[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen page=q.page}] as result %}
             {% include results_template result=result %}
         {% endwith %}
     {% endif %}
