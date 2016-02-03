@@ -1,42 +1,42 @@
 {% extends "base.tpl" %}
 
+{% block body_class %}t--article-sided{% endblock %}
+
 {% block content %}
+    <main role="main" class="page--sided">
 
-    {% include "masthead/masthead.tpl" id=id %}
+        <article class="main-content--sided">
 
-    <main role="main">
+            {% catinclude "published/published.tpl" id %}
 
-        <div class="foldout">
+            {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
 
-            {% catinclude "category-of/category-of.tpl" id %}
+            {% include "page-title/page-title.tpl" id=id %}
 
-            {% include "foldout/foldout-button.tpl" %}
+            {% include "subtitle/subtitle.tpl" id=id %}
 
-            <article class="main-content">
-                {% include "page-title/page-title.tpl" id=id %}
+            {% catinclude "page-actions/page-actions.tpl" id %}
 
-                {% include "subtitle/subtitle.tpl" id=id %}
+            {% catinclude "media/media.tpl" id %}
 
-                {% catinclude "part-of/part-of.tpl" id %}
+            {% include "summary/summary.tpl" id=id %}
 
-                {% catinclude "page-actions/page-actions.tpl" id %}
+            {% include "body/body.tpl" id=id %}
 
-                {% include "summary/summary.tpl" id=id %}
+            {% include "blocks/blocks.tpl" id=id %}
 
-                {% catinclude "media/media.tpl" id %}
+            {% catinclude "list/list-simple.tpl" id items=id.o.actor header=_"Actors: " %}
 
-                {% include "body/body.tpl" id=id %}
+            {% include "copyrights/copyrights.tpl" id=id %}
 
-                {% include "blocks/blocks.tpl" id=id %}
+            {% include "comments/comments.tpl" id=id %}
 
-                {% catinclude "list/list-simple.tpl" id items=id.o.actor header=_"Actors: " %}
+        </article>
 
-                {% include "comments/comments.tpl" id=id %}
-            </article>
+        <aside class="main-aside--sided">
 
-        </div>
+            {% catinclude "main-aside/main-aside.tpl" id %}
 
-        {% catinclude "main-aside/main-aside.tpl" id %}
-
+        </aside>
     </main>
 {% endblock %}
