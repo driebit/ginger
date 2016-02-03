@@ -5,8 +5,11 @@
     gridsize|default:"60",
     loadgeojson,
     datastyle,
+    mapstyle,
     container,
-    height
+    height,
+    panOffsetX|default:0,
+    panOffsetY|default:0
 as
     scrollwheel,
     blackwhite,
@@ -14,8 +17,11 @@ as
     gridsize,
     loadgeojson,
     datastyle,
+    mapstyle,
     container,
-    height
+    height,
+    panOffsetX,
+    panOffsetY
 %}
 
     {% block map %}
@@ -51,8 +57,11 @@ as
                             "scrollwheel": {{ scrollwheel }},
                             "blackwhite": {{ blackwhite }},
                             "disabledefaultui": {{ disabledefaultui }},
-                            "gridsize": {{ gridsize }}
+                            "gridsize": {{ gridsize }},
+                            "panOffsetX": {{ panOffsetX }},
+                            "panOffsetY": {{ panOffsetY }}
                             {% if loadgeojson %},"loadgeojson": "{{ loadgeojson }}"{% endif %}
+                            {% if mapstyle %},"mapstyle": {{ mapstyle }}{% endif %}
                             {% if datastyle %},"datastyle": {{ datastyle }}{% endif %}
                         }
                     '

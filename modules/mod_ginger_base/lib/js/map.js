@@ -24,18 +24,20 @@ $.widget( "ui.googlemap", {
 
 		if (!id) return false;
 
-		if (options.blackwhite == true) {
-			options.styles = [{
-			   "stylers": [
-					 { "saturation": -100 },
-					 { "lightness": -8 },
-					 { "gamma": 1.18 }
-				 ]
-			  }
-			];
+		var styles = [];
+		 	 stylers = [];
+		
+		styles.push({"stylers":stylers});
+		options.styles = styles;
 
+		if (options.blackwhite == true) {
+		 	stylers.push({ "saturation": -100 });
+			stylers.push({ "lightness": -8 });
+			stylers.push({ "gamma": 1.18 });
 			delete options.blackwhite;
 		}
+
+		if (options.mapstyle) styles.push(options.mapstyle);
 
 		if (options.disabledefaultui) options.disableDefaultUI = true;
 
@@ -67,6 +69,7 @@ $.widget( "ui.googlemap", {
 
 		map = new google.maps.Map(document.getElementById(id), options);
 		me.map = map;
+		me.options = options;
 		me.infowindow = null;
 		me.markers = markers;
 
@@ -138,7 +141,7 @@ $.widget( "ui.googlemap", {
 		posCoordList = me.unique(posCoordList);
 
 		if (posCoordList.length == 1 || zoom >= 21) {
-			me.startShowInfoWindow(markerList);
+			$.proxy(me.startShowInfoWindow(markerList), me);
 			return false;
 		} else {
 			me.map.fitBounds(clusterBounds);
@@ -187,9 +190,15 @@ $.widget( "ui.googlemap", {
 			isHidden: false,
 			pane: "floatPane",
 			enableEventPropagation: false
-		};
+		},
+		offsetX = me.options.panOffsetX,
+		offsetY = me.options.panOffsetY,
+		scale = Math.pow(2,me.map.getZoom()),
+		center = me.map.getProjection().fromLatLngToPoint(marker.getPosition()),
+		newCenterPoint = new google.maps.Point(center.x - offsetX/scale, center.y + offsetY/scale),   
+		newCenter = me.map.getProjection().fromPointToLatLng(newCenterPoint);
 
-		me.map.setCenter(marker.getPosition());
+	    me.map.panTo(newCenter);
 
 		if (me.infowindow) me.infowindow.close();
 
