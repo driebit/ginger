@@ -100,5 +100,7 @@
 
     .home__search__suggestions {
         width: 80%;
+        max-height: 300px;
+        overflow-y: scroll;
     }
 }

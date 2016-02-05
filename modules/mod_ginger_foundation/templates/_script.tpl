@@ -16,6 +16,7 @@
     "js/map-location.js"
     "js/parallax.js"
     "js/anchor.js"
+    "js/expand.js"
     "js/vendors/infobox_packed.js"
     "js/vendors/markerclusterer.js"
     "js/map.js"
