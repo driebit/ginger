@@ -2,7 +2,7 @@
 -export([event/2]).
 
 -include_lib("zotonic.hrl").
--include_lib("include/message.hrl").
+-include_lib("../include/message.hrl").
 
 event({postback, {sendmessage, Props}, _TriggerId, _TargetId}, Context) ->
     Message = proplists:get_value(message,Props),

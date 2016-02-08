@@ -4,8 +4,8 @@
 -include_lib("zotonic.hrl").
 
 event({postback, {linkmessage, Props}, _TriggerId, _TargetId}, Context) ->
-    Resource = proplists:get_value(resource,Props),
-    Message = proplists:get_value(message,Props),
+    Resource = proplists:get_value(resource, Props),
+    Message = proplists:get_value(message, Props),
     EdgeExist = m_edge:get_id(Message, send_message, Resource, Context),
     case EdgeExist of
         undefined ->

@@ -1,1 +1,1 @@
--record(message_send_message,{props,context}).
+-record(message_send_message, {props}).
