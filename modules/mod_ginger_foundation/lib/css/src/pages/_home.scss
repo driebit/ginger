@@ -31,7 +31,7 @@
 .home__header {
     width: 100%;
     position: relative;
-    background: $white url(/lib/images/bg_rectangle.png?embed) center center repeat;
+    background: $white url(/lib/images/bg_rectangle.png?embed) 50% 0 repeat;
 
     .foldout {
         @include size(padding, 50, 0);
