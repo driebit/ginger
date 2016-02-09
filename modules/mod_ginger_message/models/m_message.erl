@@ -8,7 +8,9 @@
 -export([
     m_find_value/3,
     m_to_list/2,
-    m_value/2
+    m_value/2,
+    read/2,
+    event/2
 ]).
 
 m_find_value(received, #m{value = undefined}, Context) ->
@@ -27,3 +29,14 @@ m_to_list(_, _Context) ->
 
 m_value(_Source, _Context) ->
     undefined.
+
+%% @doc Mark message as read by the current user
+-spec read(integer(), #context{}) -> ok.
+read(Id, Context) ->
+    {ok, _Id} = m_edge:insert(z_acl:user(Context), read_message, Id, Context),
+    ok.
+
+event(#postback{message = {read, _Args}}, Context) ->
+    MessageId = z_context:get_q(id, Context),
+    read(MessageId, Context),
+    Context.
