@@ -11,13 +11,9 @@
                 contentAll = '.' + element.data('content'),
                 contentId = '#' + element.data('content');
 
-                //alert($(window).width());
-
             if (type == 'all') {
                 element.on('click', function (evt) {
                     evt.preventDefault();
-
-                    console.log(parentAll);
 
                     if (element.hasClass('is-open')) {
                         element.removeClass('is-open');
@@ -42,7 +38,6 @@
                     $(element).toggleClass('is-open');
                     $(contentId).slideToggle();
                 });
-
             }
         }
     });
