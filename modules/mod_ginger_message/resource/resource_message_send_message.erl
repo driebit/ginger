@@ -5,27 +5,25 @@
 -include_lib("../include/message.hrl").
 
 event({postback, {sendmessage, Props}, _TriggerId, _TargetId}, Context) ->
-    Message = proplists:get_value(message,Props),
-    {rsc_list, Categories} = m_rsc:o(Message,send_message,Context),
+    Message = proplists:get_value(message, Props),
+    {rsc_list, Categories} = m_rsc:o(Message, send_message, Context),
 
     lists:foreach(
         fun(Category) ->
             case m_rsc:is_cat(Category, category, Context) of
                 true ->
-                    CustomParameters = z_notifier:first(#message_send_message{props=Props}, Context),
-
-                    CategoryResourcesResult = case CustomParameters of
+                    Params = case z_notifier:first(#message_send_message{props = Props}, Context) of
                         undefined ->
-                            z_search:search({'query', [{cat_exact, Category}]},{1,undefined},Context);
-                        _ ->
-                            z_search:search({'query', [{cat_exact, Category},CustomParameters]},{1,undefined},Context)
+                            [];
+                        CustomParams ->
+                            CustomParams
                     end,
-                    CategoryResources = CategoryResourcesResult#search_result.result,
+                    #search_result{result = Resources} = z_search:search({'query', [{cat_exact, Category}, Params]}, {1, undefined}, Context),
                     lists:foreach(
                         fun(Item) ->
-                            m_edge:insert(Item, received_message, Message, Context)
+                            {ok, _Id} = m_edge:insert(Item, received_message, Message, Context)
                         end,
-                        CategoryResources
+                        Resources
                     );
                 _ ->
                     noop
@@ -33,4 +31,4 @@ event({postback, {sendmessage, Props}, _TriggerId, _TargetId}, Context) ->
         end,
         Categories
     ),
-    Context.
+    z_render:growl(?__(<<"Message sent.">>, Context), Context).
