@@ -54,13 +54,19 @@ read_json([{Predicate, Object}|Properties], Id, Context, Triples) ->
 %% @doc Resolve a predicate's namespace
 -spec resolve_predicate(binary(), list()) -> binary() | undefined.
 resolve_predicate(Predicate, Context) ->
-    [Namespace, Property] = binary:split(Predicate, <<":">>),
-    case resolve_namespace(Namespace, Context) of
-        undefined ->
-            lager:error("Namespace ~p not registered", [Namespace]),
-            undefined;
-        ResolvedNamespace ->
-            erlang:iolist_to_binary([ResolvedNamespace, Property])
+    case binary:split(Predicate, <<":">>) of
+        [Namespace, Property] ->
+            %% Predicate with namespace, e.g, "dcterms:date"
+            case resolve_namespace(Namespace, Context) of
+                undefined ->
+                    lager:error("Namespace ~p not registered", [Namespace]),
+                    undefined;
+                ResolvedNamespace ->
+                    erlang:iolist_to_binary([ResolvedNamespace, Property])
+            end;
+        [Property] ->
+            %% Special property without namespace, e.g., "@type"
+            Property
     end.
 
 %% @doc Resolve a namespace based on the @context value
