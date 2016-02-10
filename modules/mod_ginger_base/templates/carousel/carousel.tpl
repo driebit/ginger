@@ -4,16 +4,14 @@
     extraClasses,
     config,
     carousel_id,
-    itemtemplate|default:"carousel/carousel-item.tpl",
-    pagertemplate|default:"carousel/carousel-pager-item.tpl"
+    itemtemplate|default:"carousel/carousel-item.tpl"
 as
     items,
     carousel_id,
     extraClasses,
     config,
     carousel_id,
-    itemtemplate,
-    pagertemplate
+    itemtemplate
 %}
 
 {% if items %}
@@ -22,14 +20,6 @@ as
         <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}">
             {% for id in items %}
                 {% catinclude itemtemplate id %}
-            {% endfor %}
-        </ul>
-    {% endblock %}
-
-    {% block pager %}
-       <ul id="{{ pager }}" class="carousel__pager">
-            {% for id in items %}
-                {% catinclude pagertemplate id carousel_id=carousel_id counter=forloop.counter0 %}
             {% endfor %}
         </ul>
     {% endblock %}
