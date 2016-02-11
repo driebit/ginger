@@ -15,7 +15,8 @@
 
 m_find_value(received, #m{value = undefined}, Context) ->
     #rsc_list{list = List} = m_rsc:o(z_acl:user(Context), received_message, Context),
-    List;
+    %% Show newest first
+    lists:reverse(List);
 m_find_value(Id, #m{value = undefined} = M, _Context) ->
     M#m{value = Id};
 m_find_value(is_read, #m{value = Id}, Context) ->
