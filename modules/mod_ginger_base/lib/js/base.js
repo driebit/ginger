@@ -40,12 +40,21 @@
             if (!$(event.target).closest('.global-nav').length) {
 
                 try {
-                    var globalSearchWidget = $(':ui-global_search').data('ui-global_search');
-                } catch (e) {}
+                    var searchWidgets = $(':ui-global_search'),
+                        isOpen = false;
 
-                if (globalSearchWidget && globalSearchWidget.isVisible()) {
-                    $(document).trigger('search:close');
-                }
+                    $.each(searchWidgets, function(i, widget) {
+                        var inst = $(widget).data('ui-global_search');
+                        if (inst && inst.isVisible()) {
+                            isOpen = true;
+                        }
+                    });
+
+                    if (isOpen) {
+                        $(document).trigger('search:close');
+                    }
+
+                } catch (e) {}
 
                 $(document).trigger('menu:close');
             }

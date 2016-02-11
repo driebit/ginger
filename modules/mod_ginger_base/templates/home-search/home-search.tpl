@@ -3,14 +3,18 @@
         <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
         <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
         <input type="text"
-            class="do_home_search"
+            class="do_global_search"
             name="qs"
             value="{{q.qs|escape}}"
             placeholder="{{ placeholder_text }}"
             autocomplete="off"
             data-param-wire="show-home-suggestions"
             data-param-results="home__search__suggestions-{{ #identifier }}"
-            data-param-container="home__search-{{ #identifier }}"  />
+            data-param-container="home__search-{{ #identifier }}"
+            data-param-searchsuggestions=".home__search__suggestions"
+            data-param-foldout="false"
+
+        />
 
         <button type="submit" class="btn--search home__search-submit" title="{_ Search _}"><i class="icon--search"></i> {_ search _}</button>
 

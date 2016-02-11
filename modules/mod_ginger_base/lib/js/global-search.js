@@ -14,15 +14,34 @@
                 prevVal = null,
                 paramResults = element.data('param-results'),
                 paramWire = element.data('param-wire'),
+                paramSearchButton = element.data('param-searchbutton'),
+                paramSearchSuggestions = element.data('param-searchsuggestions'),
+                paramFoldout = element.data('param-foldout'),
                 resultsElement = $('#' + paramResults),
                 windowHeight = $(window).height();
 
-            me.searchButton         = $('#toggle-search');
-            me.searchForm           = $('form[role=search]');
-            me.searchInput          = $('.do_global_search');
-            me.suggestions          = $('.global-search__suggestions');
+
+            //TODO: backwards compat
+            if (paramSearchSuggestions == undefined) {
+
+                me.foldout              = true;
+                me.searchButton         = $('#toggle-search');
+                me.searchForm           = $(element.closest('form')),
+                me.searchInput          = element,
+                me.suggestions          = $('.global-search__suggestions');
+
+            } else {
+
+                me.foldout              = $(paramFoldout),
+                me.searchButton         = $(paramSearchButton),
+                me.searchForm           = $(element.closest('form')),
+                me.searchInput          = element,
+                me.suggestions          = $(paramSearchSuggestions);
+
+            }           
 
             resultsElement.removeClass('is-scrolable');
+            resultsElement.hide();
 
             function doSearch() {
 
@@ -52,32 +71,27 @@
 
             $(document).on('search:close', $.proxy(me._closeSearch, me));
             $(document).on('search:toggle', $.proxy(me._toggleSearch, me));
-            me.searchButton.on('click', $.proxy(me._toggleSearch, me));
+
+            if (me.searchButton != undefined) me.searchButton.on('click', $.proxy(me._toggleSearch, me));         
 
         },
 
         _closeSearch: function(event) {
-
             var me = this;
             me._toggleSearch(event, true);
         },
 
         _toggleSearch: function(event, close) {
+           
+            var me = this;          
 
-            var me = this;
-
-            me.searchButton.toggleClass('is-active');
+            if (me.searchButton) me.searchButton.toggleClass('is-active');
 
             if(close) {
                 me.searchForm.removeClass('is-visible');
                 me.searchButton.removeClass('is-active');
             } else {
-                if(me.searchButton.hasClass('is-active')) {
-                    me.searchForm.toggleClass('is-visible');
-                } else {
-                    me.searchForm.toggleClass('is-visible');
-
-                }
+                me.searchForm.toggleClass('is-visible');
             }
 
             me.searchInput.val('');
@@ -92,7 +106,12 @@
 
         isVisible: function() {
             var me = this;
-            return me.searchForm.hasClass('is-visible');
+
+            if (me.suggestions.css('display') == 'block' || me.searchForm.hasClass('is-visible')) {
+                return true;
+            } else {
+                return false;
+            }
         }
     });
 })(jQuery);
