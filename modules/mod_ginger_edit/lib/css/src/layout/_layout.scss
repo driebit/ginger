@@ -29,9 +29,8 @@
     @include size(margin-top, 35);
     border-top: 2px solid $grey;
 
-    .btn--save,
-    .btn--cancel {
-        display: none;
+    .btn--save {
+        float: right;
     }
 }
 

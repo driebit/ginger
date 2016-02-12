@@ -1,6 +1,4 @@
-{% extends "_email_base.tpl" %}
-
-{# {% block body_width %}{% endblock %} #}
+{% overrides %}
 
 {% block header %}
     <tr>
@@ -9,7 +7,7 @@
                 <tr>
                     <td><img src="/lib/images/logo.png"></td>
                     <td width="20"></td>
-                    <td>{{ m.config.site.title.value }}</td>
+                    <td>{{ m.config.site.title.value }} adsfasdfasdfasdf</td>
                 </tr>
             </table>
         </td>

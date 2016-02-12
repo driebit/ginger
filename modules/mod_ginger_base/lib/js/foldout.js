@@ -27,6 +27,9 @@
             if (elementHeight - commentsHeight > me.options.cutoff) {
                 me.collapse();
             }
+
+            $(document).on('foldout:expand', $.proxy(me.expand, me));
+            $(document).on('foldout:collapse', $.proxy(me.collapse, me));
         },
 
         toggle: function () {

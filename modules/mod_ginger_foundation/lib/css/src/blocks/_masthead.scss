@@ -9,7 +9,7 @@ body.has-content-group .masthead {
     @include size(top, 60);
     left: 0;
     z-index: 10;
-    background: #FFF url(/lib/images/bg_rectangle.png?embed) center center repeat;
+    background: #FFF url(/lib/images/bg_rectangle.png?embed) 50% 0 repeat;
     transition: height 0.3s;
 }
 
@@ -17,6 +17,10 @@ body.has-content-group .masthead {
     .masthead {
         @include size(height, 450);
         @include size(top, $globalNavHeight);
+    }
+
+    .masthead--small {
+        @include size(height, 250);
     }
 }
 
@@ -27,5 +31,9 @@ body.has-content-group .masthead {
 
     .masthead {
         @include size(height, 550);
+    }
+
+    .masthead--small {
+        @include size(height, 250);
     }
 }

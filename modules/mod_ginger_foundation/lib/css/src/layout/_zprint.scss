@@ -1,0 +1,36 @@
+@media print {
+    .global-nav,
+    .main-footer,
+    .btn,
+    .foldout__button,
+    .foldout.is-collapsed .foldout__button,
+    .foldout.is-expanded .foldout__button {
+        display: none;
+    }
+
+    a {
+        word-break: break-all;
+    }
+
+    img {
+        page-break-before: auto;
+        page-break-after: auto;
+        page-break-inside: avoid;
+    }
+
+    .list__item,
+    .list__item-publication {
+        display: block;
+        page-break-inside: avoid;
+    }
+
+    .list__item-publication.is-open {
+        page-break-before: always;
+    }
+
+    .list {
+        li + li {
+            border: none;
+        }
+    }
+}
