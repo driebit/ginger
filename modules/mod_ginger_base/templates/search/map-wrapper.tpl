@@ -1,0 +1,1 @@
+{% include "map/map.tpl" %}

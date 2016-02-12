@@ -20,7 +20,8 @@
         hasobjects|default:q.hasobjects,
         hasanyobject|default:q.hasanyobject,
         custompivots|default:q.custompivots,
-        ongoing_on_date|default:q.ongoing_on_date
+        ongoing_on_date|default:q.ongoing_on_date,
+        page|default:q.page|default:1
     as
         type,
         cat,
@@ -42,12 +43,13 @@
         hasobjects,
         hasanyobject,
         custompivots,
-        ongoing_on_date
+        ongoing_on_date,
+        page
 %}
 
     {% if type == "list" %}
 
-{% with m.search.paged[{ginger_search
+    {% with m.search.paged[{ginger_search
 
             cat_exclude=cat_exclude
             content_group=content_group
@@ -69,9 +71,10 @@
             hasanyobject=hasanyobject
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
+            page=page
         }] as result %}
 
-            {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
+            {% include "search/list-wrapper.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
 
         {% endwith %}
 
@@ -97,7 +100,7 @@
             content_group=content_group
         }] as result %}
 
-            {% include "timeline/timeline.tpl" items=result timenav_position="" start_at_slide=0 %}
+            {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
 
         {% endwith %}
 
@@ -126,7 +129,8 @@
             ongoing_on_date=ongoing_on_date
         }] as result %}
 
-            {% include "map/map.tpl" result=result container="map-results" blackwhite="true" height="600" %}
+
+            {% include "search/map-wrapper.tpl" result=result container="map-results" blackwhite="true" height="600" %}
 
         {% endwith %}
 
