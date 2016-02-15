@@ -7,6 +7,7 @@
             expandedClass: 'is-expanded',
             cutoff: 700
         },
+
         _create: function() {
 
             var me = this,
@@ -14,6 +15,10 @@
                 button = element.find('.foldout__button'),
                 elementHeight = element.height(),
                 commentsHeight = element.find('.comments').height();
+
+            if (element.data('height')) {
+                me.options.cutoff = element.data('height');
+            }
 
             button.on('click', function (evt) {
                 me.toggle();
