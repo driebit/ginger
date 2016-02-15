@@ -24,6 +24,10 @@
         page-break-inside: avoid;
     }
 
+    .list__item-publication.is-open {
+        page-break-before: always;
+    }
+
     .list {
         li + li {
             border: none;

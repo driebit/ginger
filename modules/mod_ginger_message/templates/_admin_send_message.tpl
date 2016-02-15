@@ -7,12 +7,14 @@
 <fieldset>
     <div class="row">
         <div class="col-md-12">
+            {% block category_options %}
             <h4>{_ Category _}</h4>
             {% with m.category.person.tree_flat as tree %}
                 {% for category in tree %}
                     {% include "_admin_send_message_options.tpl" category=category %}
                 {% endfor %}
             {% endwith %}
+            {% endblock %}
 
             {% block custom_options %}
             {% endblock %}
