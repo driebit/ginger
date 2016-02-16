@@ -1,6 +1,6 @@
 .t--home {
     main {
-        padding-top: 0;
+        margin-top: 0;
     }
 
     .main-content {
@@ -58,7 +58,7 @@
 @include mq(min-width, $mediumBreakpoint) {
     .t--home {
         main {
-            padding-top: 0;
+            margin-top: 0;
         }
     }
 
