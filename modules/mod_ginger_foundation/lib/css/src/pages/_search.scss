@@ -30,9 +30,11 @@
 
     input[type="text"] {
         width: calc(100% - 47px);
+        height: 37px;
         margin-right: 10px;
         float: left;
         color: $typographyColor;
+        border: 1px solid $mainThemeColor;
     }
 
     button[type="submit"] {
