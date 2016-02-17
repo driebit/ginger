@@ -27,7 +27,7 @@ main {
 @include mq(min-width, $mediumBreakpoint) {
     main {
         min-height: 100%;
-        @include size(padding-top, 250);
+        @include size(margin-top, 250);
         margin-bottom: -$footerHeight;
 
         &:after {

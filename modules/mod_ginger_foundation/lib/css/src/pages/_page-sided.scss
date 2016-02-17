@@ -1,3 +1,9 @@
+.t--article-sided {
+    main {
+        margin-top: 0;
+    }
+}
+
 .page--sided {
     padding-top: 0;
     @include size(max-width, 995);

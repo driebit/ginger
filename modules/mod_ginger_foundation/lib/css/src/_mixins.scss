@@ -35,7 +35,7 @@
 @mixin mq($property, $size) {
     $value: strip-unit($size);
 
-    @media only screen and (#{$property}: #{$value/16}rem) {
+    @media only screen and (#{$property}: #{$value}px ) {
         @content;
     }
 }

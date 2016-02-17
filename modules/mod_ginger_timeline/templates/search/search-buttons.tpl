@@ -1,4 +1,4 @@
-<a href="#timeline" class="btn--result-option"><i class="icon--map-lines"></i>{_ timeline _}</a>
+<a href="#timeline" class="btn--result-option"><i class="icon--timeline"></i>{_ timeline _}</a>
 
 {% wire
     name="search-timeline"

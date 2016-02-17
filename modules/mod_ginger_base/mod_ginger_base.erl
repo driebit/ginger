@@ -79,6 +79,14 @@ manage_schema(_Version, Context) ->
                     ], [
                         {content_group, image}
                     ]},
+                    {header, [
+                        {title, {trans, [
+                            {nl, <<"Header">>},
+                            {en, <<"Header">>}]}},
+                        {language, [en, nl]}
+                    ], [
+                        {content_group, media}
+                    ]},
                     {hasicon, [
                         {title, {trans, [
                             {nl, <<"Icoon">>},

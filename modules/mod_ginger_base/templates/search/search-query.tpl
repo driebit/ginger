@@ -98,6 +98,7 @@
             cat=cat
             sort=sort
             content_group=content_group
+            pagelen=50
         }] as result %}
 
             {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
