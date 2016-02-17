@@ -1,7 +1,6 @@
 {# Action for adding connections between rscs #}
 
 {% block widget_content %}
-
     {% with objects|default:[] as objects %}
     {% with btn_class|default:"btn btn-small btn-add-thing" as btn_class %}
     {% with m.rsc[category].id as cat_id %}
@@ -25,6 +24,7 @@
                             logon_required
                             object_id=id
                             objects=objects
+                            add_author=add_author
                             cat=cat_id
                             tabs_enabled=tabs_enabled
                             callback=callback
@@ -42,6 +42,7 @@
                             logon_required
                             subject_id=id
                             objects=objects
+                            add_author=add_author
                             cat=cat_id
                             tabs_enabled=tabs_enabled
                             callback=callback

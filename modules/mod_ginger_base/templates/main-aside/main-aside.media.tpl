@@ -1,5 +1,5 @@
-{% if id.s.depiction %}
-        {% with m.search[{ginger_search hasobject=[id,'depiction'] pagelen=6}] as result %}
+{% if id.s.depiction or id.s.hasbanner %}
+        {% with m.search[{ginger_search hasanyobject=[id,['depiction','hasbanner']] pagelen=6}] as result %}
 
             {% include "list/list-header.tpl" id=id list_title=_"Displayed in" items=result %}
 
