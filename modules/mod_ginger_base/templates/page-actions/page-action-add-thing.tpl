@@ -1,1 +1,1 @@
-{% include "_action_ginger_connection.tpl" category=category cg_id=id.content_group_id predicate=predicate add_author direction='out' btn_class='page-action--add' title=title tab="new" tabs_enabled=["new"] %}
+{% include "_action_ginger_connection.tpl" category=category cg_id=id.content_group_id predicate=predicate add_author direction='out' btn_class='page-action--add' btn_title=btn_title tab="new" tabs_enabled=["new"] %}
