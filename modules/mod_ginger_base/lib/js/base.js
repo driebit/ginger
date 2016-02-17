@@ -37,24 +37,22 @@
 
             var me = this;
 
-            if (!$(event.target).closest('.global-nav').length) {
+            if (!$(event.target).closest('form[role="search"]').length) {
 
-                try {
-                    var searchWidgets = $(':ui-global_search'),
-                        isOpen = false;
+                var searchWidgets = $(':ui-search_suggestions'),
+                    isOpen = false;
 
-                    $.each(searchWidgets, function(i, widget) {
-                        var inst = $(widget).data('ui-global_search');
-                        if (inst && inst.isVisible()) {
-                            isOpen = true;
-                        }
-                    });
+                $.each(searchWidgets, function(i, widget) {
 
-                    if (isOpen) {
-                        $(document).trigger('search:close');
+                    var inst = $(widget).data('ui-search_suggestions');
+                    if (inst && inst.isVisible()) {
+                        isOpen = true;
                     }
+                });
 
-                } catch (e) {}
+                if (isOpen) {
+                    $(document).trigger('search:close');
+                }
 
                 $(document).trigger('menu:close');
             }

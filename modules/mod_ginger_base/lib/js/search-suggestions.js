@@ -1,7 +1,7 @@
 (function ($) {
    'use strict';
 
-    $.widget("ui.global_search", {
+    $.widget("ui.search_suggestions", {
         _init: function() {
             this.init();
         },
@@ -14,31 +14,16 @@
                 prevVal = null,
                 paramResults = element.data('param-results'),
                 paramWire = element.data('param-wire'),
-                paramSearchButton = element.data('param-searchbutton'),
-                paramSearchSuggestions = element.data('param-searchsuggestions'),
+                paramToggleButton = '#' + element.data('param-togglebutton'),
                 paramFoldout = element.data('param-foldout'),
                 resultsElement = $('#' + paramResults),
                 windowHeight = $(window).height();
 
-
-            //TODO: backwards compat
-            if (paramSearchSuggestions == undefined) {
-
-                me.foldout              = true;
-                me.searchButton         = $('#toggle-search');
-                me.searchForm           = $(element.closest('form')),
-                me.searchInput          = element,
-                me.suggestions          = $('.global-search__suggestions');
-
-            } else {
-
                 me.foldout              = $(paramFoldout),
-                me.searchButton         = $(paramSearchButton),
+                me.toggleButton         = $(paramToggleButton),
                 me.searchForm           = $(element.closest('form')),
                 me.searchInput          = element,
-                me.suggestions          = $(paramSearchSuggestions);
-
-            }           
+                me.suggestions          = $(paramResults);
 
             resultsElement.removeClass('is-scrolable');
             resultsElement.hide();
@@ -56,6 +41,7 @@
 
                 setTimeout(function(){
                     resultsElement.show(0, function(){
+
                         if (resultsElement.outerHeight() > windowHeight) {
                             resultsElement.addClass('is-scrollable');
                         }
@@ -72,7 +58,7 @@
             $(document).on('search:close', $.proxy(me._closeSearch, me));
             $(document).on('search:toggle', $.proxy(me._toggleSearch, me));
 
-            if (me.searchButton != undefined) me.searchButton.on('click', $.proxy(me._toggleSearch, me));         
+            if (me.toggleButton != undefined) me.toggleButton.on('click', $.proxy(me._toggleSearch, me));
 
         },
 
@@ -82,14 +68,14 @@
         },
 
         _toggleSearch: function(event, close) {
-           
-            var me = this;          
 
-            if (me.searchButton) me.searchButton.toggleClass('is-active');
+            var me = this;
+
+            if (me.toggleButton) me.toggleButton.toggleClass('is-active');
 
             if(close) {
                 me.searchForm.removeClass('is-visible');
-                me.searchButton.removeClass('is-active');
+                if (me.toggleButton) me.toggleButton.removeClass('is-active');
             } else {
                 me.searchForm.toggleClass('is-visible');
             }
@@ -105,6 +91,7 @@
         },
 
         isVisible: function() {
+
             var me = this;
 
             if (me.suggestions.css('display') == 'block' || me.searchForm.hasClass('is-visible')) {
