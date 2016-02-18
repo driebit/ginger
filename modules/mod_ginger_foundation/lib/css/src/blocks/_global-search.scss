@@ -10,6 +10,7 @@
         @include size(font-size, 25);
     }
 
+
     &.is-active {
         right: 15px;
         z-index: 1100;

@@ -70,9 +70,6 @@
 
 @include mq(min-width, $mediumBreakpoint) {
     .home__search {
-        .main-container {
-            @include size(max-width, 700);
-        }
 
         input[type="text"] {
             width: 80%;

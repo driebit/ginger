@@ -15,18 +15,15 @@
                 paramResults = element.data('param-results'),
                 paramWire = element.data('param-wire'),
                 paramToggleButton = '#' + element.data('param-togglebutton'),
-                paramFoldout = element.data('param-foldout'),
-                resultsElement = $('#' + paramResults),
                 windowHeight = $(window).height();
 
-                me.foldout              = $(paramFoldout),
                 me.toggleButton         = $(paramToggleButton),
                 me.searchForm           = $(element.closest('form')),
                 me.searchInput          = element,
-                me.suggestions          = $(paramResults);
+                me.suggestions          = $('#' + paramResults);
 
-            resultsElement.removeClass('is-scrolable');
-            resultsElement.hide();
+            me.suggestions.removeClass('is-scrolable');
+            me.suggestions.hide();
 
             function doSearch() {
 
@@ -40,10 +37,10 @@
                 z_event(paramWire, {value: val});
 
                 setTimeout(function(){
-                    resultsElement.show(0, function(){
+                    me.suggestions.show(0, function(){
 
-                        if (resultsElement.outerHeight() > windowHeight) {
-                            resultsElement.addClass('is-scrollable');
+                        if (me.suggestions.outerHeight() > windowHeight) {
+                            me.suggestions.addClass('is-scrollable');
                         }
                     });
                 }, 500);
@@ -74,6 +71,7 @@
             if (me.toggleButton) me.toggleButton.toggleClass('is-active');
 
             if(close) {
+                me.suggestions.hide();
                 me.searchForm.removeClass('is-visible');
                 if (me.toggleButton) me.toggleButton.removeClass('is-active');
             } else {
@@ -83,9 +81,11 @@
             me.searchInput.val('');
             me.suggestions.hide();
 
-            setTimeout(function(){
-                 me.searchInput.focus();
-            }, 100);
+            if (me.isVisible()) {
+              setTimeout(function(){
+                   me.searchInput.focus();
+              }, 100);
+            }
 
             return false;
         },
