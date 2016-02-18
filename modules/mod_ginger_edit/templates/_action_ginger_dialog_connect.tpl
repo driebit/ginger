@@ -5,7 +5,7 @@
 {% with tabs_enabled|first|default:"find" as firsttab %}
 {% with tab|default:firsttab as tab %}
 {% with m.rsc[cat].name as cat_name %}
-{% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:objects as objects %}
+{% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:objects as objects %}{{ add_author|pprint }}{{ objects|pprint }}
 
     <ul class="nav nav-pills">
         {% block tabs %}

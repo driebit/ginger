@@ -25,6 +25,7 @@
                             logon_required
                             object_id=id
                             objects=objects
+                            add_author=add_author
                             cat=cat_id
                             tabs_enabled=tabs_enabled
                             callback=callback
@@ -42,6 +43,7 @@
                             logon_required
                             subject_id=id
                             objects=objects
+                            add_author=add_author
                             cat=cat_id
                             tabs_enabled=tabs_enabled
                             callback=callback
