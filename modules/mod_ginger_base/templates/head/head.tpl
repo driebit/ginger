@@ -24,6 +24,10 @@
         <meta name="keywords" content="{{ id.seo_keywords }}">
     {% endif %}
 
+    {% if id.seo_noindex %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+
     <link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
 
