@@ -2,7 +2,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Driebit" />
 
     {% include "head/twitter.tpl" %}
     {% include "head/facebook.tpl" %}
@@ -23,6 +22,10 @@
 
     {% if id.seo_keywords %}
         <meta name="keywords" content="{{ id.seo_keywords }}">
+    {% endif %}
+
+    {% if id.seo_noindex %}
+        <meta name="robots" content="noindex">
     {% endif %}
 
     <link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />

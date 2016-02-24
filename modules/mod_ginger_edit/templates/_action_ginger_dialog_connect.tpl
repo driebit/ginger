@@ -11,14 +11,19 @@
         {% block tabs %}
         {% if cat_name!='keyword' %}
             {% if not (tabs_enabled and tabs_enabled|length == 1) %}
-                {% if "new"|member:tabs_enabled %}
+                {% if "find"|member:tabs_enabled %}
                     <li {% if tab == "find" %}class="active"{% endif %}>
                         <a data-toggle="tab" data-id="{{m.rsc[cat_name].id}}" data-name="{{cat_name}}" href="#{{ #tab }}-find">{_ Find Page _}</a>
                     </li>
                 {% endif %}
-                {% if "find"|member:tabs_enabled %}
+                {% if "new"|member:tabs_enabled %}
                     <li {% if tab == "new" %}class="active"{% endif %}>
                         <a data-toggle="tab" href="#{{ #tab }}-new">{_ New Page _}</a>
+                    </li>
+                {% endif %}
+                {% if "upload"|member:tabs_enabled %}
+                    <li {% if tab == "upload" %}class="active"{% endif %}>
+                        <a data-toggle="tab" href="#{{ #tab }}-upload">{_ Upload File _}</a>
                     </li>
                 {% endif %}
             {% endif %}
@@ -70,6 +75,15 @@
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
                             cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
                 {% endif %}
+            {% endif %}
+            {% if "upload"|member:tabs_enabled %}
+                {% include "_action_dialog_media_upload_tab_upload.tpl"
+                    tab=#tab
+                    predicate=predicate
+                    subject_id=subject_id
+                    title="" 
+                    is_active=(tab == "upload")
+                %}
             {% endif %}
 
         {% endblock %}

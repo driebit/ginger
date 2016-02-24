@@ -165,7 +165,8 @@
     content: "\e61e";
 }
 
-.icon-by-pd:before {
+.icon--by-pd:before,
+.icon--cc-pd:before {
     content: "\e61f";
 }
 
@@ -226,11 +227,11 @@
 }
 
 .icon--timeline:before {
-    content: "\e900";
+    content: "\e905";
 }
 
 .icon--flag-location:before {
-    content: "\e904";
+    content: "\e906";
 }
 
 
