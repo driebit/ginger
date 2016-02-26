@@ -24,26 +24,34 @@ main {
     @include size(margin-top, 80);
 }
 
+.t--article-sided {
+    main {
+        margin-top: 0;
+    }
+}
+
+.page--sided {
+    padding-top: 0;
+    @include size(max-width, 995);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @include mq(min-width, $mediumBreakpoint) {
     main {
         min-height: 100%;
         @include size(margin-top, 250);
-        margin-bottom: -$footerHeight;
-
-        &:after {
-            content: "";
-            display: block;
-            height: $footerHeight;
-        }
     }
 
     .main-content {
         @include size(padding, 30);
     }
-}
 
-@include mq(min-width, $mediumBreakpoint) {
     .main-content--sided {
         float: left;
+    }
+
+    .main-aside--sided {
+        z-index: 30;
     }
 }
