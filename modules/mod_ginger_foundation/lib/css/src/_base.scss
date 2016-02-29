@@ -4,12 +4,14 @@
     box-sizing: border-box;
 }
 
-html,body {
-    height: 100%;
+html {
+    min-height: 100%;
+    position: relative;
 }
 
 body {
     @include size(padding-top, 60);
+    @include size(margin-bottom, $footerHeight);
     background: $bodyBgColor;
     color: $typographyColor;
     line-height: 1.5;
