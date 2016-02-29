@@ -8,7 +8,8 @@
     hide_showall_button,
     showmore_button_text|default:_"Show more results...",
     showall_button_text|default:_"Show all...",
-    list_template|default:"list/list-item.tpl"
+    list_template|default:"list/list-item.tpl",
+    show_pager
 as
     items,
     cols,
@@ -19,10 +20,16 @@ as
     hide_showall_button,
     showmore_button_text,
     showall_button_text,
-    list_template
+    list_template,
+    show_pager
 %}
 
     {% if items %}
+
+            {% if show_pager %}
+                {% include "pager/pager.tpl" %}
+            {% endif %}
+
             <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
                 {% for r in items|is_visible %}
                     {% if r|length == 2 %}
@@ -64,6 +71,12 @@ as
                 </div>
 
             {% endif %}
+
+            {% if show_pager %}
+                {% include "pager/pager.tpl" %}
+            {% endif %}
+
+
     {% endif %}
 
 {% endwith %}
