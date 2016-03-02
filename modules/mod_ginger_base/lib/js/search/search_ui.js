@@ -7,12 +7,14 @@ $.widget("ui.search_ui", {
 
         $(document).on('widgetmanager:loaded', $.proxy(me.init, this));
 
+        me.source = null;
+        me.pager = null;
+
 	},
 
 	init: function() {
 
         //after all widget's _create function
-
 		var me = this,
 			inputSearch = $(document).find('.input-search'),
             queryString = $.url().param('searchterm'),
@@ -30,7 +32,14 @@ $.widget("ui.search_ui", {
             me.doSearch(true);
         });
 
-        $(document).on('search:inputChanged search:doSearch', function() {
+        $(document).on('search:inputChanged search:doSearch', function(event, source) {
+
+            if (source) {
+                me.source = source;
+            } else {
+                me.source = null;
+            }
+
             me.doSearch(true);
         });
 
@@ -87,6 +96,7 @@ $.widget("ui.search_ui", {
             mergedValues = {};
 
         $.each(widgetEls, function(i, element){
+
             var classnames = element.className.split(/\s+/),
                 element = $(element);
 
@@ -100,13 +110,20 @@ $.widget("ui.search_ui", {
         });
 
 
+
         $.each(widgetRefs, function(i, widget) {
 
             if (!widget.getValues || typeof widget.getValues != 'function') return;
 
+            //reset pager if needed
+            if (widget.eventNamespace.indexOf('search_cmp_pager') != -1 && me.source != 'pager') {
+                widget.reset();
+            }
+
             var widgetVals = widget.getValues();
 
-            if (Array.isArray(widgetVals) ) {
+            if (widgetVals && Array.isArray(widgetVals) && widgetVals.length > 0) {
+
                  $.each(widgetVals, function(j, val) {
 
                     if (!mergedValues[val.type]) {

@@ -1,4 +1,4 @@
-{% with 
+{% with
     id,
     type|default:"map",
     fallback|default:"false",
@@ -17,9 +17,8 @@ as
     edgeLocation,
     edgePresented
 %}
-{% with edgeLocation|default:edgePresented|default:id as location %}{{ location|pprint }}
+{% with edgeLocation|default:edgePresented|default:id as location %}
     {% if location.address_city %}
-    
            <div class="map--location do_map_location"
                 data-street="
                 {% if location.address_street_2 %}

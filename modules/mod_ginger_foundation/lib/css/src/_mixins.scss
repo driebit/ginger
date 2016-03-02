@@ -35,7 +35,7 @@
 @mixin mq($property, $size) {
     $value: strip-unit($size);
 
-    @media only screen and (#{$property}: #{$value/16}rem) {
+    @media only screen and (#{$property}: #{$value}px ) {
         @content;
     }
 }
@@ -74,4 +74,16 @@
             lost-column: #{$mapColumns};
         }
     }
+}
+
+// Long words stop breaking layout
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 }

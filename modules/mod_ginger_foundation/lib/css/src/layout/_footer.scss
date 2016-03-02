@@ -134,7 +134,7 @@
 
     .response {
         @include size(padding, 20);
-        @include size(margin-top, 20);
+        @include size(margin-top, 40);
         background: rgba($white, 0.8);
         color: $typographyColor;
         border-radius: 3px;
@@ -144,8 +144,12 @@
 
 @include mq(min-width, $mediumBreakpoint) {
     .main-footer {
-        min-height: $footerHeight;
+        width: 100%;
+        @include size(min-height, $footerHeight);
         @include size(padding, 50, 0);
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
         lost-utility: clearfix;
     }
 

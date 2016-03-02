@@ -165,7 +165,8 @@
     content: "\e61e";
 }
 
-.icon-by-pd:before {
+.icon--by-pd:before,
+.icon--cc-pd:before {
     content: "\e61f";
 }
 
@@ -224,6 +225,15 @@
 .icon--cog:before {
     content: "\e903";
 }
+
+.icon--timeline:before {
+    content: "\e905";
+}
+
+.icon--flag-location:before {
+    content: "\e906";
+}
+
 
 // List item icons
 

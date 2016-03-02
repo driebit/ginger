@@ -90,8 +90,8 @@ p {
   margin-top: 35px;
   margin-top: 3.5rem;
   border-top: 2px solid #dadada; }
-  .ginger-edit__nav--footer .btn--save, .ginger-edit__nav--footer .btn--cancel {
-    display: none; }
+  .ginger-edit__nav--footer .btn--save {
+    float: right; }
 
 div.modal .modal-footer {
   font-size: inherit; }

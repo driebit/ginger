@@ -112,7 +112,7 @@ img.admin-list-overview {
 }
 
 .ginger-edit__aside {
-    @include size(padding, 20);
+    @include size(padding, 0, 20, 20);
     @include size(margin-bottom, $standardOffset);
     background: darken($bodyBgColor, 2.5%);
 

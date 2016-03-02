@@ -8,7 +8,9 @@
     hide_showall_button,
     showmore_button_text|default:_"Show more results...",
     showall_button_text|default:_"Show all...",
-    list_template|default:"list/list-item.tpl"
+    list_template|default:"list/list-item.tpl",
+    noresults,
+    show_pager
 as
     items,
     cols,
@@ -19,51 +21,69 @@ as
     hide_showall_button,
     showmore_button_text,
     showall_button_text,
-    list_template
+    list_template,
+    noresults,
+    show_pager
 %}
 
     {% if items %}
-            <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-                {% for r in items|is_visible %}
-                    {% if r|length == 2 %}
-                        {% with r|element:1 as item %}
-                            {% catinclude list_template item %}
-                        {%  endwith %}
-                    {% else %}
-                        {% with r as item %}
-                            {% catinclude list_template item %}
-                        {% endwith %}
-                    {% endif %}
-                {% endfor %}
 
-            </ul>
+      {% if show_pager %}
+          {% include "pager/pager.tpl" %}
+      {% endif %}
 
-            {% if not hide_showmore_button %}
+        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
+            {% for r in items|is_visible %}
+                {% if r|length == 2 %}
+                    {% with r|element:1 as item %}
+                        {% catinclude list_template item %}
+                    {%  endwith %}
+                {% else %}
+                    {% with r as item %}
+                        {% catinclude list_template item %}
+                    {% endwith %}
+                {% endif %}
+            {% endfor %}
 
-                <div id="{{ list_id }}-buttons">
+        </ul>
 
-                    {% if not hide_showmore_button %}
-                        {% button class="list__more" text=showmore_button_text action={moreresults result=result
-                            target=list_id
-                            template=list_template
-                            catinclude }
-                            %}
-                    {% endif %}
+        {% if not hide_showmore_button %}
 
-                    {#
-                    {% if not hide_showall_button %}
+            <div id="{{ list_id }}-buttons">
 
-                        {% button class="list__more" text=showall_button_text
-                            action={replace target=list_id template="list/list-all.tpl"}
-                            action={hide target=list_id++"-buttons" }
+                {% if not hide_showmore_button %}
+                    {% button class="list__more" text=showmore_button_text action={moreresults result=result
+                        target=list_id
+                        template=list_template
+                        catinclude }
                         %}
+                {% endif %}
 
-                    {% endif %}
-                    #}
+                {#
+                {% if not hide_showall_button %}
 
-                </div>
+                    {% button class="list__more" text=showall_button_text
+                        action={replace target=list_id template="list/list-all.tpl"}
+                        action={hide target=list_id++"-buttons" }
+                    %}
 
-            {% endif %}
+                {% endif %}
+                #}
+
+            </div>
+
+        {% endif %}
+
+        {% if show_pager %}
+            {% include "pager/pager.tpl" %}
+        {% endif %}
+
+    {% else %}
+        {% if noresults %}
+            <p class="no-results">{_ No results _}</p>
+        {% endif %}
     {% endif %}
+
+
 
 {% endwith %}

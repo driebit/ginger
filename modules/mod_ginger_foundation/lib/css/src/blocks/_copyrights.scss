@@ -5,6 +5,10 @@
     i {
         background: none;
         @include size(font-size, 20);
+
+        + i {
+            margin-left: 3px;
+        }
     }
 
     a:hover,
@@ -12,5 +16,25 @@
     a:active {
         text-decoration: none;
         opacity: 0.9;
+    }
+}
+
+figcaption {
+    .copyrights {
+        display: inline-block;
+        vertical-align: middle;
+        color: inherit;
+
+        a {
+            color: inherit;
+        }
+
+        i {
+            @include size(font-size, 16);
+
+            + i {
+                margin-left: 0;
+            }
+        }
     }
 }

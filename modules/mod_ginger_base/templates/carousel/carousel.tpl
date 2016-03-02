@@ -3,13 +3,17 @@
     carousel_id,
     extraClasses,
     config,
-    carousel_id
+    carousel_id,
+    itemtemplate|default:"carousel/carousel-item.tpl",
+    pagertemplate|default:"carousel/carousel-pager-item.tpl"
 as
     items,
     carousel_id,
     extraClasses,
     config,
-    carousel_id
+    carousel_id,
+    itemtemplate,
+    pagertemplate
 %}
 
 {% if items %}

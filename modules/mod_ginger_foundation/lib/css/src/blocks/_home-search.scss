@@ -72,30 +72,15 @@
     .home__search {
 
         input[type="text"] {
-            width: 80%;
+            width: calc(100% - 45px);
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
-        }
-
-        .btn--search {
-            width: 20%;
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            text-indent: 0px;
-            @include size(font-size, 24);
-            text-transform: none;
-
-            i {
-                @include size(margin-right, 5);
-                position: static;
-                @include size(font-size, 20);
-                font-weight: 900;
-            }
         }
     }
 
     .home__search__suggestions {
         width: 80%;
+        max-height: 300px;
+        overflow-y: scroll;
     }
 }

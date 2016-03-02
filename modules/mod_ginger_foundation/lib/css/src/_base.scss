@@ -4,12 +4,14 @@
     box-sizing: border-box;
 }
 
-html,body {
-    height: 100%;
+html {
+    min-height: 100%;
+    position: relative;
 }
 
 body {
     @include size(padding-top, 60);
+    @include size(margin-bottom, $footerHeight);
     background: $bodyBgColor;
     color: $typographyColor;
     line-height: 1.5;
@@ -108,6 +110,11 @@ figcaption {
     @include size(margin-top, 5);
     @include size(font-size, 14);
     color: lighten($typographyColor, 50%);
+
+    p {
+        display: inline-block;
+        margin: 0 15px 0 0;
+    }
 }
 
 blockquote {

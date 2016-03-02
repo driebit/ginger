@@ -8,9 +8,9 @@
     <div class="media--video video-wrapper">
         {% lib "js/vendor/flowplayer-3.2.12.min.js" %}
         <a href="/media/attachment/{{ id.medium.filename }}"
-             style="display:block;width:560px;height:420px"  
-             id="player"> 
-        </a> 
+             style="display:block;width:560px;height:420px"
+             id="player">
+        </a>
         <script>
             flowplayer("player", "/lib/js/vendor/flowplayer-3.2.16.swf");
         </script>
