@@ -110,6 +110,11 @@ figcaption {
     @include size(margin-top, 5);
     @include size(font-size, 14);
     color: lighten($typographyColor, 50%);
+
+    p {
+        display: inline-block;
+        margin: 0 15px 0 0;
+    }
 }
 
 blockquote {
