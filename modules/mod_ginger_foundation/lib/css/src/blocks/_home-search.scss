@@ -36,8 +36,14 @@
             position: absolute;
             top: 8px;
             left: 16px;
+            @include size(font-size, 29);
         }
     }
+}
+
+.home__search__container {
+    @extend .main-container;
+    position: relative;
 }
 
 .home__search__suggestions {
