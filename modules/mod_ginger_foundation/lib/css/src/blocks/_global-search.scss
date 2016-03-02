@@ -85,12 +85,6 @@
     border-radius: 4px;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
-    h4 {
-        @include size(margin, 0, 0, 4, 0);
-        font-family: $secondaryFontFamily;
-        color: $mainThemeColor;
-    }
-
     ul {
         @include size(padding-left, 20);
         @include size(margin, 0, 0, 15, 0);
@@ -115,6 +109,12 @@
         overflow: scroll;
         overflow-x: hidden;
     }
+}
+
+.search-suggestions__suggestions__title {
+    @include size(margin, 0, 0, 4, 0);
+    font-family: $secondaryFontFamily;
+    color: $mainThemeColor;
 }
 
 @media (max-height: 400px) {
