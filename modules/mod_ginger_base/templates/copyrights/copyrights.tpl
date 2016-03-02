@@ -1,7 +1,9 @@
 
 {% if id.rights %}
     <div class="copyrights">
+
         {% if id.rights|upper=="BY,SA" %}
+
             <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="nofollow" title="{_ You must give the original author credit, this work must be licensed under an identical license if used _}">
                 <i class="icon--cc-by"></i><i class="icon--cc-sa"></i>
             </a>
