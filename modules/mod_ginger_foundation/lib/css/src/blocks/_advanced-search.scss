@@ -24,8 +24,9 @@
     }
 
     .advanced-search__rule:first-child {
-        select {
-            width: 100%;
+
+        .btn--remove-rule {
+          top: 0px;
         }
 
         .advanced-search__rule__date {
