@@ -15,12 +15,14 @@ style_width
     0,
     0,
     0,
+    0,
     0, 
     style_boxed|if_undefined:0,
     style_width|if_undefined:"100%"
 as  
     show_signup_name_title,
     show_signup_name_prefix,
+    show_signup_username,
     show_signup_username_title,
     show_signup_password2,
     show_signup_tos_title,
