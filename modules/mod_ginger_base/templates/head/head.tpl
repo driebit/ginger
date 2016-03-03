@@ -9,7 +9,7 @@
     <title>
         {% block title %}
             {% if id %}
-                {{ id.seo_title|default:id.title ++ " – " ++ m.config.site.title.value }}
+                {{ id.seo_title|default:id.title ++ " - " ++ m.config.site.title.value }}
             {% else %}
                 {{ m.config.site.title.value }}
             {% endif %}

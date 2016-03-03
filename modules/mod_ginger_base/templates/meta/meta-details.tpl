@@ -5,7 +5,7 @@
                 <i class="icon--envelope"></i>
                 {_ E-mail _}:
             </span>
-            {% include "mailto/ahref.tpl" address=id.email text=_"email" %}
+            {% include "mailto/mailto.tpl" address=id.email text=_"email" %}
         </li>
     {% endif %}
 
