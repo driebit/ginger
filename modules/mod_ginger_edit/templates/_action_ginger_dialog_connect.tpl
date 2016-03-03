@@ -5,7 +5,10 @@
 {% with tabs_enabled|first|default:"find" as firsttab %}
 {% with tab|default:firsttab as tab %}
 {% with m.rsc[cat].name as cat_name %}
-{% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:objects as objects %}
+
+{% with (objects|is_defined)|if:objects:[[]] as objects %}
+{% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:[[]] as author %}
+{% with objects++author as objects %}
 
     <ul class="nav nav-pills">
         {% block tabs %}
@@ -90,6 +93,9 @@
     </div>
 
 {% endwith %}
+{% endwith %}
+{% endwith %}
+
 {% endwith %}
 {% endwith %}
 {% endwith %}
