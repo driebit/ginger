@@ -78,7 +78,7 @@ msgid ""
 "Copyrights"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:5 
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:4 
 msgid ""
 "Displayed in"
 msgstr ""
@@ -173,6 +173,11 @@ msgid ""
 "Help about page actions"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:6 
+msgid ""
+"Incoming connections"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:19 
 msgid ""
 "Leave a comment"
@@ -193,7 +198,7 @@ msgid ""
 "Located here"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:11 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:36 /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:11 
 msgid ""
 "Location"
 msgstr ""
@@ -253,7 +258,7 @@ msgid ""
 "No comments"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:62 
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:83 /vagrant/modules/mod_ginger_base/templates/map/map.tpl:71 
 msgid ""
 "No results"
 msgstr ""
@@ -308,7 +313,7 @@ msgid ""
 "Reason"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:17 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.text.tpl:4 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:5 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:14 
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:14 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.text.tpl:4 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:5 /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:14 
 msgid ""
 "Related"
 msgstr ""
@@ -408,6 +413,11 @@ msgid ""
 "This event is able to accept RSVP."
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:24 
+msgid ""
+"This resource has no incoming connections."
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6 
 msgid ""
 "Title"
@@ -485,6 +495,11 @@ msgid ""
 "comments:"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19 
+msgid ""
+"contract"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/media/download-button.tpl:2 
 msgid ""
 "download"
@@ -498,6 +513,16 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:16 
 msgid ""
 "error"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19 
+msgid ""
+"expand"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:9 
+msgid ""
+"expand/contract"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:20 
