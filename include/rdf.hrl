@@ -1,3 +1,10 @@
+%% @doc Common RDF vocabulary namespaces
+-define(NS_RDF, "http://www.w3.org/1999/02/22-rdf-syntax-ns#").
+-define(NS_FOAF, "http://xmlns.com/foaf/0.1/").
+-define(NS_GEO, "http://www.w3.org/2003/01/geo/wgs84_pos#").
+-define(NS_DCTERMS, "http://purl.org/dc/terms/").
+-define(NS_DCTYPE, "http://purl.org/dc/dcmitype/").
+
 -record(rdf_get, {uri}).
 
 -record(rdf_resource, {
@@ -26,10 +33,15 @@
 -record(find_links, {id, is_a}).
 
 -record(triple, {
-    type :: resource | literal,
+    type = literal :: resource | literal,
     subject :: binary(),
     subject_props = [] :: list(),
     predicate :: binary(),
     object :: binary(),
     object_props = [] :: list()
+}).
+
+%% @doc Notification to convert a Zotonic resource to an RDF resource
+-record(rsc_to_rdf, {
+    id :: integer()
 }).
