@@ -6,6 +6,7 @@ $.widget("ui.search_cmp_input_text", {
             widgetElement = $(me.element);
 
         me.widgetElement = widgetElement;
+        me.type = 'qs';
 
         me.widgetElement.keypress(function(event) {
             if (event.keyCode == 13) {
@@ -13,20 +14,29 @@ $.widget("ui.search_cmp_input_text", {
                 $(document).trigger('search:inputChanged');
             }
         });
-
-        if($.url().param('qs') != '') {
-            me.widgetElement.val($.url().param('qs'));
-        }
-
     },
 
     getValues: function() {
 
         var me = this;
+
         return [{
-            'type': 'qs',
+            'type': me.type,
             'values': me.widgetElement.val()
         }]
+    },
+
+
+    setValues: function(values) {
+
+        var me = this,
+            widgetValues = values[me.type];
+
+        me.widgetElement.val('');
+
+        if (widgetValues) {
+            me.widgetElement.val(widgetValues);
+        }
     }
 
 });

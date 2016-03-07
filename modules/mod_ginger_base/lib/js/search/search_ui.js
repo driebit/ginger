@@ -1,7 +1,6 @@
-
 $.widget("ui.search_ui", {
 
-	_create: function() {
+    _create: function() {
 
         var me = this;
 
@@ -10,24 +9,26 @@ $.widget("ui.search_ui", {
         me.source = null;
         me.pager = null;
 
-	},
+    },
 
-	init: function() {
+    init: function() {
 
         //after all widget's _create function
-		var me = this,
-			inputSearch = $(document).find('.input-search'),
+        var me = this,
+            inputSearch = $(document).find('.input-search'),
             queryString = $.url().param('searchterm'),
             documentWidth = $(document).width();
 
-		inputSearch.focus();
+        window.onhashchange = $.proxy(me.hashChanged, me);
+
+        inputSearch.focus();
 
         $('.search__top__container').find('.btn--result-option').on('click', function() {
             $.proxy(me._toggleView($(this).attr('href').substring(1)), me);
             return false;
         });
 
-        $('.global-search__submit').on('click', function(event){
+        $('.global-search__submit').on('click', function(event) {
             event.preventDefault();
             me.doSearch(true);
         });
@@ -40,22 +41,23 @@ $.widget("ui.search_ui", {
                 me.source = null;
             }
 
-            me.doSearch(true);
+            me.setHash();
+
         });
 
-        $('.search__filters__mobile').on('click', function(event){
+        $('.search__filters__mobile').on('click', function(event) {
             event.preventDefault();
             me.toggleSearchOptions();
         });
 
-        $('.search__filters__title').on('click', function(event){
+        $('.search__filters__title').on('click', function(event) {
             event.preventDefault();
             me.toggleSearchSection($(this));
         });
 
         if (documentWidth < 1024) {
-           $('.global-search__submit').on('click', function(){
-               me.toggleSearchOptions();
+            $('.global-search__submit').on('click', function() {
+                me.toggleSearchOptions();
             });
         }
 
@@ -63,9 +65,9 @@ $.widget("ui.search_ui", {
 
         me._toggleView('list');
 
-	},
+    },
 
-    _toggleView: function(type){
+    _toggleView: function(type) {
 
         var me = this,
             type;
@@ -76,26 +78,22 @@ $.widget("ui.search_ui", {
 
         buttonEl.addClass('is-active');
         $('.search__result__container').hide();
-        $('#search-' + type ).show();
-        $('#search-' + type ).css('visibility', 'visible');
+        $('#search-' + type).show();
+        $('#search-' + type).css('visibility', 'visible');
 
         if (jQuery.inArray(type, me.searched) == -1) {
-            me.doSearch();
+            me.hashChanged(true);
         }
-
     },
 
-	doSearch: function(reset) {
 
-		var me = this,
-			checkboxValue,
-			inputfieldValue,
-            type,
+    getWidgets: function() {
+
+        var me = this,
             widgetEls = $("[class*='do_search_cmp']"),
-            widgetRefs = [],
-            mergedValues = {};
+            widgetRefs = []
 
-        $.each(widgetEls, function(i, element){
+        $.each(widgetEls, function(i, element) {
 
             var classnames = element.className.split(/\s+/),
                 element = $(element);
@@ -109,30 +107,36 @@ $.widget("ui.search_ui", {
             });
         });
 
+        return widgetRefs;
 
+    },
+
+    getMergedValues: function(reset) {
+
+        var me = this,
+            checkboxValue,
+            inputfieldValue,
+            type,
+            mergedValues = {},
+            widgetRefs = me.getWidgets();
 
         $.each(widgetRefs, function(i, widget) {
 
             if (!widget.getValues || typeof widget.getValues != 'function') return;
 
-            //reset pager if needed
-            if (widget.eventNamespace.indexOf('search_cmp_pager') != -1 && me.source != 'pager') {
-                widget.reset();
-            }
-
             var widgetVals = widget.getValues();
 
             if (widgetVals && Array.isArray(widgetVals) && widgetVals.length > 0) {
 
-                 $.each(widgetVals, function(j, val) {
+                $.each(widgetVals, function(j, val) {
 
                     if (!mergedValues[val.type]) {
-                        if(Array.isArray(val.values)) {
+                        if (Array.isArray(val.values)) {
                             mergedValues[val.type] = [];
                         }
                     }
 
-                    if(Array.isArray(val.values)) {
+                    if (Array.isArray(val.values)) {
                         mergedValues[val.type] = mergedValues[val.type].concat(val.values);
                     } else {
                         mergedValues[val.type] = val.values;
@@ -142,14 +146,79 @@ $.widget("ui.search_ui", {
             }
         });
 
-        type = me.getType();
+        return mergedValues;
 
-        if (reset) me.searched = [];
+        //type = me.getType();
 
-		$(document).trigger("search:doSearchWire", {'values': mergedValues, 'type': me.getType() });
+        //if (reset) me.searched = [];
 
-        if (jQuery.inArray(type, me.searched) == -1) me.searched.push(type);
-	},
+        //if (jQuery.inArray(type, me.searched) == -1) me.searched.push(type);
+
+
+    },
+
+    setHash: function(force) {
+
+        console.log('sethash func');
+
+        //create state hash
+        var me = this,
+            json = JSON.stringify(me.getMergedValues()),
+            hash = btoa(json);
+
+				console.log(json);
+        window.location.hash = hash;
+
+        if (force) {
+            me.hashChanged();
+        }
+
+    },
+
+
+    hashChanged: function() {
+
+        console.log('hash has changed, in func');
+
+        var me = this,
+            hash = window.location.hash.substring(1, window.location.hash.length),
+            json = atob(hash),
+            values = jQuery.parseJSON(json);
+
+
+				console.log(values);
+
+        $.proxy(me.setWidgetsState(values), me);
+        $.proxy(me.doSearch(values), me);
+
+    },
+
+
+    setWidgetsState: function(values) {
+
+        var me = this,
+            widgets = me.getWidgets();
+
+        $.each(widgets, function(i, widget) {
+
+            if (!widget.setValues || typeof widget.setValues != 'function') return;
+            widget.setValues(values);
+
+        });
+    },
+
+
+    doSearch: function(values) {
+
+        var me = this,
+            type = me.getType();
+
+        $(document).trigger("search:doSearchWire", {
+            'values': values,
+            'type': type
+        });
+
+    },
 
 
     getType: function() {
@@ -157,11 +226,11 @@ $.widget("ui.search_ui", {
         return (el.size() > 0) ? el.attr('href').replace(/#/, '') : false;
     },
 
-    toggleSearchOptions: function(){
+    toggleSearchOptions: function() {
         $('.search__filters').toggleClass('is-open');
     },
 
-    toggleSearchSection: function(title){
+    toggleSearchSection: function(title) {
         title.parent().siblings().removeClass('is-open');
         title.parent().toggleClass('is-open');
     }
