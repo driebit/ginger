@@ -4,11 +4,54 @@ mod_ginger_rdf
 A Zotonic module for retrieving, working with, and producing RDF triples. This
 module supports both XML and JSON-LD serialization formats.
 
-Usage
------
+Features:
 
-This module still in an experimental phase. More documentation will be added
-later.
+* Make all your Zotonic resources available in RDF.
+* Relate your Zotonic resources to linked data from other sources.
+
+Represent resources in RDF
+--------------------------
+
+Enable mod_ginger_rdf in Zotonic, then request any page with the proper Accept
+header to get an RDF representation of the resource (where `123` is the id
+of some resource):
+
+```bash
+curl -L -H Accept:application/ld+json http://yoursite.com/id/123
+```
+
+Please note that currently only the [JSON-LD](https://www.w3.org/TR/json-ld/)
+serialization format is supported. Pull requests to add other formats are
+very welcome.
+
+Observe the `#rsc_to_rdf{}` notification to hook into the process:
+
+```erlang
+observe_rsc_to_rdf(#rsc_to_rdf{id = Id}, Triples, Context) ->
+    Triple = #triple{
+        predicate = <<"http://yoursite.com/super-special-predicate">>,
+        object = m_rsc:p(Id, some_custom_property, Context)
+    },
+    [Triple | Triples].
+```
+
+This JSON-LD serialization happens in two steps. First, the Zotonic resource
+is converted into a set of RDF triples. To do so yourself:
+
+```erlang
+-include_lib("mod_ginger_rdf/include/rdf.hrl").
+
+#rdf_resource{id = Id, triples = Triples} = m_rdf:to_triples(Id, Context).
+```
+
+Then, the `#rdf_resource{}` record is serialized into a Mochijson-compatible
+JSON structure:
+
+```erlang
+Resource = m_rdf:to_triples(Id, Context),
+JsonLd = ginger_json_ld:serialize(RdfResource),
+mochijson2:encode(JsonLd).
+```
 
 Notifications
 -------------
@@ -25,7 +68,7 @@ observer.
     observe_find_links/3
 ]).
 
--include_lib("../../modules/mod_ginger_rdf/include/rdf.hrl").
+-include_lib("mod_ginger_rdf/include/rdf.hrl").
 
 observe_find_links(#find_links{id=Id, is_a=CatList}, Links, _Context) ->
     %% Do some search to find relevant RDF links, then return them as a list

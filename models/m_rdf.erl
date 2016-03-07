@@ -14,7 +14,8 @@
     find_resource/2,
     object/3,
     ensure_resource/3,
-    lookup_triple/2
+    lookup_triple/2,
+    to_triples/2
 ]).
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
@@ -91,6 +92,180 @@ rsc(Url, Context) ->
         ?WEEK,
         Context
     ).
+
+
+%% @doc Export resource to a set of triples
+-spec to_triples(integer(), #context{}) -> #rdf_resource{}.
+to_triples(Id, Context) ->
+    Props = m_rsc:get_visible(Id, Context),
+
+    Triples = lists:flatten(
+        %% Resource properties
+        lists:filtermap(
+            fun(Prop) ->
+                case property_to_triples(Prop, Props, Context) of
+                    [] ->
+                        false;
+                    PropTriples ->
+                        {true, PropTriples}
+                end
+            end,
+            Props
+        ) ++
+        %% Outgoing resource edges
+        lists:filtermap(
+            fun({Key, Edges}) ->
+                Predicate = m_predicate:get(Key, Context),
+                PredicateUri = proplists:get_value(uri, Predicate),
+
+                {true, lists:filtermap(
+                    fun(Edge) ->
+                        Subject = proplists:get_value(subject_id, Edge),
+                        Object = proplists:get_value(object_id, Edge),
+
+                        {true, #triple{
+                            type = resource,
+                            predicate = PredicateUri,
+                            subject = m_rsc:p(Subject, uri, Context),
+                            object = m_rsc:p(Object, uri, Context)
+                        }}
+                    end,
+                    Edges
+                )}
+            end,
+            m_edge:get_edges(Id, Context)
+        )
+    ),
+
+    %% Find thumbnail
+    WithThumbnail =
+        with_original_media(Id, with_thumbnail(Id, Triples, Context), Context),
+
+    Result = z_notifier:foldr(#rsc_to_rdf{id = Id}, WithThumbnail, Context),
+
+    #rdf_resource{id = m_rsc:p(Id, uri, Context), triples = Result}.
+
+%% Each property can map to one or more triples
+property_to_triples({_, <<>>}, _Props, _Context) ->
+    %% Skip empty binary values
+    [];
+property_to_triples({_, undefined}, _Props, _Context) ->
+    %% Skip undefined values
+    [];
+property_to_triples({body, Value}, _Props, Context) ->
+    %% TODO add support for multilingual properties
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "description">>,
+            object = z_html:strip(z_trans:trans(Value, Context))
+        }
+    ];
+property_to_triples({category_id, Value}, _Props, Context) ->
+    Category = m_rsc:get_visible(Value, Context),
+    case proplists:get_value(uri, Category) of
+        undefined ->
+            [];
+        Uri ->
+            [
+                #triple{
+                    type = resource,
+                    predicate = <<?NS_RDF, "type">>,
+                    object = Uri
+                }
+            ]
+    end;
+property_to_triples({created, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "created">>,
+            object = Value
+        }
+    ];
+property_to_triples({date_start, Value}, _Props, _Context) ->
+    [
+        #triple{
+        predicate = <<?NS_DCTERMS, "date">>,
+        object = Value
+        }
+    ];
+property_to_triples({modified, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "modified">>,
+            object = Value
+        }
+    ];
+property_to_triples({name_first, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_FOAF, "firstName">>,
+            object = Value
+        }
+    ];
+property_to_triples({name_surname, Value}, Props, _Context) ->
+    Surname = case proplists:get_value(name_surname_prefix, Props) of
+        <<>> ->
+            Value;
+        Prefix ->
+            [Prefix, <<" ">>, Value]
+    end,
+    [
+        #triple{
+            predicate = <<?NS_FOAF, "familyName">>,
+            object = Surname
+        }
+    ];
+property_to_triples({phone, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_FOAF, "phone">>,
+            object = [<<"tel:">>, Value]
+        }
+    ];
+property_to_triples({pivot_location_lat, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_GEO, "lat">>,
+            object = Value
+        }
+    ];
+property_to_triples({pivot_location_lng, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_GEO, "long">>,
+            object = Value
+        }
+    ];
+property_to_triples({publication_start, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "issued">>,
+            object = Value
+        }
+    ];
+property_to_triples({summary, Value}, _Props, Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "abstract">>,
+            object = z_trans:trans(Value, Context)
+        }
+    ];
+property_to_triples({title, Value}, _Props, Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "title">>,
+            object = z_trans:trans(Value, Context)
+        }
+    ];
+property_to_triples({website, Value}, _Props, _Context) ->
+    [
+        #triple{
+            predicate = <<?NS_FOAF, "homepage">>,
+            object = Value
+        }
+    ];
+property_to_triples({_Prop, _Val}, _, _) ->
+    [].
 
 %% @doc Shortcuts for namespaced RDF properties
 lookup_triple(uri, Triples) ->
@@ -178,3 +353,38 @@ lookup_triples([Predicate | Rest], Triples) ->
     end;
 lookup_triples([], _Triples) ->
     undefined.
+
+%% @doc Try to media triples and add them
+-spec with_thumbnail(integer(), list(), #context{}) -> list().
+with_thumbnail(Id, Triples, Context) ->
+    maybe_add_media(
+        fun() ->
+            z_media_tag:url(Id, [{mediaclass, <<"foaf-thumbnail">>}, {use_absolute_url, true}], Context)
+        end,
+        <<?NS_FOAF, "thumbnail">>,
+        Triples
+    ).
+
+%% @doc Try to find media triples and add them
+-spec with_original_media(integer(), list(), #context{}) -> list().
+with_original_media(Id, Triples, Context) ->
+    maybe_add_media(
+        fun() ->
+            z_media_tag:url(Id, [{use_absolute_url, true}], Context)
+        end,
+        <<?NS_FOAF, "depiction">>,
+        Triples
+    ).
+
+maybe_add_media(Fun, Predicate, Triples) ->
+    case Fun() of
+        {ok, MediaUrl} ->
+            Triples ++ [#triple{
+                type = resource,
+                predicate = Predicate,
+                object = MediaUrl
+            }];
+        {error, _} ->
+            Triples
+    end.
+
