@@ -128,7 +128,7 @@ create_triple(Subject, Predicate, Object) ->
 -spec serialize(#rdf_resource{}) -> list().
 serialize(#rdf_resource{id = Id, triples = Triples}) ->
     Data = lists:reverse(lists:foldl(
-        fun(#triple{predicate = Predicate} = Triple, Acc) ->
+        fun(#triple{} = Triple, Acc) ->
             {JsonKey, JsonValue} = TripleJson = triple_to_json(Triple),
             case proplists:get_value(JsonKey, Acc) of
                 undefined ->
