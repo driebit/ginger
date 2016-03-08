@@ -155,7 +155,7 @@ serialize(#rdf_resource{id = Id, triples = Triples}) ->
 deserialize(JsonLd) ->
     open(JsonLd).
 
-triple_to_json(#triple{predicate = <<?NS_RDF, "type">>, type = literal, object = Object}) ->
+triple_to_json(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
     {<<"@type">>, Object};
 triple_to_json(#triple{type = literal, predicate = Predicate, object = Object}) ->
     %% z_convert:to_json to convert any date tuples to datetime string, which
