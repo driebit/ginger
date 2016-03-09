@@ -140,3 +140,27 @@ current release:
 1. Fetch changes: `$ git fetch`.
 2. Switch to master: `$ git checkout master`.
 3. Make, commit and push your changes.
+
+Deploying sites
+---------------
+
+To deploy a site, log in to the proper server (`ginger-test.driebit.net`,
+`ginger-acceptatie.driebit.net` or `ginger01.driebit.net`):
+
+```bash
+$ ssh ginger-test.driebit.net
+$ cd /srv/zotonic/sites/[site name]
+```
+
+Check the current Git branch, then pull the latest changes:
+
+```bash
+$ z git pull
+```
+
+Then compile the changes and flush the site:
+
+```bash
+$ z zotonic shell
+$ z:compile(), z:flush([site name]).
+```
