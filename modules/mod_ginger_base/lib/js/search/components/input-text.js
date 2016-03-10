@@ -18,19 +18,23 @@ $.widget("ui.search_cmp_input_text", {
 
     getValues: function() {
 
-        var me = this;
+        var me = this,
+            value = ($.url().param('qs') != '' && !window.location.hash) ? value = $.url().param('qs') : me.widgetElement.val();
 
         return [{
             'type': me.type,
-            'values': me.widgetElement.val()
+            'values': value
         }]
     },
-
 
     setValues: function(values) {
 
         var me = this,
-            widgetValues = values[me.type];
+            widgetValues;
+
+        try {
+           widgetValues = values[me.type];
+        } catch(e) {}
 
         me.widgetElement.val('');
 

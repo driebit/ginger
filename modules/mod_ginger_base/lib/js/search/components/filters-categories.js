@@ -35,8 +35,13 @@ $.widget("ui.search_cmp_filters_categories", {
     setValues: function(values) {
 
         var me = this,
-            widgetValues = values[me.type],
+            widgetValues,
             inputs = me.widgetElement.find('input');
+
+        try {
+           widgetValues = values[me.type];
+        } catch(e) {}
+
 
         //reset
         $.each(inputs, function(i, input) {

@@ -29,8 +29,6 @@
     "js/search/components/input-text.js"
     "js/search/components/sort.js"
     "js/search/components/pager.js"
+    "js/search/components/types.js"
     "js/mail-decode.js"
 %}
-
-
-

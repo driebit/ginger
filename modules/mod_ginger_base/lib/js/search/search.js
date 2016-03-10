@@ -6,16 +6,11 @@ $.widget("ui.search", {
 
         $(document).on('search:doSearchWire', function(event, searchParameters) {
 
+            if (!searchParameters.values) {
+                searchParameters.values = {};
+            }
 
-            //console.log(searchParameters);
-
-            var values = searchParameters.values;
-
-						values.type = searchParameters.type;
-
-
-            z_event('search-' + values.type , values);
-
+            z_event('search-' + searchParameters.values.type, searchParameters.values);
         });
     }
 });

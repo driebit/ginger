@@ -17,9 +17,11 @@
                     <button type="submit" class="global-search__submit" title="{_ Search _}">{_ Search _}</button>
                 </form>
 
-                <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
-                <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
-                {% all include "search/search-buttons.tpl" %}
+                <div class="do_search_cmp_types">
+                  <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
+                  <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+                  {% all include "search/search-buttons.tpl" %}
+                </div>
             </div>
         </div>
 

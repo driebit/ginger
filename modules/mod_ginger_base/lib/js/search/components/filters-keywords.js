@@ -34,8 +34,12 @@ $.widget("ui.search_cmp_filters_keywords", {
     setValues: function(values) {
 
         var me = this,
-            widgetValues = values[me.type],
+            widgetValues,
             inputs = me.widgetElement.find('input');
+
+        try {
+           widgetValues = values[me.type];
+        } catch(e) {}
 
         $.each(inputs, function(i, input) {
             $(input).removeAttr('checked');

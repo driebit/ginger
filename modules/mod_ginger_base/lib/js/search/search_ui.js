@@ -8,6 +8,7 @@ $.widget("ui.search_ui", {
 
         me.source = null;
         me.pager = null;
+        me.searched = [];
 
     },
 
@@ -22,11 +23,6 @@ $.widget("ui.search_ui", {
         window.onhashchange = $.proxy(me.hashChanged, me);
 
         inputSearch.focus();
-
-        $('.search__top__container').find('.btn--result-option').on('click', function() {
-            $.proxy(me._toggleView($(this).attr('href').substring(1)), me);
-            return false;
-        });
 
         $('.global-search__submit').on('click', function(event) {
             event.preventDefault();
@@ -61,29 +57,14 @@ $.widget("ui.search_ui", {
             });
         }
 
-        me.searched = [];
+        var hash = window.location.hash;
 
-        me._toggleView('list');
-
-    },
-
-    _toggleView: function(type) {
-
-        var me = this,
-            type;
-
-        $('.btn--result-option').removeClass('is-active');
-
-        var buttonEl = $('[href="#' + type + '"]');
-
-        buttonEl.addClass('is-active');
-        $('.search__result__container').hide();
-        $('#search-' + type).show();
-        $('#search-' + type).css('visibility', 'visible');
-
-        if (jQuery.inArray(type, me.searched) == -1) {
-            me.hashChanged(true);
+        if (!hash || hash == '') {
+          me.setHash();
+        } else {
+          me.hashChanged();
         }
+
     },
 
 
@@ -148,51 +129,34 @@ $.widget("ui.search_ui", {
 
         return mergedValues;
 
-        //type = me.getType();
-
-        //if (reset) me.searched = [];
-
-        //if (jQuery.inArray(type, me.searched) == -1) me.searched.push(type);
-
-
     },
 
     setHash: function(force) {
 
-        console.log('sethash func');
-
-        //create state hash
         var me = this,
-            json = JSON.stringify(me.getMergedValues()),
-            hash = btoa(json);
+            mergedValues = me.getMergedValues();
 
-				console.log(json);
+        var json = JSON.stringify(mergedValues);
+        var hash = btoa(json);
+
         window.location.hash = hash;
 
         if (force) {
             me.hashChanged();
         }
-
     },
 
-
     hashChanged: function() {
-
-        console.log('hash has changed, in func');
 
         var me = this,
             hash = window.location.hash.substring(1, window.location.hash.length),
             json = atob(hash),
             values = jQuery.parseJSON(json);
 
-
-				console.log(values);
-
         $.proxy(me.setWidgetsState(values), me);
         $.proxy(me.doSearch(values), me);
 
     },
-
 
     setWidgetsState: function(values) {
 
@@ -207,23 +171,14 @@ $.widget("ui.search_ui", {
         });
     },
 
-
     doSearch: function(values) {
 
-        var me = this,
-            type = me.getType();
+        var me = this;
 
         $(document).trigger("search:doSearchWire", {
-            'values': values,
-            'type': type
+            'values': values
         });
 
-    },
-
-
-    getType: function() {
-        var el = $('.btn--result-option.is-active');
-        return (el.size() > 0) ? el.attr('href').replace(/#/, '') : false;
     },
 
     toggleSearchOptions: function() {

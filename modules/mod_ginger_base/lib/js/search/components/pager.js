@@ -27,6 +27,7 @@ $.widget("ui.search_cmp_pager", {
 
     getValues: function() {
 
+
          var me = this,
              values;
 
@@ -34,7 +35,7 @@ $.widget("ui.search_cmp_pager", {
 
         return [{
                 'type': 'page',
-                'values': me.value
+                'values': parseInt(me.value)
             }
         ]
     }
