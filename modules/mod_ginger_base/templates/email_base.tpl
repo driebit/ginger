@@ -17,7 +17,7 @@
                         <tr>
                             <td><img src="/lib/images/logo.png"></td>
                             <td width="20"></td>
-                            <td>{{ m.config.site.title.value }} adsfasdfasdfasdf</td>
+                            <td>{{ m.config.site.title.value }}</td>
                         </tr>
                     </table>
                 </td>

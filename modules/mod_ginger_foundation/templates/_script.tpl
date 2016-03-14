@@ -8,8 +8,7 @@
     "js/vendors/jquery.fancybox.min.js"
     "js/base.js"
     "js/global-nav.js"
-    "js/global-search.js"
-    "js/home-search.js"
+    "js/search-suggestions.js"
     "js/content-group-nav.js"
     "js/foldout.js"
     "js/foundation.js"
@@ -31,6 +30,3 @@
     "js/search/components/pager.js"
     "js/mail-decode.js"
 %}
-
-
-

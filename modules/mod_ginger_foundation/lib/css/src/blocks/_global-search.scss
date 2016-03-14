@@ -1,14 +1,15 @@
-.global-search__toggle-search {
+.search-suggestions__toggle-search {
     @extend .global-nav-toggle;
 }
 
-.global-search__toggle-search {
+.search-suggestions__toggle-search {
     right: 65px;
 
     &:after {
         content: "\e617";
         @include size(font-size, 25);
     }
+
 
     &.is-active {
         right: 15px;
@@ -22,7 +23,7 @@
     }
 }
 
-.global-search__searchform {
+.search-suggestions__searchform {
     position: fixed;
     top: 0;
     width: 100%;
@@ -72,23 +73,17 @@
     }
 }
 
-.global-search__searchform__group {
+.search-suggestions__searchform__group {
     height: 100%;
 }
 
-.global-search__suggestions {
+.search-suggestions__suggestions {
     width: 100%;
     @include size(padding, 10, 15);
     background: $white;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 4px;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
-
-    h4 {
-        @include size(margin, 0, 0, 4, 0);
-        font-family: $secondaryFontFamily;
-        color: $mainThemeColor;
-    }
 
     ul {
         @include size(padding-left, 20);
@@ -116,14 +111,20 @@
     }
 }
 
+.search-suggestions__suggestions__title {
+    @include size(margin, 0, 0, 4, 0);
+    font-family: $secondaryFontFamily;
+    color: $mainThemeColor;
+}
+
 @media (max-height: 400px) {
-    .global-search__suggestions.is-scrollable {
+    .search-suggestions__suggestions.is-scrollable {
         height: 200px;
     }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
-    .global-search__searchform {
+    .search-suggestions__searchform {
         @include size(height, $globalNavHeight);
 
         [type=text] {
@@ -131,14 +132,14 @@
         }
     }
 
-    .global-search__suggestions {
+    .search-suggestions__suggestions {
         @include size(max-width, 440);
         @include size(margin-left, 50);
     }
 }
 
 @include mq(min-width, $largeBreakpoint) {
-    .global-search__searchform {
+    .search-suggestions__searchform {
         &.is-visible {
             &:before {
                 top: 22px;
@@ -146,7 +147,7 @@
         }
     }
 
-    .global-search__toggle-search {
+    .search-suggestions__toggle-search {
         width: auto;
         height: 100%;
         float: right;

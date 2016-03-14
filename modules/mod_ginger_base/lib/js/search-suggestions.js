@@ -1,7 +1,7 @@
 (function ($) {
    'use strict';
 
-    $.widget("ui.global_search", {
+    $.widget("ui.search_suggestions", {
         _init: function() {
             this.init();
         },
@@ -14,15 +14,16 @@
                 prevVal = null,
                 paramResults = element.data('param-results'),
                 paramWire = element.data('param-wire'),
-                resultsElement = $('#' + paramResults),
+                paramToggleButton = '#' + element.data('param-togglebutton'),
                 windowHeight = $(window).height();
 
-            me.searchButton         = $('#toggle-search');
-            me.searchForm           = $('form[role=search]');
-            me.searchInput          = $('.do_global_search');
-            me.suggestions          = $('.global-search__suggestions');
+                me.toggleButton         = $(paramToggleButton),
+                me.searchForm           = $(element.closest('form')),
+                me.searchInput          = element,
+                me.suggestions          = $('#' + paramResults);
 
-            resultsElement.removeClass('is-scrolable');
+            me.suggestions.removeClass('is-scrolable');
+            me.suggestions.hide();
 
             function doSearch() {
 
@@ -36,9 +37,10 @@
                 z_event(paramWire, {value: val});
 
                 setTimeout(function(){
-                    resultsElement.show(0, function(){
-                        if (resultsElement.outerHeight() > windowHeight) {
-                            resultsElement.addClass('is-scrollable');
+                    me.suggestions.show(0, function(){
+
+                        if (me.suggestions.outerHeight() > windowHeight) {
+                            me.suggestions.addClass('is-scrollable');
                         }
                     });
                 }, 500);
@@ -52,12 +54,12 @@
 
             $(document).on('search:close', $.proxy(me._closeSearch, me));
             $(document).on('search:toggle', $.proxy(me._toggleSearch, me));
-            me.searchButton.on('click', $.proxy(me._toggleSearch, me));
+
+            if (me.toggleButton != undefined) me.toggleButton.on('click', $.proxy(me._toggleSearch, me));
 
         },
 
         _closeSearch: function(event) {
-
             var me = this;
             me._toggleSearch(event, true);
         },
@@ -66,33 +68,37 @@
 
             var me = this;
 
-            me.searchButton.toggleClass('is-active');
+            if (me.toggleButton) me.toggleButton.toggleClass('is-active');
 
             if(close) {
+                me.suggestions.hide();
                 me.searchForm.removeClass('is-visible');
-                me.searchButton.removeClass('is-active');
+                if (me.toggleButton) me.toggleButton.removeClass('is-active');
             } else {
-                if(me.searchButton.hasClass('is-active')) {
-                    me.searchForm.toggleClass('is-visible');
-                } else {
-                    me.searchForm.toggleClass('is-visible');
-
-                }
+                me.searchForm.toggleClass('is-visible');
             }
 
             me.searchInput.val('');
             me.suggestions.hide();
 
-            setTimeout(function(){
-                 me.searchInput.focus();
-            }, 100);
+            if (me.isVisible()) {
+              setTimeout(function(){
+                   me.searchInput.focus();
+              }, 100);
+            }
 
             return false;
         },
 
         isVisible: function() {
+
             var me = this;
-            return me.searchForm.hasClass('is-visible');
+
+            if (me.suggestions.css('display') == 'block' || me.searchForm.hasClass('is-visible')) {
+                return true;
+            } else {
+                return false;
+            }
         }
     });
 })(jQuery);

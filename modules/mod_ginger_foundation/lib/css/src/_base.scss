@@ -11,7 +11,6 @@ html {
 
 body {
     @include size(padding-top, 60);
-    @include size(margin-bottom, $footerHeight);
     background: $bodyBgColor;
     color: $typographyColor;
     line-height: 1.5;
@@ -28,6 +27,12 @@ body {
         left: 0px;
         z-index: 400;
         background: rgba(0,0,0, 0.5);
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    body {
+        @include size(margin-bottom, $footerHeight);
     }
 }
 
