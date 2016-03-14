@@ -140,7 +140,8 @@ iframe {
 
 .body-text,
 .block--text {
-    ul {
+    ul,
+    ol {
         @include size(margin-left, 20);
     }
 
