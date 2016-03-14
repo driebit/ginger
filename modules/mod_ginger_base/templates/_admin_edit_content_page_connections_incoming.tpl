@@ -16,9 +16,13 @@
     {% if result|length > 0 %}
 
       {% for connection, rank in result %}
-        <a href="{% url admin_edit_rsc id=connection.id %}">{{ connection.title }}</a>
+        <a href="{% url admin_edit_rsc id=connection.id %}">{{ connection.title }} | {{ m.rsc[connection.category_id].title }} </a>
         <hr></hr>
       {% endfor %}
+
+      <div class="form-group">
+         <a class="btn btn-default btn-sm" href="{% url admin_referrers id=id %}"><i class="glyphicon glyphicon-list"></i> {_ View all incoming connections _}</a>
+      </div>
 
     {% else %}
         {_ This resource has no incoming connections. _}

@@ -13,7 +13,7 @@ as
             <p>
 
                 <a href="{{ location.page_url }}">{{ location.title }}</a><br>
-                {% if location.address_street_1 %}{{ location.address_street_1 }}{% endif %}{% if location.address_street_2 %}{{ location.address_street_2 }}{% endif %}{% if location.address_postcode or location.address_city %},{% endif %}{% if location.address_postcode %}{{ location.address_postcode }}{% endif %} {% if location.address_city %}{{ location.address_city }}{% endif %}
+                {% if location.address_street_1 %}{{ location.address_street_1 }}{% endif %}{% if location.address_street_2 %}{{ location.address_street_2 }}{% endif %}{% if location.address_postcode or location.address_city %},{% endif %}{% if location.address_postcode %} {{ location.address_postcode }}{% endif %} {% if location.address_city %}{{ location.address_city }}{% endif %}
                 {% if location.website %}
                     <br><a href="{{ location.website }}" target="_blank">website</a>
                 {% endif %}

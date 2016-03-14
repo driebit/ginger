@@ -2,7 +2,7 @@
     @include size(min-height, 200);
     @include size(padding, 25, 0);
     position: relative;
-    z-index: 400;
+    z-index: 0;
     background: $footerBgColor;
 
     p {
@@ -150,6 +150,7 @@
         position: absolute;
         bottom: 0px;
         left: 0px;
+        z-index: 0;
         lost-utility: clearfix;
     }
 

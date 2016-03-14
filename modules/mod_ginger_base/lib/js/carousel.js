@@ -2,6 +2,7 @@
 $.widget( "ui.carousel", {
 
     _create: function() {
+        console.log('bliep');
 
          var me = this,
              widgetElement = $(me.element),
@@ -17,4 +18,3 @@ $.widget( "ui.carousel", {
     }
 
 });
-

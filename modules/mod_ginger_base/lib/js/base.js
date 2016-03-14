@@ -37,13 +37,20 @@
 
             var me = this;
 
-            if (!$(event.target).closest('.global-nav').length) {
+            if (!$(event.target).closest('form[role="search"]').length) {
 
-                try {
-                    var globalSearchWidget = $(':ui-global_search').data('ui-global_search');
-                } catch (e) {}
+                var searchWidgets = $(':ui-search_suggestions'),
+                    isOpen = false;
 
-                if (globalSearchWidget && globalSearchWidget.isVisible()) {
+                $.each(searchWidgets, function(i, widget) {
+
+                    var inst = $(widget).data('ui-search_suggestions');
+                    if (inst && inst.isVisible()) {
+                        isOpen = true;
+                    }
+                });
+
+                if (isOpen) {
                     $(document).trigger('search:close');
                 }
 
