@@ -14,7 +14,6 @@
 
                 <form class="search__top__form">
                     {% include "search/components/input-text.tpl" %}
-                    <button type="submit" class="global-search__submit" title="{_ Search _}">{_ Search _}</button>
                 </form>
 
                 <div class="do_search_cmp_types">

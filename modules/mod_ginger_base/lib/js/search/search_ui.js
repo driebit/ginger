@@ -7,8 +7,6 @@ $.widget("ui.search_ui", {
         $(document).on('widgetmanager:loaded', $.proxy(me.init, this));
 
         me.source = null;
-        me.pager = null;
-        me.searched = [];
 
     },
 
@@ -26,7 +24,7 @@ $.widget("ui.search_ui", {
 
         $('.global-search__submit').on('click', function(event) {
             event.preventDefault();
-            me.doSearch(true);
+            $(document).trigger('search:doSearch');
         });
 
         $(document).on('search:inputChanged search:doSearch', function(event, source) {
@@ -165,9 +163,9 @@ $.widget("ui.search_ui", {
 
         $.each(widgets, function(i, widget) {
 
-            if (!widget.setValues || typeof widget.setValues != 'function') return;
-            widget.setValues(values);
-
+            if (widget.setValues && typeof widget.setValues == 'function') {
+              widget.setValues(values);
+            }
         });
     },
 
