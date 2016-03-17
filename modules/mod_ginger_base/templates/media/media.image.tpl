@@ -25,8 +25,8 @@
         </a>
     {% endif %}
 
-    {% if m.rsc[id].summary %}
-        <figcaption><p>{{ m.rsc[id].summary }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</p> {% include "copyrights/copyrights.tpl" %}</figcaption>
+    {% if caption|default:m.rsc[id].summary as caption %}
+        <figcaption><p>{{ caption }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</p> {% include "copyrights/copyrights.tpl" %}</figcaption>
     {% endif %}
 
 </figure>
