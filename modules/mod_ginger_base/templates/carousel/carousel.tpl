@@ -17,7 +17,7 @@ as
 {% if items %}
 
     {% block carousel %}
-        <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}">
+        <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}" data-options='{{ options }}'>
             {% for id in items %}
                 {% catinclude itemtemplate id %}
             {% endfor %}
@@ -29,7 +29,6 @@ as
             $('#{{ carousel_id }}').carousel({{ config }});
         {% endjavascript %}
     {% endblock %}
-
 
 {% endif %}
 
