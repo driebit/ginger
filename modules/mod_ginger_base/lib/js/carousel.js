@@ -2,7 +2,6 @@
 $.widget( "ui.carousel", {
 
     _create: function() {
-        console.log('bliep');
 
          var me = this,
              widgetElement = $(me.element),
@@ -10,8 +9,8 @@ $.widget( "ui.carousel", {
              slick = null,
              options = $(widgetElement).data('options');
 
-        if (this.options){
-            $(widgetElement).slick(this.options);
+        if (options){
+            $(widgetElement).slick(options);
         } else {
             $(widgetElement).slick();
         }
