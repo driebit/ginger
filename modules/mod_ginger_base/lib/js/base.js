@@ -20,6 +20,9 @@
                 'autoCenter': true,
                 'autoResize': true,
                 'fitToView': true,
+                'tpl': {
+                        error    : '<p class="fancybox-error"></p>'
+                },
                 'helpers': {
                     'overlay': {
                         'css': {
@@ -41,8 +44,10 @@
                               '<source src="' + url + '">' +
                               '</video>';
 
+                        $('.fancybox-inner').hide();
                         $(".fancybox-inner").html(videoHTML);
-                        $.fancybox.resize();
+                        $('.fancybox-inner').show();
+                        $.fancybox.update();
                     }
 
 
