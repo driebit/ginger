@@ -311,7 +311,8 @@ lookup_triple(thumbnail, Triples) ->
 lookup_triple(rights, Triples) ->
     lookup_triples(
         [
-            <<"http://www.europeana.eu/schemas/edm/rights">>
+            <<"http://www.europeana.eu/schemas/edm/rights">>,
+            <<"http://purl.org/dc/terms/rights">>
         ],
         Triples
     );
