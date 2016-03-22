@@ -28,7 +28,7 @@
 
 	{% with m.rsc[id.content_group_id] as content_group %}
 		<body class="{% if content_group %}has-contentgroup {% endif %}{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base">
-
+            {% block after_body %}{% endblock %}
     		{% block global_nav %}
     			{% include "global-nav/global-nav.tpl" %}
     		{% endblock %}
@@ -55,7 +55,6 @@
     		{% script %}
 
             {% block extra_scripts %}{% endblock %}
-
 	   </body>
     {% endwith %}
 </html>

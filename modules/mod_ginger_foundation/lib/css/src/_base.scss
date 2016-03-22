@@ -84,10 +84,6 @@ h3 {
     }
 }
 
-.page-title {
-    @include size(margin-bottom, 0);
-}
-
 .subtitle {
     @include size(margin-top, 10);
     margin-bottom: 0;
