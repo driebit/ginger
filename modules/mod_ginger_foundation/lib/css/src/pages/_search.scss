@@ -275,6 +275,7 @@
 
 .no-results {
     @include size(padding, 20);
+    margin: 0;
 }
 
 .search_results__map {
