@@ -9,17 +9,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-01-13 10:31+0100\n"
-"PO-Revision-Date: 2016-01-13 10:32+0100\n"
+"POT-Creation-Date: 2016-03-22 18:44+0100\n"
+"PO-Revision-Date: 2016-03-22 18:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:56
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:80
 msgid " "
 msgstr ""
 
@@ -31,7 +32,7 @@ msgstr "1 reactie"
 msgid "About:"
 msgstr "Over: "
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:46
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:48
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:96
 msgid "All rights reserved"
 msgstr "Alle rechten voorbehouden"
@@ -65,11 +66,19 @@ msgstr "Categorieën"
 msgid "Choose language"
 msgstr "Kies je taal"
 
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:5
+msgid "Connect"
+msgstr "Koppel"
+
 #: /vagrant/modules/mod_ginger_base/templates/admin/admin-edit-copyrights.tpl:2
 msgid "Copyrights"
 msgstr "Copyrights"
 
-#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:5
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:6
+msgid "Disconnect"
+msgstr "Loskoppelen"
+
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:4
 msgid "Displayed in"
 msgstr "Weergegeven in"
 
@@ -152,9 +161,21 @@ msgstr "Ga naar website"
 msgid "Gone"
 msgstr "Weg"
 
+#: /vagrant/modules/mod_ginger_base/templates/email_base.tpl:4
+msgid "Hello from Zotonic"
+msgstr "Hallo van Ginger"
+
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:12
 msgid "Help about page actions"
 msgstr "Hulp met pagina acties"
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:6
+msgid "Incoming connections"
+msgstr "Inkomende relaties"
+
+#: /vagrant/modules/mod_ginger_base/templates/email_base.tpl:34
+msgid "Kind regards,"
+msgstr "Met vriendelijke groet,"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:19
 msgid "Leave a comment"
@@ -176,8 +197,8 @@ msgstr "Linkedin"
 msgid "Located here"
 msgstr "Hier gevestigd"
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:10
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:36
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:11
 msgid "Location"
 msgstr "Locatie"
 
@@ -226,7 +247,8 @@ msgstr "Geen toegang"
 msgid "No comments"
 msgstr "Geen reacties"
 
-#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:55
+#: /vagrant/modules/mod_ginger_base/templates/list/list.tpl:83
+#: /vagrant/modules/mod_ginger_base/templates/map/map.tpl:71
 msgid "No results"
 msgstr "Geen resultaten"
 
@@ -234,7 +256,7 @@ msgstr "Geen resultaten"
 msgid "Note: Comments are moderated"
 msgstr "Reacties worden gemodereerd"
 
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-suggestions.tpl:13
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-suggestions.tpl:13
 msgid "Nothing found"
 msgstr "Geen resultaten"
 
@@ -274,7 +296,7 @@ msgstr "Lees meer"
 msgid "Reason"
 msgstr "Reden"
 
-#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:17
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:14
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.text.tpl:4
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:5
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:14
@@ -290,10 +312,11 @@ msgid "Return to the homepage"
 msgstr "Keer terug naar de homepage"
 
 #: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:2
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:10
-#: /vagrant/modules/mod_ginger_base/templates/global-search/search-form.tpl:16
-#: /vagrant/modules/mod_ginger_base/templates/global-search/toggle-search.tpl:2
-#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:15
+#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:35
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:39
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:13
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:17
 msgid "Search"
@@ -301,7 +324,7 @@ msgstr "Zoeken"
 
 #: /vagrant/modules/mod_ginger_base/templates/search/search-filters.tpl:3
 msgid "Search options"
-msgstr "Zoek opties"
+msgstr "Zoekopties"
 
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:51
 msgid "Send"
@@ -319,7 +342,7 @@ msgstr "Korte titel"
 msgid "Show all..."
 msgstr "Toon alle"
 
-#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:32
+#: /vagrant/modules/mod_ginger_base/templates/meta/meta-location.tpl:22
 msgid "Show map"
 msgstr "Toon kaart"
 
@@ -364,6 +387,18 @@ msgstr "Deze pagina bestaat niet"
 msgid "This event is able to accept RSVP."
 msgstr "Bezoekers kunnen zich aanmelden voor dit evenement"
 
+#: /vagrant/modules/mod_ginger_base/templates/email_base.tpl:31
+msgid ""
+"This is the base message. When you receive this text then the template "
+"builder did not overrule the <tt>body</tt> block."
+msgstr ""
+"Dit is de basis boodschap. Wanneer u ontvangt deed <tt>het proefblok</tt> "
+"niet overrulen door deze tekst vervolgens de sjabloon bouwer."
+
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:28
+msgid "This resource has no incoming connections."
+msgstr "Deze pagina heeft geen inkomende relaties"
+
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:6
 msgid "Title"
 msgstr "Titel"
@@ -379,23 +414,27 @@ msgstr "Twitter"
 msgid "Unlike"
 msgstr "Unlinke"
 
+#: /vagrant/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:24
+msgid "View all incoming connections"
+msgstr "Toon alle inkomende relaties"
+
 #: /vagrant/modules/mod_ginger_base/templates/meta/meta-details.tpl:36
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36
 msgid "Website"
 msgstr "Website"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:39
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:41
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:84
 msgid "You may use the work freely"
 msgstr "Het werk mag vrijblijvend gebruikt worden"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:15
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:17
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:9
 msgid "You must give the original author credit"
 msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:5
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:7
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:59
 msgid ""
 "You must give the original author credit, this work must be licensed under "
@@ -406,7 +445,7 @@ msgstr ""
 "uitsluitend krachtens dezelfde licentie als de onderhavige licentie worden "
 "verspreid."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:10
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:12
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:21
 msgid ""
 "You must give the original author credit, you may not alter, transform, or "
@@ -415,7 +454,7 @@ msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
 "de gebruiker mag het werk niet bewerken."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:27
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:29
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:34
 msgid ""
 "You must give the original author credit, you may not use this work for "
@@ -424,7 +463,7 @@ msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
 "de gebruiker mag het werk niet voor commerciële doeleinden gebruiken"
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:32
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:34
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:72
 msgid ""
 "You must give the original author credit, you may not use this work for "
@@ -436,7 +475,7 @@ msgstr ""
 "de gebruiker het werk bewerkt kan het daaruit ontstane werk uitsluitend "
 "krachtens dezelfde licentie als de onderhavige licentie worden verspreid."
 
-#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:20
+#: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:22
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:46
 msgid ""
 "You must give the original author credit, you may not use this work for "
@@ -462,6 +501,10 @@ msgstr "reacties"
 msgid "comments:"
 msgstr "reacties:"
 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19
+msgid "contract"
+msgstr "inklappen"
+
 #: /vagrant/modules/mod_ginger_base/templates/media/download-button.tpl:2
 msgid "download"
 msgstr "download"
@@ -475,11 +518,20 @@ msgstr "email"
 msgid "error"
 msgstr "error"
 
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19
+msgid "expand"
+msgstr "uitklappen"
+
+#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:9
+msgid "expand/contract"
+msgstr "inklappen/uitklappen"
+
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:20
 msgid "list"
 msgstr "lijst"
 
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:54
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:78
 msgid "logon or register"
 msgstr "Login of registreer"
 
@@ -503,7 +555,7 @@ msgstr "moet een nummer zijn"
 msgid "results(s)"
 msgstr "resultaten"
 
-#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:15
+#: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 msgid "search"
 msgstr "zoeken"
 
