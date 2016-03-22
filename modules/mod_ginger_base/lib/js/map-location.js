@@ -27,15 +27,20 @@
 
                 if (window.google) {
 
-                    // var lat = me.element.attr('data-lat'),
-                    //     lng = me.element.attr('data-lng');
+                    var lat = me.element.data('lat'),
+                        lng = me.element.data('lng'),
+                        street = me.element.data('street').trim();
 
-                    // if (lat && lat != "" && lng && lng != "") {
-                    //     var latLng = new google.maps.LatLng(lat,lng);
-                    //     me.initView(latLng);
-                    // } else {
+                    //if only the lat/lng values are known and no address is known, start the map with the given coordinates
+                    //otherwise, look up the coordinates first
+
+                    if (lat && lat != '' && lng && lng != '' && (!street || street=='') ) {
+
+                        var latLng = new google.maps.LatLng(lat,lng);
+                        me.initView(latLng);
+                    } else {
                         me.geocodeAddress();
-                    //}
+                    }
 
                 } else {
                     me.checkGoogleVar();
@@ -76,7 +81,6 @@
         },
 
         initView: function(latLng) {
-
             var me = this,
                 marker;
 
