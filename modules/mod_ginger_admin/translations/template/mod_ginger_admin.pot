@@ -18,11 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_admin/templates/admin_base.tpl:5 
-msgid ""
-"Admin"
-msgstr ""
-
 #: /vagrant/modules/mod_ginger_admin/templates/admin_logon.tpl:4 
 msgid ""
 "Admin log on"
