@@ -44,7 +44,13 @@ observe_logon_actions(#logon_actions{args=Args}, _Acc, _Context) ->
     %% Can probably be removed when https://github.com/zotonic/zotonic/pull/1043 is resolved.
     proplists:get_value(action, Args).
 
-%% @doc Persist custom fields if they are included in the signup template
 -spec observe_signup_form_fields(atom(), list(), #context{}) -> list().
-observe_signup_form_fields(signup_form_fields, FormProps, _Context) ->
-    [{gender, false} | FormProps].
+observe_signup_form_fields(signup_form_fields, _FormProps, _Context) ->
+    [
+    {name_first, false},
+    {name_surname, false},
+    {email, true},
+    {block_email, false}
+    ].
+
+
