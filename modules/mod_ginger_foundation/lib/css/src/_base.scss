@@ -159,3 +159,14 @@ iframe {
     float: right;
     @include size(margin-right, 10);
 }
+
+// Zotonic
+
+.z-logon-box.error_tos_agree #signup_error_tos_agree,
+.z-logon-box.error_duplicate_username #signup_error_duplicate_username,
+.z-logon-box.error_duplicate_username #signup_error_duplicate_identity,
+.z-logon-box.error_duplicate_identity #signup_error_duplicate_identity,
+.z-logon-box.error_custom_1 #signup_error_custom_1,
+.z-logon-box.error_custom_2 #signup_error_custom_2 {
+  display: block;
+}
