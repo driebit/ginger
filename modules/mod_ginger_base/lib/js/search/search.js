@@ -1,16 +1,16 @@
 $.widget("ui.search", {
 
-	_create: function() {
+    _create: function() {
 
-		var me = this;
+        var me = this;
 
-		$(document).on('search:doSearchWire', function(event, searchParameters) {
+        $(document).on('search:doSearchWire', function(event, searchParameters) {
 
-            var values = searchParameters.values;
-            values.type = searchParameters.type;
+            if (!searchParameters.values) {
+                searchParameters.values = {};
+            }
 
-            z_event('search-' + values.type , values);
-
-		});
-	}
+            z_event('search-' + searchParameters.values.type, searchParameters.values);
+        });
+    }
 });

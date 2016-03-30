@@ -20,7 +20,7 @@ $.widget("ui.search_cmp_filters_anykeywords", {
         var me = this,
             inputs = me.widgetElement.find('input:checked'),
             values;
- 
+
         values = $.map(inputs, function( input ) {
             return parseInt($(input).val());
         });
