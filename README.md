@@ -31,8 +31,11 @@ Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
-2. The site now appears on the [status site](http://ginger.dev), where you can
-   start it.
+2. z:compile in zotonic shell
+3. Start the site from the [status site](http://ginger.dev)
+4. Login and go to the modules page
+5. Deactive site module and activate it again
+6. Now the site should work properly
 
 Adding modules
 --------------
