@@ -46,7 +46,7 @@
 
         {% block footer %}{% endblock %}
 	</div>
-
+  
     {% include "_editor.tpl" %}
     {% include "_admin_js_include.tpl" %}
     {% lib
