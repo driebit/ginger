@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:11 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:13 
 msgid ""
 "About"
 msgstr ""
@@ -33,7 +33,7 @@ msgid ""
 "Add a connection: "
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:17 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:23 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18 
 msgid ""
 "Add:"
 msgstr ""
@@ -43,7 +43,7 @@ msgid ""
 "Address"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36 
 msgid ""
 "All"
 msgstr ""
@@ -63,7 +63,7 @@ msgid ""
 "Basic"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:15 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:54 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:15 
 msgid ""
 "Cancel"
 msgstr ""
@@ -128,17 +128,17 @@ msgid ""
 "Facebook"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:31 /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:31 
+#: /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:34 /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:34 
 msgid ""
 "Field is required"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36 
 msgid ""
 "Find"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:50 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:15 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:50 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:18 
 msgid ""
 "Find Page"
 msgstr ""
@@ -183,7 +183,7 @@ msgid ""
 "LinkedIn"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:5 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:6 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:6 /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:7 
 msgid ""
 "Location"
 msgstr ""
@@ -208,12 +208,12 @@ msgid ""
 "Mobile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:51 
 msgid ""
 "New"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:23 
 msgid ""
 "New Page"
 msgstr ""
@@ -233,7 +233,7 @@ msgid ""
 "On page"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:10 
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12 
 msgid ""
 "Part of"
 msgstr ""
@@ -241,11 +241,6 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:83 
 msgid ""
 "Postcode"
-msgstr ""
-
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12 
-msgid ""
-"Posted in"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:49 
@@ -298,6 +293,16 @@ msgid ""
 "Street Line 1"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:12 
+msgid ""
+"Subtitel"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:19 
+msgid ""
+"Summary"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:15 
 msgid ""
 "Telephone"
@@ -343,7 +348,7 @@ msgid ""
 "Unlike"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:62 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:62 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28 
 msgid ""
 "Upload File"
 msgstr ""

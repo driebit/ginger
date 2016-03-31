@@ -124,3 +124,21 @@ img.admin-list-overview {
 [class^="ginger-edit__aside"], [class*=" ginger-edit__aside"] {
     @extend .ginger-edit__aside;
 }
+
+.ginger-edit__profile-picture {
+    padding: 15px;
+    border: 1px solid #BEBDBE;
+
+    .widget-header {
+        display: none;
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .widget {
+        border: none;
+    }
+}
