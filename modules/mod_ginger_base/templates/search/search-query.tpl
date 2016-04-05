@@ -131,7 +131,7 @@
         }] as result %}
 
             {% block search_map %}
-                {% include "search/map-wrapper.tpl" result=result container="map-results" blackwhite="true" height="600" %}
+                {% include "search/map-wrapper.tpl" result=result container="map-results" blackwhite="true" height="600" scrollwheel="true" %}
             {% endblock %}
 
         {% endwith %}
