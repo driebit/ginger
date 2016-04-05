@@ -45,7 +45,7 @@ msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:5 
 msgid ""
-"Authored"
+"Authored by "
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
@@ -135,7 +135,7 @@ msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17 
 msgid ""
-"Favorites"
+"Favorites of "
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:75 
