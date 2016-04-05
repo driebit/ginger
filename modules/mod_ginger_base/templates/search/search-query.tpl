@@ -130,8 +130,9 @@
             ongoing_on_date=ongoing_on_date
         }] as result %}
 
-
-            {% include "search/map-wrapper.tpl" result=result container="map-results" blackwhite="true" height="600" %}
+            {% block search_map %}
+                {% include "search/map-wrapper.tpl" result=result container="map-results" blackwhite="true" height="600" %}
+            {% endblock %}
 
         {% endwith %}
 
