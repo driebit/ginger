@@ -9,6 +9,8 @@
             title = "{{ id.summary }}"
         {% endif %}
         >
+    {% else %}
+        <a href="{% image_url id.id %}" class="media--image__lightbox lightbox" rel="body">
     {% endif %}
 
         {% if id.medium.width > 750 %}
@@ -21,9 +23,7 @@
             {% image id.id mediaclass="landscape-large" alt="" crop=id.id.crop_center %}
         {% endif %}
 
-    {% if link %}
         </a>
-    {% endif %}
 
     {% if caption|default:m.rsc[id].summary as caption %}
         <figcaption><p>{{ caption }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</p> {% include "copyrights/copyrights.tpl" %}</figcaption>

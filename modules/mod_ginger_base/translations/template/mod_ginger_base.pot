@@ -45,7 +45,7 @@ msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:5 
 msgid ""
-"Authored"
+"Authored by "
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/keywords/keywords.tpl:5 
@@ -135,7 +135,7 @@ msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17 
 msgid ""
-"Favorites"
+"Favorites of "
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:75 
@@ -203,7 +203,7 @@ msgid ""
 "Leave a comment"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:4 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:4 
+#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:2 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:4 
 msgid ""
 "Like"
 msgstr ""
@@ -454,7 +454,7 @@ msgid ""
 "Twitter"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:5 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:5 
+#: /vagrant/modules/mod_ginger_base/templates/favorite/favorite.tpl:3 /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:5 
 msgid ""
 "Unlike"
 msgstr ""

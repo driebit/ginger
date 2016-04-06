@@ -4,7 +4,11 @@
     .btn,
     .foldout__button,
     .foldout.is-collapsed .foldout__button,
-    .foldout.is-expanded .foldout__button {
+    .foldout.is-expanded .foldout__button,
+    .page-action--favorite,
+    .share,
+    .attached-media,
+    .main-aside--sided {
         display: none;
     }
 

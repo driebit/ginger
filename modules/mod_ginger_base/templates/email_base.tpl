@@ -15,9 +15,9 @@
                 <td>
                     <table>
                         <tr>
-                            <td><img src="/lib/images/logo.png"></td>
+                            <td><img src="/lib/images/logo.png" width="150"></td>
                             <td width="20"></td>
-                            <td>{{ m.config.site.title.value }}</td>
+                            {# <td style="font-size: 30px; font-weight: bold;">{{ m.config.site.title.value }}</td> #}
                         </tr>
                     </table>
                 </td>
@@ -40,9 +40,9 @@
         </tr>
         {% endblock %}
         {% block footer %}
-            <tr>
-                <td style="background-color: #2f3337;"></td>
-            </tr>
+            {# <tr>
+                <td height="100" style="background-color: #2f3337;"></td>
+            </tr> #}
         {% endblock %}
     </table>
 </div>
