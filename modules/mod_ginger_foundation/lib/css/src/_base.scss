@@ -110,6 +110,7 @@ figure {
 
 figcaption {
     @include size(margin-top, 5);
+    position: relative;
     @include size(font-size, 14);
     color: lighten($typographyColor, 50%);
 
