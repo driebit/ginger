@@ -8,7 +8,8 @@
         cat_exclude|default:['meta', 'menu', 'admin_content_query'],
         search_text|default:q.value|default:q.qs,
         cg_name,
-        pagelen|default:10
+        pagelen|default:10,
+        unfinished_or_nodate|default:"true"
     as
         results_template,
         cat,
@@ -16,14 +17,16 @@
         cat_exclude,
         search_text,
         content_group,
-        pagelen
+        pagelen,
+        unfinished_or_nodate
 %}
+
     {% if paged %}
-        {% with m.search.paged[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen}] as result %}
+        {% with m.search.paged[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate=unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen}] as result %}
             {% include results_template %}
         {% endwith %}
     {% else %}
-        {% with m.search[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen page=q.page}] as result %}
+        {% with m.search[{ginger_search cat=cat cat_exclude=cat_exclude unfinished_or_nodate=unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen page=q.page}] as result %}
             {% include results_template result=result %}
         {% endwith %}
     {% endif %}

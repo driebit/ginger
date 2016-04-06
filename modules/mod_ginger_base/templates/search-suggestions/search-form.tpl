@@ -38,9 +38,13 @@ as
           {% endif %}
           {_ Search _}
         </button>
-        {% wire name="show-suggestions-"++#identifier
-            action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context}
-        %}
+
+          {% block search_suggestions_wire %}
+            {% wire name="show-suggestions-"++#identifier
+                action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context  }
+            %}
+          {% endblock %}
+
         <div class="{{ suggestionsclass }}" id="search-suggestions__suggestions-{{ #identifier }}"></div>
     </div>
 </form>
