@@ -1,4 +1,6 @@
-**New Release**
+**The flow for testing Ginger releases**
+    
+**New Release**    
 -A new Ginger version will be available on Test, Acceptatie or Productie    
 -Dorien/Fred let Kathleen/Margarida know when the new release is ready    
 -There can be no new features added to the release once the ready sign had been 
