@@ -46,3 +46,7 @@ is done.
 Once this flow is done, it will be repeated in the next fase. So it will be the 
 same on Test, Acceptatie and Productie. Once a certain version of Ginger is 
 release to Productie a newer version is added to Test.
+     
+We will also see if David or Esther has some time to tell Kathlee/Margarida 
+some tings about automated testing and to see if they have some ideas as to how
+to approach this in this flow.
