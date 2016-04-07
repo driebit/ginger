@@ -19,9 +19,6 @@ as
 
 <form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">
     <div class="{{ wrapperclass }}">
-        <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
-        <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
-        <input type="hidden" name="qcg" value="{{ cg_name }}" />
         <input type="text"
             class="do_search_suggestions"
             name="qs"
