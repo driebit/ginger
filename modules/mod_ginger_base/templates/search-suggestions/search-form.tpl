@@ -38,7 +38,7 @@ as
 
           {% block search_suggestions_wire %}
             {% wire name="show-suggestions-"++#identifier
-                action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context  }
+                action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query-wrapper.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context  }
             %}
           {% endblock %}
 
