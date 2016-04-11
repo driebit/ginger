@@ -21,7 +21,8 @@
         hasanyobject|default:q.hasanyobject,
         custompivots|default:q.custompivots,
         ongoing_on_date|default:q.ongoing_on_date,
-        page|default:q.page|default:1
+        page|default:q.page|default:1,
+        cat_exclude_defaults|default:"true"
     as
         type,
         cat,
@@ -44,7 +45,8 @@
         hasanyobject,
         custompivots,
         ongoing_on_date,
-        page
+        page,
+        cat_exclude_defaults
 %}
 
     {% if type == "list" %}
@@ -52,6 +54,7 @@
     {% with m.search.paged[{ginger_search
 
             cat_exclude=cat_exclude
+            cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
             text=search_text
             pagelen=pagelen
@@ -86,6 +89,7 @@
             hasobjects=hasobjects
             hascustompivots=custompivots
             cat_exclude=cat_exclude
+            cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
             text=search_text
             date_start_year=date_start_year
@@ -109,6 +113,7 @@
 
         {% with m.search[{ginger_geo
             cat_exclude=cat_exclude
+            cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
             text=search_text
             pagelen=pagelen

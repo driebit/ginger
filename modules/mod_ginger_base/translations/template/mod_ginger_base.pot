@@ -53,7 +53,7 @@ msgid ""
 "Based on these keywords:"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:29 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:2 
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:32 /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:2 
 msgid ""
 "By:"
 msgstr ""
@@ -348,7 +348,7 @@ msgid ""
 "Return to the homepage"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:35 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:39 /vagrant/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/search.tpl:13 /vagrant/modules/mod_ginger_base/templates/search.tpl:17 /vagrant/modules/mod_ginger_base/templates/search.tpl:17 
+#: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19 /vagrant/modules/mod_ginger_base/templates/search/components/input-text.tpl:2 /vagrant/modules/mod_ginger_base/templates/search/components/input-text.tpl:2 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:32 /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:36 /vagrant/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2 /vagrant/modules/mod_ginger_base/templates/search.tpl:13 
 msgid ""
 "Search"
 msgstr ""

@@ -6,11 +6,12 @@ $.widget("ui.search_cmp_sort", {
             widgetElement = $(me.element);
 
         me.widgetElement = widgetElement;
+        me.type = 'sort';
 
         me.widgetElement.on('change', function() {
             $(document).trigger('search:inputChanged');
         });
-       
+
     },
 
     getValues: function() {
@@ -19,11 +20,25 @@ $.widget("ui.search_cmp_sort", {
 
         if (me.widgetElement.val()) {
              return [{
-                'type': 'sort',
+                'type': me.type,
                 'values': me.widgetElement.val()
             }]
         }
 
+    },
+
+    setValues: function(values) {
+
+      var me = this,
+          widgetValues;
+
+      try {
+         widgetValues = values[me.type];
+      } catch(e) {}
+
+      me.widgetElement.val(widgetValues);
+
     }
+
 
 });

@@ -5,7 +5,7 @@ $.widget("ui.search_cmp_pager", {
 
         var me = this,
             widgetElement = $(me.element);
-                    
+
         me.widgetElement = widgetElement,
         me.value = null;
 
@@ -15,8 +15,8 @@ $.widget("ui.search_cmp_pager", {
                 page = (matches && matches[1]) ? matches[1] : 1;
 
            me.value = page;
-           
-           $(document).trigger('search:doSearch', ['pager']);
+
+           $(document).trigger('search:inputChanged');
 
            event.stopPropagation();
            return false;
@@ -25,23 +25,21 @@ $.widget("ui.search_cmp_pager", {
 
     },
 
-    reset: function() {
-        var me = this;
-        me.value = null;
-    },
-
     getValues: function() {
+
 
          var me = this,
              values;
 
         if (!me.value) return false;
- 
+
         return [{
                 'type': 'page',
                 'values': parseInt(me.value)
             }
         ]
     }
+
+
 
 });

@@ -19,9 +19,6 @@ as
 
 <form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">
     <div class="{{ wrapperclass }}">
-        <input type="hidden" name="qsort" value="{{ q.qsort|escape }}" />
-        <input type="hidden" name="qcat" value="{{ q.qcat|escape }}" />
-        <input type="hidden" name="qcg" value="{{ cg_name }}" />
         <input type="text"
             class="do_search_suggestions"
             name="qs"
@@ -36,12 +33,12 @@ as
           {% if iconclass %}
             <i class="{{ iconclass }}"></i>
           {% endif %}
-          {_ Search _}
+          {_ Search _}adfasdf
         </button>
 
           {% block search_suggestions_wire %}
             {% wire name="show-suggestions-"++#identifier
-                action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context  }
+                action={update target="search-suggestions__suggestions-"++#identifier template="search-suggestions/search-query-wrapper.tpl" pagelen=12 results_template="search-suggestions/search-suggestions.tpl" context=context  }
             %}
           {% endblock %}
 
