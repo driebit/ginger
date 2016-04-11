@@ -39,6 +39,7 @@
 	<body class="{% block page_class %}{% endblock %}">
 	{% wire name="adminwidget_toggle" action={adminwidget_toggle} %}
 
+    {% block container %}
 	<div class="{% block container_class %}container{% endblock %}">
         {% block header %}{% endblock %}
 
@@ -46,7 +47,8 @@
 
         {% block footer %}{% endblock %}
 	</div>
-  
+    {% endblock %}
+
     {% include "_editor.tpl" %}
     {% include "_admin_js_include.tpl" %}
     {% lib
