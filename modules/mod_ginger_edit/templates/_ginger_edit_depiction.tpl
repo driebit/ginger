@@ -12,6 +12,12 @@
         {% if is_editable %}
             <div class="form-group clearfix">
                 <div class="pull-right">
+
+                    {% if required %}
+                        <input type="hidden" id="{{ #depiction }}" value="0" />
+                        {% validate id=#depiction type={presence failure_message=_"Field is required"} type={custom against="window.has_connection" failure_message=_"Field is required" args=`links-`++id++`-depiction` } only_on_submit %}
+                    {% endif %}
+
                     <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>
                     {% wire id=#connect
                         action={dialog_open template="_action_dialog_connect.tpl"
@@ -27,6 +33,9 @@
                             ]}
                     %}
                 </div>
+
+
+
             </div>
         {% endif %}
 
