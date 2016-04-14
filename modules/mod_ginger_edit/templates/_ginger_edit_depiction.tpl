@@ -15,7 +15,9 @@
 
                     {% if required %}
                         <input type="hidden" id="{{ #depiction }}" value="0" />
-                        {% validate id=#depiction type={presence failure_message=_"Field is required"} type={custom against="window.has_connection" failure_message=_"Field is required" args=`links-`++id++`-depiction` } only_on_submit %}
+                        {% block edit_depiction_validate %}
+                            {% validate id=#depiction type={presence failure_message=_"Field is required"} type={custom against="window.has_connection" failure_message=_"Field is required" args=`links-`++id++`-depiction` } only_on_submit %}
+                        {% endblock %}
                     {% endif %}
 
                     <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>

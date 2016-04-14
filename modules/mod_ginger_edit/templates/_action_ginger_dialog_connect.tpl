@@ -83,7 +83,7 @@
                     tab=#tab
                     predicate=predicate
                     subject_id=subject_id
-                    title="" 
+                    title=""
                     is_active=(tab == "upload")
                 %}
             {% endif %}

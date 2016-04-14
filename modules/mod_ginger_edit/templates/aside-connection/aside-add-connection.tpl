@@ -7,7 +7,8 @@
     actions|default:[],
     direction|default:'out',
     dispatch|default:zotonic_dispatch,
-    helper_text_top
+    helper_text_top,
+    errormsg_required|default:_"Field is required"
 as
     cat,
     predicate,
@@ -17,7 +18,8 @@ as
     actions,
     direction,
     dispatch,
-    helper_text_top
+    helper_text_top,
+    errormsg_required
 %}
 
 {% if id.is_editable %}
@@ -37,9 +39,8 @@ as
             <input type="hidden" id="{{ #predicate}}_{{ predicate.name }}" value="0" />
         </div>
 
-
         {% if required %}
-            {% validate id=#predicate++"_"++predicate.name type={presence failure_message=_"Field is required"} type={custom against="window.has_connection" failure_message=_"Field is required" args=#thepredicate } only_on_submit %}
+            {% validate id=#predicate++"_"++predicate.name type={presence failure_message=errormsg_required} type={custom against="window.has_connection" failure_message=errormsg_required args=#thepredicate } only_on_submit %}
         {% endif %}
     </div>
 {% endif %}

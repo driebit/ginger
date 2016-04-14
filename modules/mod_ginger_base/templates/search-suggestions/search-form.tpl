@@ -33,7 +33,7 @@ as
           {% if iconclass %}
             <i class="{{ iconclass }}"></i>
           {% endif %}
-          {_ Search _}adfasdf
+          {_ Search _}
         </button>
 
           {% block search_suggestions_wire %}
