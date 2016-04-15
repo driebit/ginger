@@ -154,6 +154,8 @@ $.widget("ui.search_ui", {
         $.proxy(me.setWidgetsState(values), me);
         $.proxy(me.doSearch(values), me);
 
+        $('.search__filters').css('opacity', '1');
+
     },
 
     setWidgetsState: function(values) {
