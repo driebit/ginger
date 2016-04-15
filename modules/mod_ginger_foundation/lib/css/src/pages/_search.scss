@@ -129,6 +129,7 @@
     overflow: hidden;
     background: $alto;
     transition: max-height 0.8s;
+    opacity: 0.4;
 
     &.is-open {
         max-height: 1000px;
