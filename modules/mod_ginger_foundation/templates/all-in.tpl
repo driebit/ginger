@@ -15,7 +15,7 @@
         {% if q.id %}
             <aside class="main-aside">
                 {% if q.direction == 'subject' %}
-                    {% with m.search.paged[{ginger_search hassubject=[q.id, q.type] cat_exclude=['media'] pagelen=6 page=q.page}] as result %}
+                    {% with m.search.paged[{ginger_search hassubject=[q.id, q.type]  pagelen=6 page=q.page}] as result %}
                         {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
                     {% endwith %}
                 {% else %}
