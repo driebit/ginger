@@ -31,7 +31,7 @@
                 <figcaption>
                     <p>{{ caption }}{% if m.rsc[id].o.author %} {_ By: _} <a href="{{ m.rsc[m.rsc[id].o.author[1]].page_url }}">{{ m.rsc[m.rsc[id].o.author[1]].title }}</a>{% endif %}</p>
                     {% include "copyrights/copyrights.tpl" %}
-                    {% include "person/actors.tpl" title="With:" %}
+                    {% include "person/actors.tpl" title=_"With:" %}
                 </figcaption>
             {% endif %}
         {% endwith %}

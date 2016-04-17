@@ -469,6 +469,11 @@ msgid ""
 "Website"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:34 
+msgid ""
+"With:"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:41 /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:84 
 msgid ""
 "You may use the work freely"

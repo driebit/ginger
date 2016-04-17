@@ -9,15 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-31 15:10+0200\n"
-"PO-Revision-Date: 2016-03-31 15:10+0200\n"
+"POT-Creation-Date: 2016-04-17 15:04+0200\n"
+"PO-Revision-Date: 2016-04-17 15:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:56
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:80
@@ -49,7 +49,7 @@ msgstr "Geschreven door "
 msgid "Based on these keywords:"
 msgstr "Gebaseerd op deze trefwoorden:"
 
-#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:29
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:32
 #: /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:2
 msgid "By:"
 msgstr "Door:"
@@ -313,12 +313,12 @@ msgstr "Keer terug naar de homepage"
 
 #: /vagrant/modules/mod_ginger_base/templates/admin/admin-search.tpl:2
 #: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
+#: /vagrant/modules/mod_ginger_base/templates/search/components/input-text.tpl:2
 #: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
-#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:35
-#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:39
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:32
+#: /vagrant/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:36
 #: /vagrant/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:13
-#: /vagrant/modules/mod_ginger_base/templates/search.tpl:17
 msgid "Search"
 msgstr "Zoeken"
 
@@ -422,6 +422,10 @@ msgstr "Toon alle inkomende relaties"
 #: /vagrant/modules/mod_ginger_base/templates/person/person-details.tpl:36
 msgid "Website"
 msgstr "Website"
+
+#: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:34
+msgid "With:"
+msgstr "Met:"
 
 #: /vagrant/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:41
 #: /vagrant/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:84
