@@ -176,8 +176,7 @@ property_to_triples({body, Value}, _Props, Context) ->
         }
     ];
 property_to_triples({category_id, Value}, _Props, Context) ->
-    Category = m_rsc:get_visible(Value, Context),
-    case proplists:get_value(uri, Category) of
+    case get_category_uri(Value, Context) of
         undefined ->
             [];
         Uri ->
@@ -406,3 +405,21 @@ maybe_add_media(Fun, Predicate, Triples) ->
             Triples
     end.
 
+%% @doc Get category URI, starting at the most specific category and falling
+%%      back to parent categories
+get_category_uri([], _Context) ->
+    undefined;
+get_category_uri([Category|T], Context) ->
+    %% Don't use m_rsc:p(Id, uri, Context) as that will return all URIs, even
+    %% including generated ones (http://site.com/id/123). We only want to return
+    %% a URI if it has been set explicitly.
+    Props = m_rsc:get_visible(Category, Context),
+    case proplists:get_value(uri, Props) of
+        undefined ->
+            %% Fall back to parent category
+            get_category_uri(T, Context);
+        Uri ->
+            Uri
+    end;
+get_category_uri(Category, Context) ->
+    get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
