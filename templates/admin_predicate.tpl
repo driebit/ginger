@@ -1,0 +1,67 @@
+{% extends "admin_base.tpl" %}
+
+{% block title %}{_ Predicates _}{% endblock %}
+
+{% block content %}
+{% with m.acl.is_admin as editable %}
+<div class="admin-header">
+
+    <h2>{_ Predicates _}</h2>
+
+    <p>{_ A predicate denotes traits or aspects of a page and expresses a relationship between two pages.
+    The relation is always directed, from the subject to the object.<br/>Predicates are defined in ontologies like <a href="http://sioc-project.org/">SIOC</a>.  On this page you can define the predicates known to Zotonic. _}</p>
+</div>
+
+{% if editable %}
+<div class="well">
+    {% button class="btn btn-primary" text=_"Make a new predicate" action={dialog_predicate_new title=""} %}
+</div>
+{% endif %}
+
+<div>
+    <table class="table table-striped do_adminLinkedTable">
+        <thead>
+            <tr>
+                <th width="20%">{_ Title _}</th>
+                <th width="20%">{_ Name _}</th>
+                <th width="40%">{_ URI _}</th>
+                <th width="20%">&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody id="predicate-list">
+            {% for name,p in m.predicate %}
+            <tr id="{{ #li.name }}" data-href="{% url admin_edit_rsc id=p.id %}" data-id="{{ p.id }}">
+                <td>{{ p.title|default:"&nbsp;" }}</td>
+                <td>{{ p.name|default:"&nbsp;" }}</td>
+                <td>{{ p.uri|default:"&nbsp;" }}</td>
+                <td>
+                    <div class="pull-right buttons">
+                        {% button class="btn btn-default btn-xs" disabled=p.is_protected text=_"delete" action={dialog_delete_rsc id=p.id} %}
+                        <a href="{% url admin_edit_rsc id=p.id %}" class="btn btn-default btn-xs">{_ edit _}</a>
+                    </div>
+                    {{ p.reversed|yesno:"reversed,&nbsp;" }}
+                </td>
+            </li>
+            {% empty %}
+            <li>
+                {_ No predicates found. _}
+            </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+{% endwith %}
+
+{% javascript %}
+    pubzub.subscribe("~site/rsc/+", function(_topic, args) {
+        if (args.payload._record == 'rsc_update_done' && args.payload.action == 'delete') {
+            $('#predicate-list tr[data-id='+args.payload.id+']').remove();
+        }
+    });
+{% endjavascript %}
+
+{% endblock %}
+
+
