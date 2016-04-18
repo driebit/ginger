@@ -152,6 +152,22 @@ property_to_triples({_, <<>>}, _Props, _Context) ->
 property_to_triples({_, undefined}, _Props, _Context) ->
     %% Skip undefined values
     [];
+property_to_triples({address_city, Value}, _Props, _Context) ->
+    [
+        #triple{predicate = <<?NS_VCARD, "locality">>, object = Value}
+    ];
+property_to_triples({address_country, Value}, _Props, _Context) ->
+    [
+        #triple{predicate = <<?NS_VCARD, "country-name">>, object = Value}
+    ];
+property_to_triples({address_postcode, Value}, _Props, _Context) ->
+    [
+        #triple{predicate = <<?NS_VCARD, "postal-code">>, object = Value}
+    ];
+property_to_triples({address_street_1, Value}, _Props, _Context) ->
+    [
+        #triple{predicate = <<?NS_VCARD, "street-address">>, object = Value}
+    ];
 property_to_triples({body, Value}, _Props, Context) ->
     %% TODO add support for multilingual properties
     [

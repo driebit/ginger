@@ -4,6 +4,7 @@
 -define(NS_GEO, "http://www.w3.org/2003/01/geo/wgs84_pos#").
 -define(NS_DCTERMS, "http://purl.org/dc/terms/").
 -define(NS_DCTYPE, "http://purl.org/dc/dcmitype/").
+-define(NS_VCARD, "http://www.w3.org/2006/vcard/ns#").
 
 -record(rdf_get, {uri}).
 
