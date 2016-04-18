@@ -93,7 +93,6 @@ rsc(Url, Context) ->
         Context
     ).
 
-
 %% @doc Export resource to a set of triples
 -spec to_triples(integer(), #context{}) -> #rdf_resource{}.
 to_triples(Id, Context) ->
@@ -220,10 +219,12 @@ property_to_triples({name_first, Value}, _Props, _Context) ->
     ];
 property_to_triples({name_surname, Value}, Props, _Context) ->
     Surname = case proplists:get_value(name_surname_prefix, Props) of
+        undefined ->
+            Value;
         <<>> ->
             Value;
         Prefix ->
-            [Prefix, <<" ">>, Value]
+            iolist_to_binary([Prefix, <<" ">>, Value])
     end,
     [
         #triple{
