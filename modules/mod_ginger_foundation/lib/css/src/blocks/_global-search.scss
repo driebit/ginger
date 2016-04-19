@@ -26,13 +26,13 @@
 .search-suggestions__searchform {
     position: fixed;
     top: 0;
+    z-index: 2000;
     width: 100%;
     @include size(height, 60);
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
     transition: all 250ms ease-out;
     background-color: $white;
-    z-index: 500;
 
     &.is-visible {
         -webkit-transform: translateX(0);
