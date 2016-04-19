@@ -115,22 +115,25 @@ to_triples(Id, Context) ->
         lists:filtermap(
             fun({Key, Edges}) ->
                 Predicate = m_predicate:get(Key, Context),
-                PredicateUri = proplists:get_value(uri, Predicate),
+                case proplists:get_value(uri, Predicate) of
+                    undefined ->
+                        false;
+                    PredicateUri ->
+                        {true, lists:filtermap(
+                            fun(Edge) ->
+                                Subject = proplists:get_value(subject_id, Edge),
+                                Object = proplists:get_value(object_id, Edge),
 
-                {true, lists:filtermap(
-                    fun(Edge) ->
-                        Subject = proplists:get_value(subject_id, Edge),
-                        Object = proplists:get_value(object_id, Edge),
-
-                        {true, #triple{
-                            type = resource,
-                            predicate = PredicateUri,
-                            subject = m_rsc:p(Subject, uri, Context),
-                            object = m_rsc:p(Object, uri, Context)
-                        }}
-                    end,
-                    Edges
-                )}
+                                {true, #triple{
+                                    type = resource,
+                                    predicate = PredicateUri,
+                                    subject = m_rsc:p(Subject, uri, Context),
+                                    object = m_rsc:p(Object, uri, Context)
+                                }}
+                            end,
+                            Edges
+                        )}
+                end
             end,
             m_edge:get_edges(Id, Context)
         )

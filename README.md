@@ -20,9 +20,10 @@ of some resource):
 curl -L -H Accept:application/ld+json http://yoursite.com/id/123
 ```
 
-Please note that currently only the [JSON-LD](https://www.w3.org/TR/json-ld/)
-serialization format is supported. Pull requests to add other formats are
-very welcome.
+Only predicates with a URI will be included in the output. If you’re missing
+one of your custom predicates, give it the URI of some property in one of the
+linked data vocabularies. You can do so in the admin, on the predicate’s edit
+page, under ‘Advanced’.
 
 Observe the `#rsc_to_rdf{}` notification to hook into the process:
 
@@ -52,6 +53,10 @@ Resource = m_rdf:to_triples(Id, Context),
 JsonLd = ginger_json_ld:serialize(RdfResource),
 mochijson2:encode(JsonLd).
 ```
+
+Please note that currently only the [JSON-LD](https://www.w3.org/TR/json-ld/)
+serialization format is supported. Pull requests to add other formats are
+very welcome.
 
 Notifications
 -------------
