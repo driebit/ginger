@@ -186,10 +186,13 @@
 }
 
 @include mq(min-width, $smallBreakpoint){
-    .global-nav__menu,
-    .global-nav__actions {
+    .global-nav__menu {
         width: 35%;
         height: 100%;
+    }
+
+    .global-nav__actions {
+        width: 35%;
     }
 }
 
