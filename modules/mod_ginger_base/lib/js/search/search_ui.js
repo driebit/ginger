@@ -49,12 +49,6 @@ $.widget("ui.search_ui", {
             me.toggleSearchSection($(this));
         });
 
-        if (documentWidth < 1024) {
-            $('.global-search__submit').on('click', function() {
-                me.toggleSearchOptions();
-            });
-        }
-
         var hash = window.location.hash;
 
         if (!hash || hash == '') {
