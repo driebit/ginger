@@ -25,85 +25,118 @@
 -spec init(#context{}) -> ok.
 init(Context) ->
     ginger_config:install_config(Context),
-    ginger_acl:install(Context),
     z_pivot_rsc:define_custom_pivot(ginger_search, [{is_unfindable, "boolean not null default false"}], Context).
 
 %% @doc When ACL is enabled, create a default user in the editors group
 manage_schema(_Version, Context) ->
-    case ginger_acl:is_enabled(Context) of
-        false ->
-            ok;
-        true ->
-            Datamodel = #datamodel{
-                categories=[
-                    {agenda, query, [
-                        {title, {trans, [
-                            {nl, <<"Agenda">>},
-                            {en, <<"Agenda">>}]}},
-                        {language, [en, nl]}
-                    ]}
-                ],
-                resources = [
-                    % {uniquename, category, [
-                    %     {propname, propvalue}
-                    % ]},
-                    {editor_dev, person, [
-                        {title, "Redacteur"},
-                        {name_first, "Redacteur"},
-                        {email, "redactie@ginger.nl"}
-                    ]},
-                    {fallback, image, [
-                        {title, "Fallback image"}
-                    ]},
-                    {footer_menu, menu, [
-                        {title, "Footer menu"}
-                    ]},
-                    {home, collection, [
-                        {title, "Homepage"}
-                    ]}
-                ],
-                predicates = [
-                    {subnavigation, [
-                        {title, {trans, [
-                            {nl, <<"Subnavigatie">>},
-                            {en, <<"Subnavigation">>}]}},
-                        {language, [en, nl]}
-                    ], [
-                        {content_group, collection}
-                    ]},
-                    {hasbanner, [
-                        {title, {trans, [
-                            {nl, <<"Banner">>},
-                            {en, <<"Banner">>}]}},
-                        {language, [en, nl]}
-                    ], [
-                        {content_group, image}
-                    ]},
-                    {header, [
-                        {title, {trans, [
-                            {nl, <<"Header">>},
-                            {en, <<"Header">>}]}},
-                        {language, [en, nl]}
-                    ], [
-                        {content_group, media}
-                    ]},
-                    {hasicon, [
-                        {title, {trans, [
-                            {nl, <<"Icoon">>},
-                            {en, <<"Icon">>}]}},
-                        {language, [en, nl]}
-                    ], [
-                        {category, image}
-                    ]}
-                ],
-                edges = [
-                    {editor_dev, hasusergroup, acl_user_group_editors}
-                ]
-            },
-            z_datamodel:manage(?MODULE, Datamodel, Context),
-            schema:create_identity_if_not_exists(editor_dev, "redacteur", "redacteur", Context)
-    end,
-    ok.
+    Datamodel = #datamodel{
+        categories=[
+            {agenda, query, [
+                {title, {trans, [
+                    {nl, <<"Agenda">>},
+                    {en, <<"Agenda">>}]}},
+                {language, [en, nl]}
+            ]}
+        ],
+        resources = [
+            % {uniquename, category, [
+            %     {propname, propvalue}
+            % ]},
+            {editor_dev, person, [
+                {title, "Redacteur"},
+                {name_first, "Redacteur"},
+                {email, "redactie@ginger.nl"}
+            ]},
+            {fallback, image, [
+                {title, "Fallback image"}
+            ]},
+            {footer_menu, menu, [
+                {title, "Footer menu"}
+            ]},
+            {home, collection, [
+                {title, "Homepage"}
+            ]}
+        ],
+        predicates = [
+            {subnavigation, [
+                {title, {trans, [
+                    {nl, <<"Subnavigatie">>},
+                    {en, <<"Subnavigation">>}]}},
+                {language, [en, nl]}
+            ], [
+                {content_group, collection}
+            ]},
+            {hasbanner, [
+                {title, {trans, [
+                    {nl, <<"Banner">>},
+                    {en, <<"Banner">>}]}},
+                {language, [en, nl]}
+            ], [
+                {content_group, image}
+            ]},
+            {header, [
+                {title, {trans, [
+                    {nl, <<"Header">>},
+                    {en, <<"Header">>}]}},
+                {language, [en, nl]}
+            ], [
+                {content_group, media}
+            ]},
+            {hasicon, [
+                {title, {trans, [
+                    {nl, <<"Icoon">>},
+                    {en, <<"Icon">>}]}},
+                {language, [en, nl]}
+            ], [
+                {category, image}
+            ]}
+        ],
+        edges = [
+            {editor_dev, hasusergroup, acl_user_group_editors}
+        ],
+        data = [
+            {acl_rules, [
+                %% Anonymous can view everything
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_anonymous},
+                    {actions, [view]}
+                ]},
+                %% Members can edit their own profile. This requires insert rights on
+                %% category person because of acl_rsc_update_check:acl_rsc_update_check/3.
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_members},
+                    {actions, [insert, link]},
+                    {category_id, person}
+                ]},
+                %% Members can upload media, for instance a profile picture.
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_members},
+                    {actions, [insert, update, delete]},
+                    {category_id, media}
+                ]},
+                {rsc, [
+                    %% Editors can edit everything, including resources created by other editors
+                    {acl_user_group_id, acl_user_group_editors},
+                    {actions, [view, insert, update, delete, link]},
+                    {content_group_id, default_content_group}
+                ]},
+                %% Editors can access the admin
+                {module, [
+                    {acl_user_group_id, acl_user_group_editors},
+                    {actions, [use]},
+                    {module, mod_admin}
+                ]},
+                %% Editors can configure the menu
+                {module, [
+                    {acl_user_group_id, acl_user_group_editors},
+                    {actions, [use]},
+                    {module, mod_menu}
+                ]}
+            ]}
+        ]
+    },
+    z_datamodel:manage(?MODULE, Datamodel, Context),
+    schema:create_identity_if_not_exists(editor_dev, "redacteur", "redacteur", Context).
 
 %% @doc Users without access to the admin should not be able to view unpublished
 %%      resources
