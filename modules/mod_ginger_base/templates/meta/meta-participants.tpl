@@ -1,7 +1,7 @@
 
 {% with
     limit|default:999,
-    id.s.participant,
+    id.s.participant|default:id.s.rsvp,
     id.rsvp_max_participants
 as
     limit,
