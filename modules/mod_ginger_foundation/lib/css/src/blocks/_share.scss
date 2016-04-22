@@ -16,7 +16,7 @@
 }
 
 .share__button__title {
-    @extend .btn--secondary;
+    @extend %btn--secondary;
 }
 
 .share__menu {

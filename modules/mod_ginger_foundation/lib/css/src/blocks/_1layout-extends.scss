@@ -1,6 +1,8 @@
-.main-container {
-    width: 90%;
-    @include size(max-width, 1000);
-    margin: 0 auto;
-    position: relative;
+@include mq(min-width, 1) {
+    .main-container {
+        width: 90%;
+        @include size(max-width, 1000);
+        margin: 0 auto;
+        position: relative;
+    }
 }

@@ -1,36 +1,37 @@
-.btn {
-    display: inline-block;
-    @include size(padding, 9, 20, 6, 20);
-    border-radius: $btnRadius;
-    @include size(font-size, 16);
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    line-height: 1;
-    font-weight: 400;
-    vertical-align: top;
+@include mq(min-width, 0) {
+    %btn {
+        display: inline-block;
+        @include size(padding, 9, 20, 6, 20);
+        border-radius: $btnRadius;
+        @include size(font-size, 16);
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        line-height: 1;
+        font-weight: 400;
+        vertical-align: top;
 
-    &:hover,
-    &:active,
-    &:focus,
-    &.is-active {
-        text-decoration: none;
+        &:hover,
+        &:active,
+        &:focus,
+        &.is-active {
+            text-decoration: none;
+        }
     }
+}
+
+.btn {
+    @extend %btn;
 }
 
 [class^="btn--"], [class*=" btn--"],
 button[type="submit"] {
-    @extend .btn--primary;
+    @extend %btn--primary;
 }
 
-.btn--primary,
-.btn--secondary,
-.btn--anchor,
-.btn--next {
-    @extend .btn;
-}
-
+%btn--primary,
 .btn--primary {
+    @extend %btn;
     background: $mainThemeColor;
     color: $white;
     border: 1px solid $mainThemeColor;
@@ -46,7 +47,9 @@ button[type="submit"] {
     }
 }
 
+%btn--secondary,
 .btn--secondary {
+    @extend %btn;
     background: $white;
     color: $mainThemeColor;
     border: 1px solid $mainThemeColor;
@@ -64,23 +67,25 @@ button[type="submit"] {
 
 .btn--anchor,
 .btn--next {
+    @extend %btn;
+    @extend %btn--secondary;
     position: relative;
-    @extend .btn--secondary;
 }
 
 .home-button {
-    @extend .btn--secondary;
+    @extend %btn--secondary;
 }
 
 .btn--cancel,
 .btn--delete {
-    @extend .btn--secondary;
+    @extend %btn--secondary;
 }
 
 .page-action--edit,
 .page-action--add,
 .page-action--rsvp {
-    @extend .btn--secondary;
+    @extend %btn;
+    @extend %btn--secondary;
 }
 
 .btn--publication-expand {
@@ -126,17 +131,17 @@ button[type="submit"] {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:focus,
 .nav-pills > li.active > a:hover {
-    @extend .btn--primary;
+    @extend %btn--primary;
 }
 
 .nav-pills > li > a {
-    @extend .btn;
+    @extend %btn;
 }
 
 .btn-primary {
-    @extend .btn--primary;
+    @extend %btn--primary;
 }
 
 .btn-default {
-    @extend .btn--secondary;
+    @extend %btn--secondary;
 }

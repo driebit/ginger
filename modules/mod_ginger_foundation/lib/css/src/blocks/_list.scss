@@ -51,7 +51,7 @@
 }
 
 .edit-button--list-item {
-    @extend .btn--primary;
+    @extend %btn--primary;
     display: none;
     position: absolute;
     top: 0px;
@@ -154,7 +154,7 @@
 
 .list__more {
     display: block;
-    @extend .btn;
+    @extend %btn;
     margin: 0 auto;
     background: $mainThemeColor;
     color: $white;
@@ -163,7 +163,7 @@
     &:hover,
     &:active,
     &:focus {
-        @extend .btn--primary:hover;
+        @extend %btn--primary:hover;
     }
 
     + .list__more {

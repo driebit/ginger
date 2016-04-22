@@ -15,7 +15,7 @@
 }
 
 .keywords__list__btn {
-    @extend .btn--secondary;
+    @extend %btn--secondary;
 }
 
 .keywords--aside {
@@ -28,13 +28,14 @@
 }
 
 @include mq(min-width, $mediumBreakpoint){
+
     .keywords {
         overflow: hidden;
     }
 
     .keywords__label {
         width: 30%;
-        @extend .btn;
+        @extend %btn;
         float: left;
         margin-bottom: 0;
         cursor: auto;
