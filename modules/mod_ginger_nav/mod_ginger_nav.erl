@@ -7,3 +7,10 @@
 -mod_title("NAV").
 -mod_description("NAV").
 -mod_prio(250).
+
+-export([
+    init/1
+]).
+
+init(Context) ->
+    ginger_logger:deprecated(?MODULE, Context).

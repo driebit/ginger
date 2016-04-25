@@ -7,3 +7,10 @@
 -mod_title("Ginger search").
 -mod_description("Provides a search form with search suggestions").
 -mod_prio(500).
+
+-export([
+    init/1
+]).
+
+init(Context) ->
+    ginger_logger:deprecated(?MODULE, Context).

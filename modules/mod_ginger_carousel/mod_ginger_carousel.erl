@@ -7,3 +7,10 @@
 -mod_title("Ginger carousel").
 -mod_description("Provides bxSlider, the responsive jQuery content slider").
 -mod_prio(500).
+
+-export([
+    init/1
+]).
+
+init(Context) ->
+    ginger_logger:deprecated(?MODULE, Context).

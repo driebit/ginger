@@ -8,9 +8,12 @@
 -include_lib("zotonic.hrl").
 
 -export([
+    init/1,
     observe_acl_is_allowed/2
 ]).
 
+init(Context) ->
+    deprecate(Context).
 
 observe_acl_is_allowed(#acl_is_allowed{object=#acl_edge{predicate=hasusergroup}}, _Context) ->
     undefined;
@@ -22,10 +25,15 @@ observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
 
 %% @doc A user can edit when he/she is 1 of the authors
-can_author_edit(Authors, #context{user_id=UserId} = _Context) when is_integer(UserId) ->
+can_author_edit(Authors, #context{user_id=UserId} = Context) when is_integer(UserId) ->
+    deprecate(Context),
     case lists:member(UserId, Authors) of
         true -> true;
         false -> undefined
     end;
-can_author_edit(_Authors, #context{} = _Context) ->
+can_author_edit(_Authors, #context{} = Context) ->
+    deprecate(Context),
     undefined.
+
+deprecate(Context) ->
+    ginger_logger:deprecated(?MODULE, Context).
