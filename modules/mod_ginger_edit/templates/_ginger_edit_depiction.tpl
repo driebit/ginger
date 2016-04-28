@@ -29,6 +29,7 @@
                             predicate=`depiction`
                             tab="upload"
                             tabs_enabled=["upload","oembed"]
+                            callback=``
                             actions=[
                                 {postback postback={reload_media rsc_id=id div_id=["links-",id|make_list,"-depiction"]}
                                     delegate="controller_admin_edit"}
