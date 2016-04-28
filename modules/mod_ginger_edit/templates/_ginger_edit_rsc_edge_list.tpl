@@ -1,1 +1,0 @@
-{# careful, to match the :empty CSS selector, this template must not contain any extraneous whitespace #}{% for o_id, edge_id in m.edge.o[id][predicate] %}{% include "_ginger_edit_rsc_edge.tpl" subject_id=id predicate=predicate object_id=o_id %}{% endfor %}
