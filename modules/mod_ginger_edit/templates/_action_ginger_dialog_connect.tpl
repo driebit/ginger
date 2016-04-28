@@ -1,4 +1,4 @@
-{% with callback|default:(dispatch=="ginger_edit")|if:"zAdminConnectDone":"window.zConnectDoneReload" as callback %}
+{% with callback|default:(dispatch=="ginger_edit")|if:"":"window.zConnectDoneReload" as callback %}
 {% with tabs_enabled|default:((dispatch=="ginger_edit")|if:["find"]:["find","new"]) as tabs_enabled %}
 {% with actions|default:[] as actions %}
 {% with stay or callback or subject_id as stay %}

@@ -42,6 +42,7 @@ as
         {% if required %}
             {% validate id=#predicate++"_"++predicate.name type={presence failure_message=errormsg_required} type={custom against="window.has_connection" failure_message=errormsg_required args=#thepredicate } only_on_submit %}
         {% endif %}
+
     </div>
 {% endif %}
 
