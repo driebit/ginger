@@ -96,7 +96,10 @@ rsc(Url, Context) ->
 %% @doc Export resource to a set of triples
 -spec to_triples(integer(), #context{}) -> #rdf_resource{}.
 to_triples(Id, Context) ->
-    Props = m_rsc:get_visible(Id, Context),
+    Props = case m_rsc:get_visible(Id, Context) of
+		undefined -> [];
+		VisibleProps -> VisibleProps
+	end,
 
     Triples = lists:flatten(
         %% Resource properties
