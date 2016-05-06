@@ -8,7 +8,7 @@
 -mod_description("Ginger Base").
 -mod_prio(250).
 -mod_depends[mod_content_groups, mod_acl_user_groups].
--mod_schema(1).
+-mod_schema(2).
 
 -export([
     init/1,
@@ -117,8 +117,7 @@ manage_schema(_Version, Context) ->
                 {rsc, [
                     %% Editors can edit everything, including resources created by other editors
                     {acl_user_group_id, acl_user_group_editors},
-                    {actions, [view, insert, update, delete, link]},
-                    {content_group_id, default_content_group}
+                    {actions, [view, insert, update, delete, link]}
                 ]},
                 %% Editors can access the admin
                 {module, [
