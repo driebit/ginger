@@ -77,9 +77,18 @@
     }
 }
 
+.fancybox-title-float-wrap {
+    max-width: 700px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .fancybox-title-float-wrap .child {
+    margin: 0;
     background: rgba($mainThemeColor, 0.8);
     text-shadow: none;
+    white-space: normal;
 }
 
 

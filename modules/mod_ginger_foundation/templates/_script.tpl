@@ -6,6 +6,7 @@
     "js/pubzub.js"
     "js/modules/z.live.js"
     "js/vendors/jquery.fancybox.min.js"
+    "js/vendors/jquery.fancybox-media.js"
     "js/base.js"
     "js/global-nav.js"
     "js/search-suggestions.js"
