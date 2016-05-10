@@ -29,6 +29,10 @@
                             'background': 'rgba(246, 246, 246, 0.75)'
                         },
                         locked: false
+                    },
+                    media: {},
+                    'title': {
+                        type: 'inside'
                     }
                 },
                 afterShow: function() {
@@ -49,9 +53,6 @@
                         $('.fancybox-inner').show();
                         $.fancybox.update();
                     }
-
-
-
                 }
             });
 
