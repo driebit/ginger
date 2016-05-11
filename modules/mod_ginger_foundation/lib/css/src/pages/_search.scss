@@ -295,7 +295,7 @@
     clear: right;
 }
 
-@include mq(min-width, $smallBreakpoint) {
+@include mq(min-width, $mediumBreakpoint) {
     .t--search {
         main {
             margin-top: 0px;
@@ -333,9 +333,7 @@
             left: 18px;
         }
     }
-}
 
-@include mq(min-width, $mediumBreakpoint) {
     .btn--result-option {
         display: inline-block;
     }
