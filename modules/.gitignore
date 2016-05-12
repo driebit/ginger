@@ -7,3 +7,4 @@ mod_oauth2
 
 # Other Ginger modules
 mod_am_default
+mod_geheugenvanamsterdam
