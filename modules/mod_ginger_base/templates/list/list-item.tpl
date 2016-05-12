@@ -36,13 +36,16 @@
                         {% endblock %}
                     </div>
 
-                    {% if id.summary %}
-                        <p>{{ id.summary|striptags|truncate:100 }}</p>
-                    {% else %}
-                        <p>{{ id.body|striptags|truncate:100 }}</p>
-                    {% endif %}
+                    {% block summary %}
+                        {% if id.summary %}
+                            <p>{{ id.summary|striptags|truncate:100 }}</p>
+                        {% else %}
+                            <p>{{ id.body|striptags|truncate:100 }}</p>
+                        {% endif %}
+                    {% endblock %}
 
                     {% block list_item_location %}{% endblock %}
+
                 </div>
             </article>
         </a>
