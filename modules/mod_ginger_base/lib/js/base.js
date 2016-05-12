@@ -56,8 +56,8 @@
                 }
             });
 
-            $(document).on('click touchstart', $.proxy(me._documentClick, me));
-            $(document).on('keyup touchstart', $.proxy(me._documentKeyUp, me));
+            $(document).on('click', $.proxy(me._documentClick, me));
+            $(document).on('keyup', $.proxy(me._documentKeyUp, me));
 
         },
 
