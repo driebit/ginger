@@ -15,7 +15,6 @@
     event/2,
     manage_schema/2,
     observe_custom_pivot/2,
-    observe_acl_is_allowed/2,
     observe_search_query/2
 ]).
 
@@ -139,10 +138,10 @@ manage_schema(_Version, Context) ->
 
 %% @doc Users without access to the admin should not be able to view unpublished
 %%      resources
-observe_acl_is_allowed(#acl_is_allowed{action=view, object=Id}, Context) ->
-    ginger_acl:can_view(Id, Context);
-observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
-    undefined.
+%%observe_acl_is_allowed(#acl_is_allowed{action=view, object=Id}, Context) ->
+%%    ginger_acl:can_view(Id, Context);
+%%observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+%%    undefined.
 
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
