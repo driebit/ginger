@@ -6,8 +6,7 @@
     is_enabled/1,
     ensure_acl_rule/2,
     ensure_acl_rule/3,
-    ensure_use_modules/3,
-    can_view/2
+    ensure_use_modules/3
 ]).
 
 -include_lib("zotonic.hrl").
