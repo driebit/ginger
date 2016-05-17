@@ -227,6 +227,7 @@
         z-index: 300;
         transform: none;
         background: none;
+        transition: none;
 
         > li {
             float: left;
@@ -271,6 +272,7 @@
         position: static;
         background: none;
         transform: none;
+        transition: none;
 
         div[id*='auth_link'],
         div[id*='button_profile'] {

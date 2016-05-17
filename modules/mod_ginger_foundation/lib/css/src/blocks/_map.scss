@@ -39,3 +39,11 @@
         overflow: hidden;
     }
 }
+
+.main-aside--sided {
+    .map--location {
+        height: 250px;
+        position: static;
+        top: 0;
+    }
+}
