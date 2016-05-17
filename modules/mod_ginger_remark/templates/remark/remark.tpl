@@ -30,9 +30,9 @@
 
     {% javascript %}
 
-        var bla = setTimeout(function() {
-             z_editor.init();
-         }, 1000);
+        setTimeout(function() {
+            z_editor.init();
+        }, 1000);
 
     {% endjavascript %}
 
