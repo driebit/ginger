@@ -1,25 +1,24 @@
 
-<div class="remarks do_remarks_widget">
+<div class="remarks do_remarks_widget" id="remarks">
 
-
-    <div class="buttons">
-        <a href="#" id="" class="new">new</a>
+    <div class="buttons" id="buttons">
+        <a href="#" id="" class="remark-new">new</a>
     </div>
 
-
-    <!-- <div class="aapnew" id="aapnew">HIER IN</div> -->
-
-    <div id="testrefresh">
-        {% include "remark/remark.tpl" id=1 %}
-    </div>
-
+    {% include "remark/remark-wrapper.tpl" remark_id=666 %}
+    {% include "remark/remark-wrapper.tpl" remark_id=1000 %}
 
 </div>
 
-{#% wire name="aapnew"
-    action={insert_top target="aapnew" template="remark/remark.tpl"}
-%#}
 
-{% wire name="testrefresh" action={update target="testrefresh" template="remark/remark.tpl"} %}
+<form id="aap" method="post" action="postback">
+    <input type="hidden" name="aap" value="aap">
+    <button>aap</button>
+</form>
 
-{% wire id="rscform" type="submit" postback={rscform view_location=view_location} delegate=`controller_admin_edit` %}
+
+
+{#% wire id="aap" type="submit" postback={rscform view_location=[]} delegate="controller_admin_edit" %#}
+
+
+{% wire name="new_remark" action={insert_after target="buttons" template="remark/remark-wrapper.tpl" editing=1} %}

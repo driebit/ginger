@@ -11,36 +11,106 @@
             var me = this,
                 widgetElement = $(me.element);
 
-            me.editing = true;
             me.tinymce_name = widgetElement.data('tinyname');
+            me.id = widgetElement.data('id');
+            me.widgetElement = widgetElement;
 
+                widgetElement.on('click', '.remark-edit', function() {
 
-                $('.remarks').on('click', '.remark-edit', function() {
+                    var editing = me.widgetElement.data('editing');
 
-                    // if (!me.editing) {
-                    //     $.proxy(me.enableEdit(), me);
-                    // } else {
-                    //     $.proxy(me.disableEdit(), me);
-                    // }
-
-
-                    z_event('testrefresh');
-
+                    if (me.editing == 1) {
+                        $.proxy(me.switchToEdit(), me);
+                    } else {
+                        $.proxy(me.switchToView(), me);
+                    }
 
                     return false;
                 });
 
+                widgetElement.on('click', '.remark-save', function() {
+                    $.proxy(me.save(), me);
+                    return false;
+                });
+
+        },
+
+        closeAll: function() {
+
+            var me = this,
+                widgetEls = $("[class*='do_remark_widget']"),
+                widgetRefs = []
+
+             $.each(widgetEls, function(i, element) {
+
+                var classnames = element.className.split(/\s+/),
+                    element = $(element);
+
+                $.each(classnames, function(j, classname) {
+                    if (classname.match(/do_remark_widget/)) {
+                        var widgetName = classname.replace(/^do_/, '');
+                         widgetRefs.push(element.data('ui-' + widgetName));
+                    }
+                });
+             });
+
+             $.each(widgetRefs, function(i, widget) {
+                 widget.switchToView();
+             });
+
+        },
+
+        switchToEdit: function() {
+
+            var me = this;
+
+            me.closeAll();
+
+            z_event('render-remark-'+me.id, {'editing':1, 'remark_id': undefined});
+
+            return false;
+
+        },
+
+        switchToView: function() {
+
+            var me = this;
+
+            z_event('render-remark-' + me.id, {'editing':0, 'remark_id': undefined});
+
+            return false;
+
+        },
+
+        isEditing: function() {
+
+            //var me = this;
+            //return me.editing;
+
+            //TODO
+        },
+
+        save: function() {
 
 
+            //TODO: validations
 
-                //tinymce.EditorManager.execCommand('mceToggleEditor', true, 'rsc-aap');
+            var me = this,
+                form = $(me.widgetElement.find('#rscform')[0]);
+
+            console.log(form.serialize());
+
+            form.submit();
 
 
-                //widgetElement.append('<textarea id="rsc-aap" class="aap z_editor-init form-control"  %}></textarea>');
+            //TODO: do this after saving
+            //me.switchToView();
 
 
+            return false;
 
         }
+
 
         // enableEdit: function() {
         //

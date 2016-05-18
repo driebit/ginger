@@ -11,45 +11,21 @@
             var me = this,
                 widgetElement = $(me.element);
 
-
-                //$('.remarks').css('border', '3px solid blue');
-
-                $('.remarks').on('click', '.new', function() {
-
-                    // z_event('aapnew');
-                    //
-                    // var a = setTimeout(function() {
-                    //     z_editor.init();
-                    // }, 1000);
-
+                widgetElement.on('click', '.remark-new', function() {
+                    z_event('new_remark');
                     return false;
                 });
 
-                $('.remarks').on('click', '.testsave', function() {
-
-                    var form = $(this).closest('form').submit();
-                    // z_event('aapnew');
-                    //
-                    // var a = setTimeout(function() {
-                    //     z_editor.init();
-                    // }, 1000);
-
-                    return false;
+                $(document).on('remark:editing', function() {
+                    //alert('hoi');
+                    $('.remark-new').hide();
                 });
 
-                $(document).on('aap', function() {
-                    //z_editor.init();
-                    //alert('aap');
+                $(document).on('remark:viewing', function() {
+                    $('.remark-new').show();
                 });
-
 
         }
-
-
-
-
-
-
 
     });
 })(jQuery);
