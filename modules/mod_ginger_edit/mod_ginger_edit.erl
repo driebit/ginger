@@ -9,7 +9,8 @@
 
 -export([
     is_authorized/2,
-    event/2
+    event/2,
+    observe_admin_rscform/3
     ]).
 
 is_authorized(ReqData, Context) ->
@@ -37,3 +38,23 @@ event(#postback_notify{message="feedback", trigger="dialog-connect-find", target
         {update, [{target, TargetId}, {template, "_action_dialog_connect_tab_find_results.tpl"} | Vars]}
     ], Context).
 
+%% @doc Attempt to add edges defined as form fields
+observe_admin_rscform(#admin_rscform{id=RscId}, Props, Context) ->
+    lists:filter(fun({[$o, $b, $j, $e, $c, $t, $| |Pred], ObjectId}) ->
+                        maybe_edge(RscId, Pred, ObjectId, Context),
+                        false;
+                    ({[$s, $u, $b, $j, $e, $c, $t, $| |Pred], SubjectId}) ->
+                        maybe_edge(SubjectId, Pred, RscId, Context),
+                        false;
+                    (_) -> true
+                 end, Props).
+
+maybe_edge(SubjectId, PredStr, ObjectId, Context) ->
+    Pred = z_convert:to_atom(PredStr),
+    Subject = m_rsc:rid(SubjectId, Context),
+    Object  = m_rsc:rid(ObjectId, Context),
+    case {Subject, Object} of
+        {undefined, _} -> ok;
+        {_, undefined} -> ok;
+        {_, _} -> m_edge:insert(Subject, Pred, Object)
+    end.
