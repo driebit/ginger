@@ -56,5 +56,5 @@ maybe_edge(SubjectId, PredStr, ObjectId, Context) ->
     case {Subject, Object} of
         {undefined, _} -> ok;
         {_, undefined} -> ok;
-        {_, _} -> m_edge:insert(Subject, Pred, Object)
+        {_, _} -> m_edge:insert(Subject, Pred, Object, Context)
     end.
