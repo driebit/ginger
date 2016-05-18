@@ -8,11 +8,15 @@
         <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
     </div>
 
-    {% with m.search[{query cat="remark" hasobject=[id,'about'] pagelen=6}] as result %}
+    {% for remark_id in id.s.about|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id %}
+        {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
+    {% endfor %}
 
-        {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" list_template="list/list-item.remark.tpl" extraClasses="" id=id %}
+    {# {% with m.search[{query cat="remark" hasobject=[id,'about'] pagelen=6}] as result %}
 
-    {% endwith %}
+        {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" list_template="remark/remark-wrapper.tpl" extraClasses="" id=id %}
+
+    {% endwith %} #}
 </div>
 
 {% wire name="new_remark" action={insert_after target="list-header" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}

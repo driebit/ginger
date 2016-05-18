@@ -1,7 +1,4 @@
 {% with remark_id|temporary_rsc:{props category=`remark`} as the_remark_id %}
-
-    <h4>remark id: {{ the_remark_id }}</h4>
-    <h4>id: {{ id }}</h4>
     <div class="remark" id="remark_{{ the_remark_id }}">
         <form id="rscform" method="post" action="postback" class="remark-form" data-tinyname="rsc-tiny{{#ident}}">
             <input type="hidden" name="id" value="{{ the_remark_id }}" />
@@ -14,7 +11,7 @@
             <fieldset>
 
                 <p>
-                    <label for="title">Titel</label><input type="text" name="title" id="title">
+                    <label for="title">Titel</label><input type="text" name="title" id="title" value="{{ remark_id.title }}">
                 </p>
 
                 <textarea rows="10" cols="10" id="rsc-tiny{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
@@ -30,10 +27,6 @@
 
         </form>
     </div>
-
-    <hr />
-
-    <br><br>
 
     {% wire id="rscform" type="submit" postback={rscform} delegate="controller_admin_edit" %}
 

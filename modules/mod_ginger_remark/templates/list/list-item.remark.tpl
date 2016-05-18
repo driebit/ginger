@@ -42,8 +42,8 @@
             </div>
 
             <div class="buttons">
-                <a href="#" class="remark-edit">edit</a>
-                <a href="#" class="remark-delete">delete</a>
+                <a href="#" class="remark-edit btn--edit">edit</a>
+                <a href="#" class="remark-delete btn--delete">delete</a>
             </div>
 
             {% javascript %}
