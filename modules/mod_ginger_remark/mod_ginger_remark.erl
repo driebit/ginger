@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(500).
--mod_schema(2).
+-mod_schema(3).
 
 -export([manage_schema/2]).
 
@@ -27,6 +27,9 @@ manage_schema(_Version, Context) ->
     predicates=[
     ],
     resources=[
+        {cg_user_generated, content_group, [
+          {title, <<"User generated">>}
+        ]}
     ],
     media=[
     ],
@@ -35,9 +38,23 @@ manage_schema(_Version, Context) ->
     data = [
         {acl_rules, [
             {rsc, [
-                {acl_user_group_id, acl_user_group_members},
+                {acl_user_group_id, acl_user_group_anonymous},
                 {actions, [insert]},
-                {category_id, remark}
+                {category_id, remark},
+                {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+            ]},
+            {rsc, [
+                {acl_user_group_id, acl_user_group_anonymous},
+                {actions, [insert]},
+                {category_id, media},
+                {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+            ]},
+            {rsc, [
+                {acl_user_group_id, acl_user_group_members},
+                {actions, [update, link, delete]},
+                {category_id, remark},
+                {content_group_id, m_rsc:rid(cg_user_generated, Context)},
+                {is_owner, true}
             ]}
         ]}
     ]}.
