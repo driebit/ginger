@@ -48,7 +48,7 @@
         position: absolute;
         bottom: 0px;
         left: 0px;
-        background: repeating-linear-gradient(90deg, $darkGrey, $darkGrey 5%, #ffffff 10%, #ffffff 50%, $darkGrey 0%) top left fixed;
+        background: repeating-linear-gradient(90deg, $alto, $alto 5%, #ffffff 10%, #ffffff 50%, $alto 0%) top left fixed;
         background-size: 8px 8px;
     }
 
@@ -59,7 +59,7 @@
     input[type="text"],
     textarea {
         width: 100%;
-        border-color: $darkGrey;
+        border-color: $alto;
     }
 }
 
@@ -89,7 +89,7 @@
         position: absolute;
         bottom: 0px;
         left: 0px;
-        background: repeating-linear-gradient(90deg, $darkGrey, $darkGrey 5%, #ffffff 10%, #ffffff 50%, $darkGrey 0%) top left fixed;
+        background: repeating-linear-gradient(90deg, $alto, $alto 5%, #ffffff 10%, #ffffff 50%, $alto 0%) top left fixed;
         background-size: 8px 8px;
     }
 
