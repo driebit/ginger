@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(500).
--mod_schema(1).
+-mod_schema(2).
 
 -export([manage_schema/2]).
 
@@ -25,16 +25,6 @@ manage_schema(_Version, Context) ->
         ]}
     ],
     predicates=[
-        {has_remark,
-            [
-                {title, {trans, [
-                    {nl, <<"Heeft opmerking">>},
-                    {en, <<"Has remark">>}
-                ]}}
-            ],
-            [
-            ]
-        }
     ],
     resources=[
     ],
