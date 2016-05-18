@@ -11,6 +11,11 @@
         @include size(font-size, 16);
     }
 
+    .is-error,
+    .is-undefined {
+        border: 2px solid $error;
+    }
+
     .btn--add-rule {
         margin-top: 15px;
     }
@@ -27,12 +32,6 @@
 
         .btn--remove-rule {
           top: 0px;
-        }
-
-        .advanced-search__rule__date {
-            select {
-                width: 32.5%;
-            }
         }
     }
 
@@ -71,12 +70,10 @@
 
 .advanced-search__rule__date {
     select {
-        width: 32.5%;
+        width: 31.5%;
     }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
-    .advanced-search__rule__and {
-        //display: block;
-    }
+
 }

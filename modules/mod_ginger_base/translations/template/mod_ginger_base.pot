@@ -258,6 +258,11 @@ msgid ""
 "Module"
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_base/templates/pager/pager.tpl:2 
+msgid ""
+"More than 30000 results"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_base/templates/comments/_comments_form.tpl:27 
 msgid ""
 "Name"
@@ -589,6 +594,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:30 
 msgid ""
 "must be a number"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_base/templates/pager/pager.tpl:2 
+msgid ""
+"results"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_base/templates/map/map-infobox.tpl:1 

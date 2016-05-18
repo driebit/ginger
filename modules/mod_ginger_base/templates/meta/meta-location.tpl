@@ -5,7 +5,7 @@ as
     edgeLocation,
     edgePresented
 %}
-{% with edgeLocation|default:edgePresented|default:id as location %}
+{% with edgeLocation|default:edgePresented|default:id.o.onlocation|default:id as location %}
 {% if location.address_street_1 or location.address_street_2 or location.address_city %}
     <div class="meta-location">
         <h4 class="meta-location__header"><i class="icon--location"></i>{_ Location _}</h4>

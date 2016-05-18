@@ -13,16 +13,22 @@
             <input type="hidden" name="is_published" value="true" />
 
             <fieldset>
+
+                <p>
+                    <label for="title">Titel</label><input type="text" name="title" id="title">
+                </p>
+
                 <textarea rows="10" cols="10" id="rsc-aap{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
             </fieldset>
 
-            {% if not is_new %}
-                <div class="buttons">
-                    <a href="#" class="remark-cancel">cancel</a>
-                </div>
-            {% endif %}
 
-            <a href="#" class="remark-save">save</a>
+            <div class="remark-form__buttons">
+                {% if not is_new %}
+                    <button class="remark-edit btn--secondary">cancel</button>
+                {% endif %}
+
+                <button class="remark-save btn--primary">save</button>
+            </div>
 
         </form>
     </div>
@@ -64,5 +70,3 @@
         $(document).trigger('remark:editing', {{ the_remark_id }});
         $(document).trigger('remark:new', {{ the_remark_id }});
     {% endjavascript %}
-
-{% endwith %}

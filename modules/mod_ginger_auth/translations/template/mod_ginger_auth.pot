@@ -105,6 +105,11 @@ msgid ""
 "Minimum characters: "
 msgstr ""
 
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_block_email.tpl:5 
+msgid ""
+"Need more help?"
+msgstr ""
+
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:7 
 msgid ""
 "New password"

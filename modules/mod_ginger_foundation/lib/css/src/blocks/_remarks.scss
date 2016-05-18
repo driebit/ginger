@@ -1,0 +1,214 @@
+.main-content__remarks {
+    .list-header {
+        margin-bottom: 20px;
+    }
+}
+
+.remark-new {
+    display: block;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    text-indent: -9999px;
+    overflow: hidden;
+    transform: translateY(-50%);
+
+    &:after {
+        content: '';
+        width: 25px;
+        height: 3px;
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        background: $mainThemeColor;
+    }
+
+    &:before {
+        content: '';
+        width: 3px;
+        height: 25px;
+        position: absolute;
+        top: 10px;
+        left: 21px;
+        background: $mainThemeColor;
+    }
+}
+
+.remark-form {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    position: relative;
+
+    &:after {
+        content: '';
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background: repeating-linear-gradient(90deg, $alto, $alto 5%, #ffffff 10%, #ffffff 50%, $alto 0%) top left fixed;
+        background-size: 8px 8px;
+    }
+
+    label {
+        display: block;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        border-color: $alto;
+    }
+}
+
+.remark-form__buttons {
+    margin-top: 20px;
+    lost-utility: clearfix;
+
+    .remark-edit {
+        float: left;
+    }
+
+    .remark-save {
+        float: right;
+    }
+}
+
+.remark-item {
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    list-style: none;
+
+    &:after {
+        content: '';
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background: repeating-linear-gradient(90deg, $alto, $alto 5%, #ffffff 10%, #ffffff 50%, $alto 0%) top left fixed;
+        background-size: 8px 8px;
+    }
+
+    .icon--comment {
+        margin-right: 10px;
+        position: relative;
+        top: 1px;
+        color: #929292;
+    }
+}
+
+.remark-item__author {
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 1.6;
+
+    b {
+        font-weight: 400;
+    }
+
+    .avatar__image {
+        width: 50px;
+        height: 50px;
+        float: left;
+        border-radius: 50%;
+    }
+}
+
+.remark-item__author__text {
+    width: calc(100% - 60px);
+    margin: 0 0 0 10px;
+    float: left;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+
+    time {
+        display: block;
+    }
+}
+
+.remark-item__avatar {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding-left: 2px;
+    float: left;
+    overflow: hidden;
+    border-radius: 50%;
+    background: $mainThemeColor;
+    color: $white;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+.remark-item__content__title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.remark-item__content__body {
+    h1,h2,h3 {
+        margin-bottom: 0px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+    .main-content__remarks {
+        .list-header {
+            margin-bottom: 40px;
+        }
+    }
+
+    .remark-item {
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+        overflow: hidden;
+    }
+
+    .remark-item__author {
+        width: 30%;
+        height: auto;
+        float: left;
+        text-align: center;
+
+        .avatar__image {
+            display: block;
+            margin: 0 auto 15px;
+            float: none;
+        }
+    }
+
+    .remark-item__avatar {
+        display: block;
+        float: none;
+    }
+
+    .remark-item__author__text {
+        width: 100%;
+        margin: 0;
+        float: none;
+        position: static;
+        transform: none;
+    }
+
+    .remark-item__avatar {
+        margin: 0 auto 15px;
+    }
+
+    .remark-item__content {
+        width: 70%;
+        float: left;
+    }
+}
+
+
