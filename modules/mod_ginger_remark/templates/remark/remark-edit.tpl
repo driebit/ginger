@@ -37,8 +37,8 @@
         title=_"Insert image"
         subject_id=the_remark_id
         predicate=`depiction`
-        is_zmedia
-        tab="depiction"
+        tab="upload"
+        tabs_enabled=["upload"]
         callback="window.zAdminMediaDone"
         center=0
     }
