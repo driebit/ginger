@@ -5,9 +5,9 @@
         <a href="#" id="" class="remark-new">new</a>
     </div>
 
-    {% include "remark/remark-wrapper.tpl" remark_id=666 %}
-    {% include "remark/remark-wrapper.tpl" remark_id=1000 %}
+    {% include "remark/remark-wrapper.tpl" remark_id=65259 %}
+    {% include "remark/remark-wrapper.tpl" remark_id=65258 %}
 
 </div>
 
-{% wire name="new_remark" action={insert_after target="buttons" template="remark/remark-wrapper.tpl" editing=1} %}
+{% wire name="new_remark" action={insert_after target="buttons" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}

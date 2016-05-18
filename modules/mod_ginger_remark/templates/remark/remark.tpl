@@ -1,21 +1,21 @@
 
 {% with
     editing|default:q.editing|default:0,
-    remark_id|default:q.remark_id
+    remark_id|default:q.remark_id,
+    is_new|default:q.is_new|default:0,
+    id|default:q.id|default:undefined
         as
     editing,
-    remark_id
+    remark_id,
+    is_new,
+    id
 
 %}
 
-
-{% print remark_id %}
-{% print editing %}
-
-{% if editing == 1 %}
-    {% include "remark/remark-edit.tpl" remark_id=remark_id editing=editing %}
-{% else %}
-    {% include "remark/remark-view.tpl" remark_id=remark_id editing=editing %}
-{% endif %}
+    {% if editing == 1 %}
+        {% include "remark/remark-edit.tpl" remark_id=remark_id editing=editing remark_id=remark_id id=id %}
+    {% else %}
+        {% include "remark/remark-view.tpl" remark_id=remark_id editing=editing remark_id=remark_id id=id %}
+    {% endif %}
 
 {% endwith %}

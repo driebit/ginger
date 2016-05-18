@@ -1,4 +1,37 @@
-{% with remark_id|temporary_rsc:{props category=`article`} as the_remark_id %}
+{% with remark_id|temporary_rsc:{props category=`remark`} as the_remark_id %}
+
+    <h4>remark id: {{ the_remark_id }}</h4>
+    <h4>id: {{ id }}</h4>
+    <h4></h4>
+    <div class="remark" id="remark_{{ the_remark_id }}">
+        <form id="rscform" method="post" action="postback" class="remark-form" data-tinyname="rsc-tiny{{#ident}}">
+            <input type="hidden" name="id" value="{{ the_remark_id }}" />
+
+            <input type="hidden" name="object|about" value="{{ id }}" />
+            <input type="hidden" name="object|author" value="{{ m.acl.user }}" />
+            <input type="hidden" name="rights" value="CR" />
+            <input type="hidden" name="is_published" value="true" />
+
+            <fieldset>
+                <textarea rows="10" cols="10" id="rsc-aap{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
+            </fieldset>
+
+            {% if not is_new %}
+                <div class="buttons">
+                    <a href="#" class="remark-cancel">cancel</a>
+                </div>
+            {% endif %}
+
+            <a href="#" class="remark-save">save</a>
+
+        </form>
+    </div>
+
+    <hr />
+
+    <br><br>
+
+    {% wire id="rscform" type="submit" postback={rscform} delegate="controller_admin_edit" %}
 
     {% wire name="zmedia"
     action={
@@ -28,34 +61,8 @@
 
     {% javascript %}
         z_editor.init();
-        $(document).trigger('remark:editing');
+        $(document).trigger('remark:editing', {{ the_remark_id }});
+        $(document).trigger('remark:new', {{ the_remark_id }});
     {% endjavascript %}
-
-
-<h4>id: {{ the_remark_id }}</h4>
-<h4></h4>
-<div class="remark" id="remark_{{ the_remark_id }}">
-    <form id="rscform" method="post" action="postback" class="remark-form" data-attr-remark-id="{{ the_remark_id }}" data-tinyname="rsc-aap{{#ident}}">
-        <input type="hidden" name="id" value="{{ the_remark_id }}" />
-        <input type="hidden" name="object|author" value="{{ m.acl.user }}" />
-
-        <fieldset>
-            <textarea rows="10" cols="10" id="rsc-aap{{#ident}}" name="body" class="body z_editor-init form-control">aap <b>stukje bold</b></textarea>
-        </fieldset>
-
-        <div class="buttons">
-            <a href="#" class="remark-edit">cancel</a>
-        </div>
-
-        <a href="#" class="remark-save">save</a>
-
-    </form>
-</div>
-
-<hr />
-
-<br><br>
-
-{% wire id="rscform" type="submit" postback={rscform view_location=[]} delegate="controller_admin_edit" %}
 
 {% endwith %}
