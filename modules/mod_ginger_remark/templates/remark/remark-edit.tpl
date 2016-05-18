@@ -2,7 +2,6 @@
 
     <h4>remark id: {{ the_remark_id }}</h4>
     <h4>id: {{ id }}</h4>
-    <h4></h4>
     <div class="remark" id="remark_{{ the_remark_id }}">
         <form id="rscform" method="post" action="postback" class="remark-form" data-tinyname="rsc-tiny{{#ident}}">
             <input type="hidden" name="id" value="{{ the_remark_id }}" />

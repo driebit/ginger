@@ -23,11 +23,7 @@
 
             <div class="remark-item__content">
                 <h3 class="remark-item__content__title">
-                    {% if id.short_title %}
-                        {{ id.short_title }}
-                    {% else %}
-                        {{ id.title }}
-                    {% endif %}
+                    {{ id.title }}
                 </h3>
                 <div class="remark-item__content__body">
                     {{ id.body|show_media }}
@@ -38,10 +34,23 @@
 
                 {% block about %}
                     {% if id.id != id.o.comment.id %}
-                        <a href="{{ id.o.comment.page_url }}">Dit is een reactie op: {{ id.o.comment.title }}</a>
+                        <p>
+                            <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ id.o.about.page_url }}"> {{ id.o.about.title }}</a>
+                        </p>
                     {% endif %}
                 {% endblock %}
             </div>
+
+            <div class="buttons">
+                <a href="#" class="remark-edit">edit</a>
+                <a href="#" class="remark-delete">delete</a>
+            </div>
+
+            {% javascript %}
+                $(document).trigger('remark:viewing');
+            {% endjavascript %}
+
+            {% wire name="rsc_delete_"++remark_id action={dialog_delete_rsc id=remark_id on_success={script script="$(document).trigger('remark:delete', " ++ remark_id ++ ");"}} %}
         </article>
     </li>
 

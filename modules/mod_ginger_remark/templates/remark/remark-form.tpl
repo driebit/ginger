@@ -8,7 +8,7 @@
         <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
     </div>
 
-    {% with m.search[{ginger_search cat="remark" hasobject=[id,'about'] pagelen=6}] as result %}
+    {% with m.search[{query cat="remark" hasobject=[id,'about'] pagelen=6}] as result %}
 
         {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" list_template="list/list-item.remark.tpl" extraClasses="" id=id %}
 
