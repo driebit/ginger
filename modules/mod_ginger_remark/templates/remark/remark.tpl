@@ -8,6 +8,10 @@
 
 %}
 
+
+{% print remark_id %}
+{% print editing %}
+
 {% if editing == 1 %}
     {% include "remark/remark-edit.tpl" remark_id=remark_id editing=editing %}
 {% else %}

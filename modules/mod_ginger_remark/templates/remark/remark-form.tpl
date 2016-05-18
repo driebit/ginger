@@ -10,15 +10,4 @@
 
 </div>
 
-
-<form id="aap" method="post" action="postback">
-    <input type="hidden" name="aap" value="aap">
-    <button>aap</button>
-</form>
-
-
-
-{#% wire id="aap" type="submit" postback={rscform view_location=[]} delegate="controller_admin_edit" %#}
-
-
 {% wire name="new_remark" action={insert_after target="buttons" template="remark/remark-wrapper.tpl" editing=1} %}

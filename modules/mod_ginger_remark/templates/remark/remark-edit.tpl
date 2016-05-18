@@ -37,6 +37,8 @@
 <div class="remark" id="remark_{{ the_remark_id }}">
     <form id="rscform" method="post" action="postback" class="remark-form" data-attr-remark-id="{{ the_remark_id }}" data-tinyname="rsc-aap{{#ident}}">
         <input type="hidden" name="id" value="{{ the_remark_id }}" />
+        <input type="hidden" name="object|author" value="{{ m.acl.user }}" />
+
         <fieldset>
             <textarea rows="10" cols="10" id="rsc-aap{{#ident}}" name="body" class="body z_editor-init form-control">aap <b>stukje bold</b></textarea>
         </fieldset>
