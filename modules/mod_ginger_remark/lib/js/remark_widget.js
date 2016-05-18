@@ -109,15 +109,36 @@
 
         save: function() {
 
-            //TODO: validations
-
             var me = this,
-                form = me.widgetElement.find('#rscform');
+                form = me.widgetElement.find('#rscform'),
+                tinyname = form.data('tinyname'),
+                contentText = tinymce.get(tinyname).getContent({'format':'text'}).trim(),
+                title = $('input#title'),
+                valid = true,
+                re = /[a-z A-Z 0-1]+/i;
 
-            $(form).submit();
+            $('.mce-tinymce').removeClass('is-error');
+            title.closest('p').removeClass('is-error');
 
-            //TODO: wait for server response before switching back
-            me.switchToView();
+            if (contentText == "") {
+                $('.mce-tinymce').addClass('is-error');
+                valid = false;
+            }
+
+            if (!re.test(title.val())) {
+                title.closest('p').addClass('is-error');
+                valid = false;
+            }
+
+            if (valid) {
+
+                $(form).submit();
+
+               //TODO: wait for server response before switching back
+               me.switchToView();
+
+               return false;
+            }
 
             return false;
 

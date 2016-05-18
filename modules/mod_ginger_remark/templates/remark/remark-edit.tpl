@@ -18,7 +18,7 @@
                     <label for="title">Titel</label><input type="text" name="title" id="title">
                 </p>
 
-                <textarea rows="10" cols="10" id="rsc-aap{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
+                <textarea rows="10" cols="10" id="rsc-tiny{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
             </fieldset>
 
 
