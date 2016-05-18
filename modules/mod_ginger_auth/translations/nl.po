@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-01-13 10:35+0100\n"
+"POT-Creation-Date: 2016-05-18 14:34+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -91,6 +91,10 @@ msgstr "Log in of meld je aan"
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13
 msgid "Minimum characters: "
 msgstr "Minimum tekens:"
+
+#: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_block_email.tpl:5
+msgid "Need more help?"
+msgstr "Meer hulp nodig?"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:7
 msgid "New password"

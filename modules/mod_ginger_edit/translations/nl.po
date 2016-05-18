@@ -9,18 +9,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-01-13 10:34+0100\n"
-"PO-Revision-Date: 2016-01-13 10:34+0100\n"
+"POT-Creation-Date: 2016-05-18 14:34+0200\n"
+"PO-Revision-Date: 2016-05-18 14:34+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:11
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.person.tpl:25
+msgid " "
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:13
 msgid "About"
 msgstr "Over"
 
@@ -28,15 +32,14 @@ msgstr "Over"
 msgid "Access control"
 msgstr "Toegangsrechten"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:30
 #: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:4
 msgid "Add a connection: "
 msgstr "Een verbinding toevoegen:"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:18
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:24
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:17
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:23
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_connection.tpl:41
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:18
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:26
 msgid "Add:"
 msgstr "Toevoegen:"
 
@@ -44,11 +47,10 @@ msgstr "Toevoegen:"
 msgid "Address"
 msgstr "Adres"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36
 msgid "All"
 msgstr "Alle"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:44
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:3
 msgid "Attached media"
 msgstr "Gekoppelde media"
@@ -66,7 +68,6 @@ msgstr "Basis"
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65
 #: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:15
-#: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:54
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -77,11 +78,6 @@ msgstr "Stad"
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:59
 msgid "Country"
 msgstr "Land"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:37
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:56
-msgid "Create Page"
-msgstr "Maak pagina"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_content_date_range.tpl:5
 msgid "Date range"
@@ -95,7 +91,7 @@ msgstr "Verwijderen"
 msgid "Delete this page."
 msgstr "Verwijder deze pagina."
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:13
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_rsc_edge.tpl:11
 msgid "Disconnect"
 msgstr "Verbreken"
 
@@ -108,7 +104,6 @@ msgid "E-mail/password already registered"
 msgstr "E-mail/wachtwoord bestaat al"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_button.tpl:3
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_rsc_edge.tpl:7
 #: /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:6
 #: /vagrant/modules/mod_ginger_edit/templates/_nav_edit.tpl:8
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:3
@@ -124,12 +119,16 @@ msgstr "Evenementen"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:19
+#: /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:11
+msgid "Field is required"
+msgstr "Dit veld is verplicht."
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36
 msgid "Find"
 msgstr "Zoeken"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:50
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:15
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:18
 msgid "Find Page"
 msgstr "Zoek pagina"
 
@@ -165,8 +164,8 @@ msgstr "Leuk"
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:5
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:6
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.event.tpl:6
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:7
 msgid "Location"
 msgstr "Locatie"
 
@@ -186,11 +185,11 @@ msgstr "Nieuwe pagina maken"
 msgid "Mobile"
 msgstr "Mobiel"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:43
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:51
 msgid "New"
 msgstr "Nieuw"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:20
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:23
 msgid "New Page"
 msgstr "Nieuwe pagina"
 
@@ -206,7 +205,7 @@ msgstr "Niet toegestaan"
 msgid "On page"
 msgstr "Op pagina"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:10
+#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12
 msgid "Part of"
 msgstr "Onderdeel van"
 
@@ -214,9 +213,9 @@ msgstr "Onderdeel van"
 msgid "Postcode"
 msgstr "Postcode"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.tpl:12
-msgid "Posted in"
-msgstr "Geplaatst in"
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.person.tpl:24
+msgid "Profile picture"
+msgstr "Profiel afbeelding"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:49
 msgid "Publication"
@@ -263,6 +262,14 @@ msgstr "Provincie"
 msgid "Street Line 1"
 msgstr "Straat"
 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:12
+msgid "Subtitel"
+msgstr "Subtitel"
+
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:19
+msgid "Summary"
+msgstr "Inleiding"
+
 #: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:15
 msgid "Telephone"
 msgstr "Telefoon"
@@ -300,13 +307,9 @@ msgstr "Unieke naam"
 msgid "Unlike"
 msgstr "Niet leuk"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:62
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:28
 msgid "Upload File"
 msgstr "Upload bestand"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_connect.tpl:67
-msgid "Upload by URL"
-msgstr "Upload d.m.v. een url"
 
 #: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit.tpl:113
 msgid "View"
@@ -354,11 +357,7 @@ msgstr "Je moet inloggen"
 msgid "Your new password is too short."
 msgstr "Je nieuwe wachtwoord is te kort"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_connection_widget.tpl:24
-msgid "add a connection"
-msgstr "Voeg een connectie toe:"
-
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:15
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:23
 #: /vagrant/modules/mod_ginger_edit/templates/button_add_media.tpl:1
 msgid "add media item"
 msgstr "voeg een mediabestand toe"
@@ -374,6 +373,18 @@ msgstr "tot"
 #: /vagrant/modules/mod_ginger_edit/templates/_action_unlike_undo.tpl:3
 msgid "undo"
 msgstr "ongedaan maken"
+
+#~ msgid "Create Page"
+#~ msgstr "Maak pagina"
+
+#~ msgid "Posted in"
+#~ msgstr "Geplaatst in"
+
+#~ msgid "Upload by URL"
+#~ msgstr "Upload d.m.v. een url"
+
+#~ msgid "add a connection"
+#~ msgstr "Voeg een connectie toe:"
 
 #~ msgid "(to add an address choose a country first)"
 #~ msgstr "(om een adres in te voeren moet je eerst een land kiezen)"
