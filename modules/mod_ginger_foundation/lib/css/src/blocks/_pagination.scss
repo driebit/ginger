@@ -1,0 +1,94 @@
+.search__pager {
+    margin-top: 20px;
+}
+
+.search__pager__pagination {
+    position: static;
+}
+
+.pagination {
+    width: 100%;
+    padding: 5px 38px;
+    margin: 0 0 0 0;
+    position: relative;
+
+    li:nth-child(5),
+    li:nth-child(6) {
+        display: none;
+    }
+
+    li:first-child {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+
+        a {
+            padding: 10px 12px;
+        }
+    }
+
+    li:last-child {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+
+        a {
+            padding: 10px 12px;
+        }
+    }
+
+    a:empty {
+        padding: 0;
+    }
+}
+
+.pagination-centered {
+    text-align: center;
+}
+
+.pagination > li > a,
+.pagination > li.disabled > a,
+.pagination > li > span {
+    display: inline-block;
+    float: none;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    color: $typographyColor;
+}
+
+.pagination > li > a, .pagination > li.disabled > a {
+    &:hover, &.focus {
+        background: none;
+    }
+}
+
+/* have to overwrite bootstrap values, unfortunately */
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover,
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+    background: none;
+    color: $mainThemeColor;
+    font-weight: bold;
+}
+
+.search__pager__result-counter {
+    margin-bottom: 10px;
+}
+
+
+@include mq(min-width, $mediumBreakpoint) {
+    .pagination {
+        li:nth-child(5),
+        li:nth-child(6) {
+            display: inline-block;
+        }
+    }
+}
