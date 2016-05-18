@@ -26,7 +26,6 @@
                 {% if not is_new %}
                     <button class="remark-edit btn--secondary">cancel</button>
                 {% endif %}
-
                 <button class="remark-save btn--primary">save</button>
             </div>
 
@@ -70,3 +69,5 @@
         $(document).trigger('remark:editing', {{ the_remark_id }});
         $(document).trigger('remark:new', {{ the_remark_id }});
     {% endjavascript %}
+
+{% endwith %}
