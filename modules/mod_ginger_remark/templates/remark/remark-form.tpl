@@ -8,9 +8,11 @@
         <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
     </div>
 
-    {% include "remark/remark-wrapper.tpl" remark_id=65259 %}
-    {% include "remark/remark-wrapper.tpl" remark_id=65258 %}
+    {% with m.search[{ginger_search cat="remark" hasobject=[id,'about'] pagelen=6}] as result %}
 
+        {% include "list/list.tpl" list_id="list--match-objects" items=result class="list--sided" list_template="list/list-item.remark.tpl" extraClasses="" id=id %}
+
+    {% endwith %}
 </div>
 
 {% wire name="new_remark" action={insert_after target="list-header" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
