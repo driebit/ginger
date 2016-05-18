@@ -20,7 +20,7 @@
 
             <div class="remark-form__buttons">
                 {% if not is_new %}
-                    <button class="remark-edit btn--secondary">cancel</button>
+                    <button class="remark-cancel btn--secondary">cancel</button>
                 {% endif %}
                 <button class="remark-save btn--primary">save</button>
             </div>

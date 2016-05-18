@@ -40,7 +40,7 @@
             </div>
 
             {% if remark_id.is_editable %}
-                <div class="buttons">
+                <div class="remark-item__buttons">
                     <a href="#" class="remark-edit">edit</a>
                     <a href="#" class="remark-delete">delete</a>
                 </div>
