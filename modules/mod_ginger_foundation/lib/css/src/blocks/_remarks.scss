@@ -61,6 +61,35 @@
         width: 100%;
         border-color: $alto;
     }
+
+    .is-error {
+        input[type="text"] {
+            border-color: $error;
+        }
+
+        &:after {
+            content: '!';
+            display: block;
+            width: 25px;
+            height: 25px;
+            padding-left: 1px;
+            position: absolute;
+            top: 39px;
+            right: 8px;
+            border-radius: 50%;
+            border: 2px solid $error;
+            text-align: center;
+            color: $error;
+            font-size: 15px;
+            line-height: 25px;
+            font-weight: bold;
+            font-family: $secondaryFontFamily;
+        }
+    }
+
+    .mce-tinymce.is-error {
+        border: 2px solid $error;
+    }
 }
 
 .remark-form__buttons {
@@ -78,7 +107,7 @@
 
 .remark-item {
     position: relative;
-    padding-bottom: 20px;
+    padding: 30px 0 20px;
     margin-bottom: 20px;
     list-style: none;
 
@@ -159,6 +188,42 @@
         margin-bottom: 0px;
         font-size: 18px;
         font-weight: 600;
+    }
+
+    ul, ol {
+        margin-left: 15px;
+    }
+}
+
+.remark-item__buttons {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.remark-edit,
+.remark-delete {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    text-indent: -9999px;
+
+    &:before {
+        @extend .has-icon;
+        @extend .icon--pen:before;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-indent: 0px;
+    }
+}
+
+.remark-delete {
+    &:before {
+        @extend .has-icon;
+        @extend .icon--bin:before;
     }
 }
 
