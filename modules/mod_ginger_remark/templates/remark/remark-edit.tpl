@@ -7,16 +7,15 @@
             <input type="hidden" name="object|author" value="{{ m.acl.user }}" />
             <input type="hidden" name="rights" value="CR" />
             <input type="hidden" name="is_published" value="true" />
+            <input type="hidden" name="content_group_id" value="{{ m.rsc.cg_user_generated.id }}" />
 
             <fieldset>
-
                 <p>
                     <label for="title">Titel</label><input type="text" name="title" id="title" value="{{ remark_id.title }}">
                 </p>
 
                 <textarea rows="10" cols="10" id="rsc-tiny{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
             </fieldset>
-
 
             <div class="remark-form__buttons">
                 {% if not is_new %}
@@ -28,7 +27,7 @@
         </form>
     </div>
 
-    {% wire id="rscform" type="submit" postback={rscform} delegate="controller_admin_edit" %}
+    {% wire id="rscform" type="submit" postback={rscform on_success={script script="$(document).trigger('remark:saved', " ++ the_remark_id ++ ");" }} delegate="mod_ginger_edit" %}
 
     {% wire name="zmedia"
     action={
@@ -59,7 +58,7 @@
     {% javascript %}
         z_editor.init();
         $(document).trigger('remark:editing', {{ the_remark_id }});
-        $(document).trigger('remark:new', {{ the_remark_id }});
+        {% if is_new == 1 %}$(document).trigger('remark:new', {{ the_remark_id }}); {% endif %}
     {% endjavascript %}
 
 {% endwith %}

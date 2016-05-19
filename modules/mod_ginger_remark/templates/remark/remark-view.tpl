@@ -52,5 +52,5 @@
         $(document).trigger('remark:viewing');
     {% endjavascript %}
 
-    {% wire name="rsc_delete_"++remark_id action={dialog_delete_rsc id=remark_id on_success={script script="$(document).trigger('remark:delete', " ++ remark_id ++ ");"}} %}
+    {% wire name="rsc_delete_"++remark_id action={dialog_delete_rsc id=remark_id on_success={script script="$(document).trigger('remark:deleted', " ++ remark_id ++ ");"}} %}
 {% endif %}

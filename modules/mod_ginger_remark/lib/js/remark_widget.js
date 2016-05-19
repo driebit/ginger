@@ -35,38 +35,12 @@
                     return false;
                 });
 
-
         },
-
-        // closeAll: function() {
-        //
-        //     var me = this,
-        //         widgetEls = $("[class*='do_remark_widget']"),
-        //         widgetRefs = []
-        //
-        //      $.each(widgetEls, function(i, element) {
-        //
-        //         var classnames = element.className.split(/\s+/),
-        //             element = $(element);
-        //
-        //         $.each(classnames, function(j, classname) {
-        //             if (classname.match(/do_remark_widget/)) {
-        //                 var widgetName = classname.replace(/^do_/, '');
-        //                  widgetRefs.push(element.data('ui-' + widgetName));
-        //             }
-        //         });
-        //      });
-        //
-        //      $.each(widgetRefs, function(i, widget) {
-        //          widget.switchToView();
-        //      });
-        //
-        // },
 
         switchToEdit: function() {
 
             var me = this,
-                remark_id = me.widgetElement.data('remark-id'),
+                remark_id = me.widgetElement.data('remarkid'),
                 id = me.widgetElement.data('id'),
                 unique = me.widgetElement.data('unique');
 
@@ -81,7 +55,7 @@
         switchToView: function() {
 
             var me = this,
-                remark_id = me.widgetElement.data('remark-id'),
+                remark_id = me.widgetElement.data('remarkid'),
                 id = me.widgetElement.data('id'),
                 unique = me.widgetElement.data('unique');
 
@@ -98,13 +72,9 @@
             var me = this;
 
             if (remark_id) {
-                me.widgetElement.data('remark-id', remark_id);
+                me.widgetElement.data('remarkid', remark_id);
             }
 
-        },
-
-        isEditing: function() {
-            //TODO
         },
 
         save: function() {
@@ -120,7 +90,7 @@
             $('.mce-tinymce').removeClass('is-error');
             title.closest('p').removeClass('is-error');
 
-            if (contentText == "") {
+            if (!contentText || contentText == "") {
                 $('.mce-tinymce').addClass('is-error');
                 valid = false;
             }
@@ -131,23 +101,25 @@
             }
 
             if (valid) {
-
+                $('.remark-save').hide();
+                $('.remark-cancel').hide();
                 $(form).submit();
-
-               //TODO: wait for server response before switching back
-               me.switchToView();
-
-               return false;
+                return false;
             }
 
             return false;
+        },
 
+        afterSave: function() {
+
+            var me = this;
+            me.switchToView();
         },
 
         delete: function() {
 
             var me = this,
-                remark_id = me.widgetElement.data('remark-id');
+                remark_id = me.widgetElement.data('remarkid');
 
             z_event('rsc_delete_' + remark_id);
         },
@@ -156,7 +128,7 @@
 
             var me = this;
 
-            delete z_registered_events['rsc_delete_' + me.widgetElement.data('remark-id')];
+            delete z_registered_events['rsc_delete_' + me.widgetElement.data('remarkid')];
             delete z_registered_events['render_remark_' + me.widgetElement.data('unique')];
 
             if (me.widgetElement) me.widgetElement.remove();
