@@ -1,8 +1,10 @@
+{% with title|default:_"Related based on these keywords:" as title %}
+
 {% if items %}
     {% with id.o.subject as results %}
         {% if results|length > 0 %}
                 <div class="keywords--aside">
-                    <p class="keywords__label">{_ Related based on these keywords: _}</p>
+                    <p class="keywords__label">{{ title }}</p>
 
                     <ul class="keywords__list">
                         {% for id in results %}
@@ -14,3 +16,5 @@
         {% endif %}
     {% endwith %}
 {% endif %}
+
+{% endwith %}
