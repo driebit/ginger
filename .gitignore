@@ -15,5 +15,4 @@ modules/mod_springy_graph
 mod_admin_multiupload
 mod_ginger_import
 mod_ginger_xml
->>>>>>> 13bade1... Git ignore more related modules
 *.pot
