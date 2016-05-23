@@ -6,9 +6,13 @@ modules/mod_am_default
 modules/mod_filmfonds_allotment
 modules/mod_geo
 modules/mod_ginger_auth/templates/_logon_box.tpl
-modules/mod_import_anymeta/
+modules/mod_import_anymeta
 modules/mod_import_anymeta_dispatch
-modules/mod_import_utils/
-modules/mod_recaptcha/
-modules/mod_springy_graph/
+modules/mod_import_utils
+modules/mod_ginger_rdf
+modules/mod_recaptcha
+modules/mod_springy_graph
+mod_admin_multiupload
+mod_ginger_import
+mod_ginger_xml
 *.pot
