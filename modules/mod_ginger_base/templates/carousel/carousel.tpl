@@ -17,7 +17,7 @@ as
 {% if items %}
 
     {% block carousel %}
-        <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}" data-options='{{ options }}'>
+        <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}">
             {% for id in items %}
                 {% catinclude itemtemplate id %}
             {% endfor %}
