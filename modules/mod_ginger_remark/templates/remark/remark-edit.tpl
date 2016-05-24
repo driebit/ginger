@@ -37,7 +37,7 @@
         subject_id=the_remark_id
         predicate=`depiction`
         tab="upload"
-        tabs_enabled=["upload"]
+        tabs_enabled=["upload","oembed"]
         callback="window.zAdminMediaDone"
         center=0
     }
