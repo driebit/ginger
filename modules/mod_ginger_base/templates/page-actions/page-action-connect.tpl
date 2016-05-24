@@ -40,6 +40,8 @@ as
                             predicate=predicate
                             object=object
                             id=id
+                            btn_connect_text=btn_connect_text
+                            btn_cancel_text=btn_cancel_text
                         }
                     }
                 %}
@@ -62,6 +64,8 @@ as
                                 predicate=predicate
                                 object=object
                                 id=id
+                                btn_connect_text=btn_connect_text
+                                btn_cancel_text=btn_cancel_text
                             }
                         }
                     %}
