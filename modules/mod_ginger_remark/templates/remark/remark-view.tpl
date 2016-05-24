@@ -39,7 +39,7 @@
                 {% endblock %}
             </div>
 
-            {% if remark_id.is_editable %}
+            {% if remark_id.is_editable and not id.o.hasremark|index_of:remark_id.id %}
                 <div class="remark-item__buttons">
                     <a href="#" class="remark-edit">edit</a>
                     <a href="#" class="remark-delete">delete</a>
