@@ -5,7 +5,9 @@
         <h2 class="list-header__title">
             {{ items|length }} {% if items|length > 1 %}{_ Reacties _}{% else %}{_ Reactie _}{% endif %}
         </h2>
-        <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
+        {% if m.acl.user %}
+            <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
+        {% endif %}
     </div>
 
     {% for remark_id in id.s.about|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id %}

@@ -3,9 +3,9 @@
         <article>
             <div class="remark-item__author">
                     {% if remark_id.o.author as author %}
-                        {% include "avatar/avatar.tpl" %}
+                        {% include "avatar/avatar.tpl" id=author %}
                     {% else %}
-                        {% include "avatar/avatar.tpl" author=m.rsc[remark_id.creator_id] %}
+                        {% include "avatar/avatar.tpl" id=m.rsc[remark_id.creator_id] %}
                     {% endif %}
                 <div class="remark-item__author__text">
 
@@ -31,7 +31,7 @@
                 {% endwith %} #}
 
                 {% block about %}
-                    {% if remark_id.id != remark_id.o.comment.id %}
+                    {% if id.o.hasremark|index_of:remark_id.id %}
                         <p>
                             <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ remark_id.o.about.page_url }}"> {{ remark_id.o.about.title }}</a>
                         </p>
