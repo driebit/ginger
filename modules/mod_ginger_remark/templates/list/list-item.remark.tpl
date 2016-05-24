@@ -41,10 +41,12 @@
                 {% endblock %}
             </div>
 
-            <div class="buttons">
-                <a href="#" class="remark-edit btn--edit">edit</a>
-                <a href="#" class="remark-delete btn--delete">delete</a>
-            </div>
+            {% if remark_id.is_editable and not id.o.hasremark|index_of:remark_id.id %}
+                <div class="buttons">
+                    <a href="#" class="remark-edit btn--edit">edit</a>
+                    <a href="#" class="remark-delete btn--delete">delete</a>
+                </div>
+            {% endif %}
 
             {% javascript %}
                 $(document).trigger('remark:viewing');
