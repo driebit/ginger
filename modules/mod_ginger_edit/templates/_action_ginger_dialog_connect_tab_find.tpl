@@ -19,13 +19,13 @@
 	<div id="dialog-connect-found" class="do_feedback"
 		data-feedback="trigger: 'dialog-connect-find', delegate: 'mod_admin'">
 	</div>
+
     <div class="modal-footer">
         <a class="btn btn-default" id="{{ #close }}">
          {% if autoclose %}{_ Cancel _}{% else %}{_ Ok _}{% endif %}
         </a>
         {% wire id=#close action={dialog_close} %}
     </div>
-
 </div>
 {% wire name="dialog_connect_find"
     action={postback
@@ -47,7 +47,7 @@
     $("#dialog-connect-found").on('click', '.thumbnail', function(e) {
     	e.preventDefault();
         $(this).effect("highlight").addClass("thumbnail-connected");
-        z_event('dialog_connect_find', { 
+        z_event('dialog_connect_find', {
             select_id: $(this).data('id')
         });
     });
