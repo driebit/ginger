@@ -21,7 +21,7 @@
 	</div>
     <div class="modal-footer">
         <a class="btn btn-default" id="{{ #close }}">
-         {% if autoclose %}{_ Cancel _}{% else %}{_ Close _}{% endif %}
+         {% if autoclose %}{_ Cancel _}{% else %}{_ Ok _}{% endif %}
         </a>
         {% wire id=#close action={dialog_close} %}
     </div>
