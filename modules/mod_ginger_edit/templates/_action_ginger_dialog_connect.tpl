@@ -30,6 +30,7 @@
                 {% endif %}
             {% endif %}
         {% else %}
+            {% block keyword_tabs %}
             {% if "find"|member:tabs_enabled %}
                 {% with m.category[m.rsc.keyword.id].tree1 as hassubs %}
                 <li {% if tab == "find" %}class="active"{% endif %}>
@@ -51,6 +52,7 @@
                     <a data-toggle="tab" href="#{{ #tab }}-new">{_ New _}</a>
                 </li>
             {% endif %}
+            {% endblock %}
         {% endif %}
 
         {% endblock %}
