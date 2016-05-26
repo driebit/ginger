@@ -5,9 +5,9 @@
         <article>
             <div class="remark-item__author">
                     {% if id.o.author as author %}
-                        {% include "avatar/avatar.tpl" %}
+                        {% include "avatar/avatar.tpl" id=m.rsc[author] %}
                     {% else %}
-                        {% include "avatar/avatar.tpl" author=m.rsc[id.creator_id] %}
+                        {% include "avatar/avatar.tpl" id=m.rsc[id.creator_id] %}
                     {% endif %}
                 <div class="remark-item__author__text">
 
