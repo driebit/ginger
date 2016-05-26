@@ -3,8 +3,8 @@ Ginger Guidelines
 
 Everyone is invited to make changes to this document.
 
-Please make a [merge request](https://gitlab.driebit.nl/driebit/ginger/merge_requests)
-to suggest improvements and add clarifications. Please use [issues](https://gitlab.driebit.nl/driebit/ginger/issues)
+Please make a [merge request](https://github.com/driebit/ginger/pulls)
+to suggest improvements and add clarifications. Please use [issues](https://github/driebit/ginger/issues)
 to ask questions.
 
 ## Working on sites
@@ -30,36 +30,44 @@ possible. Then only overwrite the blocks that you really need to overwrite.
 
 ### 5. Add site or module-specific CSS files to _html_head.tpl.
 
+### 6. Protect system content.
+
+* In the ACL rules, never give users (including managers) access to
+  ‘system content’. This prevents users from accidentally editing categories
+   and content groups.
+
 ## Working on Ginger
 
-### 6. Be backwards compatible.
+### 7. Be backwards compatible.
 
-When changing templates, parameter names etc. always think about backwards
-compatibility.
+* When changing templates, parameter names etc. always think about backwards
+  compatibility.
 
-Other people and sites depend on you to make sure their code
-still works after your changes.
+* Other people and sites depend on you to make sure their code
+  still works after your changes.
 
-If you need to introduce a breaking change, document it in the CHANGELOG.md file.
+* If you need to introduce a breaking change, document it in the CHANGELOG.md
+  file.
 
-### 7. Commit *small bugfixes* to the current release branch, for instance release-0.5.0.
+### 8. Commit *small bugfixes* to the current release branch
 
-Then merge the release branch including your bugfix into master:
+For instance `release-0.5.0`. Then *merge* the release branch including your
+bugfix into master:
 
 ```bash
 $ git checkout master
 $ git merge release-0.5.0
 ```
 
-### 8. Commit *new features* to the master branch.
+### 9. Commit *new features* to the master branch.
 
 They will then become part of the next Ginger release.
 
-### 9. Prefer catinclude over include.
+### 10. Prefer catinclude over include.
 
 `{% catinclude id %}` allows more specific template overrides.
 
-### 10. Place custom Erlang functionality in observers.
+### 11. Place custom Erlang functionality in observers.
 
 Instead of copying .erl files, hook into the notifications that already exist
 in Zotonic and Ginger.
