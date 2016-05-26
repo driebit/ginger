@@ -19,6 +19,13 @@
 	<div id="dialog-connect-found" class="do_feedback"
 		data-feedback="trigger: 'dialog-connect-find', delegate: 'mod_admin'">
 	</div>
+    <div class="modal-footer">
+        <a class="btn btn-default" id="{{ #close }}">
+         {% if autoclose %}{_ Cancel _}{% else %}{_ Close _}{% endif %}
+        </a>
+        {% wire id=#close action={dialog_close} %}
+    </div>
+
 </div>
 {% wire name="dialog_connect_find"
     action={postback
