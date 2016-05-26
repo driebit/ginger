@@ -2,7 +2,6 @@
 mod_ginger_default
 
 # Hosted on GitHub
-mod_ginger_tagger
 mod_oauth2
 
 # Other Ginger modules

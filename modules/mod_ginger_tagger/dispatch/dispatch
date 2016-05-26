@@ -1,0 +1,6 @@
+[
+    {tagger_rfids, ["me", "rfids"], controller_api, [{module, "ginger_tagger"}, {method, "rfids"}]},
+    {tagger_rfids_get, ["rfids", rfid], controller_api, [{module, "ginger_tagger"}, {method, "rfids"}]},
+    {tagger_actions, ["tagger", "actions"], controller_api, [{module, "ginger_tagger"}, {method, "actions"}]}
+].
+
