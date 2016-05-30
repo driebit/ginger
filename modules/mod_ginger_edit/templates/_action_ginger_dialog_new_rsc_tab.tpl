@@ -23,7 +23,9 @@
 	<input type="hidden" name="redirect" value="{{ redirect }}" />
 	<input type="hidden" name="page" value="{{ page }}" />
 	<input type="hidden" name="actions" value="{{ actions }}"/>
-	<input type="hidden" name="is_published" value="1"/>
+    {% block is_published %}
+        <input type="hidden" name="is_published" value="1"/>
+    {% endblock %}
 
 	<div class="form-group row">
 	    <label class="control-label col-md-3" for="new_rsc_title">{_ Title _}</label>
