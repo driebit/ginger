@@ -4,7 +4,7 @@ Ginger
 This is the Ginger Zotonic edition. This repository contains:
 
 * (most) Ginger modules
-* Vagrant configuration
+* Docker configuration
 * shell scripts
 
 Documentation
@@ -12,80 +12,89 @@ Documentation
 
 * [Guidelines](docs/guidelines.md)
 * [Why Ginger is a single Git repository](docs/monorepo.md)
+* [Docker](docs/docker.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
 
 Getting started
 ---------------
 
-Use Vagrant to start the development environment. See
-[our docs](https://gitlab.driebit.nl/driebit/docs/blob/master/vagrant.md)
-for more info.
+Install [Docker for Mac beta](https://beta.docker.com), which currently
+requires you to sign up.
+
+Then open a terminal in the Ginger directory and start the containers:
+
+```bash
+$ docker-compose up
+```
+
+To run Zotonic commands:
+
+```bash
+$ docker-compose exec zotonic bash
+$ zotonic shell
+```
+
+Run [Gulp](https://github.com/driebit/docker-node-gulp) in a site directory:
+
+```bash
+$ docker run -it -v $(pwd):/app driebit/node-gulp
+```
+
+For more, see the [Docker](docs/docker.md) doc chapter.
 
 Sites overview
 ---------------
 
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
-  is available at [http://ginger.dev](http://ginger.dev). Log in with empty password.
+  is available at [http://localhost](http://localhost). Log in with empty password.
 
 Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
-2. z:compile in zotonic shell
-3. Start the site from the [status site](http://ginger.dev)
-4. Login and go to the modules page
-5. Deactive site module and activate it again
-6. Now the site should work properly
+2. Start the site from the [status site](http://localhost)
+3. Login and go to the modules page
+4. Deactive site module and activate it again
+5. Now the site should work properly
 
 Adding modules
 --------------
 
 Place custom modules in `modules/` (no symlinks needed).
 
-Starting and stopping Zotonic
------------------------------
-
-Stop Zotonic: `$ sudo service zotonic stop`.
-
-Start Zotonic: `$ sudo service zotonic start`.
-
-Start Zotonic in debug mode: `$ zotonic debug`.
-
 Database
 --------
 
 Connect to the database:
 
-```bash
-$ sudo -u postgres psql
-\l
-\c
+```
+docker-compose exec postgres psql -U zotonic
 ```
 
-### Importing a database
+### Import a database from a local file
 
-From a file:
+1. Copy the database dump `.sql` file to the `data/` directory.
 
-```bash
-$ scripts/import.sh site-name site-name.sql
-```
+2. Then run:
 
-In ginger.dev environment, from a remote backup:
+    ```bash
+    $ make import-db-file db=site-name file=site-dump.sql
+    ```
 
-```bash
-$ scripts/import-backup.sh your-username@ginger01.driebit.net site-name
-```
+### Import a database from a remote backup
+
+1. If there are no backups yet, create a backup on the remote Zotonic site.
+
+2. Then run:
+
+    ```bash
+    $ make import-db-backup host=ginger01.driebit.net site=site-name
+    ```
 
 Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
 `ginger01.driebit.net` depending on the environment that you want to import
 the latest backup from.
-
-On ginger-test, you can leave out `your-username`:
-
-```
-$ scripts/import-backup.sh ginger01.driebit.net site-name
-```
 
 Fetching changes
 ----------------

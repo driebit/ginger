@@ -1,5 +1,6 @@
 .DS_Store
 .vagrant
+data/*
 sites/*
 modules/mod_alternative_uris
 modules/mod_am_default
