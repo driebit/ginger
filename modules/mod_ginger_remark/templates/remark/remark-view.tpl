@@ -27,8 +27,14 @@
                     {{ remark_id.body|show_media }}
                 </div>
 
-                {% with remark_id.media|without_embedded_media:id|first as dep %}
-                    {% catinclude "media/media.image.tpl" dep %}
+                {% with remark_id.media|without_embedded_media:remark_id as deps %}
+                    {% if deps %}
+                        <div class="remark-item__media">
+                            {% for dep in deps %}
+                                {% catinclude "media/media.image.tpl" dep %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 {% endwith %}
 
                 {% block about %}

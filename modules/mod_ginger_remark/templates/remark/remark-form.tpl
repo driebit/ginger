@@ -10,7 +10,7 @@
         {% endif %}
     </div>
 
-    {% for remark_id in id.s.about|default:id.s.comment|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id %}
+    {% for remark_id in id.s.about|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id %}
         {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
     {% endfor %}
 </div>
