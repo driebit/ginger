@@ -27,9 +27,9 @@
                     {{ remark_id.body|show_media }}
                 </div>
 
-                {# {% with remark_id.media|without_embedded_media:id|first as dep %}
+                {% with remark_id.media|without_embedded_media:id|first as dep %}
                     {% catinclude "media/media.image.tpl" dep %}
-                {% endwith %} #}
+                {% endwith %}
 
                 {% block about %}
                     {% if id.o.hasremark|index_of:remark_id.id %}
