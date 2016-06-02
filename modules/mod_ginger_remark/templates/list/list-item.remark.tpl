@@ -28,6 +28,7 @@
                 <div class="remark-item__content__body">
                     {{ id.body|show_media }}
                 </div>
+
                 {% with id.media|without_embedded_media:id|first as dep %}
                     {% catinclude "media/media.image.tpl" dep %}
                 {% endwith %}

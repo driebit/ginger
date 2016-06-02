@@ -22,6 +22,7 @@
                 <h3 class="remark-item__content__title">
                     {{ remark_id.title }}
                 </h3>
+
                 <div class="remark-item__content__body">
                     {{ remark_id.body|show_media }}
                 </div>
