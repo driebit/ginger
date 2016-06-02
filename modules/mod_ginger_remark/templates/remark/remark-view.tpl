@@ -38,7 +38,7 @@
                 {% endwith %}
 
                 {% block about %}
-                    {% if id.o.hasremark|index_of:remark_id.id %}
+                    {% if id.s.about|index_of:remark_id.id %}
                         <p>
                             <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ remark_id.o.about.page_url }}"> {{ remark_id.o.about.title }}</a>
                         </p>
