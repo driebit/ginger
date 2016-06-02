@@ -15,7 +15,7 @@ as
  %}
 
     {% if id.facebookpage %}
-        <div class="fb-page" data-href="{{ id.facebookpage }}" data-width="{{ width }}" data-height="{{ height }}" data-small-header="{{ small_header }}" data-adapt-container-width="true" data-hide-cover="{{ hide_cover }}" data-show-facepile="{{ show_facepile }}" data-show-posts="{{ show_posts }}"></div>
+        <div id="facebook" class="fb-page" data-href="{{ id.facebookpage }}" data-width="{{ width }}" data-height="{{ height }}" data-small-header="{{ small_header }}" data-adapt-container-width="true" data-hide-cover="{{ hide_cover }}" data-show-facepile="{{ show_facepile }}" data-show-posts="{{ show_posts }}"></div>
     {% endif %}
 
 {% endwith %}
