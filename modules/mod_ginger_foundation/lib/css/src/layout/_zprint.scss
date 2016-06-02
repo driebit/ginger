@@ -22,14 +22,9 @@
         page-break-inside: avoid;
     }
 
-    .list__item,
-    .list__item-publication {
+    .list__item {
         display: block;
         page-break-inside: avoid;
-    }
-
-    .list__item-publication.is-open {
-        page-break-before: always;
     }
 
     .list {
