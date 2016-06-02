@@ -227,6 +227,13 @@
     }
 }
 
+.remark-item__media {
+    figure {
+        display: inline-block;
+        width: 125px;
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint) {
     .main-content__remarks {
         .list-header {
