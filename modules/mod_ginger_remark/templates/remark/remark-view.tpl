@@ -26,24 +26,22 @@
                 <div class="remark-item__content__body">
                     {{ remark_id.body|show_media }}
                 </div>
+                {% with remark_id.o.depiction as media %}
 
-                {% with remark_id.media|without_embedded_media:remark_id as deps %}
+                {% with media|without_embedded_media:remark_id as deps %}
                     {% if deps %}
                         <div class="remark-item__media">
                             {% for dep in deps %}
-                                {% catinclude "media/media.image.tpl" dep %}
+                                {% if media|length > 1 %}
+                                    {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id %}
+                                {% else %}
+                                    {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id first %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                     {% endif %}
                 {% endwith %}
-
-                {% block about %}
-                    {% if id.s.about|index_of:remark_id.id %}
-                        <p>
-                            <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ remark_id.o.about.page_url }}"> {{ remark_id.o.about.title }}</a>
-                        </p>
-                    {% endif %}
-                {% endblock %}
+                {% endwith %}
             </div>
 
             {% if remark_id.is_editable and not id.o.hasremark|index_of:remark_id.id %}

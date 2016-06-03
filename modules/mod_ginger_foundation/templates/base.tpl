@@ -11,8 +11,8 @@
 
  geavanceerde internet applicaties
 
-		 Oudezijds Voorburgwal 247
-				 1012 EZ Amsterdam
+		 Oudezijds Voorburgwal 282
+				 1012 GL Amsterdam
 					020 - 420 8449
 				   info@driebit.nl
 					www.driebit.nl

@@ -1,0 +1,10 @@
+.remark__pager {
+    margin: 20px 0;
+
+    .pagination {
+        li:nth-child(5),
+        li:nth-child(6) {
+            display: inline-block;
+        }
+    }
+}

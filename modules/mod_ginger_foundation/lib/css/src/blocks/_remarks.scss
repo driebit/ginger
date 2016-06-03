@@ -230,7 +230,30 @@
 .remark-item__media {
     figure {
         display: inline-block;
-        width: 125px;
+        position: relative;
+    }
+
+    .depiction-delete {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        background: rgba($white, 0.2);
+        color: $error;
+        border: none;
+        border-radius: 0px;
+        text-align: center;
+        line-height: 40px;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:active:focus {
+            background: rgba($white, 0.8);
+        }
+
     }
 }
 

@@ -50,6 +50,12 @@ a, a:hover, a:active {
     color: $mainThemeColor;
 }
 
+a[href*="youtube"],
+a[href*="google"],
+a[href*="vimeo"] {
+    word-break: break-all;
+}
+
 img {
     max-width: 100%;
     border-radius: 0;
