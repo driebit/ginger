@@ -19,6 +19,8 @@
         {% endif %}
     </div>
 
+    {% include "remark-pager/remark-pager.tpl" %}
+
     {% with page * page_length as page_end %}
     {% with page_end - page_length + 1 as page_start %}
     {% with page_end > remarks|length as is_last_page %}
@@ -34,45 +36,9 @@
     {% endwith %}
     {% endwith %}
     {% endwith %}
-</div>
 
-{% with
-    (remarks|length / page_length)|ceiling
-    as
-    total_pages
-     %}
-
-<div id="{{ list_id }}-buttons" class="search__pager">
-    <div class="search__pager__result-counter">{{ remarks|length }} {_ results _}</div>
-    <div class="search__pager__pagination">
-        <ul class="pagination pagination-centered">
-            {% if page - 1 > 0 %}
-            <li><a href="?remark_page={{ page - 1}}&remark_page_length={{ page_length }}">←</a></li>
-            {% endif %}
-                    <!-- <li><a href="/search?page=1#content-pager">1</a></li>
-                    <li class="disabled"><a href="#">…</a></li> -->
-                    {% if (page - 2) > 0 %}
-                    <li><a href="?remark_page={{ page - 2 }}&remark_page_length={{ page_length }}">{{ page - 2 }}</a></li>
-                    {% endif %}
-                    {% if (page - 1) > 0 %}
-                    <li><a href="?remark_page={{ page - 1 }}&remark_page_length={{ page_length }}">{{ page - 1 }}</a></li>
-                    {% endif %}
-                    <li class="active">{{ page }}</li>
-                    {% if (page + 1) <= total_pages %}
-                    <li><a href="?remark_page={{ page + 1 }}&remark_page_length={{ page_length }}">{{ page + 1 }}</a></li>
-                    {% endif %}
-                    {% if (page + 2) <= total_pages %}
-                    <li><a href="?remark_page={{ page + 2 }}&remark_page_length={{ page_length }}">{{ page + 2 }}</a></li>
-                    {% endif %}
-                    <!-- <li class="disabled"><a href="#">…</a></li>
-                    <li><a href="/search?page=3000#content-pager">3000</a></li> -->
-            {% if total_pages > page %}
-            <li><a href="?remark_page={{ page + 1}}&remark_page_length={{ page_length }}">→</a></li>
-            {% endif %}
-        </ul>
-    </div>
+    {% include "remark-pager/remark-pager.tpl" %}
 </div>
-{% endwith %}
 
 {% wire name="new_remark" action={insert_after target="list-header" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
 

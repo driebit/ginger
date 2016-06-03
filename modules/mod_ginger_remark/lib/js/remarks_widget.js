@@ -30,20 +30,27 @@
                 });
 
                 $(document).on('remark:new', function(e, remark_id) {
-
                     var el = $('#remark_' + remark_id).closest('.do_remark_widget'),
                         widget = el.data('ui-remark_widget');
+
                     widget.setValues(remark_id);
                 });
 
                 $(document).on('remark:deleted', function(e, remark_id) {
                     var widget = me.getWidget(remark_id);
+
                     widget.afterDelete();
                 });
 
-                $(document).on('remark:saved', function(e, remark_id) {
+                $(document).on('depiction:deleted', function(e, depiction_id, remark_id) {
+                     var widget = me.getWidget(remark_id);
 
+                     widget.afterDepictionDelete(depiction_id);
+                });
+
+                $(document).on('remark:saved', function(e, remark_id) {
                     var widget = me.getWidget(remark_id);
+
                     widget.afterSave();
                 });
 

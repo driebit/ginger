@@ -8,7 +8,7 @@
 
         {% include "page-actions/page-action-edit-thing.tpl" extraClasses="edit-button--list-item" id=id %}
 
-        <a href="{{ id.page_url }}">
+        <a href="{{ id.o.about.page_url }}">
             <article>
                 <div class="list__item__image">
                     {% image dep_rsc.id mediaclass="list-image" alt="" title="" crop=dep_rsc.crop_center %}

@@ -31,7 +31,17 @@
                 });
 
                 widgetElement.on('click', '.remark-delete', function() {
-                    $.proxy(me.delete(), me);
+                    var remark_id = me.widgetElement.data('remarkid');
+
+                    $.proxy(me.delete(remark_id), me);
+                    return false;
+                });
+
+                widgetElement.on('click', '.depiction-delete', function() {
+                    var depiction_id = $(this).data('id');
+
+                    $.proxy(me.delete(depiction_id), me);
+
                     return false;
                 });
 
@@ -121,12 +131,11 @@
             me.switchToView();
         },
 
-        delete: function() {
+        delete: function(id) {
 
-            var me = this,
-                remark_id = me.widgetElement.data('remarkid');
+            var me = this;
 
-            z_event('rsc_delete_' + remark_id);
+            z_event('rsc_delete_' + id);
         },
 
         afterDelete: function() {
@@ -137,6 +146,14 @@
             delete z_registered_events['render_remark_' + me.widgetElement.data('unique')];
 
             if (me.widgetElement) me.widgetElement.remove();
+
+        },
+
+        afterDepictionDelete: function() {
+
+            var me = this;
+
+            me.switchToView();
 
         }
 
