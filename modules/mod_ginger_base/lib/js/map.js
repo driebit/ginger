@@ -26,7 +26,7 @@ $.widget( "ui.googlemap", {
 
 		var styles = [];
 		 	 stylers = [];
-		
+
 		styles.push({"stylers":stylers});
 		options.styles = styles;
 
@@ -195,7 +195,7 @@ $.widget( "ui.googlemap", {
 		offsetY = me.options.panOffsetY,
 		scale = Math.pow(2,me.map.getZoom()),
 		center = me.map.getProjection().fromLatLngToPoint(marker.getPosition()),
-		newCenterPoint = new google.maps.Point(center.x - offsetX/scale, center.y + offsetY/scale),   
+		newCenterPoint = new google.maps.Point(center.x - offsetX/scale, center.y + offsetY/scale),
 		newCenter = me.map.getProjection().fromPointToLatLng(newCenterPoint);
 
 	    me.map.panTo(newCenter);
@@ -225,7 +225,13 @@ $.widget( "ui.googlemap", {
 
 	removeStyles: function() {
 		this.map.set('styles', '');
+	},
+
+	triggerResize: function() {
+		var me = this,
+			map = me.map;
+
+		google.maps.event.trigger(map, "resize");
 	}
 
 });
-
