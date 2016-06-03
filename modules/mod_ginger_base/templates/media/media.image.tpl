@@ -11,7 +11,7 @@
             {% endif %}
             >
         {% else %}
-            <a href="{% image_url id.id %}" class="media--image__lightbox lightbox" rel="body">
+            <a href="{% image_url id.id %}" class="media--image__lightbox lightbox" rel="body" title="{{ caption }}">
         {% endif %}
 
             {% if id.medium.width > 750 %}
