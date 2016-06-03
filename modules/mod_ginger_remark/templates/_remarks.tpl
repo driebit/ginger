@@ -37,7 +37,7 @@
 </div>
 
 {% with
-    (remarks|length / page_length)|to_integer
+    (remarks|length / page_length)|ceiling
     as
     total_pages
      %}
