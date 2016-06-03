@@ -87,10 +87,15 @@
                 valid = true,
                 re = /[a-z A-Z 0-1]+/i;
 
+            var rawContent = tinymce.get(tinyname).getContent({'format':'raw'});
+
+            rawContent = rawContent.replace(/<img([^>])*>/gi, 'img').trim();
+            rawContent = $(rawContent).text();
+
             $('.mce-tinymce').removeClass('is-error');
             title.closest('p').removeClass('is-error');
 
-            if (!contentText || contentText == "") {
+            if (!rawContent || rawContent == "") {
                 $('.mce-tinymce').addClass('is-error');
                 valid = false;
             }
