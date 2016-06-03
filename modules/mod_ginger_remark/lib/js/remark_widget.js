@@ -67,7 +67,7 @@
 
         },
 
-        setValues(remark_id) {
+        setValues: function(remark_id) {
 
             var me = this;
 

@@ -152,6 +152,16 @@
     font-weight: 300;
 }
 
+.list__item__about {
+    font-size: 14px;
+
+    i {
+        position: relative;
+        top: 1px;
+        margin-right: 5px;
+    }
+}
+
 .list__more {
     display: block;
     @extend %btn;

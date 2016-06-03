@@ -22,16 +22,23 @@
                 <h3 class="remark-item__content__title">
                     {{ remark_id.title }}
                 </h3>
+
                 <div class="remark-item__content__body">
                     {{ remark_id.body|show_media }}
                 </div>
 
-                {# {% with remark_id.media|without_embedded_media:id|first as dep %}
-                    {% catinclude "media/media.image.tpl" dep %}
-                {% endwith %} #}
+                {% with remark_id.media|without_embedded_media:remark_id as deps %}
+                    {% if deps %}
+                        <div class="remark-item__media">
+                            {% for dep in deps %}
+                                {% catinclude "media/media.image.tpl" dep %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
 
                 {% block about %}
-                    {% if id.o.hasremark|index_of:remark_id.id %}
+                    {% if id.s.about|index_of:remark_id.id %}
                         <p>
                             <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ remark_id.o.about.page_url }}"> {{ remark_id.o.about.title }}</a>
                         </p>
