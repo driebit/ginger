@@ -20,28 +20,29 @@
     </div>
 
     {% include "remark-pager/remark-pager.tpl" %}
-
-    {% with page * page_length as page_end %}
-    {% with page_end - page_length + 1 as page_start %}
-    {% with page_end > remarks|length as is_last_page %}
-        {% if remarks %}
-            {% if is_last_page %}
-                {% for remark_id in remarks|slice:[page_start, remarks|length|to_integer] %}
-                    {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
-                {% endfor %}
-            {% else %}
-                {% for remark_id in remarks|slice:[page_start, page_end] %}
-                    {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
-                {% endfor %}
+    <div id="remark-list">
+        {% with page * page_length as page_end %}
+        {% with page_end - page_length + 1 as page_start %}
+        {% with page_end > remarks|length as is_last_page %}
+            {% if remarks %}
+                {% if is_last_page %}
+                    {% for remark_id in remarks|slice:[page_start, remarks|length|to_integer] %}
+                        {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
+                    {% endfor %}
+                {% else %}
+                    {% for remark_id in remarks|slice:[page_start, page_end] %}
+                        {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
+                    {% endfor %}
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endwith %}
-    {% endwith %}
-    {% endwith %}
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+    </div>
 
     {% include "remark-pager/remark-pager.tpl" %}
 </div>
 
-{% wire name="new_remark" action={insert_after target="list-header" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
+{% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
 
 {% endwith %}
