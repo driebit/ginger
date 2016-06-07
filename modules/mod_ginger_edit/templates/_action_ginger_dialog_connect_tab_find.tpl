@@ -26,6 +26,7 @@
         </a>
         {% wire id=#close action={dialog_close} %}
     </div>
+
 </div>
 {% wire name="dialog_connect_find"
     action={postback

@@ -27,7 +27,6 @@
                     {{ remark_id.body|show_media }}
                 </div>
                 {% with remark_id.o.depiction as media %}
-
                 {% with media|without_embedded_media:remark_id as deps %}
                     {% if deps %}
                         <div class="remark-item__media">
