@@ -24,14 +24,16 @@
     {% with page * page_length as page_end %}
     {% with page_end - page_length + 1 as page_start %}
     {% with page_end > remarks|length as is_last_page %}
-        {% if is_last_page %}
-            {% for remark_id in remarks|slice:[page_start, remarks|length|to_integer] %}
-                {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
-            {% endfor %}
-        {% else %}
-            {% for remark_id in remarks|slice:[page_start, page_end] %}
-                {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
-            {% endfor %}
+        {% if remarks %}
+            {% if is_last_page %}
+                {% for remark_id in remarks|slice:[page_start, remarks|length|to_integer] %}
+                    {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
+                {% endfor %}
+            {% else %}
+                {% for remark_id in remarks|slice:[page_start, page_end] %}
+                    {% include "remark/remark-wrapper.tpl" remark_id=remark_id %}
+                {% endfor %}
+            {% endif %}
         {% endif %}
     {% endwith %}
     {% endwith %}
