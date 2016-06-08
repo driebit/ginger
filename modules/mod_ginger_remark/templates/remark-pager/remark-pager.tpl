@@ -10,7 +10,7 @@
         <div class="remark__pager__pagination">
             <ul class="pagination pagination-centered">
                 {% if page - 1 > 0 %}
-                    <li><a href="?remark_page={{ page - 1}}&remark_page_length={{ page_length }}#remarks">←</a></li>
+                    <li><a href="?remark_page={{ page - 1}}&remark_page_length={{ page_length }}#remarks" title="{_ Previous page _}">←</a></li>
                 {% else %}
                     <li class="disabled"><a href="#content-pager">←</a></li>
                 {% endif %}
@@ -32,7 +32,7 @@
                         <!-- <li class="disabled"><a href="#">…</a></li>
                         <li><a href="/search?page=3000#content-pager">3000</a></li> -->
                 {% if total_pages > page %}
-                    <li><a href="?remark_page={{ page + 1}}&remark_page_length={{ page_length }}#remarks">→</a></li>
+                    <li><a href="?remark_page={{ page + 1}}&remark_page_length={{ page_length }}#remarks" title="{_ Next page _}">→</a></li>
                 {% else %}
                     <li class="disabled"><a href="#content-pager">→</a></li>
                 {% endif %}

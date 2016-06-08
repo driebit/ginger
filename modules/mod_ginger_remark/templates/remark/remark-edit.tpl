@@ -11,7 +11,7 @@
 
             <fieldset>
                 <p>
-                    <label for="title">Titel</label><input type="text" name="title" id="title" value="{{ remark_id.title }}">
+                    <label for="title">{_ Title _}</label><input type="text" name="title" id="title" value="{{ remark_id.title }}">
                 </p>
 
                 <textarea rows="10" cols="10" id="rsc-tiny{{#ident}}" name="body" class="body z_editor-init form-control">{{ remark_id.body }}</textarea>
@@ -19,9 +19,9 @@
 
             <div class="remark-form__buttons">
                 {% if not is_new %}
-                    <button class="remark-cancel btn--secondary">cancel</button>
+                    <button class="remark-cancel btn--secondary" title="{_ cancel _}">{_ cancel _}</button>
                 {% endif %}
-                <button class="remark-save btn--primary">save</button>
+                <button class="remark-save btn--primary" title="{_ save _}">{_ save _}</button>
             </div>
 
         </form>

@@ -34,7 +34,7 @@
     {% endif %}
 
     {% if id.is_editable %}
-        <a href="#" class="btn--delete depiction-delete" data-id="{{ id.id }}"><i class="icon--bin"></i></a>
+        <a href="#" class="btn--delete depiction-delete" data-id="{{ id.id }}" title="{_ Delete image _}"><i class="icon--bin"></i></a>
     {% endif %}
 </figure>
 
