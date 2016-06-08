@@ -8,7 +8,7 @@
 
         <a href="{{ id.page_url }}">
             <article class="cf">
-                <div class="list__item--vertical__image" style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});">
+                <div class="list__item--vertical__image" {% if dep_rsc %} style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});"{% endif %}>
                     {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
                     {% block list_item_cat %}
                         <div class="list__item__content__category">
