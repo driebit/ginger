@@ -237,6 +237,9 @@
 .list__item--vertical__image {
     position: relative;
     background: none;
+    min-height: 140px;
+    background-image: url('/lib/images/fallback.png');
+    background-position: center center;
 }
 
 .list__item__content__location {

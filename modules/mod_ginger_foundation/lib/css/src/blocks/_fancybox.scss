@@ -28,7 +28,7 @@
         @include size(margin-top, -20);
         position: absolute;
         top: 50%;
-        visibility: hidden;
+        visibility: visible;
 
         &:before {
             @extend .has-icon;
@@ -41,7 +41,7 @@
     left: -15px;
 
     span {
-        left: -10px;
+        left: -25px;
 
         &:before {
             @extend .icon--arrow-left:before;
@@ -54,7 +54,7 @@
     right: -15px;
 
     span {
-        right: -10px;
+        right: -25px;
 
         &:before {
             @extend .icon--arrow-right:before;
@@ -93,11 +93,26 @@
 
 
 @include mq(min-width, $smallBreakpoint) {
+
+    .fancybox-nav {
+        span {
+            visibility: hidden;
+        }
+    }
+
     .fancybox-prev {
         left: -30px;
+
+        span {
+            left: 0;
+        }
     }
 
     .fancybox-next {
         right: -30px;
+
+        span {
+            right: 0;
+        }
     }
 }
