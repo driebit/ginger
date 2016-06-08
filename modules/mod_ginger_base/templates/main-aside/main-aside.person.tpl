@@ -31,7 +31,7 @@
 
                     {% include "list/list-header.tpl" id=id list_title=_"Remarks of "++id.title items=result %}
 
-                    {% include "list/list.tpl" list_id="list--favorited" items=result extraClasses="" id=id %}
+                    {% include "list/list.tpl" list_id="list--remarks" items=result extraClasses="" id=id %}
                 </aside>
 
             {% endif %}
