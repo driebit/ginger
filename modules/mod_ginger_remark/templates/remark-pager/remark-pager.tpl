@@ -11,11 +11,13 @@
             <ul class="pagination pagination-centered">
                 {% if page - 1 > 0 %}
                     <li><a href="?remark_page={{ page - 1}}&remark_page_length={{ page_length }}#remarks" title="{_ Previous page _}">←</a></li>
+                    {% if page - 1 > 2 %}
+                        <li class="disabled"><a href="#content-pager">…</a></li>
+                    {% endif %}
                 {% else %}
                     <li class="disabled"><a href="#content-pager">←</a></li>
                 {% endif %}
-                        <!-- <li><a href="/search?page=1#content-pager">1</a></li>
-                        <li class="disabled"><a href="#">…</a></li> -->
+                        {# <li><a href="/search?page=1#content-pager">1</a></li> #}
                         {% if (page - 2) > 0 %}
                         <li><a href="?remark_page={{ page - 2 }}&remark_page_length={{ page_length }}#remarks">{{ page - 2 }}</a></li>
                         {% endif %}
@@ -29,8 +31,8 @@
                         {% if (page + 2) <= total_pages %}
                         <li><a href="?remark_page={{ page + 2 }}&remark_page_length={{ page_length }}#remarks">{{ page + 2 }}</a></li>
                         {% endif %}
-                        <!-- <li class="disabled"><a href="#">…</a></li>
-                        <li><a href="/search?page=3000#content-pager">3000</a></li> -->
+                        <li class="disabled"><a href="#content-pager">…</a></li>
+                        {# <li><a href="/search?page=3000#content-pager">3000</a></li> #}
                 {% if total_pages > page %}
                     <li><a href="?remark_page={{ page + 1}}&remark_page_length={{ page_length }}#remarks" title="{_ Next page _}">→</a></li>
                 {% else %}
