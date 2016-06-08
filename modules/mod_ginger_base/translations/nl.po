@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-05-18 14:33+0200\n"
-"PO-Revision-Date: 2016-05-18 14:33+0200\n"
+"POT-Creation-Date: 2016-06-08 11:22+0200\n"
+"PO-Revision-Date: 2016-06-08 11:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:56
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:80
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:84
 msgid " "
 msgstr ""
 
@@ -28,7 +28,7 @@ msgstr ""
 msgid "1 comment"
 msgstr "1 reactie"
 
-#: /vagrant/modules/mod_ginger_base/templates/about/about.tpl:4
+#: /vagrant/modules/mod_ginger_base/templates/about/about.tpl:1
 msgid "About:"
 msgstr "Over: "
 
@@ -50,7 +50,8 @@ msgid "Based on these keywords:"
 msgstr "Gebaseerd op deze trefwoorden:"
 
 #: /vagrant/modules/mod_ginger_base/templates/media/media.image.tpl:32
-#: /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:2
+#: /vagrant/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
+#: /vagrant/modules/mod_ginger_base/templates/person/person-author.tpl:4
 msgid "By:"
 msgstr "Door:"
 
@@ -268,7 +269,7 @@ msgstr "Geen resultaten"
 msgid "Page actions"
 msgstr "Pagina acties"
 
-#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of-aside.tpl:4
+#: /vagrant/modules/mod_ginger_base/templates/part-of/part-of-aside.tpl:1
 #, fuzzy
 msgid "Part of"
 msgstr "Onderdeel van:"
@@ -307,9 +308,13 @@ msgstr "Reden"
 msgid "Related"
 msgstr "Gerelateerd"
 
-#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords-aside.tpl:5
+#: /vagrant/modules/mod_ginger_base/templates/keywords/keywords-aside.tpl:1
 msgid "Related based on these keywords:"
 msgstr "Gerelateerd op basis van deze trefwoorden:"
+
+#: /vagrant/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:32
+msgid "Remarks of "
+msgstr "Reacties van"
 
 #: /vagrant/modules/mod_ginger_base/templates/error.tpl:14
 msgid "Return to the homepage"
@@ -509,10 +514,6 @@ msgstr "reacties"
 msgid "comments:"
 msgstr "reacties:"
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19
-msgid "contract"
-msgstr "inklappen"
-
 #: /vagrant/modules/mod_ginger_base/templates/media/download-button.tpl:2
 msgid "download"
 msgstr "download"
@@ -526,20 +527,12 @@ msgstr "email"
 msgid "error"
 msgstr "error"
 
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:19
-msgid "expand"
-msgstr "uitklappen"
-
-#: /vagrant/modules/mod_ginger_base/templates/list/list-item-publication.tpl:9
-msgid "expand/contract"
-msgstr "inklappen/uitklappen"
-
 #: /vagrant/modules/mod_ginger_base/templates/search.tpl:20
 msgid "list"
 msgstr "lijst"
 
 #: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:54
-#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:78
+#: /vagrant/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:82
 msgid "logon or register"
 msgstr "Login of registreer"
 
@@ -570,6 +563,15 @@ msgstr "resultaten"
 #: /vagrant/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 msgid "search"
 msgstr "zoeken"
+
+#~ msgid "contract"
+#~ msgstr "inklappen"
+
+#~ msgid "expand"
+#~ msgstr "uitklappen"
+
+#~ msgid "expand/contract"
+#~ msgstr "inklappen/uitklappen"
 
 #~ msgid "Authored"
 #~ msgstr "Auteur"

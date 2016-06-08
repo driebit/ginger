@@ -45,7 +45,7 @@
                     {% endblock %}
 
                     <p class="list__item__about">
-                        <i class="icon--comment"></i>Dit is een reactie op: <a href="{{ id.o.about.page_url }}"> {{ id.o.about.title }}</a>
+                        <i class="icon--comment"></i>{_ This is a remark on _}: <a href="{{ id.o.about.page_url }}"> {{ id.o.about.title }}</a>
                     </p>
 
                 </div>

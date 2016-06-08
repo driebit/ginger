@@ -48,7 +48,7 @@ msgid ""
 "Address"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:37 
 msgid ""
 "All"
 msgstr ""
@@ -68,7 +68,7 @@ msgid ""
 "Basic"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:39 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:15 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_edit_basics.tpl:65 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:24 /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:41 /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:15 
 msgid ""
 "Cancel"
 msgstr ""
@@ -128,12 +128,12 @@ msgid ""
 "Facebook"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:19 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:19 /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:11 
+#: /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:19 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_depiction.tpl:19 /vagrant/modules/mod_ginger_edit/templates/aside-connection/aside-add-connection.tpl:12 
 msgid ""
 "Field is required"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:36 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:37 
 msgid ""
 "Find"
 msgstr ""
@@ -193,7 +193,7 @@ msgid ""
 "Main"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:40 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:42 
 msgid ""
 "Make"
 msgstr ""
@@ -208,7 +208,7 @@ msgid ""
 "Mobile"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:51 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect.tpl:52 
 msgid ""
 "New"
 msgstr ""
@@ -226,6 +226,11 @@ msgstr ""
 #: /vagrant/modules/mod_ginger_edit/templates/page_ginger_edit.tpl:37 
 msgid ""
 "Not allowed"
+msgstr ""
+
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:24 
+msgid ""
+"Ok"
 msgstr ""
 
 #: /vagrant/modules/mod_ginger_edit/templates/_aside_ginger_edit.media.tpl:8 
@@ -328,7 +333,7 @@ msgid ""
 "Till"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:29 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_new_rsc_tab.tpl:31 /vagrant/modules/mod_ginger_edit/templates/_ginger_edit_basics_form.tpl:5 
 msgid ""
 "Title"
 msgstr ""
@@ -338,7 +343,7 @@ msgid ""
 "Twitter"
 msgstr ""
 
-#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:7 
+#: /vagrant/modules/mod_ginger_edit/templates/_action_ginger_dialog_connect_tab_find.tpl:10 
 msgid ""
 "Type text to search"
 msgstr ""
