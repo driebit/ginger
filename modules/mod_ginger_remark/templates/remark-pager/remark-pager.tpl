@@ -31,11 +31,11 @@ as
                         {% if (page + 2) <= total_pages %}
                         <li><a href="?remark_page={{ page + 2 }}&remark_page_length={{ page_length }}#remarks">{{ page + 2 }}</a></li>
                         {% endif %}
-                        {% if page != total_pages %}
-                            <li class="disabled"><a href="#content-pager">…</a></li>
+                    {% if page != total_pages %}
+                        <li class="disabled"><a href="#content-pager">…</a></li>
 
-                            <li><a href="?remark_page={{ total_pages }}&remark_page_length={{ page_length }}#remarks">{{ total_pages }}</a></li>
-                        {% endif %}
+                        <li><a href="?remark_page={{ total_pages }}&remark_page_length={{ page_length }}#remarks">{{ total_pages }}</a></li>
+                    {% endif %}
                 {% if total_pages > page %}
                     <li><a href="?remark_page={{ page + 1}}&remark_page_length={{ page_length }}#remarks" title="{_ Next page _}">→</a></li>
                 {% else %}
