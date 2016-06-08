@@ -41,8 +41,12 @@ manage_schema(install, Context) ->
 %% @doc Check the action template argument for post-logon continuation actions
 %% -spec observe_logon_actions(#logon_actions{}, list(), #context{}) -> undefined | list().
 observe_logon_actions(#logon_actions{args=Args}, _Acc, _Context) ->
-    %% Can probably be removed when https://github.com/zotonic/zotonic/pull/1043 is resolved.
-    proplists:get_value(action, Args).
+    case proplists:get_value(action, Args) of
+        undefined ->
+            [];
+        Value -> 
+            Value
+    end.
 
 -spec observe_signup_form_fields(atom(), list(), #context{}) -> list().
 observe_signup_form_fields(signup_form_fields, _FormProps, _Context) ->
