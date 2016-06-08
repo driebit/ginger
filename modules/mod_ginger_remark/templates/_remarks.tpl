@@ -20,6 +20,7 @@
     </div>
 
     {% include "remark-pager/remark-pager.tpl" %}
+
     <div id="remark-list">
         {% with page * page_length as page_end %}
         {% with page_end - page_length + 1 as page_start %}
@@ -46,3 +47,26 @@
 {% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
 
 {% endwith %}
+
+{% javascript %}
+
+    tinyInit.toolbar="styleselect | bold italic | bullist numlist | removeformat | zmedia | link unlink | code";
+
+    tinyInit.style_formats = [  {title: "Headers", items: [
+                                {title: "Header 3", format: "h3"},
+                                {title: "Header 4", format: "h4"},
+                            ]},
+                            {title: "Inline", items: [
+                                {title: "Bold", icon: "bold", format: "bold"},
+                                {title: "Italic", icon: "italic", format: "italic"},
+                                {title: "Underline", icon: "underline", format: "underline"},
+                                {title: "Strikethrough", icon: "strikethrough", format: "strikethrough"},
+                            ]},
+                            {title: "Blocks", items: [
+                                {title: "Paragraph", format: "p"},
+                                {title: "Blockquote", format: "blockquote"},
+                            ]}
+                        ]
+
+{% endjavascript %}
+
