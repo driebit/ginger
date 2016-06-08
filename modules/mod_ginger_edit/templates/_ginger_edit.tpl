@@ -120,17 +120,9 @@
 {% endwith %}
 
 {% javascript %}
-	$("#save-buttons .brand").html($('#button-prompt').html());
-
-	setTimeout(function() {
-		$('#rscform').on('shown.bs.tab', '.language-tabs > li > a[data-toggle="tab"]', function (e) {
-			if (e.target != e.relatedTarget) {
-				var lang = $(e.target).parent().attr('lang');
-				$("li[lang='"+lang+"']:visible > a").tab('show');
-				z_editor.init();
-			}
-		});
-	}, 10);
+    $(document).on('keypress', ':input:not(textarea)', function (e) {
+       if (e.which == 13) e.preventDefault();
+    });
 {% endjavascript %}
 
 {% endblock %}
