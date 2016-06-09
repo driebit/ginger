@@ -22,9 +22,19 @@ development work on Zotonic files:
     $ docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up
     ```
 
-3. If you wish to point to a Zotonic clone in another directory, override the
-   `ZOTONIC` environment variable:
+    This will compile Zotonic so it starts properly even after changing Zotonic
+    branches or versions.
+
+    If you wish to point to a Zotonic clone in another directory, override the
+    `ZOTONIC` environment variable:
 
     ```bash
     $ ZOTONIC=/some/other/zotonic/dir docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up
     ```
+
+3. To run the Zotonic tests:
+
+    ```bash
+    $ docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml run zotonic test
+    ```
+

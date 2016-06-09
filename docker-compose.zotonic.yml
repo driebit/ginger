@@ -3,8 +3,8 @@ version: '2'
 services:
     zotonic:
         volumes:
+            - ${ZOTONIC}:/opt/zotonic
             - ./modules:/opt/zotonic/user/modules
             - ./sites:/opt/zotonic/user/sites
-            - ${ZOTONIC}/src:/opt/zotonic/src
-            - ${ZOTONIC}/modules:/opt/zotonic/modules
-            - ${ZOTONIC}/ebin:/opt/zotonic/ebin
+        environment:
+            MAKE: "true"
