@@ -1,8 +1,8 @@
 {% with
     (remarks|length / page_length)|ceiling
-    as
+as
     total_pages
-     %}
+%}
 
 {% if total_pages > 1 %}
     <div class="remark__pager">
