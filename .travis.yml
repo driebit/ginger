@@ -8,6 +8,7 @@ script: true
 
 after_success:
     - eval "$(curl -sL https://raw.githubusercontent.com/travis-ci/gimme/master/gimme | GIMME_GO_VERSION=1.4 bash)"
+    - export GOPATH=$HOME/gopath
     - go get -d github.com/libgit2/git2go
     - cd $GOPATH/src/github.com/libgit2/git2go
     - git checkout next
