@@ -1,5 +1,5 @@
 #after_success:
 script:
     - ls
-    - git push https://github.com/ddeboer/mod_ginger_rdf.git
+    - git push https://github.com/ddeboer/mod_ginger_rdf.git master
 
