@@ -24,7 +24,6 @@ after_success:
     - go build -o splitsh-lite github.com/splitsh/lite
 
     - /tmp/cached/splitsh.db .git/splitsh.db || true
-    - ./splitsh-lite --prefix=modules/mod_ginger_rdf/
     - ./splitsh-lite --prefix=modules/mod_ginger_rdf/ --target=refs/rdf
     - echo $SHA1
     - git push git@github.com:ddeboer/mod_ginger_rdf.git rdf:refs/heads/master
