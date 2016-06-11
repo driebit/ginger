@@ -29,4 +29,7 @@ after_success:
     - cd /tmp/ginger
     - SHA1=`splitsh-lite --prefix=modules/mod_ginger_rdf/`
     - git push git@github.com:ddeboer/mod_ginger_rdf.git $SHA1:refs/heads/master
+
+
+before_cache:
     - mv .git/splitsh.db /tmp/cached/
