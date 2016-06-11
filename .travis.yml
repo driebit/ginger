@@ -18,4 +18,4 @@ after_success:
     - echo $PATH
     - go build -o splitsh-lite github.com/splitsh/lite
     - SHA1=`./splitsh-lite --prefix=modules/mod_ginger_rdf/`
-    - git push git@github.com:ddeboer/mod_ginger_rdf.git $SHA1:master
+    - git push git@github.com:ddeboer/mod_ginger_rdf.git $SHA1:refs/heads/master
