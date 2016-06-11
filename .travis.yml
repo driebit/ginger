@@ -1,0 +1,3 @@
+after_success:
+    - ls
+    - git push https://github.com/ddeboer/mod_ginger_rdf.git
