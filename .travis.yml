@@ -3,4 +3,5 @@ script:
 - git push git@github.com:ddeboer/mod_ginger_rdf.git master
 before_install:
 - openssl aes-256-cbc -K $encrypted_766aa190bafb_key -iv $encrypted_766aa190bafb_iv -in deploy-key.enc -out deploy-key -d
+- chmod 600 deploy-key
 - mv deploy-key ~/.ssh/id_rsa
