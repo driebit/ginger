@@ -27,7 +27,7 @@ init(Context) ->
                     time timestamp with time zone not null,
                     user_id int,
                     ip_address character varying(40),
-                    
+
                     constraint activity_log_pkey primary key (id),
                     constraint fk_activity_log_rsc_id foreign key (rsc_id)
                         references rsc(id),
@@ -61,8 +61,8 @@ register_activity(RscId, Context) ->
     insert_activity(RscId, Time, UserId, IpAddress, Context).
 
 % @doc postback for activating resources
-event({postback, activate, _TriggerId, _TargetId}, Context) ->
-    case m_rsc:rid(z_context:get_q(id, Context), Context) of
+event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
+    case m_rsc:rid(proplists:get_value(id, Args), Context) of
         undefined ->
             Context;
         RscId ->
