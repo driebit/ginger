@@ -2,14 +2,15 @@
 
 A module for tracking user activity on resources. At the moment this only covers the very basics.
 
-Features:
+### Features ###
 
 - Register user triggerd activity on a resource
 - Get activity totals
+- Logs IP address
 
-Roadmap:
+### Roadmap ###
 
 - Get different kind of aggregates
-- Log IP address or other kind of fingerprint
+- Create a custom fingerprint to uniquely indentify anonymous users
 - Differentiate between different kinds of activity
 - Higher throughput data persistence options

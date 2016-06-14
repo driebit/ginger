@@ -26,6 +26,7 @@ init(Context) ->
                     rsc_id int not null,
                     time timestamp with time zone not null,
                     user_id int,
+                    ip_address character varying(40),
                     
                     constraint activity_log_pkey primary key (id),
                     constraint fk_activity_log_rsc_id foreign key (rsc_id)
@@ -44,14 +45,20 @@ insert_activity(RscId, Context) ->
 insert_activity(RscId, DateTime, Context) ->
     insert_activity(RscId, DateTime, undefined, Context).
 insert_activity(RscId, DateTime, UserId, Context) ->
-    Props = [{rsc_id, RscId}, {time, DateTime}, {user_id, UserId}],
+    insert_activity(RscId, DateTime, UserId, undefined, Context).
+insert_activity(RscId, DateTime, UserId, IpAddress, Context) ->
+    Props = [{rsc_id, RscId}, {time, DateTime}, {user_id, UserId}, {ip_address, IpAddress}],
     z_db:insert(activity_log, Props, Context).
 
 % @doc logical entry point for registering activity
 register_activity(RscId, Context) ->
     Time = calendar:local_time(),
     UserId = z_acl:user(Context),
-    insert_activity(RscId, Time, UserId, Context).
+    IpAddress = case z_context:get_reqdata(Context) of
+        undefined -> undefined;
+        Value -> wrq:peer(Value)
+    end,
+    insert_activity(RscId, Time, UserId, IpAddress, Context).
 
 % @doc postback for activating resources
 event({postback, activate, _TriggerId, _TargetId}, Context) ->

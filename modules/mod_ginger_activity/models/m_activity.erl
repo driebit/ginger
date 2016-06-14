@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 get_count(RscId, Context) ->
-    z_db:q1("select count(*) from activity_log where rsc_id = $1;",
+    z_db:q1("select count(id) from activity_log where rsc_id = $1;",
             [z_convert:to_integer(RscId)], Context).
 
 % Syntax: m.activity[RscId]
