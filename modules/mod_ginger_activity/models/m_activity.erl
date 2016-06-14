@@ -16,9 +16,9 @@ get_count(RscId, Context) ->
 % Syntax: m.activity[RscId]
 m_find_value(RscId, #m{value=undefined} = M, _Context) ->
     M#m{value=[RscId]};
-    
+
 % Syntax: m.activity[RscId].count
-m_find_value(RscId, #m{value=[RscId]}, Context) ->
+m_find_value(count, #m{value=[RscId]}, Context) ->
     get_count(RscId, Context).
 
 m_to_list(_, _Context) ->
