@@ -28,6 +28,7 @@ $.widget( "ui.googlemap", {
 		 	 stylers = [];
 
 		styles.push({"stylers":stylers});
+
 		options.styles = styles;
 
 		if (options.blackwhite == true) {
@@ -37,7 +38,13 @@ $.widget( "ui.googlemap", {
 			delete options.blackwhite;
 		}
 
-		if (options.mapstyle) styles.push(options.mapstyle);
+		if (options.mapstyle) {
+			if (Array.isArray(options.mapstyle)) {
+				styles = $.merge(styles, options.mapstyle);
+			} else {
+				styles.push(options.mapstyle);
+			}
+		}
 
 		if (options.disabledefaultui) options.disableDefaultUI = true;
 

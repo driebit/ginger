@@ -15,6 +15,9 @@
                         <a href="https://www.linkedin.com/shareArticle?mini=true&amp;title={{ id.title|urlencode }}&amp;url={{ id.page_url_abs|urlencode }}" onclick="return !window.open(this.href, 'LinkedIn', 'width=600,height=300,location=0,toolbar=0,scrollbars=0,status=0')" title="LinkedIn" class="">{_ LinkedIn _}</a>
                     </li>
                     <li>
+                        <a href="http://pinterest.com/pin/create/button/?url={{ id.page_url_abs|urlencode }}&description={{ id.title|urlencode }}" target="_blank" title="Pinterest" class="">{_ Pinterest _}</a>
+                    </li>
+                    <li>
                         <a href="mailto:?subject={{ id.title|urlencode }}&amp;body={{ id.page_url_abs|urlencode }}" title="{_ E-mail _}" class="">{_ E-mail _}</a>
                     </li>
                 </ul>
