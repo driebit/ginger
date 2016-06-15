@@ -58,7 +58,9 @@ register_activity(RscId, Context) ->
         undefined -> undefined;
         Value -> wrq:peer(Value)
     end,
-    insert_activity(RscId, Time, UserId, IpAddress, Context).
+    insert_activity(RscId, Time, UserId, IpAddress, Context),
+    z_pivot_rsc:pivot(RscId, Context), % Might want to find a better solution
+    ok.
 
 % @doc postback for activating resources
 event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
