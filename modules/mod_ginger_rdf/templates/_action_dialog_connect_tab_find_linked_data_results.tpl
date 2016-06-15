@@ -11,7 +11,9 @@
             {% endblock %}
         </div>
 
-        <p>{% if result|length > 0 %}{{ result.total }} {_results_}{% endif %}</p>
+        {% block results %}
+            <p>{% if result|length > 0 %}{{ result.total }} {_ results _}{% endif %}</p>
+        {% endblock %}
 
         <div id="dialog_connect_loop_linked_data_results" class="thumbnails">
             {% include "_action_dialog_connect_tab_find_linked_data_results_loop.tpl"
