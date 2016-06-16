@@ -38,3 +38,20 @@ development work on Zotonic files:
     $ docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml run zotonic test
     ```
 
+
+Troubleshooting
+---------------
+
+### Zotonic start error: {not_running,filezcache}
+
+```
+zotonic_1   | 09:58:40.559 [error] Zotonic start error: {not_running,filezcache}
+zotonic_1   | erl_call: failed to connect to node zotonic001@3aa4f137ecdc
+zotonic_1   | Zotonic is not running. You need to start Zotonic first to use this command.
+```
+
+**Solution**:
+
+```bash
+$ rm -rf ../zotonic/priv/mnesia/*
+```
