@@ -29,7 +29,9 @@
                 me.expand();
             });
 
-            if (elementHeight - commentsHeight > me.options.cutoff) {
+            var contentHeight = elementHeight - commentsHeight;
+            var heightDiff = contentHeight - me.options.cutoff;
+            if (contentHeight > me.options.cutoff && heightDiff > 100) {
                 me.collapse();
             }
 
