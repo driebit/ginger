@@ -28,11 +28,10 @@ Then open a terminal in the Ginger directory and start the containers:
 $ docker-compose up
 ```
 
-To run Zotonic commands:
+To open a Zotonic shell:
 
 ```bash
-$ docker-compose exec zotonic bash
-$ zotonic shell
+$ make shell
 ```
 
 Run [Gulp](https://github.com/driebit/docker-node-gulp) in a site directory:
