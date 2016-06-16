@@ -9,6 +9,7 @@ help:
 	@echo "  import-db-file     Import database from file (db=site-name file=site-dump.sql)"
 	@echo "  import-db-backup   Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  up                 Start containers"
+	@echo "  up-zotonic         Start containers"
 	@echo "  update             Update containers"
 
 import-db-file $(db) $(file):
@@ -26,8 +27,12 @@ import-db-backup $(host) $(site):
 	@$(MAKE) import-db-file db=$(site) file=$(REMOTE_BACKUP_FILE)
 
 up:
-	@docker-compose up
-	@echo "> Started. Open http://127.0.0.1 in your browser."
+	@docker-compose up --build
+	@echo "> Started. Open http://localhost in your browser."
+
+up-zotonic:
+	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build
+	@echo "> Started. Open http://localhost in your browser."
 
 update:
 	@docker-compose pull

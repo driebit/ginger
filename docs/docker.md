@@ -16,10 +16,10 @@ development work on Zotonic files:
     $ git clone https://github.com/zotonic/zotonic.git
     ```
 
-2. Run `docker-composer up` by specifying an additional configuration file:
+2. Start the containers loading your Zotonic volume:
 
     ```bash
-    $ docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up
+    $ make up-zotonic
     ```
 
     This will compile Zotonic so it starts properly even after changing Zotonic
@@ -29,7 +29,7 @@ development work on Zotonic files:
     `ZOTONIC` environment variable:
 
     ```bash
-    $ ZOTONIC=/some/other/zotonic/dir docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up
+    $ ZOTONIC=/some/other/zotonic/dir make up-zotonic
     ```
 
 3. To run the Zotonic tests:
