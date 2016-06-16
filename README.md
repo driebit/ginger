@@ -168,3 +168,9 @@ Then compile the changes and flush the site:
 $ z zotonic shell
 $ z:compile(), z:flush([site name]).
 ```
+
+License
+-------
+
+Ginger is released under the Apache 2.0 License. See the included LICENSE file
+for more information.
