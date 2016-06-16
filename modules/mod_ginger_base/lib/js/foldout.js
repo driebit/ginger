@@ -31,7 +31,6 @@
 
             var contentHeight = elementHeight - commentsHeight;
             var heightDiff = contentHeight - me.options.cutoff;
-            console.log(contentHeight + " " + heightDiff);
             if (contentHeight > me.options.cutoff && heightDiff > 100) {
                 me.collapse();
             }
