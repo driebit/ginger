@@ -18,8 +18,9 @@
                     unlink_action=unlink_action
                     list_id=list_id
                     is_editable=is_editable
+                    direction=direction
                 %}
-           
+
                 <hr />
         {% endif %}
     {% endfor %}
