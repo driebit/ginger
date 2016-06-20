@@ -19,3 +19,5 @@ services:
             - ./sites:/opt/zotonic/user/sites
         ports:
             - 80:8000
+        environment:
+            MAKE: "true"
