@@ -18,6 +18,21 @@
 
             $(document).on('menu:close', $.proxy(me._closeMenu, me));
 
+            if ('ontouchstart' in document.documentElement) {
+              if ($('.global-nav__menu__dropdown').length > 0) {
+                    var openLink = false;
+                    $('.global-nav__menu__dropdown').each(function() {
+                        var toplink = $(this).find('a:first').clone();
+                        var dropdown = $(this).find('ul');
+                        var dropdownfirst = $(this).find('ul li:first');
+                        dropdownfirst.clone().prependTo(dropdown).html(toplink);
+                    });
+                    $('.global-nav__menu__dropdown a:first').on('click touchstart', function(e) {
+                        e.preventDefault();
+                        $(this).parent().toggleClass('touch-open');
+                    });
+                }
+            }
         },
 
         _closeMenu: function(event) {

@@ -244,7 +244,7 @@
             @include size(padding, 0, 15);
         }
 
-        li:hover {
+        li:hover, li.touch-open {
             ul {
                 display: block;
                 position: absolute;
