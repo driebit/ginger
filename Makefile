@@ -9,9 +9,9 @@ help:
 	@echo "  gulp site=your_site   Run Gulp in a site directory"
 	@echo "  import-db-file        Import database from file (db=site-name file=site-dump.sql)"
 	@echo "  import-db-backup      Import database from a backup (host=ginger.driebit.net site=site-name)"
-	@echo "  shell				   Open Zotonic shell"
+	@echo "  shell                 Open Zotonic shell"
 	@echo "  up                    Start containers"
-	@echo "  up-zotonic            Start containers"
+	@echo "  up-zotonic            Start containers with custom Zotonic checkout"
 	@echo "  update                Update containers"
 
 gulp $(site):
