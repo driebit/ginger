@@ -19,8 +19,7 @@ Documentation
 Getting started
 ---------------
 
-Install [Docker for Mac beta](https://beta.docker.com), which currently
-requires you to sign up.
+Install [Docker](https://www.docker.com/getdocker).
 
 Then open a terminal in the Ginger directory and start the containers:
 
