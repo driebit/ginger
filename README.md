@@ -45,13 +45,15 @@ Sites overview
 ---------------
 
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
-  is available at [http://localhost](http://localhost). Log in with empty password.
+  is available at [http://localhost](http://localhost) for Docker or
+  http://ginger.dev for Vagrant. Log in with empty password.
 
 Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
-2. Start the site from the [status site](http://localhost)
+2. Start the site from the [status site]: http://localhost (Docker) or
+   http://ginger.dev (Vagrant)
 3. Login and go to the modules page
 4. Deactive site module and activate it again
 5. Now the site should work properly
@@ -61,38 +63,54 @@ Adding modules
 
 Place custom modules in `modules/` (no symlinks needed).
 
+Starting and stopping Zotonic
+-----------------------------
+
+Stop Zotonic: `$ sudo service zotonic stop`.
+
+Start Zotonic: `$ sudo service zotonic start`.
+
+Start Zotonic in debug mode: `$ zotonic debug`.
+
 Database
 --------
 
+This has become much easier with our Docker configuration. See
+[Docker](docs/docker.md) for more information.
+
+If you’re on Vagrant, read on.
+
 Connect to the database:
 
+```bash
+$ sudo -u postgres psql
+\l
+\c
 ```
-docker-compose exec postgres psql -U zotonic
+
+### Importing a database
+
+From a file:
+
+```bash
+$ scripts/import.sh site-name site-name.sql
 ```
 
-### Import a database from a local file
+In ginger.dev environment, from a remote backup:
 
-1. Copy the database dump `.sql` file to the `data/` directory.
-
-2. Then run:
-
-    ```bash
-    $ make import-db-file db=site-name file=site-dump.sql
-    ```
-
-### Import a database from a remote backup
-
-1. If there are no backups yet, create a backup on the remote Zotonic site.
-
-2. Then run:
-
-    ```bash
-    $ make import-db-backup host=ginger01.driebit.net site=site-name
-    ```
+```bash
+$ scripts/import-backup.sh your-username@ginger01.driebit.net site-name
+```
 
 Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
 `ginger01.driebit.net` depending on the environment that you want to import
 the latest backup from.
+
+On ginger-test, you can leave out `your-username`:
+
+```
+$ scripts/import-backup.sh ginger01.driebit.net site-name
+```
 
 Fetching changes
 ----------------
@@ -175,3 +193,9 @@ Then compile the changes and flush the site:
 $ z zotonic shell
 $ z:compile(), z:flush([site name]).
 ```
+
+License
+-------
+
+Ginger is released under the Apache 2.0 License. See the included LICENSE file
+for more information.

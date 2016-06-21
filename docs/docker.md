@@ -38,11 +38,45 @@ development work on Zotonic files:
     $ docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml run zotonic test
     ```
 
+Database
+--------
+
+Connect to PostgreSQL:
+
+```
+docker-compose exec postgres psql -U zotonic
+```
+
+### Import a database from a local file
+
+1. Copy the database dump `.sql` file to the `data/` directory.
+
+2. Then run:
+
+    ```bash
+    $ make import-db-file db=site-name file=site-dump.sql
+    ```
+
+### Import a database from a remote backup
+
+1. If there are no backups yet, create a backup on the remote Zotonic site.
+
+2. Then run:
+
+    ```bash
+    $ make import-db-backup host=ginger01.driebit.net site=site-name
+    ```
+
+Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
+`ginger01.driebit.net` depending on the environment that you want to import
+the latest backup from.
 
 Troubleshooting
 ---------------
 
 ### Zotonic start error: {not_running,filezcache}
+
+This is a known issue in Zotonic: https://github.com/zotonic/zotonic/issues/1321.
 
 ```
 zotonic_1   | 09:58:40.559 [error] Zotonic start error: {not_running,filezcache}
