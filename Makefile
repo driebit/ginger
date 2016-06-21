@@ -6,12 +6,17 @@ REMOTE_BACKUP_FILE=$(shell ssh $(SSH_USER)@$(host) ls "$(REMOTE_BACKUP_PATH)/*.s
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
-	@echo "  import-db-file     Import database from file (db=site-name file=site-dump.sql)"
-	@echo "  import-db-backup   Import database from a backup (host=ginger.driebit.net site=site-name)"
-	@echo "  shell				Open Zotonic shell"
-	@echo "  up                 Start containers"
-	@echo "  up-zotonic         Start containers"
-	@echo "  update             Update containers"
+	@echo "  gulp site=your_site   Run Gulp in a site directory"
+	@echo "  import-db-file        Import database from file (db=site-name file=site-dump.sql)"
+	@echo "  import-db-backup      Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  shell				   Open Zotonic shell"
+	@echo "  up                    Start containers"
+	@echo "  up-zotonic            Start containers"
+	@echo "  update                Update containers"
+
+gulp $(site):
+	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
+	docker run -it -v `pwd`/sites/$(site):/app -v `pwd`/modules:/modules --env MODULES_DIR=/modules driebit/node-gulp
 
 import-db-file $(db) $(file):
 	@echo "> Importing $(db) from $(file)"

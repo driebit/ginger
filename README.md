@@ -33,10 +33,10 @@ To open a Zotonic shell:
 $ make shell
 ```
 
-Run [Gulp](https://github.com/driebit/docker-node-gulp) in a site directory:
+Run [Gulp](https://github.com/driebit/docker-node-gulp) in the Ginger directory:
 
 ```bash
-$ docker run -it -v $(pwd):/app driebit/node-gulp
+$ make gulp site=your_site_name
 ```
 
 For more, see the [Docker](docs/docker.md) doc chapter.
