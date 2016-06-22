@@ -7,8 +7,8 @@
 -mod_title("Ginger Base").
 -mod_description("Ginger Base").
 -mod_prio(250).
--mod_depends[mod_content_groups, mod_acl_user_groups].
--mod_schema(2).
+-mod_depends([mod_content_groups, mod_acl_user_groups]).
+-mod_schema(4).
 
 -export([
     init/1,
@@ -110,9 +110,17 @@ manage_schema(_Version, Context) ->
                 %% Members can upload media, for instance a profile picture.
                 {rsc, [
                     {acl_user_group_id, acl_user_group_members},
-                    {actions, [insert, update, delete]},
+                    {actions, [insert]},
                     {category_id, media}
                 ]},
+
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_members},
+                    {actions, [update, delete]},
+                    {category_id, media},
+                    {is_owner, true}
+                ]},
+
                 {rsc, [
                     %% Editors can edit everything, including resources created by other editors
                     {acl_user_group_id, acl_user_group_editors},
