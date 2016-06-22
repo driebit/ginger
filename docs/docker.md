@@ -89,3 +89,11 @@ zotonic_1   | Zotonic is not running. You need to start Zotonic first to use thi
 ```bash
 $ rm -rf ../zotonic/priv/mnesia/*
 ```
+
+### Automatic recompilation does not work
+
+Inotify is not picking up changes when using IntelliJ (PHPStorm, WebStorm).
+
+**Solution**:
+
+Disable ‘Use “safe write”’ in IntelliJ’s preferences.
