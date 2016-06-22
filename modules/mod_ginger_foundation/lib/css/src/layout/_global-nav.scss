@@ -204,6 +204,18 @@
 }
 
 @include mq(min-width, $largeBreakpoint) {
+    .global-nav__menu__dropdown_close {
+        display: none;
+        position: fixed;
+        z-index: 499;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
     .global-nav {
         @include size(height, $globalNavHeight);
         @include size(line-height, $globalNavHeight);

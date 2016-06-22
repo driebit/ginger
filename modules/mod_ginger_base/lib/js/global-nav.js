@@ -19,17 +19,29 @@
             $(document).on('menu:close', $.proxy(me._closeMenu, me));
 
             if ('ontouchstart' in document.documentElement) {
-              if ($('.global-nav__menu__dropdown').length > 0) {
+                if ($('.global-nav__menu__dropdown').length > 0) {
                     var openLink = false;
-                    $('.global-nav__menu__dropdown').each(function() {
-                        var toplink = $(this).find('a:first').clone();
-                        var dropdown = $(this).find('ul');
-                        var dropdownfirst = $(this).find('ul li:first');
-                        dropdownfirst.clone().prependTo(dropdown).html(toplink);
+                    $('body').prepend('<div class="global-nav__menu__dropdown_close"> </div>');
+                    $('.global-nav__menu__dropdown_close').on('touchstart', function(e) {
+                        $('.global-nav__menu__dropdown').removeClass('touch-open');
+                        $(this).hide();
+                        openLink = false;
                     });
-                    $('.global-nav__menu__dropdown a:first').on('click touchstart', function(e) {
-                        e.preventDefault();
-                        $(this).parent().toggleClass('touch-open');
+                    $('.global-nav__menu__dropdown').each(function(i) {
+                        $(this).find('a:first').on('touchstart', function(e) {
+                            if (openLink == false) {
+                                e.preventDefault();
+                                $(this).parent().addClass('touch-open');
+                                $('.global-nav__menu__dropdown_close').show();
+                                openLink = true;
+                            } else {
+                                if ($(this).parent().hasClass('touch-open') == false) {
+                                    $('.global-nav__menu__dropdown').removeClass('touch-open');
+                                    e.preventDefault();
+                                    $(this).parent().addClass('touch-open');
+                                }
+                            }
+                        });
                     });
                 }
             }
