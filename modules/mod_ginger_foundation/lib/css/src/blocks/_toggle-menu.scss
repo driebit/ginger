@@ -2,9 +2,40 @@
     @extend .global-nav-toggle;
 }
 
-.toggle-menu:after {
-    content: "\e619";
-    top: 9px;
+.toggle-menu span, .toggle-menu span:before, .toggle-menu span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 3px;
+  width: 35px;
+  background: $mainNavActionsColor;
+  position: absolute;
+  display: block;
+  content: '';
+}
+.toggle-menu span {
+	top: 18px;
+}
+.toggle-menu span:before {
+  top: -10px;
+}
+.toggle-menu span:after {
+  bottom: -10px; 
+}
+
+.toggle-menu span, .toggle-menu span:before, .toggle-menu span:after {
+  transition: all 500ms ease-in-out;
+}
+.toggle-menu.is-active span {
+  background-color: transparent;
+}
+.toggle-menu.is-active span:before, .toggle-menu.is-active span:after {
+  top: 0;
+}
+.toggle-menu.is-active span:before {
+  transform: rotate(45deg);
+}
+.toggle-menu.is-active span:after {
+  transform: rotate(-45deg);
 }
 
 @include mq(min-width, $largeBreakpoint) {
