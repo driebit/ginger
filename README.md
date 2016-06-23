@@ -4,7 +4,7 @@ Ginger
 This is the Ginger Zotonic edition. This repository contains:
 
 * (most) Ginger modules
-* Vagrant configuration
+* Docker configuration
 * shell scripts
 
 Documentation
@@ -12,31 +12,51 @@ Documentation
 
 * [Guidelines](docs/guidelines.md)
 * [Why Ginger is a single Git repository](docs/monorepo.md)
+* [Docker](docs/docker.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
 
 Getting started
 ---------------
 
-Use Vagrant to start the development environment. See
-[our docs](https://gitlab.driebit.nl/driebit/docs/blob/master/vagrant.md)
-for more info.
+Install [Docker](https://www.docker.com/getdocker).
+
+Then open a terminal in the Ginger directory and start the containers:
+
+```bash
+$ docker-compose up
+```
+
+To open a Zotonic shell:
+
+```bash
+$ make shell
+```
+
+Run [Gulp](https://github.com/driebit/docker-node-gulp) in the Ginger directory:
+
+```bash
+$ make gulp site=your_site_name
+```
+
+For more, see the [Docker](docs/docker.md) doc chapter.
 
 Sites overview
 ---------------
 
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
-  is available at [http://ginger.dev](http://ginger.dev). Log in with empty password.
+  is available at [http://localhost](http://localhost) for Docker or
+  http://ginger.dev for Vagrant. Log in with empty password.
 
 Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
-2. z:compile in zotonic shell
-3. Start the site from the [status site](http://ginger.dev)
-4. Login and go to the modules page
-5. Deactive site module and activate it again
-6. Now the site should work properly
+2. Start the site from the [status site]: http://localhost (Docker) or
+   http://ginger.dev (Vagrant)
+3. Login and go to the modules page
+4. Deactive site module and activate it again
+5. Now the site should work properly
 
 Adding modules
 --------------
@@ -54,6 +74,11 @@ Start Zotonic in debug mode: `$ zotonic debug`.
 
 Database
 --------
+
+This has become much easier with our Docker configuration. See
+[Docker](docs/docker.md) for more information.
+
+If you’re on Vagrant, read on.
 
 Connect to the database:
 

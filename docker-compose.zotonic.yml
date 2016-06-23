@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    zotonic:
+        volumes:
+            - ${ZOTONIC}:/opt/zotonic
+            - ./modules:/opt/zotonic/user/modules
+            - ./sites:/opt/zotonic/user/sites
+        environment:
+            MAKE: "true"
