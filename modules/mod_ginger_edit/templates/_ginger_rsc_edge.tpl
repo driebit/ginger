@@ -13,7 +13,6 @@
 </li>
 {% endwith %}
 {% if direction == "out" %}
-
     {% wire id=#unlink
         action={unlink
             subject_id=subject_id
@@ -25,7 +24,7 @@
 {% else %}
     {% wire id=#unlink
         action={unlink
-            object_id=object_id
+            subject_id=object_id
             edge_id=edge_id
             hide=#unlink_wrapper
             action=unlink_action
