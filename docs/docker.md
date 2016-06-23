@@ -92,8 +92,13 @@ $ rm -rf ../zotonic/priv/mnesia/*
 
 ### Automatic recompilation does not work
 
-Inotify is not picking up changes when using IntelliJ (PHPStorm, WebStorm).
+Inotify is not picking up changes.
 
-**Solution**:
+**Solutions**:
 
-Disable ‘Use “safe write”’ in IntelliJ’s preferences.
+* If you’re using IntelliJ (PHPStorm, WebStorm), disable ‘Use “safe write”’ 
+  in IntelliJ’s preferences.
+
+* Click the Docker icon, Preferences, Uninstall/Reset and finally the ‘Reset’
+  button.
+
