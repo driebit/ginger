@@ -401,13 +401,17 @@
         }
 
         .list__item__content {
-            width: 50%;
+            width: 65%;
             height: 100%;
             @include size(padding-top, 20);
             @include size(padding-left, 25);
             float: left;
             position: static;
             vertical-align: top;
+        }
+
+        .list__item__content__meta + .list__item__content {
+            width: 50%;
         }
 
         .list__item__content__date {
