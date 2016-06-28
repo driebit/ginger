@@ -10,6 +10,7 @@ help:
 	@echo "  import-db-file        Import database from file (db=site-name file=site-dump.sql)"
 	@echo "  import-db-backup      Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  shell                 Open Zotonic shell"
+	@echo "  psql                  Open PostgreSQL interactive terminal"
 	@echo "  up                    Start containers"
 	@echo "  up-zotonic            Start containers with custom Zotonic checkout"
 	@echo "  update                Update containers"
@@ -34,6 +35,9 @@ import-db-backup $(host) $(site):
 
 shell:
 	@docker-compose exec zotonic zotonic shell
+
+psql:
+	@docker-compose exec postgres psql -U zotonic
 
 up:
 	@docker-compose up --build
