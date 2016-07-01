@@ -12,12 +12,22 @@
     </div>
 </li>
 {% endwith %}
-
-{% wire id=#unlink
-    action={unlink
-        subject_id=subject_id
-        edge_id=edge_id
-        hide=#unlink_wrapper
-        action=unlink_action
-    }
-%}
+{% if direction == "out" %}
+    {% wire id=#unlink
+        action={unlink
+            subject_id=subject_id
+            edge_id=edge_id
+            hide=#unlink_wrapper
+            action=unlink_action
+        }
+    %}
+{% else %}
+    {% wire id=#unlink
+        action={unlink
+            subject_id=object_id
+            edge_id=edge_id
+            hide=#unlink_wrapper
+            action=unlink_action
+        }
+    %}
+{% endif %}

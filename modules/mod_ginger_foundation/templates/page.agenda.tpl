@@ -15,7 +15,7 @@
                 {% include "page-title/page-title.tpl" id=id %}
 
                 {% include "subtitle/subtitle.tpl" id=id %}
-                
+
                 {% include "part-of/part-of.tpl" id=id %}
 
                 {% catinclude "page-actions/page-actions.tpl" id %}
@@ -29,9 +29,11 @@
 
         </div>
         <aside class="main-aside">
-            {% with m.search[{ginger_search query_id=id pagelen=6 page=q.page}] as result %}
-                {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
-            {% endwith %}
+            {% if id.query %}
+                {% with m.search[{ginger_search query_id=id pagelen=6 page=q.page}] as result %}
+                    {% include "list/list.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
+                {% endwith %}
+            {% endif %}
         </aside>
     </main>
 {% endblock %}

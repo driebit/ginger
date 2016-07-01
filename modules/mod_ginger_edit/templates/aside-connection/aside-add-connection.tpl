@@ -33,7 +33,8 @@ as
 
         {% if preset_id %}{% include "aside-connection/aside-show-line.tpl" id=preset_id %}{% endif %}
 
-        {% include "_ginger_connection_widget.tpl" predicate_ids=[predicate.id] %}
+        {% include "_ginger_connection_widget.tpl" predicate_ids=[predicate.id] direction=direction %}
+
         {% include "_action_ginger_connection.tpl" category=cat.name predicate=predicate_name new_rsc_title=title tabs_enabled=tabs_enabled tab=tab direction=direction actions=actions dispatch=dispatch %}
 
         <div class="form-group">

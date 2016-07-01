@@ -3,6 +3,20 @@
 {% block title %} {{ error_code }} Error {% endblock %}
 
 {% block content %}
+<style type="text/css">
+.errorpage {
+  padding: 90px 30px 60px 30px;
+  width: 1024px;
+  box-sizing: border-box;
+  margin: 0px auto;
+}
+@media screen and (max-width: 1023px) {
+  .errorpage {
+    width: 100%;
+  }
+}
+</style>
+<article class="errorpage">
 {% if error_code == 403 %}
     <h1>{_ No Access _}</h1>
     <p>{_ Sorry, you don’t have access to this page. _}</p>
@@ -101,4 +115,5 @@
         {% endif %}
     {% endif %}
 {% endif %}
+  </article>
 {% endblock %}

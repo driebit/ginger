@@ -59,6 +59,14 @@
     background-size: 100%;
 }
 
+.icon--cc-cc0 {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('/lib/images/icon--cc-cc0.svg');
+    background-size: 100%;
+}
+
 .icon--cc-by {
     display: inline-block;
     width: 18px;
@@ -74,3 +82,4 @@
     background: url('/lib/images/icon--cc.svg');
     background-size: 100%;
 }
+

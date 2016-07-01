@@ -43,7 +43,7 @@ create_identity_if_not_exists(Name, Username, Password, Context) ->
                     ok = m_identity:set_username_pw(Resource, Username, Password, z_acl:sudo(Context));
                 _ ->
                     %% Another user already exists with the username, so do nothing
-                    noop
+                    ok
             end;
         true ->
             %% The user already has credentials, so don't change them

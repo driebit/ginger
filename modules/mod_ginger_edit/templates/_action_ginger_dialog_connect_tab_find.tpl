@@ -40,6 +40,7 @@
             language=language
             action=action
             actions=actions
+            direction=direction
         }
     }
 %}

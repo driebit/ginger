@@ -2,7 +2,7 @@
 
 {% block title %}{_ Edit _}{% if id %}: {{ id.title|default:"-" }}{% endif %}{% endblock%}
 
-{% block page_class %}ginger-edit{% endblock %}
+{% block page_class %}ginger-edit edit-{{ id.category.name }}{% endblock %}
 
 {% block header %}
     {# The buttons in the navbar click/sync with hidden counter parts in the resource edit form #}

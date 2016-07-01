@@ -1,7 +1,7 @@
 {% with list_id|default:("links-" ++ id ++ "-" ++ predicate) as list_id %}
 <div class="unlink-wrapper">
-    {% sorter id=["links",id|format_integer,predicate]|join:"-" 
-              tag={object_sorter predicate=predicate id=id} 
+    {% sorter id=["links",id|format_integer,predicate]|join:"-"
+              tag={object_sorter predicate=predicate id=id}
               group="edges"
               delegate=delegate|default:`controller_admin_edit`
     %}

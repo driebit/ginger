@@ -9,7 +9,8 @@
 {% with q.page|default:id.page_url as view_location %}
 {% wire id="rscform" type="submit" postback={rscform view_location=view_location} delegate=`controller_admin_edit` %}
 
-	<input type="hidden" name="id" value="{{ id }}" />
+	<input type="hidden" name="id" id="id" value="{{ id }}" />
+    {% validate type={presence} id="id" %}
     <input type="hidden" name="view_location" value="{{ view_location }}" />
 
     {% block meta_data %}
