@@ -20,6 +20,16 @@
     span {
         display: block;
     }
+
+    @include size(padding-left, 32);
+    position: relative;
+}
+
+
+.person-author__text__by {
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .person-profile {
