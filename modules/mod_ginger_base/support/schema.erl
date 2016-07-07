@@ -28,7 +28,8 @@ reset(Site) when is_atom(Site) ->
     Context = z_context:new(Site),
     reset(Context);
 reset(Context) when is_record(Context, context) ->
-    z:m(),
+    z:compile(),
+    z:flush(Context),
     z_module_manager:reinstall(z_context:site(Context), Context).
 
 %% Set username and password if not set before
