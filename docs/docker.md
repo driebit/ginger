@@ -102,3 +102,17 @@ Inotify is not picking up changes.
 * Click the Docker icon, Preferences, Uninstall/Reset and finally the ‘Reset’
   button.
 
+### Unknown runtime specified default
+
+On starting the docker container you get an error similar to this one
+
+```
+ERROR: for postgres  Unknown runtime specified default
+ERROR: Encountered errors while bringing up the project.
+```
+
+***Solutions***
+
+```bash
+$ docker-compose down -v
+```
