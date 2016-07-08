@@ -564,6 +564,53 @@ msgstr "resultaten"
 msgid "search"
 msgstr "zoeken"
 
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:28
+msgid ""
+"Attribution"
+msgstr "Naamsvermelding"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:46
+msgid ""
+"Attribution-NoDerivs"
+msgstr "Naamsvermelding-GeenAfgeleideWerken"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:55
+msgid ""
+"Attribution-NonCommercial"
+msgstr "Naamsvermelding-NietCommercieel"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:74
+msgid ""
+"Attribution-NonCommercial-NoDerivs"
+msgstr "Naamsvermelding-NietCommercieel-GeenAfgeleideWerken"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:64
+msgid ""
+"Attribution-NonCommercial-ShareAlike"
+msgstr "Naamsvermelding-NietCommercieel-GelijkDelen"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:37
+msgid ""
+"Attribution-ShareAlike"
+msgstr "Naamsvermelding-GelijkDelen"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:1
+msgid ""
+"These are the <a href=\"https://creativecommons.org/licenses/\">Creative "
+"Commons licenses</a>."
+msgstr "Dit zijn de <a href=\"https://creativecommons.nl/uitleg/\">Creative Commons-licenties</a>."
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:10
+msgid ""
+"No rights reserved"
+msgstr "Afstand van alle rechten"
+
+#: ./user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:19
+msgid ""
+"Public Domain"
+msgstr "Publiek domein"
+
+
 #~ msgid "contract"
 #~ msgstr "inklappen"
 
