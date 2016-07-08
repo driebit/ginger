@@ -64,7 +64,7 @@ register_activity(RscId, Context) ->
     UserId = z_acl:user(Context),
     IpAddress = case z_context:get_reqdata(Context) of
         undefined -> undefined;
-        Value -> wrq:peer(Value)
+        Value -> z_convert:to_binary(wrq:peer(Value))
     end,
     Entry = #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress},
     z_notifier:notify({ginger_activity, Entry}, Context),
