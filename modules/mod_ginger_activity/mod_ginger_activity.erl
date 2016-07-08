@@ -60,7 +60,7 @@ event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
 
 % @doc logical entry point for registering activity
 register_activity(RscId, Context) ->
-    Time = calendar:local_time(),
+    Time = calendar:universal_time(),
     UserId = z_acl:user(Context),
     IpAddress = case z_context:get_reqdata(Context) of
         undefined -> undefined;
