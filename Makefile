@@ -4,6 +4,8 @@ REMOTE_SITES_DIR=/srv/zotonic/sites
 REMOTE_BACKUP_PATH=$(REMOTE_SITES_DIR)/$(site)/files/backup
 REMOTE_BACKUP_FILE=$(shell ssh $(SSH_USER)@$(host) ls "$(REMOTE_BACKUP_PATH)/*.sql" -t | head -n1 | xargs -n1 basename)
 
+include .env
+
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  gulp site=your_site   Run Gulp in a site directory"
@@ -44,6 +46,8 @@ up:
 	@echo "> Started. Open http://localhost in your browser."
 
 up-zotonic:
+# See https://github.com/zotonic/zotonic/issues/1321
+	rm -rf $(ZOTONIC)/priv/mnesia/*
 	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build
 	@echo "> Started. Open http://localhost in your browser."
 
