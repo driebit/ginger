@@ -17,5 +17,8 @@
     %% comments overview page
     {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]},
 
-    {admin_import, ["admin", "import"], controller_template, [{template, "admin/admin-import.tpl"}]}
+    {admin_import, ["admin", "import"], controller_admin, [
+        {template, "admin/admin-import.tpl"},
+        {ssl, true}
+    ]}
 ].
