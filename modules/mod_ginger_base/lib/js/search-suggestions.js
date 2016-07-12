@@ -87,6 +87,8 @@
               }, 100);
             }
 
+            $(document).trigger('search:toggled');
+
             return false;
         },
 
