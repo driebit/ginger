@@ -26,6 +26,10 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+[class^="icon--"]:before {
+    content: "\e612";
+}
+
 .has-rounded-icon {
     display: inline-block;
     @include size(width, 24);
