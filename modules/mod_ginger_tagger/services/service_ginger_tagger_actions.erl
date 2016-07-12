@@ -96,8 +96,7 @@ process_file(Context) ->
 lookup_users(Rfids, Context) ->
     lists:foldl(
         fun(Rfid, Acc) ->
-
-            case m_rfid:get(z_string:to_lower(Rfid), Context) of
+            case m_rfid:get(Rfid, Context) of
                 undefined ->
                     Acc;
                 Identity ->
