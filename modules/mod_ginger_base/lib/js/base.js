@@ -64,7 +64,6 @@
         _documentClick: function(event) {
 
             var me = this;
-            console.log('doc click');
 
             if (!$(event.target).closest('form[role="search"]').length) {
 
