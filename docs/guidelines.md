@@ -71,3 +71,9 @@ They will then become part of the next Ginger release.
 
 Instead of copying .erl files, hook into the notifications that already exist
 in Zotonic and Ginger.
+
+### 12. Create useful Ginger modules.
+
+* Base new Ginger modules on [mod_ginger_template](http://github.com/driebit/mod_ginger_template).
+
+* Add a readme and a license.
