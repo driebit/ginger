@@ -21,15 +21,20 @@
 -include_lib("modules/mod_admin/include/admin_menu.hrl").
 
 observe_admin_menu(admin_menu, Acc, Context) ->
-    [
-        #menu_item{
-            id=ginger_export,
-            parent=admin_modules,
-            label=?__("Export to CSV", Context),
-            url={admin_ginger_export}
-        }|
-        Acc
-    ].
+    case z_acl:is_allowed(use, mod_export, Context) of
+        true ->
+            [
+                #menu_item{
+                    id=ginger_export,
+                    parent=admin_modules,
+                    label=?__("Export to CSV", Context),
+                    url={admin_ginger_export}
+                }|
+                Acc
+            ];
+        false ->
+            Acc
+    end.
 
 do_data_export(Context) ->
     Query = [
