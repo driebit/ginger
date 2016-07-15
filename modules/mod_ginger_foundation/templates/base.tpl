@@ -30,7 +30,7 @@
 		<body class="{% if content_group %}has-contentgroup {% endif %}{{ id.category.name }} {% block body_class %}{% endblock %} do_foundation do_base">
             {% block after_body %}{% endblock %}
     		{% block global_nav %}
-    			{% include "global-nav/global-nav.tpl" %}
+    			{% catinclude "global-nav/global-nav.tpl" id %}
     		{% endblock %}
 
     		{% block content_group_nav %}

@@ -155,7 +155,7 @@
     }
 
     .main-footer__container {
-        @extend .main-container;
+        @extend %main-container;
     }
 
     .main-footer__column {
