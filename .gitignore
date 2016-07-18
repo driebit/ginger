@@ -13,6 +13,7 @@ modules/mod_import_utils
 modules/mod_ginger_rdf
 modules/mod_recaptcha
 modules/mod_springy_graph
+modules/mod_geoip
 mod_admin_multiupload
 mod_ginger_import
 mod_ginger_xml
