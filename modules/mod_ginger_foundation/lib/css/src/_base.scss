@@ -95,18 +95,24 @@ h3 {
     margin-bottom: 0;
 }
 
-.cf:before,
-.cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+@include mq(min-width, 0){
+    %cf:before,
+    %cf:after {
+        content: " "; /* 1 */
+        display: table; /* 2 */
+    }
+
+    %cf:after {
+        clear: both;
+    }    
+}
+
+.cf:before {
+    @extend %cf:before;
 }
 
 .cf:after {
-    clear: both;
-}
-
-.cf {
-    *zoom: 1;
+    @extend %cf:after;
 }
 
 figure {

@@ -94,7 +94,7 @@
 
 .remark-form__buttons {
     margin-top: 20px;
-    lost-utility: clearfix;
+    @extend %cf;
 
     .remark-edit {
         float: left;

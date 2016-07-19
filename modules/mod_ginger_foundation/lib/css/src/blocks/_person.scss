@@ -46,13 +46,13 @@
 .person-details {
     width: 100%;
     list-style-type: none;
-    lost-utility: clearfix;
+    @extend %cf;
 
     li {
         display: block;
         width: 100%;
         @include size(padding, 10, 0);
-        lost-utility: clearfix;
+        @extend %cf;
 
         + li {
             border-top: 2px dotted $alto;
