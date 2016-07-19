@@ -13,8 +13,7 @@
     get_content_type/1,
     set_filename/1,
     observe_export_resource_header/2,
-    observe_export_resource_encode/2,
-    observe_export_resource_data/2
+    observe_export_resource_encode/2
 ]).
 
 -include_lib("include/zotonic.hrl").
