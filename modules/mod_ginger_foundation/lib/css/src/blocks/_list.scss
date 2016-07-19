@@ -313,7 +313,7 @@
     .list__item__content {
         float: left;
         width: calc(100% - 125px);
-        @include size(0, 10, 10, 16);
+        @include size(padding, 0, 10, 10, 16);
         border: none;
     }
 
