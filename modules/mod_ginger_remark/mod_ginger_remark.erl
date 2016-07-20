@@ -16,7 +16,9 @@
     manage_schema/2,
     observe_rsc_update/3,
     observe_acl_is_allowed/2,
-    observe_acl_is_allowed_prop/2
+    observe_acl_is_allowed_prop/2,
+    observe_rsc_update_done/2,
+    notify_followers/2
 ]).
 
 manage_schema(_Version, Context) ->
@@ -30,6 +32,12 @@ manage_schema(_Version, Context) ->
         ]}
     ],
     predicates=[
+        {follow, [
+          {title, {trans, [{nl, <<"Volg">>},
+                           {en, <<"Follow">>}]}}
+          ], [
+          {person, undefined}
+        ]}
     ],
     resources=[
         {cg_user_generated, content_group, [
@@ -96,4 +104,39 @@ observe_acl_is_allowed(#acl_is_allowed{action=insert, object=#acl_edge{subject_i
                        #context{user_id=undefined} = Context) ->
     is_owner(RscId, Context);
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
+    
+notify_followers(RemarkId, Context) ->
+    About = m_rsc:o(RemarkId, about, 1, Context),
+    {rsc_list, Followers} = m_rsc:s(About, follow, Context),
+    Vars = [ {about, About},
+             {remark, RemarkId}],
+    lists:foreach(
+        fun(Follower) ->
+            Email = m_rsc:p(Follower, email, Context),
+            z_email:send_render(Email, "_email-follow.tpl", Vars, z_acl:sudo(Context))
+        end,
+        Followers
+    ),
+    ok.
+
+observe_rsc_update_done(#rsc_update_done{action = insert, id = RemarkId, post_is_a = [text,remark], post_props = PostProps}, Context) ->
+    PostVersion = proplists:get_value(version, PostProps),
+    PostPublished = proplists:get_value(is_published, PostProps),
+    case (PostVersion == 3) and (PostPublished == true) of
+        true ->
+            notify_followers(RemarkId, Context);
+        false ->
+            undefined
+    end;
+observe_rsc_update_done(#rsc_update_done{action = update, id = RemarkId, post_is_a = [text,remark], pre_props = PreProps, post_props = PostProps}, Context) ->
+    PostVersion = proplists:get_value(version, PostProps),
+    PrePublished = proplists:get_value(is_published, PreProps),
+    case (PostVersion == 4) and (PrePublished == false) of
+        true ->
+            notify_followers(RemarkId, Context);
+        false ->
+            undefined
+    end;
+observe_rsc_update_done(#rsc_update_done{}, _Context) ->
     undefined.
