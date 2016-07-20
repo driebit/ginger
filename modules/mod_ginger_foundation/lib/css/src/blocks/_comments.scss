@@ -29,7 +29,7 @@
 
 .comment {
     @include size(padding, 20, 0);
-    lost-utility: clearfix;
+    @extend %cf;
     position: relative;
     @include size(font-size, 14);
     list-style-type: none;

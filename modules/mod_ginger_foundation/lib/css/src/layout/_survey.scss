@@ -4,7 +4,7 @@
 
 .form-survey {
     .form-group {
-        lost-utility: clearfix;
+        @extend %cf;
 
         + .form-group {
             @include size(margin-top, 20);

@@ -1,5 +1,5 @@
 main {
-    lost-utility: clearfix;
+    @extend %cf;
     position: relative;
     z-index: 100;
 }
