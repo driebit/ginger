@@ -19,7 +19,7 @@ as
     object
 
  %}
-     <div id="page-action-connect">
+     <div id="page-action-connect" class="page-action-connect">
         {% if user %}
             {# If the user is logged in, show its connect status #}
             {% if m.edge.id[subject][predicate][id]|is_defined %}

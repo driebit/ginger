@@ -32,7 +32,7 @@
                 {% endblock %}
                 {% block closing %}
                     <p>{_ Kind regards, _}</p>
-                    <p><a href="http://{{ m.site.hostname }}/">{{ m.config.site.title.value }}</a></p>
+                    <p><a href="http://{{ m.site.hostname }}/" style="color: #000;">{{ m.config.site.title.value }}</a></p>
                 {% endblock %}
                 {% block disclaimer %}
                 {% endblock %}
