@@ -35,10 +35,6 @@ p {
     clear: both;
 }
 
-.cf {
-    -moz-transform: scale(1)
-}
-
 .page-title {
     @include size(margin-bottom, 0);
 }
