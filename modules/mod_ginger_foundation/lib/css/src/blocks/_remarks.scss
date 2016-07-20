@@ -90,6 +90,27 @@
     .mce-tinymce.is-error {
         border: 2px solid $error;
     }
+
+    p {
+        position: relative;
+    }
+}
+
+.remark-form__email {
+    small {
+        display: block;
+        margin-top: 5px;
+
+        label {
+            font-weight: normal;
+        }
+    }
+
+    input[type="checkbox"] {
+        margin: 0 5px 0 0;
+        position: relative;
+        top: -1px;
+    }
 }
 
 .remark-form__buttons {
@@ -303,6 +324,18 @@
         width: 70%;
         float: left;
     }
+
+    .remark-form__anonymous {
+        overflow: hidden;
+    }
+
+    .remark-form__name,
+    .remark-form__email {
+        width: 50%;
+        float: left;
+    }
+
+    .remark-form__email {
+        padding: 0 0 0 20px;
+    }
 }
-
-
