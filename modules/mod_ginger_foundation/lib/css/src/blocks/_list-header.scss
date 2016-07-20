@@ -2,6 +2,10 @@
     @include size(padding, 30, 0);
     background: $listHeaderBgColor;
     font-family: $secondaryFontFamily;
+
+    .z-btn-help {
+        display: inline-block;
+    }
 }
 
 .list-header__title {

@@ -88,7 +88,6 @@ button[type="submit"] {
     @extend %btn--secondary;
 }
 
-
 /* Buttons in zotonic */
 
 .nav-pills > li.active > a,
@@ -107,4 +106,8 @@ button[type="submit"] {
 
 .btn-default {
     @extend %btn--secondary;
+}
+
+button.z-btn-help {
+    background: none;
 }
