@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-06-08 14:15+0200\n"
+"POT-Creation-Date: 2016-07-20 17:38+0200\n"
+"PO-Revision-Date: 2016-07-20 17:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -146,7 +146,7 @@ msgstr "Niet tonen in zoekresultaten"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:29
 msgid "Favorites of "
 msgstr "Favorieten van "
 
@@ -208,6 +208,7 @@ msgstr "Importeer gegevens uit een CSV-bestand."
 
 #: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:3
 #: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:8
+#: user/modules/mod_ginger_base/mod_ginger_base.erl:228
 msgid "Import from CSV"
 msgstr "Importeren uit CSV"
 
@@ -328,9 +329,17 @@ msgstr "Onderdeel van:"
 msgid "Participants"
 msgstr "Deelnemers"
 
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
+msgid "Pending"
+msgstr "Wacht op akkoord"
+
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
+msgid "Pending... "
+msgstr "Wacht op akkoord…."
+
 #: user/modules/mod_ginger_base/templates/share/share.tpl:18
 msgid "Pinterest"
-msgstr ""
+msgstr "Pinterest"
 
 #: user/modules/mod_ginger_base/templates/dialog-profile/button-profile-live.tpl:19
 #: user/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:7
@@ -365,7 +374,7 @@ msgstr "Gerelateerd"
 msgid "Related based on these keywords:"
 msgstr "Gerelateerd op basis van deze trefwoorden:"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:32
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:43
 msgid "Remarks of "
 msgstr "Reacties van "
 
@@ -464,6 +473,14 @@ msgid ""
 msgstr ""
 "Dit is de basis boodschap. Wanneer u ontvangt deed <tt>het proefblok</tt> "
 "niet overrulen door deze tekst vervolgens de sjabloon bouwer."
+
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
+msgid ""
+"This page is waiting for approval by the site editors. When you're page is "
+"approved the page will be public."
+msgstr ""
+"Deze pagina’s wachten op akkoord van de redactie. Wanneer deze is "
+"goedgekeurd zal de pagina publiek worden."
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:28
 msgid "This resource has no incoming connections."
