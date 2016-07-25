@@ -150,7 +150,7 @@
                 streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
 
                 var panoramaLatLng = streetViewPanoramaData.location.latLng,
-                    heading = google.maps.geometry.spherical.computeHeading(latLng, panoramaLatLng);
+                    heading = google.maps.geometry.spherical.computeHeading(panoramaLatLng, latLng);
 
                 if (status === google.maps.StreetViewStatus.OK) {
 
@@ -173,6 +173,9 @@
                         me.buildMap(latLng);
                     }
                 }
+
+
+
 
             });
 
