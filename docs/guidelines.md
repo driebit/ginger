@@ -63,16 +63,23 @@ $ git merge release-0.5.0
 
 They will then become part of the next Ginger release.
 
-### 10. Prefer catinclude over include.
+### 10. Create an issue before doing any significant work.
+
+* This enables [others](https://about.gitlab.com/handbook/#gitlab-workflow) to 
+keep track of changes and provide you with ideas.
+
+* We tag issues to show them on the [roadmap](http://ginger.nl/roadmap).
+
+### 11. Prefer catinclude over include.
 
 `{% catinclude id %}` allows more specific template overrides.
 
-### 11. Place custom Erlang functionality in observers.
+### 12. Place custom Erlang functionality in observers.
 
 Instead of copying .erl files, hook into the notifications that already exist
 in Zotonic and Ginger.
 
-### 12. Create useful Ginger modules.
+### 13. Create useful Ginger modules.
 
 * Base new Ginger modules on [mod_ginger_template](http://github.com/driebit/mod_ginger_template).
 
