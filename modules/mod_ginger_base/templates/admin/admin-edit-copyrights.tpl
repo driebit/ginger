@@ -4,7 +4,5 @@
 {% block widget_id %}sidebar-rights{% endblock %}
 
 {% block widget_content %}
-{% with m.rsc[id] as r %}
-    {% catinclude "frontend-edit/edit-copyrights.tpl" id %}
-{% endwith %}
+    {% catinclude "copyrights/edit-copyrights.tpl" id rights=id.rights %}
 {% endblock %}

@@ -2,7 +2,7 @@
 
 <div class="radio">
     <label for="rights-cc0">
-        <input type="radio" name="rights" id="rights-cc0" value="CC0" {% if r.rights|upper=="CC0" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-cc0" value="CC0" {% if rights|upper=="CC0" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-cc0"></i>
         </div>
@@ -11,7 +11,7 @@
 </div>
 <div class="radio">
     <label for="rights-pd" class="radio-inline">
-        <input type="radio" name="rights" id="rights-pd" value="PD" {% if r.rights|upper=="PD" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-pd" value="PD" {% if rights|upper=="PD" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-pd"></i>
         </div>
@@ -20,7 +20,7 @@
 </div>
 <div class="radio">
     <label for="rights-by" class="radio-inline">
-        <input type="radio" name="rights" id="rights-by" value="BY" {% if r.rights|upper=="BY" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-by" value="BY" {% if rights|upper=="BY" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-by"></i>
         </div>
@@ -29,7 +29,7 @@
 </div>
 <div class="radio">
     <label for="rights-by-sa" class="radio-inline">
-        <input type="radio" name="rights" id="rights-by-sa" value="BY,SA" {% if r.rights|upper=="BY,SA" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-by-sa" value="BY,SA" {% if rights|upper=="BY,SA" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-by"></i> <i class="icon-cc icon--cc-sa"></i>
         </div>
@@ -38,7 +38,7 @@
 </div>
 <div class="radio">
     <label for="rights-by-nd" class="radio-inline">
-        <input type="radio" name="rights" id="rights-by-nd" value="BY,ND" {% if r.rights|upper=="BY,ND" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-by-nd" value="BY,ND" {% if rights|upper=="BY,ND" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-by"></i> <i class="icon-cc icon--cc-nd"></i>
         </div>
@@ -47,7 +47,7 @@
 </div>
 <div class="radio">
      <label for="rights-by-nc" class="radio-inline">
-         <input type="radio" name="rights" id="rights-by-nc" value="BY,NC" {% if r.rights|upper=="BY,NC" %}checked{% endif %} />
+         <input type="radio" name="rights" id="rights-by-nc" value="BY,NC" {% if rights|upper=="BY,NC" %}checked{% endif %} />
          <div class="edit-copyrights__icons">
              <i class="icon-cc icon--cc-by"></i> <i class="icon--cc-nc"></i>
          </div>
@@ -56,7 +56,7 @@
 </div>
 <div class="radio">
      <label for="rights-by-nc-sa" class="radio-inline">
-         <input type="radio" name="rights" id="rights-by-nc-sa" value="BY,NC,SA" {% if r.rights|upper=="BY,NC,SA" %}checked{% endif %} />
+         <input type="radio" name="rights" id="rights-by-nc-sa" value="BY,NC,SA" {% if rights|upper=="BY,NC,SA" %}checked{% endif %} />
          <div class="edit-copyrights__icons">
              <i class="icon-cc icon--cc-by"></i> <i class="icon--cc-nc"></i> <i class="icon--cc-sa"></i>
          </div>
@@ -65,7 +65,7 @@
 </div>
 <div class="radio">
     <label for="rights-by-nc-nd" class="radio-inline">
-        <input type="radio" name="rights" id="rights-by-nc-nd" value="BY,NC,ND" {% if r.rights|upper=="BY,NC,ND" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-by-nc-nd" value="BY,NC,ND" {% if rights|upper=="BY,NC,ND" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc-by"></i> <i class="icon--cc-nc"></i> <i class="icon--cc-nd"></i>
         </div>
@@ -74,7 +74,7 @@
 </div>
 <div class="radio">
     <label for="rights-pd2" class="radio-inline">
-        <input type="radio" name="rights" id="rights-pd2" value="CR" {% if r.rights|upper == "CR" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-pd2" value="CR" {% if rights|upper == "CR" %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc"></i>
         </div>
