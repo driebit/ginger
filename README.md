@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger) 
+
 Ginger
 ======
 
