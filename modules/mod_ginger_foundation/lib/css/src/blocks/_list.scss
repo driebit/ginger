@@ -3,8 +3,8 @@
     @include size(max-width, 1000);
     @include size(padding-top, $standardOffset);
     margin: 0 auto;
-    @extend %cf;
     list-style: none;
+    @extend %cf;
 
     .list__item {
         @include grid(

@@ -96,23 +96,22 @@ h3 {
 }
 
 @include mq(min-width, 0){
-    %cf:before,
-    %cf:after {
-        content: " "; /* 1 */
-        display: table; /* 2 */
+    %cf {
+        &:before {
+            content: '';
+            display: table;
+        }
+
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
     }
-
-    %cf:after {
-        clear: both;
-    }    
 }
 
-.cf:before {
-    @extend %cf:before;
-}
-
-.cf:after {
-    @extend %cf:after;
+.cf {
+    @extend %cf;
 }
 
 figure {
