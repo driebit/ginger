@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger) 
+[![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger)
 
 Ginger
 ======
@@ -21,12 +21,12 @@ Documentation
 Getting started
 ---------------
 
-Install [Docker](https://www.docker.com/getdocker).
+Clone this repository and install [Docker](https://www.docker.com/getdocker).
 
 Then open a terminal in the Ginger directory and start the containers:
 
 ```bash
-$ docker-compose up
+$ make up
 ```
 
 To open a Zotonic shell:
