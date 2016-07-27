@@ -8,7 +8,8 @@
     file/2,
     reset/1,
     create_identity_if_not_exists/4,
-    create_identity_type_if_not_exists/4
+    create_identity_type_if_not_exists/4,
+    lorem/0
 ]).
 
 load(Datamodel = #datamodel{}, Context) ->
@@ -59,3 +60,9 @@ create_identity_type_if_not_exists(Name, Type, Key, Context) ->
         _ ->
             ok
     end.
+
+
+%% @doc Generate simple lorem ipsum text
+-spec lorem() -> binary().
+lorem() ->
+    <<"<p>Lorem ipsum dolor sit amet, <b>consectetur adipiscing elit</b>. Praesent tincidunt <i>justo id dapibus</i> feugiat.</p>\n<h2>Aliquam</h2> <p>erat volutpat. Sed porttitor enim turpis, nec luctus erat scelerisque vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec placerat lorem ac diam dapibus, sed aliquet velit efficitur. Fusce tempor lobortis luctus. Praesent a ultricies lectus. Nunc malesuada nunc et massa feugiat, bibendum placerat risus placerat. Vivamus gravida bibendum tellus. Aenean vel tristique ante. Proin tristique non lorem sit amet pretium. Suspendisse sit amet pellentesque felis. Aliquam erat volutpat. Maecenas risus libero, lobortis et sem a, consectetur vehicula leo. Fusce commodo mi nec urna placerat, id vestibulum eros ornare.">>.
