@@ -55,8 +55,8 @@ Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
-2. Start the site from the [status site]: http://localhost (Docker) or
-   http://ginger.dev (Vagrant)
+2. Start the site from the [status site](http://zotonic.com/docs/latest/ref/status-site.html):
+   http://localhost (Docker) or http://ginger.dev (Vagrant)
 3. Login and go to the modules page
 4. Deactive site module and activate it again
 5. Now the site should work properly
