@@ -35,7 +35,8 @@ To open a Zotonic shell:
 $ make shell
 ```
 
-Run [Gulp](https://github.com/driebit/docker-node-gulp) in the Ginger directory:
+To run [Gulp](https://github.com/driebit/docker-node-gulp) in the Ginger
+directory:
 
 ```bash
 $ make gulp site=your_site_name
