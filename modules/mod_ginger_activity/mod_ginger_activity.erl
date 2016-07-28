@@ -42,9 +42,11 @@ init(Context) ->
                         references rsc(id),
                     constraint fk_activity_log_user_id foreign key (user_id)
                         references rsc(id)
-                )
+                );
             ", Context),
-            % TODO: Some indexes
+            [] = z_db:q("
+                create index activity_log_rsc_id_index on activity_log (rsc_id);
+            ", Context),
             ok
     end.    
 
