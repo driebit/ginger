@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(250).
--mod_schema(9).
+-mod_schema(11).
 
 -export([
     manage_schema/2,
@@ -22,55 +22,56 @@
 ]).
 
 manage_schema(_Version, Context) ->
-  m_config:set_value(i18n, language, nl, Context),
-  #datamodel{
-    categories=[
-        {remark, text, [
-            {title, {trans, [{nl, <<"Opmerking">>},
-                             {en, <<"Remark">>}]}},
-            {language, [en,nl]}
-        ]}
-    ],
-    predicates=[
-        {follow, [
-          {title, {trans, [{nl, <<"Volg">>},
-                           {en, <<"Follow">>}]}}
-          ], [
-          {person, undefined}
-        ]}
-    ],
-    resources=[
-        {cg_user_generated, content_group, [
-          {title, <<"User generated">>}
-        ]}
-    ],
-    media=[
-    ],
-    edges=[
-    ],
-    data = [
-        {acl_rules, [
-            {rsc, [
-                {acl_user_group_id, acl_user_group_anonymous},
-                {actions, [insert, update]},
-                {category_id, remark},
-                {content_group_id, m_rsc:rid(cg_user_generated, Context)}
-            ]},
-            {rsc, [
-                {acl_user_group_id, acl_user_group_anonymous},
-                {actions, [insert]},
-                {category_id, media},
-                {content_group_id, m_rsc:rid(cg_user_generated, Context)}
-            ]},
-            {rsc, [
-                {acl_user_group_id, acl_user_group_members},
-                {actions, [update, link, delete]},
-                {category_id, remark},
-                {content_group_id, m_rsc:rid(cg_user_generated, Context)},
-                {is_owner, true}
+    m_config:set_value(i18n, language, nl, Context),
+    Datamodel = #datamodel{
+        categories=[
+            {remark, text, [
+                {title, {trans, [{nl, <<"Opmerking">>},
+                                 {en, <<"Remark">>}]}},
+                {language, [en,nl]}
             ]}
-        ]}
-    ]}.
+        ],
+        predicates=[
+            {follow, [
+              {title, {trans, [{nl, <<"Volg">>},
+                               {en, <<"Follow">>}]}}
+              ], [
+              {person, undefined}
+            ]}
+        ],
+        resources=[
+            {cg_user_generated, content_group, [
+              {title, <<"User generated">>}
+            ]}
+        ],
+        media=[
+        ],
+        edges=[
+        ],
+        data = [
+            {acl_rules, [
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_anonymous},
+                    {actions, [insert, update]},
+                    {category_id, remark},
+                    {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+                ]},
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_anonymous},
+                    {actions, [insert]},
+                    {category_id, media},
+                    {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+                ]},
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_members},
+                    {actions, [update, link, delete]},
+                    {category_id, remark},
+                    {content_group_id, m_rsc:rid(cg_user_generated, Context)},
+                    {is_owner, true}
+                ]}
+            ]}
+        ]},
+        z_datamodel:manage(?MODULE, Datamodel, Context).
 
 is_owner(Id, #context{user_id=undefined, session_id=SessionId} = Context) ->
     case m_rsc:p_no_acl(Id, session_owner, Context) of
@@ -105,7 +106,7 @@ observe_acl_is_allowed(#acl_is_allowed{action=insert, object=#acl_edge{subject_i
     is_owner(RscId, Context);
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
-    
+
 notify_followers(RemarkId, Context) ->
     About = m_rsc:o(RemarkId, about, 1, Context),
     {rsc_list, Followers} = m_rsc:s(About, follow, Context),
