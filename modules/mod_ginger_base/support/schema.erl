@@ -6,6 +6,7 @@
 -export([
     load/2,
     file/2,
+    menu/3,
     reset/1,
     create_identity_if_not_exists/4,
     create_identity_type_if_not_exists/4,
@@ -22,6 +23,16 @@ load(Datamodel = #datamodel{}, Context) ->
 -spec file(string(), #context{}) -> string().
 file(Filename, Context) ->
     filename:join([z_path:site_dir(Context), "files/fixtures/", Filename]).
+
+%% @doc Set items for a menu
+-spec menu(m_rsc:resource(), list(), #context{}) -> ok.
+menu(Menu, Items, Context) ->
+    {ok, _Id} = mod_menu:set_menu(
+        m_rsc:rid(Menu, Context),
+        Items,
+        z_acl:sudo(Context)
+    ),
+    ok.
 
 %% @doc Compile and reset database schema
 -spec reset(#context{}) -> ok.
