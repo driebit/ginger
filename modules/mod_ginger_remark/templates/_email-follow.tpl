@@ -3,7 +3,7 @@
 {% block title %}{_ Reaction added to _}: {{ about.title }}{% endblock %}
 
 {% block body %}
-    <p>Beste [firstname als die is ingevuld, en anders gewoon alleen beste],</p>
+    <p>Beste{% if person.name_first %} {{ person.name_first }}{% else %} {{ person.title }}{% endif %},</p>
 
     <p>Er is een nieuwe reactie op een verhaal dat je aan het volgen bent:</p>
     <table cellpadding="0" cellspacing="0" border="0" style="background-color: #f9f9f9;">

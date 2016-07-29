@@ -110,10 +110,12 @@ observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
 notify_followers(RemarkId, Context) ->
     About = m_rsc:o(RemarkId, about, 1, Context),
     {rsc_list, Followers} = m_rsc:s(About, follow, Context),
-    Vars = [ {about, About},
-             {remark, RemarkId}],
+
     lists:foreach(
         fun(Follower) ->
+            Vars = [ {about, About},
+                     {remark, RemarkId},
+                     {person, Follower}],
             Email = m_rsc:p(Follower, email, Context),
             z_email:send_render(Email, "_email-follow.tpl", Vars, z_acl:sudo(Context))
         end,
