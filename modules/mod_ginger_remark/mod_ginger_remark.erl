@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(250).
--mod_schema(11).
+-mod_schema(12).
 
 -export([
     manage_schema/2,
@@ -54,7 +54,8 @@ manage_schema(_Version, Context) ->
                     {acl_user_group_id, acl_user_group_anonymous},
                     {actions, [insert, update]},
                     {category_id, remark},
-                    {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+                    {content_group_id, m_rsc:rid(cg_user_generated, Context)},
+                    {is_owner, true}
                 ]},
                 {rsc, [
                     {acl_user_group_id, acl_user_group_anonymous},
