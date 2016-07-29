@@ -4,7 +4,6 @@
 
 {% block content %}
     <main role="main" class="page--sided">
-
         <article class="main-content--sided">
 
             {% catinclude "published/published.tpl" id %}
