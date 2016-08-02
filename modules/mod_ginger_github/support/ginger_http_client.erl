@@ -4,16 +4,26 @@
 -include_lib("zotonic.hrl").
 
 -export([
-    request/2
+    request/2,
+    request/4
 ]).
 
+-spec request(string(), list()) -> list().
 request(Url, Headers) ->
-    case httpc:request(get, {Url, Headers}, [], []) of
+    handle_response(httpc:request(get, {Url, Headers}, [], []), Url).
+
+-spec request(string(), string(), list(), list()) -> list().
+request(RequestMethod, Url, Headers, Data) ->
+    JsonData = encode_data(Data),
+    handle_response(httpc:request(RequestMethod, {Url, Headers, "application/json", JsonData}, [], []), Url).
+
+handle_response(Response, Url) ->
+    case Response of
         {ok, {
             {_HTTP, StatusCode, _OK},
             _Headers,
             Body
-        }} when StatusCode >= 400, StatusCode < 500 ->
+        }} when StatusCode >= 400 ->
             lager:error("~p error ~p for URL ~p: ~p", [?MODULE, StatusCode, Url, Body]),
             undefined;
         {ok, {
@@ -22,7 +32,10 @@ request(Url, Headers) ->
             Body
         }} ->
             mochijson2:decode(Body);
-        Response ->
-            lager:error("~p unknown error for URL ~p: ~p", [?MODULE, Url, Response]),
+        JsonResponse ->
+            lager:error("~p unknown error for URL ~p: ~p", [?MODULE, Url, JsonResponse]),
             undefined
     end.
+
+encode_data(Data) ->
+    iolist_to_binary(mochijson2:encode(z_convert:to_json(Data))).
