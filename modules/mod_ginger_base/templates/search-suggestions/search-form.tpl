@@ -6,6 +6,7 @@
     buttonclass|default:"search-suggestions__submit",
     suggestionsclass|default:"search-suggestions__suggestions",
     placeholder|default:_"Search",
+    buttonlabel|if_undefined:_"Search",
     iconclass
 as
     formclass,
@@ -14,6 +15,7 @@ as
     buttonclass,
     suggestionsclass,
     placeholder,
+    buttonlabel,
     iconclass
 %}
 
@@ -33,7 +35,7 @@ as
           {% if iconclass %}
             <i class="{{ iconclass }}"></i>
           {% endif %}
-          {_ Search _}
+          {{ buttonlabel }}
         </button>
 
           {% block search_suggestions_wire %}

@@ -18,3 +18,4 @@ mod_admin_multiupload
 mod_ginger_import
 mod_ginger_xml
 *.pot
+.idea

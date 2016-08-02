@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(250).
--mod_schema(11).
+-mod_schema(12).
 
 -export([
     manage_schema/2,
@@ -54,7 +54,8 @@ manage_schema(_Version, Context) ->
                     {acl_user_group_id, acl_user_group_anonymous},
                     {actions, [insert, update]},
                     {category_id, remark},
-                    {content_group_id, m_rsc:rid(cg_user_generated, Context)}
+                    {content_group_id, m_rsc:rid(cg_user_generated, Context)},
+                    {is_owner, true}
                 ]},
                 {rsc, [
                     {acl_user_group_id, acl_user_group_anonymous},
@@ -110,10 +111,12 @@ observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
 notify_followers(RemarkId, Context) ->
     About = m_rsc:o(RemarkId, about, 1, Context),
     {rsc_list, Followers} = m_rsc:s(About, follow, Context),
-    Vars = [ {about, About},
-             {remark, RemarkId}],
+
     lists:foreach(
         fun(Follower) ->
+            Vars = [ {about, About},
+                     {remark, RemarkId},
+                     {person, Follower}],
             Email = m_rsc:p(Follower, email, Context),
             z_email:send_render(Email, "_email-follow.tpl", Vars, z_acl:sudo(Context))
         end,
