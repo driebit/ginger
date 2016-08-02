@@ -18,6 +18,17 @@ services:
             - ./modules:/opt/zotonic/user/modules
             - ./sites:/opt/zotonic/user/sites
         ports:
-            - 80:8000
+            - 8000:8000
         environment:
             MAKE: "true"
+
+    haproxy:
+        image: driebit/ginger-haproxy
+        links:
+            - zotonic
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            - BACKEND_SERVER=zotonic
+            - BACKEND_PORT=8000
