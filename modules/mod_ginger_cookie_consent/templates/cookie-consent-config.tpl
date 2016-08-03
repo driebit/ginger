@@ -1,0 +1,1 @@
+{% include "cookie-consent.tpl" %}
