@@ -66,7 +66,13 @@ register_activity(RscId, Context) ->
     UserId = z_acl:user(Context),
     IpAddress = case z_context:get_reqdata(Context) of
         undefined -> undefined;
-        Value -> z_convert:to_binary(wrq:peer(Value))
+        Value -> 
+            case proplist:get_value("x-forward-for", wrq:req_headers(Value)) of
+                undefined ->
+                    z_convert:to_binary(wrq:peer(Value));
+                Hosts ->
+                    z_convert:to_binary(string:strip(lists:last(string:tokens(Hosts, ","))))
+            end
     end,
     Entry = #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress},
     z_notifier:notify({ginger_activity, Entry}, Context),
