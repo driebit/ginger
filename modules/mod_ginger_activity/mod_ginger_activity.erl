@@ -23,6 +23,18 @@
 init(Context) ->
     case z_db:table_exists(activity_log, Context) of
         true ->
+            [] = z_db:q("
+                 alter table activity_log
+                 drop constraint fk_activity_log_rsc_id,
+                 add constraint fk_activity_log_rsc_id
+                     foreign key (rsc_id)
+                     references rsc(id)
+                     on delete cascade;
+            ", Context),
+            [] = z_db:q("
+                 alter table activity_log
+                 drop constraint fk_activity_log_user_id;
+            ", Context),
             ok;
         false ->
             ginger_config:install_config(
@@ -39,16 +51,14 @@ init(Context) ->
 
                     constraint activity_log_pkey primary key (id),
                     constraint fk_activity_log_rsc_id foreign key (rsc_id)
-                        references rsc(id),
-                    constraint fk_activity_log_user_id foreign key (user_id)
-                        references rsc(id)
+                        references rsc(id) on delete cascade;
                 );
             ", Context),
             [] = z_db:q("
                 create index activity_log_rsc_id_index on activity_log (rsc_id);
             ", Context),
             ok
-    end.    
+    end.
 
 % @doc postback for activating resources
 event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
