@@ -90,6 +90,8 @@ zotonic_1   | Zotonic is not running. You need to start Zotonic first to use thi
 $ rm -rf ../zotonic/priv/mnesia/*
 ```
 
+The `make up` command already does this for you.
+
 ### Automatic recompilation does not work
 
 Inotify is not picking up changes.
