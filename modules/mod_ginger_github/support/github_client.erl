@@ -24,8 +24,6 @@ headers(Context) ->
         {"Accept", "application/vnd.github.v3+json"}
     ].
 
-parse_property({Key, null}) ->
-    {Key, null};
 parse_property({<<"due_on">>, Date}) ->
     {<<"due_on">>, z_datetime:to_datetime(Date)};
 parse_property({Key, Value}) ->
