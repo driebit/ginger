@@ -51,7 +51,7 @@ init(Context) ->
 
                     constraint activity_log_pkey primary key (id),
                     constraint fk_activity_log_rsc_id foreign key (rsc_id)
-                        references rsc(id) on delete cascade;
+                        references rsc(id) on delete cascade
                 );
             ", Context),
             [] = z_db:q("
