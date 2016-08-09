@@ -26,3 +26,4 @@ script:
     - docker-compose version
     - docker pull driebit/zotonic:0.x-dev
     - docker-compose run zotonic make
+    - docker-compose run zotonic zotonic runtests mod_ginger_rdf
