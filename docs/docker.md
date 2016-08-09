@@ -104,6 +104,15 @@ Inotify is not picking up changes.
 * Click the Docker icon, Preferences, Uninstall/Reset and finally the ‘Reset’
   button.
 
+### `make gulp` fails with ‘EEXIST: file already exists’
+
+This seems to be related to [osxfs](https://docs.docker.com/docker-for-mac/osxfs/).
+
+**Solution:**
+
+Install Docker for Mac [beta](https://docs.docker.com/docker-for-mac/) instead of 
+stable, which includes some fixes for osxfs.
+
 ### Unknown runtime specified default
 
 On starting the docker container you get an error similar to this one
@@ -113,8 +122,9 @@ ERROR: for postgres  Unknown runtime specified default
 ERROR: Encountered errors while bringing up the project.
 ```
 
-***Solutions***
+**Solution:**
 
 ```bash
 $ docker-compose down -v
 ```
+
