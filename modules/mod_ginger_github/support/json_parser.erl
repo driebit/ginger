@@ -30,5 +30,7 @@ parse({Key, null}, _Fun) ->
     {Key, undefined};
 parse({Key, {struct, _List} = Value}, Fun) ->
     {Key, parse(Value, Fun)};
+parse({Key, List}, Fun) when is_list(List) ->
+    {Key, parse(List, Fun)};
 parse({Key, Value}, Fun) ->
     Fun({Key, Value}).
