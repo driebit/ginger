@@ -3,14 +3,21 @@ mod_ginger_tagger
 
 Ginger module for performing actions as a result of scanning RFID tags.
 
+Features:
+
+* API for outside registering RFIDs and actions performed with RFIDs
+* admin web interface for administering RFIDs
+
 Usage
 -----
+
+### API
 
 You need to be authenticated with an OAuth2 client access token to perform API
 calls. See [mod_oauth2](https://github.com/driebit/mod_oauth2) on how to obtain
 such a token.
 
-### Get user RFID
+#### Get user RFID
 
 Get user that an RFID belongs to:
 
@@ -19,7 +26,7 @@ GET /rfids/{id} HTTP/1.1
 Authorization: Bearer {Client OAuth2 token}
 ```
 
-### Add RFID to user
+#### Add RFID to user
 
 Attach a RFID to a user. This requires a [user access token](https://github.com/driebit/mod_oauth2#authorization-code-grant):
 
@@ -37,7 +44,7 @@ Accept: application/json
 }
 ```
 
-### Report an RFID action
+#### Report an RFID action
 
 When an RFID tag has been scanned, report that action to the Tagger API. You
 can attach any file contents either as a base64-encoded string in a JSON body
@@ -75,3 +82,8 @@ Accept: application/json
     "object_id": "http://yoursite.com/
 }
 ```
+
+### Admin interface
+
+All users that have [ACL use rights](http://zotonic.com/docs/latest/ref/modules/mod_acl_user_groups.html) 
+on mod_admin_identity will see an RFID section in the admin’s person sidebar.

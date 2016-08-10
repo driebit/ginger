@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ./user/modules/mod_ginger_tagger/templates/admin/rfids.tpl:26
+msgid ""
+"Add RFID"
+msgstr "RFID toevoegen"
+
+#: ./user/modules/mod_ginger_tagger/templates/admin/add-rfid.tpl:1
+msgid ""
+"Add RFID code to a person."
+msgstr "Voeg een RFID-code toe aan een persoon."
+
+#: ./user/modules/mod_ginger_tagger/templates/_admin_edit_sidebar.person.tpl:6
+msgid ""
+"Every person has one or more RFIDs. Edit the RFIDs that belong to this "
+"person."
+msgstr "Elke persoon heeft één of meer RFID’s. Beheer hier de RFID’s die bij deze "
+"persoon horen."
+
+#: ./user/modules/mod_ginger_tagger/templates/admin/add-rfid.tpl:7
+msgid ""
+"Hexadecimal RFID code"
+msgstr "Hexadecimale RFID-code"
+
+#: ./user/modules/mod_ginger_tagger/templates/_admin_edit_sidebar.person.tpl:4 ./user/modules/mod_ginger_tagger/templates/_admin_edit_sidebar.person.tpl:6 ./user/modules/mod_ginger_tagger/templates/_admin_edit_sidebar.person.tpl:6
+msgid ""
+"RFIDs"
+msgstr "RFID’s"

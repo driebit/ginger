@@ -14,7 +14,8 @@
 
 -export([
     manage_schema/2,
-    observe_tagger_action/2
+    observe_tagger_action/2,
+    event/2
 ]).
 
 manage_schema(install, Context) ->
@@ -41,3 +42,14 @@ observe_tagger_action(#tagger_action{media=Media, users=Users}, Context) ->
         end,
         Users
     ).
+
+event(#submit{message = {add_rfid, Args}}, Context) ->
+    Rsc = proplists:get_value(id, Args),
+    Rfid = z_context:get_q("rfid", Context),
+    m_rfid:add(Rsc, Rfid, Context),
+    z_render:dialog_close(Context);
+event(#postback{message = {delete, Args}}, Context) ->
+    Rsc = proplists:get_value(id, Args),
+    Rfid = proplists:get_value(rfid, Args),
+    ok = m_rfid:delete(Rsc, Rfid, Context),
+    Context.
