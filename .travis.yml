@@ -18,9 +18,6 @@ before_install:
     - chmod +x docker-compose
     - sudo mv docker-compose /usr/local/bin
 
-    # Install docker-engine at specified version
-    - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
-
 script:
     - docker version
     - docker-compose version
