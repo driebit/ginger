@@ -105,6 +105,11 @@ manage_schema(_Version, Context) ->
         ],
         data = [
             {acl_rules, [
+                %% Anonymous can view everything
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_anonymous},
+                    {actions, [view]}
+                ]},
                 %% Members can edit their own profile. This requires insert rights on
                 %% category person because of acl_rsc_update_check:acl_rsc_update_check/3.
                 {rsc, [
