@@ -33,7 +33,8 @@ init(Context) ->
             ", Context),
             [] = z_db:q("
                  alter table activity_log
-                 drop constraint fk_activity_log_user_id;
+                 drop constraint if exists fk_activity_log_user_id;
+
             ", Context),
             ok;
         false ->
@@ -76,7 +77,7 @@ register_activity(RscId, Context) ->
     UserId = z_acl:user(Context),
     IpAddress = case z_context:get_reqdata(Context) of
         undefined -> undefined;
-        Value -> 
+        Value ->
             case proplists:get_value("x-forward-for", wrq:req_headers(Value)) of
                 undefined ->
                     z_convert:to_binary(wrq:peer(Value));
@@ -87,7 +88,7 @@ register_activity(RscId, Context) ->
     Entry = #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress},
     z_notifier:notify({ginger_activity, Entry}, Context),
     ok.
-    
+
 pid_observe_ginger_activity(_Pid, {ginger_activity, Entry}, Context) ->
     #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress} = Entry,
     case z_convert:to_bool(m_config:get_value(mod_ginger_activity, persist_activity, Context)) of
@@ -98,7 +99,7 @@ pid_observe_ginger_activity(_Pid, {ginger_activity, Entry}, Context) ->
         false ->
             ok
     end.
-    
+
 % @doc single entry point for inserting activity into the database
 % insert_activity(RscId, Context) ->
 %     insert_activity(RscId, calendar:local_time(), Context).
@@ -108,4 +109,4 @@ pid_observe_ginger_activity(_Pid, {ginger_activity, Entry}, Context) ->
 %     insert_activity(RscId, DateTime, UserId, undefined, Context).
 insert_activity(RscId, DateTime, UserId, IpAddress, Context) ->
     Props = [{rsc_id, RscId}, {time, DateTime}, {user_id, UserId}, {ip_address, IpAddress}],
-    z_db:insert(activity_log, Props, Context).  
+    z_db:insert(activity_log, Props, Context).
