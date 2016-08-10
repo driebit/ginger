@@ -4,7 +4,8 @@
 
 -export([
     get/2,
-    add/3
+    add/3,
+    delete/3
 ]).
 
 -include_lib("zotonic.hrl").
@@ -15,7 +16,7 @@ get(Rfid, Context) ->
     m_identity:lookup_by_type_and_key(rfid, normalise(Rfid), Context).
 
 %% @doc Add RFID identity to a resource
--spec add(pos_integer() | atom(), binary(), #context{}) -> {error, string()} | {ok, pos_integer()}.
+-spec add(m_rsc:resource(), binary(), #context{}) -> {error, string()} | {ok, pos_integer()}.
 add(Resource, Rfid, Context) ->
     case m_rsc:rid(Resource, Context) of
         undefined ->
@@ -23,6 +24,14 @@ add(Resource, Rfid, Context) ->
         Id ->
             m_identity:insert_unique(Id, rfid, normalise(Rfid), Context)
     end.
+
+%% @doc Delete an RFID
+-spec delete(m_rsc:resource(), binary(), #context{}) -> ok.
+delete(Resource, Rfid, Context) ->
+    m_identity:delete_by_type_and_key(Resource, rfid, normalise(Rfid), Context),
+
+    %% Can be removed when https://github.com/zotonic/zotonic/pull/1376 is merged
+    z_mqtt:publish(["~site", "rsc", Resource, "identity"], {identity, rfid}, Context).
 
 %% @doc Normalise RFID number
 -spec normalise(binary()) -> binary().
