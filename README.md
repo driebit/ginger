@@ -15,7 +15,7 @@ Documentation
 * [Docker](docs/docker.md)
 * [Guidelines](docs/guidelines.md)
 * [Why Ginger is a single Git repository](docs/monorepo.md)
-* [Releases](releases.md)
+* [Releases](docs/releases.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
 
