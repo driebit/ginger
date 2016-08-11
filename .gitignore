@@ -19,3 +19,4 @@ mod_ginger_import
 mod_ginger_xml
 *.pot
 .idea
+_sites
