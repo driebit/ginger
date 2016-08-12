@@ -27,7 +27,9 @@
 
             {% catinclude "list/list-simple.tpl" id items=id.o.actor header=_"Actors: " %}
 
-            {% include "copyrights/copyrights.tpl" id=id %}
+            {% block copyrights %}
+                {% include "copyrights/copyrights.tpl" id=id %}
+            {% endblock %}
 
             {% include "comments/comments.tpl" id=id %}
 

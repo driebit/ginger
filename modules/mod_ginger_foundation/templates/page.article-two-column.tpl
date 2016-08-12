@@ -23,7 +23,9 @@
 
             {% include "blocks/blocks.tpl" id=id %}
 
-            {% include "copyrights/copyrights.tpl" id=id %}
+            {% block copyrights %}
+                {% include "copyrights/copyrights.tpl" id=id %}
+            {% endblock %}
 
             {% include "attached-media/attached-media.tpl" id=id %}
 
