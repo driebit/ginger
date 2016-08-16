@@ -7,7 +7,10 @@
     <main role="main">
 
         <div class="foldout do_foldout">
-            {% catinclude "category-of/category-of.tpl" id %}
+
+            {% block category_of %}
+                {% catinclude "category-of/category-of.tpl" id %}
+            {% endblock %}
 
             {% include "foldout/foldout-button.tpl" %}
 
@@ -16,7 +19,9 @@
 
                 {% include "subtitle/subtitle.tpl" id=id %}
 
-                {% catinclude "page-actions/page-actions.tpl" id %}
+                {% block page_actions %}
+                    {% catinclude "page-actions/page-actions.tpl" id %}
+                {% endblock %}
 
                 <div class="main-content__meta">
                     {% include "meta/meta-location.tpl" id=id %}

@@ -18,15 +18,19 @@
 
                 {% include "subtitle/subtitle.tpl" id=id %}
 
-                {% catinclude "page-actions/page-actions.tpl" id %}
+                {% block page_actions %}
+                    {% catinclude "page-actions/page-actions.tpl" id %}
+                {% endblock %}
 
                 {% include "person/person-details.tpl" person=id %}
-                
+
                 {% include "summary/summary.tpl" id=id %}
 
                 {% include "body/body.tpl" id=id %}
 
-                {% include "attached-media/attached-media.tpl" id=id %}
+                {% block attached_media %}
+                    {% include "attached-media/attached-media.tpl" id=id %}
+                {% endblock %}
 
             </article>
         </div>

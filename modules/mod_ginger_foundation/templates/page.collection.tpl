@@ -17,7 +17,9 @@
 
                 {% include "part-of/part-of.tpl" id=id %}
 
-                {% catinclude "page-actions/page-actions.tpl" id %}
+                {% block page_actions %}
+                    {% catinclude "page-actions/page-actions.tpl" id %}
+                {% endblock %}
 
                 {% include "summary/summary.tpl" id=id %}
 

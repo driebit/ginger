@@ -7,15 +7,21 @@
 
         <article class="main-content--sided">
 
-            {% catinclude "published/published.tpl" id %}
+            {% block published %}
+                {% catinclude "published/published.tpl" id %}
+            {% endblock %}
 
-            {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
+            {% block category_of %}
+                {% catinclude "category-of/category-of.tpl" id class="category-of--sided" %}
+            {% endblock %}
 
             {% include "page-title/page-title.tpl" id=id %}
 
             {% include "subtitle/subtitle.tpl" id=id %}
 
-            {% catinclude "page-actions/page-actions.tpl" id %}
+            {% block page_actions %}
+                {% catinclude "page-actions/page-actions.tpl" id %}
+            {% endblock %}
 
             {% catinclude "media/media.tpl" id %}
 
