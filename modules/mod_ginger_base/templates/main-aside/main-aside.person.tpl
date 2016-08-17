@@ -10,18 +10,6 @@
             </aside>
         {% endif %}
 
-        {% with m.search[{ginger_search hasobject=[id,'author'] is_published="true" cat_exclude=['remark'] pagelen=6 sort='-rsc.modified'}] as result %}
-            {% if result %}
-            <aside class="main-aside">
-
-                    {% include "list/list-header.tpl" id=id list_title=_"Pending... " items=result help help_title=_"Pending"|escapejs help_text=_"This page is waiting for approval by the site editors. When you're page is approved the page will be public." %}
-
-                    {% include "list/list.tpl" list_id="list--authored" items=result extraClasses="" id=id %}
-            </aside>
-            {% endif %}
-        {% endwith %}
-
-
         {% if id.o.interest %}
             <aside class="main-aside">
                 {% with m.search[{ginger_search hassubject=[id,'interest'] pagelen=6 sort='-rsc.modified'}] as result %}
@@ -48,5 +36,3 @@
             {% endif %}
 
         {% endwith %}
-
-
