@@ -11,9 +11,15 @@
 -include_lib("zotonic.hrl").
 
 %% @doc Get RFID identity by number
--spec get(string(), #context{}) -> list() | undefined.
+-spec get(binary(), #context{}) -> list() | undefined.
 get(Rfid, Context) ->
-    m_identity:lookup_by_type_and_key(rfid, normalise(Rfid), Context).
+    case m_identity:lookup_by_type_and_key(rfid, normalise(Rfid), Context) of
+        undefined ->
+            %% Fall back to other endianness
+            m_identity:lookup_by_type_and_key(rfid, convert_endian(normalise(Rfid)), Context);
+        Identity ->
+            Identity
+    end.
 
 %% @doc Add RFID identity to a resource
 -spec add(m_rsc:resource(), binary(), #context{}) -> {error, string()} | {ok, pos_integer()}.
@@ -37,3 +43,9 @@ delete(Resource, Rfid, Context) ->
 -spec normalise(binary()) -> binary().
 normalise(Rfid) ->
     z_string:to_lower(Rfid).
+
+%% @doc Convert between little-endian and big-endian.
+%%      This is a fallback for incorrectly encoded RFID chips.
+-spec convert_endian(binary()) -> binary().
+convert_endian(Rfid) ->
+    binary:encode_unsigned(binary:decode_unsigned(Rfid, big), little).
