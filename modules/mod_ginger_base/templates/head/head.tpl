@@ -16,9 +16,7 @@
         {% endblock %}
     </title>
 
-    {% if id.seo_desc %}
-        <meta name="description" content="{{ id.seo_desc }}">
-    {% endif %}
+    <meta name="description" content="{% if id.seo_desc %}{{ id.seo_desc }}{% else %}{{ id|summary:160 }}{% endif %}">
 
     {% if id.seo_keywords %}
         <meta name="keywords" content="{{ id.seo_keywords }}">
