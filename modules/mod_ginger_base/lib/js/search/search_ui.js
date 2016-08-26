@@ -15,7 +15,6 @@ $.widget("ui.search_ui", {
         //after all widget's _create function
         var me = this,
             inputSearch = $(document).find('.input-search'),
-            queryString = $.url().param('searchterm'),
             documentWidth = $(document).width();
 
         window.onhashchange = $.proxy(me.hashChanged, me);
