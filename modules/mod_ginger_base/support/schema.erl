@@ -9,6 +9,7 @@
     menu/3,
     reset/1,
     create_identity_if_not_exists/4,
+    create_identity_if_not_exists/5,
     create_identity_type_if_not_exists/4,
     lorem/0
 ]).
@@ -44,15 +45,20 @@ reset(Context) when is_record(Context, context) ->
     z:flush(Context),
     z_module_manager:reinstall(z_context:site(Context), Context).
 
-%% Set username and password if not set before
 -spec create_identity_if_not_exists(atom(), string(), string(), #context{}) -> ok.
 create_identity_if_not_exists(Name, Username, Password, Context) ->
+    create_identity_if_not_exists(Name, Username, Password, [], Context).
+
+%% Set username and password if not set before
+-spec create_identity_if_not_exists(atom(), string(), string(), list(tuple()), #context{}) -> ok.
+create_identity_if_not_exists(Name, Username, Password, Props, Context) ->
     Resource = m_rsc:rid(Name, Context),
     case m_identity:is_user(Resource, Context) of
         false ->
             %% Create new credentials
             case m_identity:lookup_by_username(Username, Context) of
                 undefined ->
+                    {ok, _IdentityId} = m_identity:insert_unique(Resource, username_pw, Username, Props, z_acl:sudo(Context)),
                     ok = m_identity:set_username_pw(Resource, Username, Password, z_acl:sudo(Context));
                 _ ->
                     %% Another user already exists with the username, so do nothing
