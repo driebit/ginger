@@ -2,11 +2,13 @@
 {% with
     id.s.about|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id|filter:`is_published`,
     remark_page|default:q.remark_page|default:1|to_integer,
-    remark_page_length|default:q.remark_page_length|default:20|to_integer
+    remark_page_length|default:q.remark_page_length|default:20|to_integer,
+    show_form|default:false|default:q.showform
     as
     remarks,
     page,
-    page_length %}
+    page_length,
+    show_form %}
 
 <div class="remarks do_remarks_widget" id="remarks">
 
@@ -14,7 +16,10 @@
         <h2 class="list-header__title">
             {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
         </h2>
-        <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
+        {% if not show_form %}
+            <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
+        {% endif %}
+
     </div>
 
     {% include "remark-pager/remark-pager.tpl" %}
@@ -41,9 +46,7 @@
 
     {% include "remark-pager/remark-pager.tpl" %}
 </div>
-
 {% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
-
 {% endwith %}
 
 {% javascript %}
@@ -65,6 +68,9 @@
                                 {title: "Blockquote", format: "blockquote"},
                             ]}
                         ]
+    {% if show_form %}
+        z_event('new_remark');
+    {% endif %}
 
 {% endjavascript %}
 
