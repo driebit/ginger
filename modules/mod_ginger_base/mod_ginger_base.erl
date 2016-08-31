@@ -8,7 +8,7 @@
 -mod_description("Ginger Base").
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups]).
--mod_schema(5).
+-mod_schema(6).
 
 -export([
     init/1,
@@ -73,7 +73,9 @@ manage_schema(_Version, Context) ->
                     {en, <<"Banner">>}]}},
                 {language, [en, nl]}
             ], [
-                {content_group, image}
+                {content_group, image},
+                {collection, image},
+                {query, image}
             ]},
             {header, [
                 {title, {trans, [
