@@ -69,7 +69,9 @@
     {% javascript %}
         z_editor.init();
         $(document).trigger('remark:editing', {{ the_remark_id }});
-        {% if is_new == 1 %}$(document).trigger('remark:new', {{ the_remark_id }}); {% endif %}
+        {% if is_new == 1 %}
+            $(document).trigger('remark:new', {{ the_remark_id }});
+        {% endif %}
     {% endjavascript %}
 
 {% endwith %}
