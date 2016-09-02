@@ -105,37 +105,39 @@
             rawContent = rawContent.replace(/<img([^>])*>/gi, 'img').trim();
             rawContent = $(rawContent).text();
 
-            $('.mce-tinymce').removeClass('is-error');
-            title.closest('p').removeClass('is-error');
+            form.find('.has-error').each(function() {
+                $(this).removeClass('has-error is-error');
+            });
+
 
             if (!rawContent || rawContent == "") {
-                $('.mce-tinymce').addClass('is-error');
+                $('.mce-tinymce').parent().addClass('has-error is-error');
                 valid = false;
             }
 
             if (!re.test(title.val())) {
-                title.closest('p').addClass('is-error');
+                title.parent().addClass('has-error is-error');
                 valid = false;
             }
 
             if (anonymousName.size() > 0) {
                 if (!re.test(anonymousName.val())) {
-                    anonymousName.closest('p').addClass('is-error');
+                    anonymousName.parent().addClass('has-error is-error');
                     valid = false;
                 }
 
                 if (!em.test(anonymousEmail.val())) {
-                    anonymousEmail.closest('p').addClass('is-error');
+                    anonymousEmail.parent().addClass('has-error is-error');
                     valid = false;
                 }
             }
-
             if (valid) {
                 $('.remark-save').hide();
                 $('.remark-cancel').hide();
                 $(form).submit();
                 return false;
             }
+
 
             return false;
         },
