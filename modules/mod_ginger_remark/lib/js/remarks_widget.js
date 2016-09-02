@@ -9,7 +9,8 @@
         init: function() {
 
             var me = this,
-                widgetElement = $(me.element);
+                widgetElement = $(me.element),
+                showForm = widgetElement.data('show_form');
 
                 widgetElement.on('click', '.remark-new', function() {
                     z_event('new_remark');
@@ -52,6 +53,10 @@
                     var widget = me.getWidget(remark_id);
 
                     widget.afterSave();
+                    if(showForm === true){
+                        z_event('new_remark');
+                    }
+
                 });
 
         },

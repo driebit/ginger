@@ -10,7 +10,7 @@
     page_length,
     show_form %}
 
-<div class="remarks do_remarks_widget" id="remarks">
+<div class="remarks do_remarks_widget" id="remarks" data-show_form="{{ show_form }}">
 
     <div class="list-header" id="list-header">
         <h2 class="list-header__title">
@@ -46,7 +46,10 @@
 
     {% include "remark-pager/remark-pager.tpl" %}
 </div>
-{% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
+{% block new_remark_wire %}
+    {% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
+{% endblock %}
+
 {% endwith %}
 
 {% javascript %}
