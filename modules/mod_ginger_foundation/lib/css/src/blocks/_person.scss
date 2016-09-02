@@ -16,20 +16,11 @@
 
 .person-author__text {
     display: inline-block;
-
-    span {
-        display: block;
-    }
-
-    @include size(padding-left, 46);
-    position: relative;
 }
 
 
 .person-author__text__by {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+    display: inline-block;
 }
 
 .person-profile {

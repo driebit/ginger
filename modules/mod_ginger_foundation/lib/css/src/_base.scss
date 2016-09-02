@@ -149,6 +149,8 @@ iframe {
 
 .body-text,
 .block--text {
+    @extend %cf;
+
     ul,
     ol {
         @include size(margin-left, 20);
@@ -162,13 +164,11 @@ iframe {
 // Editor generated
 
 .align-left {
-    clear: left;
     float: left;
     @include size(margin-right, 10);
 }
 
 .align-right {
-    clear: right;
     float: right;
     @include size(margin-right, 10);
 }
