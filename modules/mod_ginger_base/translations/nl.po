@@ -194,24 +194,6 @@ msgstr "Hallo van Ginger"
 msgid "Help about page actions"
 msgstr "Hulp met pagina acties"
 
-#: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:16
-msgid "Import CSV file"
-msgstr "Importeer CSV-bestand"
-
-#: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:16
-msgid "Import CSV file..."
-msgstr "Importeer CSV-bestand..."
-
-#: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:17
-msgid "Import data from a CSV file."
-msgstr "Importeer gegevens uit een CSV-bestand."
-
-#: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:3
-#: user/modules/mod_ginger_base/templates/admin/admin-import.tpl:8
-#: user/modules/mod_ginger_base/mod_ginger_base.erl:228
-msgid "Import from CSV"
-msgstr "Importeren uit CSV"
-
 #: user/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:6
 msgid "Incoming connections"
 msgstr "Inkomende relaties"

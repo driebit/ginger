@@ -14,7 +14,6 @@
     init/1,
     event/2,
     manage_schema/2,
-    observe_admin_menu/3,
     observe_custom_pivot/2,
     observe_search_query/2
 ]).
@@ -225,24 +224,6 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
         ]
     ),
     z_render:wire({script, [{script, JS}]}, Context).
-
-%% @doc Add CSV import to Modules in admin menu
--spec observe_admin_menu(atom(), list(), #context{}) -> list().
-observe_admin_menu(admin_menu, Acc, Context) ->
-    case z_acl:is_allowed(use, mod_import_csv, Context) of
-        true ->
-            [
-                #menu_item{
-                    id = ginger_import,
-                    parent = admin_modules,
-                    label = ?__("Import from CSV", Context),
-                    url = {admin_import}
-                }|
-                Acc
-            ];
-        false ->
-            Acc
-    end.
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
