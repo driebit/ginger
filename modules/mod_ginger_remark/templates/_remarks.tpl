@@ -17,7 +17,7 @@
             {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
         </h2>
         {% if not show_form %}
-            <a href="#" class="remark-new" title="Add your story to this">{_ Voeg jouw verhaal hieraan toe _}</a>
+            <a href="#" class="remark-new" title="Add your story to this">{_ Add your reaction _}</a>
         {% endif %}
 
     </div>
