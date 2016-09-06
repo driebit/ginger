@@ -136,7 +136,7 @@ observe_rsc_update_done(#rsc_update_done{action = insert, id = RemarkId, post_is
 observe_rsc_update_done(#rsc_update_done{action = update, id = RemarkId, post_is_a = [text,remark], pre_props = PreProps, post_props = PostProps}, Context) ->
     PostVersion = proplists:get_value(version, PostProps),
     PrePublished = proplists:get_value(is_published, PreProps),
-    case (PostVersion == 4) and (PrePublished == false) of
+    case (PostVersion > 3) and (PrePublished == false) of
         true ->
             notify_followers(RemarkId, Context);
         false ->
