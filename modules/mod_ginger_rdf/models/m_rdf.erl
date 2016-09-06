@@ -265,6 +265,13 @@ property_to_triples({publication_start, Value}, _Props, _Context) ->
             object = Value
         }
     ];
+property_to_triples({subtitle, Value}, _Props, Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "alternative">>,
+            object = z_trans:trans(Value, Context)
+        }
+    ];
 property_to_triples({summary, Value}, _Props, Context) ->
     [
         #triple{
