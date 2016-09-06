@@ -45,13 +45,15 @@
     }
 %}
 {% javascript %}
+    $('#dialog-connect-find').submit(function() { return false; });
     $('#dialog-connect-find').change();
     $("#dialog-connect-found").on('click', '.thumbnail', function(e) {
     	e.preventDefault();
-        $(this).effect("highlight").addClass("thumbnail-connected");
         z_event('dialog_connect_find', {
-            select_id: $(this).data('id')
+            select_id: $(this).data('id'),
+            is_connected: $(this).hasClass('thumbnail-connected')
         });
+        $(this).effect("highlight").toggleClass("thumbnail-connected");
     });
 
     $('a[data-toggle="tab"]').click(function(){
