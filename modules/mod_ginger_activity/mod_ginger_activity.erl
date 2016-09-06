@@ -78,7 +78,7 @@ register_activity(RscId, Context) ->
     IpAddress = case z_context:get_reqdata(Context) of
         undefined -> undefined;
         Value ->
-            case proplists:get_value("x-forward-for", wrq:req_headers(Value)) of
+            case proplists:get_value("x-forwarded-for", wrq:req_headers(Value)) of
                 undefined ->
                     z_convert:to_binary(wrq:peer(Value));
                 Hosts ->
