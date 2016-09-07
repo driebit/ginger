@@ -265,6 +265,14 @@ property_to_triples({publication_start, Value}, _Props, _Context) ->
             object = Value
         }
     ];
+property_to_triples({license, Value}, _Props, _Context) ->
+    [
+        #triple{
+            type = resource,
+            predicate = <<?NS_DCTERMS, "license">>,
+            object = Value
+        }
+    ];
 property_to_triples({subtitle, Value}, _Props, Context) ->
     [
         #triple{
