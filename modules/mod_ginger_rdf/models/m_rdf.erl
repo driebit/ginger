@@ -114,6 +114,10 @@ to_triples(Id, Context) ->
             end,
             Props
         ) ++
+
+        %% Site title is publisher
+        publisher_triples(Context) ++
+
         %% Outgoing resource edges
         lists:filtermap(
             fun({Key, Edges}) ->
@@ -303,6 +307,14 @@ property_to_triples({website, Value}, _Props, _Context) ->
     ];
 property_to_triples({_Prop, _Val}, _, _) ->
     [].
+
+publisher_triples(Context) ->
+    [
+        #triple{
+            predicate = <<?NS_DCTERMS, "publisher">>,
+            object = z_convert:to_binary(m_site:get(title, Context))
+        }
+    ].
 
 %% @doc Shortcuts for namespaced RDF properties
 lookup_triple(uri, Triples) ->
