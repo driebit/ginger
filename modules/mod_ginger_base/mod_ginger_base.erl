@@ -15,6 +15,7 @@
     event/2,
     manage_schema/2,
     observe_custom_pivot/2,
+    observe_rsc_get/3,
     observe_search_query/2
 ]).
 
@@ -228,6 +229,17 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
     {ginger_search, [{is_unfindable, Excluded}]}.
+
+%% @doc Add some virtual properties
+-spec observe_rsc_get(#rsc_get{}, list(tuple()), #context{}) -> list(tuple()).
+observe_rsc_get(#rsc_get{}, Props, _Context) ->
+    case proplists:get_value(rights, Props) of
+        undefined ->
+            Props;
+        Rights ->
+            %% This is used by mod_ginger_rdf
+            Props ++ [{license, m_creative_commons:url_for(Rights)}]
+    end.
 
 observe_search_query(#search_query{search={ginger_search, _Args}}=Q, Context) ->
     ginger_search:search_query(Q, Context);
