@@ -36,6 +36,7 @@
             '       <h2 class="ginger-embed__origin-title">ga naar '+json['http://purl.org/dc/terms/publisher']['@id']+'</h2>' +
             '    </div> ';
         }
+
         if (json['http://xmlns.com/foaf/0.1/thumbnail']) {
             html +=
                 '    <picture>' +
@@ -56,7 +57,6 @@
             '</a>';
 
         element.innerHTML = html;
-
     }
 
     document.addEventListener('DOMContentLoaded', function() {
