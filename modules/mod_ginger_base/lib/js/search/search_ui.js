@@ -38,9 +38,14 @@ $.widget("ui.search_ui", {
 
         });
 
+
         $('.search__filters__mobile').on('click', function(event) {
             event.preventDefault();
             me.toggleSearchOptions();
+        });
+
+        $(document).on('search:doSearch', function(event, source) {
+            me.toggleSearchOptions(true);
         });
 
         $('.search__filters__title').on('click', function(event) {
@@ -165,17 +170,22 @@ $.widget("ui.search_ui", {
     },
 
     doSearch: function(values) {
-
         var me = this;
-
         $(document).trigger("search:doSearchWire", {
             'values': values
         });
-
     },
 
-    toggleSearchOptions: function() {
-        $('.search__filters').toggleClass('is-open');
+    toggleSearchOptions: function(forceClose) {
+
+        var el = $('.search__filters');
+
+        if (!forceClose) {
+            el.toggleClass('is-open');
+        } else {
+            el.removeClass('is-open');
+        }
+
     },
 
     toggleSearchSection: function(title) {
