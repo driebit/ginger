@@ -22,16 +22,17 @@
                     {% else %}
                         <b>{{ m.rsc[remark_id.creator_id].title }}</b>
                     {% endif %}
-                    <time datetime="{{ remark_id.created|date:"Y-F-jTH:i" }}">{{ remark_id.created|date:"d F Y" }}</time>
+                    <time datetime="{{ remark_id.created|date:"Y-F-jTH:i" }}">
+                        {% block datetime %}{{ remark_id.created|date:"d F Y" }}{% endblock %}
+                    </time>
                 </div>
             </div>
 
             <div class="remark-item__content">
-                <h3 class="remark-item__content__title">
-                    {{ remark_id.title }}
-                </h3>
-
                 <div class="remark-item__content__body">
+                    <h4 class="remark-item__content__title">
+                        {{ remark_id.title }}
+                    </h4>
                     {{ remark_id.body|show_media }}
                 </div>
                 {% with remark_id.o.depiction as media %}
