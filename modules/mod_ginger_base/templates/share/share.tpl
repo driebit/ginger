@@ -20,6 +20,10 @@
                     <li>
                         <a href="mailto:?subject={{ id.title|urlencode }}&amp;body={{ id.page_url_abs|urlencode }}" title="{_ E-mail _}" class="">{_ E-mail _}</a>
                     </li>
+
+                    {% block other %}
+                        {% all include "share/share-link.tpl" %}
+                    {% endblock %}
                 </ul>
             {% endblock %}
         </div>
