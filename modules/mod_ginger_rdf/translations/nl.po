@@ -45,3 +45,11 @@ msgstr "alle"
 msgid ""
 "Copy to clipboard"
 msgstr "Kopieer naar klembord"
+
+#: ./user/modules/mod_ginger_rdf/templates/rdf/embed-dialog.tpl:1
+msgid ""
+"To embed this page on your website, copy this embed code and paste it in "
+"your website’s HTML source code."
+msgstr ""
+"Om deze pagina op je website te embedden, kopieer je onderstaande embedcode "
+"en plak je die in de HTML-broncode van je website."
