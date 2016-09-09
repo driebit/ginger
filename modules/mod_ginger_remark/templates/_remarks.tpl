@@ -1,14 +1,14 @@
-
 {% with
-    id.s.about|sort:['desc', 'created']|filter:`category_id`:m.rsc.remark.id|filter:`is_published`,
+    id.s.about|sort:[order|default:'desc', 'created']|filter:`category_id`:m.rsc.remark.id|filter:`is_published`,
     remark_page|default:q.remark_page|default:1|to_integer,
     remark_page_length|default:q.remark_page_length|default:20|to_integer,
-    show_form|default:false|default:q.showform
+    show_form|default:false
     as
     remarks,
     page,
     page_length,
-    show_form %}
+    show_form
+%}
 
 <div class="remarks do_remarks_widget" id="remarks" data-show_form="{{ show_form }}">
 
