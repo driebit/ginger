@@ -25,11 +25,7 @@ msgstr "Voeg link toe"
 
 #: /vagrant/modules/mod_ginger_remark/templates/_remarks.tpl:20
 msgid "Add your reaction"
-msgstr "Voeg jouw verhaal hieraan toe"
-
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-form.tpl:9
-msgid "Add your remark"
-msgstr "Voeg uw reactie toe"
+msgstr "Voeg je reactie toe"
 
 #: /vagrant/modules/mod_ginger_remark/templates/_email-follow.tpl:16
 msgid "By"
@@ -52,8 +48,8 @@ msgid "Email"
 msgstr "E-mail"
 
 #: /vagrant/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:38
-msgid "Email visible"
-msgstr "Email zichtbaar"
+msgid "E-mail visible"
+msgstr "E-mail zichtbaar"
 
 #: /vagrant/modules/mod_ginger_remark/templates/follow/follow-page.tpl:1
 msgid "Follow this page"
@@ -101,6 +97,11 @@ msgstr "Reacties"
 #: /vagrant/modules/mod_ginger_remark/templates/list/list-item.remark.tpl:48
 msgid "This is a remark on"
 msgstr "Dit is een reactie op"
+
+#: ./user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:38
+msgid ""
+"Reaction to:"
+msgstr "Reactie op:"
 
 #: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:25
 msgid "Title"

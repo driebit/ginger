@@ -1,4 +1,10 @@
 {% if remark_id.is_visible %}
+    {% with
+        show_subject|default:false
+    as
+        show_subject
+    %}
+
     <div class="remark-item {{ extraClasses }}" id="remark-{{ remark_id }}">
         <article>
             <div class="remark-item__author">
@@ -11,16 +17,14 @@
                     {% endif %}
                 <div class="remark-item__author__text">
 
-                    {% if remark_id.o.author as author %}
-                        <b>{{ author.title }}</b>
-                    {% elseif remark_id.anonymous_name %}
+                    {% if remark_id.o.author|default:remark_id.creator_id as author %}
+                        <b><a href="{{ m.rsc[author].page_url }}">{{ m.rsc[author].title }}</a></b>
+                    {% else %}
                         {% if remark_id.anonymous_email_visible %}
-                             <a href="click.to.mail"  address="{{ remark_id.anonymous_email|mailencode }}" class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
+                             <a href="click.to.mail" address="{{ remark_id.anonymous_email|mailencode }}" class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
                         {% else %}
                             {{ remark_id.anonymous_name }}
                         {% endif %}
-                    {% else %}
-                        <b>{{ m.rsc[remark_id.creator_id].title }}</b>
                     {% endif %}
                     <time datetime="{{ remark_id.created|date:"Y-F-jTH:i" }}">
                         {% block datetime %}{{ remark_id.created|date:"d F Y" }}{% endblock %}
@@ -30,6 +34,10 @@
 
             <div class="remark-item__content">
                 <div class="remark-item__content__body">
+                    {% if show_subject %}
+                        <p>{_ Reaction to: _} <a href="{{ id.page_url }}">{{ id.title|truncate:30 }}</a></p>
+                    {% endif %}
+
                     <h4 class="remark-item__content__title">
                         {{ remark_id.title }}
                     </h4>
@@ -64,6 +72,8 @@
             {% endif %}
         </article>
     </div>
+
+    {% endwith %}
 
     {% javascript %}
         $(document).trigger('remark:viewing');

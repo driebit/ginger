@@ -29,13 +29,13 @@
                 </div>
             </div>
             <div class="form-group col-lg-4 col-md-4">
-                <label class="control-label" for="anonymous_email">{_ Email _}</label>
+                <label class="control-label" for="anonymous_email">{_ E-mail _}</label>
                 <div>
                     <input class="form-control" id="anonymous_email" type="text" name="anonymous_email" value="{{ r.anonymous_email }}" />
                 </div>
             </div>
             <div class="form-group col-lg-4 col-md-4">
-                <label class="control-label" for="anonymous_email_visible">{_ Email visible _}</label>
+                <label class="control-label" for="anonymous_email_visible">{_ E-mail visible _}</label>
                 <div>
                     <input class="form-control" id="anonymous_email_visible" type="checkbox" name="anonymous_email_visible" {% if r.anonymous_email_visible %}checked {% endif %} />
                 </div>
