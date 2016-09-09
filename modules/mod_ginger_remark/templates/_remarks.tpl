@@ -1,5 +1,5 @@
 {% with
-    id.s.about|sort:[order|default:'desc', 'created']|filter:`category_id`:m.rsc.remark.id|filter:`is_published`,
+    id.s.about|sort:[order|default:'desc', 'created']|filter:`category_id`:m.rsc.remark.id|filter:`is_visible`,
     remark_page|default:q.remark_page|default:1|to_integer,
     remark_page_length|default:q.remark_page_length|default:20|to_integer,
     show_form|default:false
