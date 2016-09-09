@@ -1,3 +1,5 @@
 [
+    {rdf_embed_js, ["rdf", "embed.js"], controller_file, [{path, "js/embed.js"}, {root, [lib]}]},
+    {rdf_embed_css, ["rdf", "embed.css"], controller_file, [{path, "css/build/embed.css"}, {root, [lib]}]},
     {rsc_json_ld, ["rdf", id], controller_rdf, []}
 ].

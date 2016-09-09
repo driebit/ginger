@@ -40,3 +40,8 @@ msgstr "resultaten"
 
 msgid "all"
 msgstr "alle"
+
+#: ./user/modules/mod_ginger_rdf/templates/rdf/embed.tpl:17
+msgid ""
+"Copy to clipboard"
+msgstr "Kopieer naar klembord"

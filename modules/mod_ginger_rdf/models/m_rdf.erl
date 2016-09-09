@@ -308,11 +308,15 @@ property_to_triples({website, Value}, _Props, _Context) ->
 property_to_triples({_Prop, _Val}, _, _) ->
     [].
 
+%% @doc Return publisher triples based on the site name and hostname
+-spec publisher_triples(#context{}) -> [#triple{}].
 publisher_triples(Context) ->
+    Hostname = z_context:abs_url(<<"">>, Context),
     [
         #triple{
+            type = resource,
             predicate = <<?NS_DCTERMS, "publisher">>,
-            object = z_convert:to_binary(m_site:get(title, Context))
+            object = Hostname
         }
     ].
 
