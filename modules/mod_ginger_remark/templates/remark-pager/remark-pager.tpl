@@ -6,7 +6,6 @@ as
 
 {% if total_pages > 1 %}
     <div class="remark__pager">
-        <div class="remark__pager__result-counter">{{ remarks|length }} {_ results _}</div>
         <div class="remark__pager__pagination">
             <ul class="pagination pagination-centered">
                 {% if page - 1 > 0 %}
