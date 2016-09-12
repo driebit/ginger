@@ -1,7 +1,15 @@
 {% lib "js/vendor/clipboard.min.js" %}
 
 {% javascript %}
-    new Clipboard('.clipboard');
+    var clipboard = new Clipboard('.clipboard');
+
+    // Fallback for Safari
+    clipboard.on('error', function(e) {
+        Array.from(document.getElementsByClassName('clipboard-error')).forEach(function (element) {
+            element.innerHTML = "{_ "Press Cmd+C or Ctrl+C to copy." _}";
+        });
+
+    });
 {% endjavascript %}
 
 <pre id="{{ #embed_code }}">
@@ -15,6 +23,8 @@
     <a href="' ++ id.uri ++ '" data-rdf=')|escape }}"{% url rsc_json_ld use_absolute_url z_language=false id=id %}"{{ ('></a>
 </ginger-embed>')|escape }}
 </pre>
+
+<p class="clipboard-error"></p>
 
 <button class="btn btn-default clipboard" data-clipboard-target="#{{ #embed_code }}">
     {_ Copy to clipboard _}
