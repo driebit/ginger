@@ -4,9 +4,11 @@ as
     remarks
 %}
     <div class="list-header" id="list-header">
-        <h2 class="list-header__title">
-            {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
-        </h2>
+        {% block header %}
+            <h2 class="list-header__title">
+                {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
+            </h2>
+        {% endblock %}
         {% if not show_form %}
             <a href="#" class="remark-new" title="Add your story to this">{_ Add your reaction _}</a>
         {% endif %}
