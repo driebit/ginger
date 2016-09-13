@@ -44,10 +44,6 @@ manage_schema(_Version, Context) ->
               {title, <<"User generated">>}
             ]}
         ],
-        media=[
-        ],
-        edges=[
-        ],
         data = [
             {acl_rules, [
                 {rsc, [
