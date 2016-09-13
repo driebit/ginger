@@ -1,8 +1,8 @@
 {% if remark_id.is_visible %}
     {% with
-        show_subject|default:false
+        show_object|default:false
     as
-        show_subject
+        show_object
     %}
 
     <div class="remark-item {{ extraClasses }}" id="remark-{{ remark_id }}">
@@ -34,7 +34,7 @@
 
             <div class="remark-item__content">
                 <div class="remark-item__content__body">
-                    {% if show_subject %}
+                    {% if show_object %}
                         <p>{_ Reaction to: _} <a href="{{ id.page_url }}">{{ id.title|truncate:30 }}</a></p>
                     {% endif %}
 
