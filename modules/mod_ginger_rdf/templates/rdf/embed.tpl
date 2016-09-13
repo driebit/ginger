@@ -6,7 +6,7 @@
     // Fallback for Safari
     clipboard.on('error', function(e) {
         Array.from(document.getElementsByClassName('clipboard-error')).forEach(function (element) {
-            element.innerHTML = "{_ "Press Cmd+C or Ctrl+C to copy." _}";
+            element.innerHTML = "{_ Press Cmd+C or Ctrl+C to copy. _}";
         });
 
     });
