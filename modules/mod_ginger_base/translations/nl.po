@@ -617,37 +617,3 @@ msgstr "resultaten"
 #: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 msgid "search"
 msgstr "zoeken"
-
-#~ msgid "contract"
-#~ msgstr "inklappen"
-
-#~ msgid "expand"
-#~ msgstr "uitklappen"
-
-#~ msgid "expand/contract"
-#~ msgstr "inklappen/uitklappen"
-
-#~ msgid "Authored"
-#~ msgstr "Auteur"
-
-#~ msgid "Favorites"
-#~ msgstr "Favorieten"
-
-#~ msgid "comment(s)"
-#~ msgstr "Commentaar"
-
-#, fuzzy
-#~ msgid "Locatie"
-#~ msgstr "Locatie"
-
-#~ msgid "Choose your language"
-#~ msgstr "Kies je taal"
-
-#~ msgid "Posted"
-#~ msgstr "Geplaatst"
-
-#~ msgid "Email"
-#~ msgstr "E-mail"
-
-#~ msgid "Sign up"
-#~ msgstr "Log in"
