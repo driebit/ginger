@@ -54,9 +54,9 @@
                     </h3>
 
                     {% if id.summary %}
-                        <p>{{ id.summary|without_embedded_media|striptags|truncate:150 }}</p>
+                        <p>{{ id.summary|striptags|truncate:150 }}</p>
                     {% else %}
-                        <p>{{ id.body|without_embedded_media|striptags|truncate:150 }}</p>
+                        <p>{{ id.body|striptags|truncate:150 }}</p>
                     {% endif %}
                 </div>
             </article>
