@@ -3,13 +3,12 @@
     editing|default:q.editing|default:0,
     remark_id|default:q.remark_id,
     is_new|default:q.is_new|default:0,
-    id|default:(remark_id.o.about|first)|default:q.id
+    id|default:q.id|default:undefined
     as
     editing,
     remark_id,
     is_new,
     id
-
 %}
 
     {% if editing == 1 %}
