@@ -35,7 +35,7 @@
             <div class="remark-item__content">
                 <div class="remark-item__content__body">
                     {% if show_object %}
-                        <p>{_ Reaction to: _} <a href="{{ id.page_url }}">{{ id.title|truncate:30 }}</a></p>
+                        <p>{_ Reaction to: _} <a href="{{ remark_id.o.about.page_url }}">{{ remark_id.o.about.title|truncate:30 }}</a></p>
                     {% endif %}
 
                     <h4 class="remark-item__content__title">
