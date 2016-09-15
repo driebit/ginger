@@ -21,7 +21,7 @@
             title=title|default:_"Log in or sign up"
             template=dialog_template|default:"_action_dialog_authenticate.tpl"
             tab=tab|default:"logon"
-            redirect=m.req.path
+            redirect="#reload"
             action=action
         }
     %}
