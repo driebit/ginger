@@ -120,19 +120,13 @@ notify_followers(RemarkId, Context) ->
     ),
     ok.
 
-observe_rsc_update_done(#rsc_update_done{action = insert, id = RemarkId, post_is_a = [text,remark], post_props = PostProps}, Context) ->
-    PostVersion = proplists:get_value(version, PostProps),
-    PostPublished = proplists:get_value(is_published, PostProps),
-    case (PostVersion == 3) and (PostPublished == true) of
-        true ->
-            notify_followers(RemarkId, Context);
-        false ->
-            undefined
-    end;
-observe_rsc_update_done(#rsc_update_done{action = update, id = RemarkId, post_is_a = [text,remark], pre_props = PreProps, post_props = PostProps}, Context) ->
-    PostVersion = proplists:get_value(version, PostProps),
+is_being_published(#rsc_update_done{post_props = PostProps, pre_props = PreProps}) ->
     PrePublished = proplists:get_value(is_published, PreProps),
-    case (PostVersion > 3) and (PrePublished == false) of
+    PostPublished = proplists:get_value(is_published, PostProps),
+    ((PrePublished == false) or (PrePublished == undefined)) and (PostPublished == true).
+
+observe_rsc_update_done(#rsc_update_done{id = RemarkId, post_is_a = [text,remark]} = RscUpdateDone, Context) ->
+    case is_being_published(RscUpdateDone) of
         true ->
             notify_followers(RemarkId, Context);
         false ->
