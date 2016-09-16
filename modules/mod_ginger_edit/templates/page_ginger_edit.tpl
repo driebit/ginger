@@ -54,4 +54,6 @@
             </div>
         </div>
     </nav>
+
+    {% include "_editor.tpl" %}
 {% endblock %}
