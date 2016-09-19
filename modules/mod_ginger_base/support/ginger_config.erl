@@ -34,5 +34,7 @@ get_config() ->
     [
         {i18n, language, nl},
         {mod_l10n, timezone, <<"Europe/Berlin">>},
-        {mod_l10n, timezone_is_fixed, true}
+        %% Allow ginger-embed elements
+        {site, html_elt_extra, <<"embed,iframe,object,script,ginger-embed">>},
+        {site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>}
     ].
