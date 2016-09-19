@@ -1,39 +1,72 @@
+{% if m.rdf[id.rdf] as rdf %}{% endif %}
+
 {% if
     id.medium.mime == "text/html-oembed" or
     id.medium.mime == "text/html-video-embed" %}
 
-    {% if id.medium.oembed.provider_name|lower == "youtube" %}
+    {% if id.medium.mime == "text/html-video-embed" %}
 
-        <a href="http://www.youtube.com/watch?v={{ id.medium.video_embed_id }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
-            {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-            <i class="fa fa-play-circle"></i>
-        </a>
+        {# embed code used #}
 
-    {% elif id.medium.video_embed_service|lower == "youtube" %}
+        {% if id.medium.video_embed_service|lower == "youtube" or id.medium.video_embed_service|lower == "vimeo" %}
 
-        <a href="http://www.youtube.com/watch?v={{ id.medium.video_embed_id }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
-            {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-            <i class="fa fa-play-circle"></i>
-        </a>
+                {% with id.medium.video_embed_code|replace:["\n", ""]|replace:["^.*src=\"([^\"]+).*$", "\\1"] as embed_code %}
 
-    {% elif id.medium.oembed.provider_name|lower == "vimeo" %}
+                    <a href="{{ embed_code }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
+                        {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+                        <i class="icon--video"></i>
+                        <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
+                    </a>
 
-        <a href="https://player.vimeo.com/video/{{ id.medium.oembed.video_id }} " class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
-        {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-            <i class="fa fa-play-circle"></i>
-        </a>
+                {% endwith %}
 
-    {% elif id.medium.video_embed_service|lower == "vimeo" %}
-        <a href="http://vimeo.com/{{ id.medium.video_embed_id }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
-            {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-            <i class="fa fa-play-circle"></i>
-        </a>
+        {% endif %}
+
+    {% elif id.medium.mime == "text/html-oembed" %}
+
+        {# assume share url used #}
+
+        {% if id.medium.oembed.provider_name|lower == "youtube" %}
+
+            <a href="{{ id.medium.oembed_url|replace:["watch\\?v=","embed/"]|replace:["youtu.be/", "youtube.com/embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
+                {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+                <i class="icon--video"></i>
+                <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
+            </a>
+
+        {% elif id.medium.oembed.provider_name|lower == "vimeo" %}
+
+            <a href="https://player.vimeo.com/video/{{ id.medium.oembed.video_id }} " class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
+                {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+                <i class="icon--video"></i>
+                <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
+            </a>
+
+        {% endif %}
 
     {% endif %}
 
 {% else %}
-
-    <a href="#" data-video-url="media/attachment/{{ id.medium.filename }}" data-video-width="{{ id.medium.width }}" data-video-height="{{ id.medium.height }}" class="lightbox lightbox-video-embed default-video-player" rel="attached-media" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
-        {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-    </a>
+{# MP4 of rdf #}
+    {% if m.rdf[id.rdf] as rdf %}
+        {% if rdf.uri|match:".*youtube.*" %}
+            <a href="{{ rdf.uri|replace:["watch\\?v=","embed/"]|replace:["youtu.be/", "youtube.com/embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
+                {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+                <i class="icon--video"></i>
+                <div class="attached-media__caption">{{ rdf.description }} {{ rdf.rights }}</div>
+            </a>
+        {% else %}
+            <a href="{{ rdf.uri }}" class="" rel="attached-media" title="">
+                {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+                <i class="icon--video"></i>
+                <div class="attached-media__caption">{{ rdf.description }} {{ rdf.rights }}</div>
+            </a>
+        {% endif %}
+    {% else %}
+        <a href="#" data-video-url="/media/attachment/{{ id.medium.filename }}" data-video-width="{{ id.medium.width }}" data-video-height="{{ id.medium.height }}" class="lightbox lightbox-video-embed default-video-player" rel="attached-media" title="">
+            {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
+            <i class="icon--video"></i>
+            <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
+        </a>
+    {% endif %}
 {% endif %}
