@@ -84,3 +84,7 @@ in Zotonic and Ginger.
 * Base new Ginger modules on [mod_ginger_template](http://github.com/driebit/mod_ginger_template).
 
 * Add a readme and a license.
+
+### 14. Prefix model and table names with `ginger`.
+
+* `m_ginger_somemodel` (not `m_somemodel`) and `ginger_some_table` (not `some_table`).
