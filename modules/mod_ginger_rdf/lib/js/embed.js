@@ -21,7 +21,7 @@
     }
 
     function loadJsonLd(element, data) {
-        var embedSize = element.getAttribute('embed-size') ? element.getAttribute('embed-size') : 'large';
+        var embedSize = element.getAttribute('embed-size') ? element.getAttribute('embed-size') : 'small';
 
         var json = JSON.parse(data),
             html =
