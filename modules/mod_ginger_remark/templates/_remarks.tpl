@@ -14,7 +14,7 @@
     {% live template="remark/remark-list.tpl" id=id topic="~site/rsc/"++id++"/s/about" order=order page=page page_length=page_length %}
 </div>
 {% block new_remark_wire %}
-    {% wire name="new_remark" action={insert_before target="remark-list" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
+    {% wire name="new_remark" action={insert_before target="new-remark-link" template="remark/remark-wrapper.tpl" editing=1 is_new=1 id=id } %}
 {% endblock %}
 
 {% endwith %}

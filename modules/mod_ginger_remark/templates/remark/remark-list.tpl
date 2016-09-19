@@ -9,8 +9,8 @@ as
                 {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
             </h2>
         {% endblock %}
-        {% if not show_form %}
-            <a href="#" class="remark-new" title="Add your story to this">{_ Add your reaction _}</a>
+        {% if not show_form and order == "desc" %}
+            <a href="#" id="new-remark-link" class="remark-new" title="{_ Add your reaction _}">{_ Add your reaction _}</a>
         {% endif %}
 
     </div>
@@ -36,6 +36,10 @@ as
        {% endwith %}
        {% endwith %}
    </div>
+
+    {% if not show_form and order == "asc" %}
+        <a href="#" id="new-remark-link" class="remark-new" title="{_ Add your reaction _}">{_ Add your reaction _}</a>
+    {% endif %}
 
     {% include "remark-pager/remark-pager.tpl" %}
 
