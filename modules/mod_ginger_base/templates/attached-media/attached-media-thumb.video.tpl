@@ -1,5 +1,3 @@
-{% if m.rdf[id.rdf] as rdf %}{% endif %}
-
 {% if
     id.medium.mime == "text/html-oembed" or
     id.medium.mime == "text/html-video-embed" %}
@@ -14,7 +12,6 @@
 
                     <a href="{{ embed_code }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
                         {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-                        <i class="icon--video"></i>
                         <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
                     </a>
 
@@ -30,7 +27,6 @@
 
             <a href="{{ id.medium.oembed_url|replace:["watch\\?v=","embed/"]|replace:["youtu.be/", "youtube.com/embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
                 {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-                <i class="icon--video"></i>
                 <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
             </a>
 
@@ -38,7 +34,6 @@
 
             <a href="https://player.vimeo.com/video/{{ id.medium.oembed.video_id }} " class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
                 {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-                <i class="icon--video"></i>
                 <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
             </a>
 
@@ -52,20 +47,17 @@
         {% if rdf.uri|match:".*youtube.*" %}
             <a href="{{ rdf.uri|replace:["watch\\?v=","embed/"]|replace:["youtu.be/", "youtube.com/embed/"] }}" class="lightbox lightbox-video-embed fancybox.iframe" rel="attached-media" title="">
                 {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-                <i class="icon--video"></i>
                 <div class="attached-media__caption">{{ rdf.description }} {{ rdf.rights }}</div>
             </a>
         {% else %}
             <a href="{{ rdf.uri }}" class="" rel="attached-media" title="">
                 {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-                <i class="icon--video"></i>
                 <div class="attached-media__caption">{{ rdf.description }} {{ rdf.rights }}</div>
             </a>
         {% endif %}
     {% else %}
         <a href="#" data-video-url="/media/attachment/{{ id.medium.filename }}" data-video-width="{{ id.medium.width }}" data-video-height="{{ id.medium.height }}" class="lightbox lightbox-video-embed default-video-player" rel="attached-media" title="">
             {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
-            <i class="icon--video"></i>
             <div class="attached-media__caption">{{ id.summary }} {% include "copyrights/copyrights-nolinks.tpl" %}</div>
         </a>
     {% endif %}

@@ -58,6 +58,20 @@
 }
 
 
+.lightbox-video-embed {
+    position: relative;
+
+    &:before {
+        @extend .has-icon;
+        @extend .icon--video:before;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include size(font-size, 30);
+    }
+}
+
 @include mq(min-width, $mediumBreakpoint) {
     .attached-media__title {
         @include size(font-size, 40);
