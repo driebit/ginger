@@ -36,7 +36,7 @@ import-db-backup $(host) $(site):
 	@$(MAKE) import-db-file db=$(site) file=$(REMOTE_BACKUP_FILE)
 
 shell:
-	@docker-compose exec zotonic zotonic shell
+	@docker-compose exec zotonic bin/zotonic shell
 
 psql:
 	@docker-compose exec postgres psql -U zotonic
