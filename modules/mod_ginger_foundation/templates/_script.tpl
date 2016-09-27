@@ -29,11 +29,11 @@
 %}
 
 {% if m.modules.active.mod_geo %}
-    <script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>
+    <script src="//maps.googleapis.com/maps/api/js?key={{ m.config.mod_geo.api_key.value|escape }}&amp;libraries=places&amp;language=nl&amp;v=3"></script>
     {% lib
         "js/vendors/infobox_packed.js"
         "js/vendors/markerclusterer.js"
         "js/map.js"
     %}
 {% endif %}
-    
+
