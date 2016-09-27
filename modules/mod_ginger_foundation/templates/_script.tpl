@@ -1,5 +1,3 @@
-<script src="//maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=false&amp;language=nl&amp;v=3"></script>
-
 {% lib
     "bootstrap/js/bootstrap.min.js"
     "js/qlobber.js"
@@ -18,9 +16,6 @@
     "js/parallax.js"
     "js/anchor.js"
     "js/expand.js"
-    "js/vendors/infobox_packed.js"
-    "js/vendors/markerclusterer.js"
-    "js/map.js"
     "js/vendors/flowplayer-3.2.12.min.js"
     "js/vendors/slick.min.js"
     "js/vendors/purl.js"
@@ -32,3 +27,13 @@
     "js/search/components/types.js"
     "js/mail-decode.js"
 %}
+
+{% if m.modules.active.mod_geo %}
+    <script src="//maps.googleapis.com/maps/api/js?key={{ m.config.mod_geo.api_key.value|escape }}&amp;libraries=places&amp;language=nl&amp;v=3"></script>
+    {% lib
+        "js/vendors/infobox_packed.js"
+        "js/vendors/markerclusterer.js"
+        "js/map.js"
+    %}
+{% endif %}
+
