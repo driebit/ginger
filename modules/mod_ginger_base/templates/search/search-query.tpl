@@ -22,7 +22,8 @@
         custompivots|default:q.custompivots,
         ongoing_on_date|default:q.ongoing_on_date,
         page|default:q.page|default:1,
-        cat_exclude_defaults|default:"true"
+        cat_exclude_defaults|default:"true",
+        authoritative|default:1
     as
         type,
         cat,
@@ -46,7 +47,8 @@
         custompivots,
         ongoing_on_date,
         page,
-        cat_exclude_defaults
+        cat_exclude_defaults,
+        authoritative
 %}
 
     {% if type == "list" %}
@@ -57,6 +59,7 @@
             cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
             text=search_text
+            authoritative=authoritative
             pagelen=pagelen
             date_start_year=date_start_year
             date_start_before=date_start_before
@@ -92,6 +95,7 @@
             cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
             text=search_text
+            authoritative=authoritative
             date_start_year=date_start_year
             date_start_before=date_start_before
             date_end_before=date_end_before
@@ -117,6 +121,7 @@
             content_group=content_group
             text=search_text
             pagelen=pagelen
+            authoritative=authoritative
             date_start_year=date_start_year
             date_start_before=date_start_before
             date_end_before=date_end_before
