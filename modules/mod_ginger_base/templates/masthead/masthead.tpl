@@ -22,11 +22,11 @@ as
         {% else %}
 
             {% if id.o.hasbanner[1].depiction.width > 500 %}
-                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.o.hasbanner[1].depiction.id lossless %}) no-repeat center center; background-size: cover;"></div>
+                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.o.hasbanner[1].depiction.id mediaclass='masthead' %}) no-repeat center center; background-size: cover;"></div>
             {% elif id.o.header[1].depiction.width > 500 %}
-                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.o.header[1].depiction.id lossless %}) no-repeat center center; background-size: cover;"></div>
+                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.o.header[1].depiction.id mediaclass='masthead' %}) no-repeat center center; background-size: cover;"></div>
             {% elif id.depiction.width > 500 and not (id.category.is_a.person or id.category.is_a.media) %}
-                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.depiction.id lossless %}) no-repeat center center; background-size: cover;"></div>
+                <div class="masthead do_parallax {{ extraClasses }}" style="background: transparent url({% image_url id.depiction.id mediaclass='masthead' %}) no-repeat center center; background-size: cover;"></div>
             {% else %}
                 <div class="masthead {{ extraClasses }}"></div>
             {% endif %}
