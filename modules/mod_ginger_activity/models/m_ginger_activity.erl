@@ -1,4 +1,4 @@
--module(m_activity).
+-module(m_ginger_activity).
 -behaviour(gen_model).
 
 -export([
