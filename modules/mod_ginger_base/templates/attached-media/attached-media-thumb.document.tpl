@@ -7,7 +7,7 @@
 
         <div class="lightbox-pdf-wrapper">
             <div id="lightbox-{{ id }}" class="lightbox-pdf">
-                <embed width="800" height="550" src="/image/{{ id.medium.filename }}" type="application/pdf"></embed>
+                <embed width="100%" height="550" src="/image/{{ id.medium.filename }}" type="application/pdf"></embed>
             </div>
         </div>
 
