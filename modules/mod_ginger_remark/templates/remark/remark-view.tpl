@@ -43,13 +43,7 @@
                     {% if deps %}
                         <div class="remark-item__media">
                             {% for dep in deps %}
-                                {% if media|length > 1 %}
-                                    {% if not remark_id.anonymous_name %}
-                                        {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id %}
-                                    {% endif %}
-                                {% else %}
-                                    {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id first %}
-                                {% endif %}
+                                {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id %}
                             {% endfor %}
                         </div>
                     {% endif %}
