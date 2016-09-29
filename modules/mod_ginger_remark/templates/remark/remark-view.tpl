@@ -8,24 +8,19 @@
     <div class="remark-item {{ extraClasses }}" id="remark-{{ remark_id }}">
         <article>
             <div class="remark-item__author">
-                    {% if remark_id.o.author as author %}
-                        {% include "avatar/avatar.tpl" id=author %}
-                    {% elseif remark_id.anonymous_name %}
-                        {% image m.rsc.fallback.id mediaclass="avatar" class="avatar__image" %}
-                    {% else %}
-                        {% include "avatar/avatar.tpl" id=m.rsc[remark_id.creator_id] %}
-                    {% endif %}
-                <div class="remark-item__author__text">
-
+               <div class="remark-item__author__text">
                     {% if remark_id.o.author|default:remark_id.creator_id as author %}
-                        <b><a href="{{ m.rsc[author].page_url }}">{{ m.rsc[author].title }}</a></b>
-                    {% else %}
-                        {% if remark_id.anonymous_email_visible %}
-                             <a href="click.to.mail" address="{{ remark_id.anonymous_email|mailencode }}" class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
+                        {% if author.name == "human_user" %}
+                            {% if remark_id.anonymous_email_visible %}
+                                 <a href="click.to.mail" address="{{ remark_id.anonymous_email|mailencode }}" class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
+                            {% else %}
+                                {{ remark_id.anonymous_name }}
+                            {% endif %}
                         {% else %}
-                            {{ remark_id.anonymous_name }}
+                            <b><a href="{{ m.rsc[author].page_url }}">{{ m.rsc[author].title }}</a></b>
                         {% endif %}
                     {% endif %}
+
                     <time datetime="{{ remark_id.created|date:"Y-F-jTH:i" }}">
                         {% block datetime %}{{ remark_id.created|date:"d F Y" }}{% endblock %}
                     </time>
@@ -48,13 +43,7 @@
                     {% if deps %}
                         <div class="remark-item__media">
                             {% for dep in deps %}
-                                {% if media|length > 1 %}
-                                    {% if not remark_id.anonymous_name %}
-                                        {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id %}
-                                    {% endif %}
-                                {% else %}
-                                    {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id first %}
-                                {% endif %}
+                                {% catinclude "remark-media/remark-media.image.tpl" dep remark_id=remark_id %}
                             {% endfor %}
                         </div>
                     {% endif %}
