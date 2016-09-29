@@ -13,7 +13,7 @@
 
     {% else %}
 
-        <a href="/image/{{ id.medium.filename }}" class="lightbox" rel="attached-media" >
+        <a href="/image/{{ id.medium.filename }}" rel="attached-media" >
             <i class="icon--download"></i> {{ id.title }}
         </a>
 
