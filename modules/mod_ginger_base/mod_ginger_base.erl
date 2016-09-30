@@ -18,7 +18,8 @@
     observe_media_viewer/2,
     observe_rsc_get/3,
     observe_rsc_update/3,
-    observe_search_query/2
+    observe_search_query/2,
+    observe_acl_is_owner/2
 ]).
 
 -include("zotonic.hrl").
@@ -278,3 +279,17 @@ observe_search_query(#search_query{search={ginger_geo_nearby, _Args}}=Q, Context
     ginger_geo_search:search_query(Q, Context);
 observe_search_query(#search_query{}, _Context) ->
     undefined.
+
+% @doc Authors are owners by default in Ginger
+observe_acl_is_owner(#acl_is_owner{user_id=undefined}, _Context) ->
+    undefined;
+observe_acl_is_owner(#acl_is_owner{id=RscId, user_id=UserId}, Context) ->
+    {rsc_list,Authors} = m_rsc:o(RscId, author, Context),
+    IsAuthor = lists:any(
+        fun(Author) -> Author == UserId end,
+        Authors
+    ),
+    case IsAuthor of
+        true -> true;
+        false -> undefined
+    end.
