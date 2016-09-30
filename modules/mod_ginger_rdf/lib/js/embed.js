@@ -54,6 +54,7 @@
             '    </div> ' +
             '        <summary>' + json['http://purl.org/dc/terms/abstract'] + '</summary>' +
             '        <p class="ginger-embed__description">' + json['http://purl.org/dc/terms/description'].replace(/\n/, '<br>') + '</p>' +
+            '        <button type="button" class="ginger-embed__button">&raquo;</button> ' +
             '</a>';
 
         element.innerHTML = html;
