@@ -26,6 +26,7 @@
     "js/search/components/pager.js"
     "js/search/components/types.js"
     "js/mail-decode.js"
+    "js/toggle-definition.js"
 %}
 
 {% if m.modules.active.mod_geo %}
