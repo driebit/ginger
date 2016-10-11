@@ -8,7 +8,7 @@
 -mod_description("Ginger Base").
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups]).
--mod_schema(6).
+-mod_schema(7).
 
 -export([
     init/1,
@@ -115,12 +115,12 @@ manage_schema(_Version, Context) ->
                     {acl_user_group_id, acl_user_group_anonymous},
                     {actions, [view]}
                 ]},
-                %% Members can edit their own profile. This requires insert rights on
-                %% category person because of acl_rsc_update_check:acl_rsc_update_check/3.
+                %% Members can edit their own profile.
                 {rsc, [
                     {acl_user_group_id, acl_user_group_members},
-                    {actions, [insert, link]},
-                    {category_id, person}
+                    {actions, [update, link]},
+                    {category_id, person},
+                    {is_owner, true}
                 ]},
                 %% Members can upload media, for instance a profile picture.
                 {rsc, [
@@ -128,16 +128,14 @@ manage_schema(_Version, Context) ->
                     {actions, [insert]},
                     {category_id, media}
                 ]},
-
                 {rsc, [
                     {acl_user_group_id, acl_user_group_members},
                     {actions, [update, delete]},
                     {category_id, media},
                     {is_owner, true}
                 ]},
-
+                %% Editors can edit everything, including resources created by other editors
                 {rsc, [
-                    %% Editors can edit everything, including resources created by other editors
                     {acl_user_group_id, acl_user_group_editors},
                     {actions, [view, insert, update, delete, link]}
                 ]},
