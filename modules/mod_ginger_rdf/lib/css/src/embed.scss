@@ -400,7 +400,7 @@
 /*** GINGER EMBED ***/
 
 .ginger-embed:hover  {
-    background-color: #ddd;
+    background-color: #f7f7f7;
     color: black;
 
     .ginger-embed__origin-hover {
@@ -470,18 +470,20 @@
             clear: both;
         }
     }
-    picture {
+
+    img {
         float: left;
         margin: 15px 10px 0px 0;
     }
 
-    summary {
+    &__summary {
         font-weight: bold;
         margin-bottom: 10px;
     }
+
     &.embed-size-small {
         .ginger-embed__description {
-            display: none;
+            //display: none;
         }
     }
 

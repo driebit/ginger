@@ -39,9 +39,7 @@
 
         if (json['http://xmlns.com/foaf/0.1/thumbnail']) {
             html +=
-                '    <picture>' +
-                '        <img src="' + json['http://xmlns.com/foaf/0.1/thumbnail']['@id'] + '">' +
-                '    </picture>';
+                ' <img src="' + json['http://xmlns.com/foaf/0.1/thumbnail']['@id'] + '">'
         }
 
         html +=
@@ -52,7 +50,7 @@
         }
         html += '<time class="published ginger-embed__time" datetime="' + json['http://purl.org/dc/terms/issued'] + '">' + formatDate(new Date(json['http://purl.org/dc/terms/issued']), "YYYY") + '</time>' +
             '    </div> ' +
-            '        <summary>' + json['http://purl.org/dc/terms/abstract'] + '</summary>' +
+            '        <p class="ginger-embed__summary">' + json['http://purl.org/dc/terms/abstract'] + '</p>' +
             '        <p class="ginger-embed__description">' + json['http://purl.org/dc/terms/description'].replace(/\n/, '<br>') + '</p>' +
             '</a>';
 
