@@ -30,10 +30,10 @@
         if (json['http://purl.org/dc/terms/publisher']) {
             html +=
             '    <div class="ginger-embed__origin">' +
-            '       <h2 class="ginger-embed__origin-title">bron: '+json['http://purl.org/dc/terms/publisher']['@id']+'</h2>' +
+            '       <h2 class="ginger-embed__origin-title">'+json['http://purl.org/dc/terms/publisher']['@id']+' <span>&raquo;</span></h2>' +
             '    </div> ' +
             '    <div class="ginger-embed__origin-hover">' +
-            '       <h2 class="ginger-embed__origin-title">ga naar '+json['http://purl.org/dc/terms/publisher']['@id']+'</h2>' +
+            '       <h2 class="ginger-embed__origin-title">'+json['http://purl.org/dc/terms/publisher']['@id']+' <span>&raquo;</span></h2>' +
             '    </div> ';
         }
 
@@ -54,7 +54,6 @@
             '    </div> ' +
             '        <summary>' + json['http://purl.org/dc/terms/abstract'] + '</summary>' +
             '        <p class="ginger-embed__description">' + json['http://purl.org/dc/terms/description'].replace(/\n/, '<br>') + '</p>' +
-            '        <button type="button" class="ginger-embed__button">&raquo;</button> ' +
             '</a>';
 
         element.innerHTML = html;
