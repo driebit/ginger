@@ -127,7 +127,7 @@
 
             marker = new google.maps.Marker({
                 map: me.map,
-                draggable: true,
+                draggable: false,
                 position: latLng,
                 icon: '/lib/images/marker-default.png'
             });
@@ -173,10 +173,6 @@
                         me.buildMap(latLng);
                     }
                 }
-
-
-
-
             });
 
         },
