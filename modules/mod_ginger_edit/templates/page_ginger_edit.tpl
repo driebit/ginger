@@ -21,11 +21,12 @@
 {% endblock %}
 
 {% block content %}
+
     {% if id.is_editable %}
         <form id="rscform" method="post" action="postback" class="form">
         <div class="row page-ginger_edit_content_row_class">
             <div class="col-sm-8 col-md-8">
-                {% catinclude "_ginger_edit.tpl" id %}
+                {% catinclude "_ginger_edit.tpl" id isNew=isNew %}
             </div>
 
             <div class="col-sm-4 col-md-4">
