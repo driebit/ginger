@@ -38,7 +38,7 @@ ensure_use_modules(UserGroup, Modules, Context) ->
                 module,
                 [
                     {acl_user_group_id, m_rsc:rid(UserGroup, Context)},
-                    {actions, "use"},
+                    {actions, [use]},
                     {module, Module}
                 ],
                 Context
