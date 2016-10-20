@@ -18,7 +18,7 @@
 %% @doc Load data model for a site
 -spec load(#datamodel{}, #context{}) -> ok.
 load(#datamodel{} = Datamodel, Context) ->
-    load(z_context:site(Context), Datamodel).
+    load(z_context:site(Context), Datamodel, Context).
 
 %% @doc Load data model for a module
 -spec load(module(), #datamodel{}, #context{}) -> ok.
