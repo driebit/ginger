@@ -5,6 +5,7 @@
 
 -export([
     load/2,
+    load/3,
     file/2,
     menu/3,
     reset/1,
@@ -14,11 +15,15 @@
     lorem/0
 ]).
 
-load(Datamodel = #datamodel{}, Context) ->
-    z_datamodel:manage(
-        z_context:site(Context),
-        Datamodel, z_context:prune_for_spawn(Context)
-    ).
+%% @doc Load data model for a site
+-spec load(#datamodel{}, #context{}) -> ok.
+load(#datamodel{} = Datamodel, Context) ->
+    load(z_context:site(Context), Datamodel).
+
+%% @doc Load data model for a module
+-spec load(module(), #datamodel{}, #context{}) -> ok.
+load(Module, #datamodel{} = Datamodel, Context) ->
+    z_datamodel:manage(Module, Datamodel, z_context:prune_for_spawn(Context)).
 
 %% @doc Locate file in fixtures directory
 -spec file(string(), #context{}) -> string().
