@@ -1,15 +1,9 @@
 <li>
     {% if id.medium.mime == "application/pdf" %}
 
-        <a href="#lightbox-{{ id }}" class="lightbox" rel="attached-media">
+        <a href="/image/{{ id.medium.filename }}" class="" target="_blank">
             <i class="icon--download"></i> {{ id.title }}
         </a>
-
-        <div class="lightbox-pdf-wrapper">
-            <div id="lightbox-{{ id }}" class="lightbox-pdf">
-                <embed width="100%" height="550" src="/image/{{ id.medium.filename }}" type="application/pdf"></embed>
-            </div>
-        </div>
 
     {% else %}
 
@@ -18,6 +12,4 @@
         </a>
 
     {% endif %}
-
-
 </li>
