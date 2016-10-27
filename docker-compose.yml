@@ -10,7 +10,7 @@ services:
         working_dir: /data
 
     zotonic:
-        image: driebit/zotonic:0.x-dev
+        image: driebit/ginger-dev:0.x
         privileged: true
         links:
             - postgres
@@ -21,3 +21,5 @@ services:
             - 80:8000
         environment:
             MAKE: "true"
+            LOGSTASH_HOST: "localhost"
+            LOGSTASH_PORT: 5514
