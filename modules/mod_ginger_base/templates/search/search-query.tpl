@@ -23,7 +23,10 @@
         ongoing_on_date|default:q.ongoing_on_date,
         page|default:q.page|default:1,
         cat_exclude_defaults|default:"true",
-        authoritative|default:1
+        authoritative|default:1,
+        list_template|default:"list/list-item-vertical.tpl",
+        list_id|default:"list--query",
+        list_class|default:"list--vertical"
     as
         type,
         cat,
@@ -48,7 +51,10 @@
         ongoing_on_date,
         page,
         cat_exclude_defaults,
-        authoritative
+        authoritative,
+        list_template,
+        list_id,
+        list_class
 %}
 
     {% if type == "list" %}
@@ -80,7 +86,7 @@
             page=page
         }] as result %}
 
-            {% include "search/list-wrapper.tpl" class="list--vertical" list_id="list--query" list_template="list/list-item-vertical.tpl" items=result extraClasses="" id=id %}
+            {% include "search/list-wrapper.tpl" class=list_class list_id=list_id list_template=list_template items=result extraClasses="" id=id %}
 
         {% endwith %}
 
