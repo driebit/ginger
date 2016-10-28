@@ -22,17 +22,19 @@
             </aside>
         {% endif %}
 
-        {% with m.search[{ginger_search cat="remark" hasobject=[id,'author'] pagelen=6 sort='-rsc.modified'}] as result %}
+        {% if m.modules.enabled|index_of:"mod_ginger_remark" %}
+            {% with m.search[{ginger_search cat="remark" hasobject=[id,'author'] pagelen=6 sort='-rsc.modified'}] as result %}
 
-            {% if result %}
+                {% if result %}
 
-                <aside class="main-aside">
+                    <aside class="main-aside">
 
-                    {% include "list/list-header.tpl" id=id list_title=_"Remarks of "++id.title items=result %}
+                        {% include "list/list-header.tpl" id=id list_title=_"Remarks of "++id.title items=result %}
 
-                    {% include "list/list.tpl" list_id="list--remarks" items=result extraClasses="" id=id %}
-                </aside>
+                        {% include "list/list.tpl" list_id="list--remarks" items=result extraClasses="" id=id %}
+                    </aside>
 
-            {% endif %}
+                {% endif %}
 
-        {% endwith %}
+            {% endwith %}
+        {% endif %}
