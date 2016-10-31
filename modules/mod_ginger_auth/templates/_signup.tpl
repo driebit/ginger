@@ -14,7 +14,7 @@ style_width
     {# overwrite to exclude unwanted username field #}
     {% with
         1,1,1,0,1,1
-    as  
+    as
         show_signup_name_first,
         show_signup_name_last,
         show_signup_name_email,
@@ -22,7 +22,7 @@ style_width
         show_signup_password,
         show_signup_tos_checkbox
     %}
-    {% with     
+    {% with
         form_title_tpl|if_undefined:"_signup_title.tpl",
         form_extra_tpl|if_undefined:"_signup_extra.tpl",
         form_form_tpl|if_undefined:"_signup_form.tpl",
@@ -39,7 +39,7 @@ style_width
         form_outside_tpl,
         signup_delegate
     %}
-        {% include "_signup_box.tpl" %}
+        {% optional include "_signup_box.tpl" %}
     {% endwith %}
     {% endwith %}
 {% endif %}
