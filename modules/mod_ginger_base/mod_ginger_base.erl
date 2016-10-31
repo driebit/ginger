@@ -278,16 +278,12 @@ observe_search_query(#search_query{search={ginger_geo_nearby, _Args}}=Q, Context
 observe_search_query(#search_query{}, _Context) ->
     undefined.
 
-% @doc Authors are owners by default in Ginger
-observe_acl_is_owner(#acl_is_owner{user_id=undefined}, _Context) ->
+%% @doc Authors are owners by default in Ginger
+-spec observe_acl_is_owner(#acl_is_owner{}, #context{}) -> boolean() | undefined.
+observe_acl_is_owner(#acl_is_owner{user_id = undefined}, _Context) ->
     undefined;
-observe_acl_is_owner(#acl_is_owner{id=RscId, user_id=UserId}, Context) ->
-    {rsc_list,Authors} = m_rsc:o(RscId, author, Context),
-    IsAuthor = lists:any(
-        fun(Author) -> Author == UserId end,
-        Authors
-    ),
-    case IsAuthor of
+observe_acl_is_owner(#acl_is_owner{id = RscId, user_id = UserId}, Context) ->
+    case lists:member(UserId, m_edge:objects(RscId, author, Context)) of
         true -> true;
         false -> undefined
     end.
