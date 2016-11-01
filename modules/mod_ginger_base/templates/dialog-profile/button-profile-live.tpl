@@ -7,7 +7,7 @@
                 fallback_rsc_id=m.rsc.custom_avatar_fallback.id
             %}
 
-            {{ title }}
+            <span>{{ title }}</span>
         </a>
 
     {% endwith %}
