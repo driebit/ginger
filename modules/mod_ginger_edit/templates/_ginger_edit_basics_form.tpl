@@ -16,8 +16,8 @@
 
         <div class="row">
             <div class="form-group col-xs-12">
-                <label class="control-label" for="summary">{_ Summary _} {{ lang_code_with_brackets }}</label>
-                <textarea rows="4" cols="10" id="summary" name="summary{{ lang_code_with_dollar }}" class="ltr intro form-control">{{ id.summary | brlinebreaks }}</textarea>
+                <label class="control-label" for="{{ #summary }}{{ lang_code_for_id }}">{_ Summary _} {{ lang_code_with_brackets }}</label>
+                <textarea rows="4" cols="10" id="{{ #summary }}{{ lang_code_for_id }}" name="summary{{ lang_code_with_dollar }}" {% include "_language_attrs.tpl" language=lang_code class=" intro form-control" %}>{{ id.summary | brlinebreaks }}</textarea>
             </div>
         </div>
     {% endwith %}
