@@ -1,4 +1,4 @@
-{% with id.o.depiction as deps %}
+{% with id.o.depiction|without:[id.o.depiction[1]]|without_embedded_media:id as deps %}
 {% with id.o.hasdocument as docs %}
 
     {% if deps or docs %}
