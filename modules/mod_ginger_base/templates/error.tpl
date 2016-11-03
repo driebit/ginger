@@ -24,8 +24,21 @@
   <h1>{_ Gone_}</h1>
   <p>{_ Sorry, this page has been deleted. _}</p>
 {% elseif error_code == 404 %}
-  <h1>{_ That page does not exist _}</h1>
-  <p><a href="/">{_ Return to the homepage _}</a></p>
+    {% with m.rsc.page_404 as page_404 %}
+        <h1 class="page-title">{{ page_404.title }}</h1>
+        {% include "summary/summary.tpl" id=page_404 %}
+
+        {% with page_404.media|without_embedded_media:page_404|first as dep %}
+            {% catinclude "media/media.tpl" dep %}
+        {% endwith %}
+
+        {% include "body/body.tpl" id=page_404 %}
+
+        {# Won't work because in blocks: m.rsc[id].blocks, have to look deeper in this #}
+        {# {% include "blocks/blocks.tpl" id=page_404 %} #}
+
+        <p><a href="/">{_ Return to the homepage _}</a></p>
+    {% endwith %}
 {% else %}
     <h1>{{ error_code }} {_ error _}</h1>
 
