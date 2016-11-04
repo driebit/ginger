@@ -32,15 +32,15 @@
 
 .has-rounded-icon {
     display: inline-block;
-    @include size(width, 24);
-    @include size(height, 24);
+    width: 24px;
+    height: 24px;
     background: $white;
     border: 2px solid $secondaryThemeColor;
     border-radius: 50%;
     color: $secondaryThemeColor;
     @include size(font-size, 13);
     text-align: center;
-    @include size(line-height, 21);
+    line-height: 21px;
 }
 
 .icon--arrow-down:before,
