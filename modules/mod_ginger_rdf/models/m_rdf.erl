@@ -20,8 +20,8 @@
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
     M#m{value = Rdf};
-m_find_value(Id, #m{value = undefined}, Context) when is_integer(Id) ->
-    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context)));
+m_find_value(Id, #m{value = undefined} = M, _Context) when is_integer(Id) ->
+    M#m{value = Id};
 m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
 m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
@@ -35,8 +35,8 @@ m_find_value(Predicate, #m{value = #rdf_resource{id = _Id, triples = Triples}}, 
 m_to_list(_, _Context) ->
     [].
 
-m_value(_Source, _Context) ->
-    undefined.
+m_value(#m{value = Id}, Context) ->
+    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
 
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->

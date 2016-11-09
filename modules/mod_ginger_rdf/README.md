@@ -178,6 +178,12 @@ You can also use certain shortcuts to namespaced RDF properties. For instance:
 looks at `foaf:thumbnail` first, then `edm:isShownBy`, `schema:image` and
 `edm:object` to try to find a suitable value.
 
+Print a full RDF representation of a Zotonic resource:
+
+```dtl
+{{ m.rdf[id] }}
+```
+
 Embeds
 ------
 
