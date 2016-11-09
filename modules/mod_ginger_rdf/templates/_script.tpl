@@ -1,0 +1,1 @@
+{% include "rdf/resource.tpl" %}
