@@ -71,6 +71,14 @@ Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
 `ginger01.driebit.net` depending on the environment that you want to import
 the latest backup from.
 
+Elasticsearch
+-------------
+
+The Ginger Docker setup includes an Elasticsearch container. You can use Kibana
+for querying Elasticsearch. Kibana is available at `http://localhost:5601`. 
+Click on ‘Dev Tools’ to open up a console where you can enter Elasticsearch
+queries.
+
 Troubleshooting
 ---------------
 
