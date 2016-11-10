@@ -9,11 +9,24 @@ services:
             - ./data:/data
         working_dir: /data
 
+    elasticsearch:
+        image: elasticsearch:5.0
+        ports:
+            - 9200:9200
+
+    kibana:
+        image: kibana:5.0
+        links:
+            - elasticsearch
+        ports:
+            - 5601:5601
+
     zotonic:
         image: driebit/ginger-dev:0.x
         privileged: true
         links:
             - postgres
+            - elasticsearch
         volumes:
             - ./modules:/opt/zotonic/user/modules
             - ./sites:/opt/zotonic/user/sites
