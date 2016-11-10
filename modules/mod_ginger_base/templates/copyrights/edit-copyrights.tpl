@@ -74,7 +74,7 @@
 </div>
 <div class="radio">
     <label for="rights-pd2" class="radio-inline">
-        <input type="radio" name="rights" id="rights-pd2" value="CR" {% if rights|upper == "CR" %}checked{% endif %} />
+        <input type="radio" name="rights" id="rights-pd2" value="CR" {% if rights|upper == "CR" or rights|is_undefined %}checked{% endif %} />
         <div class="edit-copyrights__icons">
             <i class="icon-cc icon--cc"></i>
         </div>
