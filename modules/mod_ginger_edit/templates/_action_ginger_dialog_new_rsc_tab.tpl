@@ -1,5 +1,5 @@
 {% with redirect|default:(dispatch=="ginger_edit")|if:[]:`ginger_edit` as redirect %}
-{% with callback|default:(dispatch=="ginger_edit")|if:"zAdminConnectDone":"" as callback %}
+{% with callback|default:"" as callback %}
 {% with actions|default:[] as actions %}
 
 
