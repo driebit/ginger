@@ -8,7 +8,7 @@
 -mod_description("Ginger Base").
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups]).
--mod_schema(7).
+-mod_schema(9).
 
 -export([
     init/1,
@@ -59,6 +59,12 @@ manage_schema(_Version, Context) ->
             ]},
             {home, collection, [
                 {title, "Homepage"}
+            ]},
+            {page_404, text, [
+                {title, {trans, [
+                    {nl, <<"404, Deze pagina bestaat niet">>},
+                    {en, <<"404, This page does not exist">>}]}},
+                {language, [en, nl]}
             ]}
         ],
         predicates = [
