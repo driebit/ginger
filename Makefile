@@ -55,4 +55,4 @@ update:
 	@docker-compose pull
 
 disco:
-	@docker run -d -p 8301:8301/udp -p 8301:8301 -e DOCKER_USER=$(USER) -e DOCKER_SERVICE=ginger -e DOCKER_PORT=80 driebit/disco:latest agent -rejoin -retry-join=10.0.0.10 -dc=office
+	@docker run --dns 10.0.0.1 -d -p 8301:8301/udp -p 8301:8301 -e DOCKER_USER=$(USER) -e DOCKER_SERVICE=ginger -e DOCKER_PORT=80 driebit/disco:latest agent -rejoin -retry-join=10.0.0.10 -dc=office
