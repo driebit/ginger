@@ -1,0 +1,51 @@
+.ginger-banner {
+    padding: 15px 45px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 900;
+    background: #ff7600;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.ginger-banner p {
+    margin: 0;
+}
+
+.ginger-banner a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.ginger-banner__close {
+    text-indent: -9999px;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.ginger-banner__close:hover,
+.ginger-banner__close:active,
+.ginger-banner__close:focus,
+.ginger-banner__close:active:focus {
+    background: #FC953D;
+}
+
+.ginger-banner__close:after {
+    content: '╳';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-indent: 0;
+}
