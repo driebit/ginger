@@ -30,6 +30,7 @@ services:
         volumes:
             - ./modules:/opt/zotonic/user/modules
             - ./sites:/opt/zotonic/user/sites
+            - ./skel:/opt/zotonic/priv/skel/ginger
         ports:
             - 80:8000
         environment:
