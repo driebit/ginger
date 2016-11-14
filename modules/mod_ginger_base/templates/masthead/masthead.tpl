@@ -19,6 +19,10 @@ as
 
             {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
 
+        {% elseif id.category.is_a.locationquery %}
+            <div class="do_masthead_map masthead--map">
+                {% include "map/map.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite result=result container=container %}
+            </div>
         {% else %}
 
             {% if id.o.hasbanner[1].depiction.width > 500 %}

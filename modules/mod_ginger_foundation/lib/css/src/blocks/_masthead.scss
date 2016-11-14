@@ -13,6 +13,11 @@ body.has-content-group .masthead {
     transition: height 0.3s;
 }
 
+.masthead--map {
+    @extend .masthead;
+    position: static;
+}
+
 @include mq(min-width, $mediumBreakpoint) {
     .masthead {
         @include size(height, 450);
@@ -21,6 +26,16 @@ body.has-content-group .masthead {
 
     .masthead--small {
         @include size(height, 250);
+    }
+
+    .masthead--map {
+        position: absolute;
+
+        &.is-active {
+            + main {
+                margin-top: 400px;
+            }
+        }
     }
 }
 
@@ -35,5 +50,13 @@ body.has-content-group .masthead {
 
     .masthead--small {
         @include size(height, 250);
+    }
+
+    .masthead--map {
+        &.is-active {
+            + main {
+                margin-top: 500px;
+            }
+        }
     }
 }
