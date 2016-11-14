@@ -56,18 +56,10 @@
                     {% if id.subtitle %}
                         <p><b>{{ id.subtitle|striptags }}</b></p>
                         {% if id.subtitle|length<35 %}
-                            {% if id.summary %}
-                                <p>{{ id.summary|striptags|truncate:70 }}</p>
-                            {% else %}
-                                <p>{{ id.body|striptags|truncate:70 }}</p>
-                            {% endif %}
+                            {{ id|summary:70 }}
                         {% endif %}
                     {% else %}
-                        {% if id.summary %}
-                            <p>{{ id.summary|striptags|truncate:150 }}</p>
-                        {% else %}
-                            <p>{{ id.body|striptags|truncate:150 }}</p>
-                        {% endif %}
+                        {{ id|summary:150 }}
                     {% endif %}
                 </div>
             </article>
