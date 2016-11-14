@@ -9,7 +9,7 @@
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups]).
 
--mod_schema(9).
+-mod_schema(10).
 
 -export([
     init/1,
@@ -40,6 +40,12 @@ manage_schema(_Version, Context) ->
                 {title, {trans, [
                     {nl, <<"Agenda">>},
                     {en, <<"Agenda">>}]}},
+                {language, [en, nl]}
+            ]},
+            {location_query, query, [
+                {title, {trans, [
+                    {nl, <<"Locatie zoekopdracht">>},
+                    {en, <<"Location search query">>}]}},
                 {language, [en, nl]}
             ]}
         ],
