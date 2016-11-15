@@ -2,6 +2,7 @@ main {
     @extend %cf;
     position: relative;
     z-index: 100;
+    transition: margin-top 0.3s;
 }
 
 .main-content-extend {
