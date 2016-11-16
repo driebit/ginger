@@ -19,7 +19,7 @@ as
 
             {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
 
-        {% elseif id.category.is_a.locationquery %}
+        {% elseif id.category.is_a.location_query %}
             <div class="do_masthead_map masthead--map">
                 {% include "map/map.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite result=result container=container %}
             </div>
