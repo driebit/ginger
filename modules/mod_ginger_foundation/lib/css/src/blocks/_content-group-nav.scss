@@ -34,6 +34,10 @@ body.has-content-group {
 
     &.is-minified {
         @include size(height, $minifiedcontentGroupNavHeight);
+
+        .content-group-nav__banner__title:after {
+            transform: rotate(-180deg);
+        }
     }
 }
 
@@ -70,7 +74,7 @@ body.has-content-group {
         border-top: 8px dashed;
         border-right: 8px solid transparent;
         border-left: 8px solid transparent;
-        display: inline-block;
+        transition: transform 0.3s;
     }
 }
 
