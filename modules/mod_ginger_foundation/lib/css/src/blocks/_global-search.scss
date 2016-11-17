@@ -29,13 +29,12 @@
     z-index: 2000;
     width: 100%;
     @include size(height, 60);
-    -webkit-transform: translateX(100%);
     transform: translateX(100%);
-    transition: all 250ms ease-out;
+    transition: transform 0.3s ease-out;
     background-color: $white;
+    text-indent: 0px;
 
     &.is-visible {
-        -webkit-transform: translateX(0);
         transform: translateX(0);
         border-color: green;
 
