@@ -11,6 +11,7 @@ help:
 	@echo "  gulp site=your_site   Run Gulp in a site directory"
 	@echo "  import-db-file        Import database from file (db=site-name file=site-dump.sql)"
 	@echo "  import-db-backup      Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  dump-db               Dump database to /data directory using pg_dump (dumpsite=site-name)"
 	@echo "  shell                 Open Zotonic shell"
 	@echo "  psql                  Open PostgreSQL interactive terminal"
 	@echo "  up                    Start containers"
@@ -34,6 +35,9 @@ import-db-backup $(host) $(site):
 	@echo "> Importing $(REMOTE_BACKUP_FILE) from $(host) into $(site)"
 	@scp $(ssh_user)@$(host):$(REMOTE_BACKUP_PATH)/$(REMOTE_BACKUP_FILE) data/
 	@$(MAKE) import-db-file db=$(site) file=$(REMOTE_BACKUP_FILE)
+
+dump-db $(dumpsite):
+	@docker-compose exec postgres pg_dump -U zotonic $(dumpsite) > data/$(dumpsite)_`date -u +"%Y-%m-%dT%H%M%SZ"`.sql
 
 shell:
 	@docker-compose exec zotonic bin/zotonic shell
