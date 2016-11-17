@@ -142,3 +142,14 @@ img.admin-list-overview {
         border: none;
     }
 }
+
+
+.ginger-edit {
+    .modal-body {
+        .table-striped {
+            .btn-default + .btn-default {
+                display: none;
+            }
+        }
+    }
+}
