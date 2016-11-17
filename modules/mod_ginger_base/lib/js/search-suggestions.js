@@ -82,9 +82,9 @@
             me.suggestions.hide();
 
             if (me.isVisible()) {
-              setTimeout(function(){
-                   me.searchInput.focus();
-              }, 100);
+                me.searchForm.on('transitionend', function () {
+                    me.searchInput.focus();
+                });
             }
 
             $(document).trigger('search:toggled');
