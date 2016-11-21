@@ -89,17 +89,7 @@ window.zConnectDoneReload = function(v) {
 
 window.zAdminConnectDone = function(v) {
     if (v.is_new) {
-        var target_id = "links-"+v.subject_id+"-"+v.predicate;
-        var $elt = $("#"+target_id);
-        $elt.mask("", 10);
-        z_notify("update", {
-            z_delegate: "mod_admin",
-            z_target_id: target_id,
-            z_trigger_id: target_id,
-            id: v.subject_id,
-            predicate: v.predicate,
-            template: $elt.data("reload-template")
-        });
+        z_event("links-" + v.subject_id + "-" + v.predicate);
     }
 };
 
