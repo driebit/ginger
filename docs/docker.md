@@ -1,6 +1,16 @@
 Docker development environment
 ==============================
 
+Create a Ginger site
+--------------------
+
+Ginger includes a site skeleton that should be used when a new site is created.
+To do so, run from the Ginger directory:
+
+```bash
+$ make addsite name=bli_bla_name_of_the_new_site
+```
+
 Zotonic development
 -------------------
 
