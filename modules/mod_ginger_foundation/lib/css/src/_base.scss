@@ -18,15 +18,8 @@ body {
     font-weight: 300;
     @include size(font-size, 16);
 
-    &.is-menu-visible:before {
-        content: '';
-        width: 100%;
-        height: 100vh;
-        position: fixed;
-        @include size(top, 60);
-        left: 0px;
-        z-index: 400;
-        background: rgba(0,0,0, 0.5);
+    &.is-menu-visible {
+        overflow: hidden;
     }
 }
 
@@ -83,7 +76,7 @@ h3 {
     @include size(margin-bottom, 0);
 }
 
-@include mq(min-width, 900){
+@include mq(min-width, 900) {
     h1 {
         @include size(font-size, 41);
         @include size(line-height, 44);
@@ -95,7 +88,7 @@ h3 {
     margin-bottom: 0;
 }
 
-@include mq(min-width, 0){
+@include mq(min-width, 0) {
     %cf {
         &:before {
             content: '';
