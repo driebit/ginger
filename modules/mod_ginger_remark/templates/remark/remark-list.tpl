@@ -6,7 +6,7 @@ as
     <div class="list-header" id="list-header">
         {% block header %}
             <h2 class="list-header__title">
-                {{ remarks|length }} {% if remarks|length == 1 %}{_ Reaction _}{% else %}{_ Reactions _}{% endif %}
+                {% include "remark/remark-list-header.tpl" %}
             </h2>
         {% endblock %}
         {% if not show_form and order == "desc" %}

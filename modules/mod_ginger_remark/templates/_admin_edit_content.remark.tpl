@@ -6,7 +6,7 @@
 {_ Person details _}
 {% endblock %}
 
-{% block widget_title %}{{ _""|escapejs }}{% endblock %}
+{% block widget_title %}{{ ""|escapejs }}{% endblock %}
 {% block widget_show_minimized %}false{% endblock %}
 {% block widget_id %}content-person{% endblock %}
 

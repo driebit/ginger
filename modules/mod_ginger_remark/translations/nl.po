@@ -9,128 +9,142 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-09-05 12:16+0200\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2016-09-05 12:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.8\n"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:61
+#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:6
+msgid "1 remark"
+msgstr "1 reactie"
+
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:61
 msgid "Add link"
 msgstr "Voeg link toe"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_remarks.tpl:20
+#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:13
+#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:41
 msgid "Add your reaction"
 msgstr "Voeg je reactie toe"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_email-follow.tpl:16
+#: user/modules/mod_ginger_remark/templates/remark/remark-form.tpl:9
+#, fuzzy
+msgid "Add your remark"
+msgstr "Voeg je reactie toe"
+
+#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:16
 msgid "By"
 msgstr "Door"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark-media/remark-media.image.tpl:32
+#: user/modules/mod_ginger_remark/templates/remark-media/remark-media.image.tpl:32
 msgid "By:"
 msgstr "Door:"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark-media/remark-media.image.tpl:37
+#: user/modules/mod_ginger_remark/templates/remark-media/remark-media.image.tpl:37
 msgid "Delete image"
 msgstr "Verwijder afbeelding"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:19
+#: user/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:32
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:19
 msgid "E-mail"
 msgstr "E-mail"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:32
-msgid "Email"
-msgstr "E-mail"
-
-#: /vagrant/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:38
+#: user/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:38
 msgid "E-mail visible"
 msgstr "E-mail zichtbaar"
 
-#: /vagrant/modules/mod_ginger_remark/templates/follow/follow-page.tpl:1
+#: user/modules/mod_ginger_remark/templates/follow/follow-page.tpl:1
 msgid "Follow this page"
 msgstr "Volg deze pagina"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:47
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:47
 msgid "Insert image"
 msgstr "Voeg afbeelding toe"
 
-#: /vagrant/modules/mod_ginger_remark/templates/list/list-item-vertical.remark.tpl:36
+#: user/modules/mod_ginger_remark/templates/list/list-item-vertical.remark.tpl:36
 msgid "Location"
 msgstr "Locatie"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:26
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:16
+#: user/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:26
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:16
 msgid "Name"
 msgstr "Naam"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark-pager/remark-pager.tpl:40
+#: user/modules/mod_ginger_remark/templates/remark-pager/remark-pager.tpl:39
 msgid "Next page"
 msgstr "Volgende pagina"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:6
+#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:4
+msgid "No remarks"
+msgstr "Geen reacties"
+
+#: user/modules/mod_ginger_remark/templates/_admin_edit_content.remark.tpl:6
 msgid "Person details"
 msgstr "Persoonsgegevens"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark-pager/remark-pager.tpl:13
+#: user/modules/mod_ginger_remark/templates/remark-pager/remark-pager.tpl:12
 msgid "Previous page"
 msgstr "Vorige pagina"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_remarks.tpl:17
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-form.tpl:6
+#: user/modules/mod_ginger_remark/templates/remark/remark-form.tpl:6
 msgid "Reaction"
 msgstr "Reactie"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_email-follow.tpl:3
+#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:3
 msgid "Reaction added to"
 msgstr "Reactie toegevoegd aan"
 
-#: /vagrant/modules/mod_ginger_remark/templates/_remarks.tpl:17
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-form.tpl:6
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:33
+msgid "Reaction to:"
+msgstr "Reactie op:"
+
+#: user/modules/mod_ginger_remark/templates/remark/remark-form.tpl:6
 msgid "Reactions"
 msgstr "Reacties"
 
-#: /vagrant/modules/mod_ginger_remark/templates/list/list-item.remark.tpl:48
+#: user/modules/mod_ginger_remark/templates/list/list-item.remark.tpl:48
 msgid "This is a remark on"
 msgstr "Dit is een reactie op"
 
-#: ./user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:38
-msgid ""
-"Reaction to:"
-msgstr "Reactie op:"
-
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:25
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:25
 msgid "Title"
 msgstr "Titel"
 
-#: /vagrant/modules/mod_ginger_remark/templates/follow/follow-page.tpl:1
+#: user/modules/mod_ginger_remark/templates/follow/follow-page.tpl:1
 msgid "Unfollow"
 msgstr "Ontvolg"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:33
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:33
 msgid "cancel"
 msgstr "annuleer"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-view.tpl:60
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:64
 msgid "delete"
 msgstr "verwijder"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-view.tpl:58
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:62
 msgid "edit"
 msgstr "bewerk"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark-pager/remark-pager.tpl:9
-msgid "results"
-msgstr "resultaten"
+#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:8
+msgid "remarks"
+msgstr "reacties"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:35
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:35
 msgid "save"
 msgstr "bewaar"
 
-#: /vagrant/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:20
+#: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:20
 msgid "visible for public"
 msgstr "zichtbaar voor publiek"
+
+#~ msgid "Email"
+#~ msgstr "E-mail"
+
+#~ msgid "results"
+#~ msgstr "resultaten"
