@@ -27,7 +27,7 @@
 {% endif %}
 
 {% if m.modules.active.mod_ginger_remark %}
-    <div id="comments" class="main-content__remarks">
+    <div id="remarks" class="main-content__remarks">
         {% include "_remarks.tpl" %}
     </div>
 {% endif %}

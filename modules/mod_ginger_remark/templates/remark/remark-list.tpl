@@ -6,7 +6,7 @@ as
     <div class="list-header" id="list-header">
         {% block header %}
             <h2 class="list-header__title">
-                {% include "remark/remark-list-header.tpl" %}
+                {% include "remark/remark-number-of.tpl" %}
             </h2>
         {% endblock %}
         {% if not show_form and order == "desc" %}
