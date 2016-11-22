@@ -10,7 +10,9 @@ as
             </h2>
         {% endblock %}
         {% if not show_form and order == "desc" %}
-            <a href="#" id="new-remark-link" class="remark-new" title="{_ Add your reaction _}">{_ Add your reaction _}</a>
+            {% if m.acl.is_allowed.insert.remark %}
+                <a href="#" id="new-remark-link" class="remark-new" title="{_ Add your reaction _}">{_ Add your reaction _}</a>
+            {% endif %}
         {% endif %}
 
     </div>
