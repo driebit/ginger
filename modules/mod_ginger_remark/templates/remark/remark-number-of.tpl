@@ -1,9 +1,1 @@
-{% with remarks|length as number %}
-    {% if number == 0 %}
-        {_ No remarks _}
-    {% elseif number == 1 %}
-        {_ 1 remark _}
-    {% else %}
-        {{ number }} {_ remarks _}
-    {% endif %}
-{% endwith %}
+{% include "number-of/number-of.tpl" items=remarks none=_"No remarks" singular=_"1 remark" plural=_"remarks" %}
