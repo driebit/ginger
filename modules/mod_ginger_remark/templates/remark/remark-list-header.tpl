@@ -6,5 +6,4 @@
     {% else %}
         {{ number }} {_ remarks _}
     {% endif %}
-    </span>
 {% endwith %}
