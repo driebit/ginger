@@ -10,7 +10,7 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(250).
--mod_schema(12).
+-mod_schema(13).
 
 -export([
     manage_schema/2,
@@ -26,7 +26,7 @@ manage_schema(_Version, Context) ->
     Datamodel = #datamodel{
         categories=[
             {remark, text, [
-                {title, {trans, [{nl, <<"Opmerking">>},
+                {title, {trans, [{nl, <<"Reactie">>},
                                  {en, <<"Remark">>}]}},
                 {language, [en,nl]}
             ]}
