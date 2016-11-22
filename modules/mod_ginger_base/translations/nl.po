@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-07-20 17:38+0200\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2016-07-20 17:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,40 +28,44 @@ msgstr ""
 msgid "1 comment"
 msgstr "1 reactie"
 
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-interested.tpl:3
+msgid "1 person interested"
+msgstr "1 geïnteresseerde"
+
 #: user/modules/mod_ginger_base/templates/about/about.tpl:1
 msgid "About:"
 msgstr "Over: "
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:53
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:81
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:52
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:81
 msgid "All rights reserved"
 msgstr "Alle rechten voorbehouden"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:88
+#: user/modules/mod_ginger_base/templates/error.tpl:101
 msgid "Arguments"
 msgstr "Argumenten"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:27
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:27
 msgid "Attribution"
 msgstr "Naamsvermelding"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:45
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:45
 msgid "Attribution-NoDerivs"
 msgstr "Naamsvermelding-GeenAfgeleideWerken"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:54
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:54
 msgid "Attribution-NonCommercial"
 msgstr "Naamsvermelding-NietCommercieel"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:72
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:72
 msgid "Attribution-NonCommercial-NoDerivs"
 msgstr "Naamsvermelding-NietCommercieel-GeenAfgeleideWerken"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:63
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:63
 msgid "Attribution-NonCommercial-ShareAlike"
 msgstr "Naamsvermelding-NietCommercieel-GelijkDelen"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:36
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:36
 msgid "Attribution-ShareAlike"
 msgstr "Naamsvermelding-GelijkDelen"
 
@@ -75,7 +79,7 @@ msgstr "Gebaseerd op deze trefwoorden:"
 
 #: user/modules/mod_ginger_base/templates/media/media.image.tpl:32
 #: user/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
-#: user/modules/mod_ginger_base/templates/person/person-author.tpl:6
+#: user/modules/mod_ginger_base/templates/person/person-author.tpl:11
 msgid "By:"
 msgstr "Door:"
 
@@ -94,6 +98,10 @@ msgstr "Kies je taal"
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:5
 msgid "Connect"
 msgstr "Koppel"
+
+#: user/modules/mod_ginger_base/templates/search/components/filters-contentgroups.tpl:3
+msgid "Content"
+msgstr ""
 
 #: user/modules/mod_ginger_base/templates/admin/admin-edit-copyrights.tpl:2
 msgid "Copyrights"
@@ -123,11 +131,11 @@ msgstr "E-mail"
 msgid "E-mail address"
 msgstr "E-mail adres"
 
-#: user/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:10
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:1
 msgid "Edit"
 msgstr "Bewerk"
 
-#: user/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:8
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-edit-thing.tpl:9
 msgid "Edit page"
 msgstr "Bewerk pagina"
 
@@ -146,11 +154,11 @@ msgstr "Niet tonen in zoekresultaten"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:29
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
 msgid "Favorites of "
 msgstr "Favorieten van "
 
-#: user/modules/mod_ginger_base/templates/error.tpl:89
+#: user/modules/mod_ginger_base/templates/error.tpl:102
 msgid "File"
 msgstr "Bestand"
 
@@ -158,7 +166,7 @@ msgstr "Bestand"
 msgid "Filters"
 msgstr "Filters"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:87
+#: user/modules/mod_ginger_base/templates/error.tpl:100
 msgid "Function/ template"
 msgstr "Functie/ template"
 
@@ -252,7 +260,7 @@ msgstr "Bericht"
 msgid "Mobile number"
 msgstr "Mobiele nummer"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:86
+#: user/modules/mod_ginger_base/templates/error.tpl:99
 msgid "Module"
 msgstr "Module"
 
@@ -276,12 +284,12 @@ msgstr "Geen toegang"
 msgid "No comments"
 msgstr "Geen reacties"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:83
+#: user/modules/mod_ginger_base/templates/list/list.tpl:68
 #: user/modules/mod_ginger_base/templates/map/map.tpl:71
 msgid "No results"
 msgstr "Geen resultaten"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:9
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:9
 msgid "No rights reserved"
 msgstr "Afstand van alle rechten"
 
@@ -311,14 +319,6 @@ msgstr "Onderdeel van:"
 msgid "Participants"
 msgstr "Deelnemers"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
-msgid "Pending"
-msgstr "Wacht op akkoord"
-
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
-msgid "Pending... "
-msgstr "Wacht op akkoord…."
-
 #: user/modules/mod_ginger_base/templates/share/share.tpl:18
 msgid "Pinterest"
 msgstr "Pinterest"
@@ -328,7 +328,7 @@ msgstr "Pinterest"
 msgid "Profile"
 msgstr "Profiel"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:18
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:18
 msgid "Public Domain"
 msgstr "Publiek domein"
 
@@ -341,7 +341,7 @@ msgstr "Aanmelden"
 msgid "Read more"
 msgstr "Lees meer"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:33
+#: user/modules/mod_ginger_base/templates/error.tpl:46
 msgid "Reason"
 msgstr "Reden"
 
@@ -356,11 +356,11 @@ msgstr "Gerelateerd"
 msgid "Related based on these keywords:"
 msgstr "Gerelateerd op basis van deze trefwoorden:"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:43
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:32
 msgid "Remarks of "
 msgstr "Reacties van "
 
-#: user/modules/mod_ginger_base/templates/error.tpl:28
+#: user/modules/mod_ginger_base/templates/error.tpl:40
 msgid "Return to the homepage"
 msgstr "Keer terug naar de homepage"
 
@@ -368,8 +368,8 @@ msgstr "Keer terug naar de homepage"
 #: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 #: user/modules/mod_ginger_base/templates/search/components/input-text.tpl:2
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
-#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:32
-#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:36
+#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:9
+#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:34
 #: user/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2
 #: user/modules/mod_ginger_base/templates/search.tpl:13
 msgid "Search"
@@ -391,15 +391,11 @@ msgstr "Delen"
 msgid "Short title"
 msgstr "Korte titel"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:10
-msgid "Show all..."
-msgstr "Toon alle"
-
 #: user/modules/mod_ginger_base/templates/meta/meta-location.tpl:22
 msgid "Show map"
 msgstr "Toon kaart"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:9
+#: user/modules/mod_ginger_base/templates/list/list.tpl:8
 msgid "Show more results..."
 msgstr "Toon meer"
 
@@ -415,7 +411,7 @@ msgstr "Sorry, deze pagina is verwijderd"
 msgid "Sorry, you don’t have access to this page."
 msgstr "Sorry, je hebt geen rechten om deze pagina te bekijken"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:37
+#: user/modules/mod_ginger_base/templates/error.tpl:50
 msgid "Stack trace"
 msgstr "Stack trace"
 
@@ -432,11 +428,11 @@ msgstr "Inleiding"
 msgid "Telephone number"
 msgstr "Telefoonnummer"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:27
+#: user/modules/mod_ginger_base/templates/error.tpl:39
 msgid "That page does not exist"
 msgstr "Deze pagina bestaat niet"
 
-#: user/modules/mod_ginger_base/templates/frontend-edit/edit-copyrights.tpl:1
+#: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:1
 msgid ""
 "These are the <a href=\"https://creativecommons.org/licenses/\">Creative "
 "Commons licenses</a>."
@@ -455,14 +451,6 @@ msgid ""
 msgstr ""
 "Dit is de basis boodschap. Wanneer u ontvangt deed <tt>het proefblok</tt> "
 "niet overrulen door deze tekst vervolgens de sjabloon bouwer."
-
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:17
-msgid ""
-"This page is waiting for approval by the site editors. When you're page is "
-"approved the page will be public."
-msgstr ""
-"Deze pagina’s wachten op akkoord van de redactie. Wanneer deze is "
-"goedgekeurd zal de pagina publiek worden."
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_content_page_connections_incoming.tpl:28
 msgid "This resource has no incoming connections."
@@ -496,17 +484,17 @@ msgstr "Website"
 msgid "With:"
 msgstr "Met:"
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:41
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:46
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:40
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:45
 msgid "You may use the work freely"
 msgstr "Het werk mag vrijblijvend gebruikt worden"
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:17
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:16
 msgid "You must give the original author credit"
 msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden"
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:7
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:6
 msgid ""
 "You must give the original author credit, this work must be licensed under "
 "an identical license if used"
@@ -516,7 +504,7 @@ msgstr ""
 "uitsluitend krachtens dezelfde licentie als de onderhavige licentie worden "
 "verspreid."
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:12
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:11
 msgid ""
 "You must give the original author credit, you may not alter, transform, or "
 "build upon this work."
@@ -524,7 +512,7 @@ msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
 "de gebruiker mag het werk niet bewerken."
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:29
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:28
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes"
@@ -532,7 +520,7 @@ msgstr ""
 "De gebruiker dient de naam of andere aanduiding van de maker te vermelden, "
 "de gebruiker mag het werk niet voor commerciële doeleinden gebruiken"
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:34
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:33
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes, this work must be licensed under an identical license "
@@ -543,7 +531,7 @@ msgstr ""
 "de gebruiker het werk bewerkt kan het daaruit ontstane werk uitsluitend "
 "krachtens dezelfde licentie als de onderhavige licentie worden verspreid."
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:22
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:21
 msgid ""
 "You must give the original author credit, you may not use this work for "
 "commercial purposes, you may not alter, transform, or build upon this work"
@@ -577,9 +565,13 @@ msgstr "download"
 msgid "email"
 msgstr "email"
 
-#: user/modules/mod_ginger_base/templates/error.tpl:30
+#: user/modules/mod_ginger_base/templates/error.tpl:43
 msgid "error"
 msgstr "error"
+
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-interested.tpl:3
+msgid "interested people"
+msgstr "geïnteresseerden"
 
 #: user/modules/mod_ginger_base/templates/search.tpl:20
 msgid "list"
@@ -606,6 +598,10 @@ msgstr "Maximum deelnemers"
 msgid "must be a number"
 msgstr "moet een nummer zijn"
 
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-interested.tpl:3
+msgid "no interested people"
+msgstr "geen geïnteresseerden"
+
 #: user/modules/mod_ginger_base/templates/pager/pager.tpl:2
 msgid "results"
 msgstr "resultaten"
@@ -617,3 +613,19 @@ msgstr "resultaten"
 #: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 msgid "search"
 msgstr "zoeken"
+
+#~ msgid "Pending"
+#~ msgstr "Wacht op akkoord"
+
+#~ msgid "Pending... "
+#~ msgstr "Wacht op akkoord…."
+
+#~ msgid "Show all..."
+#~ msgstr "Toon alle"
+
+#~ msgid ""
+#~ "This page is waiting for approval by the site editors. When you're page "
+#~ "is approved the page will be public."
+#~ msgstr ""
+#~ "Deze pagina’s wachten op akkoord van de redactie. Wanneer deze is "
+#~ "goedgekeurd zal de pagina publiek worden."
