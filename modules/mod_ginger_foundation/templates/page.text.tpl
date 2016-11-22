@@ -40,7 +40,9 @@
                 {% include "attached-media/attached-media.tpl" id=id %}
             {% endblock %}
 
-            {% include "comments/comments.tpl" id=id %}
+            {% block comments %}
+                {% include "comments/comments.tpl" id=id %}
+            {% endblock %}
 
         </article>
 

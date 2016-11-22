@@ -1,4 +1,4 @@
- {% if m.modules.enabled|index_of:"mod_comment" %}
+ {% if m.modules.active.mod_comment %}
     {% with m.comment.rsc[id] as comments %}
         <div id="comments" class="comments">
 
@@ -24,4 +24,10 @@
 
         </div>
     {% endwith %}
+{% endif %}
+
+{% if m.modules.active.mod_ginger_remark %}
+    <div id="comments" class="main-content__remarks">
+        {% include "_remarks.tpl" %}
+    </div>
 {% endif %}
