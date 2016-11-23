@@ -2,7 +2,7 @@
 -author("Driebit <info@driebit.nl>").
 
 -mod_title("Ginger banner module").
--mod_description("Shows a banner on top of the site, if this is added in the config of the site or trough the rsc banner.").
+-mod_description("Shows a banner on all pages that can be configured through site config or a resource.").
 -mod_prio(500).
 
 -mod_schema(1).
