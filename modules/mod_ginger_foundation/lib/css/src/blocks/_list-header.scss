@@ -1,5 +1,6 @@
 .list-header {
     @include size(padding, 30, 0);
+    position: relative;
     background: $listHeaderBgColor;
     font-family: $secondaryFontFamily;
 

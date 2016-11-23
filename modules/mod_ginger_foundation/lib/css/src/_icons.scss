@@ -65,6 +65,7 @@
 }
 
 .icon--comments:before,
+.icon--comment:before,
 .icon--remark:before {
     content: "\e606";
 }
@@ -115,7 +116,8 @@
 
 .icon--article:before,
 .icon--text:before,
-.icon--news:before {
+.icon--news:before,
+.icon--story:before {
     content: "\e612";
 }
 
@@ -275,7 +277,8 @@
     .icon--event,
     .icon--image,
     .icon--query,
-    .icon--news {
+    .icon--news,
+    .icon--story {
         @extend .has-rounded-icon;
 
         &:before {

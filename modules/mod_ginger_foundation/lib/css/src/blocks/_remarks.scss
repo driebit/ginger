@@ -1,6 +1,12 @@
 .main-content__remarks {
     .list-header {
         margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .list-header__title {
+        width: 100%;
+        text-align: left;
     }
 }
 
@@ -38,7 +44,7 @@
 
 .remark-form {
     padding-bottom: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     position: relative;
 
     &:after {
