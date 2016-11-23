@@ -1,5 +1,6 @@
+{% with class|default:"person-author__text" as class %}
 {% if items %}
-    <div class="person-author__text">
+    <div class="{{ class }}">
     {{ header }}
     {% for item in items %}
         {% if item.is_visible %}
@@ -9,3 +10,4 @@
     {% endfor %}
     </div>
 {% endif %}
+{% endwith %}
