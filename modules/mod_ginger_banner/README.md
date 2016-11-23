@@ -7,7 +7,7 @@ This [Ginger](https://ginger.nl) module provides the following.
 
 ## How to add a banner for admins
 
-Add your banner message through the config key:
+Add your banner message in your site’s `config` file:
 
 ```erlang
 {mod_ginger_banner, [{message, "The website will be updated between 00:00 - 02:00, some errors may occur"}]}
