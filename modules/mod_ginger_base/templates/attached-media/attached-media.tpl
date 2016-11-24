@@ -1,4 +1,5 @@
-{% with id.o.depiction|without:[id.o.depiction[1]]|without_embedded_media:id as deps %}
+{% with id.media|without_embedded_media:id|make_list|is_visible as images %}
+{% with images|tail as deps %}
 {% with id.o.hasdocument as docs %}
 
     {% if deps or docs %}
@@ -38,5 +39,7 @@
         </div>
 
     {% endif %}
+
+{% endwith %}
 {% endwith %}
 {% endwith %}
