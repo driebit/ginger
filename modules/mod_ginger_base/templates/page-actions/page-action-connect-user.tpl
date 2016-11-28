@@ -53,6 +53,7 @@
                         dialog_open
                         title=_"logon or register"
                         template="_action_dialog_authenticate.tpl"
+                        redirect="#reload"
                         action={dialog_open template="page-actions/page-action-connect-user.tpl" title=_" " id=id predicate=predicate btn_connect_text=btn_connect_text btn_cancel_text=btn_cancel_text can_connect=can_connect }
                         tab="logon"
                         id=id
