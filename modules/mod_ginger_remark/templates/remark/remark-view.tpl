@@ -9,18 +9,22 @@
         <article>
             <div class="remark-item__author">
                <div class="remark-item__author__text">
-                    {% if remark_id.o.author|default:remark_id.creator_id as author %}
+                    {% if remark_id.o.author as author %}
+                        {# Do not show link for anonymous remarks imported from
+                           Anymeta, which have an author named human_user #}
                         {% if author.name == "human_user" %}
-                            {% if remark_id.anonymous_email_visible %}
-                                 <a href="click.to.mail" address="{{ remark_id.anonymous_email|mailencode }}" class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
-                            {% else %}
-                                {{ remark_id.anonymous_name }}
-                            {% endif %}
+                            {{ author.title }}
                         {% else %}
-                            <b><a href="{{ m.rsc[author].page_url }}">{{ m.rsc[author].title }}</a></b>
+                            <a href="{{ author.page_url }}">{{ author.title }}</a>
+                        {% endif %}
+                    {% else %}
+                        {% if remark_id.anonymous_email_visible %}
+                           <a href="click.to.mail" address="{{ remark_id.anonymous_email|mailencode }}"
+                              class="do_mail_decode">{{ remark_id.anonymous_name }}</a>
+                        {% else %}
+                            {{ remark_id.anonymous_name }}
                         {% endif %}
                     {% endif %}
-
                     <time datetime="{{ remark_id.created|date:"Y-F-jTH:i" }}">
                         {% block datetime %}{{ remark_id.created|date:"d F Y" }}{% endblock %}
                     </time>
