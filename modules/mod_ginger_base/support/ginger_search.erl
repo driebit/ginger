@@ -2,6 +2,8 @@
 
 -export([
     search_query/2,
+    search_sql/2,
+    query_arguments/2,
     get_unfindable_categories/1,
     merge_ginger_args/2,
     withdefault/2
@@ -10,20 +12,47 @@
 -include_lib("zotonic.hrl").
 
 -define(GINGER_SEARCH_PIVOT, ginger_search).
+-define(GINGER_SEARCH_ARGUMENTS, [
+    anykeyword,
+    cat_exclude_defaults,
+    cat_exclude_unfindable,
+    custompivots,
+    filters,
+    has_geo,
+    is_findable,
+    keyword,
+    ongoing_on_date
+]).
 
-%% @doc Supports all the usual query model arguments, adds default excludes.
-search_query(#search_query{search={ginger_search, Args}}, Context) ->
+%% @doc Observe Zotonic search queries, transform arguments and forward to the
+%%      next (second first :p) observer.
+-spec search_query(#search_query{}, #context{}) -> #search_sql{} | #search_result{} | undefined.
+search_query(#search_query{search = {ginger_search, Args}} = GingerQuery, Context) ->
+    QueryArgs = query_arguments(Args, Context),
+    ZotonicQuery = GingerQuery#search_query{search = {'query', QueryArgs}},
+
+    %% Forward search query to the next observer. Make sure all custom Ginger
+    %% search arguments have been removed.
+    z_notifier:first(ZotonicQuery, Context).
+
+%% @doc Get SQL representation of search query
+-spec search_sql(#search_query{}, #context{}) -> #search_sql{}.
+search_sql(#search_query{search = {ginger_search, Args}}, Context) ->
+    QueryArgs = query_arguments(Args, Context),
+    search_query:search(QueryArgs, Context).
+
+%% @doc Transform custom Ginger search arguments to Zotonic search arguments.
+%%      Supports all the usual query model arguments, adds default excludes.
+query_arguments(GingerArguments, Context) ->
 
     % This is a special use case that needs a better solution in Zotonic
-    case z_context:get_q(filters, Context) of
+    Args1 = case z_context:get_q(filters, Context) of
         undefined ->
-            Args1 = Args;
+            GingerArguments;
         Filters ->
-            Args1 = lists:append([Args, [{filters, Filters}]])
+            lists:append([GingerArguments, [{filters, Filters}]])
     end,
-
-    QueryArgs = merge_ginger_args(Args1, Context),
-    search_query:search(QueryArgs, Context).
+    merge_ginger_args(Args1, Context).
 
 %% @doc Get categories marked unfindable that must be excluded from search results
 -spec get_unfindable_categories(#context{}) -> list().
@@ -75,7 +104,8 @@ merge_ginger_args(Args, Context) ->
     ),
 
     % Filter duplicate Args
-    remove_duplicates(MergedArgs2).
+    MergedArgs3 = remove_duplicates(MergedArgs2),
+    without_custom_arguments(MergedArgs3).
 
 % Removes duplicates but keeps order
 remove_duplicates(Args) ->
@@ -91,6 +121,17 @@ remove_duplicates(Args) ->
         [],
         Args
     )).
+
+
+%% @doc Strip custom Ginger search properties
+-spec without_custom_arguments(list(tuple())) -> list(tuple()).
+without_custom_arguments(Args) ->
+    lists:filter(
+        fun({Key, _Value}) ->
+            not lists:member(Key, ?GINGER_SEARCH_ARGUMENTS)
+        end,
+        Args
+    ).
 
 %% @doc Add property to proplist if not defined
 withdefault({Key, _} = Prop, Proplist) ->

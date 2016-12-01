@@ -8,11 +8,11 @@
 %% Selects and filters locations data.
 search_query(#search_query{search={ginger_geo, Args}}, Context) ->
 
-    BaseSearch = ginger_search:search_query(#search_query{search={ginger_search, Args}}, Context),
-    
+    BaseSearch = ginger_search:search_sql(#search_query{search = {ginger_search, Args}}, Context),
+
     WhereStr = "rsc.pivot_location_lat IS NOT NULL AND rsc.pivot_location_lng IS NOT NULL",
     WhereSearch = and_where(BaseSearch, WhereStr),
-    
+
     WhereSearch#search_sql{
         select="rsc.id, rsc.pivot_location_lat, rsc.pivot_location_lng, rsc.category_id",
         limit="Limit 5000"
@@ -20,7 +20,7 @@ search_query(#search_query{search={ginger_geo, Args}}, Context) ->
 
 %% @doc Similar to z_geo_search:search_query/2 but result set includes locations and category
 search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
-    
+
     BaseArgs = lists:filter(
         fun({Key, _}) ->
             not lists:member(Key, [distance, lat, lng])
@@ -32,7 +32,7 @@ search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
     Distance = z_convert:to_float(proplists:get_value(distance, Args, 10)),
     {Lat, Lng} = z_geo_search:get_query_center(Args, Context),
     {LatMin, LngMin, LatMax, LngMax} = z_geo_support:get_lat_lng_bounds(Lat, Lng, Distance),
-    
+
     WhereStr = string:join(
         [
             z_convert:to_list(LatMin),
@@ -48,7 +48,7 @@ search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
     ),
     and_where(BaseSearch, WhereStr).
 
-%% @doc Adds a custom where argument to SQL query (using the and operator)  
+%% @doc Adds a custom where argument to SQL query (using the and operator)
 and_where(#search_sql{} = SearchSql, WhereStr) ->
     Where = case SearchSql#search_sql.where of
         [] ->
@@ -59,5 +59,4 @@ and_where(#search_sql{} = SearchSql, WhereStr) ->
     SearchSql#search_sql{
         where = Where
     }.
-    
-      
+
