@@ -452,13 +452,17 @@ get_category_uri([Category|T], Context) ->
     %% Don't use m_rsc:p(Id, uri, Context) as that will return all URIs, even
     %% including generated ones (http://site.com/id/123). We only want to return
     %% a URI if it has been set explicitly.
-    Props = m_rsc:get_visible(Category, Context),
-    case proplists:get_value(uri, Props) of
+    case m_rsc:get_visible(Category, Context) of
         undefined ->
-            %% Fall back to parent category
-            get_category_uri(T, Context);
-        Uri ->
-            Uri
+            undefined;
+        Props ->
+            case proplists:get_value(uri, Props) of
+                undefined ->
+                    %% Fall back to parent category
+                    get_category_uri(T, Context);
+                Uri ->
+                    Uri
+            end
     end;
 get_category_uri(Category, Context) ->
     get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
