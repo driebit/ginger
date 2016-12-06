@@ -51,6 +51,8 @@ Sites overview
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
   is available at [http://localhost](http://localhost) for Docker or
   http://ginger.dev for Vagrant. Log in with empty password.
+* Make sure to add the hostnames of individual sites (e.g. `yoursite.dev`) to your `/etc/hosts`
+  file.
 
 Checking out sites
 ------------------
