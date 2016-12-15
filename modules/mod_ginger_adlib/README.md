@@ -21,13 +21,22 @@ Usage
 
 (Describe how people can use your module...)
 
-## Do this
+## Search
 
-(Add same chapter headings...)
+In your template:
 
-## Do that
+```dtl
+{% with m.search[{adlib search="all" database="photo" pagelen=10}] as records %}
+    {% for record in records %}
+        {% with m.ginger_adl
+        ib[record] as record %}
+            {{ record['object.title'] }}
+            {# And other record properties #}
+        {% endwith %}}
+    {% endfor %}
+{% endwith %}
 
-(And show how it‘s done by supplying code examples, for instance:
+```
 
 ## Models
 
