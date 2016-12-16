@@ -57,6 +57,7 @@
             });
 
             $(document).on('click', $.proxy(me._documentClick, me));
+            $(document).on('touchend', $.proxy(me._documentClick, me));
             $(document).on('keyup', $.proxy(me._documentKeyUp, me));
 
         },

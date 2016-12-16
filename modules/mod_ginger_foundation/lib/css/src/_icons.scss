@@ -125,7 +125,9 @@
     content: "\e613";
 }
 
-.icon--phone-horn:before {
+.icon--phone-horn:before,
+.icon--phone:before,
+.icon--telephone:before {
     content: "\e614";
 }
 
