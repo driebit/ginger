@@ -25,12 +25,16 @@ as
             </div>
         {% else %}
 
-           {% if id.o.hasbanner[1].depiction.width > 500 %}
-                <div class="masthead do_parallax {{ extraClasses }}" style="background-image: url({% image_url id.o.hasbanner[1].depiction.id mediaclass='masthead' %}); background-size: cover;"></div>
-            {% elif id.o.header[1].depiction.width > 500 %}
-                <div class="masthead do_parallax {{ extraClasses }}" style="background-image: url({% image_url id.o.header[1].depiction.id mediaclass='masthead' %}); background-size: cover;"></div>
-            {% elif id.depiction.width > 500 and not (id.category.is_a.person or id.category.is_a.media) %}
+           {% if id.o.hasbanner[1].depiction.width > 500 or id.o.header[1].depiction.width > 500 %}
+                {% with id.o.hasbanner[1].depiction|default:id.o.header[1].depiction as dep %}
+                    <div class="masthead do_parallax {{ extraClasses }}" style="background-image: url({% image_url dep.id mediaclass='masthead' %}); background-size: cover;"></div>
+                {% endwith %}
+            {% elseif id.depiction.width > 500 and not (id.category.is_a.person or id.category.is_a.media) %}
                 <div class="masthead do_parallax {{ extraClasses }}" style="background-image: url({% image_url id.depiction.id mediaclass='masthead' %}); background-size: cover;"></div>
+            {% elseif id.s.haspart.o.hasbanner[1].depiction.width > 500 or id.haspart[1].depiction.width > 500 %}
+                {% with id.s.haspart.o.hasbanner[1].depiction|default:id.haspart[1].depiction as dep %}
+                    <div class="masthead do_parallax {{ extraClasses }}" style="background-image: url({% image_url dep.id mediaclass='masthead' %}); background-size: cover;"></div>
+                {% endwith %}
             {% else %}
                 <div class="masthead {{ extraClasses }}"></div>
             {% endif %}
