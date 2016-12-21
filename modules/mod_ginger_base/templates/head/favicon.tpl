@@ -1,0 +1,1 @@
+<link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
