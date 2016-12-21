@@ -16,8 +16,7 @@
         {% endblock %}
     </title>
 
-    <link rel="icon" href="/lib/images/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/lib/images/favicon.ico" type="image/x-icon" />
+    {% include "head/favicon.tpl" %}
 
     {% lib
         "bootstrap/css/bootstrap.min.css"
