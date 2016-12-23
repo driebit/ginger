@@ -1,6 +1,6 @@
 {% extends "base.tpl" %}
 
-{% block title %}{{ id.title }}{% endblock %}
+{% block title %}{_ Search _}{% endblock %}
 
 {% block body_class %}t--search{% endblock %}
 
