@@ -116,7 +116,8 @@ notify_followers(RemarkId, Context) ->
         fun(Author) ->
             Vars = [ {about, About},
                      {remark, RemarkId},
-                     {person, Author}],
+                     {person, Author},
+                     {author, "true"}],
             Email = m_rsc:p(Author, email, Context),            
             notify_email(Email, Vars, Context)
         end,
