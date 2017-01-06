@@ -9,26 +9,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-09-05 12:17+0200\n"
+"POT-Creation-Date: 2017-01-06 16:48+0100\n"
+"PO-Revision-Date: 2017-01-06 16:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:6
+#: user/modules/mod_ginger_remark/templates/remark/remark-number-of.tpl:1
 msgid "1 remark"
 msgstr "1 reactie"
+
+#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:11
+msgid "A new comment is posted on a story you are following"
+msgstr "Er is een nieuwe reactie op een verhaal dat je aan het volgen bent"
+
+#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:9
+msgid "A new comment is posted on a story you authored"
+msgstr "Er is een nieuwe reactie op een verhaal dat je geschreven hebt"
 
 #: user/modules/mod_ginger_remark/templates/remark/remark-edit.tpl:61
 msgid "Add link"
 msgstr "Voeg link toe"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:13
-#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:41
+#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:14
+#: user/modules/mod_ginger_remark/templates/remark/remark-list.tpl:43
 msgid "Add your reaction"
 msgstr "Voeg je reactie toe"
 
@@ -37,7 +45,7 @@ msgstr "Voeg je reactie toe"
 msgid "Add your remark"
 msgstr "Voeg je reactie toe"
 
-#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:16
+#: user/modules/mod_ginger_remark/templates/_email-follow.tpl:21
 msgid "By"
 msgstr "Door"
 
@@ -79,7 +87,7 @@ msgstr "Naam"
 msgid "Next page"
 msgstr "Volgende pagina"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:4
+#: user/modules/mod_ginger_remark/templates/remark/remark-number-of.tpl:1
 msgid "No remarks"
 msgstr "Geen reacties"
 
@@ -99,7 +107,7 @@ msgstr "Reactie"
 msgid "Reaction added to"
 msgstr "Reactie toegevoegd aan"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:33
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:37
 msgid "Reaction to:"
 msgstr "Reactie op:"
 
@@ -123,15 +131,15 @@ msgstr "Ontvolg"
 msgid "cancel"
 msgstr "annuleer"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:64
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:68
 msgid "delete"
 msgstr "verwijder"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:62
+#: user/modules/mod_ginger_remark/templates/remark/remark-view.tpl:66
 msgid "edit"
 msgstr "bewerk"
 
-#: user/modules/mod_ginger_remark/templates/remark/remark-list-header.tpl:8
+#: user/modules/mod_ginger_remark/templates/remark/remark-number-of.tpl:1
 msgid "remarks"
 msgstr "reacties"
 

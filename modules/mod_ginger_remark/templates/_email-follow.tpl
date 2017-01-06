@@ -4,8 +4,14 @@
 
 {% block body %}
     <p>Beste{% if person.name_first %} {{ person.name_first }}{% else %} {{ person.title }}{% endif %},</p>
-
-    <p>Er is een nieuwe reactie op een verhaal dat je aan het volgen bent:</p>
+    {% if author == "true" %}
+        {# TODO: translations in email don't work? #}
+        <p>Er is een nieuwe reactie op een verhaal dat je geschreven hebt:</p>
+        {# {_ A new comment is posted on a story you authored _} #}
+    {% else %}
+        <p>Er is een nieuwe reactie op een verhaal dat je aan het volgen bent:</p>
+        {# {_ A new comment is posted on a story you are following _} #}
+    {% endif %}
     <table cellpadding="0" cellspacing="0" border="0" style="background-color: #f9f9f9;">
         <tr><td colspan="3" height="10"></td></tr>
         <tr>
