@@ -104,17 +104,32 @@ observe_acl_is_allowed(#acl_is_allowed{action=insert, object=#acl_edge{subject_i
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
 
+notify_email(Email, Vars, Context) ->
+    z_email:send_render(Email, "_email-follow.tpl", Vars, z_acl:sudo(Context)).
+
 notify_followers(RemarkId, Context) ->
     About = m_rsc:o(RemarkId, about, 1, Context),
+    {rsc_list, Authors} = m_rsc:o(About, author, Context),
     {rsc_list, Followers} = m_rsc:s(About, follow, Context),
+
+    lists:foreach(
+        fun(Author) ->
+            Vars = [ {about, About},
+                     {remark, RemarkId},
+                     {person, Author}],
+            Email = m_rsc:p(Author, email, Context),            
+            notify_email(Email, Vars, Context)
+        end,
+        Authors
+    ),
 
     lists:foreach(
         fun(Follower) ->
             Vars = [ {about, About},
                      {remark, RemarkId},
                      {person, Follower}],
-            Email = m_rsc:p(Follower, email, Context),
-            z_email:send_render(Email, "_email-follow.tpl", Vars, z_acl:sudo(Context))
+            Email = m_rsc:p(Follower, email, Context),            
+            notify_email(Email, Vars, Context)
         end,
         Followers
     ),
@@ -125,6 +140,7 @@ is_being_published(#rsc_update_done{post_props = PostProps, pre_props = PreProps
     PostPublished = proplists:get_value(is_published, PostProps),
     ((PrePublished == false) or (PrePublished == undefined)) and (PostPublished == true).
 
+% Notify followers, authors that a new remark has been added
 observe_rsc_update_done(#rsc_update_done{id = RemarkId, post_is_a = [text,remark]} = RscUpdateDone, Context) ->
     case is_being_published(RscUpdateDone) of
         true ->
