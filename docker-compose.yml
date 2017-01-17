@@ -16,6 +16,8 @@ services:
             - 9200:9200
         volumes:
           - elasticsearch-data:/usr/share/elasticsearch/data
+        environment:
+            ES_JAVA_OPTS: "-Xms500m -Xmx500m"
 
     kibana:
         image: kibana:5.0
