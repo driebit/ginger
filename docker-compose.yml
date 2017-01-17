@@ -11,7 +11,7 @@ services:
         working_dir: /data
 
     elasticsearch:
-        image: elasticsearch:5.0
+        image: elasticsearch:5.1-alpine
         ports:
             - 9200:9200
         volumes:
