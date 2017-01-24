@@ -28,8 +28,7 @@ In your template:
 ```dtl
 {% with m.search[{adlib search="all" database="photo" pagelen=10}] as records %}
     {% for record in records %}
-        {% with m.ginger_adl
-        ib[record] as record %}
+        {% with m.ginger_adlib[record] as record %}
             {{ record['object.title'] }}
             {# And other record properties #}
         {% endwith %}}
