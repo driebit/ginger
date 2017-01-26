@@ -19,8 +19,6 @@ button to enter the URL to your Adlib API instance.
 Usage
 -----
 
-(Describe how people can use your module...)
-
 ## Search
 
 In your template:

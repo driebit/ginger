@@ -24,9 +24,7 @@ search(#search_query{search = {adlib, Args}, offsetlimit = {From, Size}}, Contex
         }
     }} = jsx:decode(list_to_binary(Json), [return_maps]),
 
-    ?DEBUG(Records),
-
-    #search_result{result = Records, total = Hits}.
+    #search_result{result = Records, total = binary_to_integer(Hits)}.
 
 request(undefined, _Params) ->
     throw({error, adlib_url_must_be_defined});
