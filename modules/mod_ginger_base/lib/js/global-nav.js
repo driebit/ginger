@@ -13,10 +13,10 @@
             me.body                = $('body:eq(0)'),
             me.menuButton          = $(me.element.find('#toggle-menu')[0]);
 
-            me.menuButton.on('click', this._toggleMenu.bind(this));
-            me.document.on('click', this._closeMenu.bind(this));
+            me.menuButton.on('click', me._toggleMenu.bind(me));
+            me.document.on('click', me._closeMenu.bind(me));
 
-            me.document.on('menu:close', this._closeMenu.bind(this));
+            me.document.on('menu:close', me._closeMenu.bind(me));
 
             if ('ontouchstart' in document.documentElement) {
                 if ($('.global-nav__menu__dropdown').length > 0) {
@@ -48,7 +48,8 @@
         },
 
         _closeMenu: function(event) {
-            this._toggleMenu(event, true);
+            var me = this;
+            me._toggleMenu(event, true);
         },
 
         _toggleMenu: function(event, close) {
