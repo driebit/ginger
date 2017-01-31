@@ -7,16 +7,16 @@
         },
 
         init: function() {
-
             var me = this;
 
             me.document            = $(document),
             me.body                = $('body:eq(0)'),
             me.menuButton          = $(me.element.find('#toggle-menu')[0]);
 
-            me.menuButton.on('click', $.proxy(me._toggleMenu, me));
+            me.menuButton.on('click', this._toggleMenu.bind(this));
+            me.document.on('click', this._closeMenu.bind(this));
 
-            $(document).on('menu:close', $.proxy(me._closeMenu, me));
+            me.document.on('menu:close', this._closeMenu.bind(this));
 
             if ('ontouchstart' in document.documentElement) {
                 if ($('.global-nav__menu__dropdown').length > 0) {
@@ -48,12 +48,10 @@
         },
 
         _closeMenu: function(event) {
-            var me = this;
-            me._toggleMenu(event, true);
+            this._toggleMenu(event, true);
         },
 
         _toggleMenu: function(event, close) {
-
             var me = this;
 
             me.menuButton.toggleClass('is-active');
