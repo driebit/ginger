@@ -9,6 +9,7 @@ include .env
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=your_site Create a new site"
+	@echo "  disco                  Make your sites available at http://[sitename].[username].ginger.dev"
 	@echo "  dump-db                Dump database to /data directory using pg_dump (dumpsite=site-name)"
 	@echo "  gulp site=your_site    Run Gulp in a site directory"
 	@echo "  import-db-file         Import database from file (db=site-name file=site-dump.sql)"
