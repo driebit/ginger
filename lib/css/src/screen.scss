@@ -1,0 +1,28 @@
+// Global
+
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/variables';
+@import 'variables';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/mixins';
+@import 'base';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/icons';
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/buttons';
+
+//Vendors
+
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/jquery.fancybox';
+@import '../../../../../modules/mod_ginger_base/lib/css/vendors/slick';
+
+// Blocks
+
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/*';
+@import 'blocks/*'
+
+// Layout
+
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/*';
+@import 'layout/*'
+
+// Pages
+
+@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/*';
+@import 'pages/*'
