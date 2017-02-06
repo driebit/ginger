@@ -2,7 +2,7 @@
 -module(mod_ginger_adlib_elasticsearch).
 -author("Driebit <tech@driebit.nl>").
 
--mod_title("Adlib").
+-mod_title("Adlib in Elasticsearch").
 -mod_prio(500).
 -mod_description("Makes Adlib data searchable by indexing it in Elasticsearch").
 -mod_depends([mod_elasticsearch, mod_ginger_adlib]).
@@ -15,8 +15,13 @@
 -include_lib("zotonic.hrl").
 
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
-    ?DEBUG(Record),
-    ?DEBUG(erlastic_search:index_doc_with_id(index(Context), Database, Priref, Record)).
+    MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
+    case erlastic_search:index_doc_with_id(index(Context), Database, Priref, MappedRecord) of
+        {ok, _} ->
+            ok;
+        {error, Message} ->
+            lager:error("Record with priref ~p could not be saved to Elasticsearch: ~p", [Priref, Message])
+    end.
 
 %% @doc Get Elasticsearch index name for Adlib resources
 -spec index(z:context()) -> binary().

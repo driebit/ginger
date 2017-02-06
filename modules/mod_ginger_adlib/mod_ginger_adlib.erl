@@ -14,6 +14,8 @@
     pid_observe_tick_1h/3,
     pid_observe_tick_24h/3,
     endpoint/1,
+    pull_updates/2,
+    pull_updates/3,
     init/1,
     handle_call/3,
     handle_cast/2,
@@ -21,7 +23,7 @@
     terminate/2,
     code_change/3,
     start_link/1
-    , pull_updates/2, pull_updates/3]).
+]).
 
 
 -include_lib("zotonic.hrl").
@@ -33,7 +35,7 @@
 -spec pull_updates(calendar:date(), z:context()) -> ok.
 pull_updates(Since, Context) ->
     pull_updates(Since, 1, Context).
-pull_updates({Year, Month, Day}, StartFrom, Context) ->
+pull_updates({Year, Month, Day} = Since, StartFrom, Context) ->
     Database = <<"AMCollect">>,
     Args = [
         {search, <<"all">>},
@@ -46,8 +48,8 @@ pull_updates({Year, Month, Day}, StartFrom, Context) ->
     ],
 
     #search_result{result = Records} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
-    [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records].
-%%    pull_updates(Since, StartFrom + 20, Context).
+    [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
+    pull_updates(Since, StartFrom + 20, Context).
 
 adlib_update(Record, Database) ->
     #adlib_update{record = Record, database = Database}.
