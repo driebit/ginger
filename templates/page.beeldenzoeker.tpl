@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "base-beeldenzoeker.tpl" %}
 
 {% block body_class %}t--home{% endblock %}
 

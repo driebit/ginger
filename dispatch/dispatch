@@ -1,0 +1,3 @@
+[
+	{beeldenzoeker, ["beeldenzoeker"], controller_template, [ {template, "page.beeldenzoeker.tpl"}, {id, beeldenzoeker} ]}
+].
