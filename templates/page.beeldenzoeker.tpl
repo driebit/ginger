@@ -6,21 +6,24 @@
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
     <main role="main" data-page-id="{{ id }}">
-        <div class="home__header do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;">
+        <div class="home__header do_parallax" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
             <div class="home__title">
-                {% include "page-title/page-title.tpl" id=id %}
-
-                {% include "subtitle/subtitle.tpl" id=id %}
+                <h1>{{ id.title }}</h1>
+                {% if id.subtitle %}
+                    <h2>{{ id.subtitle }}</h2>
+                {% endif %}
             </div>
         </div>
-    	{% include "search-suggestions/search-form.tpl" id=id placeholder=placeholder.title
-            formclass="home-search"
-            wrapperclass="home-search__container"
-            buttonclass="btn--search home-search-submit"
-            togglebutton="false"
-            suggestionsclass="home-search__suggestions"
-            iconclass="icon--search"
-        %}
+        <div class="page-search">
+        	{% include "search-suggestions/search-form.tpl" id=id placeholder=placeholder.title
+                formclass="page-search__search"
+                wrapperclass="page-search__container"
+                buttonclass="btn--search page-search-submit"
+                togglebutton="false"
+                suggestionsclass="page-search__suggestions"
+                iconclass="icon--search"
+            %}
+        </div>
 
         <article class="main-content">
 
