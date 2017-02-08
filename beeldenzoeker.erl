@@ -2,8 +2,8 @@
 -author("Driebit <tech@driebit.nl>").
 
 -mod_title("Beeldenzoeker").
--mod_description("Collectie doorzoeker voor de collectie van Hart Amsterdam").
--mod_prio(10).
+-mod_description("Beeldenzoeker module om digitale collecties in te zien").
+-mod_prio(50).
 -mod_depends([mod_ginger_base]).
 -mod_schema(1).
 
