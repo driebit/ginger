@@ -6,7 +6,7 @@
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
     <main role="main" data-page-id="{{ id }}">
-        <div class="home__header do_parallax" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
+        <div class="home__header" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
             <div class="home__title">
                 <h1>{{ id.title }}</h1>
                 {% if id.subtitle %}

@@ -22,7 +22,7 @@
         unfinished_or_nodate,
         authoritative
 %}
-    {{ search_text }}
+
     {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text=search_text}] as result %}
         {% include results_template result=result %}
     {% endwith %}
