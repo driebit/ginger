@@ -1,0 +1,8 @@
+.list__item--beeldenzoeker {
+	@extend .list__item;
+
+	.list__item__content__title {
+		font-size: 20px;
+		font-family: "Roboto";
+	}
+}

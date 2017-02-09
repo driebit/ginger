@@ -45,10 +45,32 @@
 	}
 }
 
+.home-section__title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.home-featured {
+	background: #F4F7F6;
+
+	.list {
+		padding-top: 0;
+	}
+
+	.home-section__title {
+		padding: 20px 0;
+		@extend .main-container;
+	}
+}
+
 @include mq(min-width, $mediumBreakpoint) {
 	.home__header {
 		padding: 120px 0 40px;
 		height: auto;
+	}
+
+	.home-section__title { 
+		font-size: 28px;
 	}
 }
 
