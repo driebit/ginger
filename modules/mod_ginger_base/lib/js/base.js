@@ -82,8 +82,6 @@
                 if (isOpen) {
                     $(document).trigger('search:close');
                 }
-
-                $(document).trigger('menu:close');
             }
 
         },
