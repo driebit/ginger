@@ -25,7 +25,7 @@
             %}
         </div>
 
-        <div class="home-featured">
+        <div class="home-selection">
             <h2 class="home-section__title">{_ A selection from the collection of _} {{ m.site.beeldenzoeker_title }}</h2>
 
             {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" pagelen="3"}] as result %}
@@ -35,9 +35,21 @@
 
         <div class="home-current">
             <div class="main-container">
-                <h2 class="home-section__title">{_ Current _}</h2>
+                <h2 class="home-section__title">Actueel</h2>
 
-                {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="10"}] as result %}
+                {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="3"}] as result %}
+
+                    {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}                
+
+                {% endwith %}
+            </div>
+        </div>
+
+        <div class="home-featured">
+            <div class="main-container">
+                <h2 class="home-section__title">Uitgelicht</h2>
+
+                {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="20"}] as result %}
 
                     {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
 

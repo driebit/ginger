@@ -46,11 +46,12 @@
 }
 
 .home-section__title {
+	padding: 20px 0;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.home-featured {
+.home-selection {
 	background: #F4F7F6;
 
 	.list {
@@ -58,8 +59,21 @@
 	}
 
 	.home-section__title {
-		padding: 20px 0;
 		@extend .main-container;
+	}
+}
+
+.home-current {
+	.main-container {
+		border-bottom: 1px solid #E0E0E0;
+	}
+}
+
+.home-featured {
+	.list {
+		width: 100%;
+		max-width: none;
+		padding: 0;
 	}
 }
 
@@ -69,7 +83,12 @@
 		height: auto;
 	}
 
+	.home-featured {
+
+	}
+
 	.home-section__title { 
+		padding: 40px 0;
 		font-size: 28px;
 	}
 }

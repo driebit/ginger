@@ -1,8 +1,35 @@
 .list__item--beeldenzoeker {
 	@extend .list__item;
+	font-family: $secondaryFontFamily;
+
+	img {
+		filter: none;
+	}
+
+	.list__item__image {
+		min-height: 200px;
+		background: #4B535D;
+	}
 
 	.list__item__content__title {
 		font-size: 20px;
-		font-family: "Roboto";
+		font-family: $secondaryFontFamily;
+		font-weight: 700;
+	}
+
+	.list__item__content {
+		padding: 10px 10px 20px;
+		font-size: 14px;
+		color: #6A727D;
+	}
+
+	.list__item__content__meta {
+		height: auto;
+		padding: 0;
+		margin: 0 0 10px;
+		position: static;
+		background: none;
+		font-size: 12px;
+		color: #A2AEBE;
 	}
 }
