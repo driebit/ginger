@@ -25,14 +25,10 @@
             %}
         </div>
 
-        <article class="main-content">
+        <div class="home-featured">
+            <h2 class="home-featured__title">{_ A selection from the collection of _} {{ m.site.beeldenzoeker_title }}</h2>
 
-            {% include "summary/summary.tpl" id=id %}
-
-            {% include "body/body.tpl" id=id %}
-
-            {% include "home/home-buttons.tpl" id=id %}
-        </article>
+        </div>
 
         {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="kat"}] as results %}
             {% for result in results %}
