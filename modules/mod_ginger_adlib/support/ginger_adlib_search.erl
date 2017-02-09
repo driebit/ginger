@@ -14,17 +14,7 @@ search(#search_query{search = {adlib, Args}, offsetlimit = {From, Size}}, Contex
     | Args],
 
     Json = request(mod_ginger_adlib:endpoint(Context), Params),
-
-    #{<<"adlibJSON">> := #{
-        <<"recordList">> := #{
-            <<"record">> := Records
-        },
-        <<"diagnostic">> := #{
-            <<"hits">> := Hits
-        }
-    }} = jsx:decode(list_to_binary(Json), [return_maps]),
-
-    #search_result{result = Records, total = binary_to_integer(Hits)}.
+    search_result(jsx:decode(list_to_binary(Json), [return_maps])).
 
 request(undefined, _Params) ->
     throw({error, adlib_url_must_be_defined});
@@ -50,3 +40,13 @@ request(Endpoint, Params) ->
             lager:info("Adlib client error for URL ~p: ~p", [Url, Response]),
             undefined
     end.
+
+%% @doc Process search result.
+%%      The only way to determine if there are results to be returned, is to
+%%      look for the {"recordList": ...} JSON element.
+-spec search_result(map()) -> #search_result{}.
+search_result(#{<<"adlibJSON">> := #{<<"recordList">> := RecordList, <<"diagnostic">> := #{<<"hits">> := Hits}}}) ->
+    #{<<"record">> := Records} = RecordList,
+    #search_result{result = Records, total = binary_to_integer(Hits)};
+search_result(#{<<"adlibJSON">> := #{<<"diagnostic">> := #{<<"hits">> := Hits}}}) ->
+    #search_result{result = [], total = binary_to_integer(Hits)}.

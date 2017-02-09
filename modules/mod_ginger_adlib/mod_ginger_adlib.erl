@@ -35,21 +35,21 @@
 -spec pull_updates(calendar:date(), z:context()) -> ok.
 pull_updates(Since, Context) ->
     pull_updates(Since, 1, Context).
-pull_updates({Year, Month, Day} = Since, StartFrom, Context) ->
+pull_updates({_Year, _Month, _Day} = Since, StartFrom, Context) ->
     Database = <<"AMCollect">>,
     Args = [
-        {search, <<"all">>},
         {database, Database},
-        {modification, <<">",
-            (integer_to_binary(Year))/binary,
-            (integer_to_binary(Month))/binary,
-            (integer_to_binary(Day))/binary>>
-        }
+        {search, <<"modification>", (z_datetime:format(Since, "Ymd", Context))/binary>>}
     ],
 
     #search_result{result = Records} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
-    [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
-    pull_updates(Since, StartFrom + 20, Context).
+    case Records of
+        [] ->
+            ok;
+        _ ->
+            [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
+            pull_updates(Since, StartFrom + 20, Context)
+    end.
 
 adlib_update(Record, Database) ->
     #adlib_update{record = Record, database = Database}.

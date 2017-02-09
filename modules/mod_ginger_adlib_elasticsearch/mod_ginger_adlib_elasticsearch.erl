@@ -16,6 +16,7 @@
 
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
     MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
+    lager:info("Indexing Adlib record ~s", [Priref]),
     case erlastic_search:index_doc_with_id(index(Context), Database, Priref, MappedRecord) of
         {ok, _} ->
             ok;
