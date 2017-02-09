@@ -33,6 +33,19 @@
 
             {% include "home/home-buttons.tpl" id=id %}
         </article>
+
+        {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="kat"}] as results %}
+            {% for result in results %}
+
+                <b>{{ result._source.title }} </b>
+                {% for dimension in result._source.dimension %}
+                    {# Test nested values #}
+                    {{ dimension['dimension.type']}}: {{ dimension['dimension.value']}} {{ dimension['dimension.unit']}}
+                {% endfor %}
+                priref: {{ result._source.priref }}<br>
+            {% endfor %}
+        {% endwith %}
+
         {# Een selectie uit de collectie #}
 
         {# Uitgelicht is_feautred #}
