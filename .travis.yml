@@ -21,5 +21,4 @@ before_install:
 script:
     - docker version
     - docker-compose version
-    - docker pull driebit/zotonic:0.x-dev
     - docker-compose run zotonic make

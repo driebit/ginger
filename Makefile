@@ -9,6 +9,7 @@ include .env
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=your_site Create a new site"
+	@echo "  disco                  Make your sites available at http://[sitename].[username].ginger.dev"
 	@echo "  dump-db                Dump database to /data directory using pg_dump (dumpsite=site-name)"
 	@echo "  gulp site=your_site    Run Gulp in a site directory"
 	@echo "  import-db-file         Import database from file (db=site-name file=site-dump.sql)"
@@ -28,12 +29,11 @@ gulp $(site):
 
 import-db-file $(db) $(file):
 	@echo "> Importing $(db) from $(file)"
-	@docker-compose stop zotonic
-	@docker-compose up -d postgres
+	@docker-compose exec zotonic bin/zotonic stopsite $(db)
 	@docker-compose exec postgres psql -U zotonic -c "DROP DATABASE IF EXISTS $(db)"
 	@docker-compose exec postgres psql -U zotonic -c "CREATE DATABASE $(db) ENCODING 'UTF8' TEMPLATE template0"
 	@docker-compose exec postgres psql $(db) -U zotonic -h localhost -f $(file)
-	$(MAKE) up
+	@docker-compose exec zotonic bin/zotonic startsite $(db)
 
 import-db-backup $(host) $(site):
 	@echo "> Importing $(REMOTE_BACKUP_FILE) from $(host) into $(site)"
