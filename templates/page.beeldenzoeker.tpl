@@ -29,7 +29,7 @@
             <h2 class="home-section__title">{_ A selection from the collection of _} {{ m.site.beeldenzoeker_title }}</h2>
 
             {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" pagelen="3"}] as result %}
-                {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}                
+                {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
         </div>
 
@@ -38,9 +38,7 @@
                 <h2 class="home-section__title">Actueel</h2>
 
                 {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="3"}] as result %}
-
-                    {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}                
-
+                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
                 {% endwith %}
             </div>
         </div>
@@ -53,7 +51,7 @@
 
                     {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
 
-                    {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}                
+                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
 
                     {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
                 {% endwith %}
@@ -64,16 +62,19 @@
             {% for result in results %}
                 {% with result._source as record %}
 
-                    {% if record.reproduction|first as reproduction %}
-                        <img src="{{ m.config.mod_ginger_adlib.url.value}}?server=images&command=getcontent&value={{ reproduction['reproduction.reference'] }}&width=100&height=100">
-                    {% endif %}
+                    {% for reproduction in record.reproduction %}
+                        {% if reproduction['reproduction.identifier_URL'] %}
+
+                            <img src="{{ m.config.mod_ginger_adlib.url.value}}?server=images&command=getcontent&value={{ reproduction['reproduction.identifier_URL'] }}&width=100&height=100">
+                        {% endif %}
+                    {% endfor %}
 
                     <b>{{ record.title }} </b>
                     {% for dimension in record.dimension %}
-                        
+
                         {{ dimension['dimension.type']}}: {{ dimension['dimension.value']}} {{ dimension['dimension.unit']}}
                     {% endfor %}
-                    priref: {{ record.priref }}<br>
+                    priref: {{ record.priref }}, object: {{ record.object_number }}<br>
                 {% endwith %}
             {% endfor %}
         {% endwith %} #}
@@ -85,7 +86,7 @@
 
                         {% include "list/list-header.tpl" id=id list_title=r.title items=result %}
 
-                        {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
+                        {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
 
                     {% endwith %}
 
@@ -95,7 +96,7 @@
 
                         {% include "list/list-header.tpl" id=r list_title=r.title items=result %}
 
-                        {% include "list/list.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
+                        {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id %}
 
                     {% endwith %}
                 {% endif %}

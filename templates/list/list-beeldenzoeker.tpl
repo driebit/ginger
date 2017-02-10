@@ -29,7 +29,7 @@ as
       {% endif %}
 
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-            {% for r in items|is_visible %}
+            {% for r in items %}
                 {% if r|length == 2 %}
                     {% with r|element:1 as item %}
                         {% catinclude list_template item %}
