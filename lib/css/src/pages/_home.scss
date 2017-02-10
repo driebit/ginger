@@ -52,10 +52,15 @@
 }
 
 .home-selection {
-	background: #F4F7F6;
+	background: #EDEDED;
 
 	.list {
 		padding-top: 0;
+	}
+
+	.list__item--beeldenzoeker,
+	.list__item__content {
+		background: none;
 	}
 
 	.home-section__title {
@@ -63,13 +68,12 @@
 	}
 }
 
-.home-current {
-	.main-container {
-		border-bottom: 1px solid #E0E0E0;
-	}
+.home-events {
+	@extend .home-selection;
+	background: #F3F3F3;
 }
 
-.home-featured {
+.home-latest {
 	.list {
 		width: 100%;
 		max-width: none;

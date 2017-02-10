@@ -19,7 +19,7 @@ as
     iconclass
 %}
 
-<form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">
+<form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% url beeldenzoeker_search %}" method="get">
     <div class="{{ wrapperclass }}">
         <input type="text"
             class="do_search_suggestions"

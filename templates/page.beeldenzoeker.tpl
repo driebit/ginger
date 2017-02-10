@@ -20,6 +20,7 @@
                 wrapperclass="page-search__container"
                 buttonclass="btn--search page-search-submit"
                 togglebutton="false"
+                buttonlabel=_"Search"
                 suggestionsclass="page-search__suggestions"
                 iconclass="icon--search"
             %}
@@ -33,19 +34,17 @@
             {% endwith %}
         </div>
 
-        <div class="home-current">
-            <div class="main-container">
-                <h2 class="home-section__title">Actueel</h2>
+        <div class="home-events">
+            <h2 class="home-section__title">Foto's van evenementen van het museum</h2>
 
-                {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="3"}] as result %}
-                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
-                {% endwith %}
-            </div>
+            {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="3"}] as result %}
+                {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+            {% endwith %}
         </div>
 
-        <div class="home-featured">
+        <div class="home-latest">
             <div class="main-container">
-                <h2 class="home-section__title">Uitgelicht</h2>
+                <h2 class="home-section__title">Recent toegevoegd</h2>
 
                 {% with m.search.paged[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen="20"}] as result %}
 

@@ -16,25 +16,42 @@
 	position: relative;
 
 	.page-search-submit {
+		padding-top: 7px;
 		border-radius: 0;
+		font-size: 13px;
+		font-weight: 600;
 	}
 }
 
 .page-search-submit {
-	width: 45px;
 	height: 45px;
 	position: absolute;
 	right: 0px;
 	top: 0px;
-	text-indent: -9999px;
+	text-indent: 0px;
 	border-radius: 0;
+	text-transform: uppercase;
 
 	i {
+		display: none;
+	}
+
+	&:before {
+		content: '';
+		width: 10px;
+		height: 10px;
 		position: absolute;
-		left: 15px;
-		top: 10px;
-		text-indent: 0px;
-		font-size: 25px;
+		top: 50%;
+		left: -10px;
+		background: $mainThemeColor;
+		transform: rotate(45deg) translateY(-50%);
+	}
+
+	&:hover:before,
+	&:active:before,
+	&:focus:before,
+	&:active:focus:before {
+		background-color: darken($mainThemeColor, 5);
 	}
 }
 

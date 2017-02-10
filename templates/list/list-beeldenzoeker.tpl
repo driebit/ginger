@@ -29,6 +29,7 @@ as
       {% endif %}
 
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
+            {# TODO: is visible filter werkend krijgen #}
             {% for r in items %}
                 {% if r|length == 2 %}
                     {% with r|element:1 as item %}
