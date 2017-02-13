@@ -14,32 +14,32 @@
 ]).
 
 manage_schema(_Version, _Context) ->
-  #datamodel{
-    categories=[
-    ],
-    resources=[
-    	{beeldenzoeker, text, [
-          {title, {trans, [{nl, <<"Beeldenzoeker">>},
-                           {en, <<"Media discovery">>}]}},
-          {language, [en,nl]},
-          {is_unfindable, true}
-      ]},
-      {beeldenzoeker, menu, [
-          {title, "Beeldenzoeker menu"}
-      ]}
-    ],
-    edges=[
-    ],
-    predicates=[
-    ],
-    data = [
-        % {acl_rules, [
-        %     % {rsc, [
-        %     %     {acl_user_group_id, acl_user_group_members},
-        %     %     {actions, [insert, update, link, delete]},
-        %     %     {category_id, project},
-        %     %     {is_owner, true}
-        %     % ]}
-        % ]}
-    ]
-  }.
+    #datamodel{
+        categories = [
+        ],
+        resources = [
+            {beeldenzoeker, text, [
+                {title, {trans, [{nl, <<"Beeldenzoeker">>},
+                    {en, <<"Media discovery">>}]}},
+                {language, [en, nl]},
+                {is_unfindable, true}
+            ]},
+            {beeldenzoeker, menu, [
+                {title, "Beeldenzoeker menu"}
+            ]}
+        ],
+        edges = [
+        ],
+        predicates = [
+        ],
+        data = [
+            % {acl_rules, [
+            %     % {rsc, [
+            %     %     {acl_user_group_id, acl_user_group_members},
+            %     %     {actions, [insert, update, link, delete]},
+            %     %     {category_id, project},
+            %     %     {is_owner, true}
+            %     % ]}
+            % ]}
+        ]
+    }.
