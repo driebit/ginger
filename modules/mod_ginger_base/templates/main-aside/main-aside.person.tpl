@@ -1,6 +1,6 @@
         {% if id.s.author %}
             <aside class="main-aside">
-                {% with m.search[{ginger_search hasobject=[id,'author'] cat_exclude=['remark'] pagelen=6 sort='-rsc.modified'}] as result %}
+                {% with m.search[{ginger_search hasobject=[id,'author'] cat_exclude=m.modules.enabled|index_of:"mod_ginger_remark"|if:"remark":"" pagelen=6 sort='-rsc.modified'}] as result %}
 
                     {% include "list/list-header.tpl" id=id list_title=_"Authored by "++id.title items=result %}
 
