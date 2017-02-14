@@ -40,8 +40,8 @@
 
         {% block search_intro %}{% endblock %}
 
-        <div class="search__container">
-            {% block search_filters %}{% endblock %}
+        <div class="bz-search__container">
+            {% include "beeldenzoeker/search-filters.tpl" %}
 
             {%  wire    
                     name="search-list"
