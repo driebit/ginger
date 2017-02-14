@@ -31,6 +31,9 @@
 	text-indent: 0px;
 	border-radius: 0;
 	text-transform: uppercase;
+	text-indent: 0px;
+	float: none;
+
 
 	i {
 		display: none;
@@ -164,16 +167,21 @@
 	}
 
 	.page-search__suggestions {
-		padding: 20px 35px;
+		padding: 20px 25px;
 	}
 
 	.page-search {
 		input[type="text"] {
-			padding-left: 35px;
+			padding-left: 25px;
 		}
 	}
 
 	.search-suggestions__searchform__options { 
 		margin-top: 10px;
+	}
+
+	.page-search-submit {
+		width: auto;
+
 	}
 }

@@ -1,0 +1,16 @@
+.t--search {
+
+}
+
+.bz-search {
+	padding: 15px 0;
+}
+
+.bz-search .global-search__submit {
+	@extend .page-search-submit;
+	width: auto;
+}
+
+.bz-search .do_search_cmp_types {
+	display: none;
+}
