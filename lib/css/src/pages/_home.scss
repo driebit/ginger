@@ -51,12 +51,8 @@
 	font-weight: bold;
 }
 
-.home-selection {
+.home-collections {
 	background: #EDEDED;
-
-	.list {
-		padding-top: 0;
-	}
 
 	.list__item--beeldenzoeker,
 	.list__item__content {
@@ -69,7 +65,7 @@
 }
 
 .home-events {
-	@extend .home-selection;
+	@extend .home-collections;
 	background: #F3F3F3;
 }
 

@@ -27,5 +27,5 @@
                 {% endblock %}
             </div>
         </a>
-    </div>
+    </li>
 {% endwith %}
