@@ -25,25 +25,12 @@
 		    </div>
 		</form>
 
-     {#    <div class="page-search">
-            <div class="bz-search__container">
-                <h1 class="page-title--search">{_ Search _}</h1>
-
-                <form class="bz-search__form">
-                    <input class="input-search do_search_cmp_input_text" type="text" name="qs" value="" />
-					<button type="submit" class="bz-search__top__form__submit" title="{_ Search _}">{_ Search _}</button>
-                </form>
-
-                
-            </div>
-        </div> #}
-
         {% block search_intro %}{% endblock %}
 
         <div class="bz-search__container">
             {% include "beeldenzoeker/search-filters.tpl" %}
 
-            {%  wire    
+            {%  wire
                     name="search-list"
                     action={update target="search-list" text="<p class='no-results'>Loading...</p>"}
                     action={update
@@ -52,22 +39,10 @@
                             cg_name="default_content_group" }
                     %}
 
-            {# {%  wire
-                    name="search-map"
-                    action={update target="search-map" text="<p class='no-results'>Loading...</p>"}
-                    action={update
-                            target="search-map"
-                            template="search/search-query-wrapper.tpl"
-                            cg_name="default_content_group" }
-                    %} #}
-
-
             <div id="search-results" class="search__results">
                 {% block search_sorting %}{% endblock %}
 
                 <div id="search-list" class="search__results__list search__result__container"></div>
-                {# <div id="search-map" class="search__results__map search__result__container"></div>
-                <div id="search-timeline" class="search__results__timeline search__result__container"></div> #}
 
             </div>
         </div>
