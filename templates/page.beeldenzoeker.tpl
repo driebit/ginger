@@ -30,7 +30,7 @@
             <h2 class="home-section__title">{_ A selection from the collection of _} {{ m.site.beeldenzoeker_title }}</h2>
 
             {# With facets: {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" agg=['creator', 'terms', ['field', 'maker.creator.name.keyword']] pagelen="3"}] as result %} #}
-            {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" pagelen="3"}] as result %}
+            {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" pagelen="8"}] as result %}
                 {% include "list/list-beeldenzoeker.tpl" class="list-carousel" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
         </div>

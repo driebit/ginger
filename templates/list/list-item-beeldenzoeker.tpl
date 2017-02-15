@@ -1,6 +1,6 @@
 {% with item._source as record %}
 {# {% print record %} #}
-    <div class="list__item--beeldenzoeker {{ extraClasses }}">
+    <li class="list__item--beeldenzoeker {{ extraClasses }}">
         <a href="{% url adlib_object object_id=record.priref %}">
             {% block item_image %}
                 {% with record.reproduction|first as reproduction %}
