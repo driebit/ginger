@@ -1,5 +1,7 @@
 .list-search {
 	@extend .list;
+	width: 100%;
+	padding: 0 20px;
 	clear: both;
 
 	.list__item {
@@ -19,8 +21,11 @@
 	}
 
 	.list__item__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		min-height: 200px;
-		background: #4B535D;
+		overflow: hidden;
 	}
 
 	.list__item__content__title {
@@ -43,5 +48,22 @@
 		background: none;
 		font-size: 12px;
 		color: #A2AEBE;
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.list__item--beeldenzoeker {
+		.list__item__image {
+			height: 230px;
+
+			img {
+				object-fit: cover;
+				object-position: 50% 50%;
+			}
+		}
+
+		.list__item__content {
+			height: 150px;
+		}
 	}
 }
