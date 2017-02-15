@@ -1,3 +1,4 @@
+%% @doc Maps an Adlib record map to an Elasticsearch document.
 -module(ginger_adlib_elasticsearch_mapping).
 
 -export([
@@ -5,7 +6,6 @@
 ]).
 
 -include_lib("zotonic.hrl").
-
 
 -callback map(Record :: map()) -> MappedRecord :: map().
 -callback map_property({Property :: binary(), Value :: binary()}) -> {MappedProperty :: binary(), MappedValue :: binary()}.

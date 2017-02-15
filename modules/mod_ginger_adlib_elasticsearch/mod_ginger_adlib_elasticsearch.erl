@@ -15,9 +15,10 @@
 -include_lib("zotonic.hrl").
 
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
-    MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
     lager:info("Indexing Adlib record ~s", [Priref]),
-    case erlastic_search:index_doc_with_id(index(Context), Database, Priref, MappedRecord) of
+
+    MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
+    case elasticsearch:put_doc(index(Context), Database, Priref, MappedRecord, Context) of
         {ok, _} ->
             ok;
         {error, Message} ->
