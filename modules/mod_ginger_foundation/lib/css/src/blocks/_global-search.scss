@@ -114,6 +114,20 @@
     @include size(margin, 0, 0, 4, 0);
     font-family: $secondaryFontFamily;
     color: $mainThemeColor;
+
+    &.no-results {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.search-suggestions__suggestions__enter {
+    padding: 15px 0 5px;
+    margin-top: 15px;
+    color: $mainThemeColor;
+    font-size: 12px;
+    border-top: 1px solid $mainThemeColor;
+    line-height: 1;
 }
 
 @media (max-height: 400px) {
