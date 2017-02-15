@@ -5,7 +5,7 @@
 {% block content %}
 
 {% with index|default:m.config.mod_ginger_adlib_elasticsearch.index.value as index %}
-	{% with m.search[{elastic index=index filter=['priref', q.id]}]|first as result %}
+	{% with m.search[{elastic index=index filter=['priref', q.object_id]}]|first as result %}
         {% with result._source as record %}
 
     <main role="main" data-page-id="{{ id }}">
@@ -14,6 +14,10 @@
                 <h1>{{ record.title }}</h1>
 
                 <p>{{ record.object_number }}</p>
+
+                {% for reproduction in record.reproduction %}
+                    {% include "beeldenzoeker/image.tpl" image=reproduction.value %}
+                {% endfor %}
 
                 {% print record %}
 

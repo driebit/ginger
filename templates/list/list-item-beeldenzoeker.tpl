@@ -1,13 +1,13 @@
 {% with item._source as record %}
 {# {% print record %} #}
     <div class="list__item--beeldenzoeker {{ extraClasses }}">
-        <a href="{% url adlib_object id=record.priref %}">
+        <a href="{% url adlib_object object_id=record.priref %}">
             {% block item_image %}
-                <div class="list__item__image {% if record.reproduction|first as reproduction %} {% endif %}">
-                    {% if record.reproduction|first as reproduction %}
-                        <img src="{{ m.config.mod_ginger_adlib.url.value}}?server=images&command=getcontent&value={{ reproduction['reproduction.reference'] }}&width=600&height=600">
-                    {% endif %}
-                </div>
+                {% with record.reproduction|first as reproduction %}
+                    <div class="list__item__image {% if reproduction %} {% endif %}">
+                        {% include "beeldenzoeker/image.tpl" image=reproduction.value width=400 height=400 %}
+                    </div>
+                {% endwith %}
             {% endblock %}
             <div class="list__item__content">
                 {% block item_meta %}
