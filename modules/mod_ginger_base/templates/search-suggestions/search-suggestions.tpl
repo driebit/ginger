@@ -10,5 +10,7 @@
         </ul>
     {% endfor %}
 {% else %}
-    <h4 class="search-suggestions__suggestions__">{_ Nothing found _}</h4>
+    <h4 class="search-suggestions__suggestions__title no-results">{_ Nothing found _}</h4>
 {% endif %}
+
+{# <div class="search-suggestions__suggestions__enter">{_ Press enter to search _}</div> #}
