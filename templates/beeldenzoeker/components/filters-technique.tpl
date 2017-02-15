@@ -2,6 +2,6 @@
     <h3 class="search__filters__title">{_ Technique _}</h3>
 
     <ul>
-    	<li><input name="technique" id="technique_brush" type="radio" value="technique_brush"><label for="technique_brush">{_ Brush _}</label></li>
+    	<li><input name="technique" id="technique_brush" type="checkbox" value="technique_brush"><label for="technique_brush">{_ Brush _}</label></li>
     </ul>
 </div>

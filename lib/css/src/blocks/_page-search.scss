@@ -59,6 +59,7 @@
 }
 
 .page-search__suggestions {
+	display: none;
 	width: calc(100% - 45px);
 	padding: 10px 15px;
 	position: absolute;

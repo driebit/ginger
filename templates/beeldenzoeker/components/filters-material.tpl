@@ -2,6 +2,6 @@
     <h3 class="search__filters__title">{_ Material _}</h3>
 
     <ul>
-    	<li><input name="material" id="material_fabrid" type="radio" value="material_fabric"><label for="material_fabric">{_ Fabric _}</label></li>
+    	<li><input name="material" id="material_fabrid" type="checkbox" value="material_fabric"><label for="material_fabric">{_ Fabric _}</label></li>
     </ul>
 </div>
