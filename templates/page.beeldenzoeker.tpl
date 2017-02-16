@@ -34,7 +34,7 @@
                         <div class="home-collections">
                             <h2 class="home-section__title">{{ r.title }}</h2>
 
-                            {% include "list/list.tpl" class="list-carousel" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+                            {% include "list/list.tpl" class="list-carousel" items=result id=id hide_showmore_button list_id="list-"++r.id %}
                         </div>
                     {% endwith %}
 
