@@ -16,6 +16,7 @@
     endpoint/1,
     pull_updates/2,
     pull_updates/3,
+    pull_record/2,
     init/1,
     handle_call/3,
     handle_cast/2,
@@ -49,6 +50,22 @@ pull_updates({_Year, _Month, _Day} = Since, StartFrom, Context) ->
         _ ->
             [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
             pull_updates(Since, StartFrom + 20, Context)
+    end.
+
+%% @doc Pull single record update from Adlib
+-spec pull_record(binary(), z:context()) -> ok.
+pull_record(Priref, Context) ->
+    Database = <<"AMCollect">>,
+    Args = [
+        {database, Database},
+        {search, <<"priref=", (z_convert:to_binary(Priref))/binary>>}
+    ],
+    #search_result{result = Records} = z_search:search({adlib, Args}, {1, 1}, Context),
+    case Records of
+        [Record] ->
+            z_notifier:notify(adlib_update(Record, Database), Context);
+        _ ->
+            ok
     end.
 
 adlib_update(Record, Database) ->
