@@ -5,7 +5,7 @@
 {% block content %}
 
 {% with index|default:m.config.mod_ginger_adlib_elasticsearch.index.value as index %}
-	{% with m.search[{elastic index=index filter=['priref', q.object_id]}]|first as result %}
+	{% with m.search[{elastic index=index filter=['priref', q.object_id] pagelen=1}]|first as result %}
         {% with result._source as record %}
 
     <main role="main" data-page-id="{{ id }}">
