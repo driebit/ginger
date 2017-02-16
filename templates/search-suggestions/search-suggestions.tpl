@@ -1,16 +1,16 @@
-{% if result %}
+{% if items %}
     <h4 class="search-suggestions__suggestions__title">{_ Results found _}</h4>
     <ul class="search-suggestions__suggestions__list">
-        {% for result in result|slice:6 %}
-            {% with result._source|default:id as record %}
+        {% for result in items|slice:6 %}
+            {% with result._source as item %}
                 <li>
-                    <a href="{% if record.priref %}{% url adlib_object object_id=record.priref %}{% else %}{{ id.page_url }}{% endif %}">
-                        {% if record.reproduction|first as reproduction %}
+                    <a href="{% if item.priref %}{% url adlib_object object_id=item.priref %}{% else %}{{ m.rsc[item.id].page_url }}{% endif %}">
+                        {% if item.reproduction|first as reproduction %}
                             <div class="search-suggestions__suggestions__img" style="background-image: url({{ m.config.mod_ginger_adlib.url.value}}?server=images&command=getcontent&value={{ reproduction['reproduction.reference'] }}&width=100&height=100)"></div>
-                        {% else %} 
+                        {% else %}
                             <div class="search-suggestions__suggestions__img" style="background-image: url({% image_url id.o.depiction[1].id width="400" height="400" crop=id.o.depiction.id.crop_center %})"></div>
                         {% endif %}
-                        <p class="search-suggestions__suggestions__list__title">{{ record.title }} </p>
+                        <p class="search-suggestions__suggestions__list__title">{{ item.title|default:m.rsc[item.id].title }} </p>
                     </a>
                 </li>
             {% endwith %}

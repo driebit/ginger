@@ -2,12 +2,13 @@
 -author("Driebit <tech@driebit.nl>").
 
 -mod_title("Beeldenzoeker").
--mod_description("Beeldenzoeker module om digitale collecties in te zien").
+-mod_description("Media collections powered by Elasticsearch").
 -mod_prio(200).
 -mod_depends([mod_ginger_base]).
--mod_schema(3).
+-mod_schema(4).
 
 -include_lib("zotonic.hrl").
+-include_lib("mod_elasticsearch/include/elasticsearch.hrl").
 
 -export([
     manage_schema/2
@@ -16,6 +17,13 @@
 manage_schema(_Version, _Context) ->
     #datamodel{
         categories = [
+            {beeldenzoeker_query, elastic_query, [
+                {title, {trans, [
+                    {nl, <<"Zoekopdracht in Beeldenzoeker">>},
+                    {en, <<"Media discovery search query">>}
+                ]}},
+                {is_unfindable, true}
+            ]}
         ],
         resources = [
             {beeldenzoeker, collection, [
@@ -27,19 +35,5 @@ manage_schema(_Version, _Context) ->
             {beeldenzoeker, menu, [
                 {title, "Beeldenzoeker menu"}
             ]}
-        ],
-        edges = [
-        ],
-        predicates = [
-        ],
-        data = [
-            % {acl_rules, [
-            %     % {rsc, [
-            %     %     {acl_user_group_id, acl_user_group_members},
-            %     %     {actions, [insert, update, link, delete]},
-            %     %     {category_id, project},
-            %     %     {is_owner, true}
-            %     % ]}
-            % ]}
         ]
     }.
