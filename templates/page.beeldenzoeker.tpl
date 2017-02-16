@@ -26,22 +26,41 @@
             %}
         </div>
 
-        <div class="home-collections">
-            <h2 class="home-section__title">{_ A selection from the collection of _} {{ m.site.beeldenzoeker_title }}</h2>
 
-            {% with m.search[{ginger_search cat="elastic_query" pagelen="8"}] as result %}
-                {% include "list/list-beeldenzoeker.tpl" class="list-carousel" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
-            {% endwith %}
-        </div>
+        {% if id.o.haspart %}
+            {% for r in id.o.haspart %}
+                {% if r.o.haspart %}
+                    {% with m.search[{ginger_search hassubject=[r,'haspart'] sort="+seq" pagelen=6}] as result %}
+                        <div class="home-collections">
+                            <h2 class="home-section__title">{{ r.title }}</h2>
 
-        <div class="home-events">
+                            {% include "list/list.tpl" class="list-carousel" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+                        </div>
+                    {% endwith %}
+
+                {% else %}
+
+                    {% with m.search[{ginger_search query_id=r sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
+                        <div class="home-collections">
+                            <h2 class="home-section__title">{{ r.title }}</h2>
+
+                            {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+                        </div>
+                    {% endwith %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {# <div class="home-events">
             <h2 class="home-section__title">Foto's van evenementen van het museum</h2>
 
-            {# With facets: {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" agg=['creator', 'terms', ['field', 'maker.creator.name.keyword']] pagelen="3"}] as result %} #}
+            
             {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen=10}] as result %}
                 {% include "list/list-beeldenzoeker.tpl" class="list-carousel" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
-        </div>
+        </div> #}
+
+        {# With facets: {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" agg=['creator', 'terms', ['field', 'maker.creator.name.keyword']] pagelen="3"}] as result %} #}
 
         <div class="home-latest">
             <div class="main-container">
@@ -54,13 +73,6 @@
                     {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-infinite" list_template="list/list-item-beeldenzoeker.tpl" %}
 
                     {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
-
-                    {% lazy action={moreresults result=result
-                              target="list-infinite"
-                              template="list/list-item-beeldenzoeker.tpl"
-                              is_result_render
-                              visible}
-                    %}
                 {% endwith %}
             </div>
         </div>

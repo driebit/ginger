@@ -32,18 +32,8 @@
                             </p>
                         {% endif %}
                     {% endblock %}
-
-                    <a href="http://amdata.adlibhosting.com/wwwopac.ashx/wwwopac.ashx?server=images&amp;command=getcontent&amp;value=S_A_11140_000.jpg&amp;width=1600&amp;height=1600" class="masthead__zoom">
-                        <img src="http://amdata.adlibhosting.com/wwwopac.ashx/wwwopac.ashx?server=images&command=getcontent&value=S_A_11140_000.jpg&width=400&height=400">
-                    </a>
-
-                  {#   <a href="https://www.4en5meiamsterdam.nl/image/2017/2/14/stolpersteine.jpg%28%29%28E83BEE443B4C2C8DB3E66C67A336239C%29.jpg" class="masthead__zoom">
-                        asdfasdfasdf
-                    </a> #}
-                    {% for reproduction in record.reproduction %}
-                        {% include "beeldenzoeker/image.tpl" image=reproduction.value %}
-                    {% endfor %}
                     {% print record %}
+
                 </article>
 
                 {# Part of collections #}

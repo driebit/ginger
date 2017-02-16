@@ -5,6 +5,6 @@
 		<a href="{% include "beeldenzoeker/image-url.tpl" width="1600" height="1600" %}" class="masthead__zoom" title="{_ Zoom _}"><i class="icon--expand"></i></a>
 
 {% else %}
-	<div class="masthead">
+	<div class="masthead no-image">
 {% endif %}
 </div>

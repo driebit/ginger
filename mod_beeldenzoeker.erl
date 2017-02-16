@@ -18,7 +18,7 @@ manage_schema(_Version, _Context) ->
         categories = [
         ],
         resources = [
-            {beeldenzoeker, text, [
+            {beeldenzoeker, collection, [
                 {title, {trans, [{nl, <<"Beeldenzoeker">>},
                     {en, <<"Media discovery">>}]}},
                 {language, [en, nl]},
