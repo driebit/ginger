@@ -10,7 +10,7 @@
 
             {% include "beeldenzoeker/masthead.tpl" record=record %}
 
-            <main role="main">                
+            <main role="main">
                 <div class="adlib-object__actions">
                     <div class="main-container">
                         {% include "beeldenzoeker/share.tpl" record=record %}
@@ -39,7 +39,7 @@
                     {% for reproduction in record.reproduction %}
                         {% include "beeldenzoeker/image.tpl" image=reproduction.value %}
                     {% endfor %}
-                    {# {% print record %} #}
+                    {% print record %}
                 </article>
 
                 {# Part of collections #}
