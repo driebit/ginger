@@ -1,0 +1,26 @@
+.fancybox-close {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: -40px;
+	right: 0px;
+	z-index: 100;
+	background: #939EAE;
+	border: 1px solid $white;
+	color: rgba($white, 0.8);
+	text-align: center;
+	line-height: 40px;
+	border-radius: 0;
+	border-bottom: 0;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		color: $white;
+		background: darken(#939EAE, 5%);
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+}

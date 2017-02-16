@@ -1,0 +1,11 @@
+.t--adlib-object {
+	color: $bzSecondaryColor;
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.t--adlib-object {
+		main {
+			margin: 0;
+		}
+	}
+}

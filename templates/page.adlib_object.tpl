@@ -1,6 +1,6 @@
 {% extends "beeldenzoeker/base.tpl" %}
 
-{% block body_class %}t--home{% endblock %}
+{% block body_class %}t--adlib-object{% endblock %}
 
 {% block content %}
 
@@ -8,22 +8,42 @@
 	{% with m.search[{elastic index=index filter=['priref', q.object_id] pagelen=1}]|first as result %}
         {% with result._source as record %}
 
-    <main role="main" data-page-id="{{ id }}">
-        <div class="home__header" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
-            <div class="home__title">
-                <h1>{% include "beeldenzoeker/title.tpl" title=record.title %}</h1>
+            {% include "beeldenzoeker/masthead.tpl" record=record %}
 
-                <p>{{ record.object_number }}</p>
+            <main role="main">                
+                <div class="adlib-object__actions">
+                    <div class="main-container">
+                        {% include "beeldenzoeker/share.tpl" record=record %}
+                        {% include "beeldenzoeker/download.tpl" record=record %}
+                    </div>
+                </div>
+                <article class="main-content">
+                    <h1 class="page-title">{{ record.title }}</h1>
 
-                {% for reproduction in record.reproduction %}
-                    {% include "beeldenzoeker/image.tpl" image=reproduction.value %}
-                {% endfor %}
+                    {% block item_summary %}
+                        {% if record.AHMteksten['AHM.texts.tekst'] %}
 
-                {% print record %}
+                            <p class="summary">
+                                {{ record.AHMteksten['AHM.texts.tekst']|truncate:"100" }}
+                            </p>
+                        {% endif %}
+                    {% endblock %}
 
-            </div>
-        </div>
-    </main>
+                    <a href="http://amdata.adlibhosting.com/wwwopac.ashx/wwwopac.ashx?server=images&command=getcontent&value=S_A_11140_000.jpg&width=1600&height=1600" class="masthead__zoom">
+                        <img src="http://amdata.adlibhosting.com/wwwopac.ashx/wwwopac.ashx?server=images&command=getcontent&value=S_A_11140_000.jpg&width=400&height=400">
+                    </a>
+
+                    <a href="http://hartamsterdam.ginger-test.driebit.net/image/2017/1/6/test_2-352828094.jpg%28mediaclass-admin-media-cropcenter.864f13e1aab244f6c33dbafd9107f8f254c7cdb9%29.jpg" class="masthead__zoom">
+                        <img src="http://hartamsterdam.ginger-test.driebit.net/image/2017/1/6/test_2-352828094.jpg%28mediaclass-admin-media-cropcenter.864f13e1aab244f6c33dbafd9107f8f254c7cdb9%29.jpg">
+                    </a>
+                    {% for reproduction in record.reproduction %}
+                        {% include "beeldenzoeker/image.tpl" image=reproduction.value %}
+                    {% endfor %}
+                    {# {% print record %} #}
+                </article>
+
+                {# Part of collections #}
+            </main>
 
         {% endwith %}
     {% endwith %}

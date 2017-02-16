@@ -1,0 +1,42 @@
+.masthead {
+	height: 230px;
+	position: relative;
+	top: 0px;
+	left: 0px;
+	background-position: center center;
+}
+
+.masthead__zoom {
+	display: none;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 100;
+	background: #939EAE;
+	border: 1px solid $white;
+	color: rgba($white, 0.8);
+	text-align: center;
+	line-height: 40px;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		color: $white;
+		background: darken(#939EAE, 5%);
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.masthead {
+		height: 430px;
+	}
+
+	.masthead__zoom {
+		display: block;
+		top: 20px;
+		right: 20px;
+	}
+}
