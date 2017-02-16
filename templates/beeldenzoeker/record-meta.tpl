@@ -7,7 +7,7 @@
 	        <ul class="adlib-object__meta__data">
 	            <li>
 	            	
-	                <b>{_ Title _}</b><span>{% include "beeldenzoeker/title.tpl" %}</span>
+	                <b>{_ Title _}</b><span>{% include "beeldenzoeker/title.tpl" title=record.title %}</span>
 	            </li>
 	            {% if record.object_category %}
 		            <li>
@@ -53,28 +53,30 @@
 	            {% endif %}
 	        </ul>
 	    </div>
-	    <div class="adlib-object__meta__row">
-	        <div class="adlib-object__meta__title">
-	            {_ Material & Technique _}
-	        </div>
-	        <ul class="adlib-object__meta__data">
-	        	{% if record.material %}
-		            <li>
-		                <b>{_ Material _}</b><span>{{ record.material }}</span>
-		            </li>
-		        {% endif %}
-		        {% if record.technique %}
-		            <li>
-		                <b>{_ Technique _}</b><span>{{ record.technique }}</span>
-		            </li>
-		        {% endif %}
-		        {% if record.dimension[1]['dimension.value'] %}
-		            <li>
-		                <b>{_ Dimensions _}</b><span>h {{ record.dimension[1]['dimension.value'] }} {{ record.dimension[1]['dimension.unit'] }} x b {{ record.dimension[3]['dimension.value'] }} {{ record.dimension[3]['dimension.unit'] }} </span>
-		            </li>
-		        {% endif %}
-	        </ul>
-	    </div>
+	    {% if record.material or record.technique or record.dimension[1]['dimension.value'] %}
+		    <div class="adlib-object__meta__row">
+		        <div class="adlib-object__meta__title">
+		            {_ Material & Technique _}
+		        </div>
+		        <ul class="adlib-object__meta__data">
+		        	{% if record.material %}
+			            <li>
+			                <b>{_ Material _}</b><span>{{ record.material }}</span>
+			            </li>
+			        {% endif %}
+			        {% if record.technique %}
+			            <li>
+			                <b>{_ Technique _}</b><span>{{ record.technique }}</span>
+			            </li>
+			        {% endif %}
+			        {% if record.dimension[1]['dimension.value'] %}
+			            <li>
+			                <b>{_ Dimensions _}</b><span>h {{ record.dimension[1]['dimension.value'] }} {{ record.dimension[1]['dimension.unit'] }} x b {{ record.dimension[3]['dimension.value'] }} {{ record.dimension[3]['dimension.unit'] }} </span>
+			            </li>
+			        {% endif %}
+		        </ul>
+		    </div>
+		{% endif %}
 	    <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
 	            {_ Acquisition & License _}
