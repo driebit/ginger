@@ -1,9 +1,6 @@
 .fancybox-close {
 	width: 40px;
 	height: 40px;
-	position: absolute;
-	top: -40px;
-	right: 0px;
 	z-index: 100;
 	background: #939EAE;
 	border: 1px solid $white;
@@ -11,7 +8,6 @@
 	text-align: center;
 	line-height: 40px;
 	border-radius: 0;
-	border-bottom: 0;
 
 	&:hover,
 	&:active,
@@ -20,6 +16,12 @@
 		color: $white;
 		background: darken(#939EAE, 5%);
 	}
+}
+
+.fancybox-image,
+.zoomImg {
+    cursor: zoom-in;
+    cursor: url(images/zoom.png) x y, auto;
 }
 
 @include mq(min-width, $mediumBreakpoint) {
