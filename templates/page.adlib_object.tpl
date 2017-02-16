@@ -18,7 +18,11 @@
                     </div>
                 </div>
                 <article class="main-content">
-                    <h1 class="page-title">{{ record.title }}</h1>
+                    <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record.title %}</h1>
+
+                    {% if record.title[2] %}
+                        <h2>{{ record.title[2] }}</h2>
+                    {% endif %}
 
                     {% block item_summary %}
                         {% if record.AHMteksten['AHM.texts.tekst'] %}
