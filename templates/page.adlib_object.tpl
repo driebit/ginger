@@ -11,7 +11,7 @@
     <main role="main" data-page-id="{{ id }}">
         <div class="home__header" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
             <div class="home__title">
-                <h1>{{ record.title }}</h1>
+                <h1>{% include "beeldenzoeker/title.tpl" title=record.title %}</h1>
 
                 <p>{{ record.object_number }}</p>
 
