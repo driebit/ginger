@@ -22,12 +22,32 @@
 .bz-search__container {
 	@extend .search__container;
 
+	.search__pager {
+		padding: 5px 20px;
+		margin: 0;
+		background: lighten($bzTertiaryColor, 8%);
+		color: $white;
+		font-size: 12px;
+		text-align: center;
+
+		a {
+			color: $white;
+		}
+	}
+
+	.search__pager__result-counter {
+		margin: 0;
+	}
+
 	.pagination {
 		display: block;
-		width: 90%;
+		width: 100%;
 		padding: 0 30px;
-		margin: 15px auto;
-		font-size: 12px;
+		margin: 0 auto;
+
+		.active a {
+			text-decoration: underline;
+		}
 
 		li:first-child,
 		li:last-child {
@@ -55,6 +75,10 @@
 				@extend .icon--arrow-right;
 			}
 		}
+	}
+
+	.pagination > li.disabled > a {
+		color: rgba($white, 0.5);
 	}
 }
 
@@ -204,13 +228,32 @@
 @include mq(min-width, $mediumBreakpoint) {
 	.t--search {
 		padding-top: 60px;
+		overflow-x: hidden;
 	}
 
 	.bz-search__container {
+		.search__pager {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+			position: relative;
+			text-align: left;
+
+			&:before {
+				content: '';
+				width: 100vw;
+				height: 100%;
+				background: inherit;
+				position: absolute;
+				top: 0px;
+				right: -100vw;
+			}
+		}
+
 		.pagination {
 			width: auto;
 			margin-right: 10px;
-			float: right;
 		}
 	}
 

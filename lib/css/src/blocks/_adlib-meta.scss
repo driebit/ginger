@@ -1,0 +1,77 @@
+.adlib-object__meta {
+	padding: 40px 0;
+	margin: 40px 0 0;
+	background: darken($white, 6%);
+
+	.main-container {
+		max-width: 720px;
+	}
+}
+
+.adlib-object__meta__row {
+	padding: 20px 0;
+	border-top: 1px solid darken($white, 10%);
+
+	&.last {
+		li {
+			display: block;
+		}
+	}
+}
+
+.adlib-object__meta__title {
+	margin: 0 0 15px;
+	font-size: 14px;
+	font-weight: 700;
+	font-family: $secondaryFontFamily;
+}
+
+.adlib-object__meta__data {
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	list-style: none;
+
+	li {
+		display: flex;
+		justify-content: space-between;
+		flex-flow: row wrap;
+
+		+ li {
+			margin-top: 7px;
+		}
+	}
+
+	b {
+		display: inline-block;
+		width: 30%;
+	}
+
+	span {
+		display: inline-block;
+		width: 65%;
+
+		&:first-letter {
+			text-transform: uppercase;
+		}
+	}
+
+	a {
+		display: block;
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.adlib-object__meta__row {
+		display: flex;
+	}
+
+	.adlib-object__meta__title {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.adlib-object__meta__data {
+		width: 60%;
+	}
+}

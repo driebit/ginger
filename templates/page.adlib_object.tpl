@@ -36,6 +36,8 @@
 
                 </article>
 
+                {% include "beeldenzoeker/record-meta.tpl" record=record %}
+
                 {# Part of collections #}
             </main>
 

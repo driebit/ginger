@@ -1,6 +1,6 @@
 .page-search {
 	padding: 15px 0 0;
-	background: #4B535D;
+	background: $bzTertiaryColor;
 
 	input[type="text"] {
 		width: 100%;
@@ -79,7 +79,8 @@
 .search-suggestions__searchform__options {
 	padding: 10px 0;
 	margin-top: 15px;
-	background: #6A727D;
+	background: lighten($bzTertiaryColor, 5%);
+	// background: #6A727D;
 
 	.page-search__container {
 		display: flex;
