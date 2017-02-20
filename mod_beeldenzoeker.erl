@@ -22,7 +22,7 @@ manage_schema(_Version, _Context) ->
                     {nl, <<"Zoekopdracht in Beeldenzoeker">>},
                     {en, <<"Media discovery search query">>}
                 ]}},
-                {is_unfindable, true}
+                {is_unfindable, false}
             ]}
         ],
         resources = [
