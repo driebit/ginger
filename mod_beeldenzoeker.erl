@@ -5,7 +5,7 @@
 -mod_description("Media collections powered by Elasticsearch").
 -mod_prio(200).
 -mod_depends([mod_ginger_base]).
--mod_schema(4).
+-mod_schema(5).
 
 -include_lib("zotonic.hrl").
 -include_lib("mod_elasticsearch/include/elasticsearch.hrl").
