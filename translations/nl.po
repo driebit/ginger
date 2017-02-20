@@ -90,7 +90,7 @@ msgstr ""
 
 #: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:52
 msgid "Full museum collection"
-msgstr "Volledige museum collectie"
+msgstr "Volledige museumcollectie"
 
 #: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:6
 msgid "Landscape"
