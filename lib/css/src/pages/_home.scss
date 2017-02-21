@@ -78,6 +78,13 @@
 }
 
 @include mq(min-width, $mediumBreakpoint) {
+	.t--home {
+		.search__pager {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
 	.home__header {
 		padding: 120px 0 40px;
 		height: auto;
