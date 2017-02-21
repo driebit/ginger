@@ -36,10 +36,12 @@ as
                     {%  endwith %}
                 {% else %}
                     {% with r as item %}
-	                    {% if item._type %}
-	                        {% include list_template item=item %}
+	                    {% if item._type == "resource" %}
+                            {# A Zotonic resource #}
+                            {% catinclude list_template item._id item=m.rsc[item._id] %}
 	                    {% else %}
-	                    	{% catinclude list_template item %}
+                            {# An Elasticsearch document #}
+                            {% include list_template item=item %}
 	                    {% endif %}
                     {% endwith %}
                 {% endif %}
