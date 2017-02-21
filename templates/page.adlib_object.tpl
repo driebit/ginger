@@ -32,11 +32,12 @@
                             </p>
                         {% endif %}
                     {% endblock %}
-                    {# {% print record %} #}
 
                 </article>
 
                 {% include "beeldenzoeker/record-meta.tpl" record=record %}
+
+                {% print record %}
 
                 {# Part of collections #}
             </main>
