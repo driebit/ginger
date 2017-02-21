@@ -24,14 +24,13 @@
 
 	.search__pager {
 		padding: 5px 20px;
-		margin: 0;
-		background: lighten($bzTertiaryColor, 8%);
-		color: $white;
+		margin: 0 0 20px;
 		font-size: 12px;
 		text-align: center;
+		color: $typographyColor;
 
 		a {
-			color: $white;
+			color: $typographyColor;
 		}
 	}
 
@@ -78,7 +77,7 @@
 	}
 
 	.pagination > li.disabled > a {
-		color: rgba($white, 0.5);
+		color: rgba($typographyColor, 0.5);
 	}
 }
 
@@ -276,7 +275,7 @@
 	.search__filters__supertitle {
 		display: block;
 		margin: 0 0 20px 0;
-		font-size: 28px;
+		font-size: 25px;
 		font-weight: 600;
 	}
 

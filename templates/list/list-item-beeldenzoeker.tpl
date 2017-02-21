@@ -6,6 +6,8 @@
                     <div class="list__item__image {% if reproduction %} {% endif %}">
                         {% include "beeldenzoeker/image.tpl" image=reproduction.value width=400 height=400 %}
                     </div>
+                {% else %}
+                    <div class="list__item__image no-image"></div>
                 {% endif %}
             {% endblock %}
             <div class="list__item__content">

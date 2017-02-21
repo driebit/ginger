@@ -45,6 +45,14 @@
 		justify-content: center;
 		min-height: 200px;
 		overflow: hidden;
+
+		&.no-image {
+			min-height: 200px;
+			background: darken($white, 8%);
+			background: repeating-linear-gradient(45deg, darken($white, 10%), darken($white, 6%) 10%, darken($white, 6%) 10%, darken($white, 6%) 50%, darken($white, 6%) 50%) top left fixed;
+			background-position: center center;
+			background-size: 10px 10px;
+		}
 	}
 
 	.list__item__content__title {
