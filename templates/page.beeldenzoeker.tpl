@@ -54,7 +54,7 @@
         {# <div class="home-events">
             <h2 class="home-section__title">Foto's van evenementen van het museum</h2>
 
-            
+
             {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen=10}] as result %}
                 {% include "list/list-beeldenzoeker.tpl" class="list-carousel" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
@@ -65,18 +65,9 @@
         <div class="home-latest">
             <div class="main-container">
                 <h2 class="home-section__title">Recent toegevoegd</h2>
-
-                {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen=20}] as result %}
-
-                    {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
-
-                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button list_id="list-infinite" list_template="list/list-item-beeldenzoeker.tpl" %}
-
-                    {% pager result=result dispatch="beeldenzoeker" id=id qargs %}
-                {% endwith %}
+                {% include "beeldenzoeker/search-query-wrapper.tpl" text="amsterdam" %}
             </div>
         </div>
-
 
     </main>
 {% endwith %}
