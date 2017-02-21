@@ -18,14 +18,19 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ./user/modules/mod_beeldenzoeker/templates/page.beeldenzoeker.tpl:30 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:82 
 msgid ""
-"A selection from the collection of"
+"Acquisition & License"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:30 
 msgid ""
 "All rights reserved"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:92 
+msgid ""
+"Aquisition"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:12 
@@ -68,9 +73,14 @@ msgid ""
 "CC license"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-period.tpl:9 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:51 
 msgid ""
-"Century"
+"City"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:29 ./user/modules/mod_beeldenzoeker/templates/list/list-item.elastic_query.tpl:8 
+msgid ""
+"Collection"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-collections.tpl:2 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-collections.tpl:9 
@@ -78,9 +88,34 @@ msgid ""
 "Collections"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-creator.tpl:2 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-creator.tpl:2 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:41 
 msgid ""
 "Creator"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:87 
+msgid ""
+"Credit line"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:46 
+msgid ""
+"Dating"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:74 
+msgid ""
+"Dimensions"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:2 
+msgid ""
+"Download"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:7 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:7 
+msgid ""
+"E-mail"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-period.tpl:6 
@@ -93,9 +128,19 @@ msgid ""
 "Events"
 msgstr ""
 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:7 
+msgid ""
+"Extra large"
+msgstr ""
+
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-material.tpl:5 
 msgid ""
 "Fabric"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:4 
+msgid ""
+"Facebook"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search-filters.tpl:3 
@@ -108,27 +153,52 @@ msgid ""
 "Full museum collection"
 msgstr ""
 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:5 
+msgid ""
+"Identification"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:107 
+msgid ""
+"If you want to refer this object then use this URL"
+msgstr ""
+
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:6 
 msgid ""
 "Landscape"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:5 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:5 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:6 
 msgid ""
 "Large"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-material.tpl:2 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:96 
+msgid ""
+"License"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:36 
+msgid ""
+"Manufacture"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-material.tpl:2 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:64 
 msgid ""
 "Material"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:6 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:59 
+msgid ""
+"Material & Technique"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:6 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:5 
 msgid ""
 "Medium"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/list/list-beeldenzoeker.tpl:73 
+#: ./user/modules/mod_beeldenzoeker/templates/list/list-beeldenzoeker.tpl:74 
 msgid ""
 "No results"
 msgstr ""
@@ -138,9 +208,24 @@ msgid ""
 "No rights reserved"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:16 
+#: ./user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:20 
 msgid ""
 "Nothing found"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:19 
+msgid ""
+"Object name"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:24 
+msgid ""
+"Object nr."
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:14 
+msgid ""
+"Object type"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:58 
@@ -158,12 +243,17 @@ msgid ""
 "Period"
 msgstr ""
 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:6 
+msgid ""
+"Pinterest"
+msgstr ""
+
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:5 
 msgid ""
 "Portrait"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:19 
+#: ./user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:23 
 msgid ""
 "Press enter to search"
 msgstr ""
@@ -198,12 +288,17 @@ msgid ""
 "Search"
 msgstr ""
 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:2 
+msgid ""
+"Share"
+msgstr ""
+
 #: ./user/modules/mod_beeldenzoeker/templates/list/list-beeldenzoeker.tpl:8 
 msgid ""
 "Show more results..."
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:7 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:7 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:4 
 msgid ""
 "Small"
 msgstr ""
@@ -218,9 +313,29 @@ msgid ""
 "Start year"
 msgstr ""
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-technique.tpl:2 
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:103 
+msgid ""
+"Sustainable web address"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-technique.tpl:2 ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:69 
 msgid ""
 "Technique"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:10 
+msgid ""
+"Title"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:5 
+msgid ""
+"Twitter"
+msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/masthead.tpl:5 
+msgid ""
+"Zoom"
 msgstr ""
 
 #: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/beeldenzoeker_search.tpl:21 
