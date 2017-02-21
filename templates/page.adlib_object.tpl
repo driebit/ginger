@@ -32,7 +32,7 @@
                             </p>
                         {% endif %}
                     {% endblock %}
-                    {% print record %}
+                    {# {% print record %} #}
 
                 </article>
 
