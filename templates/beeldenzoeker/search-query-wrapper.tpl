@@ -5,6 +5,6 @@ as
     index,
     results_template
 %}
-	{% include "beeldenzoeker/search-query.tpl" index=index %}
+	{% include "beeldenzoeker/search-query.tpl" index=index class=class %}
 {% endwith %}
 

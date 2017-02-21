@@ -65,7 +65,7 @@
         <div class="home-latest">
             <div class="main-container">
                 <h2 class="home-section__title">Recent toegevoegd</h2>
-                {% include "beeldenzoeker/search-query-wrapper.tpl" sort="-@attributes.modification" %}
+                {% include "beeldenzoeker/search-query-wrapper.tpl" sort="-@attributes.modification" class="list" %}
             </div>
         </div>
 
