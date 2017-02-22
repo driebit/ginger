@@ -14,8 +14,9 @@
     pid_observe_tick_1h/3,
     pid_observe_tick_24h/3,
     endpoint/1,
+    enabled_databases/1,
     pull_updates/2,
-    pull_updates/3,
+    pull_database_updates/3,
     pull_record/2,
     init/1,
     handle_call/3,
@@ -32,12 +33,16 @@
 
 -record(state, {context}).
 
-%% @doc Search for records modified after a date
--spec pull_updates(calendar:date(), z:context()) -> ok.
+%% @doc Pull records modified after a date from all enabled Adlib databases
 pull_updates(Since, Context) ->
-    pull_updates(Since, 1, Context).
-pull_updates({_Year, _Month, _Day} = Since, StartFrom, Context) ->
-    Database = <<"AMCollect">>,
+    [pull_database_updates(Database, Since, Context) || Database <- enabled_databases(Context)].
+
+%% @doc Pull records modified after a date from an Adlib database
+-spec pull_database_updates(binary(), calendar:date(), z:context()) -> ok.
+pull_database_updates(Database, Since, Context) ->
+    pull_database_updates(Database, Since, 1, Context).
+
+pull_database_updates(Database, {_Year, _Month, _Day} = Since, StartFrom, Context) ->
     Args = [
         {database, Database},
         {search, <<"modification>", (z_datetime:format(Since, "Ymd", Context))/binary>>}
@@ -49,7 +54,7 @@ pull_updates({_Year, _Month, _Day} = Since, StartFrom, Context) ->
             ok;
         _ ->
             [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
-            pull_updates(Since, StartFrom + 20, Context)
+            pull_database_updates(Database, Since, StartFrom + 20, Context)
     end.
 
 %% @doc Pull single record update from Adlib
@@ -98,11 +103,25 @@ pull_updates_when_needed(Pid, Frequency, Context) ->
 endpoint(Context) ->
     m_config:get_value(?MODULE, url, Context).
 
+%% @doc Get databases that are enabled
+-spec enabled_databases(z:context()) -> [binary()].
+enabled_databases(Context) ->
+    DatabasesConfig = m_config:get(?MODULE, databases, Context),
+    proplists:get_value(list, DatabasesConfig).
+
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).
 
 init(Args) ->
     {context, Context} = proplists:lookup(context, Args),
+    
+    case m_config:get(?MODULE, databases, Context) of
+        undefined ->
+            m_config:set_prop(?MODULE, databases, list, [], Context);
+        _Exists ->
+            ok
+    end,
+    
     {ok, #state{context=z_context:new(Context)}}.
 
 handle_call(Message, _From, State) ->

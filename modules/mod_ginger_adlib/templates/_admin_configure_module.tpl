@@ -1,10 +1,12 @@
 <div class="modal-body">
-    <div class="control-group">
-        <label class="control-label" for="apikey">{_ Adlib API URL _}</label>
-        <div class="controls">
-            <input type="text" id="adlib_url" name="adlib_url" value="{{ m.config.mod_ginger_adlib.url.value|escape }}" class="form-control do_autofocus" />
-            {% wire id="adlib_url" type="blur" action={config_toggle module="mod_ginger_adlib" key="url" on="keyup"} %}
-        </div>
+    <div class="form-group">
+        <label for="adlib_url" class="control-label">{_ Adlib API URL _}</label>
+        <input type="text" id="adlib_url" name="adlib_url" value="{{ m.config.mod_ginger_adlib.url.value|escape }}" class="form-control do_autofocus" />
+        {% wire id="adlib_url" type="change" action={config_toggle module="mod_ginger_adlib" key="url" on="keyup"} action={update target="adlib_databases" template="admin/adlib_databases.tpl"} %}
+    </div>
+
+    <div class="form-group" id="adlib_databases">
+        {% include "admin/adlib_databases.tpl" %}
     </div>
 
     <div class="control-group">
