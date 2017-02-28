@@ -61,6 +61,10 @@ $.widget("ui.search_ui", {
           me.hashChanged();
         }
 
+        // This should be ~pagesession, but see https://github.com/zotonic/zotonic/issues/1622
+        pubzub.subscribe("~session/search/facets", function (topic, msg) {
+            me.setFacets(msg.payload);
+        });
     },
 
 
@@ -123,8 +127,25 @@ $.widget("ui.search_ui", {
             }
         });
 
-        return mergedValues;
+        mergedValues.facets = this.getMergedFacets();
 
+        return mergedValues;
+    },
+
+    /**
+     * Get facets (a.k.a. aggregations) to segment the search results by.
+     */
+    getMergedFacets: function() {
+        return this.getWidgets()
+            .filter(function(widget) {
+                return typeof widget.getFacets == 'function';
+            })
+            .reduce(
+                function(acc, widget) {
+                    return widget.getFacets(acc);
+                },
+                {}
+            );
     },
 
     setHash: function(force) {
@@ -165,6 +186,14 @@ $.widget("ui.search_ui", {
 
             if (widget.setValues && typeof widget.setValues == 'function') {
               widget.setValues(values);
+            }
+        });
+    },
+
+    setFacets: function(facets) {
+        $.each(this.getWidgets(), function(i, widget) {
+            if (widget.setFacets && typeof widget.setFacets == 'function') {
+                widget.setFacets(facets);
             }
         });
     },
