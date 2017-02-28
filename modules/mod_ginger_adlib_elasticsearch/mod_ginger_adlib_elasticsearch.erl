@@ -9,6 +9,7 @@
 
 -export([
     init/1,
+    index/1,
     observe_adlib_update/2
 ]).
 
