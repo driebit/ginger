@@ -11,11 +11,22 @@
 -include_lib("mod_elasticsearch/include/elasticsearch.hrl").
 
 -export([
+    init/1,
     manage_schema/2,
     observe_search_query/2,
     observe_acl_is_allowed/2
 ]).
 
+%% @doc Linked data property mappings
+init(Context) ->
+    Index = mod_ginger_adlib_elasticsearch:index(Context),
+    Mapping = beeldenzoeker_elasticsearch_mapping:default_mapping(),
+    
+    %% Update all types that are currently enabled
+    [{ok, _} = erlastic_search:put_mapping(Index, Type, Mapping) || Type
+        <- mod_ginger_adlib_elasticsearch:types(Context)],
+    ok.
+    
 manage_schema(_Version, _Context) ->
     #datamodel{
         categories = [
@@ -42,38 +53,15 @@ manage_schema(_Version, _Context) ->
 
 %% @doc Supplement search arguments with values from JS (that are in get_q()).
 observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Context) ->
-    Args2 = Args ++ lists:map(
-        fun({Name, Props}) ->
-            {agg, [Name, terms, Props]}
+    Args2 = lists:foldl(
+        fun({Key, Value}, Acc) ->
+            beeldenzoeker_query:parse_query(Key, Value, Acc)
         end,
-        z_context:get_q(<<"facets">>, Context, [])
+        Args,
+        z_context:get_q_all_noz(Context)
     ),
-
-    Args3 = case z_context:get_q(<<"subject">>, Context, []) of
-        [] ->
-            Args2;
-        Subjects ->
-            Args2 ++ lists:map(
-                fun(Subject) ->
-                    {filter, [<<"association.subject.keyword">>, Subject]}
-                end,
-                Subjects
-            )
-    end,
     
-    Args4 = case z_context:get_q(<<"subset">>, Context, []) of
-        [] ->
-            Args3;
-        [<<"collection">>, <<"event">>] ->
-            %% don't filter
-            Args3;
-        [<<"collection">>] ->
-            Args3 ++ [{filter, [<<"association.subject.keyword">>, '<>', <<"evenement">>]}];
-        [<<"event">>] ->
-            Args3 ++ [{filter, [<<"association.subject.keyword">>, <<"evenement">>]}]
-    end,
-    
-    ElasticQuery = Query#search_query{search = {elastic, Args4}},
+    ElasticQuery = Query#search_query{search = {elastic, Args2}},
     case z_notifier:first(ElasticQuery, Context) of
         undefined ->
             undefined;
