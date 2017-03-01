@@ -14,7 +14,8 @@
     init/1,
     manage_schema/2,
     observe_search_query/2,
-    observe_acl_is_allowed/2
+    observe_acl_is_allowed/2,
+    observe_elasticsearch_fields/3
 ]).
 
 %% @doc Linked data property mappings
@@ -22,7 +23,9 @@ init(Context) ->
     Index = mod_ginger_adlib_elasticsearch:index(Context),
     Mapping = beeldenzoeker_elasticsearch_mapping:default_mapping(),
     
-    %% Update all types that are currently enabled
+    erlastic_search:create_index(Index),
+
+    %% Update all Elasticsearch types that are currently enabled
     [{ok, _} = erlastic_search:put_mapping(Index, Type, Mapping) || Type
         <- mod_ginger_adlib_elasticsearch:types(Context)],
     ok.
@@ -73,6 +76,12 @@ observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Cont
 observe_search_query(#search_query{}, _Context) ->
     undefined.
 
+%% @doc Boost primary identifier
+observe_elasticsearch_fields(#elasticsearch_fields{query = _Query}, Fields, _Context) ->
+    [
+        <<"dcterms:identifier^2">>, %% object number
+        <<"priref^2">>
+    | Fields].
 
 observe_acl_is_allowed(
     #acl_is_allowed{
