@@ -1,4 +1,4 @@
-{% with id.s.haspart|exclude:`name` as collections %}
+{% with id.s.haspart|is_visible|exclude:`name` as collections %}
     {% if collections %}
         <p class="part-of">
             <span>{_ Part of: _}</span>
