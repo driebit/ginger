@@ -89,7 +89,9 @@ pid_observe_tick_1h(Pid, tick_1h, Context) ->
 pid_observe_tick_24h(Pid, tick_24h, Context) ->
     pull_updates_when_needed(Pid, 86400, Context).
 
-pull_updates_when_needed(Pid, Frequency, Context) ->
+pull_updates_when_needed(Pid, Frequency, Context) when is_integer(Frequency) ->
+    pull_updates_when_needed(Pid, z_convert:to_binary(Frequency), Context);
+pull_updates_when_needed(Pid, Frequency, Context) when is_integer(Frequency) ->
     case m_config:get_value(mod_ginger_adlib, poll_frequency, Context) of
         Frequency ->
             gen_server:cast(Pid, {pull_updates, Frequency}, Context);
