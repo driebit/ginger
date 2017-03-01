@@ -10,6 +10,7 @@
 -export([
     init/1,
     index/1,
+    types/1,
     observe_adlib_update/2
 ]).
 
@@ -20,7 +21,7 @@ init(Context) ->
     default_config(index, index(Context), Context).
 
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
-    lager:info("Indexing Adlib record ~s", [Priref]),
+    lager:info("Indexing Adlib record ~s from database ~s", [Priref, Database]),
 
     MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
     case elasticsearch:put_doc(index(Context), Database, Priref, MappedRecord, Context) of
@@ -39,6 +40,11 @@ index(Context) ->
         <<>> -> Default;
         Value -> z_convert:to_binary(Value)
     end.
+
+%% @doc Get Elasticsearch types used for Adlib resources
+-spec types(z:context()) -> [binary()].
+types(Context) ->
+    mod_ginger_adlib:enabled_databases(Context).
 
 default_config(Key, Value, Context) ->
     case m_config:get_value(?MODULE, Key, Context) of
