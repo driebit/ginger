@@ -7,12 +7,18 @@
 .toggle-menu span:after {
     display: block;
     content: '';
-    width: 35px;
+    width: 27px;
     height: 3px;
     position: absolute;
+    left: 5px;
     background: $mainThemeColor;
     cursor: pointer;
     border-radius: 1px;
+}
+
+.toggle-menu span:before,
+.toggle-menu span:after {
+    left: 0px;
 }
 
 .toggle-menu span {
@@ -20,11 +26,11 @@
 }
 
 .toggle-menu span:before {
-    top: -10px;
+    top: -7px;
 }
 
 .toggle-menu span:after {
-    bottom: -10px;
+    bottom: -7px;
 }
 
 .toggle-menu span,
@@ -37,7 +43,8 @@
     background-color: transparent;
 }
 
-.toggle-menu.is-active span:before, .toggle-menu.is-active span:after {
+.toggle-menu.is-active span:before, 
+.toggle-menu.is-active span:after {
     top: 0;
 }
 

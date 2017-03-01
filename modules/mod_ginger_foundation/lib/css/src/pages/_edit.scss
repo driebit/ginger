@@ -1,17 +1,3 @@
-// Zotonic defaults
-
-.minimalTabs li.active > a,
-.minimalTabs li.active > a:focus,
-.minimalTabs li.active > a:hover,
-.nav.nav-pills li.active > a,
-.nav.nav-pills li.active > a:focus,
-.nav.nav-pills li.active > a:hover,
-.widget ul.nav-tabs li.active > a,
-.widget ul.nav-tabs li.active > a:focus,
-.widget ul.nav-tabs li.active > a:hover {
-    border-color: $mainThemeColor;
-}
-
 .widget.widget-expanded .widget-header .widget-header-tools .z-btn-help,
 .widget.dark.widget-expanded .widget-header .widget-header-tools .z-btn-help {
     color: $mainThemeColor;
