@@ -28,7 +28,7 @@
         {% block search_intro %}{% endblock %}
 
         <div class="bz-search__container">
-            {% include "beeldenzoeker/search-filters.tpl" %}
+            {% include "beeldenzoeker/search/search-filters.tpl" %}
 
             {%  wire
                     name="search-list"
