@@ -17,7 +17,7 @@
     enabled_databases/1,
     pull_updates/2,
     pull_database_updates/3,
-    pull_record/2,
+    pull_record/3,
     init/1,
     handle_call/3,
     handle_cast/2,
@@ -58,9 +58,8 @@ pull_database_updates(Database, {_Year, _Month, _Day} = Since, StartFrom, Contex
     end.
 
 %% @doc Pull single record update from Adlib
--spec pull_record(binary(), z:context()) -> ok.
-pull_record(Priref, Context) ->
-    Database = <<"AMCollect">>,
+-spec pull_record(binary(), binary(), z:context()) -> ok.
+pull_record(Database, Priref, Context) ->
     Args = [
         {database, Database},
         {search, <<"priref=", (z_convert:to_binary(Priref))/binary>>}
