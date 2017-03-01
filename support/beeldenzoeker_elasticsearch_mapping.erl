@@ -13,7 +13,7 @@ default_mapping() ->
         <<"dcterms:date">> => #{
             <<"type">> => <<"date">>
         },
-        <<"dbo:creationYaar">> => #{
+        <<"dbo:creationYear">> => #{
             <<"type">> => <<"date">>
         },
         <<"dbo:productionStartYear">> => #{
