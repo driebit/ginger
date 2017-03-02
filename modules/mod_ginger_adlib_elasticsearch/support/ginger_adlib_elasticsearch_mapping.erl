@@ -51,5 +51,15 @@ map_property({<<"acquisition.date">> = Key, Value}) ->
     {Key, Value};
 map_property({<<"creator">>, Value}) ->
     {<<"creator.name">>, Value};
+map_property({Key, Value}) when is_list(Value) ->
+    %% Map any value that is itself a map.
+    {Key, lists:map(
+        fun(V) when is_map(V) ->
+            map(V);
+        (V) ->
+            V
+        end,
+        Value
+    )};
 map_property({Key, Value}) ->
     {Key, Value}.
