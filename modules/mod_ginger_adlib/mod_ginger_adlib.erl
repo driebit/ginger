@@ -128,12 +128,11 @@ handle_call(Message, _From, State) ->
 
 handle_cast({pull_updates, Frequency}, State = #state{context = Context}) ->
     Now = z_datetime:timestamp(),
-    SinceTimestamp = Now - (Frequency * 2),
+    SinceTimestamp = Now - Frequency,
     {YMD, _} = z_datetime:timestamp_to_datetime(SinceTimestamp),
     pull_updates(YMD, Context),
     {noreply, State};
 handle_cast(Message, State) ->
-    lager:error("UNKNOWN"),
     {stop, {unknown_cast, Message}, State}.
 
 handle_info(_Info, State) ->
