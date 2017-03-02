@@ -21,8 +21,9 @@
                 {% block item_title %}
                     <h3 class="list__item__content__title">{{ id.title }}</h3>
                 {% endblock %}
+
                 {% block item_summary %}
-                    {{ id|summary:100 }}
+                    <p>{{ id|summary:100 }}</p>
                 {% endblock %}
             </div>
         </a>
