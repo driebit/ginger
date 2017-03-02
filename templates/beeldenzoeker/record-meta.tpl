@@ -6,7 +6,6 @@
 	        </div>
 	        <ul class="adlib-object__meta__data">
 	            <li>
-	            	
 	                <b>{_ Title _}</b><span>{% include "beeldenzoeker/title.tpl" title=record.title %}</span>
 	            </li>
 	            {% if record.object_category %}
@@ -21,7 +20,7 @@
 		        {% endif %}
 	            {% if record.object_number %}
 		            <li>
-		                <b>{_ Object nr. _}</b><span>{{ record.object_number }}</span>
+		                <b>{_ Object nr. _}</b><span>{{ record['dcterms:identifier']}}</span>
 		            </li>
 		        {% endif %}
 	            {% if record.collection %}
