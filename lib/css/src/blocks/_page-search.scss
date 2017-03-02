@@ -1,5 +1,5 @@
 .page-search {
-	padding: 15px 0 0;
+	padding: 15px 0;
 	background: $bzTertiaryColor;
 
 	input[type="text"] {
@@ -77,98 +77,9 @@
 	line-height: 1;
 }
 
-.search-suggestions__searchform__options {
-	padding: 10px 0;
-	margin-top: 15px;
-	background: lighten($bzTertiaryColor, 5%);
-	// background: #6A727D;
-
-	.page-search__container {
-		display: flex;
-		flex-flow: row wrap;
-	}
-
-	label {
-		color: $white;
-		font-weight: 400;
-		font-size: 12px;
-		line-height: 1;
-		margin-bottom: 7px;
-	}
-
-	input[type="radio"],
-    input[type="checkbox"] {
-        display: none;
-    }
-
-
-    input[type="radio"] + label,
-    input[type="checkbox"] + label {
-        position: relative;
-
-        &:before {
-            content: '';
-            display: inline-block;
-            @include size(width, 20px);
-            @include size(height, 20px);
-            @include size(margin-right, 10);
-            position: relative;
-            top: 5px;
-            background: #FFFFFF;
-			border: 0 solid #939EAE;
-			box-shadow: inset 0 1px 3px 0 #939EAE;
-            border-radius: 50%;
-        }
-    }
-
-    input[type="checkbox"] + label {
-        &:before {
-            border-radius: 2px;
-        }
-    }
-
-    input[type="radio"]:checked + label {
-        &:after {
-            content: '';
-            width: 14px;
-            height: 14px;
-            position: absolute;
-            top: 8px;
-            left: 3px;
-            background: #4B535D;
-            border-radius: 50%;
-            transform: rotate(45deg);
-        }
-    }
-
-    input[type="checkbox"]:checked + label {
-        &:after {
-            content: '';
-            width: 14px;
-            height: 14px;
-            position: absolute;
-            top: 8px;
-            left: 3px;
-            background: #4B535D;
-        }
-    }
-}
-
-.search-suggestions__searchform__options__option {
-	margin-right: 15px;
-}
-
-.search-suggestions__searchform__options__option--checkbox,
-.search-suggestions__searchform__options__option--radio {	
-	@extend .search-suggestions__searchform__options__option;
-}
-
 @include mq(min-width, $mediumBreakpoint) {
-	.page-search {
-		padding-top: 10px;
-	}
-
 	.page-search__suggestions {
+		width: calc(100% - 95px);
 		padding: 20px 25px;
 	}
 
@@ -178,12 +89,7 @@
 		}
 	}
 
-	.search-suggestions__searchform__options { 
-		margin-top: 10px;
-	}
-
 	.page-search-submit {
-		width: auto;
-
+		width: 95px;
 	}
 }

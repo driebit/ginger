@@ -26,18 +26,14 @@
             %}
         </div>
 
-
         {% if id.o.haspart %}
             {% for r in id.o.haspart %}
                 {% if r.o.haspart %}
-                    {% with m.search[{ginger_search hassubject=[r,'haspart'] sort="+seq" pagelen=6}] as result %}
-                        <div class="home-collections">
-                            <h2 class="home-section__title">{{ r.title }}</h2>
+                    <div class="home-collections">
+                        <h2 class="home-section__title">{{ r.title }}</h2>
 
-                            {% include "list/list.tpl" class="list-carousel" items=result id=id hide_showmore_button list_id="list-"++r.id %}
-                        </div>
-                    {% endwith %}
-
+                        {% include "list/list.tpl" class="list-carousel" items=r.o.haspart id=id hide_showmore_button list_id="list-"++r.id %}
+                    </div>
                 {% else %}
 
                     {% with m.search[{ginger_search query_id=r sort="-rsc.pivot_date_start" pagelen=6 page=q.page}] as result %}
@@ -51,21 +47,16 @@
             {% endfor %}
         {% endif %}
 
-        {# <div class="home-events">
-            <h2 class="home-section__title">Foto's van evenementen van het museum</h2>
-
-
-            {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="amsterdam" pagelen=10}] as result %}
-                {% include "list/list-beeldenzoeker.tpl" class="list-carousel" items=result id=id hide_showall_button hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
-            {% endwith %}
-        </div> #}
-
-        {# With facets: {% with m.search[{elastic index=m.config.mod_ginger_adlib_elasticsearch.index.value text="vrouw" agg=['creator', 'terms', ['field', 'maker.creator.name.keyword']] pagelen="3"}] as result %} #}
-
         <div class="home-latest">
             <div class="main-container">
                 <h2 class="home-section__title">Recent toegevoegd</h2>
-                {% include "beeldenzoeker/search-query-wrapper.tpl" sort="-@attributes.modification" class="list" %}
+                {% with m.search[{beeldenzoeker page=q.page index=m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value sort=sort text=text|default:q.qs cat="beeldenzoeker_query" pagelen=15}] as result %}
+                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button dispatch_pager="beeldenzoeker" list_template="list/list-item-beeldenzoeker.tpl" %}
+
+                    <div id="more-results">
+                        {% wire name="moreresults" action={replace target="more-results" template="beeldenzoeker/_home-more-results.tpl" page=2 } %}
+                    </div>
+                {% endwith %}
             </div>
         </div>
 

@@ -25,7 +25,7 @@ as
     {% if items %}
 
       {% if show_pager %}
-          {% include "pager/pager.tpl" %}
+        {% include "pager/pager.tpl"  %}
       {% endif %}
 
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">

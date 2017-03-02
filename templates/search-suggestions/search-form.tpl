@@ -46,19 +46,6 @@ as
 
         <div class="{{ suggestionsclass }}" id="search-suggestions__suggestions-{{ #identifier }}"></div>
     </div>
-    <div class="search-suggestions__searchform__options">
-    	<div class="{{ wrapperclass }}">
-	    	<div class="search-suggestions__searchform__options__option--radio">
-	    		<input type="radio" id="museumcollection{{ #identifier }}" name="selection" checked><label for="museumcollection{{ #identifier }}">{_ Full museum collection _}</label>
-	    	</div>
-	    	<div class="search-suggestions__searchform__options__option--radio">
-	    		<input type="radio" id="events{{ #identifier }}" name="selection"><label for="events{{ #identifier }}">{_ Events _}</label>
-	    	</div>
-	    	<div class="search-suggestions__searchform__options__option--checkbox">
-	    		<input type="checkbox" id="imagesonly{{ #identifier }}"><label for="imagesonly{{ #identifier }}">{_ Only images _}</label>
-	    	</div>
-	    </div>
-    </div>
 </form>
 
 {% endwith %}
