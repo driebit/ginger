@@ -45,7 +45,7 @@ pull_database_updates(Database, Since, Context) ->
 pull_database_updates(Database, {_Year, _Month, _Day} = Since, StartFrom, Context) ->
     Args = [
         {database, Database},
-        {search, <<"modification>", (z_datetime:format(Since, "Ymd", Context))/binary>>}
+        {search, <<"modification>=", (z_datetime:format(Since, "Ymd", Context))/binary>>}
     ],
 
     #search_result{result = Records} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
@@ -89,12 +89,10 @@ pid_observe_tick_1h(Pid, tick_1h, Context) ->
 pid_observe_tick_24h(Pid, tick_24h, Context) ->
     pull_updates_when_needed(Pid, 86400, Context).
 
-pull_updates_when_needed(Pid, Frequency, Context) when is_integer(Frequency) ->
-    pull_updates_when_needed(Pid, z_convert:to_binary(Frequency), Context);
-pull_updates_when_needed(Pid, Frequency, Context) when is_integer(Frequency) ->
-    case m_config:get_value(mod_ginger_adlib, poll_frequency, Context) of
+pull_updates_when_needed(Pid, Frequency, Context) ->
+    case z_convert:to_integer(m_config:get_value(mod_ginger_adlib, poll_frequency, Context)) of
         Frequency ->
-            gen_server:cast(Pid, {pull_updates, Frequency}, Context);
+            gen_server:cast(Pid, {pull_updates, Frequency});
         _ ->
             nop
     end.
@@ -128,10 +126,14 @@ init(Args) ->
 handle_call(Message, _From, State) ->
     {stop, {unknown_call, Message}, State}.
 
-handle_cast({pull_updates, _Frequency}, State = #state{context = _Context}) ->
-%%    Updates = fetch_updates(Frequency, Context),
+handle_cast({pull_updates, Frequency}, State = #state{context = Context}) ->
+    Now = z_datetime:timestamp(),
+    SinceTimestamp = Now - (Frequency * 2),
+    {YMD, _} = z_datetime:timestamp_to_datetime(SinceTimestamp),
+    pull_updates(YMD, Context),
     {noreply, State};
 handle_cast(Message, State) ->
+    lager:error("UNKNOWN"),
     {stop, {unknown_cast, Message}, State}.
 
 handle_info(_Info, State) ->
