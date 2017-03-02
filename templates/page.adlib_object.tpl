@@ -26,9 +26,16 @@
 
                     {% block item_summary %}
                         {% if record.AHMteksten['AHM.texts.tekst'] %}
-
                             <p class="summary">
                                 {{ record.AHMteksten['AHM.texts.tekst']|truncate:"100" }}
+                            </p>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block item_body %}
+                        {% if record.AHMteksten['AHM.texts.tekst'] %}
+                            <p>
+                                {{ record.AHMteksten['AHM.texts.tekst']}}
                             </p>
                         {% endif %}
                     {% endblock %}

@@ -12,6 +12,10 @@
 	padding: 20px 0;
 	border-top: 1px solid darken($white, 10%);
 
+	&.first {
+		border-top: 0;
+	}
+
 	&.last {
 		li {
 			display: block;

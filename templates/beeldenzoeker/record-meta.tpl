@@ -1,6 +1,6 @@
 <div class="adlib-object__meta">
 	<div class="main-container">
-	    <div class="adlib-object__meta__row">
+	    <div class="adlib-object__meta__row first">
 	        <div class="adlib-object__meta__title">
 	            {_ Identification _}
 	        </div>
@@ -103,7 +103,7 @@
 		        </div>
 		        <ul class="adlib-object__meta__data">
 		            <li>
-		                {_ If you want to refer this object then use this URL _}:
+		                {_ If you want to refer this object then use this URL _}
 		                <a href="{{ record.persistent_ID }}" target="_blank">{{ record.persistent_ID }} <i class="icon--external"></i></a>
 		            </li>
 		        </ul>
