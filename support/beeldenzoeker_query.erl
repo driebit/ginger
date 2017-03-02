@@ -44,6 +44,8 @@ parse_query(<<"period">>, Period, QueryArgs) ->
         Max ->
             QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, Max]}]
     end;
+parse_query(<<"edge">>, Edges, QueryArgs) ->
+    QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
 parse_query(_Key, _Value, QueryArgs) ->
     QueryArgs.
 
@@ -51,3 +53,8 @@ map_facet({Name, [{Type, Props}]}) ->
     {agg, [Name, Type, Props]};
 map_facet({Name, Props}) ->
     map_facet({Name, [{terms, Props}]}).
+
+map_edge(<<"depiction">>) ->
+    {true, {filter, [<<"reproduction.value">>, <<"exists">>, undefined]}};
+map_edge(_) ->
+    false.

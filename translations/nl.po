@@ -291,3 +291,13 @@ msgstr ""
 #: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/beeldenzoeker_search.tpl:21
 msgid "list"
 msgstr ""
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search/components/filters-image.tpl:6
+msgid ""
+"Has depiction"
+msgstr "Met beeld"
+
+#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search/components/filters-image.tpl:2
+msgid ""
+"Image"
+msgstr "Beeld"
