@@ -75,3 +75,5 @@
     {% endjavascript %}
 
 {% endwith %}
+
+{% include "_editor.tpl" overrides_tpl="_tinymce_overrides.tpl" %}
