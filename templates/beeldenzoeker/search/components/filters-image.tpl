@@ -1,4 +1,4 @@
-<div class="search__filters__section">
+<div class="search__filters__section is-open">
     <h3 class="search__filters__title">{_ Image _}</h3>
     <ul class="do_search_cmp_filters_edge">
         <li>

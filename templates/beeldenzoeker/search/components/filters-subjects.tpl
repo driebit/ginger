@@ -8,7 +8,7 @@ as
     title
 %}
 
-    <div class="search__filters__section" id="filter_subjects">
+    <div class="search__filters__section is-open" id="filter_subjects">
         <h3 class="search__filters__title">{{ title }}</h3>
         <ul class="do_search_cmp_filters_subjects">
 
