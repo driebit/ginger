@@ -218,7 +218,6 @@ $.widget("ui.search_ui", {
     },
 
     toggleSearchSection: function(title) {
-        title.parent().siblings().removeClass('is-open');
         title.parent().toggleClass('is-open');
     }
 
