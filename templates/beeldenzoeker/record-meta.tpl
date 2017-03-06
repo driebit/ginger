@@ -35,14 +35,14 @@
 	            {_ Manufacture _}
 	        </div>
 	        <ul class="adlib-object__meta__data">
-	        	{% if record.maker[1]['creator.name'] %}
+	        	{% if record.maker[1]['creator.name']|default:record['creator.name'] as creator %}
 		            <li>
-		                <b>{_ Creator _}</b><span>{{ record.maker[1]['creator.name'] }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</span>
+		                <b>{_ Creator _}</b><span>{{ creator }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</span>
 		            </li>
 		        {% endif %}
-	            {% if record['production.date.start'] or record['production.date.end'] %}
+	            {% if record['production.date.start'] or record['production_date']or record['production.date.end'] %}
 		            <li>
-		                <b>{_ Dating _}</b>{% if record['production.date.start'] %}<span>{{ record['production.date.start'] }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %} – {{ record['production.date.end'] }}{% endif %}</span>{% endif %}
+		                <b>{_ Dating _}</b>{% if record['production.date.start']|default:record['production_date'] as production_date %}<span>{{ production_date }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %} – {{ record['production.date.end'] }}{% endif %}</span>{% endif %}
 		            </li>
 		        {% endif %}
 	            {% if record['production.place'] %}
