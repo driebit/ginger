@@ -3,13 +3,16 @@
 	position: relative;
 	top: 0px;
 	left: 0px;
-	background: darken($white, 8%);
-	background: repeating-linear-gradient(45deg, darken($white, 10%), darken($white, 6%) 10%, darken($white, 6%) 10%, darken($white, 6%) 50%, darken($white, 6%) 50%) top left fixed;
+	background-color: $black;
+	background-size: contain;
+	background-repeat: no-repeat;
 	background-position: center center;
-	background-size: 10px 10px;
-
+	
 	&.no-image {
 		height: 200px;
+		background: darken($white, 8%);
+		background: repeating-linear-gradient(45deg, darken($white, 10%), darken($white, 6%) 10%, darken($white, 6%) 10%, darken($white, 6%) 50%, darken($white, 6%) 50%) top left fixed;
+		background-size: 10px 10px;
 	}
 }
 
