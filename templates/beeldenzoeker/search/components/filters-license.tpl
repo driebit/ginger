@@ -1,4 +1,4 @@
-<div class="search__filters__section--license {#do_search_cmp_filters_rights #}">
+<div class="search__filters__section--license is-open {#do_search_cmp_filters_rights #}">
     <h3 class="search__filters__title">{_ CC license _}</h3>
 
     <ul>
