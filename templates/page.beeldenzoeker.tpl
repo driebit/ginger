@@ -63,3 +63,5 @@
     </main>
 {% endwith %}
 {% endblock %}
+
+{% block footer %}{% endblock %}

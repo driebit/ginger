@@ -99,9 +99,9 @@
 
 	i {
 		margin: 0 0 20px 5px;
-	    top: -1px;
+	    top: 1px;
 	    position: relative;
-		font-size: 10px;
+		font-size: 14px;
 	}
 }
 
@@ -221,6 +221,29 @@
 
 	i {
 		font-size: 20px;
+	}
+}
+
+.search__filters__slider {
+	width: calc(100% - 18px);
+	margin: 0 9px 15px 9px;
+
+	&.ui-widget-content {
+		background: #C8C8C8;
+		border: none;
+		height: 8px;
+	}
+
+	.ui-slider-range {
+		background: #666;
+		border-color: #666;
+	}
+
+	.ui-slider-handle {
+		top: -5px;
+		background: #666;
+		border-color: #666;
+		border-radius: 50%;
 	}
 }
 
