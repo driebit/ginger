@@ -49,6 +49,9 @@ parse_query(<<"edge">>, Edges, QueryArgs) ->
 parse_query(_Key, _Value, QueryArgs) ->
     QueryArgs.
 
+map_facet({Name, [{<<"global">>, Props}]}) ->
+    %% Nested global aggregation
+    {agg, [Name, Props ++ [{<<"global">>, [{}]}]]};
 map_facet({Name, [{Type, Props}]}) ->
     {agg, [Name, Type, Props]};
 map_facet({Name, Props}) ->
