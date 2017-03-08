@@ -13,8 +13,12 @@ search(#search_query{search = {adlib, Args}, offsetlimit = {From, Size}}, Contex
         {limit, Size}
     | Args],
     
-    Response = ginger_adlib_client:search(Params, Context),
-    search_result(Response).
+    case ginger_adlib_client:search(Params, Context) of
+        undefined ->
+            undefined;
+        Response ->
+            search_result(Response)
+    end.
 
 %% @doc Process search result.
 %%      The only way to determine if there are results to be returned, is to
