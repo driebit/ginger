@@ -2,7 +2,7 @@
     <div class="search__filters__container">
         <button type="button" class="search__filters__mobile"><i class="icon--filter"></i>{_ Filters _}</button>
         <h3 class="search__filters__supertitle">{_ Refine search results _}</h3>
-        <a href="{% beeldenzoeker_search %}" class="search__filters__reset">{_ Reset filters _} <i class="icon--close"></i></a>
+        <a href="{% url beeldenzoeker_search %}" class="search__filters__reset">{_ Reset filters _} <i class="icon--close"></i></a>
         {% block search_sidebar %}
         	{% include "beeldenzoeker/components/search/filters-period.tpl" %}
             {% include "beeldenzoeker/components/search/filters-license.tpl" %}
