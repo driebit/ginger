@@ -1,68 +1,53 @@
-%% @doc Maps an Adlib record map to an Elasticsearch document.
+%% @doc Default
 -module(ginger_adlib_elasticsearch_mapping).
 
 -export([
-    map/1
+    map/1,
+    map_property/3,
+    year/1
 ]).
 
 -include_lib("zotonic.hrl").
 
--callback map(Record :: map()) -> MappedRecord :: map().
--callback map_property({Property :: binary(), Value :: binary()}) -> {MappedProperty :: binary(), MappedValue :: binary()}.
+-callback map_property(Property :: binary(), Value :: binary(), Acc :: map()) -> NewAcc :: map().
 
 map(Record) ->
-    maps:fold(
-        fun(Key, Value, Acc) ->
-            case map_property({Key, Value}) of
-                undefined ->
-                    %% ignore
-                    Acc;
-                {NewKey, NewValue} ->
-                    maps:put(NewKey, NewValue, Acc)
-            end
-        end,
-        #{},
-        Record
-    ).
+    Record.
 
-%% Map subtypes
-map_property({<<"maker">> = Key, Creators}) ->
-    {Key, [map(Creator) || Creator <- Creators, Creator =/= <<>>]};
-map_property({<<"dimension">> = Key, Creators}) ->
-    {Key, [map(Creator) || Creator <- Creators]};
-map_property({<<"documentation">> = Key, Creators}) ->
-    {Key, [map(Creator) || Creator <- Creators]};
-map_property({<<"reproduction">> = Key, Creators}) ->
-    {Key, [map(Creator) || Creator <- Creators]};
+map_property(<<"creator">>, Value, Acc) ->
+    Acc#{<<"creator.name">> => Value};
+map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"object.object_number">> ->
+    Acc#{
+        <<"dcterms:identifier">> => Value
+    };
+map_property(<<"production.date.start">> = Key, Value, Acc) ->
+    Acc2 = Acc#{
+        Key => Value,
+        <<"dcterms:date">> => Value
+    },
+    case year(Value) of
+        undefined ->
+            Acc2;
+        Year ->
+            Acc2#{<<"dbo:productionStartYear">> => Year}
+    end;
+map_property(<<"production.date.end">> = Key, Value, Acc) ->
+    Acc2 = Acc#{
+        Key => Value,
+        <<"dcterms:date">> => Value
+    },
+    case year(Value) of
+        undefined ->
+            Acc2;
+        Year ->
+            Acc2#{<<"dbo:productionEndYear">> => Year}
+    end;
+map_property(Key, Value, Acc) ->
+    Acc#{Key => Value}.
 
-map_property({_, [<<"0000">>]}) ->
-    %% Incorrect dates
-    undefined;
-map_property({_, [<<>>]}) ->
-    %% Empty dates
-    undefined;
-map_property({Key, [SingleValue]}) ->
-    map_property({Key, SingleValue});
-map_property({<<"title.translation">>, Value}) ->
-    {<<"title_translation">>, Value};
-map_property({<<"title.type">>, Value}) ->
-    {<<"title_type">>, Value};
-map_property({<<"acquisition.date">> = Key, Value}) ->
-    {Key, Value};
-map_property({<<"creator">>, Value}) ->
-    {<<"creator.name">>, Value};
-map_property({Key, Value}) when is_map(Value) ->
-    MappedValue = map(Value),
-    {Key, MappedValue};
-map_property({Key, Value}) when is_list(Value) ->
-    %% Map any value that is itself a map.
-    {Key, lists:map(
-        fun(V) when is_map(V) ->
-            map(V);
-        (V) ->
-            V
-        end,
-        Value
-    )};
-map_property({Key, Value}) ->
-    {Key, Value}.
+%% @doc Extract YYYY value (removing '?' etc.)
+year(Value) ->
+    case re:run(Value, "^(\\d{4}).*$", [{capture, all_but_first, binary}]) of
+        {match, [Year]} -> Year;
+        _ -> undefined
+    end.

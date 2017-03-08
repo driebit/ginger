@@ -23,7 +23,7 @@ init(Context) ->
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
     lager:info("Indexing Adlib record ~s from database ~s", [Priref, Database]),
 
-    MappedRecord = ginger_adlib_elasticsearch_mapping:map(Record),
+    MappedRecord = ginger_adlib_elasticsearch_mapper:map(Record, ginger_adlib_elasticsearch_mapping),
     case elasticsearch:put_doc(index(Context), Database, Priref, MappedRecord, Context) of
         {ok, _} ->
             ok;
