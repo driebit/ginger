@@ -1,7 +1,8 @@
 -module(ginger_adlib_client).
 
 -export([
-    listdatabases/1
+    listdatabases/1,
+    search/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -14,6 +15,9 @@ listdatabases(Context) ->
             Records
     end.
 
+search(Params, Context) ->
+    request(mod_ginger_adlib:endpoint(Context), Params).
+    
 request(undefined, _Params) ->
     throw({error, adlib_url_must_be_defined});
 request(Endpoint, Params) ->

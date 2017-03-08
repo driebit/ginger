@@ -42,7 +42,8 @@ pull_updates(Since, Context) ->
 pull_database_updates(Database, Since, Context) ->
     pull_database_updates(Database, Since, 1, Context).
 
-pull_database_updates(Database, {_Year, _Month, _Day} = Since, StartFrom, Context) ->
+pull_database_updates(Database, Since, StartFrom, Context) ->
+    %% First see if modified is a full datetime for this API
     Args = [
         {database, Database},
         {search, <<"modification>=", (z_datetime:format(Since, "Ymd", Context))/binary>>}
@@ -129,8 +130,8 @@ handle_call(Message, _From, State) ->
 handle_cast({pull_updates, Frequency}, State = #state{context = Context}) ->
     Now = z_datetime:timestamp(),
     SinceTimestamp = Now - Frequency,
-    {YMD, _} = z_datetime:timestamp_to_datetime(SinceTimestamp),
-    pull_updates(YMD, Context),
+    DateTime = z_datetime:timestamp_to_datetime(SinceTimestamp),
+    pull_updates(DateTime, Context),
     {noreply, State};
 handle_cast(Message, State) ->
     {stop, {unknown_cast, Message}, State}.
