@@ -3,5 +3,5 @@
 	{beeldenzoeker_search, ["beeldenzoeker", "search"], controller_template, [ {template, "beeldenzoeker/beeldenzoeker_search.tpl"} ]},
 
 	%% Beeldenzoeker detail page.
-    {adlib_object, ["beeldenzoeker", "beeld", database, object_id], controller_template, [{template, {cat, "page.adlib_object.tpl"}}]}
+    {adlib_object, ["beeldenzoeker", "beeld", database, object_id], controller_template, [{template, {cat, "page.collection_object.tpl"}}]}
 ].

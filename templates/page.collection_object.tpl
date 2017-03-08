@@ -5,7 +5,7 @@
 {% block content %}
 
 {% with index|default:m.config.mod_ginger_adlib_elasticsearch.index.value as index %}
-	{% with m.search[{elastic index=index filter=['_type', q.database] filter=['priref', q.object_id] pagelen=1}]|first as result %}
+	{% with m.search[{elastic index=index filter=['_type', q.database] filter=['_id', q.object_id] pagelen=1}]|first as result %}
         {% with result._source as record %}
 
             {% include "beeldenzoeker/masthead.tpl" record=record %}
@@ -24,19 +24,11 @@
                         <h2>{{ record.title[2] }}</h2>
                     {% endif %}
 
-                    {% block item_summary %}
-                        {% if record.AHMteksten['AHM.texts.tekst'] %}
-                            <p class="summary">
-                                {{ record.AHMteksten['AHM.texts.tekst']|truncate:"100" }}
-                            </p>
-                        {% endif %}
-                    {% endblock %}
+                    {% block item_summary %}{% endblock %}
 
                     {% block item_body %}
-                        {% if record.AHMteksten['AHM.texts.tekst'] %}
-                            <p>
-                                {{ record.AHMteksten['AHM.texts.tekst']}}
-                            </p>
+                        {% if record['dcterms:description'] as body %}
+                            <p>{{ body }}</p>
                         {% endif %}
                     {% endblock %}
 
