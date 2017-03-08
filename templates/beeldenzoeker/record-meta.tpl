@@ -10,15 +10,15 @@
 	            </li>
 	            {% if record.object_category %}
 		            <li>
-		                <b>{_ Object type _}</b><span>{{ record.object_category }}</span>
+		                <b>{_ Object type _}</b><span>{{ record.object_category.value|default:record.object_category }}</span>
 		            </li>
 		        {% endif %}
 	            {% if record.object_name %}
 		            <li>
 		                <b>{_ Object name _}</b><span>{{ record.object_name }}</span>
 		            </li>
-		        {% endif %}
-	            {% if record.object_number %}
+		        {% endif %}[
+	            {% if record['dcterms:identifier'] %}
 		            <li>
 		                <b>{_ Object nr. _}</b><span>{{ record['dcterms:identifier']}}</span>
 		            </li>
