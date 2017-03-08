@@ -23,8 +23,16 @@ request(undefined, _Params) ->
 request(Endpoint, Params) ->
     WithDefaultParams = [{output, json} | Params],
     Url = binary_to_list(Endpoint) ++ "?" ++ mochiweb_util:urlencode(WithDefaultParams),
+    
+    lager:debug("Adlib request: ~p", [Url]),
 
     case httpc:request(Url) of
+        {ok, {
+            {_HTTP, 200, _OK},
+            _Headers,
+            []
+        }} ->
+            undefined;
         {ok, {
             {_HTTP, 200, _OK},
             _Headers,
