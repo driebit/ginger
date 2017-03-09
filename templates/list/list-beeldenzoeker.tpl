@@ -21,12 +21,11 @@ as
     noresults,
     show_pager
 %}
+    {% if items|length > 0 %}
 
-    {% if items %}
-
-      {% if show_pager %}
-        {% include "pager/pager.tpl"  %}
-      {% endif %}
+        {% if show_pager %}
+            {% include "pager/pager.tpl"  %}
+        {% endif %}
 
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
             {% for r in items %}
