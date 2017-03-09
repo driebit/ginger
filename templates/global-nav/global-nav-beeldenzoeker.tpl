@@ -1,7 +1,7 @@
 <nav class="global-nav do_global_nav">
     <div class="global-nav__left">
         <a href="{% url beeldenzoeker %}" class="global-nav__left__logo">{_ Beeldcollectie _}</a>
-        <a href="{% url beeldenzoeker %}" class="global-nav__left__home"><i class="fa fa-home"></i> Home</a>
+        <a href="{% url beeldenzoeker %}" class="global-nav__left__home"><i class="icon--home"></i> Home</a>
         {% block logos %}{% endblock %}
     </div>
 
