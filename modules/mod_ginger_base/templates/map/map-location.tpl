@@ -18,6 +18,14 @@ as
     edgePresented
 %}
 {% with edgeLocation|default:edgePresented|default:id as location %}
+{% with 
+    lat|default:location.pivot_location_lat,
+    lng|default:location.pivot_location_lng 
+as 
+    lat,
+    lng
+%}
+
    <div class="map--location do_map_location"
         data-street="
         {% if location.address_street_2 %}
@@ -30,16 +38,18 @@ as
         data-postcode="{{ location.address_postcode }}"
         data-country="{{ location.address_country }}"
         data-main-content-class="{{ main_content_class }}"
-        data-lat="{{ location.pivot_location_lat}}"
-        data-lng="{{ location.pivot_location_lng }}"
+        data-lat="{{ lat }}"
+        data-lng="{{ lng }}"
         data-options='
                 {
                     "type": "{{ type }}",
                     "fallback": {{ fallback }},
                     "recenter": {{ recenter }},
-                    "blackwhite": {{ blackwhite }}
+                    "blackwhite": {{ blackwhite }},
+                    "gridsize": "60"
                 }
             '
     ></div>
+{% endwith %}
 {% endwith %}
 {% endwith %}
