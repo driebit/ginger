@@ -1,8 +1,10 @@
-.t--home {
-
+.t--beeldenzoeker {
+	main {
+		margin: 0;
+	}
 }
 
-.home__header {
+.beeldenzoeker-home__header {
 	padding: 50px 0 30px;
 	position: relative;
 	background-size: cover;
@@ -20,7 +22,7 @@
 	}
 }
 
-.home__title {
+.beeldenzoeker-home__header__title {
 	width: 90%;
 	max-width: 800px;
 	margin: 0 auto;
@@ -45,13 +47,14 @@
 	}
 }
 
-.home-section__title {
+.beeldenzoeker-home__section-title {
 	padding: 20px 0;
 	font-size: 20px;
 	font-weight: bold;
+	@extend .main-container;
 }
 
-.home-collections {
+.beeldenzoeker-home__collections {
 	padding-bottom: 20px;
 	background: #EDEDED;
 
@@ -59,18 +62,9 @@
 	.list__item__content {
 		background: none;
 	}
-
-	.home-section__title {
-		@extend .main-container;
-	}
 }
 
-.home-events {
-	@extend .home-collections;
-	background: #F3F3F3;
-}
-
-.home-latest {
+.beeldenzoeker-home__latest {
 	.list {
 		width: 100%;
 		max-width: none;
@@ -79,34 +73,27 @@
 }
 
 @include mq(min-width, $mediumBreakpoint) {
-	.t--home {
-		.search__pager {
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-
-	.home__header {
+	.beeldenzoeker-home__header {
 		padding: 120px 0 40px;
 		height: auto;
 	}
 
-	.home-collections {
+	.beeldenzoeker-home__collections {
 		padding-bottom: 40px;
 	}
 
-	.home-section__title { 
+	.beeldenzoeker-home__section-title { 
 		padding: 40px 0;
 		font-size: 28px;
 	}
 }
 
 @include mq(min-width, $largeBreakpoint) {
-	.home__header {
+	.beeldenzoeker-home__header {
 		height: auto;
 	}
 
-	.home__title {
+	.beeldenzoeker-home__header__title {
 		h1 {
 			font-size: 40px;
 		}

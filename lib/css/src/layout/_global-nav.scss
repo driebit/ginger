@@ -1,0 +1,121 @@
+.global-nav {
+	.search-suggestions__searchform__options {
+		display: none;
+	}
+}
+
+.global-nav__left {
+	display: flex;
+}
+
+.global-nav__left__logo {
+	display: inline-block;
+	padding: 0 15px;
+	line-height: 60px;
+	background: #373636;
+	color: $white;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	transition: background 0.3s;
+
+	&:hover,
+	&:focus,
+	&:active,
+	&:active:focus {
+		background: darken(#373636, 4%);
+		text-decoration: none;
+		color: $white;
+	}
+}
+
+.global-nav__left__home {
+	display: none;
+	padding: 0 10px;
+	background: #474747;
+	color: $white;
+
+	i {
+		width: 23px;
+		height: 23px;
+		border-radius: 50%;
+		border: 1px solid $white;
+		text-align: center;
+		line-height: 21px;
+	}
+
+	&:hover,
+	&:focus,
+	&:active,
+	&:active:focus {
+		text-decoration: none;
+		background: darken(#474747, 4%);
+		color: $white;
+	}
+}
+
+.global-nav__logos {
+	display: none;
+
+	a {
+		display: inline-block;
+		padding: 0 10px;
+		line-height: 60px;
+		color: #6A727D;
+		border-left: 1px solid #E0E0E0;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 26px;
+			height: 28px;
+			margin-right: 10px;
+			position: relative;
+			top: 8px;
+			background: url('/lib/images/beeldenzoeker/museum-logo-nav.png') no-repeat;
+			background-size: contain;
+		}
+
+		+ a {
+			&:before {
+				background-image: url('/lib/images/beeldenzoeker/hart-logo-nav.png');
+			}
+		}
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus {
+			text-decoration: none;
+			color: darken($mainThemeColor, 5%);
+		}
+	}
+}
+
+@include mq(min-width, $smallBreakpoint) {
+	.global-nav__left__home {
+		display: inline-block;
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.global-nav__logos {
+		display: inline-block;
+	}
+}
+
+@include mq(min-width, $largeBreakpoint) {
+	.global-nav__left {
+		float: left;
+	}
+
+	.global-nav__left__logo {
+		line-height: 70px;
+	}
+
+	.global-nav__logos {
+		a {
+			line-height: 70px;
+		}
+	}
+}
