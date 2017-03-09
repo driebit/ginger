@@ -19,7 +19,7 @@
                     </div>
                 {% endblock %}
                 {% block item_title %}
-                    <h3 class="list__item__content__title">{% include "beeldenzoeker/title.tpl" title=record.title truncate=60 %}</h3>
+                    <h3 class="list__item__content__title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title truncate=60 %}</h3>
                 {% endblock %}
                 {% block item_summary %}
                     {% if record.AHMteksten['AHM.texts.tekst'] %}
