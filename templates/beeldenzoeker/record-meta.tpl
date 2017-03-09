@@ -17,7 +17,7 @@
 		            <li>
 		                <b>{_ Object name _}</b><span>{{ record.object_name }}</span>
 		            </li>
-		        {% endif %}[
+		        {% endif %}
 	            {% if record['dcterms:identifier'] %}
 		            <li>
 		                <b>{_ Object nr. _}</b><span>{{ record['dcterms:identifier']}}</span>
