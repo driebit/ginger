@@ -34,19 +34,23 @@
 -record(state, {context}).
 
 %% @doc Pull records modified after a date from all enabled Adlib databases
+-spec pull_updates(calendar:datetime(), z:context()) -> list(ok).
 pull_updates(Since, Context) ->
-    [pull_database_updates(Database, Since, Context) || Database <- enabled_databases(Context)].
+    DateTime = z_datetime:to_datetime(Since),
+    [pull_database_updates(Database, DateTime, Context) || Database <- enabled_databases(Context)].
 
 %% @doc Pull records modified after a date from an Adlib database
--spec pull_database_updates(binary(), calendar:date(), z:context()) -> ok.
+-spec pull_database_updates(binary(), calendar:datetime(), z:context()) -> ok.
 pull_database_updates(Database, Since, Context) ->
     pull_database_updates(Database, Since, 1, Context).
 
-pull_database_updates(Database, Since, StartFrom, Context) ->
-    %% First see if modified is a full datetime for this API
+pull_database_updates(Database, Since, StartFrom, Context) when is_tuple(Since) ->
+    Format = detect_modification_date_format(Database, Since, Context),
+    pull_database_updates(Database, z_datetime:format(Since, Format, Context), StartFrom, Context);
+pull_database_updates(Database, Since, StartFrom, Context) when is_binary(Since) ->
     Args = [
         {database, Database},
-        {search, <<"modification>=", (z_datetime:format(Since, "Ymd", Context))/binary>>}
+        {search, <<"modification>=", Since/binary>>}
     ],
 
     #search_result{result = Records} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
@@ -108,6 +112,25 @@ endpoint(Context) ->
 enabled_databases(Context) ->
     DatabasesConfig = m_config:get(?MODULE, databases, Context),
     proplists:get_value(list, DatabasesConfig).
+
+%% @doc Detect datetime format used by Adlib server for modified.
+%%      Unfortunately, this can differ between Adlib instances.
+-spec detect_modification_date_format(binary(), calendar:datetime(), z:context()) -> string().
+detect_modification_date_format(Database, Since, Context) ->
+    %% First try ISO8601
+    ISO8601 = z_datetime:format(Since, "'Y-m-d H:i:s'", Context),
+    Args = [
+        {database, Database},
+        {search, <<"modification=", ISO8601/binary>>}
+    ],
+    
+    case z_search:search({adlib, Args}, {1, 20}, Context) of
+        #search_result{total = undefined} ->
+            %% Try legacy format
+            "Ymd";
+        _ ->
+            "'Y-m-d H:i:s'"
+    end.
 
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).

@@ -38,7 +38,13 @@ request(Endpoint, Params) ->
             _Headers,
             Body
         }} ->
-            jsx:decode(z_convert:to_binary(Body), [return_maps]);
+            try
+                jsx:decode(z_convert:to_binary(Body), [return_maps])
+            catch
+                error:badarg ->
+                    lager:error("Could not decode Adlib response: ~p", [Body]),
+                    undefined
+            end;
         {ok, {
             {_HTTP, 404, _NotFound},
             _Headers,
