@@ -12,10 +12,9 @@ as
     blackwhite,
     main_content_class
 %}
-
     {% if id %}
-        {% if (id.category.is_a.location or id.category.is_a.organization) and id.address_city %}
-
+        {% if (id.category.is_a.location or id.category.is_a.organization) and id.address_city or (id.pivot_location_lat and id.pivot_location_lng) %}
+            
             {% include "map/map-location.tpl" id=id type=maptype main_content_class=main_content_class fallback recenter blackwhite %}
 
         {% elseif id.category.is_a.location_query %}
