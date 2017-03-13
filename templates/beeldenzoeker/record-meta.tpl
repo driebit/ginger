@@ -40,11 +40,23 @@
 		                <b>{_ Creator _}</b><span>{{ creator }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</span>
 		            </li>
 		        {% endif %}
-	            {% if record['production.date.start'] or record['production_date']or record['production.date.end'] %}
-		            <li>
-		                <b>{_ Dating _}</b>{% if record['production.date.start']|default:record['production_date'] as production_date %}<span>{{ production_date }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %} – {{ record['production.date.end'] }}{% endif %}</span>{% endif %}
-		            </li>
-		        {% endif %}
+                {% if record['dcterms:created'] or record['dbo:productionStartYear'] %}
+                    <li>
+                        <b>{_ Date _}</b>
+
+                        {# TODO filter date for friendlier dates #}
+                        {% with
+                            record['dbo:productionStartYear']|default:record['dcterms:created'],
+                            record['dbo:productionEndYear']
+                        as
+                            start,
+                            end
+                        %}
+                            <span>{{ start }}{% if end and end != start %} – {{ end }}{% endif %}</span>
+                        {% endwith %}
+                    </li>
+                {% endif %}
+
 	            {% if record['production.place'] %}
 	                <li>
 	                    <b>{_ City _}</b><span>{{ record['production.place'] }}</span>
