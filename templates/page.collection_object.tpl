@@ -18,7 +18,9 @@
                     </div>
                 </div>
                 <article class="main-content">
-                    <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record.title %}</h1>
+                    {% block title %}
+                        <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
+                    {% endblock %}
 
                     {% if record.title[2] %}
                         <h2>{{ record.title[2] }}</h2>
