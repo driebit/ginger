@@ -28,7 +28,7 @@ observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #
         {ok, _} ->
             ok;
         {error, Message} ->
-            lager:error("Record with priref ~p could not be saved to Elasticsearch: ~p", [Priref, Message])
+            lager:error("Record with priref ~s from database ~p could not be saved to Elasticsearch: ~p", [Priref, Database, Message])
     end.
 
 %% @doc Get Elasticsearch index name for Adlib resources
