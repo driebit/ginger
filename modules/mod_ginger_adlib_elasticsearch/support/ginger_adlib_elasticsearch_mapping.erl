@@ -15,7 +15,7 @@ map(Record) ->
     Record.
 
 map_property(<<"creator">>, Value, Acc) ->
-    Acc#{<<"creator.name">> => Value};
+    Acc#{<<"dcterms:creator">> => #{<<"rdfs:label">> => Value}};
 map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"object.object_number">> ->
     Acc#{
         <<"dcterms:identifier">> => Value
