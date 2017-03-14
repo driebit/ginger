@@ -4,9 +4,9 @@
         <h3 class="search__filters__supertitle">{_ Refine search results _}</h3>
         <a href="{% url beeldenzoeker_search %}" class="search__filters__reset">{_ Reset filters _} <i class="icon--close"></i></a>
         {% block search_sidebar %}
-        	{% include "beeldenzoeker/components/search/filters-period.tpl" %}
-            {% include "beeldenzoeker/components/search/filters-license.tpl" %}
-            {% include "beeldenzoeker/components/search/filters-subjects.tpl" %}
+        	{% include "beeldenzoeker/search/components/filters-period.tpl" %}
+            {% include "beeldenzoeker/search/components/filters-license.tpl" %}
+            {% include "beeldenzoeker/search/components/filters-subjects.tpl" %}
         {% endblock %}
     </div>
 </div>
