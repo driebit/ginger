@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "beeldenzoeker/base.tpl" %}
 
 {% block body_class %}do_mod_am_default query{% endblock %}
 {% block container_class %}container container-topmargin %}{% endblock %}
