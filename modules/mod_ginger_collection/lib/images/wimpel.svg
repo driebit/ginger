@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="136px" height="45px" viewBox="0 0 136 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="50%" cy="0%" fx="50%" fy="0%" r="100%" id="radialGradient-1">
+            <stop stop-color="#E6181D" offset="1.86344069%"></stop>
+            <stop stop-color="#B3051B" offset="97.6941167%"></stop>
+        </radialGradient>
+        <linearGradient x1="0%" y1="56.2172382%" x2="19.2323804%" y2="56.2172353%" id="linearGradient-2">
+            <stop stop-color="#E6181D" offset="2.44339923%"></stop>
+            <stop stop-color="#AC0517" offset="97.2437022%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="verzameling-tag">
+            <g id="Group-7" transform="translate(0.000000, -2.000000)">
+                <g id="Group-9" transform="translate(68.000000, 23.500000) scale(1, -1) translate(-68.000000, -23.500000) translate(0.000000, 0.500000)">
+                    <path d="M20.0917969,0 C16.56131,0 -3.76142537,10.6172312 0.804304967,18.6090984 C1.67686677,20.1367576 20.0917969,21.5265431 20.0917969,21.5265431 L20.0917969,0 Z" id="Fill-1-Copy" fill="url(#radialGradient-1)"></path>
+                    <g id="Page-1-Copy" transform="translate(0.000000, 14.411879)" fill="url(#linearGradient-2)">
+                        <g id="Group-5" transform="translate(0.000000, 0.264794)">
+                            <path d="M126.372805,3.93208899 L12.6010775,3.93208899 C6.00661685,3.93208899 1.4553809,2.49234229 0.562526966,0.972849864 L0.0508752809,0.0773917896 C-0.107596629,1.39223554 0.0962910112,2.6936282 0.8041,3.93208899 C0.8041,3.93256939 7.49121094,26.3449626 7.49121094,26.3449626 C8.38406487,27.8649355 12.7652334,29.3042018 19.3592109,29.3042018 L135.351562,29.3042018 L126.372805,3.93208899 Z" id="Fill-3"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

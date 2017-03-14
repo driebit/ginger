@@ -1,0 +1,28 @@
+.fancybox-close {
+	width: 40px;
+	height: 40px;
+	z-index: 100;
+	background: #939EAE;
+	border: 1px solid $white;
+	color: rgba($white, 0.8);
+	text-align: center;
+	line-height: 40px;
+	border-radius: 0;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		color: $white;
+		background: darken(#939EAE, 5%);
+	}
+}
+
+.fancybox-image,
+.zoomImg {
+    cursor: zoom-in;
+    cursor: url(images/zoom.png) x y, auto;
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+}

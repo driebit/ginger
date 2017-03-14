@@ -1,0 +1,105 @@
+.t--beeldenzoeker {
+	main {
+		margin: 0;
+	}
+}
+
+.beeldenzoeker-home__header {
+	padding: 50px 0 30px;
+	position: relative;
+	background-size: cover;
+	background-position: center center;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		bottom: 0px;
+		z-index: 5;
+		background: rgba(#373636, 0.65);
+	}
+}
+
+.beeldenzoeker-home__header__title {
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+	z-index: 10;
+	color: $white;
+	text-align: left;
+
+	h1 {
+		font-size: 30px;
+		margin: 0 0 15px 0;
+		font-family: $secondaryFontFamily;
+		font-weight: 700;
+		text-shadow: 0 2px 4px rgba(0,0,0,0.50);
+	}
+
+	h2 {
+		font-size: 20px;
+		margin: 0;
+		font-family: $secondaryFontFamily;
+		text-shadow: 0 2px 4px rgba(0,0,0,0.50);
+	}
+}
+
+.beeldenzoeker-home__section-title {
+	padding: 20px 0;
+	font-size: 20px;
+	font-weight: bold;
+	@extend .main-container;
+}
+
+.beeldenzoeker-home__collections {
+	padding-bottom: 20px;
+	background: #EDEDED;
+
+	.list__item--beeldenzoeker,
+	.list__item__content {
+		background: none;
+	}
+}
+
+.beeldenzoeker-home__latest {
+	.list {
+		width: 100%;
+		max-width: none;
+		padding: 0;
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.beeldenzoeker-home__header {
+		padding: 120px 0 40px;
+		height: auto;
+	}
+
+	.beeldenzoeker-home__collections {
+		padding-bottom: 40px;
+	}
+
+	.beeldenzoeker-home__section-title { 
+		padding: 40px 0;
+		font-size: 28px;
+	}
+}
+
+@include mq(min-width, $largeBreakpoint) {
+	.beeldenzoeker-home__header {
+		height: auto;
+	}
+
+	.beeldenzoeker-home__header__title {
+		h1 {
+			font-size: 40px;
+		}
+
+		h2 {
+			font-size: 30px;
+		}
+	}
+}

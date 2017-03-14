@@ -1,0 +1,129 @@
+%btn--adlib {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	padding: 0 15px;
+	border: 1px solid $white;
+	background: none;
+	color: $white;
+	font-size: 14px;
+	line-height: 40px;
+}
+
+.adlib-object__actions {
+	padding: 10px 15px;
+	margin-bottom: 20px;
+	position: relative;
+	background: $bzSecondaryColor;
+
+	.main-container {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.adlib-download {
+	position: relative;
+	margin-right: 15px;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		&:after {
+			content: '';
+			width: 100%;
+			height: 30px;
+			position: absolute;
+			bottom: 40px;
+			left: 0px;
+		}
+
+		ul {
+			transform: scale(1);
+		}
+	}
+
+	button {
+		@extend %btn--adlib;
+
+		&:before {
+			content: '';
+			display: inline-block;
+			width: 10px;
+			height: 12px;
+			margin-right: 5px;
+			background: url('/lib/images/icon-upload.svg');
+			background-size: contain;
+			transform: rotate(180deg);
+		}
+	}
+
+	ul {
+		min-width: 100%;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		bottom: 65px;
+		background: $white;
+		border: 1px solid #E0E0E0;
+		list-style: none;
+		font-size: 12px;
+		color: $bzSecondaryColor;
+		border-radius: 4px;
+		transform: scale(0);
+		transform-origin: bottom center;
+		transition: transform 0.3s;
+
+		li:first-child a {
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+		}
+
+		li:last-child a {
+			border-bottom-left-radius: 4px;
+			border-bottom-right-radius: 4px;
+		}
+
+		a {
+			display: block;
+			padding: 10px;
+			position: relative;
+			z-index: 10;
+			color: inherit;
+
+			&:hover,
+			&:focus,
+			&:active,
+			&:active:focus {
+				background: #A2AEBE;
+				text-decoration: none;
+				color: $white;
+			}
+		}
+
+		&:before {
+			content: '';
+			width: 13px;
+			height: 13px;
+			position: absolute;
+			bottom: -11px;
+			left: 50%;
+			z-index: 5;
+			background: $white;
+			transform: rotate(45deg) translateX(-50%);
+			border-right: 1px solid #e0e0e0;
+			border-bottom: 1px solid #e0e0e0;
+		}
+	}
+}
+
+.adlib-share {
+	@extend .adlib-download;
+
+	button {
+		&:before {
+			transform: none;
+		}
+	}
+}

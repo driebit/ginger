@@ -1,0 +1,42 @@
+.slick-arrow {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 80px;
+	left: 10px;
+	z-index: 300;
+	border-radius: 50%;
+	background: transparent;
+	border: 1px solid $white;
+	text-indent: -9999px;
+
+	&:before {
+		@extend .has-icon;
+		@extend .icon--arrow-left;
+		position: absolute;
+		top: 12px;
+		left: 12px;
+		text-indent: 0;
+		color: $white;
+	}
+
+	&.slick-next {
+		right: 10px;
+		left: auto;
+
+		&:before {
+			@extend .icon--arrow-right;
+			left: 15px;
+		}		
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.slick-arrow {
+		left: 20px;
+
+		&.slick-next {
+			right: 20px;
+		}
+	}
+}
