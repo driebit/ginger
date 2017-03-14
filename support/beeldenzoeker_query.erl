@@ -20,7 +20,7 @@ parse_query(<<"facets">>, Facets, QueryArgs) ->
 parse_query(<<"subject">>, Subjects, QueryArgs) ->
     QueryArgs ++ lists:map(
         fun(Subject) ->
-            {filter, [<<"association.subject.keyword">>, Subject]}
+            {filter, [<<"dcterms:subject.rdfs:label.keyword">>, Subject]}
         end,
         Subjects
     );
