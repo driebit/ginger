@@ -36,13 +36,13 @@ parse_query(<<"period">>, Period, QueryArgs) ->
         <<>> ->
             QueryArgs;
         Min ->
-            QueryArgs ++ [{filter, [<<"dcterms:date">>, <<"gte">>, Min]}]
+            QueryArgs ++ [{filter, [<<"dcterms:date">>, <<"gte">>, date_range(Min)]}]
     end,
     case proplists:get_value(<<"max">>, Period) of
         <<>> ->
             QueryArgs2;
         Max ->
-            QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, Max]}]
+            QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, date_range(Max)]}]
     end;
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
@@ -62,3 +62,16 @@ map_edge(<<"depiction">>) ->
     {true, {filter, [[<<"reproduction.value">>, <<"exists">>, undefined], [<<"_type">>, <<"resource">>]]}};
 map_edge(_) ->
     false.
+
+%% @doc When the filter date is a year, make sure to include all dates in that
+%%      year.
+%%      See http://stackoverflow.com/questions/31861378
+date_range(Date)  ->
+    case ginger_adlib_elasticsearch_mapping:year(Date) of
+        undefined ->
+            %% Full date: do nothing
+            Date;
+        Year ->
+            %% Include all dates in year
+            <<Year/binary, "||/y">>
+    end.
