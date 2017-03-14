@@ -3,49 +3,42 @@
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
     postcss = require('gulp-postcss'),
-    sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('autoprefixer'),
     lost = require('lost'),
-    livereload = require('gulp-livereload');
+    globbing = require('gulp-css-globbing');
 
 var paths = {
     cssSource: 'lib/css/src/',
-    cssDestination: 'lib/css/mod_ginger_admin/',
-    templates: 'templates/',
-
+    cssDestination: 'lib/css/mod_ginger_admin/'
 };
 
-gulp.task('watch', function() {
-    var watchPaths = [
-        paths.cssSource + '/**/*.scss'
-    ].concat();
-
-    gulp.watch(watchPaths, ['styles']);
-
-});
-
-gulp.task('styles', function() {
-    return gulp.src(paths.cssSource + '**/*.scss')
-        .pipe(sass({
+gulp.task('sass', function () {
+    gulp.src(paths.cssSource + 'screen.scss')
+    .pipe(globbing({ extensions: ['.scss'] }))
+    .pipe(sass({
+            outputStyle : 'compressed',
             errLogToConsole: true
         }))
-        .pipe(postcss([
-            lost(),
-            autoprefixer('last 1 version', 'ie > 7')
-        ]))
-        .pipe(gulp.dest(paths.cssDestination));
+    .on('error', handleError)
+    .pipe(postcss([
+        lost(),
+        autoprefixer('last 2 versions', 'ie > 7')
+    ]))
+    .pipe(gulp.dest(paths.cssDestination));
 });
 
-gulp.task('livereload', function() {
-    var server = livereload();
+gulp.task('sass:watch', function () {
 
-    gulp.watch(paths.cssSource + '/**/*.css').on('change', function(file) {
-        server.changed(file.path);
-    });
 
-    gulp.watch(paths.templates + '/**/*.tpl').on('change', function(file) {
-        server.changed(file.path);
-    });
+    var watchPaths = [
+        paths.cssSource + '/**/*.scss'
+    ]
+
+    gulp.watch(watchPaths, ['sass']);
 });
 
-gulp.task('default', ['styles', 'livereload', 'watch']);
+function handleError(e) {
+    console.log('error...', e);
+}
+
+gulp.task('default', ['sass', 'sass:watch']);
