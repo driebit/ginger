@@ -46,6 +46,7 @@ map_property(Key, Value, Acc) ->
     Acc#{Key => Value}.
 
 %% @doc Extract YYYY value (removing '?' etc.)
+-spec year(term()) -> binary().
 year(Value) ->
     case re:run(Value, "^(\\d{4}).*$", [{capture, all_but_first, binary}]) of
         {match, [Year]} -> Year;
