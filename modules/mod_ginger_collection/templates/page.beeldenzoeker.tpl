@@ -47,18 +47,7 @@
             {% endfor %}
         {% endif %}
 
-        <div class="beeldenzoeker-home__latest">
-            <div class="main-container">
-                <h2 class="beeldenzoeker-home__section-title">Recent toegevoegd</h2>
-                {% with m.search[{beeldenzoeker page=q.page index=m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value sort=sort text=text|default:q.qs cat="beeldenzoeker_query" pagelen=15 filter=[['reproduction.value', 'exists', 'undefined'], ['_type', 'resource']]}] as result %}
-                    {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button dispatch_pager="beeldenzoeker" list_template="list/list-item-beeldenzoeker.tpl" %}
-
-                    <div id="more-results">
-                        {% wire name="moreresults" action={replace target="more-results" template="beeldenzoeker/_home-more-results.tpl" page=2 } %}
-                    </div>
-                {% endwith %}
-            </div>
-        </div>
+        {% optional include "beeldenzoeker/home/recent.tpl" %}
 
     </main>
 {% endwith %}

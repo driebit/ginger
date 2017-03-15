@@ -1,9 +1,7 @@
-{% with record.reproduction|filter:'value'|first as firstReproduction %}
-    {% if record.reproduction.value|default:firstReproduction.value as reference %}
-        <div class="masthead {{ extraClasses }}" style="background-image: url({% include "beeldenzoeker/image-url.tpl" image=reference %});">
-            <a href="{% include "beeldenzoeker/image-url.tpl" image=reference %}" class="masthead__zoom" title="{_ Zoom _}"><i class="icon--expand"></i></a>
-    {% else %}
-        <div class="masthead no-image">
-    {% endif %}
+{% if url %}
+    <div class="masthead {{ extraClasses }}" style="background-image: url({{ url }});">
+        <a href="{{ url }}" class="masthead__zoom" title="{_ Zoom _}"><i class="icon--expand"></i></a>
     </div>
-{% endwith %}
+{% else %}
+    <div class="masthead no-image"></div>
+{% endif %}

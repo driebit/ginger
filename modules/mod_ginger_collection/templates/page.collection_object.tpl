@@ -8,7 +8,7 @@
 	{% with m.search[{elastic index=index filter=['_type', q.database] filter=['_id', q.object_id] pagelen=1}]|first as result %}
         {% with result._source as record %}
 
-            {% include "beeldenzoeker/masthead.tpl" record=record %}
+            {% include "beeldenzoeker/depiction.tpl" record=record width=1600 height=1600 template="beeldenzoeker/masthead.tpl" %}
 
             <main role="main">
                 <div class="adlib-object__actions">
