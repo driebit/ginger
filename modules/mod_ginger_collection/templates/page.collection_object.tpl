@@ -26,7 +26,13 @@
                         <h2>{{ record.title[2] }}</h2>
                     {% endif %}
 
-                    {% block item_summary %}{% endblock %}
+                    {% block item_summary %}
+                        {% if record['dcterms:abstract'] as abstract %}
+                            <p class="summary">
+                                {{ abstract }}
+                            </p>
+                        {% endif %}
+                    {% endblock %}
 
                     {% block item_body %}
                         {% if record['dcterms:description'] as body %}
