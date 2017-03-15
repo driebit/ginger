@@ -88,11 +88,12 @@ $.widget( "ui.googlemap", {
 			} else {
 			    icon = '/lib/images/marker-default.png';
 			}
-
+			
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 				icon: icon,
-				zotonic_id: parseInt(locations[i].id)
+				zotonic_id: parseInt(locations[i].id),
+				data: locations[i].data
 			});
 
 			marker.addListener('click', function() {
@@ -170,19 +171,21 @@ $.widget( "ui.googlemap", {
 
 	startShowInfoWindow: function(markerList) {
 
-	  var me = this,
-		  marker = markerList[0];
+	  var me = this;
 
 		var ids = $.map(markerList, function(val, i) {
 			return val.zotonic_id;
 	  	});
 
-    	z_event('map_infobox', {ids: ids, element: me.id});
+	  	var data = $.map(markerList, function(val, i) {
+			return val.data;
+	  	});
+
+    	z_event('map_infobox', {ids: ids, element: me.id, data: data});
 
 	},
 
 	showInfoWindow: function(zotonic_id, contentHTML) {
-
 	  var me = this,
 		  marker = me.getMarker(zotonic_id),
 		  ibOptions = {

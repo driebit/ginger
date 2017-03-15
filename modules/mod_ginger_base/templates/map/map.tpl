@@ -6,7 +6,7 @@
     loadgeojson,
     datastyle,
     mapstyle,
-    container,
+    container|default:"map",
     height,
     panOffsetX|default:0,
     panOffsetY|default:0
@@ -39,15 +39,7 @@ as
                     data-locations='
                         {% filter replace:"'":"\\&#39;" %}
                             [
-                                {% for rid, lat, lng, cat in result %}
-                                    {
-                                        "lat": "{{ lat }}",
-                                        "lng": "{{ lng }}",
-                                        "id": "{{ rid }}",
-                                        "icon": "{{ cat.o.hasicon[1].medium.filename }}"
-                                    }
-                                    {% if not forloop.last %},{% endif %}
-                                {% endfor %}
+                                {% include "map/map-locations.tpl" %}
                             ]
                         {% endfilter %}
                     '
@@ -70,6 +62,7 @@ as
             {% else %}
                 <p class="no-results">{_ No results _}</p>
             {% endif %} 
+            
 
             {% wire name="map_infobox"
                     action={

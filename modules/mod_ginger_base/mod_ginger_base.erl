@@ -226,8 +226,14 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
     end;
 event(#postback{message={map_infobox, _Args}}, Context) ->
     Ids = z_context:get_q(ids, Context),
+    Render = case z_context:get_q(data, Context) of
+                        [] ->
+                            z_template:render("map/map-infobox.tpl", [{results, Ids}], Context);
+                        Data ->
+                            z_template:render("map/map-infobox-data-item.tpl", [{item, Data}], Context)
+                end,
     Element = z_context:get_q(element, Context),
-    Render = z_template:render("map/map-infobox.tpl", [{results, Ids}], Context),
+    
     EscapedRender = z_utils:js_escape(iolist_to_binary(Render)),
     JS = erlang:iolist_to_binary(
         [

@@ -1,3 +1,5 @@
+{# We should refactor the name to map-static! #}
+
 {% with
     id,
     type|default:"map",
