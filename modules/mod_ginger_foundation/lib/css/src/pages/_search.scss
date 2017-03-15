@@ -132,7 +132,8 @@
     opacity: 0.4;
 
     &.is-open {
-        max-height: 1000px;
+        max-height: calc(100vh - 60px);
+        padding-bottom: 45px;
         overflow: scroll;
 
         .search__filters__mobile:after {
@@ -144,9 +145,10 @@
 .search__filters__mobile {
     width: 100%;
     @include size(height, 45);
-    position: absolute;
-    top: 0px;
+    position: fixed;
+    top: 60px;
     left: 0px;
+    z-index: 10;
     background: none;
     border: none;
     outline: none;
