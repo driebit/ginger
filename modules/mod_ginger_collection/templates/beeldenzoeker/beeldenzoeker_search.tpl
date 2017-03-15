@@ -32,7 +32,6 @@
 
             {%  wire
                     name="search-list"
-                    action={update target="search-list" text="<p class='no-results'>Loading...</p>"}
                     action={update
                             target="search-list"
                             template="beeldenzoeker/search-query-wrapper.tpl"
