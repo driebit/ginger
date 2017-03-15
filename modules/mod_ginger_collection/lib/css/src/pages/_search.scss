@@ -136,8 +136,10 @@
 	input[type="checkbox"] + label,
 	input[type="radio"] + label {
 		display: flex;
+		align-items: baseline;
         position: relative;
         font-weight: 400;
+        line-height: 1;
 
         &:before {
             content: '';
