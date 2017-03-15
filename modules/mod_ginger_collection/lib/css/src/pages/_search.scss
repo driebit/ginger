@@ -1,3 +1,5 @@
+@import '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css';
+
 .t--search {
 	padding-top: 105px;
 }
@@ -94,8 +96,9 @@
 }
 
 .search__filters__reset {
+	display: block;
 	padding: 0;
-	margin: 0;
+	margin: 10px 0 0 0;
 	background: none;
 	color: $bzRed;
 	border: none;
@@ -118,6 +121,7 @@
 	color: $bzGrey;
 	font-weight: 600;
 	border-bottom: 1px solid $bzGrey;
+	cursor: pointer;
 
 	&:after {
 		display: none;
@@ -191,6 +195,14 @@
             border-radius: 50%;
         }
     }
+
+    &.is-open {
+    	.search__filters__title {
+			&:before {
+				content: '-';
+			}		
+		}
+    }
 }
 
 .search__filters__section--period {
@@ -230,7 +242,7 @@
 
 .search__filters__slider {
 	width: calc(100% - 18px);
-	margin: 0 9px 15px 9px;
+	margin: 10px 9px 15px 9px;
 
 	&.ui-widget-content {
 		background: #C8C8C8;
@@ -316,8 +328,8 @@
 
 	.search__filters__section {
 		position: relative;
+		max-height: 38px;
 		
-		// Turn this on for the folding of sections
 		ul {
 			max-height: 0px;
 			overflow: hidden;
