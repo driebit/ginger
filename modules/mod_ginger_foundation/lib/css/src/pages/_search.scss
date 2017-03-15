@@ -149,6 +149,7 @@
     left: 0px;
     background: none;
     border: none;
+    outline: none;
 
     i {
         margin-right: 7px;
@@ -177,7 +178,7 @@
 .search__filters__section {
     @include size(max-height, 38);
     @include size(padding-top, 38);
-    @include size(margin-bottom, 0);
+    margin-bottom: 10px;
     position: relative;
     overflow: hidden;
     @include size(font-size, 14);
