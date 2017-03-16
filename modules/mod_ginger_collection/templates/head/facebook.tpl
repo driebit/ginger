@@ -8,7 +8,7 @@
                     <meta property="og:title" content="{{ record['dcterms:title'] }}"/>
                     <meta property="og:description" content="{{ record['dcterms:abstract']|truncate:160 }}"/>
                     <meta property="og:url" content="{% url adlib_object use_absolute_url database=q.database object_id=q.object_id %}"/>
-                    {% include "beeldenzoeker/depiction.tpl" width=450 height=350 template="head/facebook-image.tpl" %}
+                    {% include "beeldenzoeker/depiction.tpl" width=500 height=500 template="head/facebook-image.tpl" %}
                 {% endwith %}
             {% endwith %}
         {% endwith %}
