@@ -3,7 +3,7 @@
     <ul>
     	{% with
     		title|default:record['dcterms:title']|default:record.title|default:id.title,
-    		url|default:m.collection_object[record].uri|default:m.site.hostname ++ id.page_url
+    		url|default:m.collection_object.uri|default:m.site.hostname ++ id.page_url
     	as
     		title,
     		url
