@@ -9,6 +9,8 @@
         {% if id.depiction %}
             <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url id.depiction mediaclass="facebook-og" %}"/>
         {% endif %}
+    {% else %}
+        {% block no_id %}{% endblock %}
     {% endif %}
 {% endif %}
 
