@@ -2,16 +2,14 @@
     record['foaf:depiction'],
     width,
     height,
-    template,
-    no_image_template
+    template
 as
     depictions,
     width,
     height,
-    template,
-    no_image_template
+    template
 %}
-    {% if depictions|first as depiction %}
+    {% if depictions|object_is_visible|first as depiction %}
         {# Site should ship with this template #}
         {% include "beeldenzoeker/image.tpl" image_reference=depiction.reference %}
     {% else %}
