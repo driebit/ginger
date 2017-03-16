@@ -16,7 +16,7 @@ as
             {% with forloop.counter as i %}
                 <li>
                     <input name="filter-subjects" id="{{ #filter_subjects_value.i }}" type="checkbox" value="{{ bucket.key}}"{% if values|index_of:(bucket.key) > 0 %} checked="checked"{% endif %}>
-                    <label for="{{ #filter_subjects_value.i }}">{{ bucket.key }} ({{ bucket.doc_count }})</label>
+                    <label for="{{ #filter_subjects_value.i }}">{{ bucket.key }} <span>({{ bucket.doc_count }})</span></label>
                 </li>
             {% endwith %}
         {% endfor %}
