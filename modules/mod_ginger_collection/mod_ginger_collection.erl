@@ -48,7 +48,7 @@ manage_schema(_Version, _Context) ->
                 {language, [en, nl]},
                 {is_unfindable, true}
             ]},
-            {beeldenzoeker, menu, [
+            {beeldenzoeker_menu, menu, [
                 {title, "Beeldenzoeker menu"}
             ]}
         ]

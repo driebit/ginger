@@ -51,12 +51,13 @@
 	padding: 20px 0;
 	font-size: 20px;
 	font-weight: bold;
+	color: $bzPrimaryColor;
 	@extend .main-container;
 }
 
 .beeldenzoeker-home__collections {
 	padding-bottom: 20px;
-	background: #EDEDED;
+	background: darken($white, 6%);
 
 	.list__item--beeldenzoeker,
 	.list__item__content {
@@ -101,5 +102,9 @@
 		h2 {
 			font-size: 30px;
 		}
+	}
+
+	.beeldenzoeker-home__section-title {
+		width: 100%;
 	}
 }

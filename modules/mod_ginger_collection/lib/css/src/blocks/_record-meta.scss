@@ -68,6 +68,32 @@ dl.adlib-object__meta__data {
 	@extend .adlib-object__meta__row;
 	display: block;
 	height: 300px;
+
+	.adlib-object__meta__data {
+		height: 95%;
+	}
+
+	.infoBox > img {
+		// close button
+	    top: 17px;
+	}
+
+	.infobox__header {
+	    padding: 15px 7px;
+	    font-family: $secondaryFontFamily;
+	    color: $white;
+	    font-size: 22px;
+	    text-transform: uppercase;
+	}
+
+	.infobox__results {
+	    width: 300px;
+	    max-height: 350px;
+	    padding: 15px 10px;
+	    overflow-y: scroll;
+	    background-color: white;
+	    text-align: center;
+	}
 }
 
 @include mq(min-width, $mediumBreakpoint) {
