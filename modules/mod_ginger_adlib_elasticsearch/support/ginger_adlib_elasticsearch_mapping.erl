@@ -14,13 +14,11 @@
 map(Record) ->
     Record.
 
-map_property(<<"creator">>, Value, Acc) ->
-    Acc#{<<"dcterms:creator">> => #{<<"rdfs:label">> => Value}};
 map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"object.object_number">> ->
     Acc#{
         <<"dcterms:identifier">> => Value
     };
-map_property(<<"production.date.start">> = Key, Value, Acc) ->
+map_property(<<"production.date.start">> = Key, Value, Acc) when value =/= <<"?">> ->
     Acc2 = Acc#{
         Key => Value,
         <<"dcterms:date">> => Value
@@ -31,7 +29,7 @@ map_property(<<"production.date.start">> = Key, Value, Acc) ->
         Year ->
             Acc2#{<<"dbo:productionStartYear">> => Year}
     end;
-map_property(<<"production.date.end">> = Key, Value, Acc) ->
+map_property(<<"production.date.end">> = Key, Value, Acc) when value =/= <<"?">> ->
     Acc2 = Acc#{
         Key => Value,
         <<"dcterms:date">> => Value
