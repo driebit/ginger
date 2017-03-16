@@ -47,7 +47,7 @@ $(document).ready(function(){
         }
     });
 
-    if ($('body').hasClass('t--beeldenzoeker')){
+    if ($('#more-results').length > 0 ){
         homeInfinite();
     }
 });
