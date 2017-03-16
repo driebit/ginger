@@ -79,6 +79,7 @@ observe_search_query(#search_query{}, _Context) ->
 %% @doc Boost primary identifier
 observe_elasticsearch_fields(#elasticsearch_fields{query = _Query}, Fields, _Context) ->
     [
+        <<"dcterms:title*^2">>,
         <<"dcterms:identifier^2">>, %% object number
         <<"priref^2">>
     | Fields].
