@@ -36,7 +36,16 @@
 
                     {% block item_body %}
                         {% if record['dcterms:description'] as body %}
-                            <p>{{ body }}</p>
+                            {% if body|length > 400 %}
+                                <div id="adlib-desc" class="adlib-description">
+                                    <h3 class="adlib-description__expand do_expand" data-parent="adlib-desc" data-content="adlib-desc-inner">{_ Detailed description _}</h3>
+                                    <div id="adlib-desc-inner" class="adlib-description__inner">
+                                        <p>{{ body }}</p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <p>{{ body }}</p>
+                            {% endif %}
                         {% endif %}
                     {% endblock %}
 

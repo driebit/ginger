@@ -41,33 +41,33 @@
 	font-size: 12px;
 	list-style: none;
 
-	li {
-		display: flex;
-		justify-content: space-between;
-		flex-flow: row wrap;
-
-		+ li {
-			margin-top: 7px;
-		}
-	}
-
-	b {
-		display: inline-block;
-		width: 30%;
-	}
-
-	span {
-		display: inline-block;
-		width: 65%;
-
-		&:first-letter {
-			text-transform: uppercase;
-		}
-	}
-
 	a {
 		display: block;
 	}
+
+	ul, ol {
+		list-style: none;
+	}
+}
+
+dl.adlib-object__meta__data {
+	display: flex;
+	flex-flow: row wrap;
+
+	dt {
+		width: 40%;
+		margin-bottom: 7px;
+	}
+
+	dd {
+		width: 60%;
+	}
+}
+
+.adlib-object__meta__row--map {
+	@extend .adlib-object__meta__row;
+	display: block;
+	height: 300px;
 }
 
 @include mq(min-width, $mediumBreakpoint) {

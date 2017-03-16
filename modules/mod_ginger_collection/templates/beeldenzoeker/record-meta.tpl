@@ -4,47 +4,40 @@
 	        <div class="adlib-object__meta__title">
 	            {_ Identification _}
 	        </div>
-	        <ul class="adlib-object__meta__data">
-	            <li>
-	                <b>{_ Title _}</b><span>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</span>
-	            </li>
+	        <dl class="adlib-object__meta__data">
+	        	<dt>{_ Title _}</dt>
+	        	<dd>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
 	            {% if record.object_category %}
-		            <li>
-		                <b>{_ Object type _}</b><span>{{ record.object_category.value|default:record.object_category }}</span>
-		            </li>
+	            	<dt>{_ Object type _}</dt>
+	            	<dd>{{ record.object_category.value|default:record.object_category }}</dd>
 		        {% endif %}
 	            {% if record.object_name %}
-		            <li>
-		                <b>{_ Object name _}</b><span>{{ record.object_name }}</span>
-		            </li>
+	            	<dt>{_ Object name _}</dt>
+	            	<dd>{{ record.object_name }}</dd>
 		        {% endif %}
 	            {% if record['dcterms:identifier'] %}
-		            <li>
-		                <b>{_ Object nr. _}</b><span>{{ record['dcterms:identifier']}}</span>
-		            </li>
+	            	<dt>{_ Object nr. _}</dt>
+	            	<dd>{{ record['dcterms:identifier'] }}</dd>
 		        {% endif %}
 	            {% if record.collection %}
-	                <li>
-	                    <b>{_ Collection _}</b><span>{{ record.collection }}</span>
-	                </li>
+	            	<dt>{_ Collection _}</dt>
+	            	<dd>{{ record.collection }}</dd>
 	            {% endif %}
-	        </ul>
+	        </dl>
 	    </div>
 	    <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
 	            {_ Manufacture _}
 	        </div>
-	        <ul class="adlib-object__meta__data">
+	        <dl class="adlib-object__meta__data">
 	        	{% if record.maker[1]['creator.name']|default:record['creator.name'] as creator %}
-		            <li>
-		                <b>{_ Creator _}</b><span>{{ creator }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</span>
-		            </li>
+	        		<dt>{_ Creator _}</dt>
+	        		<dd>{{ creator }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</dd>
 		        {% endif %}
                 {% if record['dcterms:created'] or record['dbo:productionStartYear'] %}
-                    <li>
-                        <b>{_ Date _}</b>
-
-                        {# TODO filter date for friendlier dates #}
+                	<dt>{_ Date _}</dt>
+                	<dd>
+                		{# TODO filter date for friendlier dates #}
                         {% with
                             record['dbo:productionStartYear']|default:record['dcterms:created'],
                             record['dbo:productionEndYear']
@@ -52,73 +45,64 @@
                             start,
                             end
                         %}
-                            <span>{{ start }}{% if end and end != start %} – {{ end }}{% endif %}</span>
+                            {{ start }}{% if end and end != start %} – {{ end }}{% endif %}
                         {% endwith %}
-                    </li>
+                	</dd>
                 {% endif %}
 
 	            {% if record['production.place'] %}
-	                <li>
-	                    <b>{_ City _}</b><span>{{ record['production.place'] }}</span>
-	                </li>
+	            	<dt>{_ City _}</dt>
+	            	<dd>{{ record['production.place'] }}</dd>
 	            {% endif %}
-	        </ul>
+	        </dl>
 	    </div>
 	    {% if record.material or record.technique or record.dimension[1]['dimension.value'] %}
 		    <div class="adlib-object__meta__row">
 		        <div class="adlib-object__meta__title">
 		            {_ Material & Technique _}
 		        </div>
-		        <ul class="adlib-object__meta__data">
+		        <dl class="adlib-object__meta__data">
 		        	{% if record.material %}
-			            <li>
-			                <b>{_ Material _}</b><span>{{ record.material }}</span>
-			            </li>
+		        		<dt>{_ Material _}</dt>
+		        		<dd>{{ record.material }}</dd>
 			        {% endif %}
 			        {% if record.technique %}
-			            <li>
-			                <b>{_ Technique _}</b><span>{{ record.technique }}</span>
-			            </li>
+			        	<dt>{_ Technique _}</dt>
+			        	<dd>{{ record.technique }}</dd>
 			        {% endif %}
 			        {% if record.dimension[1]['dimension.value'] %}
-			            <li>
-			                <b>{_ Dimensions _}</b><span>h {{ record.dimension[1]['dimension.value'] }} {{ record.dimension[1]['dimension.unit'] }} x b {{ record.dimension[3]['dimension.value'] }} {{ record.dimension[3]['dimension.unit'] }} </span>
-			            </li>
+			        	<dt>{_ Dimensions _}</dt>
+			        	<dd>h {{ record.dimension[1]['dimension.value'] }} {{ record.dimension[1]['dimension.unit'] }} x b {{ record.dimension[3]['dimension.value'] }} {{ record.dimension[3]['dimension.unit'] }}</dd>
 			        {% endif %}
-		        </ul>
+		        </dl>
 		    </div>
 		{% endif %}
 	    <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
 	            {_ Acquisition & License _}
 	        </div>
-	        <ul class="adlib-object__meta__data">
+	        <dl class="adlib-object__meta__data">
 	        	{% if record.credit_line %}
-		            <li>
-		                <b>{_ Credit line _}</b><span>{{ record.credit_line }}</span>
-		            </li>
+	        		<dt>{_ Credit line _}</dt>
+	        		<dd>{{ record.credit_line }}</dd>
 		        {% endif %}
 		        {% if record['acquisition.date'] %}
-		            <li>
-		                <b>{_ Aquisition _}</b><span>{{ record['acquisition.date'] }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</span>
-		            </li>
+		        	<dt>{_ Aquisition _}</dt>
+		        	<dd>{{ record['acquisition.date'] }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
 		        {% endif %}
-	            <li>
-	                <b>{_ License _}</b><span></span>
-	            </li>
-	        </ul>
+            	<dt>{_ License _}</dt>
+            	<dd></dd>
+	        </dl>
 	    </div>
 	    {% if record.persistent_ID %}
 		    <div class="adlib-object__meta__row last">
 		        <div class="adlib-object__meta__title">
 		            {_ Sustainable web address _}
 		        </div>
-		        <ul class="adlib-object__meta__data">
-		            <li>
-		                {_ If you want to refer this object then use this URL _}
-		                <a href="{{ record.persistent_ID }}" target="_blank">{{ record.persistent_ID }} <i class="icon--external"></i></a>
-		            </li>
-		        </ul>
+		        <div class="adlib-object__meta__data">
+	                {_ If you want to refer this object then use this URL _}
+	                <a href="{{ record.persistent_ID }}" target="_blank">{{ record.persistent_ID }} <i class="icon--external"></i></a>
+		        </div>
 		    </div>
 		{% endif %}
 	</div>
