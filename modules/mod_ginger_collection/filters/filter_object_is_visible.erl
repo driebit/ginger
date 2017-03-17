@@ -12,7 +12,6 @@ object_is_visible([{_Key, _Value}|_] = Object, Context) ->
 object_is_visible(Objects, Context) ->
     lists:filter(
         fun(Object) ->
-            ?DEBUG(Object),
             z_acl:is_allowed(view, map(Object), Context)
         end,
         Objects

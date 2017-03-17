@@ -1,5 +1,5 @@
 {% with
-    record['foaf:depiction'],
+    record['foaf:depiction']|default:[],
     width,
     height,
     template
