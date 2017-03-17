@@ -23,7 +23,7 @@
 	&:focus,
 	&:active,
 	&:active:focus {
-		background: darken(#373636, 4%);
+		background-color: darken(#373636, 4%);
 		text-decoration: none;
 		color: $white;
 	}
@@ -34,6 +34,7 @@
 	padding: 0 10px;
 	background: #474747;
 	color: $white;
+	transition: background 0.3s;
 
 	i {
 		width: 23px;
@@ -51,7 +52,7 @@
 	&:active,
 	&:active:focus {
 		text-decoration: none;
-		background: darken(#474747, 4%);
+		background-color: darken(#474747, 4%);
 		color: $white;
 	}
 }

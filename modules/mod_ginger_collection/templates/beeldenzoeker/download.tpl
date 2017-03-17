@@ -1,5 +1,5 @@
 <div class="adlib-download">
-    <button>{_ Download _}</button>
+    <a href="" class="adlib-action__btn">{_ Download _}</a>
     {# For later #}
     {# <ul>
         <li><a href="">{_ Small _}</a></li>

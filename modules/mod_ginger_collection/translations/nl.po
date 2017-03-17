@@ -9,295 +9,321 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: mod_beeldenzoeker\n"
-"POT-Creation-Date: 2017-02-21 14:06+0100\n"
-"PO-Revision-Date: 2017-02-21 14:12+0100\n"
+"POT-Creation-Date: 2017-03-17 10:16+0100\n"
+"PO-Revision-Date: 2017-03-17 10:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.12\n"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:82
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:82
 msgid "Acquisition & License"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:30
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:30
 msgid "All rights reserved"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:92
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:90
 msgid "Aquisition"
 msgstr "Verwerving"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:12
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:12
 msgid "Attribution"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:18
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:18
 msgid "Attribution-NoDerivs"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:21
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:21
 msgid "Attribution-NonCommercial"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:27
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:27
 msgid "Attribution-NonCommercial-NoDerivs"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:24
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:24
 msgid "Attribution-NonCommercial-ShareAlike"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:15
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:15
 msgid "Attribution-ShareAlike"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-technique.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-technique.tpl:5
 msgid "Brush"
 msgstr "Kwast"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:2
 msgid "CC license"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:51
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:54
 msgid "City"
 msgstr "Stad"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:29
-#: user/modules/mod_beeldenzoeker/templates/list/list-item.elastic_query.tpl:8
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:23
+#: user/modules/mod_ginger_collection/templates/list/list-item.elastic_query.tpl:8
 msgid "Collection"
 msgstr "Verzameling"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-collections.tpl:2
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-collections.tpl:9
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-collections.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-collections.tpl:9
 msgid "Collections"
 msgstr "Verzamelingen"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-creator.tpl:2
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:41
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:34
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-creator.tpl:2
 msgid "Creator"
 msgstr "Vervaardiger"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:87
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:86
 msgid "Credit line"
 msgstr "Credit line"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:46
-msgid "Dating"
-msgstr "Datering"
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:38
+msgid "Date"
+msgstr "Datum"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:74
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:41
+msgid "Detailed description"
+msgstr "Uitgebreide beschrijving"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:74
 msgid "Dimensions"
 msgstr "Afmetingen"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/download.tpl:2
 msgid "Download"
 msgstr "Download"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:7
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:14
 msgid "E-mail"
 msgstr "E-mail"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-period.tpl:6
+#: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:20
+msgid "Elasticsearch query"
+msgstr ""
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:7
 msgid "End year"
 msgstr "Eindjaar"
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:55
-msgid "Events"
-msgstr "Evenementen"
-
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:7
-msgid "Extra large"
-msgstr "Extra groot"
-
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-material.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-material.tpl:5
 msgid "Fabric"
 msgstr "Stof"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:4
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:11
 msgid "Facebook"
 msgstr "Facebook"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search-filters.tpl:3
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/search-filters.tpl:3
 msgid "Filters"
 msgstr "Filters"
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:52
-msgid "Full museum collection"
-msgstr "Volledige museumcollectie"
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-image.tpl:6
+msgid "Has depiction"
+msgstr "Met beeld"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:5
+#: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:16
+msgid "Here you can edit your elasticsearch query."
+msgstr "Hier kun je de elastic search query aanpassen."
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:5
 msgid "Identification"
 msgstr "Identificatie"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:107
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:103
 msgid "If you want to refer this object then use this URL"
 msgstr "Als u naar dit object wilt verwijzen gebruik dan de duurzame URL:"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:6
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-image.tpl:2
+msgid "Image"
+msgstr "Beeld"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-orientation.tpl:6
 msgid "Landscape"
 msgstr "Landschap"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:5
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:6
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-resolution.tpl:5
 msgid "Large"
 msgstr "Groot"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:96
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:93
 msgid "License"
 msgstr "Copyright"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:36
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:30
 msgid "Manufacture"
 msgstr "Vervaardiging"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-material.tpl:2
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:64
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:66
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-material.tpl:2
 msgid "Material"
 msgstr "Materiaal"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:59
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:62
 msgid "Material & Technique"
 msgstr "Materiaal en techniek"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:6
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-resolution.tpl:6
 msgid "Medium"
 msgstr "Middel"
 
-#: user/modules/mod_beeldenzoeker/templates/list/list-beeldenzoeker.tpl:74
+#: user/modules/mod_ginger_collection/templates/global-nav/global-nav-beeldenzoeker.tpl:3
+msgid "Museum collection"
+msgstr "Beeldcollectie"
+
+#: user/modules/mod_ginger_collection/templates/list/list-beeldenzoeker.tpl:73
 msgid "No results"
 msgstr "Geen resultaten"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:6
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:6
 msgid "No rights reserved"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:20
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-suggestions.tpl:16
 msgid "Nothing found"
 msgstr "Geen resultaten"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:19
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:15
 msgid "Object name"
 msgstr "Objectnaam"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:24
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:19
 msgid "Object nr."
 msgstr "Objectnummer"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:14
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:11
 msgid "Object type"
 msgstr "Objecttype"
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:58
-msgid "Only images"
-msgstr "Alleen met afbeelding"
-
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-orientation.tpl:2
 msgid "Orientation"
 msgstr "Beeldverhouding"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-period.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:2
 msgid "Period"
 msgstr "Periode"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:6
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:13
 msgid "Pinterest"
 msgstr "Pinterest"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-orientation.tpl:5
 msgid "Portrait"
 msgstr "Portret"
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:23
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-suggestions.tpl:19
 msgid "Press enter to search"
 msgstr "Druk op enter om te zoeken"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-license.tpl:9
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-license.tpl:9
 msgid "Public Domain"
 msgstr ""
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search-filters.tpl:4
+#: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:34
+msgid "Query preview"
+msgstr "Query uitkomst"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/search-filters.tpl:4
 msgid "Refine search results"
 msgstr "Zoekopdracht verfijnen"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search-filters.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/search-filters.tpl:5
 msgid "Reset filters"
 msgstr "Filters wissen"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-resolution.tpl:2
 msgid "Resolution"
 msgstr "Beeldresolutie"
 
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-suggestions.tpl:2
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-suggestions.tpl:2
 msgid "Results found"
 msgstr "Resultaten gevonden"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/beeldenzoeker_search.tpl:17
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/beeldenzoeker_search.tpl:19
-#: user/modules/mod_beeldenzoeker/templates/page.beeldenzoeker.tpl:23
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:8
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:9
-#: user/modules/mod_beeldenzoeker/templates/search-suggestions/search-form.tpl:34
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/beeldenzoeker_search.tpl:17
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/beeldenzoeker_search.tpl:19
+#: user/modules/mod_ginger_collection/templates/page.beeldenzoeker.tpl:23
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:8
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:9
+#: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:34
 msgid "Search"
 msgstr "Zoek"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:2
+#: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:6
+msgid "Search query"
+msgstr "Zoekopdracht"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:2
 msgid "Share"
 msgstr "Delen"
 
-#: user/modules/mod_beeldenzoeker/templates/list/list-beeldenzoeker.tpl:8
+#: user/modules/mod_ginger_collection/templates/list/list-beeldenzoeker.tpl:8
 msgid "Show more results..."
 msgstr "Toon meer resultaten..."
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-resolution.tpl:7
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/download.tpl:4
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-resolution.tpl:7
 msgid "Small"
 msgstr "Klein"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-orientation.tpl:7
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-orientation.tpl:7
 msgid "Square"
 msgstr "Vierkant"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-period.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:6
 msgid "Start year"
 msgstr "Startjaar"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:103
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-subjects.tpl:4
+msgid "Subjects"
+msgstr "Trefwoorden"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:100
 msgid "Sustainable web address"
 msgstr "Duurzaam webadres"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/components/filters-technique.tpl:2
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:69
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:70
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-technique.tpl:2
 msgid "Technique"
 msgstr "Techniek"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/record-meta.tpl:10
+#: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:30
+msgid "Test query"
+msgstr "Test de zoekopdracht"
+
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:8
 msgid "Title"
 msgstr "Titel"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/share.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:12
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/masthead.tpl:5
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/masthead.tpl:3
 msgid "Zoom"
-msgstr ""
+msgstr "Inzoomen"
 
-#: user/modules/mod_beeldenzoeker/templates/beeldenzoeker/beeldenzoeker_search.tpl:21
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/beeldenzoeker_search.tpl:21
 msgid "list"
-msgstr ""
+msgstr "Lijst"
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search/components/filters-image.tpl:6
-msgid ""
-"Has depiction"
-msgstr "Met beeld"
+#~ msgid "Dating"
+#~ msgstr "Datering"
 
-#: ./user/modules/mod_beeldenzoeker/templates/beeldenzoeker/search/components/filters-image.tpl:2
-msgid ""
-"Image"
-msgstr "Beeld"
+#~ msgid "Events"
+#~ msgstr "Evenementen"
+
+#~ msgid "Extra large"
+#~ msgstr "Extra groot"
+
+#~ msgid "Full museum collection"
+#~ msgstr "Volledige museumcollectie"
+
+#~ msgid "Only images"
+#~ msgstr "Alleen met afbeelding"

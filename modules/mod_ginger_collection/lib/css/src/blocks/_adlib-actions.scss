@@ -8,6 +8,15 @@
 	color: $white;
 	font-size: 14px;
 	line-height: 1;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		text-decoration: none;
+		color: $white;
+		border-color: rgba($white, 0.8);
+	}
 }
 
 .adlib-object__actions {
@@ -41,21 +50,6 @@
 
 		ul {
 			transform: scale(1);
-		}
-	}
-
-	button {
-		@extend %btn--adlib;
-
-		&:before {
-			content: '';
-			display: inline-block;
-			width: 10px;
-			height: 12px;
-			margin-right: 5px;
-			background: url('/lib/images/icon-upload.svg');
-			background-size: contain;
-			transform: rotate(180deg);
 		}
 	}
 
@@ -118,10 +112,25 @@
 	}
 }
 
+.adlib-action__btn {
+	@extend %btn--adlib;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 10px;
+		height: 12px;
+		margin-right: 5px;
+		background: url('/lib/images/icon-upload.svg');
+		background-size: contain;
+		transform: rotate(180deg);
+	}
+}
+
 .adlib-share {
 	@extend .adlib-download;
 
-	button {
+	.adlib-action__btn {
 		&:before {
 			transform: none;
 		}

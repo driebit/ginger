@@ -1,5 +1,5 @@
  <div class="adlib-share">
-    <button>{_ Share _}</button>
+    <button class="adlib-action__btn">{_ Share _}</button>
     <ul>
     	{% with
     		title|default:record['dcterms:title']|default:record.title|default:id.title,
