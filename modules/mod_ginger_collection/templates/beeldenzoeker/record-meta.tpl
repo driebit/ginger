@@ -1,39 +1,90 @@
 <div class="adlib-object__meta">
 	<div class="main-container">
-	    <div class="adlib-object__meta__row first">
+        <div class="adlib-object__meta__row first">
 	        <div class="adlib-object__meta__title">
 	            {_ Identification _}
 	        </div>
 	        <dl class="adlib-object__meta__data">
 	        	<dt>{_ Title _}</dt>
 	        	<dd>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
-	            {% if record.object_category %}
-	            	<dt>{_ Object type _}</dt>
-	            	<dd>{{ record.object_category.value|default:record.object_category }}</dd>
-		        {% endif %}
-	            {% if record.object_name %}
-	            	<dt>{_ Object name _}</dt>
-	            	<dd>{{ record.object_name }}</dd>
-		        {% endif %}
-	            {% if record['dcterms:identifier'] %}
+
+                {% if record['dcterms:identifier'] %}
 	            	<dt>{_ Object nr. _}</dt>
 	            	<dd>{{ record['dcterms:identifier'] }}</dd>
 		        {% endif %}
+
+	               {% if record.object_category as object_category %}
+	            	<dt>{_ Object category _}</dt>
+	            	<dd>{{ object_category }}</dd>
+		        {% endif %}
+
+	        	{% if record['rdf:type'] as types %}
+	        		<dt>{_ Object type _}</dt>
+	        		<dd>{% include "list/list-uri-labels.tpl" items=types %}</dd>
+	        	{% endif %}
+
+                {% if record['dcterms:subject'] as subjects %}
+                    <dt>{_ Subjects _}</dt>
+                    <dd>{% include "list/list-uri-labels.tpl" items=subjects %}</dd>
+                {% endif %}
+
+                {% if record['dbpedia-owl:isbn'] as isbn %}
+		            <dt>{_ ISBN _}</dt>
+		            <dd>{{ isbn }}</dd>
+		        {% endif %}
+
 	            {% if record.collection %}
 	            	<dt>{_ Collection _}</dt>
 	            	<dd>{{ record.collection }}</dd>
 	            {% endif %}
 	        </dl>
 	    </div>
-	    <div class="adlib-object__meta__row">
+        <div class="adlib-object__meta__row">
+            <div class="adlib-object__meta__title">
+                {_ Work _}
+            </div>
+            <dl class="adlib-object__meta__data">
+                {% include "beeldenzoeker/metadata/dimensions.tpl" %}
+
+                {% if record['dcterms:language'] as language %}
+	                <dt>{_ Language _}</dt>
+	                <dd>{{ record['dcterms:language'] }}</dd>
+	            {% endif %}
+
+                {% if record['dbpedia-owl:museum'] as museum %}
+                    <dt>{_ Museum _}</dt>
+                    <dd>
+                        {% if museum['@id'] %}
+                            <a href="{{ museum['@id'] }}">{{ museum['rdfs:label'] }}</a>
+                        {% else %}
+                            {{ museum['rdfs:label'] }}
+                        {% endif %}
+                    </dd>
+                {% endif %}
+
+	            {% if record['dce:publisher'] as publisher %}
+	                <dt>{_ Publisher _}</dt>
+	                <dd>{{ publisher }}</dd>
+	            {% endif %}
+            </dl>
+        </div>
+
+        <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
 	            {_ Manufacture _}
 	        </div>
 	        <dl class="adlib-object__meta__data">
-	        	{% if record.maker[1]['creator.name']|default:record['creator.name'] as creator %}
-	        		<dt>{_ Creator _}</dt>
-	        		<dd>{{ creator }} {% if record.maker[1]['creator.role'] %}({{record.maker[1]['creator.role'] }}){% endif %}</dd>
-		        {% endif %}
+                {% if record['dcterms:creator'] as creators %}
+                    <dt>{_ Creator _}</dt>
+                    <dd>
+                        <ol>
+                            {% for creator in creators %}
+                                <li>{{ creator['rdfs:label'] }}{% if creator['role'] %} ({{ creator['role'] }}){% endif %}</li>
+                            {% endfor %}
+                        </ol>
+                    </dd>
+                {% endif %}
+
                 {% if record['dcterms:created'] or record['dbo:productionStartYear'] %}
                 	<dt>{_ Date _}</dt>
                 	<dd>
@@ -54,29 +105,21 @@
 	            	<dt>{_ City _}</dt>
 	            	<dd>{{ record['production.place'] }}</dd>
 	            {% endif %}
+
+                {% if record['dbpedia-owl:constructionMaterial'] as materials %}
+                    <dt>{_ Material _}</dt>
+                    <dd>{% include "list/list-uri-labels.tpl" items=materials %}</dd>
+                {% endif %}
+
+                {% if record['dbpedia-owl:technique'] as techniques %}
+                    <dt>{_ Technique _}</dt>
+                    <dd>{% include "list/list-uri-labels.tpl" items=techniques %}</dd>
+                {% endif %}
 	        </dl>
 	    </div>
-	    {% if record.material or record.technique or record.dimension[1]['dimension.value'] %}
-		    <div class="adlib-object__meta__row">
-		        <div class="adlib-object__meta__title">
-		            {_ Material & Technique _}
-		        </div>
-		        <dl class="adlib-object__meta__data">
-		        	{% if record.material %}
-		        		<dt>{_ Material _}</dt>
-		        		<dd>{{ record.material }}</dd>
-			        {% endif %}
-			        {% if record.technique %}
-			        	<dt>{_ Technique _}</dt>
-			        	<dd>{{ record.technique }}</dd>
-			        {% endif %}
-			        {% if record.dimension[1]['dimension.value'] %}
-			        	<dt>{_ Dimensions _}</dt>
-			        	<dd>h {{ record.dimension[1]['dimension.value'] }} {{ record.dimension[1]['dimension.unit'] }} x b {{ record.dimension[3]['dimension.value'] }} {{ record.dimension[3]['dimension.unit'] }}</dd>
-			        {% endif %}
-		        </dl>
-		    </div>
-		{% endif %}
+
+        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:subject'] %}
+
 	    <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
 	            {_ Acquisition & License _}
@@ -90,20 +133,39 @@
 		        	<dt>{_ Aquisition _}</dt>
 		        	<dd>{{ record['acquisition.date'] }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
 		        {% endif %}
-            	<dt>{_ License _}</dt>
-            	<dd></dd>
+
+                {% if record['dcterms:license'] as license %}
+                    <dt>{_ License _}</dt>
+                    <dd><a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a></dd>
+                {% endif %}
 	        </dl>
 	    </div>
-	    {% if record.persistent_ID %}
+	    {% if record.uri as uri %}
 		    <div class="adlib-object__meta__row last">
 		        <div class="adlib-object__meta__title">
 		            {_ Sustainable web address _}
 		        </div>
 		        <div class="adlib-object__meta__data">
 	                {_ If you want to refer this object then use this URL _}
-	                <a href="{{ record.persistent_ID }}" target="_blank">{{ record.persistent_ID }} <i class="icon--external"></i></a>
+	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
 		        </div>
 		    </div>
 		{% endif %}
+
+        {% if m.acl.is_allowed.view_internal[record] %}
+            <div class="adlib-object__meta__row">
+                <div class="adlib-object__meta__title">
+                    {_ Internal _}
+                </div>
+                <dl class="adlib-object__meta__data">
+                    {% optional include "beeldenzoeker/metadata/internal.tpl" %}
+
+                    {% if record['dbpedia-owl:notes'] as notes %}
+                        <dt>{_ Notes _}</dt>
+                        <dd>{{ notes }}</dd>
+                    {% endif %}
+                </dl>
+            </div>
+        {% endif %}
 	</div>
 </div>
