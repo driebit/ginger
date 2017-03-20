@@ -50,7 +50,7 @@ map_property(_, [<<>>], Acc, _Mapping) ->
     Acc;
 map_property(_, <<>>, Acc, _Mapping) ->
     Acc;
-map_property(Key, [SingleValue], Acc, Mapping) ->
+map_property(Key, [SingleValue], Acc, Mapping) when is_binary(SingleValue) ->
     map_property(Key, SingleValue, Acc, Mapping);
 map_property(Key, Value, Acc, Mapping) ->
     Mapping:map_property(Key, Value, Acc).
