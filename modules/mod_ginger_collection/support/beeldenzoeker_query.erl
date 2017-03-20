@@ -36,7 +36,7 @@ parse_query(<<"period">>, Period, QueryArgs) ->
         <<>> ->
             QueryArgs;
         Min ->
-            QueryArgs ++ [{filter, [<<"dcterms:date">>, <<"gte">>, date_range(Min)]}]
+            QueryArgs ++ [{filter, [<<"dcterms:date">>, <<"gte">>, date_range(Min), [{<<"format">>, <<"yyyy">>}]]}]
     end,
     case proplists:get_value(<<"max">>, Period) of
         <<>> ->
@@ -65,7 +65,6 @@ map_edge(_) ->
 
 %% @doc When the filter date is a year, make sure to include all dates in that
 %%      year.
-%%      See http://stackoverflow.com/questions/31861378
 date_range(Date)  ->
     case ginger_adlib_elasticsearch_mapping:year(Date) of
         undefined ->
@@ -73,5 +72,5 @@ date_range(Date)  ->
             Date;
         Year ->
             %% Include all dates in year
-            <<Year/binary, "||/y">>
+            Year
     end.
