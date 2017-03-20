@@ -78,18 +78,22 @@ map_property(<<"rights">>, Value, Acc) ->
         Url ->
             Acc2#{<<"dcterms:license">> => Url}
     end;
+map_property(<<"dimension.unit">>, Value, Acc) ->
+    Acc#{<<"schema:unitCode">> => map_dimension_unit(Value),
+        <<"schema:unitText">> => Value
+    };
 map_property(Key, [Value], Acc) ->
     map_property(Key, Value, Acc);
 map_property(Key, Value, Acc) ->
     Acc#{Key => Value}.
 
-map_dimension(#{<<"dimension.type">> := Type, <<"dimension.unit">> := Unit, <<"dimension.value">> := Value}, Acc) ->
+map_dimension(#{<<"dimension.type">> := Type, <<"dimension.value">> := Value}, Acc) ->
     Acc#{map_dimension_type(Type) => #{
         <<"rdf:type">> => <<"schema:QuantitativeValue">>,
-        <<"schema:value">> => Value,
-        <<"schema:unitCode">> => map_dimension_unit(Unit),
-        <<"schema:unitText">> => Unit
-    }}.
+        <<"schema:value">> => Value
+    }};
+map_dimension(_DimensionWithoutVolumeOrType, Acc) ->
+    Acc.
 
 %% @doc Map dimension unit to UN/CEFACT Common Codes for Units of Measurement
 map_dimension_unit(<<"cm">>) ->
