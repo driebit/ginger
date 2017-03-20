@@ -28,6 +28,8 @@ map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"objec
     };
 map_property(<<"creator">>, Value, Acc) ->
     Acc#{<<"rdfs:label">> => Value};
+map_property(<<"creator.role">>, Value, Acc) ->
+    Acc#{<<"role">> => Value};
 map_property(<<"production.date.start">> = Key, Value, Acc) when value =/= <<"?">> ->
     Acc2 = Acc#{
         Key => Value,
