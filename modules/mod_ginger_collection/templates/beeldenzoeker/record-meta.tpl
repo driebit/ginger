@@ -88,7 +88,8 @@
                     </dd>
                 {% endif %}
 
-                {% if record['dcterms:created'] or record['dbo:productionStartYear'] %}
+                {% if record['dcterms:created'] or record['dbo:productionStartYear']
+                    or record['dbpedia-owl:constructionMaterial'] or record['dbpedia-owl:technique'] %}
                 	<dt>{_ Date _}</dt>
                 	<dd>
                 		{# TODO filter date for friendlier dates #}
@@ -128,10 +129,6 @@
 	            {_ Acquisition & License _}
 	        </div>
 	        <dl class="adlib-object__meta__data">
-	        	{% if record.credit_line %}
-	        		<dt>{_ Credit line _}</dt>
-	        		<dd>{{ record.credit_line }}</dd>
-		        {% endif %}
 		        {% if record['acquisition.date'] %}
 		        	<dt>{_ Aquisition _}</dt>
 		        	<dd>{{ record['acquisition.date'] }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
@@ -143,17 +140,8 @@
                 {% endif %}
 	        </dl>
 	    </div>
-	    {% if record.uri as uri %}
-		    <div class="adlib-object__meta__row last">
-		        <div class="adlib-object__meta__title">
-		            {_ Sustainable web address _}
-		        </div>
-		        <div class="adlib-object__meta__data">
-	                {_ If you want to refer this object then use this URL _}
-	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
-		        </div>
-		    </div>
-		{% endif %}
+
+        {% optional include "beeldenzoeker/metadata/reproduction.tpl" %}
 
         {% if m.acl.is_allowed.view.internal_adlib_content %}
             <div class="adlib-object__meta__row">
@@ -162,6 +150,11 @@
                 </div>
                 <dl class="adlib-object__meta__data">
                     {% optional include "beeldenzoeker/metadata/internal.tpl" %}
+
+                    {% if record.credit_line %}
+    	        		<dt>{_ Credit line _}</dt>
+	            		<dd>{{ record.credit_line }}</dd>
+		            {% endif %}
 
                     {% if record['dbpedia-owl:notes'] as notes %}
                         <dt>{_ Notes _}</dt>
@@ -176,5 +169,17 @@
                 </dl>
             </div>
         {% endif %}
+
+	    {% if record.uri as uri %}
+		    <div class="adlib-object__meta__row last">
+		        <div class="adlib-object__meta__title">
+		            {_ Sustainable web address _}
+		        </div>
+		        <div class="adlib-object__meta__data">
+	                {_ If you want to refer this object then use this URL _}
+	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
+		        </div>
+		    </div>
+		{% endif %}
 	</div>
 </div>
