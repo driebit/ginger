@@ -50,6 +50,7 @@
 
 		ul {
 			transform: scale(1);
+			opacity: 1;
 		}
 	}
 
@@ -65,9 +66,10 @@
 		font-size: 12px;
 		color: $bzSecondaryColor;
 		border-radius: 4px;
+		opacity: 0;
 		transform: scale(0);
 		transform-origin: bottom center;
-		transition: transform 0.3s;
+		transition: all 0.3s;
 
 		li:first-child a {
 			border-top-left-radius: 4px;

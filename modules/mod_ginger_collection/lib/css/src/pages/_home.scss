@@ -40,7 +40,7 @@
 	}
 
 	h2 {
-		font-size: 20px;
+		font-size: 24px;
 		margin: 0;
 		font-family: $secondaryFontFamily;
 		text-shadow: 0 2px 4px rgba(0,0,0,0.50);
@@ -49,7 +49,8 @@
 
 .beeldenzoeker-home__section-title {
 	padding: 20px 0;
-	font-size: 20px;
+	font-size: 18px;
+	line-height: 1.1;
 	font-weight: bold;
 	color: $bzPrimaryColor;
 	@extend .main-container;
@@ -79,6 +80,16 @@
 		height: auto;
 	}
 
+	.beeldenzoeker-home__header__title {
+		h1 {
+			font-size: 40px;
+		}
+
+		h2 {
+			font-size: 30px;
+		}
+	}
+
 	.beeldenzoeker-home__collections {
 		padding-bottom: 40px;
 	}
@@ -92,16 +103,6 @@
 @include mq(min-width, $largeBreakpoint) {
 	.beeldenzoeker-home__header {
 		height: auto;
-	}
-
-	.beeldenzoeker-home__header__title {
-		h1 {
-			font-size: 40px;
-		}
-
-		h2 {
-			font-size: 30px;
-		}
 	}
 
 	.beeldenzoeker-home__section-title {

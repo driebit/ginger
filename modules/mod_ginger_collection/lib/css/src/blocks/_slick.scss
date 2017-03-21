@@ -9,6 +9,17 @@
 	background: transparent;
 	border: 1px solid $white;
 	text-indent: -9999px;
+	outline: none;
+	transition: all 0.3s;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		box-shadow: 0px 0px 22px #fff;
+	    background: rgba(0,0,0,0.2);
+	    left: 5px;
+	}
 
 	&:before {
 		@extend .has-icon;
@@ -27,7 +38,15 @@
 		&:before {
 			@extend .icon--arrow-right;
 			left: 15px;
-		}		
+		}
+
+		&:hover,
+		&:active,
+		&:focus,
+		&:active:focus {
+		    left: auto;
+		    right: 5px;
+		}	
 	}
 }
 
@@ -35,8 +54,23 @@
 	.slick-arrow {
 		left: 20px;
 
+		&:hover,
+		&:active,
+		&:focus,
+		&:active:focus {
+		    left: 15px;
+		}	
+
 		&.slick-next {
 			right: 20px;
+
+			&:hover,
+			&:active,
+			&:focus,
+			&:active:focus {
+			    left: auto;
+			    right: 15px;
+			}	
 		}
 	}
 }

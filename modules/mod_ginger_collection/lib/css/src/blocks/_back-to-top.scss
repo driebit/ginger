@@ -1,0 +1,33 @@
+.back-to-top {
+	display: block;
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	z-index: 1000;
+	transform: translateX(-50%);
+	font-size: 10px;
+	text-align: center;
+	color: $bzTertiaryColor;
+	outline: none;
+
+	&:hover,
+	&:active,
+	&:focus,
+	&:active:focus {
+		text-decoration: none;
+	}
+
+	.icon--arrow-down {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 60px;
+		height: 60px;
+		background: #FFFFFF;
+		box-shadow: 0 2px 18px 0 rgba(0,0,0,0.30);
+
+		&:before {
+			transform: rotate(180deg);
+		}
+	}
+}

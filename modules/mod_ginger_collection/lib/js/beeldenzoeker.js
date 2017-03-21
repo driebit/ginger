@@ -36,6 +36,8 @@ $(document).ready(function(){
 	        this.title = false; 
 	    },
         afterShow: function() {
+            $('.fancybox-inner').prepend('<div class="zoom-help"></div>');
+
             $('.fancybox-image')
             .wrap('<span style="display:inline-block"></span>')
             .css('display', 'block')

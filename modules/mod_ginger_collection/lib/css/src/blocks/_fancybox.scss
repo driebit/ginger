@@ -8,6 +8,7 @@
 	text-align: center;
 	line-height: 40px;
 	border-radius: 0;
+	transition: box-shadow 0.3s, background 0.3s;
 
 	&:hover,
 	&:active,
@@ -15,6 +16,7 @@
 	&:active:focus {
 		color: $white;
 		background: darken(#939EAE, 5%);
+		box-shadow: 0px 0px 22px rgba(255,255,255,0.8);
 	}
 }
 
@@ -24,5 +26,39 @@
     cursor: url(images/zoom.png) x y, auto;
 }
 
-@include mq(min-width, $mediumBreakpoint) {
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+.zoom-help {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	width: 70px;
+    height: 70px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    background: rgba($black,0.5);
+    transform: translate(-50%, -50%);
+    color: $white;
+    animation: fadeOut 2s 1;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    pointer-events: none;
+
+	&:before {
+		@extend .has-icon;
+		@extend .icon--search:before;
+		font-size: 30px;
+	}
+
+	&:after {
+		content: '+';
+		height: 10px;
+		position: absolute;
+		top: 18px;
+	}
 }
