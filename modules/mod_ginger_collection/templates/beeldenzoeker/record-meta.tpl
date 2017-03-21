@@ -39,7 +39,8 @@
 	            {% endif %}
 	        </dl>
 	    </div>
-        {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher'] %}
+        {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
+            or record['schema:width'] or record['schema:height'] %}
             <div class="adlib-object__meta__row">
                 <div class="adlib-object__meta__title">
                     {_ Work _}
