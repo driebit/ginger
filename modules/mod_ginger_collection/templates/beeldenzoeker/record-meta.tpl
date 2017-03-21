@@ -39,35 +39,37 @@
 	            {% endif %}
 	        </dl>
 	    </div>
-        <div class="adlib-object__meta__row">
-            <div class="adlib-object__meta__title">
-                {_ Work _}
+        {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher'] %}
+            <div class="adlib-object__meta__row">
+                <div class="adlib-object__meta__title">
+                    {_ Work _}
+                </div>
+                <dl class="adlib-object__meta__data">
+                    {% include "beeldenzoeker/metadata/dimensions.tpl" %}
+
+                    {% if record['dcterms:language'] as language %}
+                        <dt>{_ Language _}</dt>
+                        <dd>{{ record['dcterms:language'] }}</dd>
+                    {% endif %}
+
+                    {% if record['dbpedia-owl:museum'] as museum %}
+                        <dt>{_ Museum _}</dt>
+                        <dd>
+                            {% if museum['@id'] %}
+                                <a href="{{ museum['@id'] }}">{{ museum['rdfs:label'] }}</a>
+                            {% else %}
+                                {{ museum['rdfs:label'] }}
+                            {% endif %}
+                        </dd>
+                    {% endif %}
+
+                    {% if record['dce:publisher'] as publisher %}
+                        <dt>{_ Publisher _}</dt>
+                        <dd>{{ publisher }}</dd>
+                    {% endif %}
+                </dl>
             </div>
-            <dl class="adlib-object__meta__data">
-                {% include "beeldenzoeker/metadata/dimensions.tpl" %}
-
-                {% if record['dcterms:language'] as language %}
-	                <dt>{_ Language _}</dt>
-	                <dd>{{ record['dcterms:language'] }}</dd>
-	            {% endif %}
-
-                {% if record['dbpedia-owl:museum'] as museum %}
-                    <dt>{_ Museum _}</dt>
-                    <dd>
-                        {% if museum['@id'] %}
-                            <a href="{{ museum['@id'] }}">{{ museum['rdfs:label'] }}</a>
-                        {% else %}
-                            {{ museum['rdfs:label'] }}
-                        {% endif %}
-                    </dd>
-                {% endif %}
-
-	            {% if record['dce:publisher'] as publisher %}
-	                <dt>{_ Publisher _}</dt>
-	                <dd>{{ publisher }}</dd>
-	            {% endif %}
-            </dl>
-        </div>
+        {% endif %}
 
         <div class="adlib-object__meta__row">
 	        <div class="adlib-object__meta__title">
