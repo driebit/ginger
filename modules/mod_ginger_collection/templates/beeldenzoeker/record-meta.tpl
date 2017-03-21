@@ -152,7 +152,7 @@
 		    </div>
 		{% endif %}
 
-        {% if m.acl.is_allowed.view_internal[record] %}
+        {% if m.acl.is_allowed.view.internal_adlib_content %}
             <div class="adlib-object__meta__row">
                 <div class="adlib-object__meta__title">
                     {_ Internal _}
