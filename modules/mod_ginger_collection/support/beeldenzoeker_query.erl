@@ -46,6 +46,8 @@ parse_query(<<"period">>, Period, QueryArgs) ->
     end;
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
+parse_query(<<"license">>, Values, QueryArgs) ->
+    QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
 parse_query(_Key, _Value, QueryArgs) ->
     QueryArgs.
 
