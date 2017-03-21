@@ -61,7 +61,7 @@ map_facet({Name, Props}) ->
 
 map_edge(<<"depiction">>) ->
     %% The Adlib object has a reproduction OR it's a Zotonic resource
-    {true, {filter, [[<<"reproduction.value">>, <<"exists">>, undefined], [<<"_type">>, <<"resource">>]]}};
+    {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
 map_edge(_) ->
     false.
 
