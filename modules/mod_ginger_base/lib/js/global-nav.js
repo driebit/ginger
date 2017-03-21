@@ -67,7 +67,7 @@
             }
 
             //Clicked outside of menu
-            if ($target.closest('[class*="global-nav__inner"]').size() == 0) {
+            if ($target.closest('[class*="global-nav"]').size() == 0) {
                 if (isOpen) {
                     me._closeMenu(event);
                     event.preventDefault();
