@@ -72,8 +72,10 @@ map_property(<<"material">>, Values, Acc) when is_list(Values) ->
 map_property(<<"material">>, Value, Acc) ->
     %% Single material as value
     Acc#{<<"rdfs:label">> => Value};
-map_property(<<"rights">>, Value, Acc) ->
-    Acc2 = Acc#{<<"rights">> => Value},
+map_property(<<"notes">>, Values, Acc) ->
+    Acc#{<<"dbpedia-owl:notes">> => to_list(Values)};
+map_property(<<"rights">> = Key, Value, Acc) ->
+    Acc2 = Acc#{Key => Value},
     case m_creative_commons:url_for(Value) of
         undefined ->
             Acc2;
@@ -84,17 +86,24 @@ map_property(<<"dimension.unit">>, Value, Acc) ->
     Acc#{<<"schema:unitCode">> => map_dimension_unit(Value),
         <<"schema:unitText">> => Value
     };
+map_property(<<"dimension.value">>, Value, Acc) ->
+    Acc#{<<"schema:value">> => Value};
 map_property(Key, [Value], Acc) ->
     map_property(Key, Value, Acc);
 map_property(Key, Value, Acc) ->
     Acc#{Key => Value}.
 
-map_dimension(#{<<"dimension.type">> := Type, <<"dimension.value">> := Value}, Acc) ->
-    Acc#{map_dimension_type(Type) => #{
-        <<"rdf:type">> => <<"schema:QuantitativeValue">>,
-        <<"schema:value">> => Value
-    }};
-map_dimension(_DimensionWithoutVolumeOrType, Acc) ->
+map_dimension(#{<<"dimension.type">> := Type} = Dimension, Acc) ->
+    Dimension2 = maps:remove(<<"dimension.type">>, Dimension),
+    case map_dimension_type(Type) of
+        undefined ->
+            Acc;
+        MappedType ->
+            Acc#{MappedType => Dimension2#{
+                <<"rdf:type">> => <<"schema:QuantitativeValue">>
+            }}
+    end;
+map_dimension(_DimensionWithoutValueOrType, Acc) ->
     Acc.
 
 %% @doc Map dimension unit to UN/CEFACT Common Codes for Units of Measurement
@@ -114,8 +123,8 @@ map_dimension_type(<<"lengte">>) ->
     <<"schema:height">>;
 map_dimension_type(<<"diameter">>) ->
     <<"dbpedia-owl:diameter">>;
-map_dimension_type(Type) ->
-    Type.
+map_dimension_type(_Type) ->
+    undefined.
 
 to_list(Values) when is_list(Values) ->
     Values;
