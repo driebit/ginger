@@ -164,7 +164,13 @@
 
                     {% if record['dbpedia-owl:notes'] as notes %}
                         <dt>{_ Notes _}</dt>
-                        <dd>{{ notes }}</dd>
+                        <dd>
+                            <ul>
+                            {% for note in notes %}
+                                <li>{{ note }}</li>
+                            </ul>
+                            {% endfor %}
+                        </dd>
                     {% endif %}
                 </dl>
             </div>
