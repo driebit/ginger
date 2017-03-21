@@ -49,6 +49,7 @@
         _handleDocumentClick: function(event) {
 
             let $target = $(event.originalEvent.target),
+                isOpen = $('.global-nav:eq(0)').hasClass('is-open'),
                 me = this;
 
             // Clicked on/in toggle menu button
@@ -67,11 +68,12 @@
 
             //Clicked outside of menu
             if ($target.closest('[class*="global-nav__inner"]').size() == 0) {
-                me._closeMenu(event);
-                event.preventDefault();
-                return;
+                if (isOpen) {
+                    me._closeMenu(event);
+                    event.preventDefault();
+                    return;
+                }
             }
-
         },
 
         _closeMenu: function(event) {
