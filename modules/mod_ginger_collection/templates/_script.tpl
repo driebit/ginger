@@ -5,4 +5,5 @@
     "js/search/components/filters-license.js"
     "js/search/components/filters-period.js"
     "js/search/components/filters-subjects.js"
+    "js/search/components/filters-subset.js"
 %}

@@ -24,13 +24,8 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
         end,
         Subjects
     );
-parse_query(<<"subset">>, [<<"collection">>, <<"event">>], QueryArgs) ->
-    %% don't filter
-    QueryArgs;
-parse_query(<<"subset">>, [<<"collection">>], QueryArgs) ->
-    QueryArgs ++ [{filter, [<<"association.subject.keyword">>, '<>', <<"evenement">>]}];
-parse_query(<<"subset">>, [<<"event">>], QueryArgs) ->
-    QueryArgs ++ [{filter, [<<"association.subject.keyword">>, <<"evenement">>]}];
+parse_query(<<"subset">>, Types, QueryArgs) ->
+    QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- Types]}];
 parse_query(<<"period">>, Period, QueryArgs) ->
     QueryArgs2 = case proplists:get_value(<<"min">>, Period) of
         <<>> ->
