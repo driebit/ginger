@@ -101,8 +101,8 @@
                 	<dd>
                 		{# TODO filter date for friendlier dates #}
                         {% with
-                            record['dbo:productionStartYear']|default:record['dcterms:created'],
-                            record['dbo:productionEndYear']
+                            record['dbo:productionStartYear']|default:record['dcterms:created']|isodate:"j F Y",
+                            record['dbo:productionEndYear']|isodate:"j F Y"
                         as
                             start,
                             end
