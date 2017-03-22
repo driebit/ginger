@@ -8,7 +8,6 @@
 -mod_schema(5).
 
 -include_lib("zotonic.hrl").
--include_lib("mod_elasticsearch/include/elasticsearch.hrl").
 
 -export([
     init/1,
@@ -77,7 +76,7 @@ observe_search_query(#search_query{}, _Context) ->
     undefined.
 
 %% @doc Boost primary identifier
-observe_elasticsearch_fields(#elasticsearch_fields{query = _Query}, Fields, _Context) ->
+observe_elasticsearch_fields({elasticsearch_fields, _QueryText}, Fields, _Context) ->
     [
         <<"dcterms:title*^2">>,
         <<"dcterms:identifier^2">>, %% object number
