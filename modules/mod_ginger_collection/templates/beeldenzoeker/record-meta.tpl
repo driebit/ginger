@@ -37,6 +37,9 @@
 	            	<dt>{_ Collection _}</dt>
 	            	<dd>{{ record.collection }}</dd>
 	            {% endif %}
+
+                <dt>{_ Last updated _}</dt>
+                <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
 	        </dl>
 	    </div>
         {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
@@ -82,7 +85,11 @@
                     <dd>
                         <ol>
                             {% for creator in creators %}
-                                <li>{{ creator['rdfs:label'] }}{% if creator['role'] %} ({{ creator['role'] }}){% endif %}</li>
+                                <li>
+                                    {% if creator['@id'] %}<a href="{{ creator['@id'] }}">{% endif %}
+                                    {{ creator['rdfs:label'] }}{% if creator['role'] %} ({{ creator['role'] }}){% endif %}
+                                    {% if creator['@id'] %}</a>{% endif %}
+                                </li>
                             {% endfor %}
                         </ol>
                     </dd>
@@ -130,8 +137,8 @@
 	        </div>
 	        <dl class="adlib-object__meta__data">
 		        {% if record['acquisition.date'] %}
-		        	<dt>{_ Aquisition _}</dt>
-		        	<dd>{{ record['acquisition.date'] }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
+		        	<dt>{_ Acquired _}</dt>
+		        	<dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
 		        {% endif %}
 
                 {% if record['dcterms:license'] as license %}
