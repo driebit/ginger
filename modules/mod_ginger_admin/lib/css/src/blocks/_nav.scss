@@ -1,0 +1,109 @@
+.navbar.navbar-branded {
+    background: $orange;
+}
+
+.navbar.navbar-branded .nav > li > a:hover,
+.navbar.navbar-branded .nav > li > a:focus,
+.navbar.navbar-branded .navbar-nav > .open > a,
+.navbar.navbar-branded .navbar-nav > .active > a,
+.dropdown-menu > li.active > a, 
+.dropdown-menu > li.active > a:hover, 
+.dropdown-menu > li > a:hover {
+    background: $orange;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    background: #eee;
+}
+
+.minimalTabs li.active > a,
+.minimalTabs li.active > a:focus,
+.minimalTabs li.active > a:hover,
+.nav.nav-pills li.active > a,
+.nav.nav-pills li.active > a:focus,
+.nav.nav-pills li.active > a:hover,
+.widget ul.nav-tabs li.active > a,
+.widget ul.nav-tabs li.active > a:focus,
+.widget ul.nav-tabs li.active > a:hover {
+    border-bottom-color: $orange;
+}
+
+.navbar.navbar-branded .collapse.in .nav > .dropdown.open .dropdown-menu > li > a:hover {
+    background: $orange;
+}
+
+.navbar.admin-navbar-fixed-save {
+    background: rgba(255,118,0, 0.8);
+}
+
+.widget.widget-expanded .widget-header .widget-header-tools .z-btn-help,
+.widget.dark.widget-expanded .widget-header .widget-header-tools .z-btn-help {
+    color: $orange;
+}
+
+.navbar.navbar-branded .collapse {
+    background: $orange;
+}
+
+.navbar-brand {
+    width: 205px;
+    height: 30px;
+    padding: 0;
+    margin-left: 10px;
+    position: relative;
+    top: 15px;
+    background: #fff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top: 1px solid #ba5b15;
+    border-left: 1px solid #ba5b15;
+    border-right: 1px solid #ba5b15;
+    border-bottom: 0;
+    text-shadow: none;
+    text-align: center;
+    text-indent: -9999px;
+}
+
+.navbar.navbar-branded .navbar-brand .zotonic-logo {
+    display: block;
+    width: 175px;
+    height: 31px;
+    position: absolute;
+    top: 2px;
+    left: 16px;
+    background: url('/lib/images/admin_ginger.png');
+}
+
+.navbar-brand .zotonic-logo em {
+    display: none;
+}
+
+.navbar.navbar-branded .navbar-brand .zotonic-logo {
+    top: 8px;
+}
+
+@include mq(min-width, 768) {
+    .navbar-form {
+        width: 126px;
+    }    
+
+    .navbar.navbar-branded .navbar-form .form-control {
+    	width: 100%;
+    }
+}
+
+@include mq(min-width, 1024) {
+	.navbar-form {
+        width: 140px;
+    }
+}
+
+@media (max-width: 1200px) and (min-width: 768px) {
+	.navbar.navbar-branded .navbar-brand {
+		display: none;
+	}
+}

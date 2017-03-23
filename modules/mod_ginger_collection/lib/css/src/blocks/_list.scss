@@ -1,0 +1,153 @@
+.list-search {
+	@extend .list;
+	width: 100%;
+	padding: 0 20px;
+	clear: both;
+
+	.list__item {
+        @include grid(
+            (breakpoint: $smallBreakpoint, property: 'min-width', columns: '1/2'),
+            (breakpoint: $mediumBreakpoint, property: 'min-width', columns: '1/2')
+        );
+    }
+}
+
+.list-carousel {
+	margin: 0;
+	overflow: hidden;
+
+	.list__item {
+		width: 100%;
+		max-width: 400px;
+	}
+
+	.list__item__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 200px;
+		overflow: hidden;
+	}
+}
+
+.list__item--beeldenzoeker {
+	@extend .list__item;
+	font-family: $primaryFontFamily;
+	overflow: visible;
+	transition: transform 0.3s, box-shadow 0.5s;
+	
+	&:hover {
+		transform: translateY(-5px);
+	    box-shadow: 0px 4px 9px rgba(0,0,0,0.2);
+    }
+
+    &:active {
+    	.list__item__image {
+    		position: relative;
+
+	    	&:before {
+	    		content: '';
+	    		background: rgba($white, 0.5);
+	    		position: absolute;
+	    		top: 0px;
+	    		left: 0px;
+	    		right: 0px;
+	    		bottom: 0px;
+	    		z-index: 10;
+	    	}
+    	}
+    }
+
+	img {
+		filter: none;
+	}
+
+	.list__item__image {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 200px;
+		overflow: hidden;
+
+		&.no-image {
+			min-height: 200px;
+			background: #f7f7f7;
+			background-position: center center;
+			background-image: url('/lib/images/adlib-image-fallback.svg');
+		}
+	}
+
+	.list__item__content__title {
+		font-size: 20px;
+		font-family: $secondaryFontFamily;
+		font-weight: 700;
+	}
+
+	.list__item__content {
+		padding: 10px 10px 20px;
+		font-size: 14px;
+		color: #6A727D;
+	}
+
+	.list__item__content__meta {
+		height: auto;
+		padding: 0;
+		margin: 0 0 10px;
+		position: static;
+		background: none;
+		font-size: 12px;
+		color: #A2AEBE;
+	}
+
+	.icon--collection {
+		width: auto;
+		height: auto;
+		background: none;
+		border: none;
+		color: rgba($white, 0.8);
+	}
+}
+
+.list__item__wimpel {
+	width: 111px;
+	height: 45px;
+	padding: 2px 0 0 18px;
+	position: absolute;
+	top: -1px;
+	left: 0px;
+	background: url('/lib/images/wimpel.svg') top right;
+	color: $white;
+    font-size: 12px;
+    text-transform: lowercase;
+
+    i {
+    	margin-right: 3px;
+    }
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.list-carousel {
+		.list__item {
+			margin: 0 15px;
+		}
+
+		.list__item__image {
+			height: 230px;
+		}
+	}
+
+	.list__item--beeldenzoeker {
+		.list__item__image {
+			height: 230px;
+		}
+
+		.list__item__content {
+			height: 150px;
+		}
+	}
+
+	.list__item__wimpel {
+		width: 136px;
+		left: -20px;
+	}
+}

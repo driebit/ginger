@@ -16,3 +16,7 @@
     <meta property="og:image:width" content="450" /> {# Set in mod_ginger_base/templates/mediaclass.config #}
     <meta property="og:image:height" content="350" />
 {% endif %}
+
+{% if not id %}
+    {% block no_id %}{% endblock %}
+{% endif %}

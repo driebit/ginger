@@ -6,7 +6,8 @@
     m_to_list/2,
     m_value/2,
     url_for/1,
-    language_url_for/2
+    language_url_for/2,
+    label/1
 ]).
 
 -include_lib("zotonic.hrl").
@@ -18,7 +19,9 @@ m_find_value(License, #m{value = undefined} = M, _Context) ->
 m_find_value(url, #m{value = License}, _Context) ->
     url_for(License);
 m_find_value(language_url, #m{value = License}, Context) ->
-    language_url_for(License, Context).
+    language_url_for(License, Context);
+m_find_value(label, #m{value = Uri}, _Context) ->
+    label(Uri).
 
 m_to_list(_, _Context) ->
     [].
@@ -48,6 +51,27 @@ url_for(<<"PD">>) ->
     <<"http://creativecommons.org/publicdomain/mark/1.0">>;
 url_for(_) ->
     undefined.
+
+label(<<"https://", Url/binary>>) ->
+    label(<<"http://", Url/binary>>);
+label(<<"http://creativecommons.org/licenses/", Label/binary>>) ->
+    label(Label);
+label(<<"by/", _Version/binary>>) ->
+    <<"BY">>;
+label(<<"by-sa/", _Version/binary>>) ->
+    <<"BY-SA">>;
+label(<<"by-nd/", _Version/binary>>) ->
+    <<"BY-ND">>;
+label(<<"by-nc/", _Version/binary>>) ->
+    <<"BY-NC">>;
+label(<<"by-nc-sa/", _Version/binary>>) ->
+    <<"BY-NC-SA">>;
+label(<<"by-nc-nd/", _Version/binary>>) ->
+    <<"BY-NC-ND">>;
+label(<<"http://creativecommons.org/publicdomain/zero/", _Version/binary>>) ->
+    <<"CC0">>;
+label(<<"http://creativecommons.org/publicdomain/mark/", _Version/binary>>) ->
+    <<"PD">>.
 
 %% @doc Get URL to translated license at the Creative Commons website
 -spec language_url_for(binary(), #context{}) -> binary() | undefined.

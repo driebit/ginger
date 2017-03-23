@@ -1,0 +1,25 @@
+.pagination > li > a, 
+.pagination > li > span {
+    color: $orange;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: darken($orange, 10);
+    }
+}
+
+.pagination > .active > a, 
+.pagination > .active > span {
+    color: $white;
+    background: $orange;
+    border-color: $orange;  
+
+
+    &:focus,
+    &:hover {
+        color: $white;  
+        background: darken($orange, 10);
+        border-color: $orange; 
+    }
+}

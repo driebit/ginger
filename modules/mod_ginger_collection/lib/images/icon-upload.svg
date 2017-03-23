@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="13px" viewBox="0 0 10 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Download</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="share" transform="translate(-16.000000, -13.000000)" stroke="#FFFFFF">
+            <g id="Button-Small-Fill">
+                <g id="Download" transform="translate(21.000000, 19.500000) scale(1, -1) translate(-21.000000, -19.500000) translate(17.000000, 13.000000)">
+                    <g id="Icon" transform="translate(1.000000, 3.000000)" stroke-linejoin="round">
+                        <g id="upload" transform="translate(3.500000, 5.000000) scale(1, -1) translate(-3.500000, -5.000000) ">
+                            <g id="Path-2164-+-Line">
+                                <polyline id="Line-50" points="6.04573916 3.50583651 3.03406614 0.494163488 0.0578191852 3.47041044"></polyline>
+                                <path d="M3,1.5 L3,9.54000092" id="Line-49"></path>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M0.5,0.75 L7.5,0.75" id="Line" stroke-width="1.5"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

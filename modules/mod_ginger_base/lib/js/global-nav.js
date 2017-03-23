@@ -13,9 +13,7 @@
             me.body                = $('body:eq(0)'),
             me.menuButton          = $(me.element.find('#toggle-menu')[0]);
 
-            me.menuButton.on('click', me._toggleMenu.bind(me));
-            me.document.on('click', me._closeMenu.bind(me));
-
+            me.document.on('click', me._handleDocumentClick.bind(me));
             me.document.on('menu:close', me._closeMenu.bind(me));
 
             if ('ontouchstart' in document.documentElement) {
@@ -47,12 +45,44 @@
             }
         },
 
+
+        _handleDocumentClick: function(event) {
+
+            let $target = $(event.originalEvent.target),
+                isOpen = $('.global-nav:eq(0)').hasClass('is-open'),
+                me = this;
+
+            // Clicked on/in toggle menu button
+            if ($target.closest('[class*="toggle-menu"]').size() > 0) {
+                me._toggleMenu(event);
+                event.preventDefault();
+                return;
+            }
+
+            // Clicked on/in menu close button
+            if ($target.closest('[class*="nav__close"]').size() > 0) {
+                me._closeMenu(event);
+                event.preventDefault();
+                return;
+            }
+
+            //Clicked outside of menu
+            if ($target.closest('[class*="global-nav"]').size() == 0) {
+                if (isOpen) {
+                    me._closeMenu(event);
+                    event.preventDefault();
+                    return;
+                }
+            }
+        },
+
         _closeMenu: function(event) {
             var me = this;
             me._toggleMenu(event, true);
         },
 
         _toggleMenu: function(event, close) {
+
             var me = this;
 
             me.menuButton.toggleClass('is-active');
@@ -71,7 +101,7 @@
                 }
             }
 
-            return false;
+            event.preventDefault();
 
         }
     });

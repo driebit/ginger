@@ -1,0 +1,112 @@
+.adlib-object__meta {
+	padding: 40px 0;
+	margin: 40px 0 0;
+	background: darken($white, 6%);
+
+	.main-container {
+		max-width: 720px;
+	}
+
+	.map--location {
+		height: 200px;
+		background-image: none;
+	}
+}
+
+.adlib-object__meta__row {
+	padding: 20px 0;
+	border-top: 1px solid darken($white, 10%);
+
+	&.first {
+		border-top: 0;
+	}
+
+	&.last {
+		li {
+			display: block;
+		}
+	}
+}
+
+.adlib-object__meta__title {
+	margin: 0 0 15px;
+	font-size: 14px;
+	font-weight: 700;
+	font-family: $secondaryFontFamily;
+}
+
+.adlib-object__meta__data {
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	list-style: none;
+
+	a {
+		display: block;
+	}
+
+	ul, ol {
+		list-style: none;
+	}
+}
+
+dl.adlib-object__meta__data {
+	display: flex;
+	flex-flow: row wrap;
+
+	dt {
+		width: 40%;
+		margin-bottom: 7px;
+	}
+
+	dd {
+		width: 60%;
+	}
+}
+
+.adlib-object__meta__row--map {
+	@extend .adlib-object__meta__row;
+	display: block;
+	height: 300px;
+
+	.adlib-object__meta__data {
+		height: 95%;
+	}
+
+	.infoBox > img {
+		// close button
+	    top: 17px;
+	}
+
+	.infobox__header {
+	    padding: 15px 7px;
+	    font-family: $secondaryFontFamily;
+	    color: $white;
+	    font-size: 22px;
+	    text-transform: uppercase;
+	}
+
+	.infobox__results {
+	    width: 300px;
+	    max-height: 350px;
+	    padding: 15px 10px;
+	    overflow-y: scroll;
+	    background-color: white;
+	    text-align: center;
+	}
+}
+
+@include mq(min-width, $mediumBreakpoint) {
+	.adlib-object__meta__row {
+		display: flex;
+	}
+
+	.adlib-object__meta__title {
+		width: 40%;
+		font-size: 16px;
+	}
+
+	.adlib-object__meta__data {
+		width: 60%;
+	}
+}

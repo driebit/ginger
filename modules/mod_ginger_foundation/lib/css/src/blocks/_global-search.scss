@@ -36,7 +36,6 @@
 
     &.is-visible {
         transform: translateX(0);
-        border-color: green;
 
         &:before {
             @extend .has-icon;
