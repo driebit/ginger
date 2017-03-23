@@ -148,7 +148,7 @@ msgstr ""
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-subset.tpl:6
 #: user/modules/mod_ginger_collection/templates/global-nav/global-nav-beeldenzoeker.tpl:4
 msgid "Museum collection"
-msgstr "Beeldcollectie"
+msgstr "Museumcollectie"
 
 #: user/modules/mod_ginger_collection/templates/list/list-beeldenzoeker.tpl:73
 msgid "No results"
