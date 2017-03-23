@@ -242,7 +242,7 @@ msgstr "Trefwoorden"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-subset.tpl:2
 msgid "Subset"
-msgstr ""
+msgstr "Selectie"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:183
 msgid "Sustainable web address"
