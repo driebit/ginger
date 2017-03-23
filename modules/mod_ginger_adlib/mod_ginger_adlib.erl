@@ -34,15 +34,15 @@
 -record(state, {context}).
 
 %% @doc Pull records modified after a date from all enabled Adlib databases
--spec pull_updates(calendar:datetime(), z:context()) -> list(ok).
+-spec pull_updates(calendar:datetime() | string(), z:context()) -> list(ok).
 pull_updates(Since, Context) ->
-    DateTime = z_datetime:to_datetime(Since),
-    [pull_database_updates(Database, DateTime, Context) || Database <- enabled_databases(Context)].
+    [pull_database_updates(Database, Since, Context) || Database <- enabled_databases(Context)].
 
 %% @doc Pull records modified after a date from an Adlib database
 -spec pull_database_updates(binary(), calendar:datetime(), z:context()) -> ok.
 pull_database_updates(Database, Since, Context) ->
-    pull_database_updates(Database, Since, 1, Context).
+    DateTime = z_datetime:to_datetime(Since),
+    pull_database_updates(Database, DateTime, 1, Context).
 
 pull_database_updates(Database, Since, StartFrom, Context) when is_tuple(Since) ->
     Format = detect_modification_date_format(Database, Since, Context),
