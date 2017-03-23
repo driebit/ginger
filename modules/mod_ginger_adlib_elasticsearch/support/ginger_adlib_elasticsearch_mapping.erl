@@ -6,7 +6,8 @@
     map_property/3,
     year/1,
     to_list/1,
-    to_labelled_list/1
+    to_labelled_list/1,
+    extract_values/1
 ]).
 
 -include_lib("zotonic.hrl").
@@ -16,9 +17,10 @@
 map(Record) ->
     Record.
 
-map_property(Key, [#{<<"value">> := Value}], Acc) ->
+map_property(Key, [#{<<"value">> := _} | _] = Values, Acc) ->
+    E = extract_values(Values),
     %% Flatten Adlib's @lang/value xmltype=grouped structure.
-    map_property(Key, Value, Acc);
+    map_property(Key, E, Acc);
 map_property(Key, #{<<"value">> := Value}, Acc) ->
     %% Flatten Adlib's @lang/value xmltype=grouped structure.
     map_property(Key, Value, Acc);
@@ -129,6 +131,17 @@ to_list(Values) when is_list(Values) ->
 to_list(Value) ->
     %% Wrap single value in a list for consistency
     [Value].
+
+extract_values(Values) when is_list(Values) ->
+    [extract_value(Value) || Value <- Values];
+extract_values(Values) ->
+    %% Wrap single value in a list for consistency
+    [extract_value(Values)].
+
+extract_value(#{<<"value">> := Value}) ->
+    Value;
+extract_value(Value) ->
+    Value.
 
 to_labelled_list(Values) ->
     ListValues = to_list(Values),
