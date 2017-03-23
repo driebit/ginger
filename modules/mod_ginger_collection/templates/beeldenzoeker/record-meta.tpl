@@ -43,7 +43,7 @@
 	        </dl>
 	    </div>
         {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
-            or record['schema:width'] or record['schema:height'] %}
+            or record['schema:width'] or record['schema:height'] or ['foaf:document'] %}
             <div class="adlib-object__meta__row">
                 <div class="adlib-object__meta__title">
                     {_ Work _}
@@ -71,6 +71,12 @@
                         <dt>{_ Publisher _}</dt>
                         <dd>{{ publisher }}</dd>
                     {% endif %}
+
+                    {% if record['foaf:document'] as documents %}
+                        <dt>{_ Documents _}</dt>
+                        <dd>{% include "list/list-uri-labels.tpl" items=documents %}</dd>
+                    {% endif %}
+
                 </dl>
             </div>
         {% endif %}
