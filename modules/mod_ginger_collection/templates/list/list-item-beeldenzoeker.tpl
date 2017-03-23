@@ -1,6 +1,6 @@
 {% with item._source as record %}
     <li class="list__item--beeldenzoeker {{ extraClasses }}">
-        <a href="{% url adlib_object database=item._type object_id=record.priref %}">
+        <a href="{% url collection_object database=item._type object_id=record.priref %}">
             {% block item_image %}
                 {% include "beeldenzoeker/depiction.tpl" record=record width=400 height=400 template="list/list-item-image.tpl" %}
             {% endblock %}

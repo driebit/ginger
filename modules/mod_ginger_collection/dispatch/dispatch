@@ -1,7 +1,5 @@
 [
-	{beeldenzoeker, ["beeldenzoeker"], controller_template, [ {template, "page.beeldenzoeker.tpl"}, {id, beeldenzoeker} ]},
-	{beeldenzoeker_search, ["beeldenzoeker", "search"], controller_template, [ {template, "beeldenzoeker/beeldenzoeker_search.tpl"} ]},
-
-	%% Beeldenzoeker detail page.
-    {adlib_object, ["beeldenzoeker", "beeld", database, object_id], controller_template, [{template, {cat, "page.collection_object.tpl"}}]}
+	{collection_home, ["collectie"], controller_template, [{id, beeldenzoeker}]},
+	{collection_search, ["collectie", "zoeken"], controller_template, [{template, "collection/search.tpl"}]},
+    {collection_object, ["collectie", "object", database, object_id], controller_template, [{template, {cat, "page.collection_object.tpl"}}]}
 ].

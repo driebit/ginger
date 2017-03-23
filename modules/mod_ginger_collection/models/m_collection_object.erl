@@ -13,7 +13,7 @@
 
 m_find_value(uri, #m{value = undefined}, Context) ->
     z_dispatcher:url_for(
-        adlib_object,
+        collection_object,
         [
             {use_absolute_url, true},
             {database, z_context:get_q(<<"database">>, Context)},
