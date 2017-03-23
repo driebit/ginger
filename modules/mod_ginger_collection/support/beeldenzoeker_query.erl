@@ -24,8 +24,17 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
         end,
         Subjects
     );
+%% Parse subsets (Elasticsearch types). You can specify multiple per checkbox
+%% by separating them with a comma.
 parse_query(<<"subset">>, Types, QueryArgs) ->
-    QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- Types]}];
+    AllTypes = lists:foldl(
+        fun(Type, Acc) ->
+            Acc ++ binary:split(Type, <<",">>, [global])
+        end,
+        [],
+        Types
+    ),
+    QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
 parse_query(<<"period">>, Period, QueryArgs) ->
     QueryArgs2 = case proplists:get_value(<<"min">>, Period) of
         <<>> ->
