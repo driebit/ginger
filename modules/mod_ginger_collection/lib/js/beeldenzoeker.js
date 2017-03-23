@@ -33,7 +33,7 @@ $(document).ready(function(){
         },
         beforeLoad : function() {
 	        /* You can use callbacks to customize or disable title */
-	        this.title = false; 
+	        this.title = false;
 	    },
         afterShow: function() {
             $('.fancybox-inner').prepend('<div class="zoom-help"></div>');
@@ -56,13 +56,21 @@ $(document).ready(function(){
 
 
 function homeInfinite() {
+	staticWindowHeight = $(window).height();
+
     $(window).scroll(function(){
         var buttonMore = $('#more-results'),
             scrollOffset = $(window).scrollTop(),
             windowHeight = $(window).height();
 
          if ((scrollOffset + windowHeight) >= buttonMore.offset().top ){
-            z_event("moreresults");
+			z_event("moreresults");
          }
+		 if(scrollOffset >= staticWindowHeight){
+		    $('.back-to-top').css('display','block');
+		 }
+		 else {
+			$('.back-to-top').css('display','none');
+		 }
     });
 }
