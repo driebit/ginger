@@ -123,7 +123,7 @@ msgstr "Taal"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:41
 msgid "Last updated"
-msgstr "Laatst bijgewerkt"
+msgstr "Laatst gewijzigd"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:145
 msgid "License"
@@ -192,7 +192,7 @@ msgstr "Druk op enter om te zoeken"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:71
 msgid "Publisher"
-msgstr ""
+msgstr "Uitgever"
 
 #: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:34
 msgid "Query preview"
