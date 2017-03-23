@@ -31,9 +31,13 @@ gulp.task('sass', function () {
 });
 
 gulp.task('sass:watch', function () {
+    var modules = paths.modulesSrc.map(function(path) {
+        return path + '/**/*.scss';
+    });
+
     var watchPaths = [
         paths.cssSource + '/**/*.scss'
-    ];
+    ].concat(modules);
 
     gulp.watch(watchPaths, ['sass']);
 });
