@@ -8,7 +8,7 @@
     showmore_button_text|default:_"Show more results...",
     list_template|default:"list/list-item.tpl",
     noresults,
-    show_pager
+    show_pager|if_undefined:`true`
 as
     items,
     cols,
