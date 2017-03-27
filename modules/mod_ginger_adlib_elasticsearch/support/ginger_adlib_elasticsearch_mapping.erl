@@ -88,6 +88,12 @@ map_property(<<"dimension.unit">>, Value, Acc) ->
     };
 map_property(<<"dimension.value">>, Value, Acc) ->
     Acc#{<<"schema:value">> => Value};
+map_property(<<"@attributes">> = Key, #{<<"modification">> := Date} = Value, Acc) ->
+    Acc#{
+        Key => Value,
+        <<"dcterms:modified">> => Date,
+        <<"modified">> => Date     %% For sorting together with Zotonic resources
+    };
 map_property(Key, [Value], Acc) ->
     map_property(Key, Value, Acc);
 map_property(Key, Value, Acc) ->
