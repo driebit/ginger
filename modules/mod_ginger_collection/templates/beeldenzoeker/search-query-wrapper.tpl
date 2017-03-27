@@ -7,5 +7,5 @@ as
     results_template,
     cat
 %}
-	{% include "beeldenzoeker/search-query.tpl" index=index class=class %}
+	{% include "beeldenzoeker/search-query.tpl" index=index class=class query_id=query_id %}
 {% endwith %}
