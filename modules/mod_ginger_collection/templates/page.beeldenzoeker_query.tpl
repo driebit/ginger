@@ -23,13 +23,13 @@
 
         </article>
 
-        {% with m.search[{beeldenzoeker query_id=id index=m.config.mod_ginger_adlib_elasticsearch.index.value}] as result %}
+        {% block search_query %}
 
-{#         	{% print result %} #}
+            {% with m.search[{beeldenzoeker query_id=id index=m.config.mod_ginger_adlib_elasticsearch.index.value}] as result %}
+                {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button dispatch_pager="beeldenzoeker" list_template="list/list-item-beeldenzoeker.tpl" %}
+            {% endwith %}
 
-            {% include "list/list-beeldenzoeker.tpl" items=result id=id hide_showall_button hide_showmore_button dispatch_pager="beeldenzoeker" list_template="list/list-item-beeldenzoeker.tpl" %}
-
-		{% endwith %}
+        {% endblock %}
     </main>
 
 {% endblock %}
