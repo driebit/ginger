@@ -49,7 +49,7 @@
 
         <a href="#top" class="back-to-top do_anchor"><i class="icon--arrow-down"></i>{_ back to top _}</a>
 
-        {% optional include "beeldenzoeker/home/recent.tpl" %}
+        {% include "beeldenzoeker/home/recent.tpl" %}
 
     </main>
 {% endwith %}
