@@ -46,7 +46,8 @@ parse_query(<<"period">>, Period, QueryArgs) ->
         <<>> ->
             QueryArgs2;
         Max ->
-            QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, date_range(Max)]}]
+            QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, date_range(Max), [{<<"format">>, <<"yyyy">>}]]}]
+    
     end;
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
