@@ -147,9 +147,15 @@
 		        	<dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
 		        {% endif %}
 
-                {% if record['dcterms:license'] as license %}
+                {% if record['dcterms:license'] or record['copyright'] %}
                     <dt>{_ License _}</dt>
-                    <dd><a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a></dd>
+                    <dd>
+                        {% if record['dcterms:license'] as license %}
+                            <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
+                        {% elseif record['copyright'] as license %}
+                            {{ license }}
+                        {% endif %}
+                    </dd>
                 {% endif %}
 	        </dl>
 	    </div>
