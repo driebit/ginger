@@ -3,7 +3,7 @@
     cols,
     extraClasses,
     class|default:"list",
-    list_id|default:"",
+    list_id|default:#list,
     hide_showmore_button,
     showmore_button_text|default:_"Show more results...",
     list_items_template|default:"list/list-items.tpl",
@@ -13,7 +13,7 @@
 as
     items,
     cols,
-    extraClasses,
+    extra_classes,
     class,
     list_id,
     hide_showmore_button,
@@ -26,13 +26,11 @@ as
 
     {% if items %}
 
-      {% if show_pager %}
-          {% include "pager/pager.tpl" %}
-      {% endif %}
+        {% if show_pager %}
+            {% include "pager/pager.tpl" %}
+        {% endif %}
 
-        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-            {% include list_items_template items=items list_item_template=list_template %}
-        </ul>
+        {% include list_items_template result=items list_id=list_id list_item_template=list_template %}
 
         {% if not hide_showmore_button %}
 
@@ -52,6 +50,8 @@ as
 
         {% if show_pager %}
             {% include "pager/pager.tpl" %}
+        {% else %}
+            {% lazy image=undefined action={moreresults result=items target=list_id template=list_items_template list_item_template=list_template class=class extra_classes=extra_classes is_result_render visible} %}
         {% endif %}
 
     {% else %}
@@ -59,7 +59,5 @@ as
             <p class="no-results">{_ No results _}</p>
         {% endif %}
     {% endif %}
-
-
 
 {% endwith %}
