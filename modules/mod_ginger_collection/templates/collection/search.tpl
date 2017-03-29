@@ -35,6 +35,7 @@
                     action={update
                             target="search-list"
                             template="beeldenzoeker/search-query-wrapper.tpl"
+                            show_pager
                             cg_name="default_content_group" }
                     %}
 

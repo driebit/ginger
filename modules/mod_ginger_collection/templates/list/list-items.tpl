@@ -8,10 +8,10 @@
         {# Elasticsearch document #}
         {% if item._type == "resource" %}
             {# A Zotonic resource #}
-            {% catinclude list_template item._id item=m.rsc[item._id] %}
+            {% catinclude list_item_template item._id %}
         {% else %}
             {# An Elasticsearch document #}
-            {% include list_template item=item %}
+            {% include list_item_template item=item %}
         {% endif %}
     {% endif %}
 
