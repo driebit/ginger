@@ -9,7 +9,8 @@
     list_items_template|default:"list/list-items.tpl",
     list_template|default:"list/list-item.tpl",
     noresults,
-    show_pager
+    show_pager,
+    infinite_scroll
 as
     items,
     cols,
@@ -21,7 +22,8 @@ as
     list_items_template,
     list_template,
     noresults,
-    show_pager
+    show_pager,
+    infinite_scroll
 %}
 
     {% if items %}
@@ -32,7 +34,21 @@ as
 
         {% include list_items_template result=items list_id=list_id list_item_template=list_template %}
 
-        {% if not hide_showmore_button %}
+        {% if show_pager %}
+            {% include "pager/pager.tpl" %}
+        {% endif %}
+
+        {% if infinite_scroll %}
+            {% lazy image=undefined action={moreresults
+                result=items
+                target=list_id
+                template=list_items_template
+                list_item_template=list_template
+                class=class
+                extra_classes=extra_classes
+                is_result_render
+                visible} %}
+        {% elseif not hide_showmore_button %}
 
             <div id="{{ list_id }}-buttons">
 
@@ -46,12 +62,6 @@ as
 
             </div>
 
-        {% endif %}
-
-        {% if show_pager %}
-            {% include "pager/pager.tpl" %}
-        {% else %}
-            {% lazy image=undefined action={moreresults result=items target=list_id template=list_items_template list_item_template=list_template class=class extra_classes=extra_classes is_result_render visible} %}
         {% endif %}
 
     {% else %}
