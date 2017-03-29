@@ -6,6 +6,7 @@
     list_id|default:"",
     hide_showmore_button,
     showmore_button_text|default:_"Show more results...",
+    list_items_template|default:"list/list-items.tpl",
     list_template|default:"list/list-item.tpl",
     noresults,
     show_pager
@@ -17,6 +18,7 @@ as
     list_id,
     hide_showmore_button,
     showmore_button_text,
+    list_items_template,
     list_template,
     noresults,
     show_pager
@@ -29,18 +31,7 @@ as
       {% endif %}
 
         <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
-            {% for r in items|is_visible %}
-                {% if r|length == 2 %}
-                    {% with r|element:1 as item %}
-                        {% catinclude list_template item %}
-                    {%  endwith %}
-                {% else %}
-                    {% with r as item %}
-                        {% catinclude list_template item %}
-                    {% endwith %}
-                {% endif %}
-            {% endfor %}
-
+            {% include list_items_template items=items list_item_template=list_template %}
         </ul>
 
         {% if not hide_showmore_button %}
