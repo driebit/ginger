@@ -9,7 +9,7 @@
             sort,
             filter
         %}
-            {% include "beeldenzoeker/search-query-wrapper.tpl" cat="beeldenzoeker_query" sort=sort filter=filter pagelen=15 show_pager=`false` class="list" %}
+            {% include "beeldenzoeker/search-query-wrapper.tpl" cat="beeldenzoeker_query" sort=sort filter=filter pagelen=15 infinite_scroll class="list" %}
         {% endwith %}
     </div>
 </div>
