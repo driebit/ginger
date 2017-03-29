@@ -119,7 +119,7 @@
                 {% endif %}
 
 	            {% if record['production.place'] %}
-	            	<dt>{_ City _}</dt>
+	            	<dt>{_ Produced in _}</dt>
 	            	<dd>{{ record['production.place'] }}</dd>
 	            {% endif %}
 
@@ -157,6 +157,11 @@
                     {% endif %}
                 </dd>
             {% endif %}
+
+            {% if record['credit_line'] %}
+                <dt>{_ Credit line _}</dt>
+                <dd>{{ record['credit_line'] }}</dd>
+            {% endif %}
 	        </dl>
 	    </div>
 
@@ -169,11 +174,6 @@
                 </div>
                 <dl class="adlib-object__meta__data">
                     {% optional include "beeldenzoeker/metadata/internal.tpl" %}
-
-                    {% if record.credit_line %}
-    	        		<dt>{_ Credit line _}</dt>
-	            		<dd>{{ record.credit_line }}</dd>
-		            {% endif %}
 
                     {% if record['dbpedia-owl:notes'] as notes %}
                         <dt>{_ Notes _}</dt>
