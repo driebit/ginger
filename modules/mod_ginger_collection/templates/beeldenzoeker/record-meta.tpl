@@ -137,26 +137,26 @@
 
         {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:subject'] %}
 
-	    <div class="adlib-object__meta__row">
-	        <div class="adlib-object__meta__title">
-	            {_ Acquisition & License _}
-	        </div>
-	        <dl class="adlib-object__meta__data">
-		        {% if record['acquisition.date'] %}
-		        	<dt>{_ Acquired _}</dt>
-		        	<dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
-		        {% endif %}
+        <div class="adlib-object__meta__row">
+            <div class="adlib-object__meta__title">
+                {_ Acquisition & License _}
+            </div>
+            <dl class="adlib-object__meta__data">
+            {% if record['acquisition.date'] %}
+                <dt>{_ Acquired _}</dt>
+                <dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['acquisition.method'] %}, {{ record['acquisition.method'] }}{% endif %}</dd>
+            {% endif %}
 
-                {% if record['dcterms:license'] or record['copyright'] %}
-                    <dt>{_ License _}</dt>
-                    <dd>
-                        {% if record['dcterms:license'] as license %}
-                            <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
-                        {% elseif record['copyright'] as license %}
-                            {{ license }}
-                        {% endif %}
-                    </dd>
-                {% endif %}
+            {% if record['dcterms:license'] or record['copyright'] %}
+                <dt>{_ License _}</dt>
+                <dd>
+                    {% if record['dcterms:license'] as license %}
+                        <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
+                    {% elseif record['copyright'] as license %}
+                        {{ license }}
+                    {% endif %}
+                </dd>
+            {% endif %}
 	        </dl>
 	    </div>
 
