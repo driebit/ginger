@@ -10,26 +10,24 @@
 -include_lib("zotonic.hrl").
 
 -export([
-    init/1,
     manage_schema/2,
     observe_search_query/2,
     observe_acl_is_allowed/2,
     observe_elasticsearch_fields/3
 ]).
 
-%% @doc Linked data property mappings
-init(Context) ->
-    Index = mod_ginger_adlib_elasticsearch:index(Context),
-    Mapping = beeldenzoeker_elasticsearch_mapping:default_mapping(),
-    
-    erlastic_search:create_index(Index),
+manage_schema(_, Context) ->
+    elasticsearch_index(Context),
+    datamodel().
 
-    %% Update all Elasticsearch types that are currently enabled
-    [{ok, _} = erlastic_search:put_mapping(Index, Type, Mapping) || Type
-        <- mod_ginger_adlib_elasticsearch:types(Context)],
-    ok.
+elasticsearch_index(Context) ->
+    {Version, Mapping} = beeldenzoeker_elasticsearch_mapping:default_mapping(),
+    Index = mod_ginger_adlib_elasticsearch:index(Context),
+    %% Apply default mapping to all types
+    Mappings = [{Type, Mapping} || Type <- mod_ginger_adlib_elasticsearch:types(Context)],
+    elasticsearch_index:upgrade(Index, Mappings, Version, Context).
     
-manage_schema(_Version, _Context) ->
+datamodel() ->
     #datamodel{
         categories = [
             {beeldenzoeker_query, elastic_query, [

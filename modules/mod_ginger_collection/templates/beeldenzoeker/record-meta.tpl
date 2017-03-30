@@ -119,7 +119,7 @@
                 {% endif %}
 
 	            {% if record['production.place'] %}
-	            	<dt>{_ City _}</dt>
+	            	<dt>{_ Produced in _}</dt>
 	            	<dd>{{ record['production.place'] }}</dd>
 	            {% endif %}
 
@@ -137,26 +137,31 @@
 
         {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:subject'] %}
 
-	    <div class="adlib-object__meta__row">
-	        <div class="adlib-object__meta__title">
-	            {_ Acquisition & License _}
-	        </div>
-	        <dl class="adlib-object__meta__data">
-		        {% if record['acquisition.date'] %}
-		        	<dt>{_ Acquired _}</dt>
-		        	<dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['aquisition.method'] %}, {{ record['aquisition.method'] }}{% endif %}</dd>
-		        {% endif %}
+        <div class="adlib-object__meta__row">
+            <div class="adlib-object__meta__title">
+                {_ Acquisition & License _}
+            </div>
+            <dl class="adlib-object__meta__data">
+            {% if record['acquisition.date'] %}
+                <dt>{_ Acquired _}</dt>
+                <dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['acquisition.method'] %}, {{ record['acquisition.method'] }}{% endif %}</dd>
+            {% endif %}
 
-                {% if record['dcterms:license'] or record['copyright'] %}
-                    <dt>{_ License _}</dt>
-                    <dd>
-                        {% if record['dcterms:license'] as license %}
-                            <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
-                        {% elseif record['copyright'] as license %}
-                            {{ license }}
-                        {% endif %}
-                    </dd>
-                {% endif %}
+            {% if record['dcterms:license'] or record['copyright'] %}
+                <dt>{_ License _}</dt>
+                <dd>
+                    {% if record['dcterms:license'] as license %}
+                        <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
+                    {% elseif record['copyright'] as license %}
+                        {{ license }}
+                    {% endif %}
+                </dd>
+            {% endif %}
+
+            {% if record['credit_line'] %}
+                <dt>{_ Credit line _}</dt>
+                <dd>{{ record['credit_line'] }}</dd>
+            {% endif %}
 	        </dl>
 	    </div>
 
@@ -169,11 +174,6 @@
                 </div>
                 <dl class="adlib-object__meta__data">
                     {% optional include "beeldenzoeker/metadata/internal.tpl" %}
-
-                    {% if record.credit_line %}
-    	        		<dt>{_ Credit line _}</dt>
-	            		<dd>{{ record.credit_line }}</dd>
-		            {% endif %}
 
                     {% if record['dbpedia-owl:notes'] as notes %}
                         <dt>{_ Notes _}</dt>

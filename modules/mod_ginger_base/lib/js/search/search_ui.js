@@ -218,7 +218,7 @@ $.widget("ui.search_ui", {
     },
 
     toggleSearchSection: function(title) {
-        title.parent().toggleClass('is-open');
+        title.closest('.search__filters__section').toggleClass('is-open');
     }
 
 });
