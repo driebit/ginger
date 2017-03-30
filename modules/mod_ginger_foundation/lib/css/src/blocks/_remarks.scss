@@ -1,11 +1,18 @@
 .main-content__remarks {
+    margin-top: 20px;
+    background: $white;
+
     .list-header {
+        padding: 0;
         margin-bottom: 20px;
         text-align: left;
+        background: none;
     }
 
     .list-header__title {
         width: 100%;
+        padding: 30px;
+        background: $listHeaderBgColor;
         text-align: left;
     }
 }
@@ -43,6 +50,7 @@
 }
 
 .remark-form {
+    padding: 0 20px 20px;
     padding-bottom: 20px;
     margin: 20px 0;
     position: relative;
@@ -294,12 +302,16 @@
         padding-bottom: 20px;
         margin-bottom: 40px;
         overflow: hidden;
+
+        > article {
+            display: flex;
+        }
     }
 
     .remark-item__author {
         width: 30%;
         height: auto;
-        float: left;
+        
         text-align: center;
 
         .avatar__image {
@@ -328,7 +340,6 @@
 
     .remark-item__content {
         width: 70%;
-        float: left;
     }
 
     .remark-form__anonymous {
