@@ -27,7 +27,7 @@ as
             {% include "pager/pager.tpl"  %}
         {% endif %}
 
-        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }}">
+        <ul id="{{ list_id }}" class="{{ class }} {{ extraClasses }} list-carousel">
             {% for r in items %}
                 {% if r|length == 2 %}
                     {% with r|element:1 as item %}
