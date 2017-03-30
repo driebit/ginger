@@ -1,3 +1,4 @@
+
 [![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger)
 
 Ginger
@@ -12,7 +13,7 @@ This is the Ginger Zotonic edition. This repository contains:
 Documentation
 -------------
 
-* [Docker](docs/docker.md)
+* [Docker development environment](docs/docker.md)
 * [Guidelines](docs/guidelines.md)
 * [Why Ginger is a single Git repository](docs/monorepo.md)
 * [Releases](docs/releases.md)
@@ -49,17 +50,17 @@ Sites overview
 ---------------
 
 * The [Zotonic status site](http://zotonic.com/docs/latest/installation/zotonic_status.html)
-  is available at [http://localhost](http://localhost) for Docker or
-  http://ginger.dev for Vagrant. Log in with empty password.
-* Make sure to add the hostnames of individual sites (e.g. `yoursite.dev`) to your `/etc/hosts`
-  file.
+  is available at [http://localhost](http://localhost). Log in with empty 
+  password.
+* Make sure to add the hostnames of individual sites (e.g. 
+  `yoursite.docker.dev`) to your `/etc/hosts` file.
 
 Checking out sites
 ------------------
 
 1. Check out your Zotonic site in the `sites/` directory.
 2. Start the site from the [status site](http://zotonic.com/docs/latest/ref/status-site.html):
-   http://localhost (Docker) or http://ginger.dev (Vagrant)
+   http://localhost.
 3. Login and go to the modules page
 4. Deactive site module and activate it again
 5. Now the site should work properly
@@ -68,55 +69,6 @@ Adding modules
 --------------
 
 Place custom modules in `modules/` (no symlinks needed).
-
-Starting and stopping Zotonic
------------------------------
-
-Stop Zotonic: `$ sudo service zotonic stop`.
-
-Start Zotonic: `$ sudo service zotonic start`.
-
-Start Zotonic in debug mode: `$ zotonic debug`.
-
-Database
---------
-
-This has become much easier with our Docker configuration. See
-[Docker](docs/docker.md) for more information.
-
-If you’re on Vagrant, read on.
-
-Connect to the database:
-
-```bash
-$ sudo -u postgres psql
-\l
-\c
-```
-
-### Importing a database
-
-From a file:
-
-```bash
-$ scripts/import.sh site-name site-name.sql
-```
-
-In ginger.dev environment, from a remote backup:
-
-```bash
-$ scripts/import-backup.sh your-username@ginger01.driebit.net site-name
-```
-
-Substitute `ginger-test.driebit.net` or `ginger-acceptatie.driebit.net` for
-`ginger01.driebit.net` depending on the environment that you want to import
-the latest backup from.
-
-On ginger-test, you can leave out `your-username`:
-
-```
-$ scripts/import-backup.sh ginger01.driebit.net site-name
-```
 
 Fetching changes
 ----------------
