@@ -15,7 +15,7 @@
             {% button class="btn--cancel" text=_"Cancel" action={redirect back} tag="a" %}
         </nav>
         {% block header_text %}
-            <h1 class="page-title">{_ Edit _}: {% if id.name_first %} {{ id.name_first }} {% if id.name_surname %} {{ id.name_surname }}{% endif %}{% elif id.title %}{{ id.title }}{% else %}{{ id.category.name }}{% endif %}</h1>
+            <h1 class="page-title">{_ Edit _}: {% if id.name_first %} {{ id.name_first }} {% if id.name_surname %} {{ id.name_surname }}{% endif %}{% elif id.title %}{{ id.title }}{% else %}{{ id.category.id.title }}{% endif %}</h1>
         {% endblock %}
     </header>
 {% endblock %}
