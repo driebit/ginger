@@ -28,6 +28,10 @@ map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"objec
     Acc#{
         <<"dcterms:identifier">> => Value
     };
+map_property(<<"creator">> = Key, [Value], Acc) ->
+    Acc#{Key => parse_name(Value)};
+map_property(<<"creator">> = Key, Value, Acc) ->
+    Acc#{Key => parse_name(Value)};
 map_property(<<"creator.role">>, Value, Acc) ->
     Acc#{<<"role">> => Value};
 map_property(<<"production.date.start">> = Key, Value, Acc) when value =/= <<"?">> ->
@@ -131,6 +135,20 @@ map_dimension_type(<<"diameter">>) ->
     <<"dbpedia-owl:diameter">>;
 map_dimension_type(_Type) ->
     undefined.
+
+parse_name(Name) ->
+    case binary:split(Name, <<", ">>) of
+        [Last, First] ->
+            #{
+                <<"rdfs:label">> => <<First/binary, " ", Last/binary>>,
+                <<"foaf:firstName">> => First,
+                <<"foaf:familyName">> => Last
+            };
+        _ ->
+            #{
+                <<"rdfs:label">> => Name
+            }
+    end.
 
 to_list(Values) when is_list(Values) ->
     Values;
