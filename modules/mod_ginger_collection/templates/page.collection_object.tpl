@@ -2,6 +2,12 @@
 
 {% block body_class %}t--adlib-object{% endblock %}
 
+{% block title %}
+    {% with m.collection_object[q.database][q.object_id]._source as record %}
+        {{ record['dcterms:title'] }}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
 
 {% with m.collection_object[q.database][q.object_id]._source as record %}
