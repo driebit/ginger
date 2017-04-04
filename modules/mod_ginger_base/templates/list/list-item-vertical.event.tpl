@@ -8,8 +8,7 @@
             <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}
         </div> #}
         <div class="list__item--vertical__date">
-            <time datetime="{{ id.start_date|date:"Y-F-jTH:i" }}" class="list__item__content__date">
-
+                <time datetime="{{ id.date_start|date:"Y-m-d" }}" class="list__item__content__date">
                 <span class="list__item__content__date__day">{{ id.date_start|date:"D"|truncate:2:" " }}</span>
                 {{ id.date_start|date:"j M" }}
                 <span class="list__item__content__date__year">{{ id.date_start|date:"Y" }}</span>

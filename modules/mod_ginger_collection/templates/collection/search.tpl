@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <main role="main" class="do_search do_search_ui">
+    <main  class="do_search do_search_ui">
 
     	<form class="bz-search page-search" role="search">
 		    <div class="page-search__container">

@@ -14,7 +14,7 @@
 
     {% include "beeldenzoeker/depiction.tpl" record=record width=1600 height=1600 template="beeldenzoeker/masthead.tpl" %}
 
-    <main role="main">
+    <main >
         <div class="adlib-object__actions">
             <div class="main-container">
                 {% include "beeldenzoeker/share.tpl" record=record %}

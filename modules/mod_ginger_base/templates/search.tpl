@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <main role="main" class="do_search do_search_ui">
+    <main  class="do_search do_search_ui">
 
         <div class="search__top">
             <div class="search__top__container">
