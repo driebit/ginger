@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.8\n"
 
-#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:56
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:57
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:84
 msgid " "
 msgstr ""
@@ -115,7 +115,7 @@ msgstr "Loskoppelen"
 msgid "Displayed in"
 msgstr "Weergegeven in"
 
-#: user/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:25
+#: user/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:26
 msgid "Documents"
 msgstr "Documenten"
 
@@ -169,6 +169,10 @@ msgstr "Filters"
 #: user/modules/mod_ginger_base/templates/error.tpl:100
 msgid "Function/ template"
 msgstr "Functie/ template"
+
+#: user/modules/mod_ginger_base/templates/_video_embed_service_options.tpl:4
+msgid "Ginger Embed"
+msgstr ""
 
 #: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:48
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:48
@@ -243,7 +247,7 @@ msgstr "Log in of registreer om een reactie achter te laten"
 msgid "Logged in as"
 msgstr "Ingelogd als"
 
-#: user/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:8
+#: user/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:9
 msgid "Media"
 msgstr "Media"
 
@@ -284,8 +288,8 @@ msgstr "Geen toegang"
 msgid "No comments"
 msgstr "Geen reacties"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:68
-#: user/modules/mod_ginger_base/templates/map/map.tpl:71
+#: user/modules/mod_ginger_base/templates/list/list.tpl:69
+#: user/modules/mod_ginger_base/templates/map/map.tpl:63
 msgid "No results"
 msgstr "Geen resultaten"
 
@@ -370,7 +374,8 @@ msgstr "Keer terug naar de homepage"
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:9
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:34
-#: user/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:2
+#: user/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:3
+#: user/modules/mod_ginger_base/templates/search.tpl:3
 #: user/modules/mod_ginger_base/templates/search.tpl:13
 msgid "Search"
 msgstr "Zoeken"
@@ -548,6 +553,10 @@ msgstr ""
 "Je bericht is opgeslagen en zal bekeken worden door de moderator voordat het "
 "geplaatst zal worden. Bedankt voor je bericht!"
 
+#: user/modules/mod_ginger_base/templates/back-to-top/back-to-top-link.tpl:1
+msgid "back to top"
+msgstr "terug naar boven"
+
 #: user/modules/mod_ginger_base/templates/comments/comments-header.tpl:8
 msgid "comments"
 msgstr "reacties"
@@ -573,6 +582,10 @@ msgstr "error"
 msgid "interested people"
 msgstr "geïnteresseerden"
 
+#: user/modules/mod_ginger_base/templates/search/components/filters-keywords.tpl:16
+msgid "less"
+msgstr ""
+
 #: user/modules/mod_ginger_base/templates/search.tpl:20
 msgid "list"
 msgstr "lijst"
@@ -593,6 +606,10 @@ msgstr "kaart"
 #: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:28
 msgid "maximum participants"
 msgstr "Maximum deelnemers"
+
+#: user/modules/mod_ginger_base/templates/search/components/filters-keywords.tpl:16
+msgid "more"
+msgstr ""
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:30
 msgid "must be a number"
