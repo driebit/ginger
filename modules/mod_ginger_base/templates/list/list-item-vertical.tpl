@@ -3,13 +3,12 @@
 {% block with_depiction %}
 
 {% if id.is_visible %}
-
     <li class="{% block class %} list__item--vertical{% endblock %} {{ extraClasses }}">
 
         <a href="{{ id.page_url }}">
             <article class="cf">
                 <div class="list__item--vertical__image" {% if dep_rsc %} style="background-image: url({% image_url dep_rsc.id mediaclass="list-image" %});"{% endif %}>
-                    {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt="" title="" crop=dep_rsc.crop_center %}
+                    {% image dep_rsc.id mediaclass="list-image" class="list__item__image" alt=id.title title="" crop=dep_rsc.crop_center %}
                     {% block list_item_cat %}
                         <div class="list__item__content__category">
                             <i class="icon--{{ id.category.name }}"></i>{{ m.rsc[id.category.id].title }}

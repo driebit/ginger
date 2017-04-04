@@ -5,7 +5,7 @@
 {% block content %}
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
-    <main role="main" id="top" data-page-id="{{ id }}">
+    <main  id="top" data-page-id="{{ id }}">
         <div class="beeldenzoeker-home__header" style="background-image: url({% image_url banner.id width="1600" height="400" crop=banner.crop_center quality="80" %}); background-size: cover;">
             <div class="beeldenzoeker-home__header__title">
                 <h1>{{ id.title }}</h1>
