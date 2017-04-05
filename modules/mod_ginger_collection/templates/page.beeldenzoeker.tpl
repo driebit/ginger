@@ -47,7 +47,7 @@
             {% endfor %}
         {% endif %}
 
-        <a href="#top" class="back-to-top do_anchor"><i class="icon--arrow-down"></i>{_ back to top _}</a>
+        {% include "back-to-top/back-to-top-link.tpl" %}
 
         {% include "beeldenzoeker/home/recent.tpl" %}
 

@@ -9,5 +9,9 @@
         "gulp-postcss": "^6.4.0",
         "gulp-sass": "^3.1.0",
         "gulp-sourcemaps": "^2.5.0"
+    },
+    "scripts": {
+        "start": "gulp",
+        "build": "gulp sass"
     }
 }
