@@ -14,16 +14,16 @@
     {% endif %}
         {% if first %}
             {% if id.medium.width > 750 %}
-                {% image id.id mediaclass="landscape-"++sizename alt="landscape-"++sizename crop=id.crop_center %}
+                {% image id.id mediaclass="landscape-"++sizename alt=id.title crop=id.crop_center %}
             {% elif id.medium.height > 750 %}
-                 {% image id.id mediaclass="portrait-"++sizename alt="portrait-"++sizename crop=id.crop_center %}
+                 {% image id.id mediaclass="portrait-"++sizename alt=id.title crop=id.crop_center %}
             {% elif sizename %}
-                {% image id.id mediaclass="landscape-"++sizename alt="landscape-"++sizename crop=id.id.crop_center %}
+                {% image id.id mediaclass="landscape-"++sizename alt=id.title crop=id.id.crop_center %}
             {% else %}
-                {% image id.id mediaclass="landscape-large" alt="landscape-large" crop=id.id.crop_center %}
+                {% image id.id mediaclass="landscape-large" alt=id.title crop=id.id.crop_center %}
             {% endif %}
         {% else %}
-            {% image id.id mediaclass="pager-thumbnail" alt="pager-thumbnail" crop=id.id.crop_center %}
+            {% image id.id mediaclass="pager-thumbnail" alt=id.title crop=id.id.crop_center %}
         {% endif %}
         </a>
 

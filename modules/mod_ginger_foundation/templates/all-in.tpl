@@ -3,7 +3,7 @@
 {% block body_class %}t--no-masthead{% endblock %}
 
 {% block content %}
-    <main >
+    <main>
 
         <div class="foldout do_foldout">
 

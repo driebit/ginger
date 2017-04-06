@@ -4,7 +4,7 @@
 
     {% include "masthead/masthead.tpl" id=id extraClasses="masthead--small" %}
 
-    <main >
+    <main>
 
         <div class="foldout do_foldout">
 

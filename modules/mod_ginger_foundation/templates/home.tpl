@@ -5,7 +5,7 @@
 {% block content %}
 {% with id.o.hasbanner[1].depiction|default:id.depiction as banner %}
 
-    <main  data-page-id="{{ id }}">
+    <main data-page-id="{{ id }}">
         {% if banner %}
             {% if banner.width > 500 %}
                 <div class="home__header do_parallax" style="background-image: url({% image_url banner.id mediaclass='masthead' crop %}); background-size: cover;">
