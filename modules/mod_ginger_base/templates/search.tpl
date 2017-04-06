@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <main  class="do_search do_search_ui">
+    <main class="do_search do_search_ui">
 
         <div class="search__top">
             <div class="search__top__container">
@@ -29,7 +29,7 @@
         <div class="search__container">
             {% block search_filters %}{% endblock %}
 
-            {%  wire    
+            {%  wire
                     name="search-list"
                     action={update target="search-list" text="<p class='no-results'>Loading...</p>"}
                     action={update

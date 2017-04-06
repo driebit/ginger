@@ -3,7 +3,7 @@
 {% block body_class %}t--article-sided{% endblock %}
 
 {% block content %}
-    <main  class="page--sided">
+    <main class="page--sided">
         <div class="main-content--sided">
         <article>
 
@@ -42,7 +42,7 @@
             {% endblock %}
 
         </article>
-        
+
         {% block comments %}
             {% include "comments/comments.tpl" id=id %}
         {% endblock %}
