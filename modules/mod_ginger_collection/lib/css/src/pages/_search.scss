@@ -200,7 +200,7 @@
     	.search__filters__title {
 			&:before {
 				content: '-';
-			}		
+			}
 		}
     }
 
@@ -238,7 +238,7 @@
 }
 
 .search__filters__section--license {
-	@extend .search__filters__section;	
+	@extend .search__filters__section;
 
 	i {
 		font-size: 20px;
@@ -334,13 +334,16 @@
 	.search__filters__section {
 		position: relative;
 		max-height: 38px;
-		
+
 		ul {
 			max-height: 0px;
-			overflow: hidden;
 		 	transition: max-height 0.6s;
 		}
-	
+
+		.is-open .do_search_cmp_filters_subjects {
+			overflow: scroll !important;
+		}
+
 		.is-open & {
 			ul {
 				max-height: 1000px !important;
