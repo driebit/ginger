@@ -15,12 +15,14 @@
                 <form class="search__top__form">
                     {% include "search/components/input-text.tpl" %}
                 </form>
-
-                <div class="search__top__view do_search_cmp_types">
-                    <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
-                    <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
-                    {% all include "search/search-buttons.tpl" %}
-                </div>
+                
+                {% block search_views %}
+                    <div class="search__top__view do_search_cmp_types">
+                        <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
+                        <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+                        {% all include "search/search-buttons.tpl" %}
+                    </div>
+                {% endblock %}
             </div>
         </div>
 
