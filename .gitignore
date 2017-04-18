@@ -4,6 +4,9 @@ data/*
 sites/*
 modules/*
 !modules/mod_ginger*
+tests/node_modules
+tests/reports
+tests/screenshots
 *.mo
 *.pot
 .idea

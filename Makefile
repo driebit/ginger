@@ -17,6 +17,7 @@ help:
 	@echo "  import-db-backup       Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  shell                  Open Zotonic shell"
 	@echo "  psql                   Open PostgreSQL interactive terminal"
+	@echo "  test site=your_site	Run brower site tests"
 	@echo "  up                     Start containers"
 	@echo "  up-zotonic             Start containers with custom Zotonic checkout"
 	@echo "  update                 Update containers"
@@ -53,8 +54,18 @@ shell:
 psql:
 	@docker-compose exec postgres psql -U zotonic
 
+test $(site):
+# Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
+	@docker network disconnect ginger_selenium ginger_zotonic_1
+	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.dev
+	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="http://$(site).docker.dev:8000" node-tests
+
+test-local $(site):
+# Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
+	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="http://$(site).docker.dev" npm --prefix tests/ run test-chrome
+
 up:
-	@docker-compose up --build
+	@docker-compose up --build zotonic kibana
 	@echo "> Started. Open http://localhost in your browser."
 
 up-zotonic:
