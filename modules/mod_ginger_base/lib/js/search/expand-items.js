@@ -22,15 +22,14 @@ $.widget("ui.expanditems", {
          button.hide();
 
          if (inputs.size() > showMax) {
-             
+
             button.show();
 
-            button.on('click', ()=> {
+            button.on('click', function () {
                 me.itemsExpanded = !me.itemsExpanded;
                 me.render();
             });
-
-         }      
+         }
 
         me.render();
 
@@ -51,7 +50,7 @@ $.widget("ui.expanditems", {
           }
 
       });
-      
+
       me.button.text(me.itemsExpanded ? me.button.data('transless') : me.button.data('transmore'));
 
     }
