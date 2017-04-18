@@ -41,7 +41,7 @@ $.widget("ui.expanditems", {
 
       me.inputs.hide();
 
-      me.inputs.each((i,val)=> {
+      me.inputs.each(function (i,val) {
 
           $val = $(val);
 
