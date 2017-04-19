@@ -6,6 +6,7 @@
 
 -mod_title("Ginger remark").
 -mod_description("Enables simple adding of resources.").
+-mod_depends([mod_ginger_edit]).
 
 -include_lib("zotonic.hrl").
 
@@ -118,7 +119,7 @@ notify_followers(RemarkId, Context) ->
                      {remark, RemarkId},
                      {person, Author},
                      {author, "true"}],
-            Email = m_rsc:p(Author, email, Context),            
+            Email = m_rsc:p(Author, email, Context),
             notify_email(Email, Vars, Context)
         end,
         Authors
@@ -129,7 +130,7 @@ notify_followers(RemarkId, Context) ->
             Vars = [ {about, About},
                      {remark, RemarkId},
                      {person, Follower}],
-            Email = m_rsc:p(Follower, email, Context),            
+            Email = m_rsc:p(Follower, email, Context),
             notify_email(Email, Vars, Context)
         end,
         Followers

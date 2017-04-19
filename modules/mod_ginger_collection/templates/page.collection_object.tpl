@@ -2,13 +2,19 @@
 
 {% block body_class %}t--adlib-object{% endblock %}
 
+{% block title %}
+    {% with m.collection_object[q.database][q.object_id]._source as record %}
+        {{ record['dcterms:title'] }}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
 
 {% with m.collection_object[q.database][q.object_id]._source as record %}
 
     {% include "beeldenzoeker/depiction.tpl" record=record width=1600 height=1600 template="beeldenzoeker/masthead.tpl" %}
 
-    <main role="main">
+    <main>
         <div class="adlib-object__actions">
             <div class="main-container">
                 {% include "beeldenzoeker/share.tpl" record=record %}

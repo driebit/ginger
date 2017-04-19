@@ -45,7 +45,7 @@ pull_database_updates(Database, Since, Context) ->
     pull_database_updates(Database, DateTime, 1, Context).
 
 pull_database_updates(Database, Since, StartFrom, Context) when is_tuple(Since) ->
-    Format = detect_modification_date_format(Database, Since, Context),
+    Format = detect_modification_date_format(Database, "1900-01-01", Context),
     pull_database_updates(Database, z_datetime:format(Since, Format, Context), StartFrom, Context);
 pull_database_updates(Database, Since, StartFrom, Context) when is_binary(Since) ->
     Args = [
@@ -121,7 +121,7 @@ detect_modification_date_format(Database, Since, Context) ->
     ISO8601 = z_datetime:format(Since, "'Y-m-d H:i:s'", Context),
     Args = [
         {database, Database},
-        {search, <<"modification=", ISO8601/binary>>}
+        {search, <<"modification>=", ISO8601/binary>>}
     ],
     
     case z_search:search({adlib, Args}, {1, 20}, Context) of

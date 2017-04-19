@@ -1,1 +1,0 @@
-{% include "beeldenzoeker/search-query-wrapper.tpl" cat="beeldenzoeker_query" results_template="list/list-beeldenzoeker-infinite-scroll.tpl" page=page sort=sort filter=filter pagelen=15 show_pager=`false` %}

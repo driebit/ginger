@@ -3,8 +3,9 @@
 {% block body_class %}t--article-sided{% endblock %}
 
 {% block content %}
-    <main role="main" class="page--sided">
-        <article class="main-content--sided">
+    <main class="page--sided">
+        <div class="main-content--sided">
+        <article>
 
             {% block published %}
                 {% catinclude "published/published.tpl" id %}
@@ -40,11 +41,12 @@
                 {% include "attached-media/attached-media.tpl" id=id %}
             {% endblock %}
 
-            {% block comments %}
-                {% include "comments/comments.tpl" id=id %}
-            {% endblock %}
-
         </article>
+
+        {% block comments %}
+            {% include "comments/comments.tpl" id=id %}
+        {% endblock %}
+    </div>
 
         <aside class="main-aside--sided">
             {% include "part-of/part-of-aside.tpl" id=id %}

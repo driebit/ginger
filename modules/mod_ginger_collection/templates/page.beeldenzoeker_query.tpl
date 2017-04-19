@@ -6,7 +6,7 @@
 
     {% include "masthead/masthead.tpl" %}
 
-    <main role="main">
+    <main>
         <div class="adlib-object__actions">
             <div class="main-container">
                 {% include "beeldenzoeker/share.tpl" %}

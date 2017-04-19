@@ -1,3 +1,7 @@
-{% lib
-    "css/site/screen.css"
-%}
+{% block css %}
+
+    {% lib
+        "css/site/screen.css"
+    %}
+
+{% endblock %}

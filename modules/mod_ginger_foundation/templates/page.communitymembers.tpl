@@ -3,7 +3,7 @@
 {% block content %}
     {% include "masthead/masthead.tpl" id=id %}
 
-    <main role="main">
+    <main>
 
         <div class="foldout do_foldout">
 

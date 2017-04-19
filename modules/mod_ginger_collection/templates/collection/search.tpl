@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <main role="main" class="do_search do_search_ui">
+    <main class="do_search do_search_ui">
 
     	<form class="bz-search page-search" role="search">
 		    <div class="page-search__container">
@@ -35,6 +35,7 @@
                     action={update
                             target="search-list"
                             template="beeldenzoeker/search-query-wrapper.tpl"
+                            show_pager
                             cg_name="default_content_group" }
                     %}
 

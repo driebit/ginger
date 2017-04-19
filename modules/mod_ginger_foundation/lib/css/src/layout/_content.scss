@@ -19,10 +19,23 @@ main {
     background-color: $white;
 }
 
-.main-content--sided {
+.main-content--sided,
+article.main-content--sided {
     @extend .main-content;
     @include size(max-width, 645);
     @include size(margin-top, 80);
+
+    > article {
+        background: $white;
+    }
+}
+
+.main-content--sided {
+    background: none;
+}
+
+article.main-content--sided {
+    background-color: $white;
 }
 
 .t--article-sided {
@@ -49,7 +62,16 @@ main {
     }
 
     .main-content--sided {
+        padding: 0;
         float: left;
+
+        > article {
+            @include size(padding, 30);
+        }
+    }
+
+    article.main-content--sided {
+        @include size(padding, 30);
     }
 
     .main-aside--sided {

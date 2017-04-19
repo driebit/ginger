@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <main role="main" class="page--sided">
+    <main class="page--sided">
 
         <div class="">
 

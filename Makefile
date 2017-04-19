@@ -12,6 +12,7 @@ help:
 	@echo "  disco                  Make your sites available at http://[sitename].[username].ginger.dev"
 	@echo "  dump-db                Dump database to /data directory using pg_dump (dumpsite=site-name)"
 	@echo "  gulp site=your_site    Run Gulp in a site directory"
+	@echo "  clean-node             Delete all node_modules directories"
 	@echo "  import-db-file         Import database from file (db=site-name file=site-dump.sql)"
 	@echo "  import-db-backup       Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  shell                  Open Zotonic shell"
@@ -26,6 +27,9 @@ addsite $(name):
 gulp $(site):
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
 	docker run -it -v "`pwd`/sites/$(site)":/app -v "`pwd`/modules":/modules --env MODULES_DIR=/modules driebit/node-gulp
+
+clean-node:
+	find . -type d -name node_modules -exec rm -r "{}" \;
 
 import-db-file $(db) $(file):
 	@echo "> Importing $(db) from $(file)"

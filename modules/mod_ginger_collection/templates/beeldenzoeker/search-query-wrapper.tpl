@@ -1,6 +1,6 @@
 {% with
     index|default:m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value,
-    results_template|default:"list/list-beeldenzoeker.tpl",
+    results_template|default:"list/list.tpl",
     cat|default:['beeldenzoeker_query']
 as
     index,

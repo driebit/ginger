@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 2.0\n"
 
 #: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:12
 msgid "Bring me to my profile page"
@@ -55,7 +55,7 @@ msgstr "Geslacht"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_tos.tpl:22
 msgid "I agree to the"
-msgstr "Ik ga akkoord met de"
+msgstr "Ik ga akkoord met het"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_block_email.tpl:5
 msgid ""
@@ -66,7 +66,7 @@ msgstr ""
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form.tpl:22
 msgid "I forgot my password"
-msgstr "Wachtwoord vergeten?"
+msgstr "Wachtwoord vergeten"
 
 #: /vagrant/modules/mod_ginger_auth/templates/signup_confirm.tpl:17
 msgid ""
@@ -90,7 +90,7 @@ msgstr "Log in of meld je aan"
 
 #: /vagrant/modules/mod_ginger_auth/templates/_logon_reset_form_fields.tpl:13
 msgid "Minimum characters: "
-msgstr "Minimum tekens:"
+msgstr "Minimum tekens: "
 
 #: /vagrant/modules/mod_ginger_auth/templates/_signup_form_fields_block_email.tpl:5
 msgid "Need more help?"

@@ -7,12 +7,11 @@
   as
       image_class
   %}
-  
+
   {% if dep_rsc %}
-    {% image dep_rsc.id mediaclass="avatar" class=image_class %}
+    {% image dep_rsc.id mediaclass="avatar" alt=dep_rsc.title class=image_class %}
   {% endif %}
 
   {% endwith %}
 
 {% endblock %}
-

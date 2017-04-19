@@ -73,6 +73,10 @@
 
 .search-suggestions__searchform__group {
     height: 100%;
+
+    .search-form__label {
+        display: none;
+    }
 }
 
 .search-suggestions__suggestions {

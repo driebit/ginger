@@ -306,6 +306,7 @@
 
 .search_results__map {
     display: none;
+    
 }
 
 .search__results__list {
@@ -318,6 +319,7 @@
 
 .search__results__map {
     clear: right;
+    height: 100%;
 }
 
 @include mq(min-width, $mediumBreakpoint) {

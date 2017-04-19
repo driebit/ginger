@@ -14,16 +14,16 @@
     {% endif %}
         {% if first %}
             {% if id.medium.width > 750 %}
-                {% image id.id mediaclass="landscape-"++sizename alt="" crop=id.crop_center %}
+                {% image id.id mediaclass="landscape-"++sizename alt=id.title crop=id.crop_center %}
             {% elif id.medium.height > 750 %}
-                 {% image id.id mediaclass="portrait-"++sizename alt="" crop=id.crop_center %}
+                 {% image id.id mediaclass="portrait-"++sizename alt=id.title crop=id.crop_center %}
             {% elif sizename %}
-                {% image id.id mediaclass="landscape-"++sizename alt="" crop=id.id.crop_center %}
+                {% image id.id mediaclass="landscape-"++sizename alt=id.title crop=id.id.crop_center %}
             {% else %}
-                {% image id.id mediaclass="landscape-large" alt="" crop=id.id.crop_center %}
+                {% image id.id mediaclass="landscape-large" alt=id.title crop=id.id.crop_center %}
             {% endif %}
         {% else %}
-            {% image id.id mediaclass="pager-thumbnail" alt="" crop=id.id.crop_center %}
+            {% image id.id mediaclass="pager-thumbnail" alt=id.title crop=id.id.crop_center %}
         {% endif %}
         </a>
 
@@ -39,4 +39,3 @@
 </figure>
 
 {% wire name="rsc_delete_"++id action={dialog_delete_rsc id=id on_success={script script="$(document).trigger('depiction:deleted', [" ++ id ++ ", "++ remark_id ++"]);"}} %}
-

@@ -5,7 +5,7 @@
     	{% include "masthead/masthead.tpl" id=id  result=result container="map-results" %}
     {% endwith %}
 
-    <main role="main">
+    <main>
 
         <div class="foldout do_foldout">
 
