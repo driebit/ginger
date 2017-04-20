@@ -20,6 +20,8 @@
 -include("zotonic.hrl").
 
 manage_schema(_Version, Context) ->
+    m_config:set_value(site, html_elt_extra, <<"embed,iframe,object,script,ginger-embed,audio-tours">>, Context),
+    m_config:set_value(site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>, Context),
     Datamodel = #datamodel{
         categories=[
             {ginger_embed, media, [
@@ -38,8 +40,10 @@ manage_schema(_Version, Context) ->
 observe_media_viewer(#media_viewer{props = Props}, Context) ->
     case ginger_embed:is_ginger_embed(Props) of
         true ->
+            ?DEBUG("Heeft een ginger embed"),
             {ok, z_template:render("embed/ginger-embed.tpl", Props, Context)};
         false ->
+            ?DEBUG("Heeft geen ginger embed"),
             undefined
     end.
 
