@@ -36,19 +36,9 @@ parse_query(<<"subset">>, Types, QueryArgs) ->
     ),
     QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
 parse_query(<<"period">>, Period, QueryArgs) ->
-    QueryArgs2 = case proplists:get_value(<<"min">>, Period) of
-        <<>> ->
-            QueryArgs;
-        Min ->
-            QueryArgs ++ [{filter, [<<"dcterms:date">>, <<"gte">>, date_range(Min), [{<<"format">>, <<"yyyy">>}]]}]
-    end,
-    case proplists:get_value(<<"max">>, Period) of
-        <<>> ->
-            QueryArgs2;
-        Max ->
-            QueryArgs2 ++ [{filter, [<<"dcterms:date">>, <<"lte">>, date_range(Max), [{<<"format">>, <<"yyyy">>}]]}]
-    
-    end;
+    QueryArgs
+        ++ date_filter(proplists:get_value(<<"min">>, Period), <<"gte">>)
+        ++ date_filter(proplists:get_value(<<"max">>, Period), <<"lte">>);
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
 parse_query(<<"license">>, Values, QueryArgs) ->
@@ -69,6 +59,21 @@ map_edge(<<"depiction">>) ->
     {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
 map_edge(_) ->
     false.
+
+date_filter(<<>>, _Operator) ->
+    [];
+date_filter(Value, Operator) when Operator =:= <<"gte">>; Operator =:= <<"gt">> ->
+    [{filter, [
+        [<<"dcterms:date">>, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
+        %% For Zotonic resources:
+        [<<"dcterms:date">>, missing]
+    ]}];
+date_filter(Value, Operator) when Operator =:= <<"lte">>; Operator =:= <<"lt">> ->
+    [{filter, [
+        [<<"dcterms:date">>, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
+        %% For Zotonic resources:
+        [<<"dcterms:date">>, missing]
+    ]}].
 
 %% @doc When the filter date is a year, make sure to include all dates in that
 %%      year.
