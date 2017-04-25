@@ -25,13 +25,15 @@
             </div>
         </div>
         <article class="main-content">
-            {% block title %}
+            
+            {% block page_title %}
                 <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
             {% endblock %}
-
+            
             {% if record.title[2] %}
                 <h2>{{ record.title[2] }}</h2>
             {% endif %}
+            
 
             {% block item_summary %}
                 {% if record['dcterms:abstract'] as abstract %}

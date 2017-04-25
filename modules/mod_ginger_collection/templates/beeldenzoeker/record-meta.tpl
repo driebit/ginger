@@ -38,8 +38,10 @@
 	            	<dd>{{ record.collection }}</dd>
 	            {% endif %}
 
-                <dt>{_ Last updated _}</dt>
-                <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
+                {% if m.acl.is_allowed.view.internal_adlib_content %}
+                    <dt>{_ Last updated _}</dt>
+                    <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
+                {% endif %}
 	        </dl>
 	    </div>
         {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
@@ -93,7 +95,13 @@
                             {% for creator in creators %}
                                 <li>
                                     {% if creator['@id'] %}<a href="{{ creator['@id'] }}">{% endif %}
-                                    {{ creator['rdfs:label'] }}{% if creator['role'] %} ({{ creator['role'] }}){% endif %}
+                                    {% if creator['qualifier'] %}
+                                        ({{ creator['qualifier'] }})
+                                    {% endif %}
+                                    {{ creator['rdfs:label'] }}
+                                    {% if creator['role'] %}
+                                        ({{ creator['role'] }})
+                                    {% endif %}
                                     {% if creator['@id'] %}</a>{% endif %}
                                 </li>
                             {% endfor %}
@@ -144,7 +152,7 @@
             <dl class="adlib-object__meta__data">
             {% if record['acquisition.date'] %}
                 <dt>{_ Acquired _}</dt>
-                <dd>{{ record['acquisition.date']|isodate:"j F Y" }}{% if record['acquisition.method'] %}, {{ record['acquisition.method'] }}{% endif %}</dd>
+                <dd>{% if record['acquisition.method'] %}, {{ record['acquisition.method'] }}{{ record['acquisition.date']|isodate:"j F Y" }}{% endif %}</dd>
             {% endif %}
 
             {% if record['dcterms:license'] or record['copyright'] %}
