@@ -88,5 +88,18 @@ observe_acl_is_allowed(
     _Context
 ) ->
     true;
+observe_acl_is_allowed(#acl_is_allowed{action = view_ginger_collection, object = object}, Context) ->
+    %% Retrieve object for ACL checking on its contents
+    case m_collection_object:get(
+        z_context:get_q(<<"database">>, Context),
+        z_context:get_q(<<"object_id">>, Context),
+        Context
+    ) of
+        undefined ->
+            undefined;
+        #{<<"_source">> := Object} ->
+            z_acl:is_allowed(view, maps:from_list(Object), Context)
+    
+    end;
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
