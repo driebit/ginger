@@ -13,11 +13,15 @@ $.widget("ui.search_ui", {
     init: function() {
 
         //after all widget's _create function
+
         var me = this,
             inputSearch = $(document).find('.input-search'),
-            documentWidth = $(document).width();
+            documentWidth = $(document).width(),
+            element = me.element;
 
         window.onhashchange = $.proxy(me.hashChanged, me);
+
+        me.searchOnLoad = (element.data('search-on-load') != undefined) ? element.data('search-on-load') : true;
 
         inputSearch.focus();
 
@@ -65,6 +69,11 @@ $.widget("ui.search_ui", {
         pubzub.subscribe("~session/search/facets", function (topic, msg) {
             me.setFacets(msg.payload);
         });
+
+        setTimeout(()=> {
+            me.initialized = true;
+        }, 1000);
+
     },
 
 
@@ -171,8 +180,13 @@ $.widget("ui.search_ui", {
             values = jQuery.parseJSON(json);
 
         $.proxy(me.setWidgetsState(values), me);
-        $.proxy(me.doSearch(values), me);
 
+        if (!me.initialized  && me.searchOnLoad == false) {
+            return false;
+         }
+
+        $.proxy(me.doSearch(values), me);
+        
         $('.search__filters').css('opacity', '1');
 
     },
