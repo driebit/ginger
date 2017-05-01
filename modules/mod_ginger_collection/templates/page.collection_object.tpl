@@ -61,8 +61,11 @@
         </article>
 
         {% include "beeldenzoeker/record-meta.tpl" record=record %}
-
-        {% print record %}
+        
+        
+        {% block print_record %}
+            {% print record %}
+        {% endblock %}
 
         {# Part of collections #}
     </main>
