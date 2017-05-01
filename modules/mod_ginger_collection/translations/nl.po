@@ -93,6 +93,10 @@ msgstr "Met beeld"
 msgid "Height"
 msgstr "Hoogte"
 
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/metadata/dimensions.tpl:7
+msgid "Depth"
+msgstr "Diepte"
+
 #: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:16
 msgid "Here you can edit your elasticsearch query."
 msgstr "Hier kun je de Elasticsearch query aanpassen."
