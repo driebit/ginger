@@ -37,11 +37,6 @@
 	            	<dt>{_ Collection _}</dt>
 	            	<dd>{{ record.collection }}</dd>
 	            {% endif %}
-
-                {% if m.acl.is_allowed.view.internal_adlib_content %}
-                    <dt>{_ Last updated _}</dt>
-                    <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
-                {% endif %}
 	        </dl>
 	    </div>
         {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
@@ -152,7 +147,7 @@
             <dl class="adlib-object__meta__data">
             {% if record['acquisition.date'] %}
                 <dt>{_ Acquired _}</dt>
-                <dd>{% if record['acquisition.method'] %}, {{ record['acquisition.method'] }}{{ record['acquisition.date']|isodate:"j F Y" }}{% endif %}</dd>
+                <dd>{% if record['acquisition.method'] %} {{ record['acquisition.method'] }} {{ record['acquisition.date']|isodate:"j F Y" }}{% endif %}</dd>
             {% endif %}
 
             {% if record['dcterms:license'] or record['copyright'] %}
@@ -175,14 +170,24 @@
 
         {% optional include "beeldenzoeker/metadata/reproduction.tpl" %}
 
+	    {% if record.uri as uri %}
+		    <div class="adlib-object__meta__row">
+		        <div class="adlib-object__meta__title">
+		            {_ Sustainable web address _}
+		        </div>
+		        <div class="adlib-object__meta__data">
+	                {_ If you want to refer this object then use this URL _}
+	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
+		        </div>
+		    </div>
+		{% endif %}
         {% if m.acl.is_allowed.view.internal_adlib_content %}
-            <div class="adlib-object__meta__row">
+            <div class="adlib-object__meta__row last">
                 <div class="adlib-object__meta__title">
                     {_ Internal _}
                 </div>
                 <dl class="adlib-object__meta__data">
                     {% optional include "beeldenzoeker/metadata/internal.tpl" %}
-
                     {% if record['dbpedia-owl:notes'] as notes %}
                         <dt>{_ Notes _}</dt>
                         <dd>
@@ -193,20 +198,12 @@
                             {% endfor %}
                         </dd>
                     {% endif %}
+                    {% if record['@attributes']['modification'] as notes %}
+                        <dt>{_ Last updated _}</dt>
+                        <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
+                    {% endif %}
                 </dl>
             </div>
         {% endif %}
-
-	    {% if record.uri as uri %}
-		    <div class="adlib-object__meta__row last">
-		        <div class="adlib-object__meta__title">
-		            {_ Sustainable web address _}
-		        </div>
-		        <div class="adlib-object__meta__data">
-	                {_ If you want to refer this object then use this URL _}
-	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
-		        </div>
-		    </div>
-		{% endif %}
 	</div>
 </div>
