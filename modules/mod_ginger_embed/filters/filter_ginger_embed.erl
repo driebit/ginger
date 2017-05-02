@@ -16,5 +16,5 @@
 ginger_embed(Input, _Context) ->
     %% Find site URL
     {match, [Url]} = re:run(Input, <<"<a href=\"(https?://[^/]+)">>, [{capture, all_but_first, binary}]),
-    Replacement = <<"<script src=\"", Url/binary, "/rdf/embed.js\"></script><link href=\"", Url/binary, "/rdf/embed.css\" type=\"text/css\" media=\"all\" rel=\"stylesheet\"><ginger-embed">>,
+    Replacement = <<"<script src=\"", Url/binary, "/embed/embed.js\"></script><link href=\"", Url/binary, "/embed/embed.css\" type=\"text/css\" media=\"all\" rel=\"stylesheet\"><ginger-embed">>,
     binary:replace(Input, <<"<ginger-embed">>, Replacement).
