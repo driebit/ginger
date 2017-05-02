@@ -60,19 +60,20 @@ $.widget("ui.search_ui", {
         var hash = window.location.hash;
 
         if (!hash || hash == '') {
-          me.setHash();
+
+            if (!window.location.search) {
+                me.blankSearchStarted = true;
+            }
+            
+            me.setHash();
         } else {
-          me.hashChanged();
+            me.hashChanged();
         }
 
         // This should be ~pagesession, but see https://github.com/zotonic/zotonic/issues/1622
         pubzub.subscribe("~session/search/facets", function (topic, msg) {
             me.setFacets(msg.payload);
         });
-
-        setTimeout(()=> {
-            me.initialized = true;
-        }, 1000);
 
     },
 
@@ -181,7 +182,7 @@ $.widget("ui.search_ui", {
 
         $.proxy(me.setWidgetsState(values), me);
 
-        if (!me.initialized  && me.searchOnLoad == false) {
+        if (me.blankSearchStarted && me.searchOnLoad == false) {
             return false;
          }
 
