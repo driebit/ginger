@@ -195,8 +195,7 @@ parse_argument({keyword, Keywords}) when is_list(Keywords) ->
     );
 
 parse_argument({is_findable, Bool}) when is_boolean(Bool) ->
-    Is_unfindable = not Bool,
-    [{filter, ["is_unfindable", Is_unfindable]}];
+    [{filter, ["is_unfindable", '<>', Bool]}];
 
 parse_argument({is_findable, Val}) ->
     parse_argument({is_findable, z_convert:to_bool(Val)});
