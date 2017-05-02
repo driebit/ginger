@@ -9,7 +9,7 @@
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups, mod_ginger_rdf]).
 
--mod_schema(11).
+-mod_schema(1).
 
 -export([
     manage_schema/2,
