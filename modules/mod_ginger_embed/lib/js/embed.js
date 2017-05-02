@@ -9,6 +9,7 @@
         xmlHttp.open('GET', url, true);
         xmlHttp.setRequestHeader('Accept', 'application/ld+json');
         xmlHttp.send(null);
+
     }
 
     function formatDate(date) {

@@ -16,9 +16,7 @@
     event/2,
     manage_schema/2,
     observe_custom_pivot/2,
-    observe_media_viewer/2,
     observe_rsc_get/3,
-    observe_rsc_update/3,
     observe_search_query/2,
     observe_acl_is_owner/2
 ]).
@@ -252,16 +250,6 @@ observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
     {ginger_search, [{is_unfindable, Excluded}]}.
 
-%% @doc Render embed template in case of <ginger-embed> element
--spec observe_media_viewer(#media_viewer{}, #context{}) -> {ok, binary()} | undefined.
-observe_media_viewer(#media_viewer{props = Props}, Context) ->
-    case ginger_embed:is_ginger_embed(Props) of
-        true ->
-            {ok, z_template:render("embed/ginger-embed.tpl", Props, Context)};
-        false ->
-            undefined
-    end.
-
 %% @doc Add some virtual properties
 -spec observe_rsc_get(#rsc_get{}, list(tuple()), #context{}) -> list(tuple()).
 observe_rsc_get(#rsc_get{}, Props, _Context) ->
@@ -271,23 +259,6 @@ observe_rsc_get(#rsc_get{}, Props, _Context) ->
         Rights ->
             %% This is used by mod_ginger_rdf
             Props ++ [{license, m_creative_commons:url_for(Rights)}]
-    end.
-
-%% @doc Place Ginger embeds in the ginger_embed category.
-%%      mod_video_embed hard-codes the video category, so we need to change it
-%%      here.
--spec observe_rsc_update(#rsc_update{}, tuple(), #context{}) -> tuple().
-observe_rsc_update(#rsc_update{id = Id}, {IsChanged, Acc}, Context) ->
-    case m_media:get(Id, Context) of
-        undefined ->
-            {IsChanged, Acc};
-        Media ->
-            case ginger_embed:is_ginger_embed(Media) of
-                true ->
-                    {true, [{category_id, m_rsc:rid(ginger_embed, Context)} | proplists:delete(category_id, Acc)]};
-                false ->
-                    {IsChanged, Acc}
-            end
     end.
 
 observe_search_query(#search_query{search={ginger_search, _Args}}=Q, Context) ->
