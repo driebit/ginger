@@ -1,2 +1,2 @@
-{% include "list/list.tpl" noresults %}
+{% include "list/list.tpl" %}
 
