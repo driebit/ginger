@@ -71,7 +71,7 @@ msgstr "E-mail"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/share.tpl:14
 msgid "Load more"
-msgstr "Laad meer"
+msgstr "Toon meer"
 
 #: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:20
 msgid "Elasticsearch query"

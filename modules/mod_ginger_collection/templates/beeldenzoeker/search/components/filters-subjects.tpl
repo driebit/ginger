@@ -28,7 +28,7 @@ as
                     {% endwith %}
                 {% endfor %}
             </ul>
-            <span class="filter-down-btn">{_ Load more _}</span>
+            <span class="filter-down-btn"><span class="glyphicon glyphicon-plus">&nbsp;</span>{_ Load more _}</span>
         {% else %}
             <ul class="do_search_cmp_filters_subjects">
                 {% for bucket in buckets %}
