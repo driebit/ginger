@@ -339,7 +339,15 @@
 			max-height: 0px;
 		 	transition: max-height 0.6s;
 		}
-		
+
+		.is-open & {
+			ul {
+				max-height: 1000px !important;
+			}
+		}
+	}
+
+	.search__filters__section--load_more {
 		.filter-down-btn {
 			text-decoration: underline;
 		    cursor: pointer;
@@ -347,9 +355,9 @@
 		    display: block;
 		}
 
-		.is-open & {
+		.is-open {
 			ul {
-				max-height: 1000px !important;
+				max-height: none !important;
 			}
 		}
 	}
