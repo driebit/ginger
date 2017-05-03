@@ -7,24 +7,25 @@
 {% block content %}
 
     <main class="do_search do_search_ui">
+        {% block search__top %}
+            <div class="search__top">
+                <div class="search__top__container">
+                    <h1 class="page-title--search">{_ Search _}</h1>
 
-        <div class="search__top">
-            <div class="search__top__container">
-                <h1 class="page-title--search">{_ Search _}</h1>
-
-                <form class="search__top__form">
-                    {% include "search/components/input-text.tpl" %}
-                </form>
-                
-                {% block search_views %}
-                    <div class="search__top__view do_search_cmp_types">
-                        <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
-                        <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
-                        {% all include "search/search-buttons.tpl" %}
-                    </div>
-                {% endblock %}
+                    <form class="search__top__form">
+                        {% include "search/components/input-text.tpl" %}
+                    </form>
+                    
+                    {% block search_views %}
+                        <div class="search__top__view do_search_cmp_types">
+                            <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
+                            <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+                            {% all include "search/search-buttons.tpl" %}
+                        </div>
+                    {% endblock %}
+                </div>
             </div>
-        </div>
+        {% endblock %}
 
         {% block search_intro %}{% endblock %}
 
