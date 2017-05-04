@@ -8,7 +8,7 @@
     showmore_button_text|default:_"Show more results...",
     list_items_template|default:"list/list-items.tpl",
     list_template|default:"list/list-item.tpl",
-    noresults,
+    noresults|default:_"No results",
     show_pager,
     infinite_scroll
 as
@@ -57,7 +57,7 @@ as
                         target=list_id
                         template=list_template
                         catinclude }
-                        %}
+                    %}
                 {% endif %}
 
             </div>
@@ -66,7 +66,11 @@ as
 
     {% else %}
         {% if noresults %}
-            <p class="no-results">{_ No results _}</p>
+            {% if noresults == "true" %}
+                <p class="no-results">{_ No results _}</p>
+            {% else %}
+                <p class="no-results">{{ noresults }}</p>
+            {% endif %}
         {% endif %}
     {% endif %}
 
