@@ -7,8 +7,8 @@
         <dt>{_ Height _}</dt>
         <dd>{{ width['schema:value'] }} {{ width['schema:unitText'] }}</dd>
     {% endif %}
-    {% if record['schema:depth'] as width %}
+    {% if record['schema:depth'] as depth %}
         <dt>{_ Depth _}</dt>
-        <dd>{{ width['schema:value'] }} {{ width['schema:unitText'] }}</dd>
+        <dd>{{ depth['schema:value'] }} {{ depth['schema:unitText'] }}</dd>
     {% endif %}
 {% endif %}
