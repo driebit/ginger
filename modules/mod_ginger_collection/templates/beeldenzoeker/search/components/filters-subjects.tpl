@@ -11,7 +11,7 @@ as
     <div class="search__filters__section search__filters__section--load_more is-open" id="filter_subjects">
         <h3 class="search__filters__title">{{ title }}</h3>
         {% if buckets|length > 10 %}
-             <ul class="do_search_cmp_filters_subjects">
+             <ul class="do_search_cmp_filters_subjects do_search_cmp_filters_load">
                 {% for bucket in buckets %}
                     {% with forloop.counter as i %}
                         {% if i <= 5 %}
@@ -30,7 +30,7 @@ as
             </ul>
             <span class="filter-down-btn"><span class="glyphicon glyphicon-plus">&nbsp;</span>{_ Load more _}</span>
         {% else %}
-            <ul class="do_search_cmp_filters_subjects">
+            <ul class="do_search_cmp_filters_subjects do_search_cmp_filters_load">
                 {% for bucket in buckets %}
                     {% with forloop.counter as i %}
                         <li>
@@ -41,7 +41,7 @@ as
                 {% endfor %}
             </ul>
         {% endif %}
-        
+
     </div>
 
 {% endwith %}

@@ -7,4 +7,5 @@
     "js/search/components/filters-period.js"
     "js/search/components/filters-subjects.js"
     "js/search/components/filters-subset.js"
+    "js/search/components/filters-load_more.js"
 %}
