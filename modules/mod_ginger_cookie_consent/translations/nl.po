@@ -21,7 +21,7 @@ msgstr ""
 #: ./user/modules/mod_ginger_cookie_consent/templates/cookie-consent-config.tpl:4
 msgid ""
 "Got it!"
-msgstr "Oké!"
+msgstr "Akkoord"
 
 #: ./user/modules/mod_ginger_cookie_consent/templates/cookie-consent-config.tpl:5
 msgid ""
