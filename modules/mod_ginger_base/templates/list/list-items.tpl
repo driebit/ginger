@@ -1,7 +1,7 @@
 <ul id="{{ list_id }}" class="{{ class }} {{ extra_classes }}">
 
     {% for i in result %}
-        {% with (i|length == 2)|if:(i|element:1):i as item %}
+        {% with i|is_list|if:(i|element:1):i as item %}
             {% block item %}
                 {% if item|is_number %}
                     {# A resource #}
