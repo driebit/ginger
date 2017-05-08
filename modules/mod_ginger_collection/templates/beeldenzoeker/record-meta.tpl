@@ -135,7 +135,7 @@
 	        </dl>
 	    </div>
 
-        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:subject'] %}
+        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         <div class="adlib-object__meta__row">
             <div class="adlib-object__meta__title">
