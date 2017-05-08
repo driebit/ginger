@@ -16,6 +16,7 @@
         </div>
         <div class="beeldenzoeker-home__page-search">
         	{% include "search-suggestions/search-form.tpl" id=id placeholder=placeholder.title
+                name="page-search"
                 formclass="page-search__search"
                 wrapperclass="page-search__container"
                 buttonclass="btn--search page-search-submit"
