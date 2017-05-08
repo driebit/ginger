@@ -13,7 +13,7 @@
 	            	<dd>{{ record['dcterms:identifier'] }}</dd>
 		        {% endif %}
 
-	               {% if record.object_category as object_category %}
+                {% if record.object_category as object_category %}
 	            	<dt>{_ Object category _}</dt>
 	            	<dd>{{ object_category }}</dd>
 		        {% endif %}
