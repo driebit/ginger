@@ -1,6 +1,8 @@
 let chromedriver = require('chromedriver');
 
 module.exports = {
+    waitForConditionTimeout: 8000,
+
     'default': {
         local: false
     },

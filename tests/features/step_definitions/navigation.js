@@ -11,7 +11,7 @@ defineSupportCode(({When}) => {
     When(/^I visit "([^"]*)"/, (url) => {
         return client
             .url(client.launch_url + url)
-            .waitForElementVisible('body', 5000);
+            .waitForElementVisible('body');
     });
 
     When(/^I press "([^"]*)"/, (key) => {
