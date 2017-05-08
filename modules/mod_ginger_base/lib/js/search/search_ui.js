@@ -64,7 +64,7 @@ $.widget("ui.search_ui", {
             if (!window.location.search) {
                 me.blankSearchStarted = true;
             }
-            
+
             me.setHash();
         } else {
             me.hashChanged();
@@ -187,7 +187,7 @@ $.widget("ui.search_ui", {
          }
 
         $.proxy(me.doSearch(values), me);
-        
+
         $('.search__filters').css('opacity', '1');
 
     },
@@ -206,6 +206,10 @@ $.widget("ui.search_ui", {
     },
 
     setFacets: function(facets) {
+        if (typeof facets !== 'object') {
+            facets = JSON.parse(facets);
+        }
+
         $.each(this.getWidgets(), function(i, widget) {
             if (widget.setFacets && typeof widget.setFacets == 'function') {
                 widget.setFacets(facets);

@@ -65,7 +65,11 @@ observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Cont
     case z_notifier:first(ElasticQuery, Context) of
         undefined ->
             undefined;
-        #search_result{facets = Facets} = Result ->
+        #search_result{facets = Facets} = Result when is_map(Facets)->
+            %% For now separate notification for facets
+            ok = z_mqtt:publish("~session/search/facets", jsx:encode(Facets), Context),
+            Result;
+        #search_result{facets = Facets} = Result->
             %% For now separate notification for facets
             ok = z_mqtt:publish("~session/search/facets", Facets, Context),
             Result
@@ -97,9 +101,11 @@ observe_acl_is_allowed(#acl_is_allowed{action = view_ginger_collection, object =
     ) of
         undefined ->
             undefined;
-        #{<<"_source">> := Object} ->
-            z_acl:is_allowed(view, maps:from_list(Object), Context)
-    
+        #{<<"_source">> := Object} when is_list(Object) ->
+            %% BC with jsx 2.0
+            z_acl:is_allowed(view, maps:from_list(Object), Context);
+        #{<<"_source">> := Object} when is_map(Object) ->
+            z_acl:is_allowed(view, Object, Context)
     end;
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.

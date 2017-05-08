@@ -40,8 +40,11 @@ get(Type, Id, Context) ->
         z_convert:to_binary(Type),
         z_convert:to_binary(Id)
     ) of
-        {ok, Object} ->
+        {ok, Object} when is_list(Object) ->
+            %% BC with jsx 2.0
             maps:from_list(Object);
+        {ok, Object} when is_map(Object) ->
+            Object;
         {error, _} ->
             undefined
     end.
