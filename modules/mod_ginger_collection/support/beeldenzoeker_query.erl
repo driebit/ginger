@@ -24,6 +24,14 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
         end,
         Subjects
     );
+%% Whitelist term filters
+parse_query(Term, Values, QueryArgs) when Term =:= <<"object_category.keyword">>; Term =:= <<"dcterms:spatial.rdfs:label.keyword">> ->
+    QueryArgs ++ lists:map(
+        fun(Value) ->
+            {filter, [Term, Value]}
+        end,
+        Values
+    );
 %% Parse subsets (Elasticsearch types). You can specify multiple per checkbox
 %% by separating them with a comma.
 parse_query(<<"subset">>, Types, QueryArgs) ->
