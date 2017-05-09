@@ -24,7 +24,7 @@
         </article>
 
         {% block search_query %}
-            {% include "beeldenzoeker/search-query-wrapper.tpl" id_exclude=id query_id=id pagelen=20 infinite_scroll %}
+            {% include "beeldenzoeker/search-query-wrapper.tpl" class="list" id_exclude=id query_id=id pagelen=20 infinite_scroll %}
         {% endblock %}
     </main>
 
