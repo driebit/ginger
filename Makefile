@@ -70,7 +70,8 @@ up:
 
 up-zotonic:
 # See https://github.com/zotonic/zotonic/issues/1321
-	rm -rf $(ZOTONIC)/priv/mnesia/*	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build zotonic kibana
+	rm -rf $(ZOTONIC)/priv/mnesia/*
+	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build zotonic kibana
 	@echo "> Started. Open http://localhost in your browser."
 
 update:
