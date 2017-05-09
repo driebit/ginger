@@ -5,7 +5,7 @@
 -mod_description("Linked data and media collection view and search interface powered by Elasticsearch").
 -mod_prio(200).
 -mod_depends([mod_ginger_base, mod_elasticsearch]).
--mod_schema(5).
+-mod_schema(6).
 
 -include_lib("zotonic.hrl").
 
