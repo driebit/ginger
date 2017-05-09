@@ -54,11 +54,11 @@ shell:
 psql:
 	@docker-compose exec postgres psql -U zotonic
 
-test $(site):
+test $(site) $(args):
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
 	@docker network disconnect ginger_selenium ginger_zotonic_1
 	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.dev
-	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="http://$(site).docker.dev:8000" node-tests
+	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="http://$(site).docker.dev:8000" node-tests test -- $(args)
 
 test-local $(site):
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).

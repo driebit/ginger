@@ -57,3 +57,11 @@ To run the tests on a local Chrome instance, so you can see what is happening:
 ```bash
 $ make test-local site=yoursite
 ```
+
+### Pass arguments to Nightwatch
+
+For instance, to execute only tests tagged `@wip`:
+
+```bash
+$ make test site=yoursite args=--tag=wip
+```
