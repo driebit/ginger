@@ -1,4 +1,4 @@
-<div class="search__filters__section--period do_search_cmp_filters_period is-open" data-property="dcterms:date">
+<div class="search__filters__section search__filters__section--period do_search_cmp_filters_period is-open" data-property="dcterms:date">
     <h3 class="search__filters__title">{_ Period _}</h3>
 
     <div class="search__filters__slider"></div>
