@@ -21,7 +21,7 @@ manage_schema(_, Context) ->
     datamodel().
 
 elasticsearch_index(Context) ->
-    {Version, Mapping} = beeldenzoeker_elasticsearch_mapping:default_mapping(),
+    {Version, Mapping} = beeldenzoeker_elasticsearch_mapping:default_mapping(Context),
     Index = mod_ginger_adlib_elasticsearch:index(Context),
     %% Apply default mapping to all types
     Mappings = [{Type, Mapping} || Type <- mod_ginger_adlib_elasticsearch:types(Context)],
