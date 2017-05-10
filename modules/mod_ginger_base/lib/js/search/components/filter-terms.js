@@ -9,6 +9,8 @@ $.widget('ui.search_cmp_filter_terms', {
         me.dynamic = widgetElement.data('dynamic');
         me.sortByCount = widgetElement.data('sort-by-count');
 
+        if(widgetElement.hasClass('search__filters__section--load_more')) { this.loadMore(); }
+
         widgetElement.on('change', function () {
             $(document).trigger('search:inputChanged');
         });
@@ -123,5 +125,28 @@ $.widget('ui.search_cmp_filter_terms', {
         facet.order = {'_term': 'asc'};
 
         return facet;
+    },
+
+    loadMore: function() {
+        var me = this,
+            btn = $(me.element).find('.filter-down-btn'),
+            maxItems = $(me.element).data('items-loaded');
+            counter = 1;
+
+        btn.on('click', function () {
+            listItem = $(me.element).find('li.rest-subject'),
+            counter = counter + maxItems;
+
+            $.each(listItem, function(i , val){
+                if(i < counter) {
+                    $(val).removeClass('hidden');
+                }
+            });
+
+            if(counter + counter > listItem.length) {
+                $(this).hide();
+            }
+        });
     }
 });
+
