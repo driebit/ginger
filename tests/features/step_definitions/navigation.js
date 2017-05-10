@@ -32,4 +32,12 @@ defineSupportCode(({When}) => {
     When(/^I press "([^"]*)"$/, (key) => {
         return client.keys([client.Keys[key]]);
     });
+
+    When(/^I scroll to "([^"]*)"$/, (element) => {
+        return client.getLocationInView(element, () => {
+            // Scroll a little extra to trigger lazy actions such as infinite
+            // scroll.
+            return client.execute('window.scrollBy(0, 100)');
+        });
+    });
 });
