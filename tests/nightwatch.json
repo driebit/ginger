@@ -7,7 +7,7 @@
                 "browserName": "chrome",
                 "chromeOptions": {
                     "args": [
-                        "window-size=1200,800"
+                        "window-size=1200,900"
                     ]
                 }
             },
@@ -20,10 +20,7 @@
         "chrome": {
             "selenium_host": "localhost",
             "selenium_port": 9515,
-            "default_path_prefix" : "",
-            "desiredCapabilities": {
-                "browserName": "chrome"
-            }
+            "default_path_prefix" : ""
         }
     }
 }
