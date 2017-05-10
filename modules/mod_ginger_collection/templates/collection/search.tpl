@@ -8,7 +8,7 @@
 
     <main class="do_search do_search_ui">
 
-    	<form class="bz-search page-search" role="search">
+    	<form class="bz-search page-search" role="search" name="search-collection">
 		    <div class="page-search__container">
 		        <input type="text"
 		            class="input-search do_search_cmp_input_text"
