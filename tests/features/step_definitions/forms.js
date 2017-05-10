@@ -11,12 +11,20 @@ defineSupportCode(({When}) => {
     });
 
     When(/^I submit "([^"]*)"$/, (form) => {
-        return client.click('form[name="' + form + '"] button[type="submit"]');
+        const element = 'form[name="' + form + '"] button[type="submit"]';
+
+        return client
+            .useCss()
+            .waitForElementVisible(element)
+            .click(element);
     });
 
     When(/^I check "([^"]*)"$/, (label) => {
+        const element = '//label[contains(., "' + label + '")]';
+
         return client
             .useXpath()
-            .click('//label[contains(., "' + label + '")]');
+            .waitForElementVisible(element)
+            .click(element);
     });
 });
