@@ -55,7 +55,7 @@ When a test fails, a screenshot is automatically made and stored in
 To run the tests on a local Chrome instance, so you can see what is happening:
 
 ```bash
-$ make test-local site=yoursite
+$ make test-chrome site=yoursite
 ```
 
 ### Pass arguments to Nightwatch
