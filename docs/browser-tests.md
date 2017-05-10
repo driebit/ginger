@@ -65,3 +65,12 @@ For instance, to execute only tests tagged `@wip`:
 ```bash
 $ make test site=yoursite args=--tag=wip
 ```
+
+IDE integration
+---------------
+
+* In [IntelliJ IDE](https://www.jetbrains.com/idea/), including WebStorm,
+  [install](https://www.jetbrains.com/help/idea/2017.1/preparing-to-use-cucumber-js-test-runner.html)
+  the [Cucumber.js plugin](https://plugins.jetbrains.com/plugin/7418-cucumber-js).
+  WebStorm comes bundled with Gherkin support; in IntelliJ you can install the
+  [Gherkin plugin](https://plugins.jetbrains.com/plugin/7211-gherkin).
