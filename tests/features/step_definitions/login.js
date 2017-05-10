@@ -14,11 +14,11 @@ defineSupportCode(({Given}) => {
 function login(username, password, link) {
     return client
         .url(client.launchUrl)
-        .waitForElementVisible(link, 3000)
+        .waitForElementVisible(link)
         .click(link)
-        .waitForElementVisible('#username', 3000)
+        .waitForElementVisible('#username')
         .setValue('#username', username)
         .setValue('#password', password)
         .click('#logon_form button[type="submit"]')
-        .waitForElementNotPresent(link, 3000);
+        .waitForElementNotPresent(link);
 }
