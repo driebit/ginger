@@ -32,7 +32,9 @@ as
             {% include "pager/pager.tpl" %}
         {% endif %}
 
-        {% include list_items_template result=items list_id=list_id list_item_template=list_template class=class extra_classes=extra_classes %}
+        <ul id="{{ list_id }}" class="{{ class }} {{ extra_classes }}">
+            {% include list_items_template result=items list_id=list_id list_item_template=list_template class=class extra_classes=extra_classes %}
+        </ul>
 
         {% if show_pager %}
             {% include "pager/pager.tpl" %}
