@@ -52,7 +52,7 @@ When a test fails, a screenshot is automatically made and stored in
 
 ### Run locally
 
-To run the tests on a local Chrome instance, so you can see what is happening:
+To run the tests on your local Chrome instance, so you can see what is happening:
 
 ```bash
 $ make test-chrome site=yoursite
@@ -64,6 +64,14 @@ For instance, to execute only tests tagged `@wip`:
 
 ```bash
 $ make test site=yoursite args=--tag=wip
+```
+
+### Run tests against a remote URL
+
+To test a remote URL:
+
+```bash
+$ make test site=yoursite url=http://yoursite.com
 ```
 
 IDE integration
