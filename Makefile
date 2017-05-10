@@ -60,9 +60,9 @@ test $(site) $(args):
 	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.dev
 	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="http://$(site).docker.dev:8000" node-tests test -- $(args)
 
-test-local $(site):
+test-local $(site) $(args):
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
-	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="http://$(site).docker.dev" npm --prefix tests/ run test-chrome
+	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="http://$(site).docker.dev" npm --prefix tests/ run test-chrome -- $(args)
 
 up:
 	@docker-compose up --build zotonic kibana
