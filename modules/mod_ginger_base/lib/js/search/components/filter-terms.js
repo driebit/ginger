@@ -130,7 +130,7 @@ $.widget('ui.search_cmp_filter_terms', {
     loadMore: function() {
         var me = this,
             btn = $(me.element).find('.filter-down-btn'),
-            maxItems = $(me.element).data('items-loaded');
+            maxItems = $(me.element).data('load-more-length');
             counter = 1;
 
         btn.on('click', function () {

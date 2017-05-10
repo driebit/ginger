@@ -13,7 +13,7 @@ as
         {% for bucket in buckets %}
             {% with forloop.counter as i %}
                 {% if load_more %}
-                    {% with length as length %}
+                    {% with load_more_items_visible as length %}
                         <li class="{% if i >= length %} rest-subject hidden {% endif %}">
                             <input id="{{ #search_filter_value.i }}" type="checkbox" value="{{ bucket.key}}"{% if values|index_of:(bucket.key) > 0 %} checked="checked"{% endif %}>
                             <label for="{{ #search_filter_value.i }}">{{ bucket.key|escape }} <span>({{ bucket.doc_count }})</span></label>
