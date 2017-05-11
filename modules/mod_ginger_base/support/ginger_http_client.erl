@@ -6,6 +6,7 @@
 -export([
     get/1,
     get/2,
+    request/2,
     request/4
 ]).
 
@@ -19,6 +20,10 @@ get(Url) ->
 get(Url, Headers) ->
     request(get, Url, Headers).
 
+request(Url, Headers) ->
+    lager:error("ginger_http_client:request/2 is deprecated and will be removed; use ginger_http_client:get/2 instead."),
+    get(Url, Headers).
+    
 %% @doc Do an HTTP request.
 -spec request(atom(), string(), proplists:proplist()) -> map().
 request(Method, Url, Headers) when is_binary(Url) ->
