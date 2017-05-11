@@ -6,10 +6,12 @@
         as
             erfgoedthesaurus_definition
         %}
-            <dl>
-                <dt>{{ item['rdfs:label'] }}</dt>
-                <dd>{{ erfgoedthesaurus_definition.value }}</dd>
-            </dl>
+            {% with forloop.counter as i %}
+                <dl id="do_expand--parent-{{ i }}">
+                    <dt class="do_expand" data-content="do_expand--content-{{ i }}" data-parent="do_expand--parent-{{ i }}">{{ item['rdfs:label'] }}</dt>
+                    <dd id="do_expand--content-{{ i }}" class="do_expand--content">{{ erfgoedthesaurus_definition.value }} </dd>
+                </dl>
+            {% endwith %}
         {% else %}
             <li>
                 <a href="">{{ item['rdfs:label']|default:item['@id'] }}</a>
