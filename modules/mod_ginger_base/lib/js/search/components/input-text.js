@@ -14,6 +14,20 @@ $.widget("ui.search_cmp_input_text", {
                 $(document).trigger('search:inputChanged');
             }
         });
+
+        if (widgetElement.data('instant')) {
+            let timer = null;
+
+            me.widgetElement.on('keyup', function() {
+                if (timer) clearTimeout(timer);
+                timer = setTimeout(
+                    function() {
+                        $(document).trigger('search:inputChanged')
+                    },
+                    300
+                );
+            });
+        }
     },
 
     getValues: function() {
