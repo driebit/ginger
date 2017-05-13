@@ -15,6 +15,7 @@
     init/1,
     event/2,
     manage_schema/2,
+    observe_admin_rscform/3,
     observe_custom_pivot/2,
     observe_rsc_get/3,
     observe_search_query/2,
@@ -245,6 +246,11 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
         ]
     ),
     z_render:wire({script, [{script, JS}]}, Context).
+
+%% @doc When a resource is persisted in the admin, update granularity for
+%%      granular date fields.
+observe_admin_rscform(#admin_rscform{}, Post, _Context) ->
+    ginger_date:update_granularity(Post).
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
     Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
