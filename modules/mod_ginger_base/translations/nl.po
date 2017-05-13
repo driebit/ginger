@@ -170,10 +170,6 @@ msgstr "Filters"
 msgid "Function/ template"
 msgstr "Functie/ template"
 
-#: user/modules/mod_ginger_base/templates/_video_embed_service_options.tpl:4
-msgid "Ginger Embed"
-msgstr ""
-
 #: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:48
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:48
 msgid "Go to Facebook"
@@ -234,7 +230,7 @@ msgstr "Linkedin"
 msgid "Located here"
 msgstr "Hier gevestigd"
 
-#: user/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:36
+#: user/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35
 #: user/modules/mod_ginger_base/templates/meta/meta-location.tpl:11
 msgid "Location"
 msgstr "Locatie"
@@ -268,6 +264,10 @@ msgstr "Mobiele nummer"
 msgid "Module"
 msgstr "Module"
 
+#: user/modules/mod_ginger_base/templates/date-split/select-month.tpl:8
+msgid "Month"
+msgstr "Maand"
+
 #: user/modules/mod_ginger_base/templates/pager/pager.tpl:2
 msgid "More than 30000 results"
 msgstr "Meer dan 30000 resultaten"
@@ -288,7 +288,8 @@ msgstr "Geen toegang"
 msgid "No comments"
 msgstr "Geen reacties"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:69
+#: user/modules/mod_ginger_base/templates/list/list.tpl:11
+#: user/modules/mod_ginger_base/templates/list/list.tpl:72
 #: user/modules/mod_ginger_base/templates/map/map.tpl:63
 msgid "No results"
 msgstr "Geen resultaten"
@@ -373,7 +374,8 @@ msgstr "Keer terug naar de homepage"
 #: user/modules/mod_ginger_base/templates/search/components/input-text.tpl:2
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:9
-#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:34
+#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:24
+#: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:36
 #: user/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:3
 #: user/modules/mod_ginger_base/templates/search.tpl:3
 #: user/modules/mod_ginger_base/templates/search.tpl:13
@@ -489,6 +491,10 @@ msgstr "Website"
 msgid "With:"
 msgstr "Met:"
 
+#: user/modules/mod_ginger_base/templates/date-split/select-year.tpl:8
+msgid "Year"
+msgstr "Jaar"
+
 #: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:40
 #: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:45
 msgid "You may use the work freely"
@@ -586,7 +592,7 @@ msgstr "geïnteresseerden"
 msgid "less"
 msgstr ""
 
-#: user/modules/mod_ginger_base/templates/search.tpl:20
+#: user/modules/mod_ginger_base/templates/search.tpl:21
 msgid "list"
 msgstr "lijst"
 
@@ -599,7 +605,7 @@ msgstr "Login of registreer"
 msgid "mailchimp-sign-up"
 msgstr "Aanmelden"
 
-#: user/modules/mod_ginger_base/templates/search.tpl:21
+#: user/modules/mod_ginger_base/templates/search.tpl:22
 msgid "map"
 msgstr "kaart"
 
