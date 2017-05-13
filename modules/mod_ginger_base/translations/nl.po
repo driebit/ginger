@@ -77,6 +77,10 @@ msgstr "Geschreven door "
 msgid "Based on these keywords:"
 msgstr "Gebaseerd op deze trefwoorden:"
 
+#: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:8
+msgid "Birth date"
+msgstr "Geboortedatum"
+
 #: user/modules/mod_ginger_base/templates/media/media.image.tpl:32
 #: user/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
 #: user/modules/mod_ginger_base/templates/person/person-author.tpl:11
@@ -106,6 +110,18 @@ msgstr ""
 #: user/modules/mod_ginger_base/templates/admin/admin-edit-copyrights.tpl:2
 msgid "Copyrights"
 msgstr "Copyrights"
+
+#: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:3
+msgid "Dates"
+msgstr ""
+
+#: user/modules/mod_ginger_base/templates/date/edit-day.tpl:11
+msgid "Day"
+msgstr "Dag"
+
+#: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:17
+msgid "Death date"
+msgstr "Sterftedatum"
 
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:6
 msgid "Disconnect"
@@ -264,7 +280,7 @@ msgstr "Mobiele nummer"
 msgid "Module"
 msgstr "Module"
 
-#: user/modules/mod_ginger_base/templates/date-split/select-month.tpl:8
+#: user/modules/mod_ginger_base/templates/date/edit-month.tpl:10
 msgid "Month"
 msgstr "Maand"
 
@@ -336,6 +352,11 @@ msgstr "Profiel"
 #: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:18
 msgid "Public Domain"
 msgstr "Publiek domein"
+
+#: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:10
+#: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:19
+msgid "Qualifier"
+msgstr "Kwalificatie"
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:11
@@ -491,7 +512,7 @@ msgstr "Website"
 msgid "With:"
 msgstr "Met:"
 
-#: user/modules/mod_ginger_base/templates/date-split/select-year.tpl:8
+#: user/modules/mod_ginger_base/templates/date/edit-year.tpl:8
 msgid "Year"
 msgstr "Jaar"
 
