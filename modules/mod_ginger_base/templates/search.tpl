@@ -15,7 +15,7 @@
                     <form class="search__top__form">
                         {% include "search/components/input-text.tpl" %}
                     </form>
-                    
+
                     {% block search_views %}
                         <div class="search__top__view do_search_cmp_types">
                             <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
@@ -34,7 +34,7 @@
 
             {%  wire
                     name="search-list"
-                    action={update target="search-list" text="<p class='no-results'>Loading...</p>"}
+                    action={update target="search-list" text="<p class='no-results'>" ++ _"Loading..." ++ "</p>"}
                     action={update
                             target="search-list"
                             template="search/search-query-wrapper.tpl"
@@ -43,7 +43,7 @@
 
             {%  wire
                     name="search-map"
-                    action={update target="search-map" text="<p class='no-results'>Loading...</p>"}
+                    action={update target="search-map" text="<p class='no-results'>" ++ _"Loading..." ++ "</p>"}
                     action={update
                             target="search-map"
                             template="search/search-query-wrapper.tpl"
