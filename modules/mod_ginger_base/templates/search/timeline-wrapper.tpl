@@ -1,2 +1,1 @@
-
-{% include "timeline/timeline.tpl" %}
+{% optional include "timeline/timeline.tpl" %}
