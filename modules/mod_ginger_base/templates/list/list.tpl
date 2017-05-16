@@ -52,7 +52,7 @@ as
                 visible} %}
         {% elseif not hide_showmore_button %}
 
-            <div id="{{ list_id }}-buttons">
+            <div id="{{ list_id }}-buttons" class="list__more-nav">
 
                 {% if not hide_showmore_button %}
                     {% button class="list__more" text=showmore_button_text action={moreresults result=result
