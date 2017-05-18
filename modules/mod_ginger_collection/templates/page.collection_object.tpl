@@ -25,7 +25,7 @@
             </div>
         </div>
         <article class="main-content">
-            {% block title %}
+            {% block page_title %}
                 <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
             {% endblock %}
 
@@ -55,7 +55,6 @@
                     {% endif %}
                 {% endif %}
             {% endblock %}
-
         </article>
 
         {% include "beeldenzoeker/record-meta.tpl" record=record %}
