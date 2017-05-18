@@ -10,6 +10,14 @@ defineSupportCode(({Then}) => {
         return client.assert.containsText(element, text);
     });
 
+    Then(/^the term "([^"]*)" should be defined as "([^"]*)"$/, (dtText, ddText) => {
+        const selector = '//dt[contains(., "' + dtText + '")]/following-sibling::dd';
+
+        return client
+            .useXpath()
+            .assert.containsText(selector, ddText);
+    });
+
     Then(/^I should not see "([^"]*)"$/, (element) => {
         return client.useCss().waitForElementNotVisible(element);
     });
