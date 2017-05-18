@@ -1,6 +1,11 @@
 <figure class="align-{{ align }}" >
-    {% with caption|default:m.rsc[id].summary as caption %}
-
+    {% with
+        caption|default:m.rsc[id].summary,
+        (sizename == "middle")|if:"medium":sizename
+    as
+        caption,
+        sizename
+    %}
         {% if link %}
              <a href="{{ id.page_url }}" class="media--image {{ extraClasses }}
             "
