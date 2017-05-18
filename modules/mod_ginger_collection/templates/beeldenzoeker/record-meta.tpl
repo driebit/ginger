@@ -165,7 +165,7 @@
 	        </dl>
 	    </div>
 
-        {% optional include "beeldenzoeker/metadata/reproduction.tpl" %}
+        {% optional include "collection/metadata/reproduction.tpl" %}
 
         {% if m.acl.is_allowed.view.internal_adlib_content %}
             <div class="adlib-object__meta__row">
