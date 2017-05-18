@@ -18,7 +18,7 @@
         id=#signup
         action={
             dialog_open
-            title=title|default:_"Log in or sign up"
+            title=title|default:(m.modules.active.mod_signup|if:_"Log in or sign up":_"Log in")
             template=dialog_template|default:"_action_dialog_authenticate.tpl"
             tab=tab|default:"logon"
             redirect="#reload"
