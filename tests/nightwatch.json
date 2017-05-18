@@ -1,0 +1,26 @@
+{
+    "globals_path": "globals.js",
+    "test_settings": {
+        "default": {
+            "selenium_host": "selenium",
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "chromeOptions": {
+                    "args": [
+                        "window-size=1200,900"
+                    ]
+                }
+            },
+            "screenshots": {
+                "enabled": true,
+                "on_failure": true,
+                "path": "screenshots"
+            }
+        },
+        "chrome": {
+            "selenium_host": "localhost",
+            "selenium_port": 9515,
+            "default_path_prefix" : ""
+        }
+    }
+}

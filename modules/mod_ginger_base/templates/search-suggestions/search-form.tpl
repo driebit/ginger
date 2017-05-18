@@ -21,7 +21,7 @@ as
 
 <form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% if context %}/{{ context }}_search{% else %}{% url search %}{% endif %}" method="get">
     <div class="{{ wrapperclass }}">
-        <label class="search-form__label" for="qs">{_ Search _}</label>
+        <label style="display:none;" class="search-form__label" for="qs">{_ Search _}</label>
         <input type="text"
             class="do_search_suggestions"
             name="qs"

@@ -10,7 +10,7 @@
 %% @doc Execute request to ZenHub API
 -spec request(string(), #context{}) -> list().
 request(Url, Context) ->
-    case ginger_http_client:request("https://api.zenhub.io/p1/" ++ Url, headers(Context)) of
+    case ginger_http_client:get("https://api.zenhub.io/p1/" ++ Url, headers(Context)) of
         undefined ->
             undefined;
         Response ->

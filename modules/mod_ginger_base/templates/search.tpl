@@ -1,30 +1,31 @@
 {% extends "base.tpl" %}
 
-{% block title %}{_ Search _}{% endblock %}
+{% block title %}{_ Search _}: {{ q.qs }}{% endblock %}
 
 {% block body_class %}t--search{% endblock %}
 
 {% block content %}
 
     <main class="do_search do_search_ui">
+        {% block search__top %}
+            <div class="search__top">
+                <div class="search__top__container">
+                    <h1 class="page-title--search">{_ Search _}</h1>
 
-        <div class="search__top">
-            <div class="search__top__container">
-                <h1 class="page-title--search">{_ Search _}</h1>
+                    <form class="search__top__form">
+                        {% include "search/components/input-text.tpl" %}
+                    </form>
 
-                <form class="search__top__form">
-                    {% include "search/components/input-text.tpl" %}
-                </form>
-                
-                {% block search_views %}
-                    <div class="search__top__view do_search_cmp_types">
-                        <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
-                        <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
-                        {% all include "search/search-buttons.tpl" %}
-                    </div>
-                {% endblock %}
+                    {% block search_views %}
+                        <div class="search__top__view do_search_cmp_types">
+                            <a href="#list" class="btn--result-option is-active"><i class="icon--list"></i>{_ list _}</a>
+                            <a href="#map" class="btn--result-option"><i class="icon--map-lines"></i>{_ map _}</a>
+                            {% all include "search/search-buttons.tpl" %}
+                        </div>
+                    {% endblock %}
+                </div>
             </div>
-        </div>
+        {% endblock %}
 
         {% block search_intro %}{% endblock %}
 
@@ -33,7 +34,7 @@
 
             {%  wire
                     name="search-list"
-                    action={update target="search-list" text="<p class='no-results'>Loading...</p>"}
+                    action={update target="search-list" text="<p class='no-results'>" ++ _"Loading..." ++ "</p>"}
                     action={update
                             target="search-list"
                             template="search/search-query-wrapper.tpl"
@@ -42,7 +43,7 @@
 
             {%  wire
                     name="search-map"
-                    action={update target="search-map" text="<p class='no-results'>Loading...</p>"}
+                    action={update target="search-map" text="<p class='no-results'>" ++ _"Loading..." ++ "</p>"}
                     action={update
                             target="search-map"
                             template="search/search-query-wrapper.tpl"

@@ -59,11 +59,9 @@
 
         {% include "beeldenzoeker/record-meta.tpl" record=record %}
 
-        {% block print_record %}
+        {% if q.debug %}
             {% print record %}
-        {% endblock %}
-
-        {# Part of collections #}
+        {% endif %}
     </main>
 
 {% endwith %}

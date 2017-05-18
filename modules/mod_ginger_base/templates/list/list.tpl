@@ -8,7 +8,7 @@
     showmore_button_text|default:_"Show more results...",
     list_items_template|default:"list/list-items.tpl",
     list_template|default:"list/list-item.tpl",
-    noresults,
+    noresults|default:_"No results",
     show_pager,
     infinite_scroll
 as
@@ -32,7 +32,9 @@ as
             {% include "pager/pager.tpl" %}
         {% endif %}
 
-        {% include list_items_template result=items list_id=list_id list_item_template=list_template class=class extra_classes=extra_classes %}
+        <ul id="{{ list_id }}" class="{{ class }} {{ extra_classes }}">
+            {% include list_items_template result=items list_id=list_id list_item_template=list_template class=class extra_classes=extra_classes %}
+        </ul>
 
         {% if show_pager %}
             {% include "pager/pager.tpl" %}
@@ -50,14 +52,14 @@ as
                 visible} %}
         {% elseif not hide_showmore_button %}
 
-            <div id="{{ list_id }}-buttons">
+            <div id="{{ list_id }}-buttons" class="list__more-nav">
 
                 {% if not hide_showmore_button %}
                     {% button class="list__more" text=showmore_button_text action={moreresults result=result
                         target=list_id
                         template=list_template
                         catinclude }
-                        %}
+                    %}
                 {% endif %}
 
             </div>
@@ -66,7 +68,11 @@ as
 
     {% else %}
         {% if noresults %}
-            <p class="no-results">{_ No results _}</p>
+            {% if noresults == "true" %}
+                <p class="no-results">{_ No results _}</p>
+            {% else %}
+                <p class="no-results">{{ noresults }}</p>
+            {% endif %}
         {% endif %}
     {% endif %}
 

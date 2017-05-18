@@ -13,11 +13,15 @@ $.widget("ui.search_ui", {
     init: function() {
 
         //after all widget's _create function
+
         var me = this,
             inputSearch = $(document).find('.input-search'),
-            documentWidth = $(document).width();
+            documentWidth = $(document).width(),
+            element = me.element;
 
         window.onhashchange = $.proxy(me.hashChanged, me);
+
+        me.searchOnLoad = (element.data('search-on-load') != undefined) ? element.data('search-on-load') : true;
 
         inputSearch.focus();
 
@@ -56,15 +60,21 @@ $.widget("ui.search_ui", {
         var hash = window.location.hash;
 
         if (!hash || hash == '') {
-          me.setHash();
+
+            if (!window.location.search) {
+                me.blankSearchStarted = true;
+            }
+
+            me.setHash();
         } else {
-          me.hashChanged();
+            me.hashChanged();
         }
 
         // This should be ~pagesession, but see https://github.com/zotonic/zotonic/issues/1622
         pubzub.subscribe("~session/search/facets", function (topic, msg) {
             me.setFacets(msg.payload);
         });
+
     },
 
 
@@ -171,6 +181,11 @@ $.widget("ui.search_ui", {
             values = jQuery.parseJSON(json);
 
         $.proxy(me.setWidgetsState(values), me);
+
+        if (me.blankSearchStarted && me.searchOnLoad == false) {
+            return false;
+         }
+
         $.proxy(me.doSearch(values), me);
 
         $('.search__filters').css('opacity', '1');
@@ -191,6 +206,10 @@ $.widget("ui.search_ui", {
     },
 
     setFacets: function(facets) {
+        if (typeof facets !== 'object') {
+            facets = JSON.parse(facets);
+        }
+
         $.each(this.getWidgets(), function(i, widget) {
             if (widget.setFacets && typeof widget.setFacets == 'function') {
                 widget.setFacets(facets);

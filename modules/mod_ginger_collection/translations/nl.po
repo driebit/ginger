@@ -53,7 +53,7 @@ msgstr "Naamsvermelding"
 msgid "Date"
 msgstr "Datum"
 
-#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:42
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:48
 msgid "Detailed description"
 msgstr "Uitgebreide beschrijving"
 
@@ -73,7 +73,7 @@ msgstr "E-mail"
 msgid "Elasticsearch query"
 msgstr ""
 
-#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:7
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:9
 msgid "End year"
 msgstr "Eindjaar"
 
@@ -153,10 +153,6 @@ msgstr ""
 msgid "Museum collection"
 msgstr "Museumcollectie"
 
-#: user/modules/mod_ginger_collection/templates/list/list-beeldenzoeker.tpl:73
-msgid "No results"
-msgstr "Geen resultaten"
-
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:179
 msgid "Notes"
 msgstr "Notities"
@@ -177,7 +173,7 @@ msgstr "Objectnummer"
 msgid "Object type"
 msgstr "Objecttype"
 
-#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:2
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:4
 msgid "Period"
 msgstr "Periode"
 
@@ -205,6 +201,15 @@ msgstr ""
 msgid "Refine search results"
 msgstr "Zoekopdracht verfijnen"
 
+#: user/modules/mod_ginger_collection/templates/collection/metadata/reproduction.tpl:4
+#, fuzzy
+msgid "Reproduction"
+msgstr "Reproductie"
+
+#: user/modules/mod_ginger_collection/templates/collection/metadata/reproduction.tpl:8
+msgid "Reproduction creator"
+msgstr "Vervaardiger van reproductie"
+
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/search-filters.tpl:5
 msgid "Reset filters"
 msgstr "Filters wissen"
@@ -215,7 +220,7 @@ msgstr "Resultaten gevonden"
 
 #: user/modules/mod_ginger_collection/templates/collection/search.tpl:17
 #: user/modules/mod_ginger_collection/templates/collection/search.tpl:19
-#: user/modules/mod_ginger_collection/templates/page.beeldenzoeker.tpl:23
+#: user/modules/mod_ginger_collection/templates/page.beeldenzoeker.tpl:24
 #: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:8
 #: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:9
 #: user/modules/mod_ginger_collection/templates/search-suggestions/search-form.tpl:34
@@ -230,11 +235,7 @@ msgstr "Zoekopdracht"
 msgid "Share"
 msgstr ""
 
-#: user/modules/mod_ginger_collection/templates/list/list-beeldenzoeker.tpl:8
-msgid "Show more results..."
-msgstr "Toon meer resultaten..."
-
-#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:6
+#: user/modules/mod_ginger_collection/templates/beeldenzoeker/search/components/filters-period.tpl:8
 msgid "Start year"
 msgstr "Startjaar"
 
@@ -279,55 +280,6 @@ msgstr "Werk"
 msgid "Zoom"
 msgstr "Inzoomen"
 
-#: user/modules/mod_ginger_collection/templates/page.beeldenzoeker.tpl:50
-msgid "back to top"
-msgstr ""
-
 #: user/modules/mod_ginger_collection/templates/collection/search.tpl:21
 msgid "list"
 msgstr "Lijst"
-
-#~ msgid "City"
-#~ msgstr "Stad"
-
-#~ msgid "Large"
-#~ msgstr "Groot"
-
-#~ msgid "Medium"
-#~ msgstr "Middel"
-
-#~ msgid "Small"
-#~ msgstr "Klein"
-
-#~ msgid "Square"
-#~ msgstr "Vierkant"
-
-#~ msgid "All rights reserved"
-#~ msgstr "Alle rechten voorbehouden"
-
-#~ msgid "Aquisition"
-#~ msgstr "Verwerving"
-
-#~ msgid "Dimensions"
-#~ msgstr "Afmetingen"
-
-#~ msgid "Material & Technique"
-#~ msgstr "Materiaal en techniek"
-
-#~ msgid "Object name"
-#~ msgstr "Objectnaam"
-
-#~ msgid "Dating"
-#~ msgstr "Datering"
-
-#~ msgid "Events"
-#~ msgstr "Evenementen"
-
-#~ msgid "Extra large"
-#~ msgstr "Extra groot"
-
-#~ msgid "Full museum collection"
-#~ msgstr "Volledige museumcollectie"
-
-#~ msgid "Only images"
-#~ msgstr "Alleen met afbeelding"

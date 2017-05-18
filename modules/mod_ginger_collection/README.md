@@ -28,7 +28,13 @@ TODO
 
 ## Notifications
 
-### Adding links
+Observe `#acl_is_allowed{action = view, object = Object}` to grant or deny 
+access to collection items; `Object` is the collection item represented as an
+Erlang map:
 
-
-
+```erlang
+observe_acl_is_allowed(#acl_is_allowed{action = view, object = Object}, Context) when is_map(Object) ->
+    %% Return true, false or undefined...;
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
+````

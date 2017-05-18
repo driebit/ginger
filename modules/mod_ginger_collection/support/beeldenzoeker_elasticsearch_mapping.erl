@@ -1,11 +1,11 @@
 -module(beeldenzoeker_elasticsearch_mapping).
 
 -export([
-    default_mapping/0
+    default_mapping/1
 ]).
 
 %% @doc Default mappings are based on linked data predicates.
-default_mapping() ->
+default_mapping(Context) ->
     Mapping = #{
         <<"properties">> => #{
             <<"acquisition.date">> => #{
@@ -45,7 +45,7 @@ default_mapping() ->
                     <<"type">> => <<"date">>
                 }
             }}
-        ]
+        ] ++ elasticsearch_mapping:dynamic_language_mapping(Context)
     },
     
     {elasticsearch_mapping:hash(Mapping), Mapping}.

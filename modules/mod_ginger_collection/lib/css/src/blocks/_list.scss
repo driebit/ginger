@@ -152,3 +152,30 @@
 		left: -20px;
 	}
 }
+
+@include mq(min-width, $smallBreakpoint) {
+    .list-carousel {
+        .list__item {
+            margin: 0 15px;
+        }
+
+        .list__item__image {
+            height: 230px;
+        }
+    }
+
+    .list__item--beeldenzoeker {
+        .list__item__image {
+            height: 230px;
+        }
+
+        .list__item__content {
+            height: 150px;
+        }
+    }
+
+    .list__item__wimpel {
+        width: 136px;
+        left: -20px;
+    }
+}

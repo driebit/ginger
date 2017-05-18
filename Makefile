@@ -3,35 +3,39 @@ SSH_USER=$(shell whoami)
 REMOTE_SITES_DIR=/srv/zotonic/sites
 REMOTE_BACKUP_PATH=$(REMOTE_SITES_DIR)/$(site)/files/backup
 REMOTE_BACKUP_FILE=$(shell ssh $(SSH_USER)@$(host) ls "$(REMOTE_BACKUP_PATH)/*.sql" -t | head -n1 | xargs -n1 basename)
+target test: url=http://$(site).docker.dev:8000
+target test-chrome: url=http://$(site).docker.dev
 
 include .env
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
-	@echo "  addsite name=your_site Create a new site"
-	@echo "  disco                  Make your sites available at http://[sitename].[username].ginger.dev"
-	@echo "  dump-db                Dump database to /data directory using pg_dump (dumpsite=site-name)"
-	@echo "  gulp site=your_site    Run Gulp in a site directory"
-	@echo "  clean-node             Delete all node_modules directories"
-	@echo "  import-db-file         Import database from file (db=site-name file=site-dump.sql)"
-	@echo "  import-db-backup       Import database from a backup (host=ginger.driebit.net site=site-name)"
-	@echo "  shell                  Open Zotonic shell"
-	@echo "  psql                   Open PostgreSQL interactive terminal"
-	@echo "  up                     Start containers"
-	@echo "  up-zotonic             Start containers with custom Zotonic checkout"
-	@echo "  update                 Update containers"
+	@echo "  addsite name=site-name  Create a new site"
+	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.dev"
+	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
+	@echo "  gulp site=your_site     Run Gulp in a site directory"
+	@echo "  clean-node              Delete all node_modules directories"
+	@echo "  import-db-file          Import database from file (db=site-name file=site-dump.sql)"
+	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  shell                   Open Zotonic shell"
+	@echo "  psql                    Open PostgreSQL interactive terminal"
+	@echo "  test site=site-name     Run brower site tests in Docker container (args=Nightwatch arguments url=http://...)"
+	@echo "  test-chrome =site-name  Run brower site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  up                      Start containers"
+	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
+	@echo "  update                  Update containers"
 
-addsite $(name):
+addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.dev $(name)
 
-gulp $(site):
+gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
 	docker run -it -v "`pwd`/sites/$(site)":/app -v "`pwd`/modules":/modules --env MODULES_DIR=/modules driebit/node-gulp
 
 clean-node:
 	find . -type d -name node_modules -exec rm -r "{}" \;
 
-import-db-file $(db) $(file):
+import-db-file:
 	@echo "> Importing $(db) from $(file)"
 	@docker-compose exec zotonic bin/zotonic stopsite $(db)
 	@docker-compose exec postgres psql -U zotonic -c "DROP DATABASE IF EXISTS $(db)"
@@ -39,13 +43,13 @@ import-db-file $(db) $(file):
 	@docker-compose exec postgres psql $(db) -U zotonic -h localhost -f $(file)
 	@docker-compose exec zotonic bin/zotonic startsite $(db)
 
-import-db-backup $(host) $(site):
+import-db-backup:
 	@echo "> Importing $(REMOTE_BACKUP_FILE) from $(host) into $(site)"
 	@scp $(ssh_user)@$(host):$(REMOTE_BACKUP_PATH)/$(REMOTE_BACKUP_FILE) data/
 	@$(MAKE) import-db-file db=$(site) file=$(REMOTE_BACKUP_FILE)
 
-dump-db $(dumpsite):
-	@docker-compose exec postgres pg_dump -U zotonic $(dumpsite) > data/$(dumpsite)_`date -u +"%Y-%m-%dT%H%M%SZ"`.sql
+dump-db:
+	@docker-compose exec postgres pg_dump -U zotonic $(site) > data/$(site)_`date -u +"%Y-%m-%dT%H%M%SZ"`.sql
 
 shell:
 	@docker-compose exec zotonic bin/zotonic shell
@@ -53,14 +57,23 @@ shell:
 psql:
 	@docker-compose exec postgres psql -U zotonic
 
+test:
+# Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
+	@docker network disconnect ginger_selenium ginger_zotonic_1
+	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.dev
+
+	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="$(url)" node-tests test -- $(args)
+test-chrome:
+# Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
+	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="$(url)" npm --prefix tests/ run test-chrome -- $(args)
+
 up:
-	@docker-compose up --build
+	@docker-compose up --build zotonic kibana
 	@echo "> Started. Open http://localhost in your browser."
 
 up-zotonic:
 # See https://github.com/zotonic/zotonic/issues/1321
-	rm -rf $(ZOTONIC)/priv/mnesia/*
-	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build
+	@docker-compose -f docker-compose.yml -f docker-compose.zotonic.yml up --build zotonic kibana
 	@echo "> Started. Open http://localhost in your browser."
 
 update:

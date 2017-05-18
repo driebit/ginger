@@ -17,6 +17,7 @@ Documentation
 * [Guidelines](docs/guidelines.md)
 * [Why Ginger is a single Git repository](docs/monorepo.md)
 * [Releases](docs/releases.md)
+* [Browser tests](docs/browser-tests.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
 

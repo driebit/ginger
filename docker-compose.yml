@@ -42,6 +42,27 @@ services:
             MAKE: "true"
             LOGSTASH_HOST: "localhost"
             LOGSTASH_PORT: 5514
+        networks:
+            default:
+            selenium:
+
+    node-tests:
+        image: driebit/node
+        command: test
+        links:
+            - selenium
+        environment:
+            SELENIUM_REMOTE_URL: http://selenium:4444/wd/hub
+        networks:
+            - selenium
+
+    selenium:
+        image: selenium/standalone-chrome:3.4.0
+        networks:
+            - selenium
+
+networks:
+    selenium:
 
 volumes:
     postgres-data: {}

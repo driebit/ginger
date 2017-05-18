@@ -13,7 +13,7 @@
 	            	<dd>{{ record['dcterms:identifier'] }}</dd>
 		        {% endif %}
 
-	               {% if record.object_category as object_category %}
+                {% if record.object_category as object_category %}
 	            	<dt>{_ Object category _}</dt>
 	            	<dd>{{ object_category }}</dd>
 		        {% endif %}
@@ -138,7 +138,7 @@
 	        </dl>
 	    </div>
 
-        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:subject'] %}
+        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         <div class="adlib-object__meta__row">
             <div class="adlib-object__meta__title">
@@ -168,7 +168,7 @@
 	        </dl>
 	    </div>
 
-        {% optional include "beeldenzoeker/metadata/reproduction.tpl" %}
+        {% optional include "collection/metadata/reproduction.tpl" %}
 
 	    {% if record.uri as uri %}
 		    <div class="adlib-object__meta__row">

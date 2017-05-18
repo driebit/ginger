@@ -19,7 +19,7 @@ as
     iconclass
 %}
 
-<form class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% url collection_search %}" method="get">
+<form name="{{ name }}" class="{{ formclass }} {{ extraFormClassess }}" id="search-suggestions__searchform-{{ #identifier }}" role="search" action="{% url collection_search %}" method="get">
     <div class="{{ wrapperclass }}">
         <input type="text"
             class="do_search_suggestions"
