@@ -16,6 +16,11 @@ search_query(#search_query{search = {rdf, _Args}, offsetlimit = _OffsetLimit} = 
 
     %% @todo Enable users to configure this config value on an admin GUI page.
     Source = m_config:get_value(mod_ginger_rdf, source, Context),
-    z_notifier:first(#rdf_search{source = Source, query = Query}, Context);
+    case z_notifier:first(#rdf_search{source = Source, query = Query}, Context) of
+        undefined ->
+            [];
+        Result ->
+            Result
+    end;
 search_query(#search_query{}, _Context) ->
     undefined.
