@@ -23,7 +23,7 @@ get(Url, Headers) ->
 request(Url, Headers) ->
     lager:error("ginger_http_client:request/2 is deprecated and will be removed; use ginger_http_client:get/2 instead."),
     get(Url, Headers).
-    
+
 %% @doc Do an HTTP request.
 -spec request(atom(), string(), proplists:proplist()) -> map().
 request(Method, Url, Headers) when is_binary(Url) ->
@@ -67,7 +67,6 @@ handle_response(Response, Url) ->
 
 %% @doc Decode the response based on Content-Type.
 decode({"application/json" ++ _, Body}) ->
-    jsx:decode(Body);
+    jsx:decode(Body, [return_maps]);
 decode({_ContentType, Body}) ->
     Body.
-
