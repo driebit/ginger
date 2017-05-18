@@ -25,7 +25,11 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
         Subjects
     );
 %% Whitelist term filters
-parse_query(Term, Values, QueryArgs) when Term =:= <<"object_category.keyword">>; Term =:= <<"dcterms:spatial.rdfs:label.keyword">> ->
+parse_query(Term, Values, QueryArgs) when
+    Term =:= <<"object_category.keyword">>;
+    Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
+    Term =:= <<"dcterms:subject.rdfs:label.keyword">>
+->
     QueryArgs ++ lists:map(
         fun(Value) ->
             {filter, [Term, Value]}
