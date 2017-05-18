@@ -187,17 +187,7 @@
                     {_ Internal _}
                 </div>
                 <dl class="adlib-object__meta__data">
-                    {% optional include "beeldenzoeker/metadata/internal.tpl" %}
-                    {% if record['dbpedia-owl:notes'] as notes %}
-                        <dt>{_ Notes _}</dt>
-                        <dd>
-                            <ul>
-                            {% for note in notes %}
-                                <li>{{ note }}</li>
-                            </ul>
-                            {% endfor %}
-                        </dd>
-                    {% endif %}
+                    {% optional include "collection/metadata/internal.tpl" %}
                     {% if record['@attributes']['modification'] as notes %}
                         <dt>{_ Last updated _}</dt>
                         <dd>{{ record['@attributes']['modification']|isodate:"j F Y H:i" }}</dd>
