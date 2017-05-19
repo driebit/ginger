@@ -6,26 +6,30 @@
 -export([
     get/1,
     get/2,
+    post/3,
     request/2,
     request/4
 ]).
 
 %% @doc GET a URL.
--spec get(string()) -> map().
+-spec get(string()) -> map() | undefined.
 get(Url) ->
     get(Url, []).
 
 %% @doc GET a URL.
--spec get(string(), list()) -> map().
+-spec get(string(), list()) -> map() | undefined.
 get(Url, Headers) ->
     request(get, Url, Headers).
+
+post(Url, Headers, Data) ->
+    request(post, Url, Headers, Data).
 
 request(Url, Headers) ->
     lager:error("ginger_http_client:request/2 is deprecated and will be removed; use ginger_http_client:get/2 instead."),
     get(Url, Headers).
 
 %% @doc Do an HTTP request.
--spec request(atom(), string(), proplists:proplist()) -> map().
+-spec request(atom(), string(), proplists:proplist()) -> map() | undefined.
 request(Method, Url, Headers) when is_binary(Url) ->
     request(Method, binary_to_list(Url), Headers);
 request(get, Url, Headers) ->
