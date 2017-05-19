@@ -8,14 +8,9 @@
 ]).
 
 %% @doc Execute request to GitHub API
--spec request(string(), #context{}) -> list().
+-spec request(string(), z:context()) -> list().
 request(Url, Context) ->
-    case ginger_http_client:get("https://api.github.com/" ++ Url, headers(Context)) of
-        undefined ->
-            undefined;
-        Response ->
-            json_parser:parse(Response, fun parse_property/1)
-    end.
+    ginger_http_client:get("https://api.github.com/" ++ Url, headers(Context)).
 
 headers(Context) ->
     [
@@ -23,8 +18,3 @@ headers(Context) ->
         {"User-Agent", "Ginger"},
         {"Accept", "application/vnd.github.v3+json"}
     ].
-
-parse_property({<<"due_on">>, Date}) ->
-    {<<"due_on">>, z_datetime:to_datetime(Date)};
-parse_property({Key, Value}) ->
-    {Key, Value}.
