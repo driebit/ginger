@@ -34,7 +34,7 @@ split(Name, {Year, Month, Day}) ->
 
 %% @doc Update date granularity props based on submitted date part values.
 update_granularity(FormProps) ->
-    lists:foldl(
+    lists:foldr(
         fun({Key, _Value} = Prop, Acc) ->
             case granular_prop(Key) of
                 undefined ->
