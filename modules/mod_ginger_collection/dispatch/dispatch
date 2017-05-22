@@ -1,6 +1,6 @@
 [
 	{collection_home, ["collectie"], controller_template, [{template, "page.beeldenzoeker.tpl"}, {id, beeldenzoeker}]},
-	{collection_search, ["collectie", "zoeken"], controller_template, [{template, "collection/search.tpl"}]},
+	{collection_search, ["collectie", "zoeken"], controller_template, [{template, "collection/search.tpl"}, {id, beeldenzoeker}]},
     {collection_object, ["collectie", "object", database, object_id], controller_template, [
         {template, {cat, "page.collection_object.tpl"}},
         {acl, {view_ginger_collection, object}}
