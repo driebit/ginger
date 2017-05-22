@@ -103,6 +103,10 @@ msgstr "Afmelden"
 msgid "Categories"
 msgstr "Categorieën"
 
+#: user/modules/mod_ginger_base/templates/search/components/filters-terms-options.tpl:27
+msgid "Load more"
+msgstr "Laad meer"
+
 #: user/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:15
 msgid "Choose language"
 msgstr "Kies je taal"

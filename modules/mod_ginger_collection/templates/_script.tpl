@@ -2,6 +2,7 @@
     "js/jquery.zoom.min.js"
     "js/back-to-top.js"
     "js/beeldenzoeker.js"
+    "js/loadmore.js"
     "js/search/components/filters-edge.js"
     "js/search/components/filters-license.js"
     "js/search/components/filter-range.js"
