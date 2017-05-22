@@ -9,6 +9,8 @@
 
 object_is_visible([{_Key, _Value}|_] = Object, Context) ->
     object_is_visible([Object], Context);
+object_is_visible(undefined, _Context) ->
+    [];
 object_is_visible(Objects, Context) ->
     lists:filter(
         fun(Object) ->
