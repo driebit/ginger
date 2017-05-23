@@ -14,7 +14,8 @@ as
     load_more_items_length
 %}
     {% with dynamic|if:local_buckets:global_buckets as buckets %}
-        <ul class="{{ load_more|if:"do_loadmore":"" }}" data-loadmore-items-length="{{ load_more_items_length }}" data-loadmore-list-length="{{ load_more_list_length }}" >
+        <ul class="selected-inputs"></ul>
+        <ul class="{{ load_more|if:"do_loadmore":"" }}" data-loadmore-items-length="{{ load_more_items_length }}" data-loadmore-list-length="{{ load_more_list_length }}" data-loadmore-id="{{ target }}">
             {% for bucket in buckets %}
                 {% with forloop.counter as i %}
                     <li>
