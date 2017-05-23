@@ -47,10 +47,11 @@ parse_query(<<"subset">>, Types, QueryArgs) ->
         Types
     ),
     QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
-parse_query(<<"period">>, Period, QueryArgs) ->
+parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">> ->
+    IncludeMissing = proplists:get_value(<<"include_missing">>, Range, false),
     QueryArgs
-        ++ date_filter(proplists:get_value(<<"min">>, Period), <<"gte">>)
-        ++ date_filter(proplists:get_value(<<"max">>, Period), <<"lte">>);
+        ++ date_filter(Key, <<"gte">>, proplists:get_value(<<"min">>, Range), IncludeMissing)
+        ++ date_filter(Key, <<"lte">>, proplists:get_value(<<"max">>, Range), IncludeMissing);
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
 parse_query(<<"license">>, Values, QueryArgs) ->
@@ -72,20 +73,20 @@ map_edge(<<"depiction">>) ->
 map_edge(_) ->
     false.
 
-date_filter(<<>>, _Operator) ->
+date_filter(_Key, _Operator, <<>>, _IncludeMissing) ->
     [];
-date_filter(Value, Operator) when Operator =:= <<"gte">>; Operator =:= <<"gt">> ->
-    [{filter, [
-        [<<"dcterms:date">>, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
-        %% For Zotonic resources:
-        [<<"dcterms:date">>, missing]
-    ]}];
-date_filter(Value, Operator) when Operator =:= <<"lte">>; Operator =:= <<"lt">> ->
-    [{filter, [
-        [<<"dcterms:date">>, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
-        %% For Zotonic resources:
-        [<<"dcterms:date">>, missing]
-    ]}].
+date_filter(Key, Operator, Value, IncludeMissing) when Operator =:= <<"gte">>; Operator =:= <<"gt">>;
+    Operator =:= <<"lte">>; Operator =:= <<"lt">>
+->
+    DateFilter = [Key, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
+    OrFilters = case IncludeMissing of
+        true ->
+            [DateFilter, [Key, missing]];
+        false ->
+            DateFilter
+    end,
+    
+    [{filter, OrFilters}].
 
 %% @doc When the filter date is a year, make sure to include all dates in that
 %%      year.
