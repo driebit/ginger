@@ -50,7 +50,7 @@ $.widget("ui.search_cmp_filter_range", {
     },
 
     setValues: function(values) {
-        let widgetValues;
+        var widgetValues;
 
         try {
             widgetValues = values[this.type];
@@ -96,10 +96,10 @@ $.widget("ui.search_cmp_filter_range", {
             return;
         }
 
-        let facet = facets.period;
+        var facet = facets.period;
 
         if (facet.period_min && facet.period_min.value) {
-            let minDate = new Date(facet.period_min.value),
+            var minDate = new Date(facet.period_min.value),
                 minYear = minDate.getFullYear(),
                 minInput = $(this.inputs[0]);
             this.slider.slider('option', 'min', minYear);
@@ -110,7 +110,7 @@ $.widget("ui.search_cmp_filter_range", {
         }
 
         if (facet.period_max && facet.period_max.value) {
-            let maxDate = new Date(facet.period_max.value),
+            var maxDate = new Date(facet.period_max.value),
                 maxYear = maxDate.getFullYear(),
                 maxInput = $(this.inputs[1]);
             this.slider.slider('option', 'max', maxYear);

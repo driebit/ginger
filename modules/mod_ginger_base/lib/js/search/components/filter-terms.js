@@ -1,6 +1,6 @@
 $.widget('ui.search_cmp_filter_terms', {
     _create: function() {
-        let me = this,
+        var me = this,
             widgetElement = $(me.element);
 
         me.widgetElement = widgetElement;
@@ -17,7 +17,7 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     getValues: function() {
-        let me = this,
+        var me = this,
             inputs = me.widgetElement.find('input:checked'),
             values;
 
@@ -32,7 +32,7 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     setValues: function(values) {
-        let me = this,
+        var me = this,
             widgetValues,
             inputs = me.widgetElement.find('input');
 
@@ -59,7 +59,7 @@ $.widget('ui.search_cmp_filter_terms', {
 
         }
 
-        let facet = this.withSort({
+        var facet = this.withSort({
             'field': this.property,
             'size': 100
         });
@@ -85,15 +85,15 @@ $.widget('ui.search_cmp_filter_terms', {
 
     setFacets: function(facets) {
         if (facets[this.property]) {
-            let localBuckets = facets[this.property].buckets;
-            let globalBuckets = {};
+            var localBuckets = facets[this.property].buckets;
+            var globalBuckets = {};
 
             if (facets[this.property + '_global']) {
                 // Global aggregation: return local counts with the global
                 // buckets
-                let globalBucketCounts = facets[this.property + '_global'].global_term_agg.buckets;
+                var globalBucketCounts = facets[this.property + '_global'].global_term_agg.buckets;
                 globalBuckets = globalBucketCounts.map(function (bucket) {
-                    let matchingLocalBuckets = localBuckets.filter(function (localBucket) {
+                    var matchingLocalBuckets = localBuckets.filter(function (localBucket) {
                         return localBucket.key === bucket.key;
                     });
                     if (matchingLocalBuckets.length > 0) {
