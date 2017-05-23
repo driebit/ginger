@@ -15,7 +15,7 @@
             {% endwith %}
         {% else %}
             <li>
-                {{ item['rdfs:label']|default:item['@id'] }}
+                <a href="{{ item['@id'] }}">{{ item['rdfs:label']|default:item['@id'] }}</a>
             </li>
         {% endif %}
     {% else %}
