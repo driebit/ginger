@@ -67,7 +67,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 200px;
+		height: 200px;
 		overflow: hidden;
 
 		&.no-image {
@@ -141,10 +141,6 @@
 		.list__item__image {
 			height: 230px;
 		}
-
-		.list__item__content {
-			height: 150px;
-		}
 	}
 
 	.list__item__wimpel {
@@ -167,10 +163,6 @@
     .list__item--beeldenzoeker {
         .list__item__image {
             height: 230px;
-        }
-
-        .list__item__content {
-            height: 150px;
         }
     }
 

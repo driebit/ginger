@@ -71,6 +71,8 @@
 		width: 100%;
 		max-width: none;
 		padding: 0;
+        display: flex;
+        flex-wrap: wrap;
 	}
 }
 
@@ -94,7 +96,7 @@
 		padding-bottom: 40px;
 	}
 
-	.beeldenzoeker-home__section-title { 
+	.beeldenzoeker-home__section-title {
 		padding: 40px 0;
 		font-size: 28px;
 	}
