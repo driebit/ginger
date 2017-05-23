@@ -4,18 +4,20 @@
     q.values,
     load_more,
     load_more_items_visible,
-    load_more_length
+    load_more_length,
+    load_more_option
 as
     global_buckets,
     local_buckets,
     values,
     load_more,
     load_more_list_length,
-    load_more_items_length
+    load_more_items_length,
+    load_more_option
 %}
     {% with dynamic|if:local_buckets:global_buckets as buckets %}
-        <ul class="selected-inputs"></ul>
-        <ul class="{{ load_more|if:"do_loadmore":"" }}" data-loadmore-items-length="{{ load_more_items_length }}" data-loadmore-list-length="{{ load_more_list_length }}" data-loadmore-id="{{ target }}">
+        {% if load_more_option %}<ul class="selected-inputs"></ul> {% endif %}
+        <ul class="{{ load_more|if:"do_loadmore":"" }}" data-loadmore-items-length="{{ load_more_items_length }}" data-loadmore-list-length="{{ load_more_list_length }}" data-loadmore-option="{{ load_more_option }}" data-loadmore-id="{{ target }}">
             {% for bucket in buckets %}
                 {% with forloop.counter as i %}
                     <li>

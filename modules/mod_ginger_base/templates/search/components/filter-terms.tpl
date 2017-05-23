@@ -9,6 +9,7 @@
     load_more|default:false,
     load_more_items_visible|default:5,
     load_more_length|default:10,
+    load_more_option,
     dynamic|default:false,
     sort_by_count|default:false,
     options_template|default:"search/components/filter-terms-options.tpl"
@@ -19,6 +20,7 @@ as
     load_more,
     load_more_items_visible,
     load_more_length,
+    load_more_option,
     dynamic,
     sort_by_count,
     options_template
@@ -38,6 +40,7 @@ as
             load_more=load_more
             load_more_items_visible=load_more_items_visible
             load_more_length=load_more_length
+            load_more_option=load_more_option
         }
     %}
 
