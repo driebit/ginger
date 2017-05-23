@@ -21,8 +21,8 @@ as
 
         <div class="search__filters__slider"></div>
         <div class="search__filters__section__inner">
-            <input type="text" name="{{ #search_filter_min }}" placeholder="{{ min_placeholder }}">
-            <input type="text" name="{{ #search_filter_max }}" placeholder="{{ max_placeholder }}">
+            <input type="number" name="{{ #search_filter_min }}" placeholder="{{ min_placeholder }}">
+            <input type="number" name="{{ #search_filter_max }}" placeholder="{{ max_placeholder }}">
         </div>
     </div>
 

@@ -1,13 +1,12 @@
 $.widget("ui.search_cmp_filter_range", {
 
     _create: function() {
-        var me = this,
+        let me = this,
             widgetElement = $(me.element),
             inputs = widgetElement.find('input'),
             timer;
 
         me.widgetElement = widgetElement;
-        me.type = 'period';
         me.property = widgetElement.data('property');
         me.dynamic = widgetElement.data('dynamic');
         me.inputs = inputs;
@@ -40,11 +39,20 @@ $.widget("ui.search_cmp_filter_range", {
     },
 
     getValues: function() {
+        let minValue = Number($(this.inputs[0]).val()),
+            maxValue = Number($(this.inputs[1]).val());
+
+        // Whether to include search results that do not have the property, e.g.
+        // that have no date property.
+        let includeMissing = (minValue === this.slider.slider('option', 'min')
+            && maxValue === this.slider.slider('option', 'max'));
+
         return [{
-            'type': this.type,
+            'type': this.property,
             'values': {
                 'min': $(this.inputs[0]).val(),
-                'max': $(this.inputs[1]).val()
+                'max': $(this.inputs[1]).val(),
+                'include_missing': includeMissing
             }
         }]
     },
@@ -53,7 +61,7 @@ $.widget("ui.search_cmp_filter_range", {
         let widgetValues;
 
         try {
-            widgetValues = values[this.type];
+            widgetValues = values[this.property];
         } catch(e) {}
 
         $(this.inputs[0]).val(widgetValues.min);
@@ -62,16 +70,16 @@ $.widget("ui.search_cmp_filter_range", {
 
     getFacets: function(facets) {
         // Global aggregation that is not influenced by the search query.
-        facets.period = {
+        facets[this.property] = {
             'global': {
                 'aggs': {
-                    'period_min': {
+                    'range_min': {
                         'min': {
                             'field': this.property,
                             'format': 'YYYY'
                         }
                     },
-                    'period_max': {
+                    'range_max': {
                         'max': {
                             'field': this.property,
                             'format': 'YYYY'
@@ -85,21 +93,21 @@ $.widget("ui.search_cmp_filter_range", {
     },
 
     setFacets: function(facets) {
-        // Don't set facets if this filter was the source of the search query.
-        if (!facets.period) {
+        if (!facets[this.property]) {
             return;
         }
 
+        // Don't set facets if this filter was the source of the search query.
         if (this.inputChanged) {
             this.inputChanged = false;
 
             return;
         }
 
-        let facet = facets.period;
+        let facet = facets[this.property];
 
-        if (facet.period_min && facet.period_min.value) {
-            let minDate = new Date(facet.period_min.value),
+        if (facet.range_min && facet.range_min.value) {
+            let minDate = new Date(facet.range_min.value),
                 minYear = minDate.getFullYear(),
                 minInput = $(this.inputs[0]);
             this.slider.slider('option', 'min', minYear);
@@ -109,8 +117,8 @@ $.widget("ui.search_cmp_filter_range", {
             }
         }
 
-        if (facet.period_max && facet.period_max.value) {
-            let maxDate = new Date(facet.period_max.value),
+        if (facet.range_max && facet.range_max.value) {
+            let maxDate = new Date(facet.range_max.value),
                 maxYear = maxDate.getFullYear(),
                 maxInput = $(this.inputs[1]);
             this.slider.slider('option', 'max', maxYear);
