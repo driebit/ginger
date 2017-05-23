@@ -57,7 +57,7 @@
                         <dt>{_ Museum _}</dt>
                         <dd>
                             {% if museum['@id'] %}
-                                <a href="{{ museum['@id'] }}">{{ museum['rdfs:label'] }}</a>
+                                {% include "beeldenzoeker/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label']  %}
                             {% else %}
                                 {{ museum['rdfs:label'] }}
                             {% endif %}
@@ -154,7 +154,7 @@
                 <dt>{_ License _}</dt>
                 <dd>
                     {% if record['dcterms:license'] as license %}
-                        <a href="{{ license }}">CC {{ m.creative_commons[license].label }}</a>
+                        {% include "beeldenzoeker/metadata/meta-link.tpl" href=license content=m.creative_commons[license].label  %}
                     {% elseif record['copyright'] as license %}
                         {{ license }}
                     {% endif %}
