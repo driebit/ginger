@@ -9,8 +9,6 @@ $.widget('ui.search_cmp_filter_terms', {
         me.dynamic = widgetElement.data('dynamic');
         me.sortByCount = widgetElement.data('sort-by-count');
 
-        if(widgetElement.hasClass('search__filters__section--load_more')) { this.loadMore(); }
-
         widgetElement.on('change', function () {
             $(document).trigger('search:inputChanged');
         });
@@ -32,25 +30,7 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     setValues: function(values) {
-        let me = this,
-            widgetValues,
-            inputs = me.widgetElement.find('input');
 
-        try {
-           widgetValues = values[this.property];
-        } catch(e) {}
-
-        $.each(inputs, function(i, input) {
-            $(input).removeAttr('checked');
-        });
-
-        if (widgetValues && widgetValues.length > 0) {
-            $.each(inputs, function(i, input) {
-                if ($.inArray($(input).val(), widgetValues) !== -1) {
-                    $(input).attr('checked', 'checked');
-                }
-            });
-        }
     },
 
     getFacets: function(facets) {
@@ -91,6 +71,7 @@ $.widget('ui.search_cmp_filter_terms', {
             if (facets[this.property + '_global']) {
                 // Global aggregation: return local counts with the global
                 // buckets
+
                 let globalBucketCounts = facets[this.property + '_global'].global_term_agg.buckets;
                 globalBuckets = globalBucketCounts.map(function (bucket) {
                     let matchingLocalBuckets = localBuckets.filter(function (localBucket) {
@@ -126,27 +107,5 @@ $.widget('ui.search_cmp_filter_terms', {
 
         return facet;
     },
-
-    loadMore: function() {
-        var me = this,
-            btn = $(me.element).find('.filter-down-btn'),
-            maxItems = $(me.element).data('load-more-length');
-            counter = 1;
-
-        btn.on('click', function () {
-            listItem = $(me.element).find('li.rest-subject'),
-            counter = counter + maxItems;
-
-            $.each(listItem, function(i , val){
-                if(i < counter) {
-                    $(val).removeClass('hidden');
-                }
-            });
-
-            if(counter + counter > listItem.length) {
-                $(this).hide();
-            }
-        });
-    }
 });
 
