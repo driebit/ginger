@@ -13,7 +13,7 @@
             me.body                = $('body:eq(0)'),
             me.menuButton          = $(me.element.find('#toggle-menu')[0]);
 
-            me.document.on('click touchstart', me._handleDocumentClick.bind(me));
+            me.document.on('click', me._handleDocumentClick.bind(me));
             me.document.on('menu:close', me._closeMenu.bind(me));
 
             if ('ontouchstart' in document.documentElement) {
@@ -45,10 +45,8 @@
             }
         },
 
-
         _handleDocumentClick: function(event) {
-
-            event.stopPropagation(); 
+            event.stopPropagation();
 
             var $target = $(event.originalEvent.target),
                 isOpen = $('.global-nav:eq(0)').hasClass('is-open'),
