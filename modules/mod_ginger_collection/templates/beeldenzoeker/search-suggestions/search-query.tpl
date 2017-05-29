@@ -10,5 +10,5 @@
         search_text,
         pagelen
 %}
-    {% include "beeldenzoeker/search-query-wrapper.tpl" text=search_text %}
+    {% include "beeldenzoeker/search-query-wrapper.tpl" prefix=search_text %}
 {% endwith %}

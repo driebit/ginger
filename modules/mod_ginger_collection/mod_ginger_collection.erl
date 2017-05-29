@@ -78,6 +78,8 @@ observe_search_query(#search_query{}, _Context) ->
     undefined.
 
 %% @doc Boost primary identifier
+observe_elasticsearch_fields({elasticsearch_fields, #{<<"prefix">> := _Prefix}}, Fields, _Context) ->
+    [<<"dcterms:title*^2">> | Fields];
 observe_elasticsearch_fields({elasticsearch_fields, _QueryText}, Fields, _Context) ->
     [
         <<"dcterms:title*^2">>,

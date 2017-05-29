@@ -12,16 +12,16 @@ $.widget("ui.expanditems", {
             itemsExpanded = false,
             button = widgetElement.find('.search__filters__expanditems');
 
-         me.widgetElement = widgetElement;
-         me.inputs = inputs;
-         me.itemsExpanded = itemsExpanded;
-         me.showMax = showMax;
-         me.title = title;
-         me.button = button;
+        me.widgetElement = widgetElement;
+        me.inputs = inputs;
+        me.itemsExpanded = itemsExpanded;
+        me.showMax = showMax;
+        me.title = title;
+        me.button = button;
 
-         button.hide();
+        button.hide();
 
-         if (inputs.size() > showMax) {
+        if (inputs.size() > showMax) {
 
             button.show();
 
@@ -29,7 +29,7 @@ $.widget("ui.expanditems", {
                 me.itemsExpanded = !me.itemsExpanded;
                 me.render();
             });
-         }
+        }
 
         me.render();
 

@@ -208,6 +208,34 @@
     	margin-left: 10px;
     	font-size: 11px;
     }
+
+    .loadmore-selected {
+        float: left;
+        margin-top: 0;
+
+        label {
+            color: #EC1028;
+            cursor: pointer;
+
+            &:before,
+            &:after {
+                display: none !important;
+            }
+
+            &:hover {
+                color: #4ABDAC;
+                text-decoration: underline;
+            }
+
+            span {
+                margin: 0;
+            }
+        }
+    }
+
+    .filter-down-btn {
+        cursor: pointer;
+    }
 }
 
 .search__filters__section--period {

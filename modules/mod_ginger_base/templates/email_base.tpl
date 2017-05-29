@@ -15,7 +15,11 @@
                 <td>
                     <table>
                         <tr>
-                            <td><img src="/lib/images/logo.png" width="150"></td>
+                            <td>
+                                {% block logo %}
+                                    <img src="/lib/images/logo.png" width="150">
+                                {% endblock %}
+                            </td>
                             <td width="20"></td>
                             {# <td style="font-size: 30px; font-weight: bold;">{{ m.config.site.title.value }}</td> #}
                         </tr>

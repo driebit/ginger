@@ -104,13 +104,13 @@
                     </dd>
                 {% endif %}
 
-                {% if record['dcterms:created'] or record['dbo:productionStartYear']
+                {% if record['dcterms:created'] or record['dcterms:date'] or record['dbo:productionStartYear']
                     or record['dbpedia-owl:constructionMaterial'] or record['dbpedia-owl:technique'] %}
                 	<dt>{_ Date _}</dt>
                 	<dd>
                 		{# TODO filter date for friendlier dates #}
                         {% with
-                            record['dbo:productionStartYear']|default:record['dcterms:created']|isodate:"j F Y",
+                            record['dbo:productionStartYear']|default:record['dcterms:created']|default:record['dcterms:date']|isodate:"j F Y",
                             record['dbo:productionEndYear']|isodate:"j F Y"
                         as
                             start,
