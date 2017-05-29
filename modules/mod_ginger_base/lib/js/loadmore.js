@@ -29,7 +29,7 @@ $.widget("ui.loadmore", {
                 }
             });
 
-            if(counter + counter > listItems.length) {
+            if(counter > listItems.length) {
                 $(this).hide();
             }
         });
@@ -44,8 +44,8 @@ $.widget("ui.loadmore", {
                         .prepend(inputs.parent());
 
                 loadmoreOption === 'loose' ?
-                    inputs.parent().show().addClass('loadmore-selected'):
-                    inputs.parent().show();
+                    inputs.parent().removeClass('hidden').addClass('loadmore-selected'):
+                    inputs.parent().removeClass('hidden');
             }
         }
     }
