@@ -104,7 +104,7 @@ $.widget("ui.search_cmp_filter_range", {
             return;
         }
 
-        var facet = facets.[this.property];
+        var facet = facets[this.property];
 
         if (facet.range_min && facet.range_min.value) {
             var minDate = new Date(facet.range_min.value),
@@ -118,7 +118,7 @@ $.widget("ui.search_cmp_filter_range", {
         }
 
         if (facet.range_max && facet.range_max.value) {
-            var maxDate = new Date(facet.period_max.value),
+            var maxDate = new Date(facet.range_max.value),
                 maxYear = maxDate.getFullYear(),
                 maxInput = $(this.inputs[1]);
             this.slider.slider('option', 'max', maxYear);
