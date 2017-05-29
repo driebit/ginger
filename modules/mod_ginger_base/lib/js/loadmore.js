@@ -8,7 +8,7 @@ $.widget("ui.loadmore", {
             maxLoadListLength = $(me.element).data('loadmore-list-length') || 5,
             loadmoreID = $(me.element).data('loadmore-id'),
             loadmoreOption = $(me.element).data('loadmore-option')
-            counter = 0;
+            counter = maxLoadListLength;
 
         $.each(listItems, function(i , val){
             if (i >= maxLoadListLength) {
@@ -16,12 +16,16 @@ $.widget("ui.loadmore", {
             }
         });
 
+
+
         btn.on('click', function () {
             if(listItems.not('.hidden').length === maxLoadListLength) {
-                counter = 0;
+                counter = maxLoadListLength;
             }
 
-            counter = counter + maxLoadItemsLength + maxLoadListLength;
+            console.log(counter);
+
+            counter = counter + maxLoadItemsLength;
 
             $.each(listItems, function(i , val){
                 if(i < counter) {
