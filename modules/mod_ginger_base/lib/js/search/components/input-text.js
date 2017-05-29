@@ -16,7 +16,7 @@ $.widget("ui.search_cmp_input_text", {
         });
 
         if (widgetElement.data('instant')) {
-            let timer = null;
+            var timer = null;
 
             me.widgetElement.on('keyup', function() {
                 if (timer) clearTimeout(timer);
