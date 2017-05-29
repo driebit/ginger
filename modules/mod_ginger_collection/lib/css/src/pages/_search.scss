@@ -368,13 +368,24 @@
 		 	transition: max-height 0.6s;
 		}
 
-		.is-open .do_search_cmp_filters_subjects {
-			overflow: scroll !important;
-		}
-
 		.is-open & {
 			ul {
 				max-height: 1000px !important;
+			}
+		}
+	}
+
+	.search__filters__section--load_more {
+		.filter-down-btn {
+			text-decoration: underline;
+		    cursor: pointer;
+		    margin-top: 10px;
+		    display: block;
+		}
+
+		.is-open {
+			ul {
+				max-height: none !important;
 			}
 		}
 	}

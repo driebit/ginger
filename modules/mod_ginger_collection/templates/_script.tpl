@@ -9,4 +9,5 @@
     "js/search/components/filter-terms.js"
     "js/search/components/filters-subjects.js"
     "js/search/components/filters-subset.js"
+    "js/search/components/filters-load_more.js"
 %}
