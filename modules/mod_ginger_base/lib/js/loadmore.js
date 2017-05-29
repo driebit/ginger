@@ -8,20 +8,24 @@ $.widget("ui.loadmore", {
             maxLoadListLength = $(me.element).data('loadmore-list-length') || 5,
             loadmoreID = $(me.element).data('loadmore-id'),
             loadmoreOption = $(me.element).data('loadmore-option')
-            counter = 1;
+            counter = 0;
 
         $.each(listItems, function(i , val){
             if (i >= maxLoadListLength) {
-                $(val).hide();
+                $(val).addClass('hidden');
             }
         });
 
         btn.on('click', function () {
-            counter = counter + maxLoadItemsLength;
+            if(listItems.not('.hidden').length === maxLoadListLength) {
+                counter = 0;
+            }
+
+            counter = counter + maxLoadItemsLength + maxLoadListLength;
 
             $.each(listItems, function(i , val){
                 if(i < counter) {
-                    $(val).show();
+                    $(val).removeClass('hidden');
                 }
             });
 
