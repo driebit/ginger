@@ -1,7 +1,7 @@
 $.widget("ui.search_cmp_filter_range", {
 
     _create: function() {
-        let me = this,
+        var me = this,
             widgetElement = $(me.element),
             inputs = widgetElement.find('input'),
             timer;
@@ -39,12 +39,12 @@ $.widget("ui.search_cmp_filter_range", {
     },
 
     getValues: function() {
-        let minValue = Number($(this.inputs[0]).val()),
+        var minValue = Number($(this.inputs[0]).val()),
             maxValue = Number($(this.inputs[1]).val());
 
         // Whether to include search results that do not have the property, e.g.
         // that have no date property.
-        let includeMissing = (minValue === this.slider.slider('option', 'min')
+        var includeMissing = (minValue === this.slider.slider('option', 'min')
             && maxValue === this.slider.slider('option', 'max'));
 
         return [{

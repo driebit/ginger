@@ -9,7 +9,7 @@
         %}
             {% with #list ++ forloop.counter as i %}
                 <dl id="do_expand--parent-{{ i }}">
-                    <dt class="do_expand" data-content="do_expand--content-{{ i }}" data-parent="do_expand--parent-{{ i }}">{{ item['rdfs:label'] }}</dt>
+                    <dd class="do_expand" data-content="do_expand--content-{{ i }}" data-parent="do_expand--parent-{{ i }}">{{ item['rdfs:label'] }}</dd>
                     <dd id="do_expand--content-{{ i }}" class="do_expand--content">{{ erfgoedthesaurus_definition.value }} </dd>
                 </dl>
             {% endwith %}
@@ -22,5 +22,5 @@
         {{ item['rdfs:label'] }}
     {% endif %}
     </li>
-{% endfor %}
+    {% endfor %}
 </ul>
