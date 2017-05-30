@@ -75,8 +75,12 @@
 			background: #f7f7f7;
 			background-position: center center;
             background-repeat: no-repeat;
-			background-image: url('/lib/images/adlib-image-fallback.svg');
+			background-image: url('/lib/images/fallback-image.svg');
 		}
+
+        &.no-image-book {
+            background-image: url('/lib/images/fallback-book.svg');
+        }
 	}
 
 	.list__item__content__title {
