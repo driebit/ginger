@@ -36,9 +36,16 @@ $.widget("ui.loadmore", {
             if(counter > listItems.length) {
                 $(this).hide();
             }
+
+            if(loadmoreOption === 'scroll') {
+                $(me.element).height($(me.element).height());
+                listItems.removeClass('hidden');
+                $(me.element).css('overflow-y','scroll');
+                $(this).hide();
+            }
         });
 
-        if(loadmoreOption) {
+        if(loadmoreOption && loadmoreOption !== 'scroll') {
             var inputs = $(me.element).find('input:checked'),
                 listSelector = $('#'+loadmoreID);
 
