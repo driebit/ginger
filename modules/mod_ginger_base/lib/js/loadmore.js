@@ -23,8 +23,6 @@ $.widget("ui.loadmore", {
                 counter = maxLoadListLength;
             }
 
-            console.log(counter);
-
             counter = counter + maxLoadItemsLength;
 
             $.each(listItems, function(i , val){
