@@ -62,7 +62,7 @@ parse_query(_Key, _Value, QueryArgs) ->
 map_facet({Name, [{<<"global">>, Props}]}) ->
     %% Nested global aggregation
     {agg, [Name, Props ++ [{<<"global">>, [{}]}]]};
-map_facet({Name, [{Type, Props}]}) ->
+map_facet({Name, [{Type, Props}]}) when is_list(Props) ->
     {agg, [Name, Type, Props]};
 map_facet({Name, Props}) ->
     map_facet({Name, [{terms, Props}]}).
