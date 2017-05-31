@@ -89,7 +89,7 @@ msgstr "Gebaseerd op deze trefwoorden:"
 msgid "Birth date"
 msgstr "Geboortedatum"
 
-#: user/modules/mod_ginger_base/templates/media/media.image.tpl:32
+#: user/modules/mod_ginger_base/templates/media/media.image.tpl:37
 #: user/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
 #: user/modules/mod_ginger_base/templates/person/person-author.tpl:11
 msgid "By:"
@@ -102,10 +102,6 @@ msgstr "Afmelden"
 #: user/modules/mod_ginger_base/templates/search/components/filters-categories.tpl:3
 msgid "Categories"
 msgstr "Categorieën"
-
-#: user/modules/mod_ginger_base/templates/search/components/filters-terms-options.tpl:27
-msgid "Load more"
-msgstr "Laad meer"
 
 #: user/modules/mod_ginger_base/templates/dialog-language/button-language.tpl:15
 msgid "Choose language"
@@ -125,7 +121,7 @@ msgstr "Copyrights"
 
 #: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:3
 msgid "Dates"
-msgstr ""
+msgstr "Datums"
 
 #: user/modules/mod_ginger_base/templates/date/edit-day.tpl:11
 msgid "Day"
@@ -258,7 +254,7 @@ msgstr ""
 msgid "June"
 msgstr ""
 
-#: user/modules/mod_ginger_base/templates/email_base.tpl:34
+#: user/modules/mod_ginger_base/templates/email_base.tpl:38
 msgid "Kind regards,"
 msgstr "Met vriendelijke groet,"
 
@@ -277,8 +273,12 @@ msgstr "Like"
 msgid "LinkedIn"
 msgstr "Linkedin"
 
-#: user/modules/mod_ginger_base/templates/search/search-list.tpl:4
-#: user/modules/mod_ginger_base/templates/search/search-map.tpl:4
+#: user/modules/mod_ginger_base/templates/search/components/filter-terms-options.tpl:33
+msgid "Load more"
+msgstr "Laad meer"
+
+#: user/modules/mod_ginger_base/templates/search.tpl:37
+#: user/modules/mod_ginger_base/templates/search.tpl:46
 msgid "Loading..."
 msgstr "Laden..."
 
@@ -356,6 +356,7 @@ msgstr "Geen reacties"
 #: user/modules/mod_ginger_base/templates/list/list.tpl:11
 #: user/modules/mod_ginger_base/templates/list/list.tpl:72
 #: user/modules/mod_ginger_base/templates/map/map.tpl:63
+#: user/modules/mod_ginger_base/templates/search/components/filter-terms-options.tpl:35
 msgid "No results"
 msgstr "Geen resultaten"
 
@@ -521,7 +522,7 @@ msgstr "Inleiding"
 msgid "Telephone number"
 msgstr "Telefoonnummer"
 
-#: user/modules/mod_ginger_base/templates/search/components/filter-terms.tpl:8
+#: user/modules/mod_ginger_base/templates/search/components/filter-terms.tpl:7
 msgid "Term"
 msgstr ""
 
@@ -541,7 +542,7 @@ msgstr ""
 msgid "This event is able to accept RSVP."
 msgstr "Bezoekers kunnen zich aanmelden voor dit evenement"
 
-#: user/modules/mod_ginger_base/templates/email_base.tpl:31
+#: user/modules/mod_ginger_base/templates/email_base.tpl:35
 msgid ""
 "This is the base message. When you receive this text then the template "
 "builder did not overrule the <tt>body</tt> block."
@@ -577,7 +578,7 @@ msgstr "Toon alle inkomende relaties"
 msgid "Website"
 msgstr "Website"
 
-#: user/modules/mod_ginger_base/templates/media/media.image.tpl:34
+#: user/modules/mod_ginger_base/templates/media/media.image.tpl:39
 msgid "With:"
 msgstr "Met:"
 
