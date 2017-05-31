@@ -8,6 +8,7 @@ $.widget('ui.search_cmp_filter_terms', {
         me.updateEvent = widgetElement.data('update-event');
         me.dynamic = widgetElement.data('dynamic');
         me.sortByCount = widgetElement.data('sort-by-count');
+        me.size = widgetElement.data('size');
 
         widgetElement.on('change', function () {
             $(document).trigger('search:inputChanged');
@@ -39,10 +40,11 @@ $.widget('ui.search_cmp_filter_terms', {
 
         }
 
-        var facet = this.withSort({
-            'field': this.property,
-            'size': 100
-        });
+        var facet = this.withSize(
+            this.withSort(
+                {'field': this.property}
+            )
+        );
         facets[this.property] = facet;
 
         if (!this.dynamic) {
@@ -96,6 +98,16 @@ $.widget('ui.search_cmp_filter_terms', {
         }
     },
 
+    // Add aggregation size
+    withSize: function (facet) {
+        if (this.size) {
+            facet.size = this.size;
+        }
+
+        return facet;
+    },
+
+    // Add aggregation sort
     withSort: function (facet) {
         if (this.sortByCount) {
             // Sorting by count is the default search order
