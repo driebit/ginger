@@ -15,7 +15,7 @@
             {% endwith %}
         {% else %}
             <li>
-                <a href="{{ item['@id'] }}">{{ item['rdfs:label']|default:item['@id'] }}</a>
+                {% include "beeldenzoeker/metadata/meta-link.tpl" href=item['@id'] content=item['rdfs:label']|default:item['@id']  %}
             </li>
         {% endif %}
     {% else %}
