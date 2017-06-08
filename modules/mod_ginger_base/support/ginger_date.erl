@@ -56,15 +56,16 @@ update_granularity(FormProps) ->
 
 %% @doc Is the property a date granularity property? These properties they have
 %%      a (hidden) input with name="{date_name}_granularity".
-granular_prop(Prop) when is_list(Prop) ->
-    granular_prop(list_to_binary(Prop));
-granular_prop(Prop) ->
+granular_prop(Prop) when is_binary(Prop)->
     case binary:split(Prop, <<"_granularity">>) of
         [DatePropName, <<>>] ->
-            DatePropName;
+            DatePropName,
+            undefined;
         _ ->
             undefined
-    end.
+    end;
+granular_prop(Prop) ->
+    granular_prop(z_convert:to_binary(Prop)).
 
 date_value(Name, Granularity, Props) when is_binary(Name) ->
     date_value(binary_to_list(Name), Granularity, Props);
