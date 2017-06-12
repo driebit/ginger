@@ -59,8 +59,7 @@ update_granularity(FormProps) ->
 granular_prop(Prop) when is_binary(Prop)->
     case binary:split(Prop, <<"_granularity">>) of
         [DatePropName, <<>>] ->
-            DatePropName,
-            undefined;
+            DatePropName;
         _ ->
             undefined
     end;
