@@ -9,7 +9,8 @@
     container|default:"map",
     height,
     panOffsetX|default:0,
-    panOffsetY|default:0
+    panOffsetY|default:0,
+    noresults|default:_"No results"
 as
     scrollwheel,
     blackwhite,
@@ -21,7 +22,8 @@ as
     container,
     height,
     panOffsetX,
-    panOffsetY
+    panOffsetY,
+    noresults
 %}
 
     {% block map %}
@@ -60,9 +62,15 @@ as
 
                ></div>
             {% else %}
-                <p class="no-results">{_ No results _}</p>
-            {% endif %} 
-            
+                {% if noresults %}
+                    {% if noresults == "true" %}
+                        <p class="no-results">{_ No results _}</p>
+                    {% else %}
+                        <p class="no-results">{{ noresults }}</p>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+
 
             {% wire name="map_infobox"
                     action={
