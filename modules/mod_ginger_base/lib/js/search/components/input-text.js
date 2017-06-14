@@ -10,7 +10,7 @@ $.widget("ui.search_cmp_input_text", {
 
         me.widgetElement.keypress(function(event) {
             if (event.keyCode == 13) {
-                var onSeachPage = ($('.do_search_ui'));
+                var onSeachPage = ($('.do_search_ui') < 0);
 
                 if (onSeachPage) {
                     event.preventDefault();
