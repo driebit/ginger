@@ -26,13 +26,11 @@ $.widget("ui.search_ui", {
         inputSearch.focus();
 
         $('.global-search__submit').on('click', function(event) {
-            console.log("fre");
             event.preventDefault();
             $(document).trigger('search:doSearch');
         });
 
         $(document).on('search:inputChanged search:doSearch', function(event, source) {
-            console.log("wewe")
             if (source) {
                 me.source = source;
             } else {
