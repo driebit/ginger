@@ -49,6 +49,8 @@ url_for(<<"CC0">>) ->
     <<"http://creativecommons.org/publicdomain/zero/1.0">>;
 url_for(<<"PD">>) ->
     <<"http://creativecommons.org/publicdomain/mark/1.0">>;
+url_for(<<"CC ", License/binary>>) ->
+    versioned_license(binary:split(License, <<" ">>));
 url_for(_) ->
     undefined.
 
@@ -87,3 +89,10 @@ with_language(Url, Context) ->
         <<"/deed.">>,
         z_convert:to_binary(z_context:language(Context))
     ]).
+
+versioned_license([<<"BY", _/binary>> = Type, Version]) ->
+    <<"http://creativecommons.org/licenses/", Type/binary, "/", Version/binary>>;
+versioned_license([<<"CC0">>, Version]) ->
+    <<"http://creativecommons.org/publicdomain/zero/", Version/binary>>;
+versioned_license([<<"PD">>, Version]) ->
+    <<"http://creativecommons.org/publicdomain/mark/", Version/binary>>.
