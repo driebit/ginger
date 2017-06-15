@@ -150,16 +150,16 @@
                 <dd>{% if record['acquisition.method'] %} {{ record['acquisition.method'] }} {{ record['acquisition.date']|isodate:"j F Y" }}{% endif %}</dd>
             {% endif %}
 
-            {% if record['dcterms:license'] or record['copyright'] %}
-                <dt>{_ License _}</dt>
-                <dd>
-                    {% if record['dcterms:license'] as license %}
-                        {% include "beeldenzoeker/metadata/meta-link.tpl" href=license content=m.creative_commons[license].label  %}
-                    {% elseif record['copyright'] as license %}
-                        {{ license }}
-                    {% endif %}
-                </dd>
-            {% endif %}
+            <dt>{_ License _}</dt>
+            <dd>
+                {% if record['dcterms:license'] as license %}
+                    {% include "beeldenzoeker/metadata/meta-link.tpl" href=license content=m.creative_commons[license].label  %}
+                {% elseif record['copyright'] as license %}
+                    {{ license }}
+                {% else %}
+                    {_ All rights reserved _}
+                {% endif %}
+            </dd>
 
             {% if record['credit_line'] %}
                 <dt>{_ Credit line _}</dt>
