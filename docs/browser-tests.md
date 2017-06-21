@@ -14,7 +14,7 @@ The setup consists of:
   and executes the JavaScript
 - a Nightwatch.js configuration
 - [Cucumber.js](https://github.com/cucumber/cucumber-js) 
-  [step definitions](../../tests/features/step_definitions/) geared towards 
+  [step definitions](../tests/features/step_definitions/) geared towards 
   Ginger sites. 
  
 Writing browser site tests
@@ -33,7 +33,7 @@ Scenario: homepage title
     Then the title is "Welcome to my website!"
 ```
 
-For more information, consult Ginger’s [step definitions](../../tests/features/step_definitions/)
+For more information, consult Ginger’s [step definitions](../tests/features/step_definitions/)
 and the [Cucumber.js docs](https://github.com/cucumber/cucumber-js).
 
 Running your tests
