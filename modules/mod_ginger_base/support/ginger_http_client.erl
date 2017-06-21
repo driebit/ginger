@@ -72,5 +72,7 @@ handle_response(Response, Url) ->
 %% @doc Decode the response based on Content-Type.
 decode({"application/json" ++ _, Body}) ->
     jsx:decode(Body, [return_maps]);
+decode({"application/ld+json" ++ _, Body}) ->
+    jsx:decode(Body, [return_maps]);
 decode({_ContentType, Body}) ->
     Body.
