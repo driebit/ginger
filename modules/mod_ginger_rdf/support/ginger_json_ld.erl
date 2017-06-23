@@ -19,6 +19,8 @@ open_file(File) ->
 %% @doc Deserialize JSON-LD into an RDF resource
 %%      This function has been renamed to deserialize() and is here for BC.
 -spec open(tuple() | list()) -> #rdf_resource{}.
+open(Data) when is_map(Data) ->
+    open(ginger_convert:maps_to_structs(Data));
 open({struct, _Item} = Data) ->
     {_Context, Id, Triples} = read_json(Data),
     #rdf_resource{id = Id, triples = Triples};
@@ -108,21 +110,36 @@ read_graph(Props, Context) ->
         PropsList
     ).
 
-create_triple(Subject, Predicate, {struct, [{<<"@id">>, Id}]}) ->
-    #triple{
-        type = resource,
-        subject = Subject,
-        predicate = Predicate,
-        object = Id
-    };
-create_triple(Subject, Predicate, Object) ->
-    #triple{
-        type = literal,
-        subject = Subject,
-        predicate = Predicate,
-        object = Object
-    }.
+object_value({struct, Props}) ->
+    case proplists:get_value(<<"@id">>, Props) of
+        undefined -> {literal, Props};
+        Id -> {resource, Id}
+    end;
+object_value(Object) when is_list(Object) ->
+    case z_string:is_string(Object) of
+        true -> {literal, Object};
+        false ->
+            {TripleType, _ObjectValue} = object_value(hd(Object)),
+            Values = lists:map(
+                fun(ObjectItem) ->
+                    {_TripleType, ObjectValue} = object_value(ObjectItem),
+                    ObjectValue
+                end,
+                Object
+            ),
+            {TripleType, Values}
+    end;
+object_value(Object) ->
+    {literal, Object}.
 
+create_triple(Subject, Predicate, Object) ->
+    {TripleType, ObjectValue} = object_value(Object),
+    #triple{
+        type = TripleType,
+        subject = Subject,
+        predicate = Predicate,
+        object = ObjectValue
+    }.
 
 %% @doc Serialize an RDF resource into JSON-LD
 -spec serialize(#rdf_resource{}) -> list().
