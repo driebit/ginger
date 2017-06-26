@@ -334,7 +334,16 @@ lookup_triple(title, Triples) ->
     lookup_triples(
         [
             <<"http://purl.org/dc/terms/title">>,
+            <<?NS_RDF_SCHEMA, "label">>,
             <<"http://purl.org/dc/elements/1.1/title">> %% legacy
+        ],
+        Triples
+    );
+lookup_triple(abstract, Triples) ->
+    lookup_triples(
+        [
+            <<?NS_DCTERMS, "abstract">>,
+            <<?NS_DBPEDIA_OWL, "abstract">>
         ],
         Triples
     );
@@ -357,9 +366,10 @@ lookup_triple(thumbnail, Triples) ->
     lookup_triples(
         [
             <<"http://xmlns.com/foaf/0.1/thumbnail">>,
-            <<"http://www.europeana.eu/schemas/edm/isShownBy">>,
+            <<?NS_DBPEDIA_OWL, "thumbnail">>,
             <<"http://schema.org/image">>,
-            <<"http://www.europeana.eu/schemas/edm/object">>
+            <<"http://www.europeana.eu/schemas/edm/object">>,
+            <<"http://www.europeana.eu/schemas/edm/isShownBy">>
         ],
         Triples
     );
