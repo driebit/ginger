@@ -36,12 +36,17 @@
 
 -record(find_links, {id, is_a}).
 
+-record(rdf_value, {
+    value :: term(),
+    language = undefined :: undefined | binary()
+}).
+
 -record(triple, {
     type = literal :: resource | literal,
     subject :: binary(),
     subject_props = [] :: list(),
     predicate :: binary(),
-    object :: binary(),
+    object :: binary() | #rdf_value{},
     object_props = [] :: list()
 }).
 

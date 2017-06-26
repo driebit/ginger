@@ -26,10 +26,11 @@ m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
 m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
-m_find_value(Predicate, #m{value = #rdf_resource{id = _Id, triples = Triples}}, _Context) ->
+m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, _Context) ->
     case lookup_triple(Predicate, Triples) of
         undefined -> undefined;
-        Triple -> Triple#triple.object
+        #triple{object = #rdf_value{value = Value}} -> Value;
+        #triple{object = Object} -> Object
     end.
 
 m_to_list(_, _Context) ->
