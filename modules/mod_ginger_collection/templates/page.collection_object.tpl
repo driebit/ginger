@@ -18,10 +18,7 @@
         <div class="adlib-object__actions">
             <div class="main-container">
                 {% include "beeldenzoeker/share.tpl" record=record %}
-
-                {% if record['dcterms:license'] %}
-                    {% include "beeldenzoeker/depiction.tpl" record=record template="beeldenzoeker/download.tpl" %}
-                {% endif %}
+                {% include "beeldenzoeker/depiction.tpl" record=record template="beeldenzoeker/download.tpl" %}
             </div>
         </div>
         <article class="main-content">
