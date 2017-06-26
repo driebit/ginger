@@ -5,6 +5,8 @@
 -define(NS_DCTERMS, "http://purl.org/dc/terms/").
 -define(NS_DCTYPE, "http://purl.org/dc/dcmitype/").
 -define(NS_VCARD, "http://www.w3.org/2006/vcard/ns#").
+-define(NS_DBPEDIA_OWL, "http://dbpedia.org/ontology/").
+-define(NS_DBPEDIA, "http://dbpedia.org/property/").
 
 -record(rdf_get, {uri}).
 
