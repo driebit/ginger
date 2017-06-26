@@ -82,3 +82,15 @@ IDE integration
   the [Cucumber.js plugin](https://plugins.jetbrains.com/plugin/7418-cucumber-js).
   WebStorm comes bundled with Gherkin support; in IntelliJ you can install the
   [Gherkin plugin](https://plugins.jetbrains.com/plugin/7211-gherkin).
+
+Troubleshooting
+---------------
+
+### Tests fail with driver error
+
+Try to reset the Selenium Docker container:
+
+```bash
+$ docker-compose stop selenium
+$ make test site=yoursite
+```
