@@ -168,9 +168,42 @@ serialize(#rdf_resource{id = Id, triples = Triples}) ->
     %% See https://github.com/zotonic/z_stdlib/pull/14
     z_convert:to_json({struct, Data}).
 
+%% @doc Deserialize a JSON-LD document into an RDF resource.
 -spec deserialize(tuple() | list()) -> #rdf_resource{}.
+deserialize(JsonLd) when is_map(JsonLd) ->
+    maps:fold(fun deserialize/3, #rdf_resource{}, JsonLd);
 deserialize(JsonLd) ->
+    %% Fall back to mochijson {struct, ...} structure
     open(JsonLd).
+
+deserialize(<<"@id">>, Uri, #rdf_resource{} = Acc) ->
+    Acc#rdf_resource{id = Uri};
+deserialize(Predicate, #{<<"@id">> := Uri}, #rdf_resource{} = Acc) ->
+    deserialize(Predicate, Uri, Acc);
+deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc) ->
+    AllTriples = lists:foldl(
+        fun(#{<<"@id">> := _Subject} = Map, ParentAcc) ->
+            #rdf_resource{triples = GraphTriples} = deserialize(Map),
+            lists:merge(GraphTriples, ParentAcc)
+        end,
+        ParentTriples,
+        Triples
+    ),
+    Acc#rdf_resource{triples = AllTriples};
+deserialize(Predicate, Object, #rdf_resource{id = Subject, triples = Triples} = Acc) ->
+    Triple = triple(Subject, Predicate, Object),
+    Acc#rdf_resource{triples = [Triple | Triples]}.
+
+%% @doc Construct a #triple{} record.
+triple(Subject, Predicate, <<"http://", _/binary>> = Object) ->
+    #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
+triple(Subject, Predicate, <<"https://", _/binary>> = Object)  ->
+    #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
+triple(Subject, Predicate, #{<<"@language">> := Language, <<"@value">> := Value}) ->
+    Object = #rdf_value{value = Value, language = Language},
+    #triple{subject = Subject, predicate = Predicate, object = Object};
+triple(Subject, Predicate, Object) ->
+    #triple{subject = Subject, predicate = Predicate, object = Object}.
 
 triple_to_json(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
     {<<"@type">>, Object};
