@@ -19,7 +19,13 @@ defineSupportCode(({Then}) => {
     });
 
     Then(/^I should not see "([^"]*)"$/, (element) => {
-        return client.useCss().waitForElementNotVisible(element);
+        // Either the element doesn't exist in the DOM, or it does and we wait
+        // for it to become invisible.
+        client.elements('css selector', element, (result) => {
+            if (result.value.length > 0) {
+                client.useCss().waitForElementNotVisible(element);
+            }
+        });
     });
 
     Then(/^I should see "([^"]*)"$/, (element) => {
