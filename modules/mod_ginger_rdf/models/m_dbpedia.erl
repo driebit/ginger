@@ -1,0 +1,33 @@
+%% @doc Template model for DBPedia resources.
+-module(m_dbpedia).
+
+-include_lib("zotonic.hrl").
+-include_lib("../include/rdf.hrl").
+
+-behaviour(gen_model).
+
+-export([
+    m_find_value/3,
+    m_to_list/2,
+    m_value/2
+]).
+
+m_find_value(Language, #m{value = undefined} = M, _Context) ->
+    M#m{value = Language};
+m_find_value(Uri, #m{value = Language}, Context) ->
+    get_resource(Uri, Language, Context).
+
+m_to_list(_, _Context) ->
+    ?DEBUG([]).
+
+m_value(#m{value = Uri}, Context) ->
+    get_resource(Uri, Context, nl).
+
+get_resource(Uri, Language, Context) ->
+    z_depcache:memo(
+        fun() ->
+            dbpedia:describe(Uri, Language)
+        end,
+        {Uri, Language},
+        Context
+    ).
