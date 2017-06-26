@@ -12,7 +12,7 @@
 
 -record(rdf_resource, {
     id :: binary(),
-    triples :: list()
+    triples = [] :: list()
 }).
 
 -record(rdf_search, {
