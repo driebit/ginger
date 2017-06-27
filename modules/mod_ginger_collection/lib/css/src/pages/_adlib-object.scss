@@ -1,3 +1,100 @@
+.main-content {
+    header {
+        color: $light-grey;
+
+        @include mq(min-width, $mediumBreakpoint) {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+
+.adlib-object__aside {
+    margin: 1em 3em;
+    font-size: 1em;
+    display: flex;
+
+    h6 {
+        color: $light-grey;
+    }
+
+    a {
+        color: $grey;
+    }
+
+    ul {
+        list-style: none;
+    }
+}
+
+.adlib-object__aside-item {
+    margin-right: 2em;
+    width: calc(33.2% - 2em);
+}
+
+.adlib-object__creator {
+    background-color: #fff;
+    padding: 3em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.adlib-object__creator-image {
+    width: 30%;
+
+    img {
+        width: 100%;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        width: 20%;
+    }
+}
+
+.adlib-object__creator-title {
+    padding-left: 1em;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    h6 {
+        color: $light-grey;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        align-items: flex-start;
+        width: 20%;
+    }
+}
+
+.adlib-object__creator-source {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    h5 {
+        color: $light-grey;
+    }
+}
+
+.adlib-object__creator-body {
+    margin-top: 1em;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding-left: 2em;
+        width: 60%;
+    }
+
+    @include mq(min-width, $largeBreakpoint) {
+        p {
+            max-width: 60%;
+        }
+    }
+}
+
+
 .t--adlib-object {
 	color: $bzSecondaryColor;
 }
