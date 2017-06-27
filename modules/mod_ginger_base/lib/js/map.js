@@ -155,6 +155,9 @@ $.widget( "ui.googlemap", {
 			me.map.fitBounds(clusterBounds);
 		}
 
+
+
+
 	},
 
 	unique: function(list) {
@@ -208,12 +211,18 @@ $.widget( "ui.googlemap", {
 		newCenterPoint = new google.maps.Point(center.x - offsetX/scale, center.y + offsetY/scale),
 		newCenter = me.map.getProjection().fromPointToLatLng(newCenterPoint);
 
+		me.map.set('scrollwheel', false);
+
 	    me.map.panTo(newCenter);
 
 		if (me.infowindow) me.infowindow.close();
 
 		me.infowindow = new InfoBox(ibOptions);
 		me.infowindow.open(me.map, marker);
+
+		google.maps.event.addListener(me.infowindow,'closeclick',function(){
+		   me.map.set('scrollwheel', true);
+		});
 
 	},
 
