@@ -10,3 +10,4 @@ tests/screenshots
 *.mo
 *.pot
 .idea
+.vscode
