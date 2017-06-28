@@ -136,18 +136,18 @@
 	}
 }
 
-.adlib-object__related-header {
+.adlib-object__related-header , .adlib-object__keywords-header {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 2rem 0 3rem;
+    padding: 4rem 0 3rem;
 
     h2 {
         margin: 0 auto;
     }
 
     @include mq(min-width, $mediumBreakpoint) {
-        padding: 6rem 0 4rem;
+        padding: 8rem 0 5rem;
     }
 }
 

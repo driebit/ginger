@@ -2,6 +2,29 @@
     position: absolute;
     right: 2rem;
     bottom: 0;
-    background-color: red;
-    padding: 2rem 2rem;
+    height: 4rem;
+    background-color: #FFF;
+    display: flex;
+    border: 1px solid #EBEBEB;
+    transform: translateY(50%);
+
+    @include mq(min-width, $mediumBreakpoint) {
+        height: 5rem;
+    }
+}
+
+.readmore-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.readmore-arrow {
+    background-color: $secondaryThemeColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 4rem;
 }

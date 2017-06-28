@@ -3,5 +3,8 @@
         <div class="readmore-text">
             {{text}}
         </div>
+        <div class="readmore-arrow">
+            >
+        </div>
     </div>
 </a>

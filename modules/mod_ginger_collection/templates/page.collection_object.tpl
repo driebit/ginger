@@ -126,13 +126,15 @@
         </section>
 
         <section class-"adlib-object__keywords">
-            <h2>Trefwoorden</h2>
+            <div class="adlib-object__keywords-header">
+                <h2>Trefwoorden</h2>
+            </div>
             {% with m.search[{ginger_search query_id=r pagelen=3 page=q.page}] as result %}
                 {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
         </section>
 
-        {% include "beeldenzoeker/record-meta.tpl" record=record %}
+
 
         {% if q.debug %}
             {% print record %}
