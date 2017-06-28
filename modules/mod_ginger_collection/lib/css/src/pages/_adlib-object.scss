@@ -1,4 +1,6 @@
 .main-content {
+    margin-bottom: 0;
+
     header {
         color: $light-grey;
 
@@ -12,7 +14,7 @@
 
 .adlib-object__aside {
     margin: 1em 3em;
-    font-size: 1em;
+    font-size: .875em;
     display: flex;
 
     h6 {
@@ -20,17 +22,32 @@
     }
 
     a {
-        color: $grey;
+        color: $light-grey;
     }
 
     ul {
         list-style: none;
     }
+
+    li {
+        display: inline;
+        margin-right: 1rem;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 3rem;
+    }
 }
 
-.adlib-object__aside-item {
+.adlib-object__aside-item:nth-child(1) {
     margin-right: 2em;
-    width: calc(33.2% - 2em);
+    width: calc(33.2%);
+}
+
+.adlib-object__aside-item:nth-child(2) {
+    width: calc(66.8% - 2em);
 }
 
 .adlib-object__creator {
@@ -38,6 +55,18 @@
     padding: 3em;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+}
+
+.adlib-object__creator-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 2rem;
+	background: #EBEBEB;
+    text-transform: uppercase;
+    margin: 0;
+    color: $mainThemeColor;
 }
 
 .adlib-object__creator-image {
@@ -106,3 +135,21 @@
 		}
 	}
 }
+
+.adlib-object__related-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0 3rem;
+
+    h2 {
+        margin: 0 auto;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 6rem 0 4rem;
+    }
+}
+
+
+

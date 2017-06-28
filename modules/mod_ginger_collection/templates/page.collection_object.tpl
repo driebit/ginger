@@ -76,6 +76,10 @@
 
         <article class="adlib-object__creator">
 
+            <h5 class="adlib-object__creator-label">
+                Vervaardiger
+            </h5>
+
             <section class="adlib-object__creator-image">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Greive-portret.jpg" alt="">
             </section>
@@ -96,20 +100,36 @@
                     Bloemstuk, polychroom; omlijsting: mangaan kader waarbinnen tussen twee gele kaders een mangaan omwikkelde blauwe staaf tussen gele hoekrosetjes. Groot veelkleurig boeket in konische mangaan vaas met gele ornamenten en blauwe oren; veel diverse bloemen w.o. roos, tulp, anemonen en korenaren bovenaan enkele insekten. Gelijmd op multiplex.
                 </p>
             </section>
+
+            <!--
+            In de omschrijving staat hier behalve 'leesmeer' ook 'op www.rkd.nl', ik weet niet of dat er bij moet/handig is
+                    -->
+            {% include "beeldenzoeker/readmore.tpl" url="#" text="Lees meer" class="adlib-object__creator-readmore"%}
+
         </article>
 
-        <section>
-            <h2>Gerelateerd uit de Zuiderzee collectie</h2>
-            <ul>
-                <li></li>
-            </ul>
+        <section class="adlib-object__related">
+            <div class="adlib-object__related-header">
+                <h2>Gerelateerd uit de Zuiderzee collectie</h2>
+            </div>
+
+            {% with
+                sort|default:"-modified",
+                filter|default:[['foaf:depiction.access_rights', '1'], ['_type', 'resource']]
+            as
+                sort,
+                filter
+            %}
+                {% include "beeldenzoeker/search-query-wrapper.tpl" cat="beeldenzoeker_query" sort=sort filter=filter pagelen=9 class="list-carousel" %}
+            {% endwith %}
+
         </section>
 
-        <section>
+        <section class-"adlib-object__keywords">
             <h2>Trefwoorden</h2>
-            <ul>
-                <li></li>
-            </ul>
+            {% with m.search[{ginger_search query_id=r pagelen=3 page=q.page}] as result %}
+                {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+            {% endwith %}
         </section>
 
         {% include "beeldenzoeker/record-meta.tpl" record=record %}
