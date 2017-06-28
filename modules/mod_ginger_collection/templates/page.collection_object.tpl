@@ -102,7 +102,7 @@
             </section>
 
             <!--
-            In de omschrijving staat hier behalve 'leesmeer' ook 'op www.rkd.nl', ik weet niet of dat er bij moet/handig is
+            In het design staat hier behalve 'leesmeer' ook 'op www.rkd.nl', ik weet niet of dat er bij moet/handig is.
                     -->
             {% include "beeldenzoeker/readmore.tpl" url="#" text="Lees meer" class="adlib-object__creator-readmore"%}
 
@@ -113,15 +113,21 @@
                 <h2>Gerelateerd uit de Zuiderzee collectie</h2>
             </div>
 
-            {% with
-                sort|default:"-modified",
-                filter|default:[['foaf:depiction.access_rights', '1'], ['_type', 'resource']]
-            as
-                sort,
-                filter
-            %}
-                {% include "beeldenzoeker/search-query-wrapper.tpl" cat="beeldenzoeker_query" sort=sort filter=filter pagelen=9 class="list-carousel" %}
-            {% endwith %}
+            <div class="adlib-object__related-carousel">
+
+                {% with
+                    index|default:m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value,
+                    results_template|default:"list/list.tpl",
+                    cat|default:['beeldenzoeker_query']
+                    as
+                        index,
+                        results_template,
+                        cat
+                    %}
+                    {% include "beeldenzoeker/search-query.tpl" custom_list_template="list/list-item-carousel.tpl" index=index class="list-carousel" query_id=query_id %}
+                {% endwith %}
+
+            </div>
 
         </section>
 
@@ -129,12 +135,13 @@
             <div class="adlib-object__keywords-header">
                 <h2>Trefwoorden</h2>
             </div>
-            {% with m.search[{ginger_search query_id=r pagelen=3 page=q.page}] as result %}
+
+
+
+            {% with m.search[{ginger_search query_id=r pagelen=6 page=q.page}] as result %}
                 {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
             {% endwith %}
         </section>
-
-
 
         {% if q.debug %}
             {% print record %}
