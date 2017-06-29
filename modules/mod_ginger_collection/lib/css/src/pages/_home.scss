@@ -59,6 +59,7 @@
 .beeldenzoeker-home__collections {
 	padding-bottom: 20px;
 	background: darken($white, 6%);
+    overflow: hidden;
 
 	.list__item--beeldenzoeker,
 	.list__item__content {
@@ -94,7 +95,7 @@
 		padding-bottom: 40px;
 	}
 
-	.beeldenzoeker-home__section-title { 
+	.beeldenzoeker-home__section-title {
 		padding: 40px 0;
 		font-size: 28px;
 	}

@@ -16,6 +16,7 @@
     margin: 1em 3em;
     font-size: .875em;
     display: flex;
+    align-items: flex-start;
 
     h6 {
         color: $light-grey;
@@ -37,7 +38,7 @@
     @include mq(min-width, $mediumBreakpoint) {
         max-width: 72rem;
         margin: 0 auto;
-        padding: 3rem;
+        padding: 2rem 3rem;
     }
 }
 
@@ -147,6 +148,7 @@
 
 .adlib-object__related-carousel {
     position: relative;
+    overflow: hidden;
 }
 
 .adlib-object__keywords {

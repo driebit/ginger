@@ -1,5 +1,5 @@
 .adlib-description__inner {
-	display: none;	
+	display: none;
 	padding-top: 1em;
 }
 
@@ -18,6 +18,30 @@
 
 	&.is-open {
 		&:before {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.adlib-meta__inner {
+	display: none;
+}
+
+.adlib-meta__expand {
+    padding: 0;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+
+	&:after {
+		@extend .has-icon;
+		@extend .icon--arrow-down:before;
+		font-size: 10px;
+		margin-right: 10px;
+	}
+
+	&.is-open {
+		&:after {
 			transform: rotate(180deg);
 		}
 	}

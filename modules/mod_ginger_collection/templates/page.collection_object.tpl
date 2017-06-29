@@ -72,7 +72,14 @@
                     <li><a href="">Zuiderzee</a></li>
                 </ul>
             </div>
+            <h6 class="adlib-meta__expand do_expand" data-parent="adlib-meta" data-content="adlib-meta-inner">Meer informatie</h6>
         </aside>
+
+        <div id="adlib-meta" class="adlib-meta">
+            <div id="adlib-meta-inner" class="adlib-meta__inner">
+                {% include "beeldenzoeker/record-meta.tpl" record=record %}
+            </div>
+        </div>
 
         <article class="adlib-object__creator">
 

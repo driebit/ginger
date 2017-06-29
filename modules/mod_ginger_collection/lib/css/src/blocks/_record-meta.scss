@@ -1,10 +1,11 @@
 .adlib-object__meta {
-	padding: 40px 0;
-	margin: 40px 0 0;
-	background: darken($white, 6%);
-
 	.main-container {
 		max-width: 720px;
+        padding: 0 2rem;
+
+        @include mq(min-width, $mediumBreakpoint) {
+            padding: 0 3rem;
+        }
 	}
 
 	.map--location {
@@ -14,8 +15,8 @@
 }
 
 .adlib-object__meta__row {
-	padding: 20px 0;
-	border-top: 1px solid darken($white, 10%);
+	padding: .5rem 0;
+	border-top: 1px solid #ccc;
 
 	&.first {
 		border-top: 0;
@@ -26,6 +27,11 @@
 			display: block;
 		}
 	}
+
+    @include mq(min-width, $mediumBreakpoint) {
+	    display: flex;
+        padding: 1.5rem 0;
+    }
 }
 
 .adlib-object__meta__title {
@@ -33,6 +39,11 @@
 	font-size: 14px;
 	font-weight: 700;
 	font-family: $secondaryFontFamily;
+
+    @include mq(min-width, $mediumBreakpoint) {
+		width: 40%;
+		font-size: 16px;
+	}
 }
 
 .adlib-object__meta__data {
@@ -48,6 +59,10 @@
 	ul, ol {
 		list-style: none;
 	}
+
+    dl {
+        margin-bottom: 0;
+    }
 }
 
 dl.adlib-object__meta__data {
@@ -62,6 +77,12 @@ dl.adlib-object__meta__data {
 	dd {
 		width: 60%;
 	}
+
+    @include mq(min-width, $mediumBreakpoint) {
+    	.adlib-object__meta__data {
+		    width: 60%;
+	    }
+    }
 }
 
 .adlib-object__meta__row--map {
@@ -93,20 +114,5 @@ dl.adlib-object__meta__data {
 	    overflow-y: scroll;
 	    background-color: white;
 	    text-align: center;
-	}
-}
-
-@include mq(min-width, $mediumBreakpoint) {
-	.adlib-object__meta__row {
-		display: flex;
-	}
-
-	.adlib-object__meta__title {
-		width: 40%;
-		font-size: 16px;
-	}
-
-	.adlib-object__meta__data {
-		width: 60%;
 	}
 }
