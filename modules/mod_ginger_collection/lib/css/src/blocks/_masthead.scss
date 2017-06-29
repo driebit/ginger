@@ -6,7 +6,7 @@
 	left: 0px;
 	overflow: hidden;
 
-	&.no-image {
+	.no-image {
 		height: 200px;
 		background: darken($white, 8%);
 		background: repeating-linear-gradient(45deg, darken($white, 10%), darken($white, 6%) 10%, darken($white, 6%) 10%, darken($white, 6%) 50%, darken($white, 6%) 50%) top left fixed;

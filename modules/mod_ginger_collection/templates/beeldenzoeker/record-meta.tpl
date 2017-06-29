@@ -1,9 +1,9 @@
 <div class="adlib-object__meta">
 	<div class="main-container">
         <div class="adlib-object__meta__row first">
-	        <div class="adlib-object__meta__title">
+	        <h6 class="adlib-object__meta__title">
 	            {_ Identification _}
-	        </div>
+	        </h6>
 	        <dl class="adlib-object__meta__data">
 	        	<dt>{_ Title _}</dt>
 	        	<dd>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
@@ -42,9 +42,9 @@
         {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
             or record['schema:width'] or record['schema:height'] or ['foaf:document'] %}
             <div class="adlib-object__meta__row">
-                <div class="adlib-object__meta__title">
+                <h6 class="adlib-object__meta__title">
                     {_ Work _}
-                </div>
+                </h6>
                 <dl class="adlib-object__meta__data">
                     {% include "beeldenzoeker/metadata/dimensions.tpl" %}
 
@@ -79,9 +79,9 @@
         {% endif %}
 
         <div class="adlib-object__meta__row">
-	        <div class="adlib-object__meta__title">
+	        <h6 class="adlib-object__meta__title">
 	            {_ Manufacture _}
-	        </div>
+	        </h6>
 	        <dl class="adlib-object__meta__data">
                 {% if record['dcterms:creator'] as creators %}
                     <dt>{_ Creator _}</dt>
@@ -141,9 +141,9 @@
         {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         <div class="adlib-object__meta__row">
-            <div class="adlib-object__meta__title">
+            <h6 class="adlib-object__meta__title">
                 {_ Acquisition & License _}
-            </div>
+            </h6>
             <dl class="adlib-object__meta__data">
             {% if record['acquisition.date'] %}
                 <dt>{_ Acquired _}</dt>
@@ -172,9 +172,9 @@
 
 	    {% if record.uri as uri %}
 		    <div class="adlib-object__meta__row">
-		        <div class="adlib-object__meta__title">
+		        <h6 class="adlib-object__meta__title">
 		            {_ Sustainable web address _}
-		        </div>
+		        </h6>
 		        <div class="adlib-object__meta__data">
 	                {_ If you want to refer this object then use this URL _}
 	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
@@ -183,9 +183,9 @@
 		{% endif %}
         {% if m.acl.is_allowed.view.internal_adlib_content %}
             <div class="adlib-object__meta__row last">
-                <div class="adlib-object__meta__title">
+                <h6 class="adlib-object__meta__title">
                     {_ Internal _}
-                </div>
+                </h6>
                 <dl class="adlib-object__meta__data">
                     {% optional include "collection/metadata/internal.tpl" %}
                     {% if record['@attributes']['modification'] as notes %}

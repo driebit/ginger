@@ -3,8 +3,9 @@
 	align-items: center;
 	height: 40px;
 	padding: 0 15px;
-	border: 1px solid $white;
-	background: none;
+    border: 0;
+	background: darken($blue, 5%);
+    border-radius: .25rem;
 	color: $white;
 	font-size: 14px;
 	line-height: 1;
@@ -15,7 +16,7 @@
 	&:active:focus {
 		text-decoration: none;
 		color: $white;
-		border-color: rgba($white, 0.8);
+        background: darken($blue, 7.5%);
 	}
 }
 

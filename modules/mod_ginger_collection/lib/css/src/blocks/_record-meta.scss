@@ -1,4 +1,6 @@
 .adlib-object__meta {
+    color: $light-grey;
+
 	.main-container {
 		max-width: 720px;
         padding: 0 2rem;
@@ -36,13 +38,9 @@
 
 .adlib-object__meta__title {
 	margin: 0 0 15px;
-	font-size: 14px;
-	font-weight: 700;
-	font-family: $secondaryFontFamily;
 
     @include mq(min-width, $mediumBreakpoint) {
 		width: 40%;
-		font-size: 16px;
 	}
 }
 

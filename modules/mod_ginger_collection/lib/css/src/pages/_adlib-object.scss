@@ -12,6 +12,10 @@
         padding: 0 4rem;
     }
 
+    p {
+        padding-bottom: 2rem;
+    }
+
     header {
         color: $light-grey;
         padding: 2rem 4rem;
@@ -147,9 +151,7 @@
     @include mq(min-width, $mediumBreakpoint) {
         padding-left: 2em;
         width: 50%;
-    }
 
-    @include mq(min-width, $largeBreakpoint) {
         p {
             max-width: 550px;
         }
