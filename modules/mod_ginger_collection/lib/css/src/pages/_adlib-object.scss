@@ -58,7 +58,7 @@
     position: relative;
 }
 
-.adlib-object__creator-label {
+.adlib-object__section-label {
     position: absolute;
     left: 0;
     top: 0;
@@ -67,6 +67,7 @@
     text-transform: uppercase;
     margin: 0;
     color: $mainThemeColor;
+    z-index: 99999;
 }
 
 .adlib-object__creator-image {
@@ -136,11 +137,31 @@
 	}
 }
 
+.adlib-object__related {
+    padding: 4rem 0 0;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 7rem 0 0;
+    }
+}
+
+.adlib-object__related-carousel {
+    position: relative;
+}
+
+.adlib-object__keywords {
+    padding: 4rem 0;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 7rem 0;
+    }
+}
+
 .adlib-object__related-header , .adlib-object__keywords-header {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 4rem 0 3rem;
+    padding: 0 2rem 3rem;
 
     h2 {
         color: $light-grey;
@@ -148,7 +169,7 @@
     }
 
     @include mq(min-width, $mediumBreakpoint) {
-        padding: 8rem 0 5rem;
+        padding-bottom: 4rem;
     }
 }
 

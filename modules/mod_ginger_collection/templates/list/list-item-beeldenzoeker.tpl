@@ -27,5 +27,6 @@
                 {% endblock %}
             </div>
         </a>
+        {% include "beeldenzoeker/readmore.tpl" url="#" text="Lees meer" class="list-item_readmore"%}
     </li>
 {% endwith %}

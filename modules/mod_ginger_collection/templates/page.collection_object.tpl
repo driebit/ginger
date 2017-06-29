@@ -76,7 +76,7 @@
 
         <article class="adlib-object__creator">
 
-            <h5 class="adlib-object__creator-label">
+            <h5 class="adlib-object__section-label">
                 Vervaardiger
             </h5>
 
@@ -115,6 +115,10 @@
 
             <div class="adlib-object__related-carousel">
 
+                <h5 class="adlib-object__section-label">
+                    Gerelateerd
+                </h5>
+
                 {% with
                     index|default:m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value,
                     results_template|default:"list/list.tpl",
@@ -131,7 +135,7 @@
 
         </section>
 
-        <section class-"adlib-object__keywords">
+        <section class="adlib-object__keywords">
             <div class="adlib-object__keywords-header">
                 <h2>Trefwoorden</h2>
             </div>

@@ -4,7 +4,7 @@
             {{text}}
         </div>
         <div class="readmore-arrow">
-            >
+            <div class="collection-icon arrow-right"></div>
         </div>
     </div>
 </a>
