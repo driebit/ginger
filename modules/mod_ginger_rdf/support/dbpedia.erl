@@ -15,8 +15,8 @@ describe(Resource) when is_list(Resource) ->
 describe(<<"http://", _/binary>> = Resource) ->
     describe(Resource, <<>>).
 
-describe(Resource, Language) when is_list(Resource); not is_binary(Language) ->
-    describe(list_to_binary(Resource), z_convert:to_binary(Language));
 describe(<<"http://", _/binary>> = Resource, Language) when Language =:= <<"nl">>; Language =:= <<>> ->
     Endpoint = binary:replace(?SPARQL_ENDPOINT, <<"{lang}.">>, <<Language/binary, ".">>),
-    sparql_client:describe(Endpoint, Resource).
+    sparql_client:describe(Endpoint, Resource);
+describe(Resource, Language) when not is_list(Resource); not is_binary(Language) ->
+    describe(z_convert:to_binary(Resource), z_convert:to_binary(Language)).
