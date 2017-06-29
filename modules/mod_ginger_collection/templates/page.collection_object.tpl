@@ -21,7 +21,7 @@
                 {% include "beeldenzoeker/depiction.tpl" record=record template="beeldenzoeker/download.tpl" %}
             </div>
         </div>
-        <article class="main-content">
+        <article class="adlib-object__description">
             <header>
                 <h6>Datering <span>1852 - 1891</span></h6>
                 <h6>Vervaardiger <a href="">Johan Conrad Greive</a></h6>
@@ -47,7 +47,9 @@
                 {% if record['dcterms:description'] as body %}
                     {% if body|length > 400 %}
                         <div id="adlib-desc" class="adlib-description">
-                            <h3 class="adlib-description__expand do_expand" data-parent="adlib-desc" data-content="adlib-desc-inner">{_ Detailed description _}</h3>
+                            <div class="adlib-description-readmore">
+                                <h6 class="adlib-description__expand do_expand" data-parent="adlib-desc" data-content="adlib-desc-inner">{_ Detailed description _}</h6>
+                            </div>
                             <div id="adlib-desc-inner" class="adlib-description__inner">
                                 <p>{{ body }}</p>
                             </div>

@@ -1,10 +1,10 @@
 .adlib-description__inner {
 	display: none;
-	padding-top: 1em;
+	padding: 1em 0;
 }
 
+
 .adlib-description__expand {
-	@extend .section-title;
 	display: flex;
 	align-items: center;
 	cursor: pointer;
