@@ -7,7 +7,8 @@
     year/1,
     to_list/1,
     to_labelled_list/1,
-    extract_values/1
+    extract_values/1,
+    parse_name/1
 ]).
 
 -include_lib("zotonic.hrl").
