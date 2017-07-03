@@ -10,11 +10,15 @@
 -include_lib("zotonic.hrl").
 
 -export([
+    init/1,
     manage_schema/2,
     observe_search_query/2,
     observe_acl_is_allowed/2,
     observe_elasticsearch_fields/3
 ]).
+
+init(Context) ->
+    elasticsearch_index(Context).
 
 manage_schema(_, Context) ->
     elasticsearch_index(Context),
