@@ -22,7 +22,6 @@ query(Endpoint, Query) ->
             decode(Map)
     end.
 
-%% Graph containing a
 decode(#{<<"@graph">> := _} = Data) ->
     ginger_json_ld:deserialize(Data).
 
