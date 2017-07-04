@@ -18,7 +18,7 @@ m_find_value(Uri, #m{value = Language}, Context) ->
     get_resource(Uri, Language, Context).
 
 m_to_list(_, _Context) ->
-    ?DEBUG([]).
+    [].
 
 m_value(#m{value = Uri}, Context) ->
     get_resource(Uri, Context, nl).
