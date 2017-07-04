@@ -62,6 +62,10 @@ read_json([{Predicate, Object}|Properties], Id, Context, Triples) ->
 
 %% @doc Resolve a predicate's namespace
 -spec resolve_predicate(binary(), list()) -> binary() | undefined.
+resolve_predicate(<<"http://", _/binary>> = Predicate, _Context) ->
+    Predicate;
+resolve_predicate(<<"https://", _/binary>> = Predicate, _Context) ->
+    Predicate;
 resolve_predicate(Predicate, Context) ->
     case binary:split(Predicate, <<":">>) of
         [Namespace, Property] ->
@@ -183,7 +187,7 @@ deserialize(JsonLd) when is_map(JsonLd) ->
             deserialize(Key, Value, Acc, Context)
         end,
         #rdf_resource{},
-        JsonLd
+        maps:remove(<<"@context">>, JsonLd)
     );
 deserialize(JsonLd) ->
     %% Fall back to mochijson {struct, ...} structure
@@ -204,7 +208,7 @@ deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc,
     ),
     Acc#rdf_resource{triples = AllTriples};
 deserialize(Predicate, Objects, #rdf_resource{id = Subject, triples = Triples} = Acc, Context) ->
-    NewTriples = [triple(Subject, Predicate, Object, Context) || Object <- list(Objects)],
+    NewTriples = [triple(Subject, resolve_predicate(Predicate, Context), Object) || Object <- list(Objects)],
     Acc#rdf_resource{triples = Triples ++ NewTriples}.
 
 list(Object) when is_list(Object) ->
@@ -213,26 +217,17 @@ list(Object) ->
     [Object].
     
 %% @doc Construct a #triple{} record.
--spec triple(binary(), binary(), binary() | map(), map()) -> #triple{}.
-triple(Subject, <<"http://", _binary>> = Predicate, Object, _Context) ->
-    triple_resolved(Subject, Predicate, Object);
-triple(Subject, <<"https://", _binary>> = Predicate, Object, _Context) ->
-    triple_resolved(Subject, Predicate, Object);
-triple(Subject, Predicate, Object, Context) ->
-    triple_resolved(Subject, resolve_predicate(Predicate, Context), Object).
-
-triple_resolved(Subject, Predicate, <<"http://", _/binary>> = Object) ->
+-spec triple(binary(), binary(), binary()) -> #triple{}.
+triple(Subject, Predicate, <<"http://", _/binary>> = Object) ->
     #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
-triple_resolved(Subject, Predicate, <<"https://", _/binary>> = Object)  ->
+triple(Subject, Predicate, <<"https://", _/binary>> = Object)  ->
     #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
-triple_resolved(Subject, Predicate, #{<<"@id">> := Uri} = Object) ->
-    #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
-triple_resolved(Subject, Predicate, <<"https://", _/binary>> = Object)  ->
-    #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
-triple_resolved(Subject, Predicate, #{<<"@language">> := Language, <<"@value">> := Value}) ->
+triple(Subject, Predicate, #{<<"@id">> := Uri}) ->
+    #triple{type = resource, subject = Subject, predicate = Predicate, object = Uri};
+triple(Subject, Predicate, #{<<"@language">> := Language, <<"@value">> := Value}) ->
     Object = #rdf_value{value = Value, language = Language},
     #triple{subject = Subject, predicate = Predicate, object = Object};
-triple_resolved(Subject, Predicate, Object) ->
+triple(Subject, Predicate, Object) ->
     #triple{subject = Subject, predicate = Predicate, object = Object}.
 
 triple_to_json(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
