@@ -6,6 +6,7 @@
 ]).
 
 -include_lib("zotonic.hrl").
+-include_lib("mod_ginger_rdf/include/rdf.hrl").
 
 %% @doc Parse Zotonic search query arguments and return Elastic query arguments.
 -spec parse_query(list() | binary(), binary(), proplists:proplist()) -> proplists:proplist().
@@ -54,10 +55,13 @@ parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"d
         ++ date_filter(Key, <<"lte">>, proplists:get_value(<<"max">>, Range), IncludeMissing);
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
+parse_query(related_to, Record, QueryArgs) ->
+    OrFilters = map_related_to(Record),
+    [{filter, OrFilters} | QueryArgs];
 parse_query(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
-parse_query(_Key, _Value, QueryArgs) ->
-    QueryArgs.
+parse_query(Key, Value, QueryArgs) ->
+    [{Key, Value} | QueryArgs].
 
 map_facet({Name, [{<<"global">>, Props}]}) ->
     %% Nested global aggregation
@@ -72,6 +76,31 @@ map_edge(<<"depiction">>) ->
     {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
 map_edge(_) ->
     false.
+
+map_related_to(Object) when is_map(Object) ->
+    ObjectWithContext = Object#{<<"@context">> => #{
+        <<"schema">> => ?NS_SCHEMA_ORG,
+        <<"dcterms">> => ?NS_DCTERMS,
+        <<"dbpedia-owl">> => ?NS_DBPEDIA_OWL,
+        <<"dbo">> => ?NS_DBPEDIA_OWL,
+        <<"foaf">> => ?NS_FOAF,
+        <<"rdf">> => ?NS_RDF
+    }},
+    #rdf_resource{triples = Triples} = ginger_json_ld:deserialize(ObjectWithContext),
+    lists:foldl(fun map_related_to_property/2, [], Triples).
+    
+map_related_to_property(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}, Filters) ->
+    [
+        [<<"rdf:type.@id.keyword">>, Object],
+        [<<"dcterms:subject.@id.keyword">>, Object]
+        | Filters
+    ];
+map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "creator">>, type = resource, object = Object}, Filters) ->
+    [[<<"dcterms:creator.@id.keyword">>, '=', Object, #{<<"path">> => <<"dcterms:creator">>}] | Filters];
+map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "spatial">>, type = resource, object = Object}, Filters) ->
+    [[<<"dcterms:spatial.@id.keyword">>, Object] | Filters];
+map_related_to_property(#triple{}, QueryArgs) ->
+    QueryArgs.
 
 date_filter(_Key, _Operator, <<>>, _IncludeMissing) ->
     [];

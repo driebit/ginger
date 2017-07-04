@@ -4,7 +4,7 @@
 -mod_title("Linked data collections").
 -mod_description("Linked data and media collection view and search interface powered by Elasticsearch").
 -mod_prio(200).
--mod_depends([mod_ginger_base, mod_elasticsearch]).
+-mod_depends([mod_ginger_base, mod_elasticsearch, mod_ginger_rdf]).
 -mod_schema(6).
 
 -include_lib("zotonic.hrl").
@@ -61,8 +61,8 @@ observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Cont
         fun({Key, Value}, Acc) ->
             beeldenzoeker_query:parse_query(Key, Value, Acc)
         end,
-        Args,
-        z_context:get_q_all_noz(Context)
+        [],
+        lists:merge(Args, z_context:get_q_all_noz(Context))
     ),
     
     ElasticQuery = Query#search_query{search = {elastic, Args2}},
