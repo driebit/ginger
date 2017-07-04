@@ -8,6 +8,7 @@
 -define(NS_VCARD, "http://www.w3.org/2006/vcard/ns#").
 -define(NS_DBPEDIA_OWL, "http://dbpedia.org/ontology/").
 -define(NS_DBPEDIA, "http://dbpedia.org/property/").
+-define(NS_SCHEMA_ORG, "http://schema.org/").
 
 -record(rdf_get, {uri}).
 
