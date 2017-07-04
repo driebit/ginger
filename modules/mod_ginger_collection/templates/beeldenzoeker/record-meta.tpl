@@ -1,9 +1,9 @@
 <div class="adlib-object__meta">
 	<div class="main-container">
         <div class="adlib-object__meta__row first">
-	        <div class="adlib-object__meta__title">
+	        <h6 class="adlib-object__meta__title">
 	            {_ Identification _}
-	        </div>
+	        </h6>
 	        <dl class="adlib-object__meta__data">
 	        	<dt>{_ Title _}</dt>
 	        	<dd>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
@@ -39,12 +39,12 @@
 	            {% endif %}
 	        </dl>
 	    </div>
-        {% if record['dcterms:language'] or record['dbpedia-owl:museum'] or record['dce:publisher']
+        {% if record['dcterms:language'] or record['dce:publisher']
             or record['schema:width'] or record['schema:height'] or ['foaf:document'] %}
             <div class="adlib-object__meta__row">
-                <div class="adlib-object__meta__title">
+                <h6 class="adlib-object__meta__title">
                     {_ Work _}
-                </div>
+                </h6>
                 <dl class="adlib-object__meta__data">
                     {% include "beeldenzoeker/metadata/dimensions.tpl" %}
 
@@ -83,41 +83,18 @@
 	            {_ Manufacture _}
 	        </div>
 	        <dl class="adlib-object__meta__data">
-                {% if record['dcterms:creator'] as creators %}
+                {% if record['dcterms:creator'] %}
                     <dt>{_ Creator _}</dt>
                     <dd>
-                        <ol>
-                            {% for creator in creators %}
-                                <li>
-                                    {% if creator['@id'] %}<a href="{{ creator['@id'] }}">{% endif %}
-                                    {% if creator['qualifier'] %}
-                                        ({{ creator['qualifier'] }})
-                                    {% endif %}
-                                    {{ creator['rdfs:label'] }}
-                                    {% if creator['role'] %}
-                                        ({{ creator['role'] }})
-                                    {% endif %}
-                                    {% if creator['@id'] %}</a>{% endif %}
-                                </li>
-                            {% endfor %}
-                        </ol>
+                        {% include "collection/metadata/creators.tpl" %}
                     </dd>
                 {% endif %}
 
                 {% if record['dcterms:created'] or record['dcterms:date'] or record['dbo:productionStartYear']
                     or record['dbpedia-owl:constructionMaterial'] or record['dbpedia-owl:technique'] %}
-                	<dt>{_ Date _}</dt>
+                	<dt>{_ Dating _}</dt>
                 	<dd>
-                		{# TODO filter date for friendlier dates #}
-                        {% with
-                            record['dbo:productionStartYear']|default:record['dcterms:created']|default:record['dcterms:date']|isodate:"j F Y",
-                            record['dbo:productionEndYear']|isodate:"j F Y"
-                        as
-                            start,
-                            end
-                        %}
-                            {{ start }}{% if end and end != start %} – {{ end }}{% endif %}
-                        {% endwith %}
+                        {% include "collection/metadata/date.tpl" %}
                 	</dd>
                 {% endif %}
 
@@ -141,9 +118,9 @@
         {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         <div class="adlib-object__meta__row">
-            <div class="adlib-object__meta__title">
+            <h6 class="adlib-object__meta__title">
                 {_ Acquisition & License _}
-            </div>
+            </h6>
             <dl class="adlib-object__meta__data">
             {% if record['acquisition.date'] %}
                 <dt>{_ Acquired _}</dt>
@@ -172,9 +149,9 @@
 
 	    {% if record.uri as uri %}
 		    <div class="adlib-object__meta__row">
-		        <div class="adlib-object__meta__title">
+		        <h6 class="adlib-object__meta__title">
 		            {_ Sustainable web address _}
-		        </div>
+		        </h6>
 		        <div class="adlib-object__meta__data">
 	                {_ If you want to refer this object then use this URL _}
 	                <a href="{{ uri }}" target="_blank">{{ uri }} <i class="icon--external"></i></a>
@@ -183,9 +160,9 @@
 		{% endif %}
         {% if m.acl.is_allowed.view.internal_adlib_content %}
             <div class="adlib-object__meta__row last">
-                <div class="adlib-object__meta__title">
+                <h6 class="adlib-object__meta__title">
                     {_ Internal _}
-                </div>
+                </h6>
                 <dl class="adlib-object__meta__data">
                     {% optional include "collection/metadata/internal.tpl" %}
                     {% if record['@attributes']['modification'] as notes %}

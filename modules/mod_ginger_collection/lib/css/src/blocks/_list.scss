@@ -15,10 +15,25 @@
 .list-carousel {
 	margin: 0;
 
+    small {
+        margin-bottom: 1rem;
+        display: block;
+        color: $grey;
+    }
+
 	.list__item {
 		width: 100%;
 		max-width: 400px;
+
+        @include mq(min-width, $smallBreakpoint) {
+            margin: 0 15px;
+        }
 	}
+
+	.list__item__content {
+        padding: 2rem;
+        border-right: 1px solid $mediumgrey;
+    }
 
 	.list__item__image {
 		display: flex;
@@ -26,6 +41,10 @@
 		justify-content: center;
 		height: 200px;
 		overflow: hidden;
+
+        @include mq(min-width, $smallBreakpoint) {
+            height: 230px;
+        }
 	}
 
     .slick-list {
@@ -80,6 +99,10 @@
             background-repeat: no-repeat;
 			background-image: url('/lib/images/adlib-image-fallback.svg');
 		}
+
+        @include mq(min-width, $smallBreakpoint) {
+            height: 230px;
+        }
 	}
 
 	.list__item__content__title {
@@ -92,6 +115,10 @@
 		padding: 10px 10px 20px;
 		font-size: 14px;
 		color: #6A727D;
+
+        @include mq(min-width, $smallBreakpoint) {
+            height: 150px;
+        }
 	}
 
 	.list__item__content__meta {
@@ -129,57 +156,8 @@
     i {
     	margin-right: 3px;
     }
-}
 
-@include mq(min-width, $mediumBreakpoint) {
-	.list-carousel {
-		.list__item {
-			margin: 0 15px;
-		}
-
-		.list__item__image {
-			height: 230px;
-		}
-	}
-
-	.list__item--beeldenzoeker {
-		.list__item__image {
-			height: 230px;
-		}
-
-		.list__item__content {
-			height: 150px;
-		}
-	}
-
-	.list__item__wimpel {
-		width: 136px;
-		left: -20px;
-	}
-}
-
-@include mq(min-width, $smallBreakpoint) {
-    .list-carousel {
-        .list__item {
-            margin: 0 15px;
-        }
-
-        .list__item__image {
-            height: 230px;
-        }
-    }
-
-    .list__item--beeldenzoeker {
-        .list__item__image {
-            height: 230px;
-        }
-
-        .list__item__content {
-            height: 150px;
-        }
-    }
-
-    .list__item__wimpel {
+    @include mq(min-width, $smallBreakpoint) {
         width: 136px;
         left: -20px;
     }

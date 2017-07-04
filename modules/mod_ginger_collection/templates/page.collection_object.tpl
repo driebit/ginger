@@ -21,7 +21,16 @@
                 {% include "beeldenzoeker/depiction.tpl" record=record template="beeldenzoeker/download.tpl" %}
             </div>
         </div>
-        <article class="main-content">
+        <article class="adlib-object__description">
+            <header>
+                <h6>{_ Dating _} {% include "collection/metadata/date.tpl" %}</h6>
+                <h6>
+                    {_ Creator _}
+                    {% with record['dcterms:creator']|first as creator %}
+                        <a href="{% url collection_search qs=creator['rdfs:label'] %}">{{ creator['rdfs:label'] }}</a>
+                    {% endwith %}
+            </header>
+
             {% block page_title %}
                 <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
             {% endblock %}
@@ -42,7 +51,9 @@
                 {% if record['dcterms:description'] as body %}
                     {% if body|length > 400 %}
                         <div id="adlib-desc" class="adlib-description">
-                            <h3 class="adlib-description__expand do_expand" data-parent="adlib-desc" data-content="adlib-desc-inner">{_ Detailed description _}</h3>
+                            <div class="adlib-description-readmore">
+                                <h6 class="adlib-description__expand do_expand" data-parent="adlib-desc" data-content="adlib-desc-inner">{_ Detailed description _}</h6>
+                            </div>
                             <div id="adlib-desc-inner" class="adlib-description__inner">
                                 <p>{{ body }}</p>
                             </div>
@@ -54,7 +65,40 @@
             {% endblock %}
         </article>
 
-        {% include "beeldenzoeker/record-meta.tpl" record=record %}
+        <aside class="adlib-object__aside">
+            {% block institute %}
+            <div class="adlib-object__aside-item">
+                {% if record['dbpedia-owl:museum'] as museum %}
+                    <h6>{_ Institute _}</h6>
+                    <p>
+                        {% if museum['@id'] %}
+                            {% include "beeldenzoeker/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label'] %}
+                        {% else %}
+                            {{ museum['rdfs:label'] }}
+                        {% endif %}
+                    </p>
+                {% endif %}
+            </div>
+            {% endblock %}
+
+            <h6 class="adlib-meta__expand do_expand" data-parent="adlib-meta" data-content="adlib-meta-inner">Meer informatie</h6>
+        </aside>
+
+        <div id="adlib-meta" class="adlib-meta">
+            <div id="adlib-meta-inner" class="adlib-meta__inner">
+                {% include "beeldenzoeker/record-meta.tpl" record=record %}
+            </div>
+        </div>
+
+        {% block creator %}
+            {% include "collection/creator.tpl" object=record %}
+        {% endblock %}
+
+        {% block related %}{% endblock %}
+
+        {% block keywords %}
+            {% include "collection/keywords.tpl" uris=(record['rdf:type'] ++ record['dcterms:subject'])|uri %}
+        {% endblock %}
 
         {% if q.debug %}
             {% print record %}

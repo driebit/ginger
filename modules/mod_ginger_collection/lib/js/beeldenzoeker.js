@@ -4,7 +4,9 @@ $(document).ready(function () {
     $('.list-carousel').slick({
         slidesToShow: 3,
         slidesToScroll: 1,
-        variableWidth: true
+        variableWidth: true,
+        centerMode: true,
+        useCSS: true
     });
 
     $(".fancybox").fancybox();

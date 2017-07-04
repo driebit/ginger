@@ -1,5 +1,166 @@
-.t--adlib-object {
-	color: $bzSecondaryColor;
+.main-content {
+    margin-bottom: 0;
+
+}
+
+.adlib-object__description {
+    margin: 0 auto;
+    max-width: 72rem;
+    background-color: #fff;
+
+    h1, h2, p {
+        padding: 0 4rem;
+    }
+
+    p {
+        padding-bottom: 2rem;
+    }
+
+    ol {
+       list-style: none;
+	}
+
+    header {
+        color: $light-grey;
+        padding: 2rem 4rem;
+
+        @include mq(min-width, $mediumBreakpoint) {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+
+.adlib-description-readmore {
+    background-color: $mediumgrey;
+    color: $light-grey;
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h4 {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+.adlib-object__aside {
+    margin: 1em 3em;
+    font-size: .875em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    h6 {
+        color: $light-grey;
+    }
+
+    a {
+        color: $light-grey;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        display: inline;
+        margin-right: 1rem;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 2rem 3rem;
+    }
+}
+
+.adlib-object__aside-item:nth-child(1) {
+    margin-right: 2em;
+    width: calc(33.2%);
+}
+
+.adlib-object__aside-item:nth-child(2) {
+    width: calc(66.8% - 2em);
+}
+
+.adlib-object__section-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1rem;
+	background: #EBEBEB;
+    text-transform: uppercase;
+    margin: 0;
+    color: $mainThemeColor;
+    z-index: 99999;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 2rem;
+    }
+}
+
+.adlib-object__creator {
+    background-color: #fff;
+    padding: 3em;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-top: 2rem;
+}
+
+.adlib-object__creator-image {
+    width: 30%;
+
+    img {
+        width: 100%;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        width: 20%;
+    }
+}
+
+.adlib-object__creator-title {
+    padding-left: 1em;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    h6 {
+        color: $light-grey;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        align-items: flex-start;
+        width: 30%;
+    }
+}
+
+.adlib-object__creator-source {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    h5 {
+        color: $light-grey;
+    }
+}
+
+.adlib-object__creator-body {
+    margin-top: 1em;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding-left: 2em;
+        width: 50%;
+
+        p {
+            max-width: 550px;
+        }
+    }
 }
 
 @include mq(min-width, $mediumBreakpoint) {
@@ -9,3 +170,43 @@
 		}
 	}
 }
+
+.adlib-object__related {
+    padding: 4rem 0 0;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 7rem 0 0;
+    }
+}
+
+.adlib-object__related-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.adlib-object__keywords {
+    padding: 4rem 0;
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding: 7rem 0;
+    }
+}
+
+.adlib-object__related-header , .adlib-object__keywords-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem 3rem;
+
+    h2 {
+        color: $light-grey;
+        margin: 0 auto;
+    }
+
+    @include mq(min-width, $mediumBreakpoint) {
+        padding-bottom: 4rem;
+    }
+}
+
+
+

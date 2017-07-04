@@ -27,5 +27,7 @@
                 {% endblock %}
             </div>
         </a>
+
+        {% block read_more %}{% endblock %}
     </li>
 {% endwith %}
