@@ -70,6 +70,10 @@
         margin-right: 1rem;
     }
 
+    .icon--external {
+        transform: translate(.5rem, .1rem);
+    }
+
     @include mq(min-width, $mediumBreakpoint) {
         max-width: 72rem;
         margin: 0 auto;
@@ -77,13 +81,12 @@
     }
 }
 
-.adlib-object__aside-item:nth-child(1) {
-    margin-right: 2em;
-    width: calc(33.2%);
+.adlib-meta__expand:after {
+    transform: translate(.5rem, 0);
 }
 
-.adlib-object__aside-item:nth-child(2) {
-    width: calc(66.8% - 2em);
+.adlib-meta__expand.is-open:after {
+    transform: translate(.5rem, -.2rem) rotate(180deg);
 }
 
 .adlib-object__section-label {
@@ -132,11 +135,22 @@
 
     h6 {
         color: $light-grey;
+        margin-top: 0;
+
+        @include mq(min-width, $mediumBreakpoint) {
+            margin: 0;
+            height: 2.5rem;
+        }
     }
 
     @include mq(min-width, $mediumBreakpoint) {
         align-items: flex-start;
         width: 30%;
+    }
+
+    @include mq(min-width, $largeBreakpoint) {
+        align-items: flex-start;
+        width: 20%;
     }
 }
 
@@ -151,15 +165,20 @@
 }
 
 .adlib-object__creator-body {
-    margin-top: 1em;
+    margin-top: 1rem;
 
     @include mq(min-width, $mediumBreakpoint) {
-        padding-left: 2em;
+        padding-left: 2rem;
         width: 50%;
+        margin-top: 2.5rem;
 
         p {
-            max-width: 550px;
+            max-width: 500px;
         }
+    }
+
+    @include mq(min-width, $largeBreakpoint) {
+        width: 60%;
     }
 }
 
