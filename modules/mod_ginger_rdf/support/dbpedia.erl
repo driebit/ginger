@@ -26,16 +26,14 @@ search(#search_query{search = {dbpedia, Args}}) ->
 
 %% @doc Come up with alternative forms for RKD URIs, of which DBPedia has quite some.
 parse_argument(rkd_uri, <<"https://rkd.nl/explore/artists/", Id/binary>> = Uri, Sparql) ->
-    All = [
-        Uri,
-        <<"http://explore.rkd.nl/nl/explore/artists/", Id/binary>>
+    Clause = [
+        <<"{?s <http://dbpedia.org/ontology/wikiPageExternalLink> <", Uri/binary, ">}">>, <<" UNION ">>,
+        %% alternative URI
+        <<"{?s <http://dbpedia.org/ontology/wikiPageExternalLink> <http://explore.rkd.nl/nl/explore/artists/", Id/binary, ">}">>, <<" UNION ">>,
+        %% alternative property
+        <<"{?s <http://nl.dbpedia.org/property/rkd> ", Id/binary, "}">>
     ],
-    Clauses = ["{?s <http://dbpedia.org/ontology/wikiPageExternalLink> <" ++ binary_to_list(U) ++ ">}"
-        || U
-        <- All
-    ],
-    Union = list_to_binary(string:join(Clauses, " UNION ")),
-    <<Sparql/binary, "{", Union/binary, "}">>;
+    <<Sparql/binary, "{", (iolist_to_binary(Clause))/binary, "}">>;
 parse_argument(same_as, Uri, Sparql) ->
     <<Sparql/binary, "{?s <http://www.w3.org/2002/07/owl#sameAs> <", Uri/binary, "}">>;
 parse_argument(_, _, Sparql) ->
