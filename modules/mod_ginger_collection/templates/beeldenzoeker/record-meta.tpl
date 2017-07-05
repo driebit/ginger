@@ -79,9 +79,9 @@
         {% endif %}
 
         <div class="adlib-object__meta__row">
-	        <div class="adlib-object__meta__title">
+	        <h6 class="adlib-object__meta__title">
 	            {_ Manufacture _}
-	        </div>
+	        </h6>
 	        <dl class="adlib-object__meta__data">
                 {% if record['dcterms:creator'] %}
                     <dt>{_ Creator _}</dt>

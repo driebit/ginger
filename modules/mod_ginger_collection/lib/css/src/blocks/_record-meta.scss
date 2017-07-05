@@ -17,7 +17,7 @@
 }
 
 .adlib-object__meta__row {
-	padding: .5rem 0;
+	padding: 1rem 0;
 	border-top: 1px solid #ccc;
 
 	&.first {
@@ -40,7 +40,7 @@
 	margin: 0 0 15px;
 
     @include mq(min-width, $mediumBreakpoint) {
-		width: 40%;
+		flex-basis: 220rem;
 	}
 }
 
@@ -61,6 +61,10 @@
     dl {
         margin-bottom: 0;
     }
+
+    @include mq(min-width, $mediumBreakpoint) {
+		flex-basis: 500rem;
+	}
 }
 
 dl.adlib-object__meta__data {
