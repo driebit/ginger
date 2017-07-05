@@ -1,7 +1,7 @@
 {% if record['dcterms:creator'][1]['@id'] as creator_uri %}
     {% with
-        m.rkd.record[creator['@id']],
-        m.rdf[m.search[{dbpedia lang="nl" rkd_uri=creator['@id']}]|first]
+        m.rkd.record[creator_uri],
+        m.rdf[m.search[{dbpedia lang="nl" rkd_uri=creator_uri}]|first]
     as
         rkd_artist,
         dbpedia
