@@ -15,6 +15,10 @@
 .list-carousel {
 	margin: 0;
 
+    a:hover {
+        text-decoration: none;
+    }
+
     small {
         margin-bottom: 1rem;
         display: block;
@@ -54,14 +58,8 @@
 
 .list__item--beeldenzoeker {
 	@extend .list__item;
-	font-family: $primaryFontFamily;
 	overflow: visible;
 	transition: transform 0.3s, box-shadow 0.5s;
-
-	&:hover {
-		transform: translateY(-5px);
-	    box-shadow: 0px 4px 9px rgba(0,0,0,0.2);
-    }
 
     &:active {
     	.list__item__image {
@@ -107,24 +105,21 @@
 
 	.list__item__content__title {
 		font-size: 20px;
-		font-family: $secondaryFontFamily;
 		font-weight: 700;
+        margin-bottom: 1rem;
+        font-family: $bodyFontFamily;
 	}
 
 	.list__item__content {
-		padding: 10px 10px 20px;
+        font-family: $bodyFontFamily;
+		padding: 2rem 2rem 5rem;
 		font-size: 14px;
-		color: #6A727D;
-
-        @include mq(min-width, $smallBreakpoint) {
-            height: 150px;
-        }
 	}
 
 	.list__item__content__meta {
 		height: auto;
 		padding: 0;
-		margin: 0 0 10px;
+		margin: 0 0 1rem;
 		position: static;
 		background: none;
 		font-size: 12px;

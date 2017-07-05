@@ -4,7 +4,7 @@
 	height: 40px;
 	padding: 0 15px;
     border: 0;
-	background: darken($blue, 5%);
+	background: darken($blue, 7.5%);
     border-radius: .25rem;
 	color: $white;
 	font-size: 14px;
@@ -16,7 +16,7 @@
 	&:active:focus {
 		text-decoration: none;
 		color: $white;
-        background: darken($blue, 7.5%);
+        background: darken($blue, 10%);
 	}
 }
 
