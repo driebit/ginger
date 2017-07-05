@@ -25,8 +25,8 @@
                     <h6>{{ rkd_artist.kwalificatie|first }}</h6>
                     <h3>{{ rkd_artist.virtualFields.hoofdTitel.kunstenaarsnaam.contents }}</h3>
                     <p>
-                        {{ rkd_artist.geboorteplaats }}, {{ rkd_artist.geboortedatum_begin|isodate:"j F Y" }} –
-                        {% if rkd_artist.geboorteplaats != rkd_artist.sterfplaats %}{{ rkd_artist.sterfplaats }}, {% endif %}{{ rkd_artist.sterfdatum_begin|isodate:"j F Y" }}
+                        {{ rkd_artist.geboorteplaats }}, {{ rkd_artist.geboortedatum_begin|isodate:"j F Y" }}
+                        {% if rkd_artist.sterfdatum_begin != "null" %} – {% if rkd_artist.geboorteplaats != rkd_artist.sterfplaats %}{{ rkd_artist.sterfplaats }}, {% endif %}{{ rkd_artist.sterfdatum_begin|isodate:"j F Y" }}{% endif %}
                     </p>
                 </div>
             </section>
