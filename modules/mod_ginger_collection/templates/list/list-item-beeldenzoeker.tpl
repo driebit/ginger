@@ -7,15 +7,13 @@
 
             <div class="list__item__content">
                 {% block item_content %}
-                    {% if item_meta %}
-                        {% block item_meta %}
+                    {% block item_meta %}
+                        {% if record['production.date.start'] %}
                             <div class="list__item__content__meta">
-                                {% if record['production.date.start'] %}
-                                    <time datetime="{{ record['production.date.start'] }}">{{ record['production.date.start'] }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %}&#8202;–&#8202;{{ record['production.date.end'] }}{% endif %}</time>
-                                {% endif %}
+                                <time datetime="{{ record['production.date.start'] }}">{{ record['production.date.start'] }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %}&#8202;–&#8202;{{ record['production.date.end'] }}{% endif %}</time>
                             </div>
-                        {% endblock %}
-                    {% endif %}
+                        {% endif %}
+                    {% endblock %}
                     {% block item_title %}
                         <h3 class="list__item__content__title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title truncate=60 %}</h3>
                     {% endblock %}
