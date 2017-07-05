@@ -35,13 +35,12 @@
                 <p>{{ dbpedia.abstract }}</p>
             </section>
 
-            {% if rkd_artist %}
+            {% if dbpedia['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] as wikipedia_url %}
+                {% include "beeldenzoeker/readmore.tpl" source="Wikipedia" url=wikipedia_url text="Lees meer" class="adlib-object__creator-readmore"%}
+            {% elseif rkd_artist %}
                 {% include "beeldenzoeker/readmore.tpl" source="RKD" url=rkd_artist.permalink text="Lees meer" class="adlib-object__creator-readmore"%}
             {% endif %}
 
-            {% if dbpedia['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] as wikipedia_url %}
-                {% include "beeldenzoeker/readmore.tpl" source="Wikipedia" url=wikipedia_url text="Lees meer" class="adlib-object__creator-readmore"%}
-            {% endif %}
         </article>
     {% endwith %}
 {% endif %}
