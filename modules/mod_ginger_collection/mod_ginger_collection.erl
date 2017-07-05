@@ -78,6 +78,8 @@ observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Cont
             ok = z_mqtt:publish("~session/search/facets", Facets, Context),
             Result
     end;
+observe_search_query(#search_query{search = {dbpedia, _}} = Query, _Context) ->
+    dbpedia:search(Query);
 observe_search_query(#search_query{}, _Context) ->
     undefined.
 

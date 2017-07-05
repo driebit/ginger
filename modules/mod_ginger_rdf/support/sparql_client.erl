@@ -1,3 +1,4 @@
+%% @doc A basic SPARQL client.
 -module(sparql_client).
 
 -export([
@@ -22,7 +23,7 @@ query(Endpoint, Query) ->
             decode(Map)
     end.
 
-decode(#{<<"@graph">> := _} = Data) ->
+decode(Data) ->
     ginger_json_ld:deserialize(Data).
 
 headers() ->

@@ -8,6 +8,7 @@
                 Wikipedia
             </div>
         </div>
+        <div class="readmore-source">{{ source }}</div>
         <div class="readmore-arrow">
             <div class="collection-icon arrow-right"></div>
         </div>

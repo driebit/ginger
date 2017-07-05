@@ -58,7 +58,7 @@ msgstr "Naamsvermelding"
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/record-meta.tpl:95
 #: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:26
 msgid "Dating"
-msgstr ""
+msgstr "Datering"
 
 #: user/modules/mod_ginger_collection/templates/beeldenzoeker/metadata/dimensions.tpl:11
 msgid "Depth"
