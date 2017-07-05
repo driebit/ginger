@@ -3,7 +3,7 @@
         <div class="readmore-text">
             {{ text }}
         </div>
-        <div class="readmore-hostname">Wikipedia</div>
+        <div class="readmore-source">{{ source }}</div>
         <div class="readmore-arrow">
             <div class="collection-icon arrow-right"></div>
         </div>
