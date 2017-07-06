@@ -35,15 +35,15 @@ url_for(License) when is_list(License) ->
     url_for(z_convert:to_binary(License));
 url_for(<<"BY">>) ->
     <<"http://creativecommons.org/licenses/by/4.0">>;
-url_for(<<"BY,SA">>) ->
+url_for(<<"BY-SA">>) ->
     <<"http://creativecommons.org/licenses/by-sa/4.0">>;
-url_for(<<"BY,ND">>) ->
+url_for(<<"BY-ND">>) ->
     <<"http://creativecommons.org/licenses/by-nd/4.0">>;
-url_for(<<"BY,NC">>) ->
+url_for(<<"BY-NC">>) ->
     <<"http://creativecommons.org/licenses/by-nc/4.0">>;
-url_for(<<"BY,NC,SA">>) ->
+url_for(<<"BY-NC-SA">>) ->
     <<"http://creativecommons.org/licenses/by-nc-sa/4.0">>;
-url_for(<<"BY,NC,ND">>) ->
+url_for(<<"BY-NC-ND">>) ->
     <<"http://creativecommons.org/licenses/by-nc-nd/4.0">>;
 url_for(<<"CC0">>) ->
     <<"http://creativecommons.org/publicdomain/zero/1.0">>;
@@ -51,8 +51,16 @@ url_for(<<"PD">>) ->
     <<"http://creativecommons.org/publicdomain/mark/1.0">>;
 url_for(<<"CC ", License/binary>>) ->
     versioned_license(binary:split(License, <<" ">>));
-url_for(_) ->
-    undefined.
+url_for(<<"http://creativecommons.org/", _/binary>> = Url) ->
+    url_for(label(Url));
+url_for(Other) ->
+    %% Values are stored as BY,SA in Ginger
+    case binary:replace(Other, <<",">>, <<"-">>) of
+        Replace when Replace =/= Other ->
+            url_for(Replace);
+        _ ->
+            undefined
+    end.
 
 label(<<"https://", Url/binary>>) ->
     label(<<"http://", Url/binary>>);

@@ -130,7 +130,7 @@
             <dt>{_ License _}</dt>
             <dd>
                 {% if record['dcterms:license'] as license %}
-                    {% include "beeldenzoeker/metadata/meta-link.tpl" href=license content=m.creative_commons[license].label  %}
+                    {% include "beeldenzoeker/metadata/meta-link.tpl" href=m.creative_commons[license].language_url content=m.creative_commons[license].label  %}
                 {% elseif record['copyright'] as license %}
                     {{ license }}
                 {% else %}
