@@ -118,12 +118,11 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
     {ok, EdgeId} = m_rdf_triple:insert(Triple, Context),
 
     Props = z_context:get_q("object_props", Context),
+    {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
     case proplists:get_value(<<"thumbnail">>, Props) of
         undefined ->
             noop;
         Thumbnail ->
-            {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
-
             %% Save thumbnail in Zotonic, as this seems to be the only way
             %% to show the thumbnail in the admin. Notifications such as
             %% media_stillimage only work for resources that already have a
@@ -141,7 +140,11 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
                     noop
             end
     end,
-    z_render:dialog_close(Context).
+    ObjectBin = z_convert:to_binary(Object),
+    Context1 = z_render:wire({script, [{script, [
+            <<"z_choose_zmedia(", ObjectBin/binary, ");">>
+        ]}]}, Context),
+    z_render:dialog_close(Context1).
 
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).
