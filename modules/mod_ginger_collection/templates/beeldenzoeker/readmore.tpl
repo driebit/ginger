@@ -5,10 +5,9 @@
                 {{ text }}
             </div>
             <div class="readmore-hostname">
-                Wikipedia
+                {{ source }}
             </div>
         </div>
-        <div class="readmore-hostname">{{ source }}</div>
         <div class="readmore-arrow">
             <div class="collection-icon arrow-right"></div>
         </div>
