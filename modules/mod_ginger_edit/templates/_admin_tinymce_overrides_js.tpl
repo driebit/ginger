@@ -3,7 +3,13 @@ Custom settings to override tiny-init.js.
 */
 
 if (typeof tinyInit.language === 'undefined') {
-    tinyInit.language="{{ m.translation.language|default:"en" }}";
+    {% if m.config.mod_editor_tinymce.version.value < '4.0' %}
+        tinyInit.language="en";
+    {% elseif z_language != `en` and z_language != `nl` and z_language != `ru` %}
+        tinyInit.language="en";
+    {% else %}
+        tinyInit.language="{{ z_language|default:"en" }}";
+    {% endif %}
 }
 
 if (typeof tinymce_overrides_menubar === 'undefined' || !tinymce_overrides_menubar) {
