@@ -141,9 +141,14 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
             end
     end,
     ObjectBin = z_convert:to_binary(Object),
-    Context1 = z_render:wire({script, [{script, [
-            <<"z_choose_zmedia(", ObjectBin/binary, ");">>
-        ]}]}, Context),
+    Context1 = case proplists:get_value(predicate, Args) of
+        depiction ->
+            z_render:wire({script, [{script, [
+                    <<"z_choose_zmedia(", ObjectBin/binary, ");">>
+                ]}]}, Context);
+        _ ->
+            Context
+    end,
     z_render:dialog_close(Context1).
 
 start_link(Args) when is_list(Args) ->
