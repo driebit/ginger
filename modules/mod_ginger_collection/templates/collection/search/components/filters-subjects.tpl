@@ -26,4 +26,4 @@ as
 
 {% endwith %}
 
-{% wire name="update_filter_subjects" action={update target="filter_subjects" template="beeldenzoeker/search/components/filters-subjects.tpl"} %}
+{% wire name="update_filter_subjects" action={update target="filter_subjects" template="collection/search/components/filters-subjects.tpl"} %}

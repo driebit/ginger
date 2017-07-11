@@ -6,7 +6,7 @@
         </div>
 
         <ul class="list">
-            {% for dbpedia_uri in results %}
+            {% for dbpedia_uri in dbpedia_uris %}
                 {% with m.rdf[dbpedia_uri] as rdf %}
                     {% include "collection/block/keyword-small.tpl" rdf=rdf %}
                 {% endwith %}

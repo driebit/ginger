@@ -5,7 +5,7 @@
             {% with result._source as item %}
                 <li>
                     <a href="{% if item.priref %}{% url collection_object database=result._type object_id=item.priref %}{% else %}{{ m.rsc[item.id].page_url }}{% endif %}">
-                        {% include "beeldenzoeker/depiction.tpl" record=item width=100 height=100 template="search-suggestions/search-suggestions-image.tpl" %}
+                        {% include "collection/depiction.tpl" record=item width=100 height=100 template="search-suggestions/search-suggestions-image.tpl" %}
                         <p class="search-suggestions__suggestions__list__title">{{ item['dcterms:title']|default:m.rsc[item.id].title }} </p>
                     </a>
                 </li>

@@ -15,5 +15,5 @@
 {% endblock %}
 
 {% block read_more %}
-    {% include "beeldenzoeker/readmore.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] text=_"Read more" class="list-item_readmore"%}
+    {% include "collection/readmore.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] source="Wikipedia" class="list-item_readmore"%}
 {% endblock %}

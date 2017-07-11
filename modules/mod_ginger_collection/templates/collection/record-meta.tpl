@@ -6,7 +6,7 @@
 	        </h6>
 	        <dl class="adlib-object__meta__data">
 	        	<dt>{_ Title _}</dt>
-	        	<dd>{% include "beeldenzoeker/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
+	        	<dd>{% include "collection/title.tpl" title=record.title|default:record['dcterms:title'] %}</dd>
 
                 {% if record['dcterms:identifier'] %}
 	            	<dt>{_ Object nr. _}</dt>
@@ -46,7 +46,7 @@
                     {_ Work _}
                 </h6>
                 <dl class="adlib-object__meta__data">
-                    {% include "beeldenzoeker/metadata/dimensions.tpl" %}
+                    {% include "collection/metadata/dimensions.tpl" %}
 
                     {% if record['dcterms:language'] as language %}
                         <dt>{_ Language _}</dt>
@@ -57,7 +57,7 @@
                         <dt>{_ Museum _}</dt>
                         <dd>
                             {% if museum['@id'] %}
-                                {% include "beeldenzoeker/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label']  %}
+                                {% include "collection/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label']  %}
                             {% else %}
                                 {{ museum['rdfs:label'] }}
                             {% endif %}
@@ -115,7 +115,7 @@
 	        </dl>
 	    </div>
 
-        {% include "beeldenzoeker/metadata/geo.tpl" places=record['dcterms:spatial'] %}
+        {% include "collection/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         <div class="adlib-object__meta__row">
             <h6 class="adlib-object__meta__title">
@@ -130,7 +130,7 @@
             <dt>{_ License _}</dt>
             <dd>
                 {% if record['dcterms:license'] as license %}
-                    {% include "beeldenzoeker/metadata/meta-link.tpl" href=m.creative_commons[license].language_url content=m.creative_commons[license].label  %}
+                    {% include "collection/metadata/meta-link.tpl" href=m.creative_commons[license].language_url content=m.creative_commons[license].label  %}
                 {% elseif record['copyright'] as license %}
                     {{ license }}
                 {% else %}

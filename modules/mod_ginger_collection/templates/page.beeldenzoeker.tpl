@@ -1,4 +1,4 @@
-{% extends "beeldenzoeker/base.tpl" %}
+{% extends "collection/base.tpl" %}
 
 {% block body_class %}t--beeldenzoeker{% endblock %}
 
@@ -50,7 +50,7 @@
 
         {% include "back-to-top/back-to-top-link.tpl" %}
 
-        {% include "beeldenzoeker/home/recent.tpl" %}
+        {% include "collection/home/recent.tpl" %}
 
     </main>
 {% endwith %}

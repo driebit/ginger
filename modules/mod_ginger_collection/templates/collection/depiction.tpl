@@ -11,7 +11,7 @@ as
 %}
     {% if depictions|object_is_visible|first as depiction %}
         {# Site should ship with this template #}
-        {% include "beeldenzoeker/image.tpl" image_reference=depiction.reference %}
+        {% include "collection/image.tpl" image_reference=depiction.reference %}
     {% else %}
         {# Include template with empty URL #}
         {% include template %}

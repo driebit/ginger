@@ -1,4 +1,4 @@
-{% extends "beeldenzoeker/base.tpl" %}
+{% extends "collection/base.tpl" %}
 
 {# {% block title %}{_ Search _}{% endblock %} #}
 
@@ -28,13 +28,13 @@
         {% block search_intro %}{% endblock %}
 
         <div class="bz-search__container">
-            {% include "beeldenzoeker/search/search-filters.tpl" %}
+            {% include "collection/search/search-filters.tpl" %}
 
             {%  wire
                     name="search-list"
                     action={update
                             target="search-list"
-                            template="beeldenzoeker/search-query-wrapper.tpl"
+                            template="collection/search-query-wrapper.tpl"
                             show_pager
                             cg_name="default_content_group" }
                     %}

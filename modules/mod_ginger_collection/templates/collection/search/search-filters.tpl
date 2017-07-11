@@ -5,8 +5,8 @@
         <a href="{% url collection_search %}" class="search__filters__reset">{_ Reset filters _} <i class="icon--close"></i></a>
         {% block search_sidebar %}
             {% include "search/components/filter-range.tpl" title=_"Period" property="dcterms:date" %}
-            {% include "beeldenzoeker/search/components/filters-license.tpl" %}
-            {% include "beeldenzoeker/search/components/filters-subjects.tpl" %}
+            {% include "collection/search/components/filters-license.tpl" %}
+            {% include "collection/search/components/filters-subjects.tpl" %}
         {% endblock %}
     </div>
 </div>

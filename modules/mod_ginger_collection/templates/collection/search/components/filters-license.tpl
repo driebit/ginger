@@ -4,4 +4,4 @@
     <ul id="filters_license_options"></ul>
 </div>
 
-{% wire name="update_filter_license" action={update target="filters_license_options" template="beeldenzoeker/search/components/filters-license-options.tpl"} %}
+{% wire name="update_filter_license" action={update target="filters_license_options" template="collection/search/components/filters-license-options.tpl"} %}

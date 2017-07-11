@@ -1,4 +1,4 @@
-{% extends "beeldenzoeker/base.tpl" %}
+{% extends "collection/base.tpl" %}
 
 {% block body_class %}t--adlib-query{% endblock %}
 
@@ -9,7 +9,7 @@
     <main>
         <div class="adlib-object__actions">
             <div class="main-container">
-                {% include "beeldenzoeker/share.tpl" %}
+                {% include "collection/share.tpl" %}
             </div>
         </div>
         <article class="main-content">
@@ -24,7 +24,7 @@
         </article>
 
         {% block search_query %}
-            {% include "beeldenzoeker/search-query-wrapper.tpl" class="list" id_exclude=id query_id=id pagelen=15 infinite_scroll %}
+            {% include "collection/search-query-wrapper.tpl" class="list" id_exclude=id query_id=id pagelen=15 infinite_scroll %}
         {% endblock %}
     </main>
 

@@ -1,4 +1,4 @@
-{% extends "beeldenzoeker/base.tpl" %}
+{% extends "collection/base.tpl" %}
 
 {% block body_class %}t--adlib-object{% endblock %}
 
@@ -12,13 +12,13 @@
 
 {% with m.collection_object[q.database][q.object_id]._source as record %}
 
-    {% include "beeldenzoeker/depiction.tpl" record=record width=1600 height=1600 template="beeldenzoeker/masthead.tpl" %}
+    {% include "collection/depiction.tpl" record=record width=1600 height=1600 template="collection/masthead.tpl" %}
 
     <main>
         <div class="adlib-object__actions">
             <div class="main-container">
-                {% include "beeldenzoeker/share.tpl" record=record %}
-                {% include "beeldenzoeker/depiction.tpl" record=record template="beeldenzoeker/download.tpl" %}
+                {% include "collection/share.tpl" record=record %}
+                {% include "collection/depiction.tpl" record=record template="collection/download.tpl" %}
             </div>
         </div>
         <article class="adlib-object__description">
@@ -33,7 +33,7 @@
             </header>
 
             {% block page_title %}
-                <h1 class="page-title">{% include "beeldenzoeker/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
+                <h1 class="page-title">{% include "collection/title.tpl" title=record['dcterms:title']|default:record.title %}</h1>
             {% endblock %}
 
             {% if record.title[2] %}
@@ -73,7 +73,7 @@
                     <h6>{_ Institute _}</h6>
                     <p>
                         {% if museum['@id'] %}
-                            {% include "beeldenzoeker/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label'] %}
+                            {% include "collection/metadata/meta-link.tpl" href=museum['@id'] content=museum['rdfs:label'] %}
                         {% else %}
                             {{ museum['rdfs:label'] }}
                         {% endif %}
@@ -87,7 +87,7 @@
 
         <div id="adlib-meta" class="adlib-meta">
             <div id="adlib-meta-inner" class="adlib-meta__inner">
-                {% include "beeldenzoeker/record-meta.tpl" record=record %}
+                {% include "collection/record-meta.tpl" record=record %}
             </div>
         </div>
 

@@ -15,7 +15,7 @@
             {% endwith %}
         {% else %}
             <li>
-                {% include "beeldenzoeker/metadata/meta-link.tpl" href=item['@id'] content=item['rdfs:label']|default:item['@id']  %}
+                {% include "collection/metadata/meta-link.tpl" href=item['@id'] content=item['rdfs:label']|default:item['@id']  %}
             </li>
         {% endif %}
     {% else %}
