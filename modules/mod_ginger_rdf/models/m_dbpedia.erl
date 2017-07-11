@@ -9,7 +9,8 @@
 -export([
     m_find_value/3,
     m_to_list/2,
-    m_value/2
+    m_value/2,
+    get_resource/3
 ]).
 
 m_find_value(Language, #m{value = undefined} = M, _Context) ->
