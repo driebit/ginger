@@ -55,5 +55,3 @@ endpoint(<<>>) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
 endpoint(Language) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<Language/binary, ".">>).
-
-%%http://nl.dbpedia.org/sparql?default-graph-uri = http%3A%2F%2Fnl.dbpedia.org&query=select+distinct+%3Fconcept+where+%7B%3Fconcept+dbpedia-owl%3AwikiPageExternalLink+%3Chttp%3A%2F%2Fexplore.rkd.nl%2Fnl%2Fexplore%2Fartists%2F33671%3E%7D+LIMIT+100&format=text%2Fhtml&timeout=30000&debug=on
