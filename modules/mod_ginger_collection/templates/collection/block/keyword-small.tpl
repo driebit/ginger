@@ -1,5 +1,7 @@
 {% extends "list/list-item-beeldenzoeker.tpl" %}
 
+{% block link %}{{ rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] }} {% endblock %}
+
 {% block item_image %}
     {% include "list/list-item-image.tpl" url=rdf.thumbnail %}
 {% endblock %}

@@ -2,7 +2,7 @@
     <div class="readmore {{ class }}">
         <div class="readmore-text">
             <div class="readmore-title">
-                {{ text }}
+                {{ text|default:_"Read more" }}
             </div>
             <div class="readmore-hostname">
                 {{ source }}
