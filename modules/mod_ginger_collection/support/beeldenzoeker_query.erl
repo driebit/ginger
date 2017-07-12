@@ -64,7 +64,9 @@ parse_query(
     QueryArgs
 ) ->
     OrFilters = map_related_to(Source),
-    [{filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
+    %% Use query_context_filter to have them scored: more matching edges mean
+    %% a better matching document.
+    [{query_context_filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
 parse_query(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
 parse_query(Key, Value, QueryArgs) ->
