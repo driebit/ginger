@@ -115,8 +115,6 @@
 	        </dl>
 	    </div>
 
-        {% include "collection/metadata/geo.tpl" places=record['dcterms:spatial'] %}
-
         <div class="adlib-object__meta__row">
             <h6 class="adlib-object__meta__title">
                 {_ Acquisition & License _}
@@ -144,6 +142,8 @@
             {% endif %}
 	        </dl>
 	    </div>
+
+        {% include "collection/metadata/geo.tpl" places=record['dcterms:spatial'] %}
 
         {% optional include "collection/metadata/reproduction.tpl" %}
 
