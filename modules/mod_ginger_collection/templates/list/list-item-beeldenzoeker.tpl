@@ -8,9 +8,9 @@
             <div class="list__item__content">
                 {% block item_content %}
                     {% block item_meta %}
-                        {% if record['production.date.start'] %}
+                        {% if record['dbo:productionStartYear'] %}
                             <div class="list__item__content__meta">
-                                <time datetime="{{ record['production.date.start'] }}">{{ record['production.date.start'] }}{% if record['production.date.end'] and record['production.date.end'] != record['production.date.start'] %}&#8202;–&#8202;{{ record['production.date.end'] }}{% endif %}</time>
+                                {% include "collection/metadata/date.tpl" %}
                             </div>
                         {% endif %}
                     {% endblock %}

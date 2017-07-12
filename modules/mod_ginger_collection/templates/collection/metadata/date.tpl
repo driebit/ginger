@@ -4,6 +4,4 @@
 as
     start,
     end
-%}
-    <time>{{ start }}{% if end and end != start %} – {{ end }}{% endif %}</time>
-{% endwith %}
+%}<time>{{ start }}{% if end and end != start %}&#8202;–&#8202;{{ end }}{% endif %}</time>{% endwith %}
