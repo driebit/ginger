@@ -55,9 +55,16 @@ parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"d
         ++ date_filter(Key, <<"lte">>, proplists:get_value(<<"max">>, Range), IncludeMissing);
 parse_query(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
-parse_query(related_to, Record, QueryArgs) ->
-    OrFilters = map_related_to(Record),
-    [{filter, OrFilters} | QueryArgs];
+parse_query(
+    related_to, #{
+        <<"_id">> := Id,
+        <<"_type">> := Type,
+        <<"_source">> := Source
+    },
+    QueryArgs
+) ->
+    OrFilters = map_related_to(Source),
+    [{filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
 parse_query(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
 parse_query(Key, Value, QueryArgs) ->

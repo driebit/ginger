@@ -25,8 +25,8 @@ m_find_value(Type, #m{value = undefined} = M, _Context) ->
     M#m{value = Type};
 m_find_value(Property, #m{value = #{<<"_index">> := _Index} = Object}, _Context) ->
     maps:get(z_convert:to_binary(Property), Object);
-m_find_value(ObjectId, #m{value = Type} = M, Context) ->
-    M#m{value = get(Type, ObjectId, Context)}.
+m_find_value(ObjectId, #m{value = Type}, Context) ->
+    get(Type, ObjectId, Context).
 
 m_to_list(_, _Context) ->
     [].
