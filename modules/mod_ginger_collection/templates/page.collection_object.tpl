@@ -96,11 +96,11 @@
                 {% include "collection/creator.tpl" object=record %}
             {% endblock %}
 
-            {% block related %}{% endblock %}
-
             {% block keywords %}
                 {% include "collection/keywords.tpl" uris=(record['rdf:type'] ++ record['dcterms:subject'])|uri %}
             {% endblock %}
+
+            {% block related %}{% endblock %}
 
             {% if q.debug %}
                 {% print record %}
