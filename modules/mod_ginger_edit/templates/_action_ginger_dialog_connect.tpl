@@ -5,6 +5,7 @@
 {% with tabs_enabled|first|default:"find" as firsttab %}
 {% with tab|default:firsttab as tab %}
 {% with m.rsc[cat].name as cat_name %}
+
 {% with (objects|is_defined)|if:objects:[[]] as objects %}
 {% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:[[]] as author %}
 {% with objects++author as objects %}
@@ -68,7 +69,7 @@
                 {% endif %}
                 {% if "find"|member:tabs_enabled %}
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate object_id=object_id redirect=redirect
-                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
+                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
                 {% endif %}
             {% else %}
                 {% if "new"|member:tabs_enabled %}
@@ -77,7 +78,7 @@
                 {% endif %}
                 {% if "find"|member:tabs_enabled %}
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
-                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
+                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat callback=callback actions=actions %}
                 {% endif %}
             {% endif %}
             {% if "upload"|member:tabs_enabled %}
