@@ -17,25 +17,39 @@ is_authorized(ReqData, Context) ->
     z_acl:wm_is_authorized(use, z_context:get(acl_module, Context, mod_admin), admin_logon, ReqData, Context).
 
 
-%% overrule van mod_admin om de connect lijst naar andere template te laten renderen    
-event(#postback_notify{message="feedback", trigger="dialog-connect-find", target=TargetId}, Context) ->
-                                                % Find pages matching the search criteria.
+%% overrule mod_admin for using ginger_edit templates
+event(#postback_notify{message="feedback", trigger="ginger-dialog-connect-find", target=TargetId}, Context) ->
+    % Find pages matching the search criteria.
     SubjectId = z_convert:to_integer(z_context:get_q(subject_id, Context)),
+    ObjectId = z_convert:to_integer(z_context:get_q(object_id, Context)),
     Category = z_context:get_q(find_category, Context),
-    Text=z_context:get_q(find_text, Context),
+    CatExclude = z_context:get_q(cat_exclude, Context),
+    Predicate = z_context:get_q(predicate, Context, ""),
+    Text = z_context:get_q(find_text, Context),
     Cats = case Category of
-                "p:"++Predicate -> m_predicate:object_category(Predicate, Context);
+                "p:"++Predicate -> mod_admin:feedback_categories(SubjectId, Predicate, ObjectId, Context);
+                <<"p:", Predicate/binary>> -> mod_admin:feedback_categories(SubjectId, Predicate, ObjectId, Context);
                 "" -> [];
-                CatId -> [{z_convert:to_integer(CatId)}]
+                <<>> -> [];
+                CatId -> [{m_rsc:rid(CatId, Context)}]
            end,
     Vars = [
         {subject_id, SubjectId},
         {cat, Cats},
+        {cat_exclude, CatExclude},
+        {predicate, Predicate},
         {text, Text}
-    ],
+    ] ++ case z_context:get_q(find_cg, Context) of
+        <<>> -> [];
+        "" -> [];
+        undefined -> [];
+        <<"me">> -> [ {creator_id, z_acl:user(Context)} ];
+        "me" -> [ {creator_id, z_acl:user(Context)} ];
+        CgId -> [ {content_group, m_rsc:rid(CgId, Context)}]
+    end,
     z_render:wire([
         {remove_class, [{target, TargetId}, {class, "loading"}]},
-        {update, [{target, TargetId}, {template, "_action_dialog_connect_tab_find_results.tpl"} | Vars]}
+        {update, [{target, TargetId}, {template, "_action_ginger_dialog_connect_tab_find_results.tpl"} | Vars]}
     ], Context);
 
 %% @doc Custom version of controller_admin_edit rscform that executes actions instead of redirecting

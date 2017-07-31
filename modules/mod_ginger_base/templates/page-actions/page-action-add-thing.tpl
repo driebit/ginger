@@ -8,6 +8,17 @@
     tab
 %}
 
-    {% include "_action_ginger_connection.tpl" id=id category=category cg_id=cg_id|default:id.content_group_id predicate=predicate add_author direction='out' btn_class=btn_class btn_title=btn_title tab=tab tabs_enabled=tabs_enabled %}
+    {% include "_action_ginger_connection.tpl" id=id
+                                               category=category
+                                               cg_id=cg_id|default:id.content_group_id
+                                               predicate=predicate
+                                               add_author
+                                               direction='out'
+                                               btn_class=btn_class
+                                               btn_title=btn_title
+                                               tab=tab
+                                               tabs_enabled=tabs_enabled
+                                               hide_help_text=hide_help_text
+                                               %}
 
 {% endwith %}

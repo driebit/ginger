@@ -35,7 +35,13 @@
                             actions=actions
                             dispatch=dispatch
                             page=page
-                            cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
+                            cg_id=cg_id
+                            creator_id=creator_id
+                            content_group=content_group
+                            nocatselect
+                            nocgselect
+                            hide_help_text=hide_help_text
+                            tab=tab|default:'new'}
             %}
         {% else %}
             {% wire id=#connect.predicate
@@ -55,7 +61,13 @@
                             actions=actions
                             dispatch=dispatch
                             page=page
-                            cg_id=cg_id nocatselect nocgselect tab=tab|default:'new'}
+                            cg_id=cg_id
+                            creator_id=creator_id
+                            content_group=content_group
+                            nocatselect
+                            nocgselect
+                            hide_help_text=hide_help_text
+                            tab=tab|default:'new'}
             %}
         {% endif %}
         {% if help_text %}<p class="helper-text">{{ help_text }}</p> {% endif %}
