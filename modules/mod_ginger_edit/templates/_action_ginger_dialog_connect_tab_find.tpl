@@ -1,8 +1,11 @@
 <div class="tab-pane {% if is_active %}active{% endif %}" id="{{ tab }}-find">
-	<p>{_ Find an existing page to connect _}</p>
+	
+    <p>{% if not hide_help_text %}{_ Find an existing page to connect _}{% endif %}</p>
 
-	<form id="dialog-connect-find" class="row">
+	<form id="ginger-dialog-connect-find" class="row">
         <input type="hidden" name="find_category" id="find_category" value="{{ cat }}">
+        <input type="hidden" name="cat_exclude" id="cat_exclude" value="{{ cat_exclude }}">
+        <input type="hidden" name="find_cg" id="find_cg" value="{{ content_group }}">
 		<input type="hidden" name="subject_id" value="{{ subject_id }}" />
         <input type="hidden" name="object_id" value="{{ object_id }}" />
 		<input type="hidden" name="predicate" value="{{ predicate|default:'' }}" />
@@ -17,8 +20,8 @@
 	</form>
 
 	<div id="dialog-connect-found" class="do_feedback"
-		data-feedback="trigger: 'dialog-connect-find', delegate: 'mod_admin'">
-	</div>
+		data-feedback="trigger: 'ginger-dialog-connect-find', delegate: 'mod_ginger_edit'">
+    </div>
 
     <div class="modal-footer">
         <a class="btn btn-default" id="{{ #close }}">
@@ -45,8 +48,8 @@
     }
 %}
 {% javascript %}
-    $('#dialog-connect-find').submit(function() { return false; });
-    $('#dialog-connect-find').change();
+    $('#ginger-dialog-connect-find').submit(function() { return false; });
+    $('#ginger-dialog-connect-find').change();
     $("#dialog-connect-found").on('click', '.thumbnail', function(e) {
     	e.preventDefault();
         z_event('dialog_connect_find', {
@@ -59,6 +62,6 @@
     $('a[data-toggle="tab"]').click(function(){
         var id = $(this).data('id');
         $('#find_category').val(id);
-        $('#dialog-connect-find').change();
+        $('#ginger-dialog-connect-find').change();
     });
 {% endjavascript %}

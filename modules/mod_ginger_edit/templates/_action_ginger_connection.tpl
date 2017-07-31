@@ -40,6 +40,7 @@
                             content_group=content_group
                             nocatselect
                             nocgselect
+                            hide_help_text=hide_help_text
                             tab=tab|default:'new'}
             %}
         {% else %}
@@ -65,6 +66,7 @@
                             content_group=content_group
                             nocatselect
                             nocgselect
+                            hide_help_text=hide_help_text
                             tab=tab|default:'new'}
             %}
         {% endif %}
