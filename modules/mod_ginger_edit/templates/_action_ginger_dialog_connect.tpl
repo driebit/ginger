@@ -30,6 +30,9 @@
                     </li>
                 {% endif %}
             {% endif %}
+            {% if "find_rdf"|member:tabs_enabled %}
+                {% all include "_media_upload_tab.tpl" tab=#tab %}
+            {% endif %}
         {% else %}
             {% block keyword_tabs %}
             {% if "find"|member:tabs_enabled %}
@@ -88,6 +91,17 @@
                     subject_id=subject_id
                     title=""
                     is_active=(tab == "upload")
+                %}
+            {% endif %}
+            {% if "find_rdf"|member:tabs_enabled %}
+                {% all include "_media_upload_panel.tpl"
+                    tab=#tab
+                    predicate=predicate
+                    delegate=delegate
+                    subject_id=subject_id
+                    object_id=object_id
+                    title=""
+                    delegate=delegate
                 %}
             {% endif %}
 
