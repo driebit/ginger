@@ -31,7 +31,7 @@ event(#postback_notify{message="feedback", trigger="ginger-dialog-connect-find",
                 <<"p:", Predicate/binary>> -> mod_admin:feedback_categories(SubjectId, Predicate, ObjectId, Context);
                 "" -> [];
                 <<>> -> [];
-                CatId -> [{m_rsc:rid(CatId, Context)}]
+                Cat -> [Cat]
            end,
     Vars = [
         {subject_id, SubjectId},
