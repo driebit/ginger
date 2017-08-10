@@ -2,6 +2,69 @@
    'use strict';
 
     $.widget("ui.search_suggestions", {
+        
+        model: {
+            index: -1,
+            suggestions: [],
+            input: ''
+        },
+
+         update: function(type, value) {
+            switch (type) {
+                case 'SetSuggestions': {
+                    this.model.index = -1;
+                    this.model.suggestions = Array.prototype.slice.call(value);
+                    this.render();
+                }
+                break;
+
+                case 'MoveDown': {
+                    if (this.model.index === this.model.suggestions.length - 1) {
+                        this.model.index = 0;
+                    } else {
+                        this.model.index = this.model.index + 1;
+                        this.model.value = value;
+                    }
+                    this.render();
+                }
+                break;
+
+                case 'MoveUp': {
+                    if (this.model.index === -1) {
+                         this.model.index = this.model.suggestions.length - 1;
+                    } else {
+                        this.model.index = this.model.index - 1;
+                        this.model.value = value;
+                    }
+                    this.render();
+                }
+                break;
+
+                case 'SetInput': {
+                    this.model.input = value;
+                }
+                break;
+
+                case 'OnReturnPressed': {
+                    this._closeSearch();
+                    this._navigateToSearchPage();
+                }
+                break;
+            }
+        },
+
+        render: function() {
+            this._removeHighlight();
+
+            if (this.model.index === -1 || this.model.suggestions.length === 0) {
+                return;
+            }
+
+            this.model.suggestions[this.model.index].style.textDecoration = 'underline';
+
+            this.element[0].value = this.model.suggestions[this.model.index].textContent.trim();
+        },
+
         _init: function() {
             this.init();
         },
@@ -24,6 +87,21 @@
 
             me.suggestions.removeClass('is-scrolable');
             me.suggestions.hide();
+            
+            var target = document.querySelector('.search-suggestions__suggestions')
+
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    me.update('SetSuggestions', mutation.target.querySelectorAll('a'));
+                });    
+            });
+
+            // configuration of the observer:
+            var config = { attributes: true, childList: true, characterData: true };
+            
+            // pass in the target node, as well as the observer options
+            observer.observe(target, config);
+            
 
             function doSearch() {
 
@@ -37,8 +115,7 @@
                 z_event(paramWire, {value: val});
 
                 setTimeout(function(){
-                    me.suggestions.show(0, function(){
-
+                    me.suggestions.show(0, function() {
                         if (me.suggestions.outerHeight() > windowHeight) {
                             me.suggestions.addClass('is-scrollable');
                         }
@@ -47,9 +124,24 @@
 
             }
 
+            $(document).on('keyup', function(e) {
+                if (e.keyCode === 13) {
+                    me.update('OnReturnPressed');
+                }
+            });
+
             me.element.on('keyup', function(e) {
-                if (timer) clearTimeout(timer);
-                timer = setTimeout(doSearch, 300);
+                var key = e.keyCode;
+                var inputValue = e.currentTarget.value;
+                
+                if (key === 38) {
+                    me.update('MoveUp', inputValue);
+                } else if (key === 40) {
+                    me.update('MoveDown', inputValue);
+                } else {
+                    me.update('SetInput', inputValue);
+                    doSearch();
+                }
             });
 
             $(document).on('search:close', $.proxy(me._closeSearch, me));
@@ -57,6 +149,12 @@
 
             if (me.toggleButton != undefined) me.toggleButton.on('click', $.proxy(me._toggleSearch, me));
 
+        },
+
+        _removeHighlight: function() {
+            this.model.suggestions.forEach(function(x) {
+                x.style.textDecoration = 'none';
+            });
         },
 
         _closeSearch: function(event) {
