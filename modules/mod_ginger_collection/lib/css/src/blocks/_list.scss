@@ -136,17 +136,27 @@
 }
 
 .list__item__wimpel {
-	width: 111px;
-	height: 45px;
-	padding: 2px 0 0 18px;
+	width: 125px;
+	height: 25px;
+	padding: 0px 0 0 18px;
 	position: absolute;
-	top: -1px;
+	top: -2px;
 	left: 0px;
-	background: url('/lib/images/wimpel.svg') top;
-    background-repeat: no-repeat;
 	color: $white;
     font-size: 12px;
     text-transform: lowercase;
+
+    &:before {
+        content: "";
+        height: 45px;
+        width: 20px;
+        position: absolute;
+        display: block;
+        top: 0px;
+        left: 0px;
+        background: url(/lib/images/wimpel.svg) top left;
+        background-repeat: no-repeat;
+    }
 
     i {
     	margin-right: 3px;
