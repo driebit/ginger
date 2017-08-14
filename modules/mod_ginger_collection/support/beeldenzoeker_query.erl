@@ -106,6 +106,8 @@ map_related_to_property(#triple{predicate = <<?NS_RDF, "type">>, type = resource
     ];
 map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "creator">>, type = resource, object = Object}, Filters) ->
     [[<<"dcterms:creator.@id.keyword">>, '=', Object, #{<<"path">> => <<"dcterms:creator">>}] | Filters];
+map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "subject">>, type = resource, object = Object}, Filters) ->
+    [[<<"dcterms:subject.@id.keyword">>, Object] | Filters];
 map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "spatial">>, type = resource, object = Object}, Filters) ->
     [[<<"dcterms:spatial.@id.keyword">>, Object] | Filters];
 map_related_to_property(#triple{}, QueryArgs) ->
