@@ -1,6 +1,6 @@
 {% extends "list/list-item-beeldenzoeker.tpl" %}
 
-{% block link %}{{ rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] }} {% endblock %}
+{% block link %}{{ url }}{% endblock %}
 
 {% block item_image %}
     {% include "list/list-item-image.tpl" url=rdf.thumbnail %}
@@ -15,5 +15,5 @@
 {% endblock %}
 
 {% block read_more %}
-    {% include "collection/readmore.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf'] source="Wikipedia" class="list-item_readmore"%}
+    {% include "collection/readmore.tpl" source="Wikipedia" class="list-item_readmore"%}
 {% endblock %}
