@@ -18,7 +18,9 @@
         <main>
             <div class="adlib-object__actions">
                 <div class="main-container">
-                    {% include "collection/share.tpl" record=record %}
+                    {% block share %}
+                        {% include "collection/share.tpl" record=record %}
+                    {% endblock %}
                     {% include "collection/depiction.tpl" record=record template="collection/download.tpl" %}
                 </div>
             </div>
