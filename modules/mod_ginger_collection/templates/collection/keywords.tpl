@@ -8,7 +8,7 @@
             {% for dbpedia_rdf in dbpedia_rdfs %}
                 {% with m.rdf[dbpedia_rdf] as rdf %}
                     {# Fall back to manually constructed URL for RDFs that lack isPrimaryTopicOf #}
-                    {% include "collection/block/keyword-small.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf']|default:"https://nl.wikipedia.org/wiki/" ++ rdf.title %}
+                    {% include "collection/block/keyword-small.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf']|default:("https://nl.wikipedia.org/wiki/" ++ rdf.title) %}
                 {% endwith %}
             {% endfor %}
         </ul>
