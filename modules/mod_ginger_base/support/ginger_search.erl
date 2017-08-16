@@ -16,6 +16,7 @@
     anykeyword,
     cat_exclude_defaults,
     cat_exclude_unfindable,
+    cat_promote_recent,
     custompivots,
     filters,
     has_geo,
@@ -218,6 +219,26 @@ parse_argument({cat_exclude_unfindable, Val}) ->
                 [{cat_exclude, get_unfindable_categories(Context)}];
             false ->
                 []
+        end
+    end;
+
+parse_argument({cat_promote_recent, false}) ->
+    [];
+parse_argument({cat_promote_recent, Categories}) ->
+    fun(Context) ->
+        case z_module_manager:active(mod_elasticsearch, Context) of
+            false ->
+                %% Custom score function only works on Elasticsearch
+                [];
+            true ->
+                [{score_function, #{
+                    <<"filter">> => [{cat, Categories}],
+                    <<"exp">> => #{
+                        <<"publication_start">> => #{
+                            <<"scale">> => <<"30d">>
+                        }
+                    }
+                }}]
         end
     end;
 

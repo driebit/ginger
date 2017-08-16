@@ -84,6 +84,7 @@
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
             page=page
+            cat_promote_recent=['article']
         }] as result %}
 
             {% include "search/list-wrapper.tpl" class=list_class list_id=list_id list_template=list_template items=result extraClasses="" id=id %}
