@@ -14,9 +14,7 @@
                 </dl>
             {% endwith %}
         {% else %}
-            <li>
-                {% include "collection/metadata/meta-link.tpl" href=item['@id'] content=item['rdfs:label']|default:item['@id']  %}
-            </li>
+            <li>{{ item['rdfs:label'] }}</li>
         {% endif %}
     {% else %}
         {{ item['rdfs:label'] }}
