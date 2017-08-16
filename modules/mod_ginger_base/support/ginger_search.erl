@@ -22,7 +22,8 @@
     has_geo,
     is_findable,
     keyword,
-    ongoing_on_date
+    ongoing_on_date,
+    boost_featured
 ]).
 
 %% @doc Observe Zotonic search queries, transform arguments and forward to the
@@ -87,7 +88,8 @@ merge_ginger_args(Args, Context) ->
         {is_findable, true},
         {is_published, true},
         {cat_exclude_defaults, true},
-        {cat_exclude_unfindable, true}
+        {cat_exclude_unfindable, true},
+        {boost_featured, true}
     ],
     MergedArgs1 = withdefault(DefaultArgs, MergedArgs),
 
@@ -225,22 +227,14 @@ parse_argument({cat_exclude_unfindable, Val}) ->
 parse_argument({cat_promote_recent, false}) ->
     [];
 parse_argument({cat_promote_recent, Categories}) ->
-    fun(Context) ->
-        case z_module_manager:active(mod_elasticsearch, Context) of
-            false ->
-                %% Custom score function only works on Elasticsearch
-                [];
-            true ->
-                [{score_function, #{
-                    <<"filter">> => [{cat, Categories}],
-                    <<"exp">> => #{
-                        <<"publication_start">> => #{
-                            <<"scale">> => <<"30d">>
-                        }
-                    }
-                }}]
-        end
-    end;
+    score_function(#{
+        <<"filter">> => [{cat, Categories}],
+        <<"exp">> => #{
+            <<"publication_start">> => #{
+                <<"scale">> => <<"30d">>
+            }
+        }
+    });
 
 parse_argument({filters, Filters}) ->
     lists:map(
@@ -285,5 +279,26 @@ parse_argument({has_geo, false}) ->
 parse_argument({has_geo, Val}) ->
     parse_argument({has_geo, z_convert:to_bool(Val)});
 
+%% @doc Increase ranking for resources for which is_featured is true.
+parse_argument({boost_featured, false}) ->
+    [];
+parse_argument({boost_featured, true}) ->
+    score_function(#{
+        <<"filter">> => [{is_featured, true}],
+        <<"weight">> => 2
+    });
+
 parse_argument(Arg) ->
     [Arg].
+
+%% @doc Add Elasticsearch custom score function.
+score_function(Body) ->
+    fun(Context) ->
+        case z_module_manager:active(mod_elasticsearch, Context) of
+            false ->
+                %% Custom score function only works on Elasticsearch
+                [];
+            true ->
+                [{score_function, Body}]
+        end
+    end.
