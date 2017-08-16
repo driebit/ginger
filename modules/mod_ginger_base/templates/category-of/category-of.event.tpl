@@ -1,7 +1,7 @@
 {% if id.date_start|date:"Y" %}
 
     <div class="category-of--event cf">
-        <time datetime="{{ id.start_date|date:"Y-F-jTH:i" }}" class="category-of__date">
+        <time datetime="{{ id.date_start|date:"Y-F-jTH:i" }}" class="category-of__date">
 
             <i class="icon--event"></i>
             {{ id.date_start|date:"d-m-Y" }} {% if not id.date_is_all_day and id.date_start|date:"H:i"!="00:00" %}{{ id.date_start|date:"H:i" }} {% endif %}
