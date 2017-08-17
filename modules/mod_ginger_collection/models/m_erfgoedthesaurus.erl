@@ -17,11 +17,11 @@ m_find_value(Key, #m{} = M, Context) when is_atom(Key) ->
     m_find_value(z_convert:to_binary(Key), M, Context);
 m_find_value(Key, #m{value = <<"http://data.cultureelerfgoed.nl", _/binary>> = Url}, _Context) ->
     case ginger_http_client:get(Url) of
-        undefined ->
-            %% E.g. 404
-            undefined;
         Data when is_map(Data) ->
-            maps:get(Key, Data, undefined)
+            maps:get(Key, Data, undefined);
+        _ ->
+            %% E.g. 404 or non-JSON data
+            undefined
     end;
 m_find_value(_Key, #m{value = _UnsupportedUrl}, _Context) ->
     undefined.
