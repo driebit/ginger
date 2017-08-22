@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
     lost = require('lost'),
-    globbing = require('gulp-css-globbing');
+    globbing = require('gulp-css-globbing'),
+    livereload = require('gulp-livereload');
 
 var paths = {
     modulesSrc: [
@@ -17,17 +18,15 @@ var paths = {
 
 gulp.task('sass', function () {
     gulp.src(paths.cssSource + 'screen.scss')
-    .pipe(globbing({ extensions: ['.scss'] }))
-    .pipe(sass({
-            outputStyle : 'compressed',
-            errLogToConsole: true
-        }))
-    .on('error', handleError)
-    .pipe(postcss([
-        lost(),
-        autoprefixer('last 2 versions', 'ie > 7')
-    ]))
-    .pipe(gulp.dest(paths.cssDestination));
+        .pipe(globbing({ extensions: ['.scss'] }))
+        .pipe(sass({outputStyle : 'compressed'}))
+        .on('error', sass.logError)
+        .pipe(postcss([
+            lost(),
+            autoprefixer('last 2 versions', 'ie > 7')
+        ]))
+        .pipe(gulp.dest(paths.cssDestination))
+        .pipe(livereload());
 });
 
 gulp.task('sass:watch', function () {
@@ -41,9 +40,5 @@ gulp.task('sass:watch', function () {
 
     gulp.watch(watchPaths, ['sass']);
 });
-
-function handleError(e) {
-    console.log('Error: ', e);
-}
 
 gulp.task('default', ['sass', 'sass:watch']);
