@@ -30,7 +30,7 @@ addsite:
 
 gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
-	docker run --rm -it -p 35729:35729 -v "`pwd`/sites/$(site)":/app:delegated -v "`pwd`/modules":/modules:delegated --env MODULES_DIR=/modules driebit/node-gulp
+	docker run --rm -it -p 35729:35729 -v "`pwd`/sites/$(site)":/app:delegated -v "`pwd`/modules":/modules:delegated --env MODULES_DIR=/modules driebit/node:8.4.0
 
 clean-node:
 	find . -type d -name node_modules -exec rm -r "{}" \;
