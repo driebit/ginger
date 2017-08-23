@@ -15,7 +15,7 @@ help:
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
 	@echo "  gulp site=your_site     Run Gulp in a site directory"
 	@echo "  clean-node              Delete all node_modules directories"
-	@echo "  import-db-file          Import database from file (db=site-name file=site-dump.sql)"
+	@echo "  import-db-file          Import database from file (site=site-name file=site-dump.sql)"
 	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
@@ -36,12 +36,12 @@ clean-node:
 	find . -type d -name node_modules -exec rm -r "{}" \;
 
 import-db-file:
-	@echo "> Importing $(db) from $(file)"
-	@docker-compose exec zotonic bin/zotonic stopsite $(db)
-	@docker-compose exec postgres psql -U zotonic -c "DROP DATABASE IF EXISTS $(db)"
-	@docker-compose exec postgres psql -U zotonic -c "CREATE DATABASE $(db) ENCODING 'UTF8' TEMPLATE template0"
-	@docker-compose exec postgres psql $(db) -U zotonic -h localhost -f $(file)
-	@docker-compose exec zotonic bin/zotonic startsite $(db)
+	@echo "> Importing $(site) from $(file)"
+	@docker-compose exec zotonic bin/zotonic stopsite $(site)
+	@docker-compose exec postgres psql -U zotonic -c "DROP DATABASE IF EXISTS $(site)"
+	@docker-compose exec postgres psql -U zotonic -c "CREATE DATABASE $(site) ENCODING 'UTF8' TEMPLATE template0"
+	@docker-compose exec postgres psql $(site) -U zotonic -h localhost -f $(file)
+	@docker-compose exec zotonic bin/zotonic startsite $(site)
 
 import-db-backup:
 	@echo "> Importing $(REMOTE_BACKUP_FILE) from $(host) into $(site)"
