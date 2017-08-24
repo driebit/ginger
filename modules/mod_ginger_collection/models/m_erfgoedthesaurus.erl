@@ -15,14 +15,10 @@ m_find_value(Url, #m{value = undefined} = M, _Context) ->
     M#m{value = Url};
 m_find_value(Key, #m{} = M, Context) when is_atom(Key) ->
     m_find_value(z_convert:to_binary(Key), M, Context);
-m_find_value(Key, #m{value = <<"http://data.cultureelerfgoed.nl", _/binary>> = Url}, _Context) ->
-    case ginger_http_client:get(Url) of
-        Data when is_map(Data) ->
-            maps:get(Key, Data, undefined);
-        _ ->
-            %% E.g. 404 or non-JSON data
-            undefined
-    end;
+m_find_value(Key, #m{value = <<"http://data.cultureelerfgoed.nl", _/binary>> = Url}, Context) ->
+    %% data.cultureelerfgoed.nl is no more; Erfgoedthesaurus is managed by PoolParty
+    Concept = m_poolparty:concept(Url, Context),
+    maps:get(Key, Concept, undefined);
 m_find_value(_Key, #m{value = _UnsupportedUrl}, _Context) ->
     undefined.
 

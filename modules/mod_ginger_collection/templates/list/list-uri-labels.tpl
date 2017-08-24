@@ -3,14 +3,14 @@
     <li>
     {% if item['@id'] as uri %}
         {% if
-            (m.erfgoedthesaurus[uri].definition|filter:`language`:"dut"|first)
+            (m.erfgoedthesaurus[uri].scopeNotes)
         as
             erfgoedthesaurus_definition
         %}
             {% with #list ++ forloop.counter as i %}
                 <dl id="do_expand--parent-{{ i }}">
                     <dd class="do_expand" data-content="do_expand--content-{{ i }}" data-parent="do_expand--parent-{{ i }}">{{ item['rdfs:label'] }}</dd>
-                    <dd id="do_expand--content-{{ i }}" class="do_expand--content">{{ erfgoedthesaurus_definition.value }} </dd>
+                    <dd id="do_expand--content-{{ i }}" class="do_expand--content">{{ erfgoedthesaurus_definition }} </dd>
                 </dl>
             {% endwith %}
         {% else %}
