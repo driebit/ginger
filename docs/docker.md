@@ -119,8 +119,10 @@ Inotify is not picking up changes.
 * If you’re using IntelliJ (PHPStorm, WebStorm), disable ‘Use “safe write”’ 
   in IntelliJ’s preferences.
 
-* Click the Docker icon, Preferences, Uninstall/Reset and finally the ‘Reset’
-  button.
+* If that doesn’t work, restart Docker.
+
+* If that doesn’t work, click the Docker icon, Preferences, Uninstall/Reset 
+  and finally the ‘Reset’ button.
 
 ### `make gulp` fails with ‘EEXIST: file already exists’
 
@@ -146,3 +148,10 @@ ERROR: Encountered errors while bringing up the project.
 $ docker-compose down -v
 ```
 
+### Zotonic container exits with code 139 (segmentation fault)
+
+This is possibly related to https://github.com/zotonic/zotonic/issues/1490. 
+
+**Solution:** 
+
+In Docker Preferences, on the Advanced tab, change to 2 CPUs and restart Docker.
