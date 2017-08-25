@@ -56,8 +56,7 @@ gulp.task('js', () => {
             'presets': [
                 ['env', {
                     'targets': {
-                        'chrome': 52,
-                        'browsers': ['last 2 versions', 'safari 7']
+                        'browsers': ['last 2 versions', 'safari >= 7']
                     }
                 }]
             ]
