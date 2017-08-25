@@ -19,8 +19,10 @@ const plumber = require('gulp-plumber');
 const livereload = require('gulp-livereload');
 
 // Locations of scss, javascript and template files
+// Add scss file paths to de the modulesSrc array to trigger scss proccessing on file change
+// e.g. '../../modules/mod_ginger_foundation/lib/css/src'
 const paths = {
-    modulesSrc: ['../../modules/mod_ginger_foundation/lib/css/src'],
+    modulesSrc: [],
     scssSrc: 'lib/css/src',
     scssDest: 'lib/css/site',
     javascriptSrc: 'lib/js/src',
@@ -46,7 +48,7 @@ gulp.task('sass', () => {
         .pipe(livereload());
 });
 
-// Transpiles ES6/minifies/renames JavaScript
+// Transpiles ES6 -> minifies -> renames javaScript
 gulp.task('js', () => {
     gulp.src(`${paths.javascriptSrc}/**/*.js`)
         .pipe(plumber())
@@ -66,7 +68,7 @@ gulp.task('js', () => {
         .pipe(livereload())
 });
 
-// Watch scss, javascript and template files for changes
+// Init livereload server and watch scss, javascript and template files for changes
 gulp.task('watch', () => {
     livereload.listen();
 
