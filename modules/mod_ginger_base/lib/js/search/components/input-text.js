@@ -9,13 +9,9 @@ $.widget("ui.search_cmp_input_text", {
         me.type = 'qs';
 
         me.widgetElement.keypress(function(event) {
-            if (event.keyCode == 13) {
-                var onSeachPage = ($('.do_search_ui') < 0);
-
-                if (onSeachPage) {
-                    event.preventDefault();
-                    $(document).trigger('search:inputChanged');
-                }
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                $(document).trigger('search:inputChanged');
             }
         });
 
