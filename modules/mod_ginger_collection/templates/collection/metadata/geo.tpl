@@ -6,7 +6,7 @@
         </h6>
         <div class="adlib-object__meta__data">
             {% include "list/list-uri-labels.tpl" items=places %}
-            {% include "map/map.tpl" result=places %}
+            {% include "map/map.tpl" result=places height=300 %}
         </div>
     </div>
 {% endif %}
