@@ -71,7 +71,7 @@ gulp.task('js', () => {
 gulp.task('watch', () => {
     livereload.listen();
 
-    var scssCombinedPaths = paths.modulesSrc
+    const scssCombinedPaths = paths.modulesSrc
         .map(x => `${x}/**/*.scss`)
         .concat(`${paths.scssSrc}/**/*.scss`);
 
