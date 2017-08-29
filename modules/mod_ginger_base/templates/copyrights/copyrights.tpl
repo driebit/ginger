@@ -47,7 +47,6 @@
             </a>
 
         {% else %}
-            <i class="icon--by-cc"></i>
             <span class="caption">
                 {_ All rights reserved _}
             </span>
