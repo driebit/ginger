@@ -47,7 +47,6 @@
 
                 case 'OnReturnPressed': {
                     this._closeSearch();
-                    this._navigateToSearchPage();
                 }
                 break;
             }
