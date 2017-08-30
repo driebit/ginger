@@ -27,5 +27,9 @@
         "css/logon.css"
     %}
 
+    {% include
+        "head/polyfill.tpl"
+    %}
+
     {% all include "_html_head.tpl" %}
 </head>
