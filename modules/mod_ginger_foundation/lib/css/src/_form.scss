@@ -4,7 +4,8 @@
 
 form {
     input[type="text"],
-    input[type="website"] {
+    input[type="website"],
+    input[type="email"] {
         width: 100%;
         @include size(padding, 4, 10, 0);
         @include size(height, 38);
