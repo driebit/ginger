@@ -13,9 +13,7 @@ as
     carousel_id,
     itemtemplate
 %}
-
 {% if items %}
-
     {% block carousel %}
         <ul id="{{ carousel_id }}" class="carousel {{ extraClasses }}">
             {% for id in items %}
