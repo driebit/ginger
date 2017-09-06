@@ -3,7 +3,7 @@
     <li>
     {% if item['@id'] as uri %}
         {% if
-            (m.erfgoedthesaurus[uri].scopeNotes)
+            m.rdf[m.erfgoedthesaurus[uri]]['http://www.w3.org/2004/02/skos/core#scopeNote']
         as
             erfgoedthesaurus_definition
         %}

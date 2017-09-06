@@ -8,17 +8,13 @@
 -export([
     m_find_value/3,
     m_to_list/2,
-    m_value/2
+    m_value/2,
+    concept/1,
+    dbpedia_uri/1
 ]).
 
-m_find_value(Url, #m{value = undefined} = M, _Context) ->
-    M#m{value = Url};
-m_find_value(Key, #m{} = M, Context) when is_atom(Key) ->
-    m_find_value(z_convert:to_binary(Key), M, Context);
-m_find_value(Key, #m{value = <<"http://data.cultureelerfgoed.nl", _/binary>> = Url}, Context) ->
-    %% data.cultureelerfgoed.nl is no more; Erfgoedthesaurus is managed by PoolParty
-    Concept = m_poolparty:concept(Url, Context),
-    maps:get(Key, Concept, undefined);
+m_find_value(Uri, #m{value = undefined}, _Context) ->
+    concept(Uri);
 m_find_value(_Key, #m{value = _UnsupportedUrl}, _Context) ->
     undefined.
 
@@ -27,3 +23,36 @@ m_to_list(_, _Context) ->
 
 m_value(#m{}, _Context) ->
     undefined.
+
+%% @doc Look up a concept in the Erfgoedthesaurus by URI.
+-spec concept(Uri :: binary()) -> m_rdf:rdf_resource() | undefined.
+concept(<<"http://data.cultureelerfgoed.nl/semnet/", Id/binary>>) ->
+    concept(<<"https://data.cultureelerfgoed.nl/term/id/cht/", Id/binary>>);
+    %% BC for old Erfgoedthesaurus URIs
+concept(<<"https://data.cultureelerfgoed.nl/term/id/cht", _/binary>> = Uri) ->
+    case ginger_http_client:get(<<Uri/binary, ".jsonld">>) of
+        %% Erfgoedthesaurus returns JSON-LD as a list
+        [Item | _] ->
+            ginger_json_ld:deserialize(Item);
+        _ ->
+            undefined
+    end;
+concept(_) ->
+    undefined.
+
+%% @doc Get DBPedia URI for an Erfgoedthesaurus concept.
+-spec dbpedia_uri(binary()) -> binary() | undefined.
+dbpedia_uri(Uri) ->
+    case concept(Uri) of
+        undefined ->
+            undefined;
+        Concept ->
+            Matches = m_rdf:objects(Concept, <<"http://www.w3.org/2004/02/skos/core#exactMatch">>) ++
+                m_rdf:objects(Concept, <<"http://www.w3.org/2004/02/skos/core#closeMatch">>),
+            case lists:filter(fun m_dbpedia:is_dbpedia_uri/1, Matches) of
+                [] ->
+                    undefined;
+                [Hd | _] ->
+                    Hd
+            end
+    end.
