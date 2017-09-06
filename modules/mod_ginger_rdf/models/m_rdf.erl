@@ -13,10 +13,14 @@
     m_value/2,
     find_resource/2,
     object/3,
+    objects/2,
     ensure_resource/3,
     lookup_triple/2,
     to_triples/2
 ]).
+
+-opaque rdf_resource() :: #rdf_resource{}.
+-export_type([rdf_resource/0]).
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
     M#m{value = Rdf};
@@ -322,6 +326,17 @@ publisher_triples(Context) ->
             object = Hostname
         }
     ].
+
+%% @doc Find all objects matching the predicate.
+-spec objects(rdf_resource(), binary()) -> list().
+objects(#rdf_resource{triples = Triples}, Predicate) ->
+    MatchingTriples = lists:filter(
+        fun(Triple) ->
+            Triple#triple.predicate =:= Predicate
+        end,
+        Triples
+    ),
+    [Object || #triple{object = Object} <- MatchingTriples].
 
 %% @doc Shortcuts for namespaced RDF properties
 lookup_triple(uri, Triples) ->
