@@ -10,7 +10,8 @@
     m_find_value/3,
     m_to_list/2,
     m_value/2,
-    get_resource/3
+    get_resource/3,
+    is_dbpedia_uri/1
 ]).
 
 m_find_value(Language, #m{value = undefined} = M, _Context) ->
@@ -32,3 +33,13 @@ get_resource(Uri, Language, Context) ->
         {Uri, Language},
         Context
     ).
+
+%% @doc Does the URI belong to DBPedia?
+-spec is_dbpedia_uri(binary()) -> boolean().
+is_dbpedia_uri(Uri) ->
+    case binary:match(Uri, <<"dbpedia.org">>) of
+        nomatch ->
+            false;
+        _Found ->
+            true
+    end.
