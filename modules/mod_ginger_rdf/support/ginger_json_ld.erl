@@ -4,9 +4,11 @@
 
 -export([
     serialize/1,
+    serialize_to_map/1,
     deserialize/1,
     open/1,
-    open_file/1
+    open_file/1,
+    compact/1
 ]).
 
 -include("zotonic.hrl").
@@ -172,11 +174,47 @@ serialize(#rdf_resource{id = Id, triples = Triples}) ->
         [{<<"@id">>, Id}],
         Triples
     )),
-
     %% We need to add a {struct, ...} tuple here so z_convert:to_json/1 won't
     %% prefix the data with an {array, ...} tuple.
     %% See https://github.com/zotonic/z_stdlib/pull/14
+
     z_convert:to_json({struct, Data}).
+
+serialize_to_map(#rdf_resource{id = Id, triples = Triples}) ->
+    lists:foldl(
+        fun(#triple{} = Triple, Acc) ->
+            TripleJson = triple_to_map(Triple),
+            JsonKey = hd(maps:keys(TripleJson)),
+            #{JsonKey := JsonValue} = TripleJson,
+
+            case maps:get(JsonKey, Acc, undefined) of
+                undefined ->
+                    maps:merge(Acc, TripleJson);
+                Value when is_list(Value) ->
+                    Acc#{JsonKey => [JsonValue | Value]};
+                Value ->
+                    Acc#{JsonKey => [JsonValue | [Value]]}
+            end
+        end,
+        #{<<"@id">> => Id},
+        Triples
+    ).
+
+compact(Map) when is_map(Map) ->
+    maps:fold(
+        fun(Key, Value, Acc) ->
+            Compacted = compact_predicate(Key),
+            Acc#{Compacted => Value}
+            %% TODO: add compacted predicates to @context
+        end,
+        #{},
+        Map
+    ).
+
+compact_predicate(<<"http://purl.org/dc/elements/1.1/", Property/binary>>) ->
+    <<"dce:", Property/binary>>;
+compact_predicate(Predicate) ->
+    binary:replace(Predicate, <<".">>, <<"_">>, [global]).
 
 %% @doc Deserialize a JSON-LD document into an RDF resource.
 -spec deserialize(tuple() | list()) -> #rdf_resource{}.
@@ -227,6 +265,9 @@ triple(Subject, Predicate, #{<<"@id">> := Uri}) ->
 triple(Subject, Predicate, #{<<"@language">> := Language, <<"@value">> := Value}) ->
     Object = #rdf_value{value = Value, language = Language},
     #triple{subject = Subject, predicate = Predicate, object = Object};
+triple(Subject, Predicate, #{<<"@value">> := Value}) ->
+    Object = #rdf_value{value = Value},
+    #triple{subject = Subject, predicate = Predicate, object = Object};
 triple(Subject, Predicate, Object) ->
     #triple{subject = Subject, predicate = Predicate, object = Object}.
 
@@ -238,3 +279,18 @@ triple_to_json(#triple{type = literal, predicate = Predicate, object = Object}) 
     {Predicate, z_convert:to_json(Object)};
 triple_to_json(#triple{type = resource, predicate = Predicate, object = Object}) ->
     {Predicate, [{<<"@id">>, Object}]}.
+
+triple_to_map(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
+    #{<<"@type">> => Object};
+triple_to_map(#triple{type = literal, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}) ->
+    #{Predicate => #{<<"@value">> => Object}};
+triple_to_map(#triple{type = literal, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}) ->
+    %% z_convert:to_json to convert any date tuples to datetime string, which
+    %% doesn't work if we pass {struct, Data} (see comment above).
+    #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
+triple_to_map(#triple{type = literal, predicate = Predicate, object = Object}) ->
+    %% z_convert:to_json to convert any date tuples to datetime string, which
+    %% doesn't work if we pass {struct, Data} (see comment above).
+    #{Predicate => Object};
+triple_to_map(#triple{type = resource, predicate = Predicate, object = Object}) ->
+    #{Predicate => #{<<"@id">> => Object}}.
