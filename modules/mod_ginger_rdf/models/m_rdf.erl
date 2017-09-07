@@ -397,6 +397,14 @@ lookup_triple(rights, Triples) ->
         ],
         Triples
     );
+lookup_triple(spatial, Triples) ->
+    lookup_triples(
+        [
+            <<"http://purl.org/dc/terms/spatial">>,
+            <<"http://purl.org/dc/elements/1.1/spatial">>
+        ],
+        Triples
+    );
 lookup_triple(date, Triples) ->
     case lookup_triples(
         [
