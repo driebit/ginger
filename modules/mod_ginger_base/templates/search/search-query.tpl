@@ -26,7 +26,8 @@
         authoritative|default:1,
         list_template|default:"list/list-item-vertical.tpl",
         list_id|default:"list--query",
-        list_class|default:"list--vertical"
+        list_class|default:"list--vertical",
+        is_finishd|default:true
     as
         type,
         cat,
@@ -54,7 +55,8 @@
         authoritative,
         list_template,
         list_id,
-        list_class
+        list_class,
+        is_finishd
 %}
 
     {% if type == "list" %}
@@ -76,49 +78,64 @@
             keyword=keyword
             anykeyword=anykeyword
             cat=cat
-            sort=sort
-            content_group=content_group
-            hassubjects=hassubjects
-            hasobjects=hasobjects
-            hasanyobject=hasanyobject
-            custompivots=custompivots
-            ongoing_on_date=ongoing_on_date
-            page=page
-            cat_promote_recent=['article']
         }] as result %}
-
+            {% print result %}
             {% include "search/list-wrapper.tpl" class=list_class list_id=list_id list_template=list_template items=result extraClasses="" id=id %}
 
         {% endwith %}
 
     {% elif type == "timeline" %}
+        {% if is_finished %}
+            {% with m.search[{ginger_search
+                finished
+                hassubjects=hassubjects
+                hasobjects=hasobjects
+                hascustompivots=custompivots
+                cat_exclude=cat_exclude
+                cat_exclude_defaults=cat_exclude_defaults
+                content_group=content_group
+                text=search_text
+                authoritative=authoritative
+                date_start_year=date_start_year
+                date_start_before=date_start_before
+                date_end_before=date_end_before
+                date_start_after=date_start_after
+                date_end_after=date_end_after
+                is_findable=is_findable
+                keyword=keyword
+                cat=cat
+                sort=sort
+                content_group=content_group
+                pagelen=50
+            }] as result %}
+                {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
+            {% endwith %}
+        {% else %}
+            {% with m.search[{ginger_search
+                hassubjects=hassubjects
+                hasobjects=hasobjects
+                hascustompivots=custompivots
+                cat_exclude=cat_exclude
+                cat_exclude_defaults=cat_exclude_defaults
+                content_group=content_group
+                text=search_text
+                authoritative=authoritative
+                date_start_year=date_start_year
+                date_start_before=date_start_before
+                date_end_before=date_end_before
+                date_start_after=date_start_after
+                date_end_after=date_end_after
+                is_findable=is_findable
+                keyword=keyword
+                cat=cat
+                sort=sort
+                content_group=content_group
+                pagelen=50
+            }] as result %}
+                {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
+            {% endwith %}
+        {% endif %}
 
-        {% with m.search[{ginger_search
-            finished
-            hassubjects=hassubjects
-            hasobjects=hasobjects
-            hascustompivots=custompivots
-            cat_exclude=cat_exclude
-            cat_exclude_defaults=cat_exclude_defaults
-            content_group=content_group
-            text=search_text
-            authoritative=authoritative
-            date_start_year=date_start_year
-            date_start_before=date_start_before
-            date_end_before=date_end_before
-            date_start_after=date_start_after
-            date_end_after=date_end_after
-            is_findable=is_findable
-            keyword=keyword
-            cat=cat
-            sort=sort
-            content_group=content_group
-            pagelen=50
-        }] as result %}
-
-            {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
-
-        {% endwith %}
 
     {% else %}
 
