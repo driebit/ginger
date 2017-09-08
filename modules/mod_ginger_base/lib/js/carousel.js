@@ -1,21 +1,21 @@
 $.widget("ui.carousel", {
 
     _create: function () {
-        function MergeRecursive(obj1, obj2) {
-            for (var p in obj2) {
+        function MergeRecursive(defaultSettings, currentSettings) {
+            for (var p in currentSettings) {
                 try {
                     // Property in destination object set; update its value.
-                    if ( obj2[p].constructor==Object ) {
-                        obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+                    if ( currentSettings[p].constructor==Object ) {
+                        defaultSettings[p] = MergeRecursive(defaultSettings[p], currentSettings[p]);
                     } else {
-                        obj1[p] = obj2[p];
+                        defaultSettings[p] = currentSettings[p];
                     }
                 } catch(e) {
                     // Property in destination object not set; create it and set its value.
-                    obj1[p] = obj2[p];
+                    defaultSettings[p] = currentSettings[p];
                 }
             }
-            return obj1;
+            return defaultSettings;
         }
 
         var me = this,
@@ -23,7 +23,7 @@ $.widget("ui.carousel", {
             id = widgetElement.attr('id'),
             settings = this.options;  // Is this used?
 
-        settings = MergeRecursive(settings, {dots: true, autoplay: true}); // this would be default behavior
+        settings = MergeRecursive({dots: true, autoplay: true}, settings); // this would be default behavior
 
         if (widgetElement.data('carousel-options')) {
             var options =  widgetElement.data('carousel-options');
@@ -35,7 +35,5 @@ $.widget("ui.carousel", {
         } else {
             $(widgetElement).slick();
         }
-
     }
-
 });
