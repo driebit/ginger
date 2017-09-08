@@ -13,7 +13,9 @@
                     {% endfor %}
                 {% endwith %}
             {% else %}
-                <option value="{{ value }}">{{ label|default:value }} ({{ count }})</option>
+                {% for name, label, count, uri, value in values %}
+                   <option value="{{ value }}">{{ label|default:value }} ({{ count }})</option>
+                {% endfor %}
             {% endif %}
         {% endwith %}
     </select>
