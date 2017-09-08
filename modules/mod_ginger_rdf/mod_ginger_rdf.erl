@@ -144,7 +144,7 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
     Context1 = case proplists:get_value(predicate, Args) of
         depiction ->
             z_render:wire({script, [{script, [
-                    <<"z_choose_zmedia(", ObjectBin/binary, ");">>
+                    <<"if (typeof z_choose_zmedia === 'function') {z_choose_zmedia(", ObjectBin/binary, ");}">>
                 ]}]}, Context);
         _ ->
             Context
