@@ -24,8 +24,18 @@
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
     M#m{value = Rdf};
-m_find_value(Id, #m{value = undefined} = M, _Context) when is_integer(Id) ->
-    M#m{value = Id};
+
+% Assume integer input is a RscId
+m_find_value(RscId, #m{value = undefined} = M, Context) when is_integer(RscId) ->
+    case m_rsc:p_no_acl(RscId, uri, Context) of
+        undefined -> undefined;
+        Uri -> m_find_value(Uri, M, Context)
+    end;
+
+% Assume other input is an Uri we need to lookup
+m_find_value(Uri, #m{value = undefined} = M, Context) ->
+    M#m{value = rsc(Uri, Context)};
+
 m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
 m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
@@ -89,13 +99,12 @@ create_resource(Uri, Props, Context) ->
     Id.
 
 %% @doc Fetch a RDF resource
-rsc(Url, Context) ->
-    %     case z_notifier:first(#rsc_property{id=Id, property=title, value=Title1}, Context) of
+rsc(Uri, Context) ->
     z_depcache:memo(
         fun() ->
-            z_notifier:first(#rdf_get{uri = Url}, Context)
+            z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context)
         end,
-        Url,
+        Uri,
         ?WEEK,
         Context
     ).
