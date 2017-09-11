@@ -104,7 +104,7 @@ rsc(Uri, Context) ->
         fun() ->
             z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context)
         end,
-        Uri,
+        #rdf_resource{id = Uri},
         ?WEEK,
         Context
     ).

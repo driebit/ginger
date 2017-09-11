@@ -70,12 +70,15 @@ observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
         true ->
             Props;
         false ->
-            RscUri = proplists:get_value(uri, Props),
-            case z_utils:is_empty(RscUri) of
+            Uri = proplists:get_value(uri, Props),
+            case z_utils:is_empty(Uri) of
                 true ->
                     Props;
                 false ->
-                    z_notifier:foldl(#rdf_get{uri=RscUri}, Props, Context)
+                    case z_notifier:foldl(#rdf_get{uri=Uri}, #rdf_resource{}, Context) of
+                        undefined -> Props;
+                        RdfResource -> Props ++ [{rdf, RdfResource}]
+                    end
             end
     end.
 
