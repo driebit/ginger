@@ -3,9 +3,7 @@
 -export([
     search_query/2,
     search_sql/2,
-    query_arguments/2,
     get_unfindable_categories/1,
-    merge_ginger_args/2,
     withdefault/2
 ]).
 
@@ -30,7 +28,7 @@
 %%      next (second first :p) observer.
 -spec search_query(#search_query{}, #context{}) -> #search_sql{} | #search_result{} | undefined.
 search_query(#search_query{search = {ginger_search, Args}} = GingerQuery, Context) ->
-    QueryArgs = query_arguments(Args, Context),
+    QueryArgs = query_arguments(Args, defaults(), Context),
     ZotonicQuery = GingerQuery#search_query{search = {'query', QueryArgs}},
 
     %% Forward search query to the next observer. Make sure all custom Ginger
@@ -40,12 +38,12 @@ search_query(#search_query{search = {ginger_search, Args}} = GingerQuery, Contex
 %% @doc Get SQL representation of search query
 -spec search_sql(#search_query{}, #context{}) -> #search_sql{}.
 search_sql(#search_query{search = {ginger_search, Args}}, Context) ->
-    QueryArgs = query_arguments(Args, Context),
+    QueryArgs = query_arguments(Args, sql_defaults(), Context),
     search_query:search(QueryArgs, Context).
 
 %% @doc Transform custom Ginger search arguments to Zotonic search arguments.
 %%      Supports all the usual query model arguments, adds default excludes.
-query_arguments(GingerArguments, Context) ->
+query_arguments(GingerArguments, DefaultArguments, Context) ->
 
     % This is a special use case that needs a better solution in Zotonic
     Args1 = case z_context:get_q(filters, Context) of
@@ -54,7 +52,7 @@ query_arguments(GingerArguments, Context) ->
         Filters ->
             lists:append([GingerArguments, [{filters, Filters}]])
     end,
-    merge_ginger_args(Args1, Context).
+    merge_ginger_args(Args1, DefaultArguments, Context).
 
 %% @doc Get categories marked unfindable that must be excluded from search results
 -spec get_unfindable_categories(#context{}) -> list().
@@ -75,7 +73,7 @@ get_unfindable_categories(Context) ->
     ).
 
 %% @doc Process custom arguments and add defaults
-merge_ginger_args(Args, Context) ->
+merge_ginger_args(Args, DefaultArgs, Context) ->
 
     % Always set these extra query arguments
     ExtraArgs = [
@@ -84,13 +82,6 @@ merge_ginger_args(Args, Context) ->
     MergedArgs = lists:merge(ExtraArgs, Args),
 
     % Associate default arguments
-    DefaultArgs = [
-        {is_findable, true},
-        {is_published, true},
-        {cat_exclude_defaults, true},
-        {cat_exclude_unfindable, true},
-        {boost_featured, true}
-    ],
     MergedArgs1 = withdefault(DefaultArgs, MergedArgs),
 
     % Parse custom ginger_search arguments
@@ -302,3 +293,21 @@ score_function(Body) ->
                 [{score_function, Body}]
         end
     end.
+
+%% @doc Default search arguments, including Elasticsearch-specific ones.
+-spec defaults() -> [tuple()].
+defaults() ->
+    [
+        {cat_exclude_unfindable, true},
+        {boost_featured, true}
+        | sql_defaults()
+    ].
+
+%% @doc Default search arguments that do not depend on Elasticsearch.
+-spec sql_defaults() -> [tuple()].
+sql_defaults() ->
+    [
+        {is_findable, true},
+        {is_published, true},
+        {cat_exclude_defaults, true}
+    ].
