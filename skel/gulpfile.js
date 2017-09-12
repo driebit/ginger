@@ -56,7 +56,7 @@ gulp.task('js', () => {
             'presets': [
                 ['env', {
                     'targets': {
-                        'browsers': ['last 2 versions', 'safari >= 7']
+                        'browsers': ['last 2 versions']
                     }
                 }]
             ]
@@ -75,9 +75,9 @@ gulp.task('watch', () => {
         .map(x => `${x}/**/*.scss`)
         .concat(`${paths.scssSrc}/**/*.scss`);
 
-    gulp.watch(scssCombinedPaths, { interval: 100 }, ['sass']);
-    gulp.watch(`${paths.templateSrc}/**/*.tpl`, { interval: 100 }, ['tpl']);
-    gulp.watch(`${paths.javascriptSrc}/**/*.js`, { interval: 100 }, ['js']);
+    gulp.watch(scssCombinedPaths, ['sass']);
+    gulp.watch(`${paths.templateSrc}/**/*.tpl`, ['tpl']);
+    gulp.watch(`${paths.javascriptSrc}/**/*.js`, ['js']);
 });
 
 gulp.task('default', ['sass', 'js', 'watch']);
