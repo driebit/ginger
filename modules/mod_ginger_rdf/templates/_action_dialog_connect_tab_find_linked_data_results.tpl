@@ -4,7 +4,7 @@
 
         <div class="form-group">
             {% block facets %}
-            <div id="{{ #linked_data_facets }}">
+            <div id="{{ #linked_data_facets }}" class="rdf-facets">
                 {# Lazy-load search facets #}
                 {% wire action={search_facets target=#linked_data_facets text=text filters=filters template="rdf/search/_facets.tpl"} %}
             </div>
