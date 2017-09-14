@@ -27,12 +27,19 @@ m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
 
 % Assume integer input is a RscId
 m_find_value(RscId, #m{value = undefined} = M, Context) when is_integer(RscId) ->
-    case m_rsc:p_no_acl(RscId, uri, Context) of
-        undefined -> undefined;
-        Uri -> m_find_value(Uri, M, Context)
+    case m_rsc:p(RscId, is_authoritative, Context) of
+        true ->
+            %% Authoritative resource, so base RDF representation on internal data.
+            to_json_ld(RscId, Context);
+        false ->
+            %% Non-authoritative resource, so base representation on external data.
+            Uri = m_rsc:p_no_acl(RscId, uri, Context),
+            m_find_value(Uri, M, Context)
     end;
 
 % Assume other input is an Uri we need to lookup
+m_find_value(undefined, #m{value = undefined}, _Context) ->
+    undefined;
 m_find_value(Uri, #m{value = undefined} = M, Context) ->
     M#m{value = rsc(Uri, Context)};
 
@@ -50,8 +57,8 @@ m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, _Context) 
 m_to_list(_, _Context) ->
     [].
 
-m_value(#m{value = Id}, Context) ->
-    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
+m_value(#m{}, Context) ->
+    undefined.
 
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->
@@ -100,9 +107,10 @@ create_resource(Uri, Props, Context) ->
 
 %% @doc Fetch a RDF resource
 rsc(Uri, Context) ->
+    ?DEBUG(Uri),
     z_depcache:memo(
         fun() ->
-            z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context)
+            ?DEBUG(z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context))
         end,
         #rdf_resource{id = Uri},
         ?WEEK,
@@ -509,3 +517,6 @@ get_category_uri([Category|T], Context) ->
     end;
 get_category_uri(Category, Context) ->
     get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
+
+to_json_ld(Id, Context) ->
+    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
