@@ -57,7 +57,7 @@ m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, _Context) 
 m_to_list(_, _Context) ->
     [].
 
-m_value(#m{}, Context) ->
+m_value(#m{}, _Context) ->
     undefined.
 
 %% @doc Fetch an object from a RDF resource
