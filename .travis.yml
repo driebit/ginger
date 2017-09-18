@@ -23,3 +23,4 @@ script:
     - docker version
     - docker-compose version
     - docker-compose run zotonic make
+    - docker-compose run zotonic zotonic runtests mod_ginger_rdf
