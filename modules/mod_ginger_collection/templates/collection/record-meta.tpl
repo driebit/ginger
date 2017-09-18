@@ -69,11 +69,12 @@
                         <dd>{{ publisher }}</dd>
                     {% endif %}
 
-                    {% if record['foaf:document'] as documents %}
-                        <dt>{_ Documents _}</dt>
-                        <dd>{% include "list/list-uri-labels.tpl" items=documents %}</dd>
-                    {% endif %}
-
+                    {% block documents %}
+                        {% if record['foaf:document'] as documents %}
+                            <dt>{_ Documents _}</dt>
+                            <dd>{% include "collection/documents.tpl" items=documents %}</dd>
+                        {% endif %}
+                    {% endblock %}
                 </dl>
             </div>
         {% endif %}
