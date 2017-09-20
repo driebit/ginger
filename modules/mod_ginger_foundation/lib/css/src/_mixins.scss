@@ -118,7 +118,7 @@
 }
 
 // Sets only the interactive pseudo selectors
-@mixin setPseudo {
+@mixin setInteractive {
     &:hover, &:active, &:focus, &:focus:active {
         @content;
     }
