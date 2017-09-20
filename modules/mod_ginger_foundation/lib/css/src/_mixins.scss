@@ -117,6 +117,13 @@
     }
 }
 
+// Sets only the interactive pseudo selectors
+@mixin setPseudo {
+    &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
+        @content;
+    }
+}
+
 // Sets the style to pseudo selectors AND base default anchor
 @mixin setLinkAll {
     &, &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
