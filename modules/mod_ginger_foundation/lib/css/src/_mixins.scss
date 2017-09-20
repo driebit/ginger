@@ -109,3 +109,18 @@
         bottom: 0;
     }
 }
+
+// Sets the style only for pseudo selectors
+@mixin setPseudoAll {
+    &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
+        @content;
+    }
+}
+
+// Sets the style to pseudo selectors AND base default anchor
+@mixin setLinkAll {
+    &, &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
+        @content;
+    }
+}
+
