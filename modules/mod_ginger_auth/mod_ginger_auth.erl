@@ -43,8 +43,9 @@ manage_schema(install, Context) ->
 observe_logon_actions(#logon_actions{args=Args}, _Acc, _Context) ->
     case proplists:get_value(action, Args) of
         undefined ->
-            [];
-        Value -> 
+            %% return an empty action to avoid redirect
+            [{script, [{script, ""}]}];
+        Value ->
             Value
     end.
 
@@ -56,5 +57,3 @@ observe_signup_form_fields(signup_form_fields, _FormProps, _Context) ->
     {email, true},
     {block_email, false}
     ].
-
-
