@@ -1,4 +1,4 @@
-<a href="{{ url }}">
+<a href="{{ url }}"{% if link_target %} target="{{ link_target }}"{% endif %}>
     <div class="readmore {{ class }}">
         <div class="readmore-text">
             <div class="readmore-title">
