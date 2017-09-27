@@ -1,6 +1,6 @@
 {# Render link that opens a modal login/signup dialog. #}
 
-{% if zotonic_dispatch == `logon` or zotonic_dispatch == `signup` or zotonic_dispatch == `logon_reset` %}
+{% if zotonic_dispatch == `logon` or zotonic_dispatch == `signup` or zotonic_dispatch == `logon_reset` or zotonic_dispatch == `logon_reminder` %}
     {# Do not show logon/signup link on logon and signup pages #}
 {% else  %}
     {% live template="_auth_link_live.tpl"
