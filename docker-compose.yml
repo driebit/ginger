@@ -41,6 +41,7 @@ services:
             - ./skel:/opt/zotonic/priv/skel/ginger
         ports:
             - 80:8000
+            - 443:8443
         environment:
             MAKE: "true"
             LOGSTASH_HOST: "localhost"
