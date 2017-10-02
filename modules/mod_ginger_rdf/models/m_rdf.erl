@@ -112,10 +112,9 @@ create_resource(Uri, Props, Context) ->
 
 %% @doc Fetch a RDF resource
 rsc(Uri, Context) ->
-    ?DEBUG(Uri),
     z_depcache:memo(
         fun() ->
-            ?DEBUG(z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context))
+            z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context)
         end,
         #rdf_resource{id = Uri},
         ?WEEK,
