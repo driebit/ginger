@@ -47,3 +47,44 @@
         top: 0;
     }
 }
+
+#infoboxes {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 104;
+    width: 200px;
+    height: 100%;
+
+    .infoBox {
+        height: 100%;
+        width: 100% !important;
+
+        > img {
+            right: 20px;
+            top: 20px;
+            padding: 7px;
+            width: 30px;
+            height: 30px;
+            background: rgba(0,0,0,0.1);
+            z-index: 9999;
+        }
+    }
+
+    .infobox__results {
+        height: 100%;
+        width: 100%;
+        max-height: none;
+        overflow-y: auto;
+        position: absolute;
+        top: 0;
+    }
+
+    @include mq(min-width, $smallBreakpoint) {
+        width: 250px !important;
+    }
+
+    @include mq(min-width, $largeBreakpoint) {
+        width: 300px !important;
+    }
+}
