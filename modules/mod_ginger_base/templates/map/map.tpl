@@ -3,6 +3,7 @@
     blackwhite|default:"false",
     disabledefaultui|default:"false",
     gridsize|default:"60",
+    infoboxposition,
     loadgeojson,
     datastyle,
     mapstyle,
@@ -15,6 +16,7 @@ as
     blackwhite,
     disabledefaultui,
     gridsize,
+    infoboxposition,
     loadgeojson,
     datastyle,
     mapstyle,
@@ -44,6 +46,8 @@ as
                         {% endfilter %}
                     '
 
+                    data-infoboxposition='{{ infoboxposition }}'
+
                     data-mapoptions='
                         {
                             "scrollwheel": {{ scrollwheel }},
@@ -61,8 +65,8 @@ as
                ></div>
             {% else %}
                 <p class="no-results">{_ No results _}</p>
-            {% endif %} 
-            
+            {% endif %}
+
 
             {% wire name="map_infobox"
                     action={

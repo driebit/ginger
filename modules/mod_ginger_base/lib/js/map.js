@@ -8,6 +8,8 @@ $.widget( "ui.googlemap", {
 			id = widgetElement.attr('id'),
 			container = widgetElement,
 			locations = jQuery.parseJSON(widgetElement.data('locations')),
+            infoBoxPosition = widgetElement.data('infoboxposition'),
+            scrollwheel = jQuery.parseJSON(widgetElement.data('scrollwheel')),
 			options,
 			map,
 			bounds = new google.maps.LatLngBounds(),
@@ -79,6 +81,8 @@ $.widget( "ui.googlemap", {
 		me.options = options;
 		me.infowindow = null;
 		me.markers = markers;
+        me.infoBoxPosition = infoBoxPosition;
+
 
 		// Show multiple markers with info windows
 		for (i = 0; i < locations.length; i++) {
@@ -88,7 +92,7 @@ $.widget( "ui.googlemap", {
 			} else {
 			    icon = '/lib/images/marker-default.png';
 			}
-			
+
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
 				icon: icon,
@@ -127,12 +131,26 @@ $.widget( "ui.googlemap", {
 			map.data.setStyle(options.datastyle);
         }
 
-		map.fitBounds(bounds);
+        // Position controls right if infobox prop is right.
+        if (infoBoxPosition == 'right') {
+            setTimeout(function() {
+                var check = false;
+                var timer = setInterval(function(){
+                    if (document.getElementById('map-results').querySelector('.gm-bundled-control-on-bottom')) {
+                        document.getElementById('map-results').querySelector('.gm-bundled-control-on-bottom').style.left = '50px';
+                        check = true;
+                    }
+                    if(check == true) {
+                        clearInterval(timer);
+                    }
+                }, 100);
+            }, );
+        }
 
+		map.fitBounds(bounds);
 	},
 
 	clusterClicked: function(cluster) {
-
 		var me = this,
 			markers = cluster.getMarkers(),
 			posCoordList = [],
@@ -154,10 +172,6 @@ $.widget( "ui.googlemap", {
 		} else {
 			me.map.fitBounds(clusterBounds);
 		}
-
-
-
-
 	},
 
 	unique: function(list) {
@@ -211,6 +225,12 @@ $.widget( "ui.googlemap", {
 		newCenterPoint = new google.maps.Point(center.x - offsetX/scale, center.y + offsetY/scale),
 		newCenter = me.map.getProjection().fromPointToLatLng(newCenterPoint);
 
+        if(me.map.scrollwheel) {
+            google.maps.event.addListener(me.infowindow,'closeclick',function(){
+               me.map.set('scrollwheel', true);
+            });
+        }
+
 		me.map.set('scrollwheel', false);
 
 	    me.map.panTo(newCenter);
@@ -220,11 +240,47 @@ $.widget( "ui.googlemap", {
 		me.infowindow = new InfoBox(ibOptions);
 		me.infowindow.open(me.map, marker);
 
-		google.maps.event.addListener(me.infowindow,'closeclick',function(){
-		   me.map.set('scrollwheel', true);
-		});
-
+        me.setInfoBoxPosition();
 	},
+
+    setInfoBoxPosition: function() {
+        var me = this;
+        if(me.infoBoxPosition) {
+            setTimeout(function() {
+                var element = me.infowindow.div_.cloneNode(true);
+                var parent = me.infowindow.div_.parentElement.parentElement.parentElement;
+
+                if(!parent.querySelector('#infoboxes')) {
+                    var div = document.createElement('div');
+                    div.id = 'infoboxes';
+                    parent.prepend(div)
+                }
+                else {
+                    parent.querySelector('#infoboxes').innerHTML = '';
+                }
+
+                element.querySelector('img').addEventListener("click", function() {
+                    parent.querySelector('#infoboxes').innerHTML = '';
+                });
+
+                parent.querySelector('#infoboxes').prepend(element);
+
+                me.infowindow.div_.style.display = 'none';
+                element.style.top = '0px';
+
+                if (me.infoBoxPosition == 'left') {
+                    element.style.right = 'auto';
+                    element.style.left = '0px';
+
+                }
+                else if (me.infoBoxPosition == 'right') {
+                    element.style.left = 'auto';
+                    element.style.right = '0px';
+                }
+
+            }.bind(me));
+        }
+    },
 
 	getMarker: function(zotonic_id) {
 
