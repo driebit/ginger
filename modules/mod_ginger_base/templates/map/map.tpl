@@ -63,16 +63,17 @@ as
                 <p class="no-results">{_ No results _}</p>
             {% endif %} 
             
-
-            {% wire name="map_infobox"
-                    action={
-                        postback
-                        postback={
-                            map_infobox
+            {% block map_infobox_wire %}
+                {% wire name="map_infobox"
+                        action={
+                            postback
+                            postback={
+                                map_infobox
+                            }
+                            delegate="mod_ginger_base"
                         }
-                        delegate="mod_ginger_base"
-                    }
-                    %}
+                %}
+            {% endblock %}
 
     {% endblock %}
 
