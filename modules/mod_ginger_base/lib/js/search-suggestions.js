@@ -40,6 +40,7 @@ $.widget("ui.search_suggestions", {
         // this.suggestionsElement.hide();
     },
 
+    // If possible update the model through by use of this function
     update: function(type, value) {
         switch (type) {
             case 'SetSuggestions':
@@ -94,17 +95,16 @@ $.widget("ui.search_suggestions", {
         this.element[0].value = this.model.suggestions[this.model.index].textContent.trim();
     },
 
-
     _attachEventListeners: function() {
         var document = $(document);
 
-        document.on('search:close', this._closeSearch.bind(this));
+        document.on('search:close', this._hideInputElement.bind(this));
 
-        document.on('search:toggle', this._toggleSearch.bind(this));
+        document.on('search:toggle', this._toggleInputElementVisibility.bind(this));
 
         document.on('keyup', function(e) {
             if (e.keyCode === 13) {
-                this._closeSearch();
+                this._hideInputElement();
             }
         }.bind(this));
 
@@ -117,18 +117,18 @@ $.widget("ui.search_suggestions", {
             } else if (key === 40) {
                 this.update('MoveDown', inputValue);
             } else if (key === 27) {
-                this._closeSearch();
+                this._hideInputElement();
             } else {
                 this.update('SetInput', inputValue);
             }
         }.bind(this));
 
         if (this.toggleButtonElement !== undefined) {
-            this.toggleButtonElement.on('click', this._toggleSearch.bind(this));
+            this.toggleButtonElement.on('click', this._toggleInputElementVisibility.bind(this));
         }
     },
 
-        _getSuggestions: function() {
+    _getSuggestions: function() {
         z_event(this.suggestionsWire, {value: this.model.input});
 
         if (this.suggestionsElement.outerHeight() > this.windowHeight) {
@@ -143,10 +143,10 @@ $.widget("ui.search_suggestions", {
             }.bind(this));
         }.bind(this));
 
-        // configuration of the observer:
+        // Configuration of the observer:
         var config = { attributes: true, childList: true, characterData: true };
 
-        // pass in the target node, as well as the observer options
+        // Pass in the target node, as well as the observer options
         observer.observe(this.suggestionsElement[0], config);
     },
 
@@ -157,11 +157,11 @@ $.widget("ui.search_suggestions", {
         });
     },
 
-    _closeSearch: function(event) {
-        this._toggleSearch(event, true);
+    _hideInputElement: function(event) {
+        this._toggleInputElementVisibility(event, true);
     },
 
-    _toggleSearch: function(event, close) {
+    _toggleInputElementVisibility: function(event, close) {
         if (this.toggleButtonElement) {
             this.toggleButtonElement.toggleClass('is-active');
         }
@@ -169,13 +169,13 @@ $.widget("ui.search_suggestions", {
         if (close) {
             this.suggestionsElement.hide();
             this.formElement.removeClass('is-visible');
-            if (this.toggleButtonElement) this.toggleButtonElement.removeClass('is-active');
+
+            if (this.toggleButtonElement) {
+                this.toggleButtonElement.removeClass('is-active');
+            }
         } else {
             this.formElement.toggleClass('is-visible');
         }
-
-        this.element.val('');
-        this.suggestionsElement.hide();
 
         if (this._isVisible()) {
             this.formElement.on('transitionend', function () {
@@ -185,6 +185,8 @@ $.widget("ui.search_suggestions", {
 
         $(document).trigger('search:toggled');
 
+        this.element.val('');
+        this.suggestionsElement.hide();
         return false; // Don't know about this
     },
 
@@ -193,4 +195,3 @@ $.widget("ui.search_suggestions", {
         this.formElement.hasClass('is-visible');
     }
 });
-
