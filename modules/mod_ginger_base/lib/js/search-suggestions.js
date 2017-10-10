@@ -1,10 +1,6 @@
 $.widget("ui.search_suggestions", {
 
     _init: function() {
-        this.init();
-    },
-
-    init: function() {
         // Initial model
         this.model = {
             index: -1,
@@ -83,30 +79,38 @@ $.widget("ui.search_suggestions", {
     },
 
     _render: function() {
+        // Reset all applied styles
         this._removeHighlight();
 
         if (this.model.index === -1 || this.model.suggestions.length === 0) {
             return;
         }
 
+        // Style/highlight selected element
         this.model.suggestions[this.model.index].style.textDecoration = 'underline';
         this.model.suggestions[this.model.index].style.fontWeight = '800';
 
+        // Change the input value to the selected suggestion value
         this.element[0].value = this.model.suggestions[this.model.index].textContent.trim();
     },
 
     _attachEventListeners: function() {
         var document = $(document);
+        var mainElement = $('main');
 
-        document.on('search:close', this._hideInputElement.bind(this));
+        document.on('touchend', this._hideInputElement.bind(this));
+
+        document.on('search:close', () => console.log("wejf"));
 
         document.on('search:toggle', this._toggleInputElementVisibility.bind(this));
 
-        document.on('keyup', function(e) {
-            if (e.keyCode === 13) {
+        document.on('keyup', function(event) {
+            if (event.keyCode === 13) {
                 this._hideInputElement();
             }
         }.bind(this));
+
+        mainElement.on('click', this._hideInputElement.bind(this));
 
         this.element.on('keyup', function(e) {
             var key = e.keyCode;
@@ -161,23 +165,23 @@ $.widget("ui.search_suggestions", {
         this._toggleInputElementVisibility(event, true);
     },
 
-    _toggleInputElementVisibility: function(event, close) {
-        if (this.toggleButtonElement) {
-            this.toggleButtonElement.toggleClass('is-active');
+    _toggleInputElementVisibility: function(event, hideElement) {
+        if (this.toggleButtonElement !== undefined) {
+            if (hideElement) {
+                this.toggleButtonElement.removeClass('is-active');
+            } else {
+                this.toggleButtonElement.toggleClass('is-active');
+            }
         }
 
-        if (close) {
-            this.suggestionsElement.hide();
+        if (hideElement) {
             this.formElement.removeClass('is-visible');
-
-            if (this.toggleButtonElement) {
-                this.toggleButtonElement.removeClass('is-active');
-            }
+            this.suggestionsElement.hide();
         } else {
             this.formElement.toggleClass('is-visible');
         }
 
-        if (this._isVisible()) {
+        if (this.isVisible()) {
             this.formElement.on('transitionend', function () {
                 this.element.focus();
             }.bind(this));
@@ -187,10 +191,9 @@ $.widget("ui.search_suggestions", {
 
         this.element.val('');
         this.suggestionsElement.hide();
-        return false; // Don't know about this
     },
 
-    _isVisible: function() {
+    isVisible: function() {
         return this.suggestionsElement.css('display') === 'block' ||
         this.formElement.hasClass('is-visible');
     }
