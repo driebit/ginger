@@ -100,8 +100,6 @@ $.widget("ui.search_suggestions", {
 
         document.on('touchend', this._hideInputElement.bind(this));
 
-        document.on('search:close', () => console.log("wejf"));
-
         document.on('search:toggle', this._toggleInputElementVisibility.bind(this));
 
         document.on('keyup', function(event) {
