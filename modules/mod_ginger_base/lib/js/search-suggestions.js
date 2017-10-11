@@ -5,14 +5,12 @@ $.widget("ui.search_suggestions", {
         this.model = {
             index: -1,
             suggestions: [],
-            input: ''
+            input: '',
+            viewPortHeight: $(window).height()
         }
 
         // Zotonic wire ID that sends search value
         this.suggestionsWire = this.element.data('param-wire');
-
-        // Set Viewport height
-        this.windowHeight = $(window).height();
 
         // Set suggestions element
         var suggestionsElementId = this.element.data('param-results');
@@ -89,6 +87,7 @@ $.widget("ui.search_suggestions", {
         // Style/highlight selected element
         this.model.suggestions[this.model.index].style.textDecoration = 'underline';
         this.model.suggestions[this.model.index].style.fontWeight = '800';
+        this.model.suggestions[this.model.index].scrollIntoView({block: "end"});
 
         // Change the input value to the selected suggestion value
         this.element[0].value = this.model.suggestions[this.model.index].textContent.trim();
@@ -125,15 +124,17 @@ $.widget("ui.search_suggestions", {
             }
         }.bind(this));
 
+        this.formElement.on('transitionend', this._focusFormElement.bind(this));
+
         if (this.toggleButtonElement !== undefined) {
             this.toggleButtonElement.on('click', this._toggleInputElementVisibility.bind(this));
         }
     },
 
     _getSuggestions: function() {
-        z_event(this.suggestionsWire, {value: this.model.input});
+        z_event(this.suggestionsWire, { value: this.model.input });
 
-        if (this.suggestionsElement.outerHeight() > this.windowHeight) {
+        if (this.suggestionsElement.outerHeight() > this.model.viewPortHeight) {
             this.suggestionsElement.addClass('is-scrollable');
         }
     },
@@ -163,6 +164,12 @@ $.widget("ui.search_suggestions", {
         this._toggleInputElementVisibility(event, true);
     },
 
+    _focusFormElement: function() {
+        if (this._isVisible()) {
+            this.element.focus();
+        }
+    },
+
     _toggleInputElementVisibility: function(event, hideElement) {
         if (this.toggleButtonElement !== undefined) {
             if (hideElement) {
@@ -174,24 +181,17 @@ $.widget("ui.search_suggestions", {
 
         if (hideElement) {
             this.formElement.removeClass('is-visible');
-            this.suggestionsElement.hide();
         } else {
             this.formElement.toggleClass('is-visible');
         }
 
-        if (this.isVisible()) {
-            this.formElement.on('transitionend', function () {
-                this.element.focus();
-            }.bind(this));
-        }
-
         $(document).trigger('search:toggled');
 
-        this.element.val('');
         this.suggestionsElement.hide();
+        this.element.val('');
     },
 
-    isVisible: function() {
+    _isVisible: function() {
         return this.suggestionsElement.css('display') === 'block' ||
         this.formElement.hasClass('is-visible');
     }
