@@ -165,7 +165,7 @@ $.widget("ui.search_suggestions", {
     },
 
     _focusFormElement: function() {
-        if (this._isVisible()) {
+        if (this.isVisible()) {
             this.element.focus();
         }
     },
@@ -191,7 +191,7 @@ $.widget("ui.search_suggestions", {
         this.element.val('');
     },
 
-    _isVisible: function() {
+    isVisible: function() {
         return this.suggestionsElement.css('display') === 'block' ||
         this.formElement.hasClass('is-visible');
     }
