@@ -88,8 +88,6 @@
             me.suggestions.removeClass('is-scrolable');
             me.suggestions.hide();
 
-            var target = document.querySelector('.search-suggestions__suggestions')
-
             var observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     me.update('SetSuggestions', mutation.target.querySelectorAll('a'));
@@ -100,7 +98,7 @@
             var config = { attributes: true, childList: true, characterData: true };
 
             // pass in the target node, as well as the observer options
-            observer.observe(target, config);
+            observer.observe(me.suggestions[0], config);
 
 
             function doSearch() {
