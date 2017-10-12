@@ -34,7 +34,6 @@ $.widget("ui.search_suggestions", {
 
         // Don't know why this was here... yet
         // this.suggestionsElement.removeClass('is-scrolable');
-        // this.suggestionsElement.hide();
     },
 
     // If possible update the model through by use of this function
@@ -197,7 +196,7 @@ $.widget("ui.search_suggestions", {
         this.element.val('');
     },
 
-    //
+    // Public method to check if suggestions element is visible
     isVisible: function() {
         return this.suggestionsElement.css('display') === 'block' ||
         this.formElement.hasClass('is-visible');
