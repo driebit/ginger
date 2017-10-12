@@ -16,6 +16,9 @@ $.widget("ui.search_suggestions", {
         var suggestionsElementId = this.element.data('param-results');
         this.suggestionsElement = $('#' + suggestionsElementId);
 
+        // Hide suggestions by default
+        this.suggestionsElement.hide();
+
         // Set search form toggle element
         var toggleButtonId = this.element.data('param-togglebutton');
         this.toggleButtonElement = $('#' + toggleButtonId);
@@ -29,16 +32,13 @@ $.widget("ui.search_suggestions", {
         // Attach EventListeners
         this._attachEventListeners();
 
-        // Hide suggestions by default
-        this.suggestionsElement.hide();
-
         // Don't know why this was here... yet
         // this.suggestionsElement.removeClass('is-scrolable');
         // this.suggestionsElement.hide();
     },
 
     // If possible update the model through by use of this function
-    update: function(type, value) {
+    _update: function(type, value) {
         switch (type) {
             case 'SetSuggestions':
                 this.model.index = -1;
@@ -83,6 +83,7 @@ $.widget("ui.search_suggestions", {
         // Reset all applied styles
         this._removeHighlight();
 
+        // Test if selection is at the end of the suggestion list
         if (this.model.index === -1 || this.model.suggestions.length === 0) {
             return;
         }
@@ -117,13 +118,13 @@ $.widget("ui.search_suggestions", {
             var inputValue = e.currentTarget.value;
 
             if (key === 38) {
-                this.update('MoveUp', inputValue);
+                this._update('MoveUp', inputValue);
             } else if (key === 40) {
-                this.update('MoveDown', inputValue);
+                this._update('MoveDown', inputValue);
             } else if (key === 27) {
                 this._hideInputElement();
             } else {
-                this.update('SetInput', inputValue);
+                this._update('SetInput', inputValue);
             }
         }.bind(this));
 
@@ -134,6 +135,7 @@ $.widget("ui.search_suggestions", {
         }
     },
 
+    // Send input value over Zotonic wire
     _getSuggestions: function() {
         z_event(this.suggestionsWire, { value: this.model.input });
 
@@ -142,10 +144,11 @@ $.widget("ui.search_suggestions", {
         }
     },
 
+    // Observe suggestions element for changes rendered by Zotonic
     _observeSuggestions: function() {
         var observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
-                this.update('SetSuggestions', mutation.target.querySelectorAll('a'));
+                this._update('SetSuggestions', mutation.target.querySelectorAll('a'));
             }.bind(this));
         }.bind(this));
 
@@ -194,6 +197,7 @@ $.widget("ui.search_suggestions", {
         this.element.val('');
     },
 
+    //
     isVisible: function() {
         return this.suggestionsElement.css('display') === 'block' ||
         this.formElement.hasClass('is-visible');
