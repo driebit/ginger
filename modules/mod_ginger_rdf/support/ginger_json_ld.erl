@@ -180,20 +180,26 @@ serialize(#rdf_resource{id = Id, triples = Triples}) ->
 
     z_convert:to_json({struct, Data}).
 
-serialize_to_map(#rdf_resource{id = Id, triples = Triples}) ->
+%% @doc Serialize an RDF resource to a nested map (e.g. for subsequent
+%% serialization to JSON).
+serialize_to_map(#rdf_resource{id = Id, triples = Triples} = RdfResource) ->
     lists:foldl(
         fun(#triple{} = Triple, Acc) ->
-            TripleJson = triple_to_map(Triple),
-            JsonKey = hd(maps:keys(TripleJson)),
-            #{JsonKey := JsonValue} = TripleJson,
-
-            case maps:get(JsonKey, Acc, undefined) of
+            case triple_to_map(Triple, RdfResource) of
                 undefined ->
-                    maps:merge(Acc, TripleJson);
-                Value when is_list(Value) ->
-                    Acc#{JsonKey => [JsonValue | Value]};
-                Value ->
-                    Acc#{JsonKey => [JsonValue | [Value]]}
+                    Acc;
+                TripleJson ->
+                    JsonKey = hd(maps:keys(TripleJson)),
+                    #{JsonKey := JsonValue} = TripleJson,
+        
+                    case maps:get(JsonKey, Acc, undefined) of
+                        undefined ->
+                            maps:merge(Acc, TripleJson);
+                        Value when is_list(Value) ->
+                            Acc#{JsonKey => [JsonValue | Value]};
+                        Value ->
+                            Acc#{JsonKey => [JsonValue | [Value]]}
+                    end
             end
         end,
         #{<<"@id">> => Id},
@@ -280,17 +286,24 @@ triple_to_json(#triple{type = literal, predicate = Predicate, object = Object}) 
 triple_to_json(#triple{type = resource, predicate = Predicate, object = Object}) ->
     {Predicate, [{<<"@id">>, Object}]}.
 
-triple_to_map(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
+triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, type = resource, object = Object}, #rdf_resource{id = Id}) ->
     #{<<"@type">> => Object};
-triple_to_map(#triple{type = literal, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}) ->
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object}};
-triple_to_map(#triple{type = literal, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}) ->
-    %% z_convert:to_json to convert any date tuples to datetime string, which
-    %% doesn't work if we pass {struct, Data} (see comment above).
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
-triple_to_map(#triple{type = literal, predicate = Predicate, object = Object}) ->
-    %% z_convert:to_json to convert any date tuples to datetime string, which
-    %% doesn't work if we pass {struct, Data} (see comment above).
-    #{Predicate => Object};
-triple_to_map(#triple{type = resource, predicate = Predicate, object = Object}) ->
-    #{Predicate => #{<<"@id">> => Object}}.
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rdf_resource{id = Id} = RdfResource) ->
+    %% Nest values from referenced objects.
+    TripleMap = lists:foldl(
+        fun(#triple{} = Triple, Map) ->
+            %% Replace id in RDF resource with that of the current object
+            maps:merge(Map, triple_to_map(Triple, RdfResource#rdf_resource{id = Object}))
+        end,
+        #{<<"@id">> => Object},
+        m_rdf:filter_subject(RdfResource, Object)
+    ),
+    #{Predicate => TripleMap};
+triple_to_map(#triple{}, #rdf_resource{}) ->
+    %% Ignore triples that belong to other subjects (they are found through the
+    %% recursive call in the clause above).
+    undefined.

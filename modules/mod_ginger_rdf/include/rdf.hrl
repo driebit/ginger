@@ -12,9 +12,23 @@
 
 -record(rdf_get, {uri}).
 
+-record(rdf_value, {
+    value :: term(),
+    language = undefined :: undefined | binary()
+}).
+
+-record(triple, {
+    type = literal :: resource | literal,
+    subject :: binary(),
+    subject_props = [] :: list(),
+    predicate :: binary(),
+    object :: binary() | #rdf_value{},
+    object_props = [] :: list()
+}).
+
 -record(rdf_resource, {
     id :: binary(),
-    triples = [] :: list()
+    triples = [] :: [#triple{}]
 }).
 
 -record(rdf_search, {
@@ -36,20 +50,6 @@
 }).
 
 -record(find_links, {id, is_a}).
-
--record(rdf_value, {
-    value :: term(),
-    language = undefined :: undefined | binary()
-}).
-
--record(triple, {
-    type = literal :: resource | literal,
-    subject :: binary(),
-    subject_props = [] :: list(),
-    predicate :: binary(),
-    object :: binary() | #rdf_value{},
-    object_props = [] :: list()
-}).
 
 %% @doc Notification to convert a Zotonic resource to an RDF resource
 -record(rsc_to_rdf, {

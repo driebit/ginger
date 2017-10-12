@@ -14,13 +14,18 @@
     find_resource/2,
     object/3,
     objects/2,
+    filter_subject/2,
     ensure_resource/3,
     lookup_triple/2,
     to_triples/2
 ]).
 
 -opaque rdf_resource() :: #rdf_resource{}.
--export_type([rdf_resource/0]).
+-opaque triple() :: #triple{}.
+-export_type([
+    rdf_resource/0,
+    triple/0
+]).
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
     M#m{value = Rdf};
@@ -354,6 +359,16 @@ objects(#rdf_resource{triples = Triples}, Predicate) ->
         Triples
     ),
     [Object || #triple{object = Object} <- MatchingTriples].
+
+%% @doc Filter the resource's triples by subject.
+-spec filter_subject(rdf_resource(), binary()) -> [triple()].
+filter_subject(#rdf_resource{triples = Triples}, Subject) ->
+    lists:filter(
+        fun(#triple{subject = TripleSubject}) ->
+            TripleSubject =:= Subject
+        end,
+        Triples
+    ).
 
 %% @doc Shortcuts for namespaced RDF properties
 lookup_triple(uri, Triples) ->
