@@ -292,13 +292,12 @@ triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{v
     #{Predicate => #{<<"@value">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
-%%triple_to_map(#triple{predicate = Predicate, object = Object}, #rdf_resource{} = Resource) ->
-%%    #{Predicate => Object};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rdf_resource{id = Id} = RdfResource) ->
-    %% Replace values to get a nested structure
+    %% Nest values from referenced objects.
     TripleMap = lists:foldl(
         fun(#triple{} = Triple, Map) ->
-            maps:merge(Map, triple_to_map(Triple, #rdf_resource{id = Object}))
+            %% Replace id in RDF resource with that of the current object
+            maps:merge(Map, triple_to_map(Triple, RdfResource#rdf_resource{id = Object}))
         end,
         #{<<"@id">> => Object},
         m_rdf:filter_subject(RdfResource, Object)
