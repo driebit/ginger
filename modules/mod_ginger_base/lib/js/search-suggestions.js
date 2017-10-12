@@ -29,6 +29,9 @@ $.widget("ui.search_suggestions", {
         // Attach EventListeners
         this._attachEventListeners();
 
+        // Hide suggestions by default
+        this.suggestionsElement.hide();
+
         // Don't know why this was here... yet
         // this.suggestionsElement.removeClass('is-scrolable');
         // this.suggestionsElement.hide();
