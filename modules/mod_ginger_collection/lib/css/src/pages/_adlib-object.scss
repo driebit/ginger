@@ -139,7 +139,7 @@
     @include mq(min-width, $mediumBreakpoint) {
         width: 33%;
         order: 2;
-        padding-top: 2.5rem;
+        margin-top: -7rem;
     }
 }
 
@@ -232,6 +232,3 @@
         padding-bottom: 4rem;
     }
 }
-
-
-
