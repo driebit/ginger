@@ -10,50 +10,41 @@
     width: 27px;
     height: 3px;
     position: absolute;
-    left: 5px;
     background: $mainThemeColor;
     cursor: pointer;
     border-radius: 1px;
+    transition: transform 350ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.toggle-menu span:before,
-.toggle-menu span:after {
-    left: 0px;
+.toggle-menu {
+    span {
+        left: 0;
+        top: 17px;
+
+        &:before {
+            top: -7px;
+            transform-origin: left top;
+        }
+
+        &:after {
+            bottom: -7px;
+            transform-origin: left bottom;
+        }
+    }
 }
 
-.toggle-menu span {
-    top: 18px;
-}
+.toggle-menu.is-active {
+    span {
+        background-color: transparent;
 
-.toggle-menu span:before {
-    top: -7px;
-}
+        &:before {
+            transform: rotate(45deg);
+        }
 
-.toggle-menu span:after {
-    bottom: -7px;
-}
-
-.toggle-menu span,
-.toggle-menu span:before,
-.toggle-menu span:after {
-    transition: all 500ms ease-in-out;
-}
-
-.toggle-menu.is-active span {
-    background-color: transparent;
-}
-
-.toggle-menu.is-active span:before, 
-.toggle-menu.is-active span:after {
-    top: 0;
-}
-
-.toggle-menu.is-active span:before {
-    transform: rotate(45deg);
-}
-
-.toggle-menu.is-active span:after {
-    transform: rotate(-45deg);
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
 }
 
 @include mq(min-width, $largeBreakpoint) {
