@@ -1,5 +1,5 @@
 
-{% if id.action_rsvp|to_integer|is_defined and id.date_end|in_future %}
+{% if id.action_rsvp|to_integer|is_defined and id.date_end|eq_day:now %}
     {% with btn_class|default:"page-action--rsvp" as btn_class %}
     {% with id.rsvp_max_participants|to_integer as max_participants %}
     {% with id.s.participant|make_list|length|to_integer as participants %}
