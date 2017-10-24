@@ -26,6 +26,8 @@ class ForceDirectedGraph extends HTMLElement {
             .attr("width", this.width)
             .attr("height", this.height);
 
+        this.svg.call(d3.zoom().on("zoom", this.zoom.bind(this)));
+
         this.simulation = d3.forceSimulation()
             .force("link", d3.forceLink().id(d => d.id))
             .force("charge", d3.forceManyBody())
@@ -60,7 +62,7 @@ class ForceDirectedGraph extends HTMLElement {
                     .on("drag", this.dragged.bind(this))
                     .on("end", this.dragended.bind(this)));
 
-            this.labels = this.nodes
+            this.circles = this.nodes
                 .append("circle")
                 .attr("r", 6)
                 .attr("fill", "red")
@@ -109,6 +111,10 @@ class ForceDirectedGraph extends HTMLElement {
         if (!d3.event.active) this.simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
+    }
+
+    zoom() {
+         this.svg.attr("transform", d3.event.transform);
     }
 }
 
