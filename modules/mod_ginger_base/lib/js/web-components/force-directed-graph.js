@@ -9,18 +9,18 @@ class ForceDirectedGraph extends HTMLElement {
             mode: "closed"
         });
 
+        // Get properties
         this.width = this.getAttribute("svg-width");
         this.height = this.getAttribute("svg-height");
         this.endpoint = this.getAttribute("endpoint");
         this.resourceId = this.getAttribute("resource-id");
 
-        // Add the link to the shadow root.
+        // Add the svg element to the shadow root.
         this.svg = d3.select(shadow).append("svg");
 
         this.svg
             .attr("width", this.width)
             .attr("height", this.height);
-
     }
 
     connectedCallback() {
@@ -37,11 +37,14 @@ class ForceDirectedGraph extends HTMLElement {
         d3.json(`${this.endpoint}?id=${this.resourceId}`, function (error, graph) {
             if (error) throw error;
 
+            console.log(graph)
+
             const link = this.svg.append("g")
                 .attr("class", "links")
                 .selectAll("line")
                 .data(graph.links)
                 .enter().append("line")
+                .attr("stroke", "#ccc")
                 .attr("stroke-width", function (d) {
                     return Math.sqrt(d.value);
                 });
@@ -51,7 +54,7 @@ class ForceDirectedGraph extends HTMLElement {
                 .selectAll("circle")
                 .data(graph.nodes)
                 .enter().append("circle")
-                .attr("r", 10)
+                .attr("r", 6)
                 .attr("fill", function (d) {
                     return color(d.group);
                 })
