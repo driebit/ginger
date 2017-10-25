@@ -13,8 +13,8 @@ class ForceDirectedGraph extends HTMLElement {
         });
 
         // Get properties
-        this.width = this.getAttribute("svg-width");
-        this.height = this.getAttribute("svg-height");
+        this.width = this.getAttribute("width");
+        this.height = this.getAttribute("height");
         this.endpoint = this.getAttribute("endpoint");
         this.resourceId = this.getAttribute("resource-id");
 
@@ -43,16 +43,24 @@ class ForceDirectedGraph extends HTMLElement {
     // After the element is attached to the DOM
     // Get the graph nodes and edges from the endoint and init the FDG
     connectedCallback() {
-        d3.json(`${this.endpoint}?id=${this.resourceId}`, (error, graph) => {
-            if (error !== null) {
-                console.error("Something went wrong while getting the data", error);
-            } else {
-                this.initGraph(graph);
-            }
+        this.getData(this.resourceId).then(response => {
+            this.updateGraph(response);
+        }).catch(error => {
+            console.error(error)
         });
     }
 
-    initGraph(graph) {
+    getData(id) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `${this.endpoint}?id=${id}`);
+            xhr.onload = () => resolve(JSON.parse(xhr.responseText));
+            xhr.onerror = () => reject(xhr.statusText);
+            xhr.send();
+        });
+    }
+
+    updateGraph(graph) {
         this.link = this.svg
             .selectAll(".line")
             .data(graph.links)
@@ -91,7 +99,6 @@ class ForceDirectedGraph extends HTMLElement {
             .links(graph.links);
     }
 
-    // Tick reffers to the browsers Animation Frame
     tick() {
         this.link
             .attr("x1", d => d.source.x)
