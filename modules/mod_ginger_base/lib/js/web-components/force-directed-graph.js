@@ -75,13 +75,13 @@ class ForceDirectedGraph extends HTMLElement {
             .call(d3.drag()
                 .on("start", this.dragstarted.bind(this))
                 .on("drag", this.dragged.bind(this))
-                .on("end", this.dragended.bind(this)))
-                .on('click', selectNode);
+                .on("end", this.dragended.bind(this)));
 
         this.circles = this.nodes
             .append("circle")
-            .attr("r", 8)
-            .attr("fill", d => this.color(d.group));
+            .attr("r", 6)
+            .attr("fill", d => this.color(d.group))
+            .on("click", this.circleClicked.bind(this));
 
         this.labels = this.nodes
             .append("text")
@@ -130,6 +130,11 @@ class ForceDirectedGraph extends HTMLElement {
         if (!d3.event.active) this.simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
+    }
+
+    circleClicked({ id }) {
+        const event = new CustomEvent("node-clicked", { detail: id });
+        this.dispatchEvent(event);
     }
 }
 
