@@ -13,6 +13,7 @@ class ForceDirectedGraph extends HTMLElement {
         });
 
         // Get properties
+        this.circleSize = this.getAttribute("circle-size");
         this.width = this.getAttribute("width");
         this.height = this.getAttribute("height");
         this.endpoint = this.getAttribute("endpoint");
@@ -79,7 +80,7 @@ class ForceDirectedGraph extends HTMLElement {
 
         this.circles = this.nodes
             .append("circle")
-            .attr("r", 6)
+            .attr("r", this.circleSize)
             .attr("fill", d => this.color(d.group))
             .on("click", this.circleClicked.bind(this));
 
@@ -135,6 +136,8 @@ class ForceDirectedGraph extends HTMLElement {
     circleClicked({ id }) {
         const event = new CustomEvent("node-clicked", { detail: id });
         this.dispatchEvent(event);
+
+
     }
 }
 
