@@ -67,11 +67,12 @@ class ForceDirectedGraph extends HTMLElement {
             .call(d3.drag()
                 .on("start", this.dragstarted.bind(this))
                 .on("drag", this.dragged.bind(this))
-                .on("end", this.dragended.bind(this)));
+                .on("end", this.dragended.bind(this)))
+                .on('click', selectNode);
 
         this.circles = this.nodes
             .append("circle")
-            .attr("r", 6)
+            .attr("r", 8)
             .attr("fill", d => this.color(d.group));
 
         this.labels = this.nodes
