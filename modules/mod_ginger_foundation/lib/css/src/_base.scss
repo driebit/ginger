@@ -173,3 +173,11 @@ iframe {
 .z-logon-box.error_duplicate_username #signup_error_duplicate_identity {
     display: block;
 }
+
+// Prevent zooming on touch devices
+
+.z_logon_form {
+    input.form-control {
+        font-size: 16px;
+    }
+}
