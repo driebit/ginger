@@ -4,7 +4,8 @@
     search_query/2,
     search_sql/2,
     get_unfindable_categories/1,
-    withdefault/2
+    withdefault/2,
+    query_arguments/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -28,7 +29,7 @@
 %%      next (second first :p) observer.
 -spec search_query(#search_query{}, #context{}) -> #search_sql{} | #search_result{} | undefined.
 search_query(#search_query{search = {ginger_search, Args}} = GingerQuery, Context) ->
-    QueryArgs = query_arguments(Args, defaults(), Context),
+    QueryArgs = query_arguments(Args, Context),
     ZotonicQuery = GingerQuery#search_query{search = {'query', QueryArgs}},
 
     %% Forward search query to the next observer. Make sure all custom Ginger
@@ -43,6 +44,9 @@ search_sql(#search_query{search = {ginger_search, Args}}, Context) ->
 
 %% @doc Transform custom Ginger search arguments to Zotonic search arguments.
 %%      Supports all the usual query model arguments, adds default excludes.
+query_arguments(GingerArguments, Context) ->
+    query_arguments(GingerArguments, defaults(), Context).
+
 query_arguments(GingerArguments, DefaultArguments, Context) ->
 
     % This is a special use case that needs a better solution in Zotonic
