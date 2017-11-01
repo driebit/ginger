@@ -1,5 +1,5 @@
-%% @doc Beeldenzoeker search query
--module(beeldenzoeker_query).
+%% @doc Collection search query
+-module(collection_query).
 
 -export([
     parse_query/3
@@ -81,7 +81,7 @@ map_facet({Name, Props}) ->
     map_facet({Name, [{terms, Props}]}).
 
 map_edge(<<"depiction">>) ->
-    %% The Adlib object has a reproduction OR it's a Zotonic resource
+    %% The collection object has a reproduction OR it's a Zotonic resource
     {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
 map_edge(_) ->
     false.
@@ -118,7 +118,7 @@ date_filter(_Key, _Operator, <<>>, _IncludeMissing) ->
 date_filter(Key, Operator, Value, IncludeMissing) when Operator =:= <<"gte">>; Operator =:= <<"gt">>;
     Operator =:= <<"lte">>; Operator =:= <<"lt">>
 ->
-    DateFilter = [Key, Operator, date_range(Value), [{<<"format">>, <<"yyyy">>}]],
+    DateFilter = [Key, Operator, Value, [{<<"format">>, <<"yyyy">>}]],
     OrFilters = case IncludeMissing of
         true ->
             [DateFilter, [Key, missing]];
@@ -127,15 +127,3 @@ date_filter(Key, Operator, Value, IncludeMissing) when Operator =:= <<"gte">>; O
     end,
     
     [{filter, OrFilters}].
-
-%% @doc When the filter date is a year, make sure to include all dates in that
-%%      year.
-date_range(Date)  ->
-    case ginger_adlib_elasticsearch_mapping:year(Date) of
-        undefined ->
-            %% Full date: do nothing
-            Date;
-        Year ->
-            %% Include all dates in year
-            Year
-    end.

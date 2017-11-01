@@ -17,6 +17,10 @@ Installation
 This module relies on [mod_elasticsearch](https://github.com/driebit/mod_elasticsearch)
 for indexing the linked data, so make sure to install that module first.
 
+After starting the module, on the admin modules page, configure the 
+Elasticsearch index that contains the collection documents. The index name
+defaults to sitename_collection.
+
 Usage
 -----
 

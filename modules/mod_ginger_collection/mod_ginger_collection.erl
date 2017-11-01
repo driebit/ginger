@@ -11,6 +11,7 @@
 
 -export([
     init/1,
+    index/1,
     manage_schema/2,
     observe_search_query/2,
     observe_acl_is_allowed/2,
@@ -18,19 +19,21 @@
 ]).
 
 init(Context) ->
-    elasticsearch_index(Context).
+    default_config(index, index(Context), Context).
 
-manage_schema(_, Context) ->
-    elasticsearch_index(Context),
+%% @doc Get Elasticsearch index name used for collections.
+-spec index(z:context()) -> binary().
+index(Context) ->
+    Default = <<(elasticsearch:index(Context))/binary, "_collection">>,
+    case m_config:get_value(?MODULE, index, Context) of
+        undefined -> Default;
+        <<>> -> Default;
+        Value -> z_convert:to_binary(Value)
+    end.
+
+manage_schema(_, _Context) ->
     datamodel().
-
-elasticsearch_index(Context) ->
-    {Version, Mapping} = beeldenzoeker_elasticsearch_mapping:default_mapping(Context),
-    Index = mod_ginger_adlib_elasticsearch:index(Context),
-    %% Apply default mapping to all types
-    Mappings = [{Type, Mapping} || Type <- mod_ginger_adlib_elasticsearch:types(Context)],
-    elasticsearch_index:upgrade(Index, Mappings, Version, Context).
-    
+ 
 datamodel() ->
     #datamodel{
         categories = [
@@ -59,7 +62,7 @@ datamodel() ->
 observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Context) ->
     Args2 = lists:foldl(
         fun({Key, Value}, Acc) ->
-            beeldenzoeker_query:parse_query(Key, Value, Acc)
+            collection_query:parse_query(Key, Value, Acc)
         end,
         [],
         lists:merge(Args, z_context:get_q_all_noz(Context))
@@ -117,3 +120,11 @@ observe_acl_is_allowed(#acl_is_allowed{action = view_ginger_collection, object =
     end;
 observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
     undefined.
+
+default_config(Key, Value, Context) ->
+    case m_config:get_value(?MODULE, Key, Context) of
+        undefined ->
+            m_config:set_value(?MODULE, Key, Value, Context);
+        _ ->
+            ok
+    end.
