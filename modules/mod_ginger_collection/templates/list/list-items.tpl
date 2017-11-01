@@ -11,7 +11,7 @@
             {% catinclude list_item_template item._id %}
         {% else %}
             {# An Elasticsearch document #}
-            {% include list_item_template item=item %}
+            {% include "collection/" ++ list_item_template item=item %}
         {% endif %}
     {% endif %}
 

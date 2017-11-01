@@ -69,6 +69,9 @@ parse_query(
     [{query_context_filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
 parse_query(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
+parse_query(is_published, Value, QueryArgs) ->
+    %% Resource is published OR it's not a Zotonic resource
+    QueryArgs ++ [{filter, [[<<"is_published">>, Value], [<<"_type">>, '<>', <<"resource">>]]}];
 parse_query(Key, Value, QueryArgs) ->
     [{Key, Value} | QueryArgs].
 
