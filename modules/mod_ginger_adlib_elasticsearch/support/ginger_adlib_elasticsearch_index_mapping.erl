@@ -1,4 +1,4 @@
--module(beeldenzoeker_elasticsearch_mapping).
+-module(ginger_adlib_elasticsearch_index_mapping).
 
 -export([
     default_mapping/1

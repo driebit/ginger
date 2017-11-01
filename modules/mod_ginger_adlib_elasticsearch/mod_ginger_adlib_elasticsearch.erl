@@ -6,11 +6,13 @@
 -mod_prio(500).
 -mod_description("Makes Adlib data searchable by indexing it in Elasticsearch").
 -mod_depends([mod_elasticsearch, mod_ginger_adlib]).
+-mod_schema(1).
 
 -export([
     init/1,
     index/1,
     types/1,
+    manage_schema/2,
     observe_adlib_update/2
 ]).
 
@@ -19,6 +21,17 @@
 
 init(Context) ->
     default_config(index, index(Context), Context).
+
+manage_schema(_, Context) ->
+    prepare_elasticsearch_index(Context).
+
+%% @doc Create index and mappings for each type in the index.
+-spec prepare_elasticsearch_index(z:context()) -> ok.
+prepare_elasticsearch_index(Context) ->
+    {Version, Mapping} = ginger_adlib_elasticsearch_index_mapping:default_mapping(Context),
+    %% Apply default mapping to all types
+    Mappings = [{Type, Mapping} || Type <- mod_ginger_adlib_elasticsearch:types(Context)],
+    elasticsearch_index:upgrade(index(Context), Mappings, Version, Context).
 
 observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
     lager:debug("Indexing Adlib record ~s from database ~s", [Priref, Database]),

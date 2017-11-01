@@ -1,5 +1,5 @@
 {% with
-    index|default:(m.config.mod_ginger_adlib_elasticsearch.index.value ++ "," ++ m.config.mod_elasticsearch.index.value),
+    index|default:(m.config.mod_ginger_collection.index.value ++ "," ++ m.config.mod_elasticsearch.index.value),
     results_template|default:"list/list.tpl",
     cat|default:['beeldenzoeker_query']
 as

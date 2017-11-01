@@ -36,7 +36,7 @@ m_value(#m{value = Object}, _Context) ->
 
 get(Type, Id, Context) ->
     case erlastic_search:get_doc(
-        mod_ginger_adlib_elasticsearch:index(Context),
+        mod_ginger_collection:index(Context),
         z_convert:to_binary(Type),
         z_convert:to_binary(Id)
     ) of
