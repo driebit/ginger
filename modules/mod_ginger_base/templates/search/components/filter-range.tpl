@@ -16,7 +16,7 @@ as
     dynamic
 %}
 
-    <div class="search__filters__section--period do_search_cmp_filter_range is-open" data-property="{{ property }}">
+    <div class="search__filters__section search__filters__section--period do_search_cmp_filter_range is-open" data-property="{{ property }}">
         <h3 class="search__filters__title">{{ title }}</h3>
 
         <div class="search__filters__slider"></div>
