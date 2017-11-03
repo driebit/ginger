@@ -16,9 +16,7 @@ class GingerEmbed extends HTMLElement {
     }
 
     connectedCallback() {
-        this._fetch()
-            .then(data => this.render(data))
-            .catch(error => console.error(error));
+        this._fetch(this.properties.url);
     }
 
     render(data) {
@@ -139,15 +137,14 @@ class GingerEmbed extends HTMLElement {
             navigator.language;
     }
 
-    _fetch() {
-        return new Promise((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", this.properties.url);
-            xhr.setRequestHeader('Accept', 'application/ld+json');
-            xhr.onload = () => resolve(JSON.parse(xhr.responseText));
-            xhr.onerror = () => reject(xhr.statusText);
-            xhr.send();
-        });
+    _fetch(url) {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open("GET", url);
+        xhr.setRequestHeader('Accept', 'application/ld+json');
+        xhr.onload = () => this.render(JSON.parse(xhr.responseText));
+        xhr.onerror = () => console.error(xhr.statusText);
+        xhr.send();
     }
 }
 
