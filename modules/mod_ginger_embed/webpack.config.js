@@ -16,18 +16,19 @@ module.exports = {
         filename: `embed.js`,
     },
     resolve: {
-        extensions: ['.js'],
-        modules: ['node_modules', path.resolve(__dirname, "src")]
+        extensions: ['.js', '.scss'],
+        modules: ['node_modules', path.resolve(__dirname, "src"), 'lib/css/src']
     },
     module: {
         rules: [{
             test: /\.(html)$/,
             use: {
-                loader: 'html-loader',
-                options: {
-                    attrs: [':data-src']
-                }
+                loader: 'html-loader'
             }
+        },
+        {
+            test: /\.(scss|css$)/,
+            use: ["css-loader", "sass-loader"]
         }]
     },
     plugins: []
