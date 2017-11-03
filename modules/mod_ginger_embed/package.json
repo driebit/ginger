@@ -1,0 +1,28 @@
+{
+    "name": "mod_ginger_embed",
+    "version": "1.0.0",
+    "description": "Ember ginger rdf resources",
+    "main": "embed.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "watch": "webpack --watch --progress --hide-modules",
+        "make": "webpack",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/driebit/ginger.git"
+    },
+    "author": "RL King",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/driebit/ginger/issues"
+    },
+    "homepage": "https://github.com/driebit/ginger#readme",
+    "devDependencies": {
+        "html-loader": "^0.5.1",
+        "webpack": "^3.8.1"
+    }
+}

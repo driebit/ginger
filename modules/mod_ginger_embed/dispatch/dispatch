@@ -1,4 +1,5 @@
 [
     {embed_js, ["embed", "embed.js"], controller_file, [{path, "js/embed.js"}, {root, [lib]}]},
+    {embed_js_exp, ["embed", "embed-exp.js"], controller_file, [{path, "js/embed-exp.js"}, {root, [lib]}]},
     {embed_css, ["embed", "embed.css"], controller_file, [{path, "css/site/embed.css"}, {root, [lib]}]}
 ].

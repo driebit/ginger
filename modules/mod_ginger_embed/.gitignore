@@ -1,0 +1,15 @@
+.DS_Store
+.vagrant
+data/*
+sites/*
+modules/*
+!modules/mod_ginger*
+node_modules
+tests/node_modules
+tests/reports
+tests/screenshots
+*.mo
+*.pot
+.idea
+.vscode
+*.po~

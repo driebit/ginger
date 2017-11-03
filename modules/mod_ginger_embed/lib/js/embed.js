@@ -1,67 +1,107 @@
-(function() {
-    'use strict';
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
 
-    function fetchJsonLd(url, callback, element) {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onload = function(e) {
-            callback(element, e.target.response);
-        };
-        xmlHttp.open('GET', url, true);
-        xmlHttp.setRequestHeader('Accept', 'application/ld+json');
-        xmlHttp.send(null);
 
-    }
+class GingerEmbed extends HTMLElement {
+    constructor() {
+        super();
 
-    function formatDate(date) {
-        // TODO Don't hardcode nl but base this on user's locale
-        return date.toLocaleString('nl', {day: 'numeric', month: 'short', year: 'numeric'});
-    }
-
-    function getLinkElement(element) {
-        return element.getElementsByTagName('a')[0];
-    }
-
-    function loadJsonLd(element, data) {
-        var embedSize = element.getAttribute('embed-size') ? element.getAttribute('embed-size') : 'small';
-
-        var json = JSON.parse(data),
-            html =
-                '<a href="'+getLinkElement(element).getAttribute('href')+'" class="ginger-embed embed-size-'+embedSize+'" target="_blank">';
-
-        if (json['http://purl.org/dc/terms/publisher']) {
-            html +=
-            '    <div class="ginger-embed__origin">' +
-            '       <h2 class="ginger-embed__origin-title">'+json['http://purl.org/dc/terms/publisher']['@id']+' <span>&raquo;</span></h2>' +
-            '    </div> ' +
-            '    <div class="ginger-embed__origin-hover">' +
-            '       <h2 class="ginger-embed__origin-title">'+json['http://purl.org/dc/terms/publisher']['@id']+' <span>&raquo;</span></h2>' +
-            '    </div> ';
-        }
-
-        if (json['http://xmlns.com/foaf/0.1/thumbnail']) {
-            html +=
-                ' <img src="' + json['http://xmlns.com/foaf/0.1/thumbnail']['@id'] + '">'
-        }
-
-        html +=
-            '    <div class="ginger-embed__header"> ' +
-            '       <h1 class="ginger-embed__title">' + json['http://purl.org/dc/terms/title']  + '</h1>';
-        if (json['http://purl.org/dc/terms/alternative']) {
-            html += '<h2 class="ginger-embed__subtitle">' + json['http://purl.org/dc/terms/alternative'] + '</h2>';
-        }
-        html += '<time class="published ginger-embed__time" datetime="' + json['http://purl.org/dc/terms/issued'] + '">' + formatDate(new Date(json['http://purl.org/dc/terms/issued']), "YYYY") + '</time>' +
-            '    </div> ' +
-            '        <p class="ginger-embed__summary">' + json['http://purl.org/dc/terms/abstract'] + '</p>' +
-            '        <p class="ginger-embed__description">' + json['http://purl.org/dc/terms/description'].replace(/\n/, '<br>') + '</p>' +
-            '</a>';
-
-        element.innerHTML = html;
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        Array.from(document.getElementsByTagName('ginger-embed')).forEach(function (element) {
-            var url = getLinkElement(element).getAttribute('data-rdf');
-            fetchJsonLd(url, loadJsonLd, element);
+        const shadow = this.attachShadow({
+            mode: "closed"
         });
-    });
-})();
+
+        this.properties = {
+            url : "http://geheugenvanwest.docker.dev/rdf/26560"
+        }
+    }
+
+    connectedCallback() {
+        this._fetch().then(data => {
+            console.log(data)
+        })
+    }
+
+    _fetch() {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", this.properties.url);
+            xhr.setRequestHeader('Accept', 'application/ld+json');
+            xhr.onload = () => resolve(JSON.parse(xhr.responseText));
+            xhr.onerror = () => reject(xhr.statusText);
+            xhr.send();
+        });
+    }
+}
+
+// Define the new element
+customElements.define("ginger-embed", GingerEmbed);
+
+
+/***/ })
+/******/ ]);
