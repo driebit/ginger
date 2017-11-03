@@ -1,9 +1,15 @@
-/*** GINGER EMBED ***/
 
 :host {
     display: block;
 }
 
+h2 {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: black;
+    transition: color 0.2s;
+    color: white;
+}
 .ginger-embed:hover  {
     background-color: #f7f7f7;
     color: black;
@@ -99,18 +105,7 @@
     margin-bottom: 5px;
 }
 
-.ginger-embed__origin-title {
-    display: inline-block;
-    padding: 5px 15px;
-    background-color: black;
-    transition: color 0.2s;
-    color: white;
 
-    span {
-        display: inline-block;
-        margin-left: 5px;
-    }
-}
 .ginger-embed__origin-hover {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px 5px;

@@ -1,17 +1,14 @@
-import h from "hyperscript";
-import styles from "embed";
-import normalize from "normalize.css";
 
 class GingerEmbed extends HTMLElement {
     constructor() {
         super();
 
         this.shadow = this.attachShadow({
-            mode: "open"
+            mode: "closed"
         });
 
         this.properties = {
-            url : "http://geheugenvanwest.docker.dev/rdf/26560",
+            url : "http://geheugenvanwest.docker.dev/rdf/26471",
             data : {},
             theme : "red",
             embedSize : "small"
@@ -19,71 +16,110 @@ class GingerEmbed extends HTMLElement {
     }
 
     connectedCallback() {
-        this.shadow.append(createStyles());
-
         this._fetch()
-            .then(data => this.createTemplate(data))
+            .then(data => this.render(data))
             .catch(error => console.error(error));
     }
 
-    createStyles() {
-        const normalizeStyles = normalize.toString();
-        const componentStyles = styles.toString();
-
-        return h("style", (normalizeStyles + componentStyles))
+    render(data) {
+        this.shadow.innerHTML =
+            `${this.styles(this.properties)} ${this.template(data)}`;
     }
 
-    createTemplate(data) {
-        const anchorEl = h(`a.ginger-embed.embed-size-${this.properties.embedSize}`, {href: "/", target: "_blank"});
-
-        if (data['http://purl.org/dc/terms/publisher']) {
-            anchorEl.appendChild(this._createPublisher(data['http://purl.org/dc/terms/publisher']["@id"]));
+    template(data) {
+        const content = {
+            publisher: data["http://purl.org/dc/terms/publisher"] ?
+                `${data["http://purl.org/dc/terms/publisher"]["@id"]} »` : "",
+            thumb: data['http://xmlns.com/foaf/0.1/thumbnail'] ?
+                data['http://xmlns.com/foaf/0.1/thumbnail']['@id'] : "",
+            abstract: data['http://purl.org/dc/terms/abstract'],
+            description: `${data['http://purl.org/dc/terms/description']
+                .split(" ").slice(0,100).join(" ")}...`,
+            date: this._formatDate(data['http://purl.org/dc/terms/issued']),
+            title: data['http://purl.org/dc/terms/title'],
+            subtitle: data['http://purl.org/dc/terms/alternative'] || ""
         }
 
-        if (data['http://xmlns.com/foaf/0.1/thumbnail']) {
-            anchorEl.appendChild(this._createThumbnail(data['http://xmlns.com/foaf/0.1/thumbnail']['@id']));
-        }
+        const template =
+            `<main>
+                <h4>${content.publisher}</h4>
+                <header>
+                    <img src=${content.thumb}>
+                    <div>
+                        <h1>${content.title}</h1>
+                        <h2>${content.subtitle}</h1>
+                    </div>
+                </header>
+                <section>
+                    <h3>${content.abstract}</h3>
+                    <p>${content.description}</p>
+                </section>
+            </main>`
 
-        anchorEl.appendChild(this._createHeader(data));
-        anchorEl.appendChild(this._createContent(data));
-
-        this.shadow.appendChild(anchorEl);
+        return template;
     }
 
-    _createPublisher(title) {
-        return h("aside",
-            h("div.ginger-embed__origin",
-                h("h2.ginger-embed__origin-title", [title, h("span", "»")])),
-            h("div.ginger-embed__hover",
-                h("h2.ginger-embed__origin-title", [title, h("span", "»")])));
-    }
+    styles({ theme }) {
+        const styles =
+            `<style>
+                :host {
+                    display: block;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                    line-height: 160%;
+                    border: 1px solid ${theme};
+                }
 
-    _createThumbnail(url) {
-        return h("img", {src: url})
-    }
+                main {
+                    padding: 2rem;
+                }
 
-    _createContent(data) {
-        return h("section",
-            h("p.ginger-embed__summary", data['http://purl.org/dc/terms/abstract']),
-            h("p.ginger-embed__description", data['http://purl.org/dc/terms/description'].replace(/\n/, '<br>')));
-    }
+                h1, h2, h3, h4 {
+                    margin: 0;
+                    padding: 0;
+                    line-height: 130%;
+                }
 
-    _createHeader(data) {
-        const headerEl = h("div.ginger-embed__header",
-            h("h1.ginger-embed__title", data['http://purl.org/dc/terms/title']));
+                h1 {
+                    font-size: 3rem;
+                    font-weight: 500;
+                }
 
-        if (data['http://purl.org/dc/terms/alternative']) {
-            const subtitleEl = h("h2.ginger-embed__subtitle", data['http://purl.org/dc/terms/alternative'])
+                h2 {
+                    font-size: 2rem;
+                    font-weight: 500;
+                }
 
-            headerEl.appendChild(subtitleEl);
-        }
+                h3 {
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    text-transform: uppercase;
+                }
 
-        const metaEl = h("time.published.ginger-embed__time", {datetime : data['http://purl.org/dc/terms/issued']},
-            this._formatDate(data['http://purl.org/dc/terms/issued'], "YYYY"));
+                h4 {
+                    font-size: 1.5rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    background-color: ${theme};
+                    padding: 1rem;
+                }
 
-        headerEl.appendChild(metaEl);
+                header {
+                    display: flex;
+                    margin: 2rem 0;
+                }
 
-        return headerEl;
+                img {
+                    width: 100px;
+                    height: auto;
+                    margin-right: 2rem;
+                }
+
+                p {
+                    margin: 1rem 0;
+                }
+            </style>
+            `
+        return styles;
     }
 
     _formatDate(date) {
@@ -98,7 +134,7 @@ class GingerEmbed extends HTMLElement {
     }
 
     _getlLocale() {
-        return navigator.languages != undefined ?
+        return navigator.languages ?
             navigator.languages[0] :
             navigator.language;
     }
