@@ -29,6 +29,11 @@
                         <a data-toggle="tab" href="#{{ #tab }}-upload">{_ Upload File _}</a>
                     </li>
                 {% endif %}
+                {% if "url"|member:tabs_enabled %}
+                    <li {% if tab == "url" %}class="active"{% endif %}>
+                        <a data-toggle="tab" href="#{{ #tab }}-url">{_ Upload by URL _}</a>
+                    </li>
+                {% endif %}
             {% endif %}
             {% if "find_rdf"|member:tabs_enabled %}
                 {% all include "_media_upload_tab.tpl" tab=#tab %}
@@ -83,6 +88,17 @@
                     {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
                             content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions %}
                 {% endif %}
+            {% endif %}
+            {% if "url"|member:tabs_enabled %}
+                {% include "_action_dialog_media_upload_tab_url.tpl"
+                tab=#tab
+                predicate=predicate
+                delegate=delegate
+                subject_id=subject_id
+                object_id=object_id
+                is_active=(tab == "url")
+                title=""
+                %}
             {% endif %}
             {% if "upload"|member:tabs_enabled %}
                 {% include "_action_dialog_media_upload_tab_upload.tpl"
