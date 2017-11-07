@@ -1,12 +1,8 @@
-// const autoprefixer = require('autoprefixer');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const path = require('path');
 const webpack = require('webpack');
 
 const entryPath = path.join(__dirname, 'lib/js/src/embed.js');
 const outputPath = path.join(__dirname, 'lib/js');
-
 
 module.exports = {
     entry: entryPath,
@@ -16,19 +12,20 @@ module.exports = {
         filename: `embed.js`,
     },
     resolve: {
-        extensions: ['.js', '.scss'],
-        modules: ['node_modules', path.resolve(__dirname, "src"), 'lib/css/src']
+        extensions: ['.js'],
+        modules: ["node_modules", "src"]
     },
     module: {
         rules: [{
-            test: /\.(html)$/,
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
             use: {
-                loader: 'html-loader'
+                loader: 'babel-loader',
+                options: {
+                    presets: ["@babel/preset-env"],
+                    plugins: ["transform-custom-element-classes"]
+                }
             }
-        },
-        {
-            test: /\.(scss|css$)/,
-            use: ["css-loader", "sass-loader"]
         }]
     },
     plugins: []
