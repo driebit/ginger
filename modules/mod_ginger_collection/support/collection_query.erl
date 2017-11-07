@@ -27,6 +27,9 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
     );
 %% Whitelist term filters
 parse_query(Term, Values, QueryArgs) when
+    Term =:= <<"category.keyword">>;
+    Term =:= <<"address_city.keyword">>;
+    Term =:= <<"http://www_europeana_eu/schemas/edm/dataProvider.@value.keyword">>;
     Term =:= <<"object_category.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>
@@ -48,7 +51,7 @@ parse_query(<<"subset">>, Types, QueryArgs) ->
         Types
     ),
     QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
-parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">> ->
+parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">>; Key =:= <<"date_start">> ->
     IncludeMissing = proplists:get_value(<<"include_missing">>, Range, false),
     QueryArgs
         ++ date_filter(Key, <<"gte">>, proplists:get_value(<<"min">>, Range), IncludeMissing)
