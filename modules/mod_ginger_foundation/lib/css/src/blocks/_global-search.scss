@@ -6,7 +6,8 @@
     right: 65px;
 
     &:after {
-        content: "\e617";
+        @extend .has-icon;
+        @extend .icon--search:before;
         @include size(font-size, 25);
     }
 
@@ -18,7 +19,7 @@
         color: $mainThemeColor;
 
         &:after {
-            content: "\e604";
+            @extend .icon--close:before;
         }
     }
 }
@@ -39,7 +40,7 @@
 
         &:before {
             @extend .has-icon;
-            content: "\e617";
+            @extend .icon--search:before;
             position: absolute;
             top: 14px;
             left: 10px;
