@@ -1,119 +1,56 @@
-
-:host {
+main {
+    padding: 1rem;
     display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 160%;
+    border: 1px solid $mainThemeColor;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    padding: 0;
+    line-height: 130%;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
 }
 
 h2 {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: black;
-    transition: color 0.2s;
-    color: white;
-}
-.ginger-embed:hover  {
-    background-color: #f7f7f7;
-    color: black;
-
-    .ginger-embed__origin-hover {
-        opacity: 1;
-    }
-    .ginger-embed__origin-title {
-        transition: color 0.2s;
-        color: white;
-    }
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
-.ginger-embed {
-    position: relative;
-    display: block;
-    font-family: arial;
-    transition: background-color 0.2s;
-    border: 1px solid grey;
-    color: black;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-decoration: none;
-
-    h1, h2, h3, h4 {
-        font-family: arial;
-        line-height: 1em;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-    h1 {
-        font-size: 2.5em;
-        font-weight: bold;
-    }
-
-    h2 {
-        font-size: 1.1em;
-    }
-
-    h3 {
-        font-size: 1.2em;
-    }
-
-    h4 {
-        font-size: 1em;
-    }
-
-    img {
-        float: left;
-        margin: 15px 10px 0px 0;
-    }
+h3 {
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 160%;
+    padding: 0;
 }
 
-.ginger-embed__header {
-    margin: 15px 0 10px;
-
-    &__title, &__subtitle, &__time {
-        margin-left: 110px;
-    }
-
-    h1 {
-        line-height: 1em;
-        margin: 0;
-        padding: 0;
-    }
-
-    h2 {
-        line-height: 1em;
-        margin: 0;
-        padding: 0;
-    }
-
-    &:after {
-        display: table;
-        content: '';
-        clear: both;
-    }
+h4 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: $mainThemeColor;
+    padding: 1rem;
 }
 
-.ginger-embed__summary {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: black;
+header {
+    display: flex;
+    margin: .5rem 0;
 }
 
-.ginger-embed__description {
-    color: black;
+img {
+    width: 100px;
+    height: auto;
+    margin-right: 2rem;
 }
 
-.ginger-embed__origin {
-    width: 100%;
-    margin-bottom: 5px;
-}
-
-
-.ginger-embed__origin-hover {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px 5px;
-    text-align: center;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    opacity: 0;
-    transition: opacity 0.2s;
+p {
+    margin: 1rem 0;
 }

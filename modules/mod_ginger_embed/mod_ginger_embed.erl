@@ -14,14 +14,15 @@
 -export([
     manage_schema/2,
     observe_media_viewer/2,
-    observe_rsc_update/3
+    observe_rsc_update/3,
+    observe_sanitize_embed_url/2
 ]).
 
 -include("zotonic.hrl").
 
 manage_schema(_Version, Context) ->
     m_config:set_value(site, html_elt_extra, <<"embed,iframe,object,script,ginger-embed">>, Context),
-    m_config:set_value(site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>, Context),
+    m_config:set_value(site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf,src">>, Context),
     Datamodel = #datamodel{
         categories=[
             {ginger_embed, media, [
@@ -59,4 +60,15 @@ observe_rsc_update(#rsc_update{id = Id}, {IsChanged, Acc}, Context) ->
                 false ->
                     {IsChanged, Acc}
             end
+    end.
+
+observe_sanitize_embed_url(#sanitize_embed_url{hostpath= Url}, Context) ->
+    [BaseUrl, _] = binary:split(Url, <<"/gingerembed">>),
+    AllowedHosts = m_config:get_value(mod_ginger_embed, allowed_hosts, Context),
+    AllowedList = binary:split(AllowedHosts, <<",">>),
+    case lists:member(BaseUrl, AllowedList) of
+        true ->
+            Url;
+        false ->
+            undefined
     end.

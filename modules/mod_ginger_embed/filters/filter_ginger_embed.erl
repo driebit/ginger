@@ -15,6 +15,7 @@
 -spec ginger_embed(binary(), #context{}) -> binary().
 ginger_embed(Input, _Context) ->
     %% Find site URL
-    {match, [Url]} = re:run(Input, <<"<a href=\"(https?://[^/]+)">>, [{capture, all_but_first, binary}]),
-    Replacement = <<"<script src=\"", Url/binary, "/embed/embed.js\"></script><link href=\"", Url/binary, "/embed/embed.css\" type=\"text/css\" media=\"all\" rel=\"stylesheet\"><ginger-embed">>,
-    binary:replace(Input, <<"<ginger-embed">>, Replacement).
+    {match, [Url]} = re:run(Input, <<"<iframe src=\"(https?://[^/]+)">>, [{capture, all_but_first, binary}]),
+    Replacement = <<"<iframe src=\"", Url/binary, "\"></iframe>">>,
+    ?DEBUG(Replacement),
+    binary:replace(Input, <<"<ginger-embed>">>, Replacement).

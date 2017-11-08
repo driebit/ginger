@@ -12,20 +12,7 @@
     });
 {% endjavascript %}
 
-{% with (m.modules.active.mod_import_anymeta_dispatch)|if:'page':'id' as path %}
-<pre id="{{ #embed_code }}" style="white-space: pre-line;">
-{{ '<script src="'|escape }}{% url embed_js use_absolute_url z_language=false %}{{ '"></script>'|escape }}{#
-    Content negotation on the resource URI (id.uri) works, but not with CORS:
-    controller_id will return a 303 response but not accept CORS (OPTIONS)
-    requests. Therefore, we have to store a separate URL to controller_rdf,
-    which enables CORS for all requests. We do so in data-rdf. #}
-{{ ('<ginger-embed theme="red">
-
-    <a href="http://' ++ m.site.hostname ++ '/' ++ path ++ '/' ++ id.id ++ '" data-rdf=')|escape }}"{% url rsc_json_ld use_absolute_url z_language=false id=id %}"{{ ('></a>
-
-</ginger-embed>')|escape }}
-</pre>
-{% endwith %}
+<textarea id="{{ #embed_code }}" style="width: 100%; padding: 3px 8px;"><iframe src="http://{{ m.site.hostname }}/gingerembed/{{ id.id }}"><iframe></textarea>
 
 <p class="clipboard-error"></p>
 

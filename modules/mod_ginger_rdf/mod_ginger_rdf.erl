@@ -33,6 +33,7 @@
 -record(state, {context}).
 
 manage_schema(install, Context) ->
+ok,
     Datamodel = #datamodel{
         categories=[
             {rdf, meta, [{title, <<"RDF resource">>}]}
