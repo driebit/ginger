@@ -18,7 +18,6 @@
     manage_schema/2,
     pid_observe_rsc_update_done/3,
     observe_content_types_dispatch/3,
-    observe_rsc_get/3,
     observe_search_query/2,
     init/1,
     handle_call/3,
@@ -58,29 +57,6 @@ manage_schema(install, Context) ->
 %%      links to the resource
 pid_observe_rsc_update_done(Pid, #rsc_update_done{id=Id, post_is_a=CatList}, _Context) ->
     gen_server:cast(Pid, #find_links{id=Id, is_a=CatList}).
-
-%% @doc When asked for properties of an RDF resource, ask the RDF data source to
-%%      provide extra properties
-observe_rsc_get(#rsc_get{}, [], _Context) ->
-    [];
-observe_rsc_get(#rsc_get{id=_Id}, Props, Context) ->
-
-    %% Only act on non-authoritative resources
-    case proplists:get_value(is_authoritative, Props) of
-        true ->
-            Props;
-        false ->
-            Uri = proplists:get_value(uri, Props),
-            case z_utils:is_empty(Uri) of
-                true ->
-                    Props;
-                false ->
-                    case z_notifier:foldl(#rdf_get{uri=Uri}, #rdf_resource{}, Context) of
-                        undefined -> Props;
-                        RdfResource -> Props ++ [{rdf, RdfResource}]
-                    end
-            end
-    end.
 
 observe_search_query(#search_query{} = Query, Context) ->
     ginger_rdf_search:search_query(Query, Context).
