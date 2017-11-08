@@ -19,6 +19,15 @@ button to enter the URL to your Adlib API instance.
 Usage
 -----
 
+## Pulling data from the Adlib API
+
+Pull records from the Adlib API that have been changed since a moment in time 
+(e.g., 1 week):
+
+```erlang
+mod_ginger_adlib:pull_updates("-1 week", Context).
+```
+
 ## Search
 
 In your template:
