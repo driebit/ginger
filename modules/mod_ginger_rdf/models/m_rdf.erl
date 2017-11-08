@@ -35,7 +35,7 @@ m_find_value(RscId, #m{value = undefined} = M, Context) when is_integer(RscId) -
     case m_rsc:p(RscId, is_authoritative, Context) of
         true ->
             %% Authoritative resource, so base RDF representation on internal data.
-            ?DEBUG(to_json_ld(RscId, Context));
+            to_json_ld(RscId, Context);
         false ->
             %% Non-authoritative resource, so base representation on external data.
             Uri = m_rsc:p_no_acl(RscId, uri, Context),
@@ -46,7 +46,6 @@ m_find_value(RscId, #m{value = undefined} = M, Context) when is_integer(RscId) -
 m_find_value(undefined, #m{value = undefined}, _Context) ->
     undefined;
 m_find_value(Uri, #m{value = undefined} = M, Context) ->
-    ?DEBUG(Uri),
     M#m{value = rsc(Uri, Context)};
 
 m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
@@ -534,5 +533,4 @@ get_category_uri(Category, Context) ->
     get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
 
 to_json_ld(Id, Context) ->
-
-    mochijson2:encode(?DEBUG(ginger_json_ld:serialize(to_triples(Id, Context)))).
+    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
