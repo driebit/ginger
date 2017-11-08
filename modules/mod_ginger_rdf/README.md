@@ -162,7 +162,7 @@ View models
 
 ### m.rdf
 
-Render RDF properties in your templates:
+To render dynamically retrieved RDF data in your templates:
 
 ```dtl
 {{ m.rdf[id]['http://purl.org/dc/elements/1.1/title'] }}
