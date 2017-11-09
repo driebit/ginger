@@ -29,6 +29,7 @@
         <section>
             <h3>{{ rsc.summary }}</h3>
             <p>{{ rsc.body|truncate:500 }}</p>
+            <p><a href="{{ rsc.uri }}">Lees verder</a></p>
         </section>
     </main>
 
