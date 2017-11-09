@@ -3,6 +3,7 @@
         type|default:q.type,
         cat|default:q.cat,
         cat_exclude|default:q.cat_exclude,
+        cat_promote_recent|if_undefined:['article'],
         search_text|default:q.qs|default:q.search_term,
         keyword|default:q.keyword,
         anykeyword|default:q.anykeyword,
@@ -26,11 +27,14 @@
         authoritative|default:1,
         list_template|default:"list/list-item-vertical.tpl",
         list_id|default:"list--query",
-        list_class|default:"list--vertical"
+        list_class|default:"list--vertical",
+        index|default:(m.config.mod_elasticsearch.index.value),
+        collection|default:false
     as
         type,
         cat,
         cat_exclude,
+        cat_promote_recent,
         search_text,
         keyword,
         anykeyword,
@@ -54,7 +58,9 @@
         authoritative,
         list_template,
         list_id,
-        list_class
+        list_class,
+        index,
+        collection
 %}
 
     {% if type == "list" %}
@@ -84,9 +90,10 @@
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
             page=page
-            cat_promote_recent=['article']
+            cat_promote_recent=cat_promote_recent
+            index=index
+            collection=collection
         }] as result %}
-
             {% include "search/list-wrapper.tpl" class=list_class list_id=list_id list_template=list_template items=result extraClasses="" id=id %}
 
         {% endwith %}
@@ -114,6 +121,7 @@
             sort=sort
             content_group=content_group
             pagelen=50
+            index=index
         }] as result %}
 
             {% include "search/timeline-wrapper.tpl" items=result timenav_position="" start_at_slide=0 %}
