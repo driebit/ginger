@@ -219,7 +219,7 @@ parse_argument({cat_exclude_unfindable, Val}) ->
         end
     end;
 
-parse_argument({cat_promote_recent, false}) ->
+parse_argument({cat_promote_recent, []}) ->
     [];
 parse_argument({cat_promote_recent, Categories}) ->
     score_function(#{
