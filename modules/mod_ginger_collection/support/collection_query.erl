@@ -29,7 +29,7 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
 parse_query(Term, Values, QueryArgs) when
     Term =:= <<"category.keyword">>;
     Term =:= <<"address_city.keyword">>;
-    Term =:= <<"http://www_europeana_eu/schemas/edm/dataProvider.@value.keyword">>;
+    Term =:= <<"edm:dataProvider.keyword">>;
     Term =:= <<"object_category.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>
