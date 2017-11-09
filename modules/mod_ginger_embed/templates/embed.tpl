@@ -10,7 +10,7 @@
 <body>
 
     <main>
-        <a href="{{ rsc.uri }}"><h4>{{ rsc.uri }} »</h4></a>
+        <a href="{{ rsc.uri }}" target="_blank"><h4>{{ rsc.uri }} »</h4></a>
         <header>
             <figure>
                 {% image rsc.id.depiction mediaclass="embed" %}
@@ -29,7 +29,7 @@
         <section>
             <h3>{{ rsc.summary }}</h3>
             <p>{{ rsc.body|truncate:500 }}</p>
-            <p><a href="{{ rsc.uri }}">Lees verder</a></p>
+            <p><a href="{{ rsc.uri }}" target="_blank">Lees verder</a></p>
         </section>
     </main>
 
