@@ -2,11 +2,17 @@
 -module(collection_query).
 
 -export([
+    is_collection_query/1,
     parse_query/3
 ]).
 
 -include_lib("zotonic.hrl").
 -include_lib("mod_ginger_rdf/include/rdf.hrl").
+
+%% @doc Does the search query include collection objects?
+-spec is_collection_query(proplists:proplist()) -> boolean().
+is_collection_query(Args) ->
+    proplists:get_value(collection, Args, false).
 
 %% @doc Parse Zotonic search query arguments and return Elastic query arguments.
 -spec parse_query(list() | binary(), binary(), proplists:proplist()) -> proplists:proplist().

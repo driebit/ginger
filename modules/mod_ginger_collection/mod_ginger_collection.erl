@@ -58,28 +58,17 @@ datamodel() ->
         ]
     }.
 
-%% @doc Supplement search arguments with values from JS (that are in get_q()).
-observe_search_query(#search_query{search = {beeldenzoeker, Args}} = Query, Context) ->
-    Args2 = lists:foldl(
-        fun({Key, Value}, Acc) ->
-            collection_query:parse_query(Key, Value, Acc)
-        end,
-        [],
-        lists:merge(Args, z_context:get_q_all_noz(Context))
-    ),
-    
-    ElasticQuery = Query#search_query{search = {elastic, Args2}},
-    case z_notifier:first(ElasticQuery, Context) of
-        undefined ->
+%% @doc Supplement search arguments with filter values from JS
+%%      (retrieved from z_context:get_q()).
+observe_search_query(#search_query{search = {ginger_collection, _Args}} = Query, Context) ->
+    collection_search:search(Query, Context);
+observe_search_query(#search_query{search = {query, Args}} = Query, Context) ->
+    case collection_query:is_collection_query(Args) of
+        false ->
             undefined;
-        #search_result{facets = Facets} = Result when is_map(Facets)->
-            %% For now separate notification for facets
-            ok = z_mqtt:publish("~session/search/facets", jsx:encode(Facets), Context),
-            Result;
-        #search_result{facets = Facets} = Result->
-            %% For now separate notification for facets
-            ok = z_mqtt:publish("~session/search/facets", Facets, Context),
-            Result
+        true ->
+            %% A collection search query (with search argument 'collection')
+            collection_search:search(Query, Context)
     end;
 observe_search_query(#search_query{search = {dbpedia, _}} = Query, _Context) ->
     dbpedia:search(Query);
