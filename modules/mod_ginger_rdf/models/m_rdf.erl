@@ -112,11 +112,12 @@ create_resource(Uri, Props, Context) ->
 
 %% @doc Fetch a RDF resource
 rsc(Uri, Context) ->
+    UriBin = z_convert:to_binary(Uri),
     z_depcache:memo(
         fun() ->
-            z_notifier:foldl(#rdf_get{uri = Uri}, #rdf_resource{}, Context)
+            z_notifier:foldl(#rdf_get{uri = UriBin}, #rdf_resource{}, Context)
         end,
-        #rdf_resource{id = Uri},
+        #rdf_resource{id = UriBin},
         ?WEEK,
         Context
     ).
