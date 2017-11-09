@@ -88,7 +88,7 @@ map_facet({Name, Props}) ->
 
 map_edge(<<"depiction">>) ->
     %% The collection object has a reproduction OR it's a Zotonic resource
-    {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
+    {true, {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists]]}};
 map_edge(_) ->
     false.
 
