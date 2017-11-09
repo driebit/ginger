@@ -1,6 +1,6 @@
 {% with m.rsc[id] as rsc %}
 
-<html>
+<!DOCTYPE html>
 
 <head>
     <title>{{ rsc.title }}</title>
@@ -10,14 +10,19 @@
 <body>
 
     <main>
-        <h4>{{ rsc.uri }} »</h4>
+        <a href="{{ rsc.uri }}"><h4>{{ rsc.uri }} »</h4></a>
         <header>
-            {% image rsc.id.depiction mediaclass="gigner-e" %}
+            <figure>
+                {% image rsc.id.depiction mediaclass="embed" %}
+            </figure>
             <div>
                 <h1>{{ rsc.title }}</h1>
                 <h2>{{ rsc.alternative }}</h1>
-                    <time>{{ rsc.id.publication_start|date:"d-m-Y" }}</time>
-                    <small>{{ m.rsc[rsc.creator_id].title }}</small>
+
+                <small>
+                    <time>{{ rsc.id.publication_start|date:"d M Y" }}</time>
+                    {{ m.rsc[rsc.creator_id].title }}
+                </small>
             </div>
         </header>
 

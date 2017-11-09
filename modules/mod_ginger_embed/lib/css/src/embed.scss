@@ -6,6 +6,10 @@ main {
     border: 1px solid $mainThemeColor;
 }
 
+a {
+    text-decoration: none;
+}
+
 h1,
 h2,
 h3,
@@ -17,7 +21,8 @@ h4 {
 
 h1 {
     font-size: 1.8rem;
-    font-weight: 500;
+    font-weight: 600;
+    margin-bottom: .5rem;
 }
 
 h2 {
@@ -33,24 +38,28 @@ h3 {
 }
 
 h4 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     text-transform: uppercase;
     background-color: $mainThemeColor;
-    padding: 1rem;
+    padding: .5rem 1rem;
+    text-align: right;
 }
 
 header {
     display: flex;
-    margin: .5rem 0;
+    margin: 1rem 0;
 }
 
 img {
+    width: 100%;
+}
+
+figure {
     width: 100px;
-    height: auto;
-    margin-right: 2rem;
+    margin: 0 1rem 0 0;
 }
 
 p {
-    margin: 1rem 0;
+    margin: .5rem 0;
 }
