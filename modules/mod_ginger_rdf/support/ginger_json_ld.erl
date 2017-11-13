@@ -72,23 +72,38 @@ resolve_predicate(Predicate, Context) ->
     case binary:split(Predicate, <<":">>) of
         [Namespace, Property] ->
             %% Predicate with namespace, e.g, "dcterms:date"
-            case resolve_namespace(Namespace, Context) of
+            case resolve_context_key(Namespace, Context) of
                 undefined ->
                     lager:error("Namespace ~p not registered", [Namespace]),
                     undefined;
                 ResolvedNamespace ->
                     erlang:iolist_to_binary([ResolvedNamespace, Property])
             end;
-        [Property] ->
-            %% Special property without namespace, e.g., "@type"
-            Property
+        [_Property] ->
+            %% Property without namespace
+            case binary:split(Predicate, <<"@">>) of
+                [<<"">>, _] ->
+                    %% Special "@type" form
+                    Predicate;
+                [_] ->
+                    %% Possible alias in context
+                    case resolve_context_key(Predicate, Context) of
+                        Uri when is_binary(Uri) ->
+                            Uri;
+                        #{<<"@id">> := Uri} ->
+                            Uri;
+                        _Something ->
+                            % Fully qualified?
+                            Predicate
+                    end
+            end
     end.
 
 %% @doc Resolve a namespace based on the @context value
--spec resolve_namespace(binary(), list()) -> binary().
-resolve_namespace(Namespace, Context) when is_map(Context) ->
+-spec resolve_context_key(binary(), list()) -> binary().
+resolve_context_key(Namespace, Context) when is_map(Context) ->
     maps:get(Namespace, Context, undefined);
-resolve_namespace(Namespace, Context) ->
+resolve_context_key(Namespace, Context) ->
     proplists:get_value(Namespace, Context).
 
 create_triple_from_json(Subject, Predicate, Object, Context) ->
@@ -191,7 +206,7 @@ serialize_to_map(#rdf_resource{id = Id, triples = Triples} = RdfResource) ->
                 TripleJson ->
                     JsonKey = hd(maps:keys(TripleJson)),
                     #{JsonKey := JsonValue} = TripleJson,
-        
+
                     case maps:get(JsonKey, Acc, undefined) of
                         undefined ->
                             maps:merge(Acc, TripleJson);
@@ -259,7 +274,7 @@ list(Object) when is_list(Object) ->
     Object;
 list(Object) ->
     [Object].
-    
+
 %% @doc Construct a #triple{} record.
 -spec triple(binary(), binary(), binary()) -> #triple{}.
 triple(Subject, Predicate, <<"http://", _/binary>> = Object) ->
