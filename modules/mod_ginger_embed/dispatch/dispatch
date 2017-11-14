@@ -1,4 +1,6 @@
 [
     {embed, ["gingerembed", id], controller_template, [{template, "embed.tpl"}]},
-    {embed_css, ["embed", "embed.css"], controller_file, [{path, "css/site/embed.css"}, {root, [lib]}]}
+    {embed_js, ["embed", "embed.js"], controller_file, [{path, "js/legacyscript.js"}, {root, [lib]}]},
+    {embed_css, ["embed", "embed.css"], controller_file, [{path, "css/site/legacycss.css"}, {root, [lib]}]},
+    {gingerembed_css, ["embed", "gingerembed.css"], controller_file, [{path, "css/site/gingerembed.css"}, {root, [lib]}]}
 ].
