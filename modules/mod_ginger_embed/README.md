@@ -1,30 +1,19 @@
 mod_ginger_embed
 =================
 
-This module includes a simple embedding widget. Some JavaScript (`embed.js`)
-iterates over all `<ginger-embed>` tags on the HTML page and replaces them
-with a widget. The data is retrieved from the RDF endpoint (`controller_rdf`).
+This module allows Ginger and non-Ginger sites to embed Ginger resources by use of an `<iframe>`.
 
-To show the embed code on a resource page:
+## Embed assets
 
-```dtl
-{% include "embed/embed.tpl" %}
+The module ships with a SCSS file in `lib/css/src/embed.scss`. This file includes your site's color and typography variables, and you're expected to write the output to your site's `lib/css/site` directory as `embed.css`.
+
+## Embedding sites in Ginger
+Due to the sanitizing of input-fields in Ginger, sites have to be whitelisted in order to be embedded via the media-item interface. This can be done with the following config.
+
+
+```erlang
+ginger_config:install_config(
+    [{ mod_ginger_embed, allowed_hosts, <<"www.example.com, www.exampla.net">>}]
+    Context
+)
 ```
-
-Or supply a different resource id:
-
-```dtl
-{% include "embed/embed.tpl" id=123 %}
-```
-
-Third-party websites (Ginger and non-Ginger alike) can include the output of
-that template to show the widget.
-
-### Embed assets
-
-The module ships with a CSS file in `lib/css/build/embed.css`. You can override
-this CSS by adding a file in your own module or site at the same path. If you 
-want to change the asset path, you can override the `rdf_embed_css` dispatch 
-rule.
-
-If you use Sass, you can include `lib/css/src/embed.scss` instead.
