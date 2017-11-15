@@ -1,8 +1,11 @@
+body {
+    padding: 0;
+    font: 100%/1.4 $bodyFontFamily;
+}
+
 main {
     padding: 1rem;
     display: block;
-    font-family: $bodyFontFamily;
-    line-height: 160%;
     border: 1px solid $mainThemeColor;
 }
 
@@ -10,19 +13,12 @@ a {
     text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4 {
-    margin: 0;
-    padding: 0;
-    line-height: 130%;
-}
-
 h1 {
     font-size: 1.8rem;
+    line-height: 1;
     font-weight: 600;
     margin-bottom: .5rem;
+    color: $mainThemeColor;
 }
 
 h2 {
@@ -35,15 +31,6 @@ h3 {
     text-transform: uppercase;
     line-height: 160%;
     padding: 0;
-}
-
-h4 {
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    background-color: $mainThemeColor;
-    padding: .5rem 1rem;
-    text-align: right;
 }
 
 header {
@@ -60,6 +47,37 @@ figure {
     margin: 0 1rem 0 0;
 }
 
-p {
-    margin: .5rem 0;
+p + p {
+    margin: .5rem 0 0;
+}
+
+.ginger-embed__intro {
+    margin: 0 0 1em;
+    font-size: 1.1em;
+}
+
+.ginger-embed__from {
+    display: block;
+    padding: 10px;
+    background: rgba($mainThemeColor, 0.2);
+    color: #000;
+
+    transition: background 0.3s;
+
+    &:hover {
+        background: rgba($mainThemeColor, 0.8);
+    }
+}
+
+.ginger-embed__readmore {
+    display: inline-block;
+    padding: 5px 15px;
+    margin: 10px 0 0;
+    background: $mainThemeColor;
+    color: #fff;
+    transition: background 0.3s;
+
+    &:hover {
+        background: rgba($mainThemeColor, 0.8);
+    }
 }

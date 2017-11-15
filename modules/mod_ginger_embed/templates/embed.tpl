@@ -10,27 +10,31 @@
 <body>
 
     <main>
-        <a href="{{ rsc.uri }}" target="_blank"><h4>{{ rsc.uri }} »</h4></a>
-        <header>
-            <figure>
-                {% image rsc.id.depiction mediaclass="embed" %}
-            </figure>
-            <div>
-                <h1>{{ rsc.title }}</h1>
-                <h2>{{ rsc.alternative }}</h1>
+        <article class="ginger-embed">
+            <a href="{{ rsc.uri }}" target="_blank" class="ginger-embed__from">{{ rsc.uri }} »</a>
+            <header>
+                {% if rsc.id.depiction %}
+                    <figure>
+                        {% image rsc.id.depiction mediaclass="embed" %}
+                    </figure>
+                {% endif %}
+                <div>
+                    <h1>{{ rsc.title }}</h1>
+                    <h2>{{ rsc.alternative }}</h2>
 
-                <small>
-                    <time>{{ rsc.id.publication_start|date:"d M Y" }}</time>
-                    {{ m.rsc[rsc.creator_id].title }}
-                </small>
-            </div>
-        </header>
+                    <small>
+                        <time>{{ rsc.id.publication_start|date:"d M Y" }}</time>
+                        {{ m.rsc[rsc.creator_id].title }}
+                    </small>
+                </div>
+            </header>
 
-        <section>
-            <h3>{{ rsc.summary }}</h3>
-            <p>{{ rsc.body|truncate:500 }}</p>
-            <p><a href="{{ rsc.uri }}" target="_blank">Lees verder</a></p>
-        </section>
+            <section>
+                <p class="ginger-embed__intro">{{ rsc.summary }}</p>
+                <p>{{ rsc.body|truncate:500 }}</p>
+                <p><a href="{{ rsc.uri }}" target="_blank" class="ginger-embed__readmore">Lees verder</a></p>
+            </section>
+        </article>
     </main>
 
 </body>

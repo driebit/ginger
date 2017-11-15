@@ -1,3 +1,0 @@
-{% lib
-    "/js/iframe.js"
-%}
