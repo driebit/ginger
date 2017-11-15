@@ -65,13 +65,16 @@ observe_rsc_update(#rsc_update{id = Id}, {IsChanged, Acc}, Context) ->
 observe_sanitize_embed_url(#sanitize_embed_url{hostpath = Url}, Context) ->
     case binary:split(Url, <<"/gingerembed">>) of
         [BaseUrl, _] ->
-            AllowedHosts = m_config:get_value(mod_ginger_embed, allowed_hosts, Context),
-            AllowedList = binary:split(AllowedHosts, <<",">>),
-            case lists:member(BaseUrl, AllowedList) of
-                true ->
-                    Url;
-                false ->
-                    undefined
+            case m_config:get_value(mod_ginger_embed, allowed_hosts, Context) of
+                undefined -> undefined;
+                Key ->
+                    AllowedList = binary:split(Key, <<",">>),
+                    case lists:member(BaseUrl, AllowedList) of
+                        true ->
+                            Url;
+                        false ->
+                            undefined
+                    end
             end;
         _ ->
             undefined
