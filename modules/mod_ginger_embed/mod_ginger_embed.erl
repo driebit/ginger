@@ -63,7 +63,7 @@ observe_rsc_update(#rsc_update{id = Id}, {IsChanged, Acc}, Context) ->
     end.
 
 observe_sanitize_embed_url(#sanitize_embed_url{hostpath = Url}, Context) ->
-    case binary:split(Url, <<"/gingerembed">>) of
+    case binary:split(Url, <<"/embed">>) of
         [BaseUrl, _] ->
             case m_config:get_value(mod_ginger_embed, allowed_hosts, Context) of
                 undefined -> undefined;
