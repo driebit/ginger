@@ -5,4 +5,3 @@
 	<option value="other" {% ifequal service "other" %}selected="selected" {% endifequal %}>Other</option>
     <option value="ginger" {% ifequal service "ginger" %}selected="selected" {% endifequal %}>{_ Ginger Embed _}</option>
 {# {% endblock %} #}
-

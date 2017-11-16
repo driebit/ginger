@@ -14,7 +14,8 @@
 -export([
     manage_schema/2,
     observe_media_viewer/2,
-    observe_rsc_update/3
+    observe_rsc_update/3,
+    observe_sanitize_embed_url/2
 ]).
 
 -include("zotonic.hrl").
@@ -59,4 +60,22 @@ observe_rsc_update(#rsc_update{id = Id}, {IsChanged, Acc}, Context) ->
                 false ->
                     {IsChanged, Acc}
             end
+    end.
+
+observe_sanitize_embed_url(#sanitize_embed_url{hostpath = Url}, Context) ->
+    case binary:split(Url, <<"/embed">>) of
+        [BaseUrl, _] ->
+            case m_config:get_value(mod_ginger_embed, allowed_hosts, Context) of
+                undefined -> undefined;
+                Key ->
+                    AllowedList = binary:split(Key, <<",">>),
+                    case lists:member(BaseUrl, AllowedList) of
+                        true ->
+                            Url;
+                        false ->
+                            undefined
+                    end
+            end;
+        _ ->
+            undefined
     end.
