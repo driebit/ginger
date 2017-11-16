@@ -12,7 +12,7 @@
     });
 {% endjavascript %}
 
-<textarea id="{{ #embed_code }}" style="width: 100%; padding: 3px 8px; color: black;"><iframe src="https://{{ m.site.hostname }}/gingerembed/{{ id.id }}"></iframe></textarea>
+<textarea id="{{ #embed_code }}" style="width: 100%; padding: 3px 8px; color: black;"><iframe src="https://{{ m.site.hostname }}/embed/{{ id.id }}"></iframe></textarea>
 
 <p class="clipboard-error"></p>
 
