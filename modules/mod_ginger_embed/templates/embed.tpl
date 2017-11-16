@@ -11,7 +11,7 @@
 
     <main>
         <article class="ginger-embed">
-            <a href="{{ rsc.uri }}" target="_blank" class="ginger-embed__from">{{ rsc.uri }} »</a>
+            <a href="{% url page use_absolute_url id=rsc.id %}" target="_blank" class="ginger-embed__from">{{ m.config.title }} »</a>
             <header>
                 {% if rsc.id.depiction %}
                     <figure>

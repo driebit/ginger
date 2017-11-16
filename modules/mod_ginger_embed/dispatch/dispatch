@@ -1,4 +1,4 @@
 [
     {embed, ["embed", id], controller_template, [{template, "embed.tpl"}]},
-    {embed_css, ["embed", "embed.css"], controller_file, [{path, "css/site/embed.css"}, {root, [lib]}]}
+    {embed_css, ["embed", "css", "embed.css"], controller_file, [{path, "css/site/embed.css"}, {root, [lib]}]}
 ].
