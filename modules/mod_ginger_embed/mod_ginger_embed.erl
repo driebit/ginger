@@ -68,7 +68,10 @@ observe_sanitize_embed_url(#sanitize_embed_url{hostpath = Url}, Context) ->
             case m_config:get_value(mod_ginger_embed, allowed_hosts, Context) of
                 undefined -> undefined;
                 Key ->
-                    AllowedList = binary:split(Key, <<",">>),
+                    AllowedList = lists:map(
+                        fun z_string:trim/1,
+                        binary:split(Key, <<",">>, [global])
+                    ),
                     case lists:member(BaseUrl, AllowedList) of
                         true ->
                             Url;
