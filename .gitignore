@@ -1,7 +1,9 @@
 .DS_Store
 .vagrant
 data/*
+!data/.gitkeep
 sites/*
+!sites/.gitkeep
 modules/*
 !modules/mod_ginger*
 tests/node_modules
