@@ -41,7 +41,7 @@
                         <div class="beeldenzoeker-home__collections">
                             <h2 class="beeldenzoeker-home__section-title">{{ r.title }}</h2>
 
-                            {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="list/list-item-beeldenzoeker.tpl" %}
+                            {% include "list/list.tpl" items=result id=id hide_showmore_button list_id="list-"++r.id list_template="collection/list/list-item.tpl" %}
                         </div>
                     {% endwith %}
                 {% endif %}

@@ -1,4 +1,4 @@
-{% extends "list/list-item-beeldenzoeker.tpl" %}
+{% extends "collection/list/list-item.tpl" %}
 
 {% block link %}{{ url }}{% endblock %}
 
