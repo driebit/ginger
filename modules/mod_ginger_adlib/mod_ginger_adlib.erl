@@ -53,9 +53,10 @@ pull_database_updates(Database, Since, StartFrom, Context) when is_binary(Since)
         {search, <<"modification>=", Since/binary>>}
     ],
 
-    #search_result{result = Records} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
+    #search_result{result = Records, total = Total} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
     case Records of
         [] ->
+            lager:info("mod_ginger_adlib: Pulled ~p records modified after ~s from database ~s", [Total, Since, Database]),
             ok;
         _ ->
             [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
@@ -152,7 +153,8 @@ handle_call(Message, _From, State) ->
 
 handle_cast({pull_updates, Frequency}, State = #state{context = Context}) ->
     Now = z_datetime:timestamp(),
-    SinceTimestamp = Now - Frequency,
+    %% Pull back a little more, so as to not lose updates.
+    SinceTimestamp = Now - Frequency - (Frequency div 2),
     DateTime = z_datetime:timestamp_to_datetime(SinceTimestamp),
     pull_updates(DateTime, Context),
     {noreply, State};
