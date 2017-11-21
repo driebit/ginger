@@ -10,7 +10,7 @@
     m_to_list/2,
     m_value/2,
     concept/1,
-    dbpedia_uri/1
+    dbpedia_uris/1
 ]).
 
 m_find_value(Uri, #m{value = undefined}, _Context) ->
@@ -41,18 +41,13 @@ concept(_) ->
     undefined.
 
 %% @doc Get DBPedia URI for an Erfgoedthesaurus concept.
--spec dbpedia_uri(binary()) -> binary() | undefined.
-dbpedia_uri(Uri) ->
+-spec dbpedia_uris(binary()) -> [binary() | undefined].
+dbpedia_uris(Uri) ->
     case concept(Uri) of
         undefined ->
             undefined;
         Concept ->
             Matches = m_rdf:objects(Concept, <<"http://www.w3.org/2004/02/skos/core#exactMatch">>) ++
                 m_rdf:objects(Concept, <<"http://www.w3.org/2004/02/skos/core#closeMatch">>),
-            case lists:filter(fun m_dbpedia:is_dbpedia_uri/1, Matches) of
-                [] ->
-                    undefined;
-                [Hd | _] ->
-                    Hd
-            end
+            lists:filter(fun m_dbpedia:is_dbpedia_uri/1, Matches)
     end.

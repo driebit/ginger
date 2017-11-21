@@ -17,7 +17,7 @@
                 <section class="adlib-object__creator-image">
                     {% if dbpedia.thumbnail %}
                         <img
-                            src="{{ dbpedia.thumbnail }}"
+                            src="{{ dbpedia.thumbnail|https }}"
                             alt="{{ creator.title }}">
                     {% endif %}
                 </section>

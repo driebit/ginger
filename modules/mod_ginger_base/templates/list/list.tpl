@@ -55,7 +55,8 @@ as
             <div id="{{ list_id }}-buttons" class="list__more-nav">
 
                 {% if not hide_showmore_button %}
-                    {% button class="list__more" text=showmore_button_text action={moreresults result=result
+                    {% button class="list__more" text=showmore_button_text action={moreresults
+                        result=items
                         target=list_id
                         template=list_template
                         catinclude }

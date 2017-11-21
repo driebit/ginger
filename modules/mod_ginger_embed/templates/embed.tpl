@@ -32,7 +32,7 @@
             <section>
                 <p class="ginger-embed__intro">{{ rsc.summary }}</p>
                 <p>{{ rsc.body|truncate:500 }}</p>
-                <p><a href="{{ rsc.uri }}" target="_blank" class="ginger-embed__readmore">Lees verder</a></p>
+                <p><a href="{% url page use_absolute_url id=rsc.id %}" target="_blank" class="ginger-embed__readmore">Lees verder</a></p>
             </section>
         </article>
     </main>
