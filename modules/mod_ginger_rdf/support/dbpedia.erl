@@ -46,7 +46,7 @@ describe(<<"http://", _/binary>> = Resource) ->
 describe(Query) ->
     describe(Query, <<>>).
 
-describe(Query, Language) when Language =:= <<"nl">>; Language =:= <<>> ->
+describe(Query, Language) when Language =:= <<"nl">>; Language =:= <<"wikidata">>; Language =:= <<>> ->
     sparql_client:describe(endpoint(Language), Query);
 describe(Resource, Language) when not is_list(Resource); not is_binary(Language) ->
     describe(z_convert:to_binary(Resource), z_convert:to_binary(Language)).

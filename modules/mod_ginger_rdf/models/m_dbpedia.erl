@@ -10,6 +10,7 @@
     m_find_value/3,
     m_to_list/2,
     m_value/2,
+    get_resource/2,
     get_resource/3,
     is_dbpedia_uri/1
 ]).
@@ -24,6 +25,19 @@ m_to_list(_, _Context) ->
 
 m_value(#m{value = Uri}, Context) ->
     get_resource(Uri, Context, nl).
+
+%% @doc Get a resource from DBPedia or WikiData.
+-spec get_resource(binary(), z:context()) -> #rdf_resource{} | undefined.
+get_resource(<<"http://wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
+    get_resource(Uri, wikidata, Context);
+get_resource(<<"https://wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
+    get_resource(Uri, wikidata, Context);
+get_resource(<<"http://nl.dbpedia.org", _/binary>> = Uri, Context) ->
+    get_resource(Uri, nl, Context);
+get_resource(<<"https://nl.dbpedia.org", _/binary>> = Uri, Context) ->
+    get_resource(Uri, nl, Context);
+get_resource(<<"https://dbpedia.org", _/binary>> = Uri, Context) ->
+    get_resource(Uri, '', Context).
 
 get_resource(Uri, Language, Context) ->
     z_depcache:memo(
