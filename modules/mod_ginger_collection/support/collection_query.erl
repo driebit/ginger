@@ -63,7 +63,13 @@ parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"d
         ++ date_filter(Key, <<"gte">>, proplists:get_value(<<"min">>, Range), IncludeMissing)
         ++ date_filter(Key, <<"lte">>, proplists:get_value(<<"max">>, Range), IncludeMissing);
 parse_query(<<"edge">>, Edges, QueryArgs) ->
-    QueryArgs ++ lists:filtermap(fun map_edge/1, Edges);
+    QueryArgs ++ lists:foldl(
+        fun(Edge, Acc) ->
+            [Acc | map_edge(Edge)]
+        end,
+        [],
+        Edges
+    );
 parse_query(
     related_to, #{
         <<"_id">> := Id,
@@ -93,10 +99,13 @@ map_facet({Name, Props}) ->
     map_facet({Name, [{terms, Props}]}).
 
 map_edge(<<"depiction">>) ->
-    %% The collection object has a reproduction OR it's a Zotonic resource
-    {true, {filter, [[<<"reproduction.value">>, exists], [<<"_type">>, <<"resource">>]]}};
+    [
+        {hasanyobject, [[<<"*">>, <<"depiction">>]]},
+        {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
+    ];
+
 map_edge(_) ->
-    false.
+    [].
 
 map_related_to(Object) when is_map(Object) ->
     ObjectWithContext = Object#{<<"@context">> => #{
