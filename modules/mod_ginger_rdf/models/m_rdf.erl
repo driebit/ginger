@@ -461,15 +461,23 @@ lookup_triple(Predicate, Triples) when is_list(Predicate) ->
     %% Predicates are stored as binaries
     lookup_triple(z_convert:to_binary(Predicate), Triples);
 lookup_triple(Predicate, Triples) ->
+
     %% Find the requested predicate
-    case lists:dropwhile(
+    FoundTriples = lists:filter(
         fun(Triple) ->
-            Triple#triple.predicate /= Predicate
+            Triple#triple.predicate == Predicate
         end,
         Triples
-    ) of
+    ),
+
+    case FoundTriples of
         [] -> undefined;
-        [Triple | _] -> Triple
+        [Triple] -> Triple;
+        [Triple | _] ->
+            % If multiple triples are found with the same predicate..
+            % .. put the objects in a list for use in templates
+            Objects = [Object || #triple{object = Object} <- FoundTriples],
+            Triple#triple{object = Objects}
     end.
 
 lookup_triples([Predicate | Rest], Triples) ->
