@@ -15,10 +15,8 @@ search(#search_query{search = {_, Args}} = Query, Context) ->
             collection_query:parse_query(Key, Value, Acc)
         end,
         [],
-    %%        lists:merge(Args, ?DEBUG(z_context:get_q_all_noz(Context)))
-    
-        z_context:get_q_all_noz(Context)
-    ) ++ Args,
+        z_context:get_q_all_noz(Context) ++ Args
+    ),
     
     %% Forward to Elasticsearch.
     ElasticQuery = Query#search_query{search = {elastic, Args3}},
