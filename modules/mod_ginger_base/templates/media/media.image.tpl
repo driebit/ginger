@@ -6,15 +6,10 @@
         caption,
         sizename
     %}
-        {% if link %}
-             <a href="{{ id.page_url }}" class="media--image {{ extraClasses }}
-            "
-            {% if id.title %}
-                title="{{ id.title }}"
-            {% elif caption %}
-                title = "{{ caption }}"
-            {% endif %}
-            >
+        {% if link_url %}
+             <a href="{{ link_url }}" class="media--image {{ extraClasses }}" target="_blank">
+        {% elseif link %}
+             <a href="{{ id.page_url }}" class="media--image {{ extraClasses }}"{% if id.title %}title="{{ id.title }}"{% elif caption %}title = "{{ caption }}"{% endif %}>
         {% else %}
             <a href="{% image_url id.id %}" class="media--image__lightbox lightbox" rel="body" title="{{ caption }}">
         {% endif %}
