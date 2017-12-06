@@ -40,11 +40,17 @@ manage_schema(install, Context) ->
 
 %% @doc Check the action template argument for post-logon continuation actions
 %% -spec observe_logon_actions(#logon_actions{}, list(), #context{}) -> undefined | list().
-observe_logon_actions(#logon_actions{args=Args}, _Acc, _Context) ->
+observe_logon_actions(#logon_actions{args=Args}, _Acc, Context) ->
     case proplists:get_value(action, Args) of
         undefined ->
-            %% return an empty action to avoid redirect
-            [{script, [{script, ""}]}];
+            case z_context:get_q("page", Context, []) of
+                "#reload" ->
+                    %% redirect after fullscreen logon
+                    [{reload, []}];
+                _ ->
+                    %% return an empty action to avoid redirect
+                    [{script, [{script, ""}]}]
+            end;
         Value ->
             Value
     end.
