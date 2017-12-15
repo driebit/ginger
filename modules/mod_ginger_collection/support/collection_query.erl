@@ -33,9 +33,17 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
     );
 %% Whitelist term filters
 parse_query(Term, Values, QueryArgs) when
+    % used in Erfgoed Brabant
     Term =:= <<"category.keyword">>;
+    Term =:= <<"dc:type.keyword">>;
+    Term =:= <<"nave:collection.keyword">>;
+    Term =:= <<"nave:collectionPart.keyword">>;
     Term =:= <<"address_city.keyword">>;
-    Term =:= <<"edm:dataProvider.keyword">>;
+    Term =:= <<"dc:creator.keyword">>;
+    Term =:= <<"dc:subject.keyword">>;
+    Term =:= <<"dcterms:medium.keyword">>;
+    Term =:= <<"nave:technique.keyword">>;
+    % other usages
     Term =:= <<"object_category.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>
@@ -118,7 +126,7 @@ map_related_to(Object) when is_map(Object) ->
     }},
     #rdf_resource{triples = Triples} = ginger_json_ld:deserialize(ObjectWithContext),
     lists:foldl(fun map_related_to_property/2, [], Triples).
-    
+
 map_related_to_property(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}, Filters) ->
     [
         [<<"rdf:type.@id.keyword">>, Object],
@@ -146,5 +154,5 @@ date_filter(Key, Operator, Value, IncludeMissing) when Operator =:= <<"gte">>; O
         false ->
             DateFilter
     end,
-    
+
     [{filter, OrFilters}].
