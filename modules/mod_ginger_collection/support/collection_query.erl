@@ -90,6 +90,10 @@ parse_query(
     %% Use query_context_filter to have them scored: more matching edges mean
     %% a better matching document.
     [{query_context_filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
+parse_query(related_to, RscRdf, QueryArgs)  ->
+    OrFilters = map_related_to(RscRdf),
+    [{query_context_filter, [[<<"_type">>, <<"resource">>] | OrFilters]} | QueryArgs];
+
 parse_query(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
 parse_query(is_published, Value, QueryArgs) ->
@@ -139,6 +143,8 @@ map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "subject">>, type = r
     [[<<"dcterms:subject.@id.keyword">>, Object] | Filters];
 map_related_to_property(#triple{predicate = <<?NS_DCTERMS, "spatial">>, type = resource, object = Object}, Filters) ->
     [[<<"dcterms:spatial.@id.keyword">>, Object] | Filters];
+map_related_to_property(#triple{predicate = <<"http://purl.org/dc/elements/1.1/subject">>, object = #rdf_value{value = Literal}}, Filters) ->
+    [[<<"dc:subject.keyword">>, Literal] | Filters];
 map_related_to_property(#triple{}, QueryArgs) ->
     QueryArgs.
 

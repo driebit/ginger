@@ -163,12 +163,19 @@ to_triples(Id, Context) ->
                                 Subject = proplists:get_value(subject_id, Edge),
                                 Object = proplists:get_value(object_id, Edge),
 
-                                {true, #triple{
-                                    type = resource,
-                                    predicate = PredicateUri,
-                                    subject = m_rsc:p(Subject, uri, Context),
-                                    object = m_rsc:p(Object, uri, Context)
-                                }}
+                                {true, [
+                                    #triple{
+                                        type = resource,
+                                        predicate = PredicateUri,
+                                        subject = m_rsc:p(Subject, uri, Context),
+                                        object = m_rsc:p(Object, uri, Context)
+                                    },
+                                    #triple{
+                                        predicate = PredicateUri,
+                                        subject = m_rsc:p(Subject, uri, Context),
+                                        object = #rdf_value{value = z_trans:trans(m_rsc:p(Object, title, Context), Context)}
+                                    }
+                                ]}
                             end,
                             Edges
                         )}
