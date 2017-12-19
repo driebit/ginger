@@ -56,8 +56,7 @@ m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
 m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, _Context) ->
     case lookup_triple(Predicate, Triples) of
         undefined -> undefined;
-        #triple{object = #rdf_value{value = Value}} -> Value;
-        #triple{object = Object} -> Object
+        #triple{object = Object} -> literal_object_value(Object)
     end.
 
 m_to_list(_, _Context) ->
@@ -547,3 +546,13 @@ get_category_uri(Category, Context) ->
 
 to_json_ld(Id, Context) ->
     mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
+
+
+%% @doc Extract literal value from triple object(s).
+-spec literal_object_value([#rdf_value{}] | #rdf_value{} | any()) -> binary() | list().
+literal_object_value(Objects) when is_list(Objects) ->
+    [Value || #rdf_value{value = Value} <- Objects];
+literal_object_value(#rdf_value{value = Value}) ->
+    Value;
+literal_object_value(Other) ->
+    Other.
