@@ -41,6 +41,7 @@ msgstr ""
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:37
 #: user/modules/mod_ginger_collection/templates/list/list-item.elastic_query.tpl:8
+#: user/modules/mod_ginger_collection/templates/_media_upload_tab_collection.tpl:2
 msgid "Collection"
 msgstr "Verzameling"
 
@@ -176,6 +177,10 @@ msgstr ""
 msgid "Museum collection"
 msgstr "Museumcollectie"
 
+#: user/modules/mod_ginger_collection/templates/_action_dialog_connect_tab_find_collection_results_loop.tpl:12
+msgid "No collection objects found."
+msgstr "Geen collectie-objecten gevonden."
+
 #: user/modules/mod_ginger_collection/templates/collection/metadata/notes.tpl:2
 msgid "Notes"
 msgstr "Notities"
@@ -253,6 +258,11 @@ msgstr "Resultaten gevonden"
 #: user/modules/mod_ginger_collection/templates/page.beeldenzoeker.tpl:24
 msgid "Search"
 msgstr "Zoek"
+
+#: user/modules/mod_ginger_collection/templates/_media_upload_panel.tpl:9
+#, fuzzy
+msgid "Search in collection"
+msgstr "Zoek in collectie"
 
 #: user/modules/mod_ginger_collection/templates/_admin_edit_content.beeldenzoeker_query.tpl:6
 msgid "Search query"

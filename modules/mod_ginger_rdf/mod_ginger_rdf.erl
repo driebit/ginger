@@ -67,7 +67,7 @@ observe_content_types_dispatch(#content_types_dispatch{}, Acc, _Context) ->
 
 %% @doc Find related items in linked data
 -spec event(#postback_notify{}, #context{}) -> list().
-event(#postback_notify{message = "feedback", trigger = "dialog-connect-find-linked-data", target = TargetId, data = _Data}, Context) ->
+event(#postback_notify{message = "feedback", target = TargetId, data = _Data}, Context) ->
     Vars = [
         {text, z_context:get_q(find_text, Context)},
         {source, z_context:get_q(source, Context)},
