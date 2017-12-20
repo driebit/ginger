@@ -90,7 +90,7 @@ parse_query(
     %% Use query_context_filter to have them scored: more matching edges mean
     %% a better matching document.
     [{query_context_filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
-parse_query(related_to, RscRdf, QueryArgs)  ->
+parse_query(related_to, RscRdf, QueryArgs) when is_map(RscRdf)->
     OrFilters = map_related_to(RscRdf),
     [{query_context_filter, [[<<"_type">>, <<"resource">>] | OrFilters]} | QueryArgs];
 
