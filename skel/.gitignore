@@ -1,7 +1,9 @@
 .DS_Store
-files/
+files/*
+!files/fixtures
 node_modules
 .sass-cache
 config.d
 npm-debug.log
+translations/template/
 tmp/*
