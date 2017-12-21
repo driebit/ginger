@@ -11,7 +11,8 @@ include .env
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
-	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.dev"
+	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
+	@echo "  down                    Stop containers"
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
 	@echo "  gulp site=your_site     Run Gulp in a site directory"
 	@echo "  clean-node              Delete all node_modules directories"
@@ -34,6 +35,9 @@ gulp:
 
 clean-node:
 	find . -type d -name node_modules -exec rm -r "{}" \;
+
+down:
+	@docker-compose down
 
 import-db-file:
 	@echo "> Importing $(site) from $(file)"
