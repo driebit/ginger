@@ -20,7 +20,8 @@
 -include_lib("zotonic.hrl").
 
 init(Context) ->
-    default_config(index, index(Context), Context).
+    default_config(index, index(Context), Context),
+    prepare_elasticsearch_index(Context).
 
 manage_schema(_, Context) ->
     prepare_elasticsearch_index(Context).
