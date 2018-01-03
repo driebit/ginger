@@ -33,6 +33,8 @@ request(Url, Headers) ->
 request(Method, Url, Headers) when is_binary(Url) ->
     request(Method, binary_to_list(Url), Headers);
 request(get, Url, Headers) ->
+    lager:debug("ginger_http_client GET: ~s ~p", [Url, Headers]),
+
     case handle_response(httpc:request(get, {Url, Headers}, [], []), Url) of
         {error, _} ->
             undefined;
