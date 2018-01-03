@@ -43,7 +43,7 @@ get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
 get_resource(Uri, Language, Context) ->
     z_depcache:memo(
         fun() ->
-            dbpedia:describe(<<"https://", Uri/binary>>, Language)
+            dbpedia:describe(<<"http://", Uri/binary>>, Language)
         end,
         {Uri, Language},
         Context
