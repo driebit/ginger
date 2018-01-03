@@ -81,6 +81,8 @@
 
 	img {
 		filter: none;
+        height: 100%;
+        object-fit: cover;
 	}
 
 	.list__item__image {
