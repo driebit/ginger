@@ -12,7 +12,8 @@
     m_value/2,
     get_resource/2,
     get_resource/3,
-    is_dbpedia_uri/1
+    is_dbpedia_uri/1,
+    is_wikidata_uri/1
 ]).
 
 m_find_value(Language, #m{value = undefined} = M, _Context) ->
@@ -52,6 +53,16 @@ get_resource(Uri, Language, Context) ->
 -spec is_dbpedia_uri(binary()) -> boolean().
 is_dbpedia_uri(Uri) ->
     case binary:match(Uri, <<"dbpedia.org">>) of
+        nomatch ->
+            false;
+        _Found ->
+            true
+    end.
+
+%% @doc Does the URI belong to Wikidata?
+-spec is_wikidata_uri(binary()) -> boolean().
+is_wikidata_uri(Uri) ->
+    case binary:match(Uri, <<"wikidata.dbpedia.org">>) of
         nomatch ->
             false;
         _Found ->

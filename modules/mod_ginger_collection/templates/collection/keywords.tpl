@@ -5,10 +5,10 @@
         </div>
 
         <ul class="list">
-            {% for dbpedia_rdf in dbpedia_rdfs %}
-                {% with m.rdf[dbpedia_rdf] as rdf %}
+            {% for dbpedia, wikidata in dbpedia_rdfs %}
+                {% with m.rdf[dbpedia], m.rdf[wikidata] as dbpedia_rdf, wikidata_rdf %}
                     {# Fall back to manually constructed URL for RDFs that lack isPrimaryTopicOf #}
-                    {% include "collection/block/keyword-small.tpl" url=rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf']|default:("https://nl.wikipedia.org/wiki/" ++ rdf.title) link_target="_blank" %}
+                    {% include "collection/block/keyword-small.tpl" url=dbpedia_rdf['http://xmlns.com/foaf/0.1/isPrimaryTopicOf']|default:("https://nl.wikipedia.org/wiki/" ++ dbpedia_rdf.title) link_target="_blank" %}
                 {% endwith %}
             {% endfor %}
         </ul>
