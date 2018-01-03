@@ -29,21 +29,21 @@ m_value(#m{value = Uri}, Context) ->
 
 %% @doc Get a resource from DBPedia or WikiData.
 -spec get_resource(binary(), z:context()) -> #rdf_resource{} | undefined.
-get_resource(<<"http://wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
+get_resource(<<"http://", Url/binary>>, Context) ->
+    get_resource(Url, Context);
+get_resource(<<"https://", Url/binary>>, Context) ->
+    get_resource(Url, Context);
+get_resource(<<"wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
     get_resource(Uri, wikidata, Context);
-get_resource(<<"https://wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
-    get_resource(Uri, wikidata, Context);
-get_resource(<<"http://nl.dbpedia.org", _/binary>> = Uri, Context) ->
+get_resource(<<"nl.dbpedia.org", _/binary>> = Uri, Context) ->
     get_resource(Uri, nl, Context);
-get_resource(<<"https://nl.dbpedia.org", _/binary>> = Uri, Context) ->
-    get_resource(Uri, nl, Context);
-get_resource(<<"https://dbpedia.org", _/binary>> = Uri, Context) ->
+get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
     get_resource(Uri, '', Context).
 
 get_resource(Uri, Language, Context) ->
     z_depcache:memo(
         fun() ->
-            dbpedia:describe(Uri, Language)
+            dbpedia:describe(<<"https://", Uri/binary>>, Language)
         end,
         {Uri, Language},
         Context
