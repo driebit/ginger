@@ -219,7 +219,7 @@ msgstr "Periode"
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:32
 msgid "Persons"
-msgstr ""
+msgstr "Personen"
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:67
 msgid "Physical medium"
