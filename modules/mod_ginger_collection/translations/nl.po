@@ -81,6 +81,10 @@ msgstr "Documenten"
 msgid "Download"
 msgstr "Download"
 
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:15
+msgid "Duration"
+msgstr "Tijdsduur"
+
 #: user/modules/mod_ginger_collection/templates/collection/share.tpl:14
 msgid "E-mail"
 msgstr "E-mail"
