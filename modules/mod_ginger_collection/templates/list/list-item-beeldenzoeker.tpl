@@ -1,2 +1,2 @@
 {# BC #}
-{% include "collection/list/list-item.tpl" }
+{% include "collection/list/list-item.tpl" %}
