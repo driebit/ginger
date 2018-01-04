@@ -28,6 +28,11 @@
                     <dd>{% include "list/list-uri-labels.tpl" items=subjects %}</dd>
                 {% endif %}
 
+                {% if record['foaf:depicts'] as persons %}
+                    <dt>{_ Persons _}</dt>
+                    <dd>{% include "list/list-uri-labels.tpl" items=persons %}</dd>
+                {% endif %}
+
                 {% if record['dbpedia-owl:isbn'] as isbn %}
 		            <dt>{_ ISBN _}</dt>
 		            <dd>{{ isbn }}</dd>
@@ -48,9 +53,19 @@
                 <dl class="adlib-object__meta__data">
                     {% include "collection/metadata/dimensions.tpl" %}
 
-                    {% if record['dcterms:language'] as language %}
+                    {% if record['dcterms:language'] %}
                         <dt>{_ Language _}</dt>
-                        <dd>{{ record['dcterms:language'] }}</dd>
+                        <dd>{{ record['dcterms:language']|join:", " }}</dd>
+                    {% endif %}
+
+                    {% if record['dbpedia-owl:genre'] as genre %}
+                        <dt>{_ Genre _}</dt>
+                        <dd>{{ genre|join:", " }}</dd>
+                    {% endif %}
+
+                    {% if record['dcterms:medium'] as medium %}
+                        <dt>{_ Physical medium _}</dt>
+                        <dd>{{ medium }}</dd>
                     {% endif %}
 
                     {% if record['dbpedia-owl:museum'] as museum %}
@@ -84,10 +99,17 @@
 	            {_ Manufacture _}
 	        </h6>
 	        <dl class="adlib-object__meta__data">
-                {% if record['dcterms:creator'] %}
+                {% if record['dcterms:creator'] as creators %}
                     <dt>{_ Creator _}</dt>
                     <dd>
-                        {% include "collection/metadata/creators.tpl" %}
+                        {% include "collection/metadata/creators.tpl" creators=creators %}
+                    </dd>
+                {% endif %}
+
+                {% if record['dcterms:contributor'] as contributors %}
+                    <dt>{_ Contributors _}</dt>
+                    <dd>
+                        {% include "collection/metadata/creators.tpl" creators=contributors %}
                     </dd>
                 {% endif %}
 
@@ -103,6 +125,11 @@
 	            	<dt>{_ Produced in _}</dt>
 	            	<dd>{{ record['production.place'] }}</dd>
 	            {% endif %}
+
+                {% if record['dbpedia-owl:productionCompany'] as production_company %}
+                    <dt>{_ Production company _}</dt>
+                    <dd>{{ production_company }}</dd>
+                {% endif %}
 
                 {% if record['dbpedia-owl:constructionMaterial'] as materials %}
                     <dt>{_ Material _}</dt>

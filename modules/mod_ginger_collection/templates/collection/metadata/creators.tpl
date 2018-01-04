@@ -1,5 +1,5 @@
 <ol>
-    {% for creator in record['dcterms:creator'] %}
+    {% for creator in creators %}
     <li>
         {% if creator['@id'] %}<a href="{{ creator['@id'] }}">{% endif %}
             {% if creator['qualifier'] %}

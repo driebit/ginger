@@ -19,15 +19,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.12\n"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:125
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:152
 msgid "Acquired"
 msgstr "Verworven"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:121
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:148
 msgid "Acquisition & License"
 msgstr "Verwerving en licentie"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:136
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:163
 msgid "All rights reserved"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr "Licentie"
 msgid "Close"
 msgstr ""
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:37
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:42
 #: user/modules/mod_ginger_collection/templates/list/list-item.elastic_query.tpl:8
 #: user/modules/mod_ginger_collection/templates/_media_upload_tab_collection.tpl:2
 msgid "Collection"
@@ -50,22 +50,26 @@ msgstr "Verzameling"
 msgid "Collections"
 msgstr "Verzamelingen"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:88
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:110
+msgid "Contributors"
+msgstr "Overige medewerkers"
+
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:103
 #: user/modules/mod_ginger_collection/templates/collection/creator.tpl:12
 #: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:32
 msgid "Creator"
 msgstr "Vervaardiger"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:141
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:168
 msgid "Credit line"
 msgstr "Naamsvermelding"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:96
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:118
 #: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:29
 msgid "Dating"
 msgstr "Datering"
 
-#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:11
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:10
 msgid "Depth"
 msgstr "Diepte"
 
@@ -73,7 +77,7 @@ msgstr "Diepte"
 msgid "Detailed description"
 msgstr "Uitgebreide beschrijving"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:74
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:89
 msgid "Documents"
 msgstr "Documenten"
 
@@ -109,11 +113,15 @@ msgstr ""
 msgid "Filters"
 msgstr ""
 
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:62
+msgid "Genre"
+msgstr ""
+
 #: user/modules/mod_ginger_collection/templates/collection/search/components/filters-image.tpl:6
 msgid "Has depiction"
 msgstr "Met beeld"
 
-#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:7
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:6
 msgid "Height"
 msgstr "Hoogte"
 
@@ -121,7 +129,7 @@ msgstr "Hoogte"
 msgid "Here you can edit your elasticsearch query."
 msgstr "Hier kun je de Elasticsearch query aanpassen."
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:32
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:37
 msgid "ISBN"
 msgstr ""
 
@@ -129,7 +137,7 @@ msgstr ""
 msgid "Identification"
 msgstr "Identificatie"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:157
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:184
 msgid "If you want to refer this object then use this URL"
 msgstr "Als u naar dit object wilt verwijzen gebruik dan de duurzame URL:"
 
@@ -141,7 +149,7 @@ msgstr "Beeld"
 msgid "Institute"
 msgstr "Museum"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:165
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:192
 msgid "Internal"
 msgstr "Intern"
 
@@ -149,15 +157,15 @@ msgstr "Intern"
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:52
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:57
 msgid "Language"
 msgstr "Taal"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:170
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:197
 msgid "Last updated"
 msgstr "Laatst gewijzigd"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:129
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:156
 msgid "License"
 msgstr "Copyright"
 
@@ -165,15 +173,15 @@ msgstr "Copyright"
 msgid "Locations"
 msgstr "Locaties"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:84
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:99
 msgid "Manufacture"
 msgstr "Vervaardiging"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:108
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:135
 msgid "Material"
 msgstr "Materiaal"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:57
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:72
 msgid "Museum"
 msgstr ""
 
@@ -209,6 +217,14 @@ msgstr "Objecttype"
 msgid "Period"
 msgstr "Periode"
 
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:32
+msgid "Persons"
+msgstr ""
+
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:67
+msgid "Physical medium"
+msgstr "Fysiek medium"
+
 #: user/modules/mod_ginger_collection/templates/collection/share.tpl:13
 msgid "Pinterest"
 msgstr ""
@@ -217,11 +233,16 @@ msgstr ""
 msgid "Press enter to search"
 msgstr "Druk op enter om te zoeken"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:103
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:125
 msgid "Produced in"
 msgstr "Gemaakt in"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:68
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:130
+#, fuzzy
+msgid "Production company"
+msgstr "Productiemaatschappij"
+
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:83
 msgid "Publisher"
 msgstr "Uitgever"
 
@@ -285,11 +306,11 @@ msgstr "Trefwoorden"
 msgid "Subset"
 msgstr "Selectie"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:154
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:181
 msgid "Sustainable web address"
 msgstr "Duurzaam webadres"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:113
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:140
 msgid "Technique"
 msgstr "Techniek"
 
@@ -305,11 +326,11 @@ msgstr ""
 msgid "Twitter"
 msgstr "Twitter"
 
-#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:3
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:2
 msgid "Width"
 msgstr "Breedte"
 
-#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:46
+#: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:51
 msgid "Work"
 msgstr "Werk"
 
@@ -320,3 +341,8 @@ msgstr "Inzoomen"
 #: user/modules/mod_ginger_collection/templates/collection/search.tpl:21
 msgid "list"
 msgstr "Lijst"
+
+#: user/modules/mod_ginger_collection/templates/_action_dialog_connect_tab_find_collection_results.tpl:9
+#, fuzzy
+msgid "results"
+msgstr "Resultaten gevonden"
