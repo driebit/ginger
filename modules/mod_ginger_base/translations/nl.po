@@ -129,7 +129,7 @@ msgstr "Dag"
 
 #: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:17
 msgid "Death date"
-msgstr "Sterftedatum"
+msgstr "Sterfdatum"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:24
 msgid "December"
