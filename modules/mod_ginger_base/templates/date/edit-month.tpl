@@ -5,10 +5,10 @@
 as
     date,
     value,
-    id
+    html_id
 %}
-    <label class="control-label" for="{{ id }}">{_ Month _}</label>
-    <select class="form-control" name="dt:m:1:{{ name }}" id="{{ id }}">
+    <label class="control-label" for="{{ html_id }}">{_ Month _}</label>
+    <select class="form-control" name="dt:m:1:{{ name }}" id="{{ html_id }}">
         <option{% if value == "" %} selected{% endif %}></option>
         <option value="1"{% if value == 1 %} selected{% endif %}>{_ Jan _}</option>
         <option value="2"{% if value == 2 %} selected{% endif %}>{_ Feb _}</option>
