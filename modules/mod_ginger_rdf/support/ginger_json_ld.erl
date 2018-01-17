@@ -204,17 +204,7 @@ serialize_to_map(#rdf_resource{id = Id, triples = Triples} = RdfResource) ->
                 undefined ->
                     Acc;
                 TripleJson ->
-                    JsonKey = hd(maps:keys(TripleJson)),
-                    #{JsonKey := JsonValue} = TripleJson,
-
-                    case maps:get(JsonKey, Acc, undefined) of
-                        undefined ->
-                            maps:merge(Acc, TripleJson);
-                        Value when is_list(Value) ->
-                            Acc#{JsonKey => [JsonValue | Value]};
-                        Value ->
-                            Acc#{JsonKey => [JsonValue | [Value]]}
-                    end
+                    merge_values(TripleJson, Acc)
             end
         end,
         #{<<"@id">> => Id},
@@ -312,7 +302,7 @@ triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rd
     TripleMap = lists:foldl(
         fun(#triple{} = Triple, Map) ->
             %% Replace id in RDF resource with that of the current object
-            maps:merge(Map, triple_to_map(Triple, RdfResource#rdf_resource{id = Object}))
+            merge_values(triple_to_map(Triple, RdfResource#rdf_resource{id = Object}), Map)
         end,
         #{<<"@id">> => Object},
         m_rdf:filter_subject(RdfResource, Object)
@@ -322,3 +312,20 @@ triple_to_map(#triple{}, #rdf_resource{}) ->
     %% Ignore triples that belong to other subjects (they are found through the
     %% recursive call in the clause above).
     undefined.
+
+%% @doc Merge a key/value map into an accumulator map, combining multiple
+%% values for the same key.
+-spec merge_values(map(), map()) -> map().
+merge_values(KeyValue, Acc) ->
+    %% Read current key from KeyValue pair
+    Key = hd(maps:keys(KeyValue)),
+    #{Key := NewValue} = KeyValue,
+
+    case maps:get(Key, Acc, undefined) of
+        undefined ->
+            maps:merge(Acc, KeyValue);
+        Value when is_list(Value) ->
+            Acc#{Key => [NewValue | Value]};
+        Value ->
+            Acc#{Key => [NewValue | [Value]]}
+    end.
