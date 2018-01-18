@@ -54,7 +54,7 @@ Sites overview
   is available at [http://localhost](http://localhost). Log in with empty 
   password.
 * Make sure to add the hostnames of individual sites (e.g. 
-  `yoursite.docker.dev`) to your `/etc/hosts` file.
+  `yoursite.docker.test`) to your `/etc/hosts` file.
 
 Checking out sites
 ------------------

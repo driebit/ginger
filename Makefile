@@ -3,8 +3,8 @@ SSH_USER=$(shell whoami)
 REMOTE_SITES_DIR=/srv/zotonic/sites
 REMOTE_BACKUP_PATH=$(REMOTE_SITES_DIR)/$(site)/files/backup
 REMOTE_BACKUP_FILE=$(shell ssh $(SSH_USER)@$(host) ls "$(REMOTE_BACKUP_PATH)/*.sql" -t | head -n1 | xargs -n1 basename)
-target test: url=http://$(site).docker.dev:8000
-target test-chrome: url=http://$(site).docker.dev
+target test: url=http://$(site).docker.test:8000
+target test-chrome: url=http://$(site).docker.test
 
 include .env
 
@@ -27,7 +27,7 @@ help:
 	@echo "  update                  Update containers"
 
 addsite:
-	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.dev $(name)
+	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
 
 gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
@@ -64,7 +64,7 @@ psql:
 test:
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
 	@docker network disconnect ginger_selenium ginger_zotonic_1
-	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.dev
+	@docker network connect ginger_selenium ginger_zotonic_1 --alias ${site}.docker.test
 
 	SITE=$(site) docker-compose run --rm -v "`pwd`/tests":/app -v "`pwd`/sites/$(site)/features":/site/features -e LAUNCH_URL="$(url)" node-tests test -- $(args)
 test-chrome:

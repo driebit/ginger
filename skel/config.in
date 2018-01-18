@@ -1,7 +1,6 @@
 [
     {enabled, true},
-    {hostname, "%%SITE%%.docker.dev"},
-    {hostalias, ["%%SITE%%.dev"]},
+    {hostname, "%%SITE%%.docker.test"},
     {redirect, false},
     {dbdatabase, "%%SITE%%"},
     {depcache_memory_max, 100},

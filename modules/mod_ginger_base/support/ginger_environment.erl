@@ -24,7 +24,7 @@ get(Context) ->
     end.
 
 is_dev(Context) ->
-    match(".(dev|ginger-test.driebit.net)$", Context).
+    match(".(test|ginger-test.driebit.net)$", Context).
 
 is_acc(Context) ->
     match(".(ginger-acceptatie.driebit.net)$", Context).
