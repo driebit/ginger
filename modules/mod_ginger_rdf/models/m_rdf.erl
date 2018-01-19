@@ -558,7 +558,7 @@ to_json_ld(Id, Context) ->
 %% @doc Extract literal value from triple object(s).
 -spec literal_object_value([#rdf_value{}] | #rdf_value{} | any()) -> binary() | list().
 literal_object_value(Objects) when is_list(Objects) ->
-    [Value || #rdf_value{value = Value} <- Objects];
+    [literal_object_value(Object) ||  Object <- Objects];
 literal_object_value(#rdf_value{value = Value}) ->
     Value;
 literal_object_value(Other) ->
