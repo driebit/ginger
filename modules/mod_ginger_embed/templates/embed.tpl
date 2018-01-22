@@ -19,8 +19,8 @@
                     </figure>
                 {% endif %}
                 <div>
-                    <h1>{{ rsc.title }}</h1>
-                    <h2>{{ rsc.alternative }}</h2>
+                    <h1>{{ rsc.title|truncate:60 }}</h1>
+                    {% if rsc.alternative %}<h2>{{ rsc.alternative }}</h2>{% endif %}
 
                     <small>
                         <time>{{ rsc.id.publication_start|date:"d M Y" }}</time>
@@ -30,8 +30,12 @@
             </header>
 
             <section>
-                <p class="ginger-embed__intro">{{ rsc.summary }}</p>
-                <p>{{ rsc.body|truncate:400 }}</p>
+                {% if rsc.summary %}
+                    {{ rsc.summary|truncate:400 }}
+                {% else %}
+                    {{ rsc.body|truncate:400 }}
+                {% endif %}
+
                 <p><a href="{% url page use_absolute_url id=rsc.id %}" target="_blank" class="ginger-embed__readmore">Lees verder</a></p>
             </section>
         </article>

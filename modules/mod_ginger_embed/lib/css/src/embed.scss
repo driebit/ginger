@@ -24,9 +24,9 @@ a {
 
 h1 {
     font-size: 1.8rem;
-    line-height: 1;
+    line-height: 1.1;
     font-weight: 600;
-    margin-bottom: .5rem;
+    margin: 0 0 .5rem;
     color: $mainThemeColor;
 }
 
@@ -45,6 +45,10 @@ h3 {
 header {
     display: flex;
     margin: 1rem 0;
+
+    @media screen and (min-width: 500px) {
+        align-items: center;
+    }
 }
 
 img {
@@ -54,6 +58,10 @@ img {
 figure {
     width: 130px;
     margin: 0 1rem 0 0;
+
+    @media screen and (min-width: 500px) {
+        flex-shrink: 0;
+    }
 }
 
 p + p {
