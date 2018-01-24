@@ -114,8 +114,8 @@ map_dimension(#{<<"dimension.type">> := Type} = Dimension, Acc) ->
                 <<"rdf:type">> => <<"schema:QuantitativeValue">>
             }}
     end;
-map_dimension(_DimensionWithoutValueOrType, Acc) ->
-    Acc.
+map_dimension(DimensionWithoutValueOrType, Acc) ->
+    Acc#{<<"dcterms:format">> => DimensionWithoutValueOrType}.
 
 %% @doc Map dimension unit to UN/CEFACT Common Codes for Units of Measurement
 map_dimension_unit(<<"cm">>) ->
