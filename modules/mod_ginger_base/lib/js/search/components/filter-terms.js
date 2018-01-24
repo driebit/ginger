@@ -39,11 +39,13 @@ $.widget('ui.search_cmp_filter_terms', {
 
     getFacets: function(facets) {
         const facet = this.withPropertyPath(
-            this.withSize(
-                this.withSort(
-                    {'field': this.key}
+            {
+                'terms': this.withSize(
+                    this.withSort(
+                        {'field': this.key}
+                    )
                 )
-            ),
+            },
             this.propertyPath
         );
 
@@ -90,9 +92,7 @@ $.widget('ui.search_cmp_filter_terms', {
                 'path': propertyPath
             },
             'aggs': {
-                'nested_agg': {
-                    'terms': facet
-                }
+                'nested_agg': facet
             }
         };
     },
@@ -133,14 +133,14 @@ $.widget('ui.search_cmp_filter_terms', {
             const globalBucketCounts = this.getBuckets(facets[this.key + '_global'].global_term_agg);
 
             return globalBucketCounts.map(function (bucket) {
-                return this.withDocCount(bucket);
+                return this.withDocCount(bucket, localBuckets);
             }.bind(this));
         }
 
         return {};
     },
 
-    withDocCount: function (bucket) {
+    withDocCount: function (bucket, localBuckets) {
         if (this.globalCount) {
             // Global doc counts, so use those from global aggregations.
             return bucket;
