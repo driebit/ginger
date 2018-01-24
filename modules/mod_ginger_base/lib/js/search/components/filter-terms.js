@@ -5,8 +5,11 @@ $.widget('ui.search_cmp_filter_terms', {
 
         me.widgetElement = widgetElement;
         me.property = widgetElement.data('property');
+        me.propertyPath = widgetElement.data('property-path');
+        me.key = (me.propertyPath) ? me.propertyPath + '.' + me.property : me.property;
         me.updateEvent = widgetElement.data('update-event');
         me.dynamic = widgetElement.data('dynamic');
+        me.globalCount = widgetElement.data('global-count');
         me.sortByCount = widgetElement.data('sort-by-count');
         me.size = widgetElement.data('size');
 
@@ -25,7 +28,7 @@ $.widget('ui.search_cmp_filter_terms', {
         });
 
         return [{
-            'type': this.property,
+            'type': this.key,
             'values': values
         }];
     },
@@ -35,28 +38,25 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     getFacets: function(facets) {
-        // Add local (search result-based) facet for document counts
-        if (!this.sortByCount) {
-
-        }
-
-        var facet = this.withSize(
-            this.withSort(
-                {'field': this.property}
-            )
+        const facet = this.withPropertyPath(
+            this.withSize(
+                this.withSort(
+                    {'field': this.key}
+                )
+            ),
+            this.propertyPath
         );
-        facets[this.property] = facet;
+
+        facets[this.key] = facet;
 
         if (!this.dynamic) {
             // Fixed (global) facet, so add globally scoped facet: the full
             // list, not scoped to the current search query but based on all
             // data.
-            facets[this.property + '_global'] = {
+            facets[this.key + '_global'] = {
                 'global': {
                     'aggs': {
-                        'global_term_agg': {
-                            'terms': facet
-                        }
+                        'global_term_agg': facet
                     }
                 }
             };
@@ -66,36 +66,35 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     setFacets: function(facets) {
-        if (facets[this.property]) {
-            var localBuckets = facets[this.property].buckets;
-            var globalBuckets = {};
-
-            if (facets[this.property + '_global']) {
-                // Global aggregation: return local counts with the global
-                // buckets
-                var globalBucketCounts = facets[this.property + '_global'].global_term_agg.buckets;
-
-                globalBuckets = globalBucketCounts.map(function (bucket) {
-                    var matchingLocalBuckets = localBuckets.filter(function (localBucket) {
-                        return localBucket.key === bucket.key;
-                    });
-                    if (matchingLocalBuckets.length > 0) {
-                        bucket.doc_count = matchingLocalBuckets[0].doc_count;
-                    } else {
-                        bucket.doc_count = 0;
-                    }
-
-                    return bucket;
-                });
-            }
+        if (facets[this.key]) {
+            const facet = facets[this.key];
+            const localBuckets = this.getBuckets(facet);
 
             // Re-render the options template
             z_event(this.updateEvent, {
                 'local_buckets': localBuckets,
-                'global_buckets': globalBuckets,
+                'global_buckets': this.getGlobalBuckets(localBuckets, facets),
                 'values': this.getValues()[0].values
             });
         }
+    },
+
+    withPropertyPath: function (facet, propertyPath) {
+        if (!propertyPath) {
+            return facet;
+        }
+
+        // Wrap facet in nested aggregation.
+        return {
+            'nested': {
+                'path': propertyPath
+            },
+            'aggs': {
+                'nested_agg': {
+                    'terms': facet
+                }
+            }
+        };
     },
 
     // Add aggregation size
@@ -118,6 +117,47 @@ $.widget('ui.search_cmp_filter_terms', {
         facet.order = {'_term': 'asc'};
 
         return facet;
+    },
+
+    getBuckets: function (facet) {
+        if (facet.nested_agg) {
+            return facet.nested_agg.buckets;
+        }
+
+        return facet.buckets;
+    },
+
+    getGlobalBuckets: function (localBuckets, facets) {
+        if (facets[this.key + '_global']) {
+            // Global aggregation: return local counts with the global buckets
+            const globalBucketCounts = this.getBuckets(facets[this.key + '_global'].global_term_agg);
+
+            return globalBucketCounts.map(function (bucket) {
+                return this.withDocCount(bucket);
+            }.bind(this));
+        }
+
+        return {};
+    },
+
+    withDocCount: function (bucket) {
+        if (this.globalCount) {
+            // Global doc counts, so use those from global aggregations.
+            return bucket;
+        }
+
+        // Look in localBuckets for local doc counts.
+        const matchingLocalBucket = localBuckets.find(function (localBucket) {
+            return localBucket.key === bucket.key;
+        });
+
+        if (matchingLocalBucket) {
+            bucket.doc_count = matchingLocalBucket.doc_count;
+        } else {
+            bucket.doc_count = 0;
+        }
+
+        return bucket;
     },
 });
 
