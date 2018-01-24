@@ -104,9 +104,6 @@ $.widget("ui.search_ui", {
     getMergedValues: function(reset) {
 
         var me = this,
-            checkboxValue,
-            inputfieldValue,
-            type,
             mergedValues = {},
             widgetRefs = me.getWidgets();
 
