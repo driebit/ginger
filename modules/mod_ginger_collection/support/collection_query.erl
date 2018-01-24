@@ -54,6 +54,9 @@ parse_query(Term, Values, QueryArgs) when
         end,
         Values
     );
+parse_query(Term, Values, QueryArgs) when Term =:= <<"dcterms:creator.rdfs:label.keyword">> ->
+    %% Nested query term creator is an OR
+    QueryArgs ++ [{filter, [[Term, Value, #{<<"path">> => <<"dcterms:creator">>}] || Value <- Values]}];
 %% Parse subsets (Elasticsearch types). You can specify multiple per checkbox
 %% by separating them with a comma.
 parse_query(<<"subset">>, Types, QueryArgs) ->
@@ -108,7 +111,7 @@ map_facet({Name, [{<<"global">>, Props}]}) ->
 map_facet({Name, [{Type, Props}]}) when is_list(Props) ->
     {agg, [Name, Type, Props]};
 map_facet({Name, Props}) ->
-    map_facet({Name, [{terms, Props}]}).
+    {agg, [Name, Props]}.
 
 map_edge(<<"depiction">>) ->
     [

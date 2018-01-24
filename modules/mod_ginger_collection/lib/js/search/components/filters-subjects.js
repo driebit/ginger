@@ -52,8 +52,10 @@ $.widget('ui.search_cmp_filters_subjects', {
 
     getFacets: function(facets) {
         facets.keyword = {
-            'field': 'dcterms:subject.rdfs:label.keyword',
-            'size': 100
+            'terms': {
+                'field': 'dcterms:subject.rdfs:label.keyword',
+                'size': 100
+            }
         };
 
         return facets;
