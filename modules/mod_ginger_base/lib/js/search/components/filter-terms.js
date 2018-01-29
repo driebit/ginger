@@ -34,7 +34,7 @@ $.widget('ui.search_cmp_filter_terms', {
     },
 
     setValues: function(values) {
-
+        this.values = values[this.key];
     },
 
     getFacets: function(facets) {
@@ -76,7 +76,7 @@ $.widget('ui.search_cmp_filter_terms', {
             z_event(this.updateEvent, {
                 'local_buckets': localBuckets,
                 'global_buckets': this.getGlobalBuckets(localBuckets, facets),
-                'values': this.getValues()[0].values
+                'values': this.values || this.getValues()[0].values
             });
         }
     },
