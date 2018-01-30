@@ -61,11 +61,12 @@ img {
 }
 
 figure {
-    width: 130px;
+    flex-shrink: 0;
+    width: 100px;
     margin: 0 1rem 0 0;
 
     @media screen and (min-width: 500px) {
-        flex-shrink: 0;
+        width: 130px;
     }
 }
 
