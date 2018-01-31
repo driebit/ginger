@@ -55,11 +55,14 @@ parse_query(Term, Values, QueryArgs) when
         end,
         Values
     );
-parse_query(Term, Values, QueryArgs) when Term =:= <<"dcterms:creator.rdfs:label.keyword">> ->
+parse_query(<<"dcterms:creator.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
     %% Nested query term creator is an OR
     QueryArgs ++ [{filter, [[Term, Value, #{<<"path">> => <<"dcterms:creator">>}] || Value <- Values]}];
 %% Parse subsets (Elasticsearch types). You can specify multiple per checkbox
 %% by separating them with a comma.
+parse_query(<<"dbpedia-owl:museum.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
+    %% Museum query term creator is an OR
+    QueryArgs ++ [{filter, [[Term, Value] || Value <- Values]}];
 parse_query(<<"subset">>, Types, QueryArgs) ->
     AllTypes = lists:foldl(
         fun(Type, Acc) ->
