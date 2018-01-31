@@ -57,8 +57,8 @@ map_property(<<"production.date.end">> = Key, Value, Acc) when value =/= <<"?">>
         Year ->
             Acc2#{<<"dbo:productionEndYear">> => Year}
     end;
-map_property(<<"reproduction.creator">>, Value, Acc) ->
-    Acc#{<<"dcterms:creator">> => Value};
+map_property(<<"reproduction.creator">>, Value, Acc) when Value =/= <<>> ->
+    Acc#{<<"dcterms:creator">> => parse_name(Value)};
 map_property(<<"reproduction.reference">>, Value, Acc) ->
     Acc#{<<"reference">> => Value};
 map_property(Key, Values, Acc) when Key =:= <<"Dimension">>; Key =:= <<"dimension">> ->
@@ -136,6 +136,8 @@ map_dimension_type(<<"diameter">>) ->
 map_dimension_type(_Type) ->
     undefined.
 
+parse_name(#{<<"name">> := Name}) ->
+    parse_name(Name);
 parse_name(Name) ->
     case binary:split(Name, <<", ">>) of
         [Last, First] ->
