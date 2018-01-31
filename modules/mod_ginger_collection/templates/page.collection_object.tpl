@@ -27,12 +27,14 @@
             <article class="adlib-object__description">
                 <header>
                     <h6>{_ Dating _} {% include "collection/metadata/date.tpl" %}</h6>
-                    {% if record['dcterms:creator']|first as creator %}
-                        <h6>
-                            {_ Creator _}
-                            <a href="{% url collection_search qs=creator['rdfs:label'] %}">{{ creator['rdfs:label'] }}</a>
-                        </h6>
-                    {% endif %}
+                    {% block main_creator %}
+                        {% if record['dcterms:creator']|first as creator %}
+                            <h6>
+                                {_ Creator _}
+                                <a href="{% url collection_search qs=creator['rdfs:label'] %}">{{ creator['rdfs:label'] }}</a>
+                            </h6>
+                        {% endif %}
+                    {% endblock %}
                 </header>
 
                 {% block page_title %}
