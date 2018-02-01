@@ -8,7 +8,8 @@
     m_find_value/3,
     m_to_list/2,
     m_value/2,
-    get/3
+    get/3,
+    store/4
 ]).
 
 m_find_value(uri, #m{value = undefined}, Context) ->
@@ -48,3 +49,7 @@ get(Type, Id, Context) ->
         {error, _} ->
             undefined
     end.
+
+store(Type, Id, Document, Context) ->
+    Index = mod_ginger_collection:index(Context),
+    elasticsearch:put_doc(Index, Type, Id, Document, Context).
