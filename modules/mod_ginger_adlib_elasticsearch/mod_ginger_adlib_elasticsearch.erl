@@ -34,7 +34,7 @@ prepare_elasticsearch_index(Context) ->
     Mappings = [{Type, Mapping} || Type <- mod_ginger_adlib_elasticsearch:types(Context)],
     elasticsearch_index:upgrade(index(Context), Mappings, Version, Context).
 
-observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"priref">> := Priref} = Record}, Context) ->
+observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #{<<"@attributes">> := #{<<"priref">> := Priref}} = Record}, Context) ->
     lager:debug("Indexing Adlib record ~s from database ~s", [Priref, Database]),
 
     MappedRecord = ginger_adlib_elasticsearch_mapper:map(Record, ginger_adlib_elasticsearch_mapping),
