@@ -316,7 +316,7 @@ msgstr "Zoekopdracht"
 
 #: user/modules/mod_ginger_collection/templates/collection/metadata/bibliographic.tpl:2
 msgid "Series"
-msgstr ""
+msgstr "Serie"
 
 #: user/modules/mod_ginger_collection/templates/collection/share.tpl:2
 msgid "Share"
