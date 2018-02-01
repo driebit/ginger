@@ -33,11 +33,6 @@
 		            <dd>{{ ppn }}</dd>
 		        {% endif %}
 
-                {% if record['dbpedia-owl:isbn'] as isbn %}
-                    <dt>{_ ISBN _}</dt>
-                    <dd>{{ isbn }}</dd>
-                {% endif %}
-
 	            {% if record.collection %}
 	            	<dt>{_ Collection _}</dt>
 	            	<dd>{{ record.collection }}</dd>
