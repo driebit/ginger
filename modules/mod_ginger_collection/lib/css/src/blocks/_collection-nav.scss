@@ -1,0 +1,63 @@
+.collection-nav {
+    @extend .adlib-object__description;
+    display: flex;
+    justify-content: space-between;
+    min-height: 40px;
+    background: $bzPrimaryColor;
+}
+
+.collection-nav__title {
+    display: flex;
+    align-items: center;
+    min-height: 100%;
+    padding: 5px 10px;
+    color: $white;
+    text-align: center;
+    font-family: $secondaryFontFamily;
+    -webkit-font-smoothing: antialiased;
+
+    span {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 0.75em;
+        font-family: $bodyFontFamily;
+        -webkit-font-smoothing: auto;
+        white-space: nowrap;
+    }
+
+    @include setInteractive {
+        color: $white;
+    }
+}
+
+.collection-nav__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 35px;
+    background: rgba($black, 0.2);
+    border-radius: .25rem;
+    color: $white;
+    font-size: 0.8em;
+    transition: background 0.3s;
+
+    @include setInteractive {
+        color: $white;
+        text-decoration: none;
+        background: rgba($black, 0.4);
+    }
+
+    span {
+        display: none;
+    }
+
+    i {
+        position: relative;
+        top: 1px;
+    }
+
+    &.-disabled {
+        opacity: 0;
+    }
+}

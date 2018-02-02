@@ -11,7 +11,7 @@
             {% catinclude list_item_template item._id %}
         {% else %}
             {# An Elasticsearch document #}
-            {% include "collection/" ++ list_item_template item=item %}
+            {% include "collection/" ++ list_item_template item=item query_id=query_id current=forloop.counter %}
         {% endif %}
     {% endif %}
 
