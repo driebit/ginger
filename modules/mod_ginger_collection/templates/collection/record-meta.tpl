@@ -33,10 +33,12 @@
 		            <dd>{{ isbn }}</dd>
 		        {% endif %}
 
-                {% if record['dbpedia-owl:dutchPPNCode'] as ppn %}
-		            <dt>{_ PPN _}</dt>
-		            <dd>{{ ppn }}</dd>
-		        {% endif %}
+                {% block ppn %}
+                    {% if record['dbpedia-owl:dutchPPNCode'] as ppn %}
+                        <dt>{_ PPN _}</dt>
+                        <dd>{{ ppn }}</dd>
+                    {% endif %}
+                {% endblock %}
 
 	            {% if record.collection %}
 	            	<dt>{_ Collection _}</dt>
