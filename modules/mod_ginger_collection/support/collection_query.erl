@@ -44,7 +44,7 @@ parse_query(Term, Values, QueryArgs) when
     Term =:= <<"dcterms:medium.keyword">>;
     Term =:= <<"nave:technique.keyword">>;
     % other usages
-    Term =:= <<"object_category.keyword">>;
+    Term =:= <<"object_category.rdfs:label.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>;
     Term =:= <<"rdf:type.rdfs:label.keyword">>
