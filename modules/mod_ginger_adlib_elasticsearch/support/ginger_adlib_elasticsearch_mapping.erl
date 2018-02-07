@@ -70,13 +70,10 @@ map_property(Key, Values, Acc) when Key =:= <<"Dimension">>; Key =:= <<"dimensio
 map_property(<<"technique">>, Value, Acc) ->
     Acc#{<<"dbpedia-owl:technique">> => to_labelled_list(Value)};
 %% @doc See e.g. http://wikidata.dbpedia.org/page/Q1248830
-map_property(<<"material">>, Values, Acc) when is_list(Values) ->
+map_property(<<"material">>, Values, Acc) ->
     %% List of materials as single value
     %% @doc See e.g. http://wikidata.dbpedia.org/page/Q1248830
-    Acc#{<<"dbpedia-owl:constructionMaterial">> => to_labelled_list(Values)};
-map_property(<<"material">>, Value, Acc) ->
-    %% Single material as value
-    Acc#{<<"rdfs:label">> => Value};
+    Acc#{<<"dbpedia-owl:constructionMaterial">> => to_list(Values)};
 map_property(<<"notes">>, Values, Acc) ->
     Acc#{<<"dbpedia-owl:notes">> => to_list(Values)};
 map_property(<<"rights">> = Key, Value, Acc) ->
@@ -104,7 +101,7 @@ map_property(Key, [Value], Acc) ->
 map_property(Key, Value, Acc) ->
     Acc#{Key => Value}.
 
-map_dimension(#{<<"dimension.type">> := Type} = Dimension, Acc) ->
+map_dimension(#{<<"schema:value">> := _, <<"dimension.type">> := Type} = Dimension, Acc) ->
     Dimension2 = maps:remove(<<"dimension.type">>, Dimension),
     case map_dimension_type(Type) of
         undefined ->
