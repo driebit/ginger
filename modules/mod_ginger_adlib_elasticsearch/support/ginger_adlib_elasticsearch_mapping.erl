@@ -159,15 +159,17 @@ to_list(Value) ->
     [Value].
 
 extract_values(Values) when is_list(Values) ->
-    [extract_value(Value) || Value <- Values];
+    lists:filtermap(fun extract_value/1, Values);
 extract_values(Values) ->
     %% Wrap single value in a list for consistency
-    [extract_value(Values)].
+    extract_values([Values]).
 
 extract_value(#{<<"value">> := Value}) ->
-    Value;
+    {true, Value};
+extract_value(Value) when map_size(Value) =:= 0 ->
+    false;
 extract_value(Value) ->
-    Value.
+    {true, Value}.
 
 to_labelled_list(Values) ->
     ListValues = to_list(Values),
