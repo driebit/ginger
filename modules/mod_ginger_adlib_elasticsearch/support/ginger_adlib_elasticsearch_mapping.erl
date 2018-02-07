@@ -67,8 +67,6 @@ map_property(Key, Values, Acc) when Key =:= <<"Dimension">>; Key =:= <<"dimensio
         Acc,
         to_list(Values)
     );
-map_property(<<"technique">>, Value, Acc) ->
-    Acc#{<<"dbpedia-owl:technique">> => to_labelled_list(Value)};
 %% @doc See e.g. http://wikidata.dbpedia.org/page/Q1248830
 map_property(<<"material">>, Values, Acc) ->
     %% List of materials as single value
@@ -136,8 +134,8 @@ map_dimension_type(<<"diameter">>) ->
 map_dimension_type(_Type) ->
     undefined.
 
-parse_name(#{<<"name">> := Name}) ->
-    parse_name(Name);
+parse_name(#{<<"name">> := Name} = Person) ->
+    maps:merge(parse_name(Name), maps:remove(<<"name">>, Person));
 parse_name(Name) ->
     case binary:split(Name, <<", ">>) of
         [Last, First] ->
