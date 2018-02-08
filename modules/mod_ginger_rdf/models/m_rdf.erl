@@ -94,8 +94,10 @@ find_resource(Uri, Context) ->
 ensure_resource(Uri, Props, Context) ->
     case find_resource(Uri, Context) of
         undefined ->
+            ?DEBUG(Props),
             create_resource(Uri, Props, Context);
         Id ->
+            ?DEBUG(Props),
             {ok, Id} = m_rsc:update(Id, Props, Context),
             Id
     end.
@@ -103,8 +105,6 @@ ensure_resource(Uri, Props, Context) ->
 %% @doc Create non-authoritative RDF resource
 -spec create_resource(string(), list(), #context{}) -> integer().
 create_resource(Uri, Props, Context) ->
-    AdminContext = z_acl:sudo(Context),
-
     % Make sure these props are set...
     % ... so that you can not insert non rdf resources this way.
     RequiredProps = [
@@ -121,7 +121,7 @@ create_resource(Uri, Props, Context) ->
     ],
     Props2 = z_utils:props_merge(Props1, DefaultProps),
 
-    {ok, Id} = m_rsc_update:insert(Props2, AdminContext),
+    {ok, Id} = m_rsc_update:insert(Props2, Context),
     Id.
 
 %% @doc Fetch a RDF resource

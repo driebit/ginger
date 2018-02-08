@@ -7,7 +7,7 @@
 -mod_title("Ginger RDF").
 -mod_description("RDF in Zotonic").
 -mod_prio(500).
--mod_schema(2).
+-mod_schema(3).
 
 -behaviour(gen_server).
 
@@ -39,6 +39,16 @@ manage_schema(_, Context) ->
         resources=[
             {rdf_content_group, content_group, [
                 {title, <<"RDF resources">>}
+            ]}
+        ],
+        data=[
+            {acl_rules, [
+                {rsc, [
+                    {acl_user_group_id, acl_user_group_members},
+                    {actions, [insert]},
+                    {content_group_id, rdf_content_group},
+                    {category_id, rdf}
+                ]}
             ]}
         ]
     },
