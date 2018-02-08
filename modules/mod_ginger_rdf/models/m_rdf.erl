@@ -94,10 +94,8 @@ find_resource(Uri, Context) ->
 ensure_resource(Uri, Props, Context) ->
     case find_resource(Uri, Context) of
         undefined ->
-            ?DEBUG(Props),
             create_resource(Uri, Props, Context);
         Id ->
-            ?DEBUG(Props),
             {ok, Id} = m_rsc:update(Id, Props, Context),
             Id
     end.
