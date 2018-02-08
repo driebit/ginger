@@ -15,3 +15,8 @@
     <dt>{_ Duration _}</dt>
     <dd>{{ duration|iso8601 }}</dd>
 {% endif %}
+
+{% if record['dcterms:extent'] as extent %}
+    <dt>{_ Dimensions _}</dt>
+    <dd>{{ extent }}</dd>
+{% endif %}
