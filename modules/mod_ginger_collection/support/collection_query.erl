@@ -3,11 +3,12 @@
 
 -export([
     is_collection_query/1,
-    parse_query/3
+    parse_query_term/3
 ]).
 
 -include_lib("zotonic.hrl").
 -include_lib("mod_ginger_rdf/include/rdf.hrl").
+-include_lib("../include/ginger_collection.hrl").
 
 %% @doc Does the search query include collection objects?
 -spec is_collection_query(proplists:proplist()) -> boolean().
@@ -15,16 +16,16 @@ is_collection_query(Args) ->
     proplists:get_value(collection, Args, false).
 
 %% @doc Parse Zotonic search query arguments and return Elastic query arguments.
--spec parse_query(list() | binary(), binary(), proplists:proplist()) -> proplists:proplist().
-parse_query(Key, Value, QueryArgs) when is_list(Key) ->
-    parse_query(list_to_binary(Key), Value, QueryArgs);
-parse_query(_Key, [], QueryArgs) ->
+-spec parse_query_term(list() | binary(), binary(), proplists:proplist()) -> proplists:proplist().
+parse_query_term(Key, Value, QueryArgs) when is_list(Key) ->
+    parse_query_term(list_to_binary(Key), Value, QueryArgs);
+parse_query_term(_Key, [], QueryArgs) ->
     QueryArgs;
-parse_query(_Key, <<>>, QueryArgs) ->
+parse_query_term(_Key, <<>>, QueryArgs) ->
     QueryArgs;
-parse_query(<<"facets">>, Facets, QueryArgs) ->
+parse_query_term(<<"facets">>, Facets, QueryArgs) ->
     QueryArgs ++ lists:map(fun map_facet/1, Facets);
-parse_query(<<"subject">>, Subjects, QueryArgs) ->
+parse_query_term(<<"subject">>, Subjects, QueryArgs) ->
     QueryArgs ++ lists:map(
         fun(Subject) ->
             {filter, [<<"dcterms:subject.rdfs:label.keyword">>, Subject]}
@@ -32,7 +33,7 @@ parse_query(<<"subject">>, Subjects, QueryArgs) ->
         Subjects
     );
 %% Whitelist term filters
-parse_query(Term, Values, QueryArgs) when
+parse_query_term(Term, Values, QueryArgs) when
     % used in Erfgoed Brabant
     Term =:= <<"category.keyword">>;
     Term =:= <<"dc:type.keyword">>;
@@ -55,15 +56,15 @@ parse_query(Term, Values, QueryArgs) when
         end,
         Values
     );
-parse_query(<<"dcterms:creator.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
+parse_query_term(<<"dcterms:creator.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
     %% Nested query term creator is an OR
     QueryArgs ++ [{filter, [[Term, Value, #{<<"path">> => <<"dcterms:creator">>}] || Value <- Values]}];
 %% Parse subsets (Elasticsearch types). You can specify multiple per checkbox
 %% by separating them with a comma.
-parse_query(<<"dbpedia-owl:museum.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
+parse_query_term(<<"dbpedia-owl:museum.rdfs:label.keyword">> = Term, Values, QueryArgs) ->
     %% Museum query term creator is an OR
     QueryArgs ++ [{filter, [[Term, Value] || Value <- Values]}];
-parse_query(<<"subset">>, Types, QueryArgs) ->
+parse_query_term(<<"subset">>, Types, QueryArgs) ->
     AllTypes = lists:foldl(
         fun(Type, Acc) ->
             Acc ++ binary:split(Type, <<",">>, [global])
@@ -72,12 +73,12 @@ parse_query(<<"subset">>, Types, QueryArgs) ->
         Types
     ),
     QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
-parse_query(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">>; Key =:= <<"date_start">> ->
+parse_query_term(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">>; Key =:= <<"date_start">> ->
     IncludeMissing = proplists:get_value(<<"include_missing">>, Range, false),
     QueryArgs
         ++ date_filter(Key, <<"gte">>, proplists:get_value(<<"min">>, Range), IncludeMissing)
         ++ date_filter(Key, <<"lte">>, proplists:get_value(<<"max">>, Range), IncludeMissing);
-parse_query(<<"edge">>, Edges, QueryArgs) ->
+parse_query_term(<<"edge">>, Edges, QueryArgs) ->
     QueryArgs ++ lists:foldl(
         fun(Edge, Acc) ->
             [Acc | map_edge(Edge)]
@@ -85,7 +86,7 @@ parse_query(<<"edge">>, Edges, QueryArgs) ->
         [],
         Edges
     );
-parse_query(
+parse_query_term(
     related_to, #{
         <<"_id">> := Id,
         <<"_type">> := Type,
@@ -97,16 +98,13 @@ parse_query(
     %% Use query_context_filter to have them scored: more matching edges mean
     %% a better matching document.
     [{query_context_filter, OrFilters}, {exclude_document, [Type, Id]} | QueryArgs];
-parse_query(related_to, RscRdf, QueryArgs) when is_map(RscRdf)->
+parse_query_term(related_to, RscRdf, QueryArgs) when is_map(RscRdf)->
     OrFilters = map_related_to(RscRdf),
     [{query_context_filter, [[<<"_type">>, <<"resource">>] | OrFilters]} | QueryArgs];
 
-parse_query(<<"license">>, Values, QueryArgs) ->
+parse_query_term(<<"license">>, Values, QueryArgs) ->
     QueryArgs ++ [{filter, [[<<"dcterms:license.keyword">>, Value] || Value <- Values]}];
-parse_query(is_published, Value, QueryArgs) ->
-    %% Resource is published OR it's not a Zotonic resource
-    QueryArgs ++ [{filter, [[<<"is_published">>, Value], [<<"_type">>, '<>', <<"resource">>]]}];
-parse_query(Key, Value, QueryArgs) ->
+parse_query_term(Key, Value, QueryArgs) ->
     [{Key, Value} | QueryArgs].
 
 map_facet({Name, [{<<"global">>, Props}]}) ->
@@ -122,7 +120,6 @@ map_edge(<<"depiction">>) ->
         {hasanyobject, [[<<"*">>, <<"depiction">>]]},
         {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
     ];
-
 map_edge(_) ->
     [].
 
