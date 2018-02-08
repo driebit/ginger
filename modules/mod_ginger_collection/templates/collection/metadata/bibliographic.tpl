@@ -3,8 +3,9 @@
     <dd>{{ series }}{% if record['schema:position'] as position %}, {{ position }}{% endif %}</dd>
 {% endif %}
 
-{% if record['schema:isPartOf'] as parent_publication %}
+{% if record['schema:isPartOf'] as parent_publications %}
     <dt>{_ In _}</dt>
+    {% for parent_publication in parent_publications %}
     <dd>
         <em>{{ parent_publication['dcterms:title'] }}</em>
         {% if parent_publication['schema:volumeNumber'] as volume %}
@@ -14,6 +15,7 @@
         {% endif %}
         {% if parent_publication['schema:pagination'] as pagination %} pp. {{ pagination }}{% endif %}
     </dd>
+    {% endfor %}
 {% endif %}
 
 {% if record['schema:pagination'] as pagination %}
