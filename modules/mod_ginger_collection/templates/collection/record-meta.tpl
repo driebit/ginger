@@ -100,7 +100,14 @@
 
                     {% if record['dcterms:medium'] as medium %}
                         <dt>{_ Physical medium _}</dt>
-                        <dd>{{ medium }}</dd>
+                        <dd>
+                            {% if medium|is_list %}
+                                {% include "list/list-uri-labels.tpl" items=medium %}
+                            {% else %}
+                                {{ medium }}
+                            {% endif %}
+                        </dd>
+
                     {% endif %}
 
                     {% include "collection/metadata/bibliographic.tpl" %}
