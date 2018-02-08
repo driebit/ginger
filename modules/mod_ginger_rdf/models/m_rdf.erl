@@ -103,14 +103,25 @@ ensure_resource(Uri, Props, Context) ->
 %% @doc Create non-authoritative RDF resource
 -spec create_resource(string(), list(), #context{}) -> integer().
 create_resource(Uri, Props, Context) ->
-    AllProps = [
+    AdminContext = z_acl:sudo(Context),
+
+    % Make sure these props are set...
+    % ... so that you can not insert non rdf resources this way.
+    RequiredProps = [
         {category, rdf},
         {is_authoritative, false},
         {is_dependent, true}, %% remove resource when there are no longer edges to it
-        {is_published, true},
         {uri, Uri}
-    ] ++ Props,
-    {ok, Id} = m_rsc_update:insert(AllProps, Context),
+    ],
+    Props1 = z_utils:props_merge(RequiredProps, Props),
+
+    DefaultProps = [
+        {is_published, true},
+        {content_group, rdf_content_group}
+    ],
+    Props2 = z_utils:props_merge(Props1, DefaultProps),
+
+    {ok, Id} = m_rsc_update:insert(Props2, AdminContext),
     Id.
 
 %% @doc Fetch a RDF resource

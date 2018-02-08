@@ -7,7 +7,7 @@
 -mod_title("Ginger RDF").
 -mod_description("RDF in Zotonic").
 -mod_prio(500).
--mod_schema(1).
+-mod_schema(2).
 
 -behaviour(gen_server).
 
@@ -31,10 +31,15 @@
 
 -record(state, {context}).
 
-manage_schema(install, Context) ->
+manage_schema(_, Context) ->
     Datamodel = #datamodel{
         categories=[
             {rdf, meta, [{title, <<"RDF resource">>}]}
+        ],
+        resources=[
+            {rdf_content_group, content_group, [
+                {title, <<"RDF resources">>}
+            ]}
         ]
     },
     z_datamodel:manage(?MODULE, Datamodel, Context),
