@@ -20,7 +20,7 @@
 
                 {% if record.object_category as object_category %}
 	            	<dt>{_ Object category _}</dt>
-	            	<dd>{{ object_category }}</dd>
+	            	<dd>{{ object_category['rdfs:label'] }}</dd>
 		        {% endif %}
 
 	        	{% if record['rdf:type'] as types %}
@@ -67,7 +67,9 @@
         {% endif %}
 
         {% if record['dcterms:language'] or record['dce:publisher']
-            or record['schema:width'] or record['schema:height'] or ['foaf:document'] %}
+            or record['schema:width'] or record['schema:height'] or reecord['dcterms:extent'] or record['dcterms:format']
+            or record['foaf:document']
+        %}
             <div class="adlib-object__meta__row">
                 <h6 class="adlib-object__meta__title">
                     {_ Work _}
@@ -89,7 +91,7 @@
                         <dt>{_ Format _}</dt>
                         <dd>
                             {% if format|is_list %}
-                                {{ format|join:", " }}
+                                {% include "list/list-uri-labels.tpl" items=format %}
                             {% else %}
                                 {{ format }}
                             {% endif %}
