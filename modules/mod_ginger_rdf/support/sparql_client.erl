@@ -2,7 +2,8 @@
 -module(sparql_client).
 
 -export([
-    describe/2
+    describe/2,
+    query/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -15,7 +16,8 @@ describe(Endpoint, Clause) ->
     query(Endpoint, z_convert:to_binary(z_url:url_encode(<<"DESCRIBE ", Clause/binary>>))).
     
 query(Endpoint, Query) ->
-    Url = <<Endpoint/binary, "?query=", Query/binary>>,
+    Qs = z_convert:to_binary(z_url:url_encode(Query)),
+    Url = <<Endpoint/binary, "?query=", Qs/binary>>,
     case ginger_http_client:get(Url, headers()) of
         undefined ->
             undefined;
