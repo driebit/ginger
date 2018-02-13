@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export HOME=/opt/ginger
+export ZOTONIC_PIDFILE=/run/zotonic.pid
+
+touch /run/zotonic.pid && chown zotonic /run/zotonic.pid
+
+exec s6-setuidgid zotonic /opt/zotonic/bin/zotonic start-nodaemon
