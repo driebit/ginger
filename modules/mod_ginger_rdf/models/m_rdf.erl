@@ -89,38 +89,51 @@ find_resource(Uri, Context) when is_integer(Uri) ->
 find_resource(Uri, Context) ->
     m_rsc:uri_lookup(Uri, Context).
 
-%% @doc Ensure URI is a resource in Zotonic and update an existing resource
--spec ensure_resource(string(), list(), #context{}) -> integer().
-ensure_resource(Uri, Props, Context) ->
-    case find_resource(Uri, Context) of
+%% @doc Ensure URI or Id is a resource in Zotonic and update an existing resource
+-spec ensure_resource(string(), list(), #context{}) -> integer() | error.
+ensure_resource(RscId, Props, Context) when is_integer(RscId) ->
+    case find_resource(RscId, Context) of
         undefined ->
-            create_resource(Uri, Props, Context);
+            {ok, Id} = m_rsc_update:insert(Props, Context),
+            Id;
         Id ->
             {ok, Id} = m_rsc:update(Id, Props, Context),
             Id
+    end;
+ensure_resource(Uri, Props0, Context) ->
+    case z_acl:is_allowed(use, mod_ginger_rdf, Context) of
+        true ->
+            % Make sure these props are set...
+            % ... so that you can not insert non rdf resources this way.
+            RequiredProps = [
+                {category, rdf},
+                {is_authoritative, false},
+                {is_dependent, true}, %% remove resource when there are no longer edges to it
+                {uri, Uri}
+            ],
+            Props1 = z_utils:props_merge(RequiredProps, Props0),
+
+            AdminContext = z_acl:sudo(Context),
+
+            case find_resource(Uri, Context) of
+                undefined ->
+                    DefaultProps = [
+                        {is_published, true},
+                        {content_group, rdf_content_group}
+                    ],
+                    Props2 = z_utils:props_merge(Props1, DefaultProps),
+
+                    {ok, Id} = m_rsc_update:insert(Props2, AdminContext),
+                    Id;
+                Id ->
+                    {ok, Id} = m_rsc:update(Id, Props1, AdminContext),
+                    Id
+            end;
+        false ->
+            z_render:growl_error("Insufficient rights to update RDF resources", Context),
+            error
     end.
 
-%% @doc Create non-authoritative RDF resource
--spec create_resource(string(), list(), #context{}) -> integer().
-create_resource(Uri, Props, Context) ->
-    % Make sure these props are set...
-    % ... so that you can not insert non rdf resources this way.
-    RequiredProps = [
-        {category, rdf},
-        {is_authoritative, false},
-        {is_dependent, true}, %% remove resource when there are no longer edges to it
-        {uri, Uri}
-    ],
-    Props1 = z_utils:props_merge(RequiredProps, Props),
-
-    DefaultProps = [
-        {is_published, true},
-        {content_group, rdf_content_group}
-    ],
-    Props2 = z_utils:props_merge(Props1, DefaultProps),
-
-    {ok, Id} = m_rsc_update:insert(Props2, Context),
-    Id.
 
 %% @doc Fetch a RDF resource
 rsc(Uri, Context) ->
