@@ -10,6 +10,8 @@ background_position(Id, Context) ->
     case m_rsc:p(Id, crop_center, Context) of
         undefined ->
             "center center";
+        <<>> ->
+            "center center";
         CropCenter ->
             get_position(Id, CropCenter, Context)
     end.
