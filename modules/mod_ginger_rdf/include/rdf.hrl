@@ -19,11 +19,11 @@
 
 -record(triple, {
     type = literal :: resource | literal,
-    subject :: binary(),
+    subject :: undefined | binary(),
     subject_props = [] :: list(),
     predicate :: binary(),
     object :: binary() | #rdf_value{},
-    object_props = [] :: list()
+    object_props = #{} :: list() | map()
 }).
 
 -record(rdf_resource, {

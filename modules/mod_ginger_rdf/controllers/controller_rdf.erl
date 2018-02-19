@@ -43,8 +43,8 @@ json_ld(ReqData, Context) ->
             undefined;
         Id ->
             RdfResource = m_rdf:to_triples(z_convert:to_integer(Id), Context1),
-            JsonLd = ginger_json_ld:serialize(RdfResource),
-            mochijson2:encode(JsonLd)
+            JsonLd = ginger_json_ld:serialize_to_map(RdfResource),
+            jsx:encode(JsonLd)
     end,
     ?WM_REPLY(Result, Context1).
 
