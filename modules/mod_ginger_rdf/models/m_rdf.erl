@@ -170,9 +170,12 @@ to_triples(Id, Context) ->
                                         subject = m_rsc:p(Subject, uri, Context),
                                         object = m_rsc:p(Object, uri, Context)
                                     },
+                                    
+                                    %% Add literal triple with the edge's object
+                                    %% title for convenience.
                                     #triple{
-                                        predicate = PredicateUri,
-                                        subject = m_rsc:p(Subject, uri, Context),
+                                        predicate = <<?NS_DCTERMS, "title">>,
+                                        subject = m_rsc:p(Object, uri, Context),
                                         object = #rdf_value{value = z_trans:trans(m_rsc:p(Object, title, Context), Context)}
                                     }
                                 ]}
@@ -190,8 +193,14 @@ to_triples(Id, Context) ->
         with_original_media(Id, with_thumbnail(Id, Triples, Context), Context),
 
     Result = z_notifier:foldr(#rsc_to_rdf{id = Id}, WithThumbnail, Context),
+    rdf_resource(m_rsc:p(Id, uri, Context), Result).
 
-    #rdf_resource{id = m_rsc:p(Id, uri, Context), triples = Result}.
+-spec rdf_resource(binary(), [#triple{}]) -> #rdf_resource{}.
+rdf_resource(SubjectUri, Triples) ->
+    #rdf_resource{
+        id = SubjectUri,
+        triples = [with_subject(SubjectUri, Triple) || Triple <- Triples]
+    }.
 
 %% Each property can map to one or more triples
 property_to_triples({_, <<>>}, _Props, _Context) ->
@@ -202,26 +211,26 @@ property_to_triples({_, undefined}, _Props, _Context) ->
     [];
 property_to_triples({address_city, Value}, _Props, _Context) ->
     [
-        #triple{predicate = <<?NS_VCARD, "locality">>, object = Value}
+        #triple{predicate = <<?NS_VCARD, "locality">>, object = #rdf_value{value = Value}}
     ];
 property_to_triples({address_country, Value}, _Props, _Context) ->
     [
-        #triple{predicate = <<?NS_VCARD, "country-name">>, object = Value}
+        #triple{predicate = <<?NS_VCARD, "country-name">>, object = #rdf_value{value = Value}}
     ];
 property_to_triples({address_postcode, Value}, _Props, _Context) ->
     [
-        #triple{predicate = <<?NS_VCARD, "postal-code">>, object = Value}
+        #triple{predicate = <<?NS_VCARD, "postal-code">>, object = #rdf_value{value = Value}}
     ];
 property_to_triples({address_street_1, Value}, _Props, _Context) ->
     [
-        #triple{predicate = <<?NS_VCARD, "street-address">>, object = Value}
+        #triple{predicate = <<?NS_VCARD, "street-address">>, object = #rdf_value{value = Value}}
     ];
 property_to_triples({body, Value}, _Props, Context) ->
     %% TODO add support for multilingual properties
     [
         #triple{
             predicate = <<?NS_DCTERMS, "description">>,
-            object = z_html:strip(z_trans:trans(Value, Context))
+            object = #rdf_value{value = z_html:strip(z_trans:trans(Value, Context))}
         }
     ];
 property_to_triples({category_id, Value}, _Props, Context) ->
@@ -241,28 +250,28 @@ property_to_triples({created, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "created">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({date_start, Value}, _Props, _Context) ->
     [
         #triple{
-        predicate = <<?NS_DCTERMS, "date">>,
-        object = Value
+            predicate = <<?NS_DCTERMS, "date">>,
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({modified, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "modified">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({name_first, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_FOAF, "firstName">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({name_surname, Value}, Props, _Context) ->
@@ -277,35 +286,35 @@ property_to_triples({name_surname, Value}, Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_FOAF, "familyName">>,
-            object = Surname
+            object = #rdf_value{value = Surname}
         }
     ];
 property_to_triples({phone, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_FOAF, "phone">>,
-            object = [<<"tel:">>, Value]
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({pivot_location_lat, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_GEO, "lat">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({pivot_location_lng, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_GEO, "long">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({publication_start, Value}, _Props, _Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "issued">>,
-            object = Value
+            object = #rdf_value{value = Value}
         }
     ];
 property_to_triples({license, Value}, _Props, _Context) ->
@@ -320,21 +329,21 @@ property_to_triples({subtitle, Value}, _Props, Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "alternative">>,
-            object = z_trans:trans(Value, Context)
+            object = #rdf_value{value = z_trans:trans(Value, Context)}
         }
     ];
 property_to_triples({summary, Value}, _Props, Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "abstract">>,
-            object = z_trans:trans(Value, Context)
+            object = #rdf_value{value = z_trans:trans(Value, Context)}
         }
     ];
 property_to_triples({title, Value}, _Props, Context) ->
     [
         #triple{
             predicate = <<?NS_DCTERMS, "title">>,
-            object = z_trans:trans(Value, Context)
+            object = #rdf_value{value = z_trans:trans(Value, Context)}
         }
     ];
 property_to_triples({website, Value}, _Props, _Context) ->
@@ -515,6 +524,13 @@ with_original_media(Id, Triples, Context) ->
         <<?NS_FOAF, "depiction">>,
         Triples
     ).
+
+%% @doc Add subject URI to each triple that has none.
+-spec with_subject(binary(), #triple{}) -> #triple{}.
+with_subject(SubjectUri, #triple{subject = undefined} = Triple) ->
+    Triple#triple{subject = SubjectUri};
+with_subject(_SubjectUri, #triple{} = Triple) ->
+    Triple.
 
 maybe_add_media(Fun, Predicate, Triples) ->
     case Fun() of
