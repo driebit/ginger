@@ -570,8 +570,7 @@ get_category_uri(Category, Context) ->
     get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
 
 to_json_ld(Id, Context) ->
-    mochijson2:encode(ginger_json_ld:serialize(to_triples(Id, Context))).
-
+    jsx:encode(ginger_json_ld:serialize_to_map(to_triples(Id, Context))).
 
 %% @doc Extract literal value from triple object(s).
 -spec literal_object_value([#rdf_value{}] | #rdf_value{} | any()) -> binary() | list().
