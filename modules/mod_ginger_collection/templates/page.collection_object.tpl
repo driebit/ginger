@@ -21,7 +21,9 @@
                     {% block share %}
                         {% include "collection/share.tpl" record=record %}
                     {% endblock %}
-                    {% include "collection/depiction.tpl" record=record template="collection/download.tpl" %}
+                    {% block downloads %}
+                        {% include "collection/downloads.tpl" record=record template="collection/download.tpl" %}
+                    {% endblock %}
                 </div>
             </div>
             <article class="adlib-object__description">
