@@ -169,6 +169,7 @@ create_triple(Subject, Predicate, Object) ->
     }.
 
 %% @doc Serialize an RDF resource into JSON-LD
+%% @deprecated Use serialize_to_map instead.
 -spec serialize(#rdf_resource{}) -> list().
 serialize(#rdf_resource{id = Id, triples = Triples}) ->
     Data = lists:reverse(lists:foldl(
