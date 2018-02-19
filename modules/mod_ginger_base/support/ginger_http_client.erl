@@ -30,6 +30,15 @@ request(Url, Headers) ->
 
 %% @doc Do an HTTP request.
 -spec request(atom(), string(), proplists:proplist()) -> map() | undefined.
+request(Method, Url, Headers) when is_map(Headers) ->
+    ListHeaders = lists:map(
+        fun({Header, Value}) ->
+            {z_convert:to_list(Header), z_convert:to_list(Value)}
+        end,
+        maps:to_list(Headers)
+    ),
+    request(Method, Url, ListHeaders);
+
 request(Method, Url, Headers) when is_binary(Url) ->
     request(Method, binary_to_list(Url), Headers);
 request(get, Url, Headers) ->

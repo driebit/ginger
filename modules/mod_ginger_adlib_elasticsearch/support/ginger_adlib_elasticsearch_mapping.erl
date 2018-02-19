@@ -57,8 +57,8 @@ map_property(<<"production.date.end">> = Key, Value, Acc) when value =/= <<"?">>
         Year ->
             Acc2#{<<"dbo:productionEndYear">> => Year}
     end;
-map_property(<<"reproduction.creator">>, Value, Acc) ->
-    Acc#{<<"dcterms:creator">> => Value};
+map_property(<<"reproduction.creator">>, Value, Acc) when Value =/= <<>> ->
+    Acc#{<<"dcterms:creator">> => parse_name(Value)};
 map_property(<<"reproduction.reference">>, Value, Acc) ->
     Acc#{<<"reference">> => Value};
 map_property(Key, Values, Acc) when Key =:= <<"Dimension">>; Key =:= <<"dimension">> ->
@@ -67,16 +67,11 @@ map_property(Key, Values, Acc) when Key =:= <<"Dimension">>; Key =:= <<"dimensio
         Acc,
         to_list(Values)
     );
-map_property(<<"technique">>, Value, Acc) ->
-    Acc#{<<"dbpedia-owl:technique">> => to_labelled_list(Value)};
 %% @doc See e.g. http://wikidata.dbpedia.org/page/Q1248830
-map_property(<<"material">>, Values, Acc) when is_list(Values) ->
+map_property(<<"material">>, Values, Acc) ->
     %% List of materials as single value
     %% @doc See e.g. http://wikidata.dbpedia.org/page/Q1248830
-    Acc#{<<"dbpedia-owl:constructionMaterial">> => to_labelled_list(Values)};
-map_property(<<"material">>, Value, Acc) ->
-    %% Single material as value
-    Acc#{<<"rdfs:label">> => Value};
+    Acc#{<<"dbpedia-owl:constructionMaterial">> => to_list(Values)};
 map_property(<<"notes">>, Values, Acc) ->
     Acc#{<<"dbpedia-owl:notes">> => to_list(Values)};
 map_property(<<"rights">> = Key, Value, Acc) ->
@@ -104,7 +99,7 @@ map_property(Key, [Value], Acc) ->
 map_property(Key, Value, Acc) ->
     Acc#{Key => Value}.
 
-map_dimension(#{<<"dimension.type">> := Type} = Dimension, Acc) ->
+map_dimension(#{<<"schema:value">> := _, <<"dimension.type">> := Type} = Dimension, Acc) ->
     Dimension2 = maps:remove(<<"dimension.type">>, Dimension),
     case map_dimension_type(Type) of
         undefined ->
@@ -114,8 +109,11 @@ map_dimension(#{<<"dimension.type">> := Type} = Dimension, Acc) ->
                 <<"rdf:type">> => <<"schema:QuantitativeValue">>
             }}
     end;
-map_dimension(DimensionWithoutValueOrType, Acc) ->
-    Acc#{<<"dcterms:format">> => DimensionWithoutValueOrType}.
+map_dimension(FreeTextDimension, Acc) when is_binary(FreeTextDimension) ->
+    Acc#{<<"dcterms:format">> => FreeTextDimension};
+map_dimension(_OtherDimension, Acc) ->
+    Acc.
+
 
 %% @doc Map dimension unit to UN/CEFACT Common Codes for Units of Measurement
 map_dimension_unit(<<"cm">>) ->
@@ -136,6 +134,8 @@ map_dimension_type(<<"diameter">>) ->
 map_dimension_type(_Type) ->
     undefined.
 
+parse_name(#{<<"name">> := Name} = Person) ->
+    maps:merge(parse_name(Name), maps:remove(<<"name">>, Person));
 parse_name(Name) ->
     case binary:split(Name, <<", ">>) of
         [Last, First] ->
@@ -157,15 +157,17 @@ to_list(Value) ->
     [Value].
 
 extract_values(Values) when is_list(Values) ->
-    [extract_value(Value) || Value <- Values];
+    lists:filtermap(fun extract_value/1, Values);
 extract_values(Values) ->
     %% Wrap single value in a list for consistency
-    [extract_value(Values)].
+    extract_values([Values]).
 
 extract_value(#{<<"value">> := Value}) ->
-    Value;
+    {true, Value};
+extract_value(Value) when map_size(Value) =:= 0 ->
+    false;
 extract_value(Value) ->
-    Value.
+    {true, Value}.
 
 to_labelled_list(Values) ->
     ListValues = to_list(Values),

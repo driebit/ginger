@@ -46,7 +46,18 @@ search_query(#search_query{search={ginger_geo_nearby, Args}}, Context) ->
         ],
         " "
     ),
-    and_where(BaseSearch, WhereStr).
+    SearchSql = and_where(BaseSearch, WhereStr),
+
+    LatStr = z_convert:to_list(Lat),
+    LngStr = z_convert:to_list(Lng),
+    OrderStr = string:join(
+        [
+            "(pivot_location_lat-", LatStr, ")*(pivot_location_lat-", LatStr,
+            ") + (pivot_location_lng-", LngStr, ")*(pivot_location_lng-", LngStr, ")"
+        ],
+        ""
+    ),
+    SearchSql#search_sql{order=OrderStr}.
 
 %% @doc Adds a custom where argument to SQL query (using the and operator)
 and_where(#search_sql{} = SearchSql, WhereStr) ->

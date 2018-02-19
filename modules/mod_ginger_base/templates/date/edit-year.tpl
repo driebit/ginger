@@ -1,5 +1,5 @@
 {% with
-    m.rsc[id][name]|date:"Y",
+    m.rsc[id][name]|date:"x",
     name ++ #year
 as
     current,

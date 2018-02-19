@@ -10,8 +10,8 @@ as
     {% if granularity == "day" %}
         {% include "date/date.tpl" %}
     {% elseif granularity == "month" %}
-        <time datetime="{{ date|date:"F Y" }}" class="{{ name }}">{{ date|date:"F Y" }}</time>
+        <time datetime="{{ date|date:"F Y e" }}" class="{{ name }}">{{ date|date:"F Y" }}</time>
     {% elseif granularity == "year" %}
-        <time datetime="{{ date|date:"Y" }}" class="{{ name }}">{{ date|date:"Y" }}</time>
+        <time datetime="{{ date|date:"Y e" }}" class="{{ name }}">{{ date|date:"Y" }}</time>
     {% endif %}
 {% endwith %}

@@ -5,10 +5,9 @@
 {% if id.is_visible %}
     <li class="list__item--beeldenzoeker {{ extraClasses }}">
         <a href="{{ id.page_url }}">
-        	<div class="list__item__wimpel"><i class="icon--collection"></i> {_ Collection _}</div>
+            {% block item_wimpel %}<div class="list__item__wimpel"><i class="icon--collection"></i> {_ Collection _}</div>{% endblock %}
             {% block item_image %}
                 <div class="list__item__image ">
-
                     {% image dep_rsc.id mediaclass="list-image" alt="" title="" crop=dep_rsc.crop_center %}
                 </div>
             {% endblock %}

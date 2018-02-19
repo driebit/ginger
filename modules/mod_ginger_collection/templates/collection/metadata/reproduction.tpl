@@ -7,7 +7,7 @@
             <dl class="adlib-object__meta__data">
                 {% if reproduction['dcterms:creator'] as creator %}
                     <dt>{_ Reproduction creator _}</dt>
-                    <dd>{{ creator }}</dd>
+                    <dd>{{ creator['rdfs:label'] }}</dd>
                 {% endif %}
             </dl>
         </div>

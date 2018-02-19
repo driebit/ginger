@@ -13,9 +13,14 @@
 	            	<dd>{{ record['dcterms:identifier'] }}</dd>
 		        {% endif %}
 
+                {% if record['handle'] as handle %}
+	            	<dt>{_ Handle _}</dt>
+	            	<dd><a href="http://hdl.handle.net/{{ handle }}">http://hdl.handle.net/{{ handle }}</a></dd>
+		        {% endif %}
+
                 {% if record.object_category as object_category %}
 	            	<dt>{_ Object category _}</dt>
-	            	<dd>{{ object_category }}</dd>
+	            	<dd>{{ object_category['rdfs:label'] }}</dd>
 		        {% endif %}
 
 	        	{% if record['rdf:type'] as types %}
@@ -23,6 +28,31 @@
 	        		<dd>{% include "list/list-uri-labels.tpl" items=types %}</dd>
 	        	{% endif %}
 
+                {% if record['dbpedia-owl:isbn'] as isbn %}
+		            <dt>{_ ISBN _}</dt>
+		            <dd>{{ isbn }}</dd>
+		        {% endif %}
+
+                {% block ppn %}
+                    {% if record['dbpedia-owl:dutchPPNCode'] as ppn %}
+                        <dt>{_ PPN _}</dt>
+                        <dd>{{ ppn }}</dd>
+                    {% endif %}
+                {% endblock %}
+
+	            {% if record.collection %}
+	            	<dt>{_ Collection _}</dt>
+	            	<dd>{{ record.collection }}</dd>
+	            {% endif %}
+	        </dl>
+	    </div>
+
+        {% if record['dcterms:subject'] or record['foaf:depicts'] %}
+            <div class="adlib-object__meta__row">
+                <h6 class="adlib-object__meta__title">
+                    {_ About _}
+                </h6>
+                <dl class="adlib-object__meta__data">
                 {% if record['dcterms:subject'] as subjects %}
                     <dt>{_ Subjects _}</dt>
                     <dd>{% include "list/list-uri-labels.tpl" items=subjects %}</dd>
@@ -32,20 +62,14 @@
                     <dt>{_ Persons _}</dt>
                     <dd>{% include "list/list-uri-labels.tpl" items=persons %}</dd>
                 {% endif %}
+                </dl>
+            </div>
+        {% endif %}
 
-                {% if record['dbpedia-owl:isbn'] as isbn %}
-		            <dt>{_ ISBN _}</dt>
-		            <dd>{{ isbn }}</dd>
-		        {% endif %}
-
-	            {% if record.collection %}
-	            	<dt>{_ Collection _}</dt>
-	            	<dd>{{ record.collection }}</dd>
-	            {% endif %}
-	        </dl>
-	    </div>
         {% if record['dcterms:language'] or record['dce:publisher']
-            or record['schema:width'] or record['schema:height'] or ['foaf:document'] %}
+            or record['schema:width'] or record['schema:height'] or reecord['dcterms:extent'] or record['dcterms:format']
+            or record['foaf:document']
+        %}
             <div class="adlib-object__meta__row">
                 <h6 class="adlib-object__meta__title">
                     {_ Work _}
@@ -63,10 +87,30 @@
                         <dd>{{ genre|join:", " }}</dd>
                     {% endif %}
 
+                    {% if record['dcterms:format'] as format %}
+                        <dt>{_ Format _}</dt>
+                        <dd>
+                            {% if format|is_list %}
+                                {% include "list/list-uri-labels.tpl" items=format %}
+                            {% else %}
+                                {{ format }}
+                            {% endif %}
+                        </dd>
+                    {% endif %}
+
                     {% if record['dcterms:medium'] as medium %}
                         <dt>{_ Physical medium _}</dt>
-                        <dd>{{ medium }}</dd>
+                        <dd>
+                            {% if medium|is_list %}
+                                {% include "list/list-uri-labels.tpl" items=medium %}
+                            {% else %}
+                                {{ medium }}
+                            {% endif %}
+                        </dd>
+
                     {% endif %}
+
+                    {% include "collection/metadata/bibliographic.tpl" %}
 
                     {% if record['dbpedia-owl:museum'] as museum %}
                         <dt>{_ Museum _}</dt>
@@ -86,7 +130,7 @@
 
                     {% block documents %}
                         {% if record['foaf:document'] as documents %}
-                            <dt>{_ Documents _}</dt>
+                            <dt>{_ Digital source _}</dt>
                             <dd>{% include "collection/documents.tpl" items=documents %}</dd>
                         {% endif %}
                     {% endblock %}
@@ -99,12 +143,14 @@
 	            {_ Manufacture _}
 	        </h6>
 	        <dl class="adlib-object__meta__data">
-                {% if record['dcterms:creator'] as creators %}
-                    <dt>{_ Creator _}</dt>
-                    <dd>
-                        {% include "collection/metadata/creators.tpl" creators=creators %}
-                    </dd>
-                {% endif %}
+                {% block creators %}
+                    {% if record['dcterms:creator'] as creators %}
+                        <dt>{_ Creator _}</dt>
+                        <dd>
+                            {% include "collection/metadata/creators.tpl" creators=creators %}
+                        </dd>
+                    {% endif %}
+                {% endblock %}
 
                 {% if record['dcterms:contributor'] as contributors %}
                     <dt>{_ Contributors _}</dt>
