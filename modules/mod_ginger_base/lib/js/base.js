@@ -62,19 +62,15 @@
 
             // Dirty hack to fix input highlight on ios safari, please remove when ios 11.3 is in use
 
+            var iOS11 = this.iOSversion() && this.iOSversion()[0] == 11; 
 
             // Detect ios 11_x_x affected
             // NEED TO BE UPDATED if new versions are affected
             (function iOS_CaretBug() {
-
-                var ua = navigator.userAgent,
-                scrollTopPosition,
-                iOS = /iPad|iPhone|iPod/.test(ua),
-                iOS11 = /OS 11_0_1|OS 11_0_2|OS 11_0_3|OS 11_1|OS 11_1_1|OS 11_1_2|OS 11_2|OS 11_2_1/.test(ua);
+                var scrollTopPosition;
 
                 // ios 11 bug caret position
-                if ( iOS && iOS11 ) {
-
+                if ( iOS11 ) {
                     $("#zmodal").live('show.bs.modal', function(e) {
                         // Get scroll position before moving top
                         scrollTopPosition = $(document).scrollTop();
@@ -95,6 +91,13 @@
 
                 }
             })();
+        },
+
+        iOSversion: function() {
+            if (/iP(hone|od|ad)/.test(navigator.platform)) {
+                var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+                return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+            }
         },
 
         _documentClick: function(event) {
