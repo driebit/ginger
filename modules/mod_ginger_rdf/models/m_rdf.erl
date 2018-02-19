@@ -46,6 +46,8 @@ m_find_value(RscId, #m{value = undefined} = M, Context) when is_integer(RscId) -
 % Assume other input is an Uri we need to lookup
 m_find_value(undefined, #m{value = undefined}, _Context) ->
     undefined;
+m_find_value(#{}, #m{value = undefined}, _Context) ->
+    undefined;
 m_find_value(Uri, #m{value = undefined} = M, Context) ->
     M#m{value = rsc(Uri, Context)};
 
