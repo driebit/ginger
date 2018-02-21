@@ -23,6 +23,10 @@ iso8601(Duration, _Context) ->
             undefined
     end.
 
+iso8601(<<"-", Datetime/binary>>, Format, Context) ->
+    %% Year < 0
+    {{Y, M, D}, T} = z_datetime:to_datetime(Datetime),
+    filter_date:date({{-Y, M, D}, T}, Format, Context);
 iso8601(Datetime, Format, Context) ->
     case z_utils:only_digits(Datetime) of
         true ->
