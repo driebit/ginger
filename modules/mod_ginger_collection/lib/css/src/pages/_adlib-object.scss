@@ -1,49 +1,5 @@
 .main-content {
     margin-bottom: 0;
-
-}
-
-.adlib-object__description {
-    margin: 0 auto;
-    max-width: 72rem;
-    background-color: #fff;
-
-    h1, h2, p {
-        padding: 0 4rem;
-    }
-
-    p {
-        padding-bottom: 2rem;
-    }
-
-    ol {
-       list-style: none;
-	}
-
-    header {
-        color: $light-grey;
-        padding: 2rem 4rem;
-
-        @include mq(min-width, $mediumBreakpoint) {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-        }
-    }
-}
-
-.adlib-description-readmore {
-    background-color: $mediumgrey;
-    color: $light-grey;
-    height: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    h4 {
-        padding: 0;
-        margin: 0;
-    }
 }
 
 .adlib-object__aside {

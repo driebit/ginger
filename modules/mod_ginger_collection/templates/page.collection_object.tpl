@@ -8,6 +8,14 @@
     {% endwith %}
 {% endblock %}
 
+{% block canonical %}
+    {% with m.collection_object[q.database][q.object_id] as document %}
+    {% with document._source as record %}
+        <link rel=”canonical” href=”{{ m.collection_object.uri }}” />
+    {% endwith %}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
 
 {% with m.collection_object[q.database][q.object_id] as document %}
@@ -26,6 +34,11 @@
                     {% endblock %}
                 </div>
             </div>
+
+            {% block prevnext %}
+                {% include "collection/prevnext.tpl" search="beeldenzoeker" %}
+            {% endblock %}
+
             <article class="adlib-object__description">
                 <header>
                     <h6>{_ Dating _} {% include "collection/metadata/date.tpl" %}</h6>
