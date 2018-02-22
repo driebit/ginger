@@ -23,7 +23,20 @@ iso8601(Duration, _Context) ->
             undefined
     end.
 
+iso8601(<<"-", Datetime/binary>>, Format, Context) ->
+    %% Year < 0
+    case z_utils:only_digits(Datetime) of
+        true ->
+            %% Year only
+            Year = z_convert:to_integer(Datetime),
+            filter_date:date({{-Year, 1, 1}, {0, 0, 0}}, year_format(Format), Context);
+        false ->
+            %% Full date
+            {{Y, M, D}, T} = z_datetime:to_datetime(Datetime),
+            filter_date:date({{-Y, M, D}, T}, Format, Context)
+    end;
 iso8601(Datetime, Format, Context) ->
+    %% Year >= 0
     case z_utils:only_digits(Datetime) of
         true ->
             Datetime;
@@ -31,3 +44,9 @@ iso8601(Datetime, Format, Context) ->
             Tuples = z_datetime:to_datetime(Datetime),
             filter_date:date(Tuples, Format, Context)
     end.
+
+year_format(<<"x">>) ->
+    <<"x">>;
+year_format(_) ->
+    %% Default year format includes era
+    <<"Y e">>.
