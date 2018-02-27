@@ -9,8 +9,10 @@
 
 -include_lib("zotonic.hrl").
 
-collection_query_offset(Current, Pagelen, undefined, _Context) ->
-    get_offset(Current, Pagelen, 0);
+collection_query_offset(Current, Pagelen, undefined, Context) ->
+    collection_query_offset(Current, Pagelen, 1, Context);
+collection_query_offset(Current, undefined, Page, Context) ->
+    collection_query_offset(Current, 15, Page, Context);
 collection_query_offset(Current, Pagelen, Page, _Context) ->
     get_offset(Current, Pagelen, Page-1).
 
