@@ -10,8 +10,10 @@
             {# A Zotonic resource #}
             {% catinclude list_item_template item._id %}
         {% else %}
-            {# An Elasticsearch document #}
-            {% include "collection/" ++ list_item_template item=item query_id=query_id current=forloop.counter %}
+            {% with items.total as total_results %}
+                {# An Elasticsearch document #}
+                {% include "collection/" ++ list_item_template item=item query_id=query_id current=forloop.counter total_results=total_results %}
+            {% endwith %}
         {% endif %}
     {% endif %}
 
