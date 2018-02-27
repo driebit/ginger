@@ -87,3 +87,21 @@ serialize_multiple_levels_to_map_test() ->
         }
     },
     ?assertEqual(Expected, Map).
+
+serialize_recursive_test() ->
+     Resource = #rdf_resource{
+        id = <<"http://dinges.com/123">>,
+        triples = [
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = <<"owl:sameAs">>,
+                object = <<"http://dinges.com/123">>
+            }
+        ]
+    },
+    Map = ginger_json_ld:serialize_to_map(Resource),
+    Expected = #{
+        <<"@id">> => <<"http://dinges.com/123">>,
+        <<"owl:sameAs">> => <<"http://dinges.com/123">>
+    },
+    ?assertEqual(Expected, Map).
