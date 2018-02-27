@@ -17,11 +17,15 @@ as
                 {% include "collection/asset.tpl" asset=downloads|first template="collection/download-button.tpl" %}
             {% else %}
                 <button class="adlib-action__btn">{_ Downloads _}</button>
-                <ul>
-                    {% for download in downloads %}
-                        <li>{% include "collection/asset.tpl" asset=download template="collection/download-link.tpl" %}</li>
-                    {% endfor %}
-                </ul>
+                <div class="adlib-download__list__wrapper">
+                    <ul>
+                        {% for download in downloads %}
+                            <li>{% include "collection/asset.tpl" asset=download template="collection/download-link.tpl" %}</li>
+                        {% endfor %}
+                    </ul>
+                    <div class="adlib-download__list__chevron"></div>
+                </div>
+                
             {% endif %}
         </div>
     {% endif %}
