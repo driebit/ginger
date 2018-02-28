@@ -324,10 +324,6 @@ msgstr "Bekijk deze pagina"
 msgid "Visit full edit page"
 msgstr "Bezoek volledige edit pagina"
 
-#: /vagrant/modules/mod_ginger_edit/templates/_admin_edit_content_address.tpl:30
-msgid "Website"
-msgstr "website info"
-
 #: /vagrant/modules/mod_ginger_edit/templates/_action_dialog_person_connect.tpl:19
 msgid "Yes"
 msgstr "Ja"
