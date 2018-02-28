@@ -8,7 +8,8 @@
     get/2,
     post/3,
     request/2,
-    request/4
+    request/4,
+    url_with_query_string/2
 ]).
 
 %% @doc GET a URL.
@@ -59,6 +60,19 @@ request(RequestMethod, Url, Headers, Data) ->
         Response ->
             decode(Response)
     end.
+
+url_with_query_string(Url, Params) ->
+    Parts = maps:fold(
+        fun(Key, Value, Acc) ->
+            KeyString = z_convert:to_list(Key),
+            ValueString = mochiweb_util:quote_plus(Value),
+            [KeyString ++ "=" ++ ValueString | Acc]
+        end,
+        [],
+        Params
+    ),
+    Binary = z_convert:to_binary(string:join(Parts, "&")),
+    <<Url/binary, "?", Binary/binary>>.
 
 handle_response(Response, Url) ->
     case Response of
