@@ -23,7 +23,7 @@
     subject_props = [] :: list(),
     predicate :: binary(),
     object :: binary() | #rdf_value{},
-    object_props = #{} :: list() | map()
+    object_props = [] :: list()
 }).
 
 -record(rdf_resource, {
