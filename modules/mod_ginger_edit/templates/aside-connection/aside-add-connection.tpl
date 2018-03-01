@@ -25,7 +25,7 @@ as
 %}
 {% if id.is_editable %}
 
-    <div id="{{ #thepredicate }}" class="ginger-edit__aside--{{ predicate_name }}">
+    <div id="{{ #thepredicate }}" class="ginger-edit__aside--{{ predicate_name }}" {% if required %} data-errormessage="{{ errormsg_required }}"{% endif %}>
         {% block aside_connection_title %}
             <h3 class="section-title">{{ title }}</h3>
         {% endblock %}

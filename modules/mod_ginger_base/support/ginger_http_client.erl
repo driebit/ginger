@@ -61,9 +61,11 @@ request(RequestMethod, Url, Headers, Data) ->
             decode(Response)
     end.
 
+url_with_query_string(Url, Params) when is_map(Params) ->
+    url_with_query_string(Url, maps:to_list(Params));
 url_with_query_string(Url, Params) ->
-    Parts = maps:fold(
-        fun(Key, Value, Acc) ->
+    Parts = lists:foldl(
+        fun({Key, Value}, Acc) ->
             KeyString = z_convert:to_list(Key),
             ValueString = mochiweb_util:quote_plus(Value),
             [KeyString ++ "=" ++ ValueString | Acc]
