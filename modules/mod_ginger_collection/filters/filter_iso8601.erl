@@ -10,6 +10,10 @@
 
 -include_lib("zotonic.hrl").
 
+iso8601(undefined, _Context) ->
+    undefined;
+iso8601(null, _Context) ->
+    undefined;
 iso8601(Duration, _Context) ->
     %% See https://en.wikipedia.org/wiki/ISO_8601#Durations
     case re:run(Duration, <<"PT(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)S)?">>, [global, {capture, all_but_first, binary}]) of
@@ -23,6 +27,10 @@ iso8601(Duration, _Context) ->
             undefined
     end.
 
+iso8601(undefined, _Format, _Context) ->
+    undefined;
+iso8601(null, _Format, _Context) ->
+    undefined;
 iso8601(<<"-", Datetime/binary>>, Format, Context) ->
     %% Year < 0
     case z_utils:only_digits(Datetime) of
