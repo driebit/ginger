@@ -6,7 +6,7 @@
 
 -mod_title("Ginger RDF").
 -mod_description("RDF in Zotonic").
--mod_prio(500).
+-mod_prio(400).
 -mod_schema(4).
 
 -behaviour(gen_server).
@@ -17,6 +17,7 @@
 -export([
     manage_schema/2,
     pid_observe_rsc_update_done/3,
+    observe_acl_is_allowed/2,
     observe_content_types_dispatch/3,
     observe_search_query/2,
     init/1,
@@ -62,6 +63,22 @@ manage_schema(_, Context) ->
 %%      links to the resource
 pid_observe_rsc_update_done(Pid, #rsc_update_done{id=Id, post_is_a=CatList}, _Context) ->
     gen_server:cast(Pid, #find_links{id=Id, is_a=CatList}).
+
+may_modify(Id, Context) when is_integer(Id)->
+    case m_rsc:is_a(Id, rdf, Context) of
+        true -> false;
+        _ -> undefined
+    end;
+may_modify(_Id, _Context) ->
+    undefined.
+
+%% @doc Block editing of RDF resources bij default.
+observe_acl_is_allowed(#acl_is_allowed{action=insert, object=Id}, Context) ->
+    may_modify(Id, Context);
+observe_acl_is_allowed(#acl_is_allowed{action=update, object=Id}, Context) ->
+    may_modify(Id, Context);
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
 
 observe_search_query(#search_query{} = Query, Context) ->
     ginger_rdf_search:search_query(Query, Context).

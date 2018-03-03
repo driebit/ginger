@@ -130,7 +130,7 @@ ensure_resource(Uri, Props0, Context) ->
                     Id
             end;
         false ->
-            z_render:growl_error("Insufficient rights to update RDF resources", Context),
+            z_render:growl_error(?_("Insufficient rights to update RDF resources", Context), Context),
             error
     end.
 
