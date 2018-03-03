@@ -132,7 +132,7 @@ ensure_resource(Uri, Props0, Context) ->
                     Id
             end;
         false ->
-            z_render:growl_error(?_("Insufficient rights to update RDF resources", Context), Context),
+            z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context),
             error
     end.
 
@@ -194,7 +194,7 @@ to_triples(Id, Context) ->
                                         subject = m_rsc:p(Subject, uri, Context),
                                         object = m_rsc:p(Object, uri, Context)
                                     },
-                                    
+
                                     %% Add literal triple with the edge's object
                                     %% title for convenience.
                                     #triple{
