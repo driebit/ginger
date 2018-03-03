@@ -71,11 +71,14 @@ request(Url, Data, CertificateFile, KeyFile) ->
     SSL = ssl_options(CertificateFile, KeyFile),
     
     case httpc:request(put, {binary_to_list(Url), Headers, "application/json", jsx:encode(Data)}, [{ssl, SSL}], []) of
-        {ok, {_Status, _Headers, Body}} ->
+        {ok, {{_, StatusCode, _}, _Headers, Body}} when StatusCode < 400 ->
             #{<<"handle">> := Handle} = jsx:decode(list_to_binary(Body)),
             {ok, Handle};
+        {ok, {{_, StatusCode, _}, _Headers, Body}} ->
+            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~p ~s", [Data, Url, StatusCode, Body]),
+            {error, StatusCode};
         {error, Reason} ->
-            lager:error("zuiderzee_handle: Could not generate handle ~s: ~s", [Data, Reason]),
+            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~s", [Data, Url, Reason]),
             {error, Reason}
     end.
 
@@ -84,7 +87,6 @@ request(Url, Data, CertificateFile, KeyFile) ->
 ssl_options(CertificateFile, KeyFile) ->
     {ok, PemBin} = file:read_file(KeyFile),
     {Type, Encoded, _} = hd(public_key:pem_decode(PemBin)),
-    
     [
         {certfile, CertificateFile},
         {key, {Type, Encoded}}

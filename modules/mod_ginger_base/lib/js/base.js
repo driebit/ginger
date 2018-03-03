@@ -60,6 +60,41 @@
             $(document).on('touchend', $.proxy(me._documentClick, me));
             $(document).on('keyup', $.proxy(me._documentKeyUp, me));
 
+            // Dirty hack to fix input highlight on ios safari, please remove when ios 11.3 is in use
+
+
+            // Detect ios 11_x_x affected
+            // NEED TO BE UPDATED if new versions are affected
+            (function iOS_CaretBug() {
+
+                var ua = navigator.userAgent,
+                scrollTopPosition,
+                iOS = /iPad|iPhone|iPod/.test(ua),
+                iOS11 = /OS 11_0_1|OS 11_0_2|OS 11_0_3|OS 11_1|OS 11_1_1|OS 11_1_2|OS 11_2|OS 11_2_1/.test(ua);
+
+                // ios 11 bug caret position
+                if ( iOS && iOS11 ) {
+
+                    $("#zmodal").live('show.bs.modal', function(e) {
+                        // Get scroll position before moving top
+                        scrollTopPosition = $(document).scrollTop();
+
+                        // Add CSS to body "position: fixed"
+                        $("body").css("position", "fixed");
+                        $("body").css("width", "100%");
+                    });
+
+                    $("zmodal").live('hide.bs.modal', function(e) {
+
+                        $("body").css("position", "static");
+
+                        //Go back to initial position in document
+                        $(document).scrollTop(scrollTopPosition);
+
+                    });
+
+                }
+            })();
         },
 
         _documentClick: function(event) {

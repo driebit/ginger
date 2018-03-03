@@ -8,6 +8,14 @@
     {% endwith %}
 {% endblock %}
 
+{% block canonical %}
+    {% with m.collection_object[q.database][q.object_id] as document %}
+    {% with document._source as record %}
+        <link rel=”canonical” href=”{{ m.collection_object.uri }}” />
+    {% endwith %}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
 
 {% with m.collection_object[q.database][q.object_id] as document %}
@@ -21,9 +29,16 @@
                     {% block share %}
                         {% include "collection/share.tpl" record=record %}
                     {% endblock %}
-                    {% include "collection/depiction.tpl" record=record template="collection/download.tpl" %}
+                    {% block downloads %}
+                        {% include "collection/downloads.tpl" record=record template="collection/download.tpl" %}
+                    {% endblock %}
                 </div>
             </div>
+
+            {% block prevnext %}
+                {% include "collection/prevnext.tpl" search="beeldenzoeker" %}
+            {% endblock %}
+
             <article class="adlib-object__description">
                 <header>
                     <h6>{_ Dating _} {% include "collection/metadata/date.tpl" %}</h6>

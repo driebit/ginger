@@ -169,6 +169,7 @@ create_triple(Subject, Predicate, Object) ->
     }.
 
 %% @doc Serialize an RDF resource into JSON-LD
+%% @deprecated Use serialize_to_map instead.
 -spec serialize(#rdf_resource{}) -> list().
 serialize(#rdf_resource{id = Id, triples = Triples}) ->
     Data = lists:reverse(lists:foldl(
@@ -299,19 +300,25 @@ triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{v
     #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rdf_resource{id = Id} = RdfResource) ->
     %% Nest values from referenced objects.
-    TripleMap = lists:foldl(
-        fun(#triple{} = Triple, Map) ->
-            %% Replace id in RDF resource with that of the current object
-            merge_values(triple_to_map(Triple, RdfResource#rdf_resource{id = Object}), Map)
-        end,
-        #{<<"@id">> => Object},
-        m_rdf:filter_subject(RdfResource, Object)
-    ),
-    #{Predicate => TripleMap};
+    #{Predicate => merge_triples(RdfResource, Object)};
 triple_to_map(#triple{}, #rdf_resource{}) ->
     %% Ignore triples that belong to other subjects (they are found through the
     %% recursive call in the clause above).
     undefined.
+
+%% @doc Nest values from referenced resources.
+merge_triples(#rdf_resource{id = Subject}, Subject) ->
+    %% Prevent infinite recursion when subject references itself.
+    Subject;
+merge_triples(#rdf_resource{} = RdfResource, Subject) ->
+    lists:foldl(
+        fun(#triple{} = Triple, Map) ->
+            %% Replace id in RDF resource with that of the current object
+            merge_values(triple_to_map(Triple, RdfResource#rdf_resource{id = Subject}), Map)
+        end,
+        #{<<"@id">> => Subject},
+        m_rdf:filter_subject(RdfResource, Subject)
+    ).
 
 %% @doc Merge a key/value map into an accumulator map, combining multiple
 %% values for the same key.

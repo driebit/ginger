@@ -39,5 +39,10 @@ result(#search_result{facets = Facets} = Result, Context) when is_map(Facets) ->
     ok = z_mqtt:publish("~session/search/facets", jsx:encode(Facets), Context),
     Result;
 result(#search_result{facets = Facets} = Result, Context) ->
-    ok = z_mqtt:publish("~session/search/facets", Facets, Context),
+    case z_context:has_session(Context) of
+        true ->
+            ok = z_mqtt:publish("~session/search/facets", Facets, Context);
+        false ->
+            nop
+    end,
     Result.

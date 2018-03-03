@@ -8,7 +8,8 @@
     get/2,
     post/3,
     request/2,
-    request/4
+    request/4,
+    url_with_query_string/2
 ]).
 
 %% @doc GET a URL.
@@ -30,6 +31,15 @@ request(Url, Headers) ->
 
 %% @doc Do an HTTP request.
 -spec request(atom(), string(), proplists:proplist()) -> map() | undefined.
+request(Method, Url, Headers) when is_map(Headers) ->
+    ListHeaders = lists:map(
+        fun({Header, Value}) ->
+            {z_convert:to_list(Header), z_convert:to_list(Value)}
+        end,
+        maps:to_list(Headers)
+    ),
+    request(Method, Url, ListHeaders);
+
 request(Method, Url, Headers) when is_binary(Url) ->
     request(Method, binary_to_list(Url), Headers);
 request(get, Url, Headers) ->
@@ -50,6 +60,21 @@ request(RequestMethod, Url, Headers, Data) ->
         Response ->
             decode(Response)
     end.
+
+url_with_query_string(Url, Params) when is_map(Params) ->
+    url_with_query_string(Url, maps:to_list(Params));
+url_with_query_string(Url, Params) ->
+    Parts = lists:foldl(
+        fun({Key, Value}, Acc) ->
+            KeyString = z_convert:to_list(Key),
+            ValueString = mochiweb_util:quote_plus(Value),
+            [KeyString ++ "=" ++ ValueString | Acc]
+        end,
+        [],
+        Params
+    ),
+    Binary = z_convert:to_binary(string:join(Parts, "&")),
+    <<Url/binary, "?", Binary/binary>>.
 
 handle_response(Response, Url) ->
     case Response of

@@ -32,6 +32,65 @@
 	}
 }
 
+%list--adlib {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 65px;
+	background: $white;
+	border: 1px solid #E0E0E0;
+	list-style: none;
+	font-size: 12px;
+	color: $bzSecondaryColor;
+	border-radius: 4px;
+	opacity: 0;
+	transform: scale(0);
+	transform-origin: bottom center;
+	transition: all 0.3s;
+
+	li:first-child a {
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+	}
+
+	li:last-child a {
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+	}
+
+	a {
+		display: block;
+		padding: 10px;
+		position: relative;
+		z-index: 10;
+		color: inherit;
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus {
+			background: #A2AEBE;
+			text-decoration: none;
+			color: $white;
+		}
+	}
+
+	&:before {
+		content: '';
+		width: 13px;
+	    height: 13px;
+	    position: absolute;
+	    bottom: -11px;
+	    left: 50%;
+	    z-index: 5;
+	    background: #fff;
+	    -ms-transform: rotate(45deg) translateX(-50%);
+	    transform: rotate(45deg) translateX(-50%);
+	    border-right: 1px solid #e0e0e0;
+	    border-bottom: 1px solid #e0e0e0;
+	}
+}
+
 .adlib-download {
 	position: relative;
 	margin-right: 15px;
@@ -48,69 +107,58 @@
 			bottom: 40px;
 			left: 0px;
 		}
-
-		ul {
+		
+		ul,
+		.adlib-download__list__wrapper {
 			transform: scale(1);
 			opacity: 1;
 		}
 	}
 
-	ul {
-		min-width: 100%;
-		margin: 0;
-		padding: 0;
-		position: absolute;
-		bottom: 65px;
-		background: $white;
-		border: 1px solid #E0E0E0;
-		list-style: none;
-		font-size: 12px;
-		color: $bzSecondaryColor;
-		border-radius: 4px;
-		opacity: 0;
-		transform: scale(0);
-		transform-origin: bottom center;
-		transition: all 0.3s;
+	.adlib-download__list__chevron {
+	    width: 13px;
+	    height: 13px;
+	    position: absolute;
+	    bottom: -11px;
+	    left: 50%;
+	    z-index: 5;
+	    background: #fff;
+	    -ms-transform: rotate(45deg) translateX(-50%);
+	    transform: rotate(45deg) translateX(-50%);
+	    border-right: 1px solid #e0e0e0;
+	    border-bottom: 1px solid #e0e0e0;
 
-		li:first-child a {
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-		}
+	    @include mq(min-width, 400px) {
+	    	left: 35%;
+	    }
 
-		li:last-child a {
-			border-bottom-left-radius: 4px;
-			border-bottom-right-radius: 4px;
-		}
+	    @include mq(min-width, 500px) {
+	    	left: 18%;
+	    }
+	}
 
-		a {
-			display: block;
-			padding: 10px;
-			position: relative;
-			z-index: 10;
-			color: inherit;
+	.adlib-download__list__wrapper {
+		@extend %list--adlib;
 
-			&:hover,
-			&:focus,
-			&:active,
-			&:active:focus {
-				background: #A2AEBE;
-				text-decoration: none;
-				color: $white;
-			}
+		width: 94vw;
+		left: -118px;
+
+		@include mq(min-width, 500px) {
+			width: 320px;
+			left: 0;
 		}
 
 		&:before {
-			content: '';
-			width: 13px;
-			height: 13px;
-			position: absolute;
-			bottom: -11px;
-			left: 50%;
-			z-index: 5;
-			background: $white;
-			transform: rotate(45deg) translateX(-50%);
-			border-right: 1px solid #e0e0e0;
-			border-bottom: 1px solid #e0e0e0;
+			display:none;
+		}
+
+		ul {
+			max-height: 200px;
+			overflow-y: scroll;
+
+			@include mq(min-width, 800px) {
+				max-height: 400px;
+			}
 		}
 	}
 }
@@ -133,6 +181,10 @@
 .adlib-share {
 	@extend .adlib-download;
 
+	ul {
+		@extend %list--adlib;
+	}
+	
 	.adlib-action__btn {
 		&:before {
 			transform: none;

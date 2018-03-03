@@ -2,7 +2,9 @@
 -module(sparql_client).
 
 -export([
-    describe/2
+    describe/2,
+    query/2,
+    query/3
 ]).
 
 -include_lib("zotonic.hrl").
@@ -12,21 +14,26 @@ describe(Endpoint, <<"https://", _/binary>> = Uri) ->
 describe(Endpoint, <<"http://", _/binary>> = Uri) ->
     describe(Endpoint, <<"<", Uri/binary, ">">>);
 describe(Endpoint, Clause) ->
-    query(Endpoint, z_convert:to_binary(z_url:url_encode(<<"DESCRIBE ", Clause/binary>>))).
+    query(Endpoint, (<<"DESCRIBE ", Clause/binary>>)).
     
 query(Endpoint, Query) ->
-    Url = <<Endpoint/binary, "?query=", Query/binary>>,
-    case ginger_http_client:get(Url, headers()) of
+    query(Endpoint, Query, headers()).
+
+-spec query(binary(), binary(), map()) -> list().
+query(Endpoint, Query, Headers) ->
+    Qs = z_convert:to_binary(z_url:url_encode(Query)),
+    Url = <<Endpoint/binary, "?query=", Qs/binary>>,
+    case ginger_http_client:get(Url, Headers) of
         undefined ->
             undefined;
         Map ->
             decode(Map)
     end.
 
+decode(#{<<"@graph">> := _} = Data) ->
+    ginger_json_ld:deserialize(Data);
 decode(Data) ->
-    ginger_json_ld:deserialize(Data).
+    Data.
 
 headers() ->
-    [
-        {"Accept", "application/ld+json"}
-    ].
+    #{<<"Accept">> => <<"application/ld+json">>}.
