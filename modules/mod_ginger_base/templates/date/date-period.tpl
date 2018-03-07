@@ -11,5 +11,5 @@ as
     separator,
     date_template
 %}
-    {% include date_template date=start format=format name=name ++ "_start" %}{% if start and end %}{{ separator }}{% endif %}{% include date_template date=end format=format name=name ++ "_end" %}
+    {% include date_template id=id date=start format=format name=name ++ "_start" %}{% if start and end %}{{ separator }}{% endif %}{% include date_template id=id date=end format=format name=name ++ "_end" %}
 {% endwith %}
