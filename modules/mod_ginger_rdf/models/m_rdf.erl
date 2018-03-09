@@ -92,7 +92,7 @@ find_resource(Uri, Context) ->
     m_rsc:uri_lookup(Uri, Context).
 
 %% @doc Ensure URI or Id is a resource in Zotonic and update an existing resource
--spec ensure_resource(string(), list(), #context{}) -> integer() | error.
+-spec ensure_resource(string(), list(), #context{}) -> integer() | {error, term()}.
 ensure_resource(RscId, Props, Context) when is_integer(RscId) ->
     case find_resource(RscId, Context) of
         undefined ->
@@ -132,8 +132,7 @@ ensure_resource(Uri, Props0, Context) ->
                     Id
             end;
         false ->
-            z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context),
-            error
+            {error, eacces}
     end.
 
 

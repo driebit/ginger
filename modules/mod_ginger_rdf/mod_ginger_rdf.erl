@@ -116,41 +116,45 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
             {title, z_context:get_q("object_title", Context)}
         ]
     },
-    {ok, EdgeId} = m_rdf_triple:insert(Triple, Context),
+    case m_rdf_triple:insert(Triple, Context) of
+        {ok, EdgeId} ->
 
-    Props = z_context:get_q("object_props", Context),
-    {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
-    case proplists:get_value(<<"thumbnail">>, Props) of
-        undefined ->
-            noop;
-        Thumbnail ->
-            %% Save thumbnail in Zotonic, as this seems to be the only way
-            %% to show the thumbnail in the admin. Notifications such as
-            %% media_stillimage only work for resources that already have a
-            %% depiction and thus are not suitable for fetching depictions
-            %% from outside (linked) sources.
-            case m_media:depiction(Object, Context) of
+            Props = z_context:get_q("object_props", Context),
+            {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
+            case proplists:get_value(<<"thumbnail">>, Props) of
                 undefined ->
-                    case m_media:replace_url(Thumbnail, Object, [], Context) of
-                        {ok, _Medium} ->
-                            noop;
-                        {error, Reason} ->
-                            lager:error("Could not insert medium ~p: ~p", [Thumbnail, Reason])
-                    end;
-                _MediumId ->
-                    noop
-            end
-    end,
-    ObjectBin = z_convert:to_binary(Object),
-    Context1 = case proplists:get_value(predicate, Args) of
-        depiction ->
-            z_render:wire({script, [{script, [
-                    <<"if (typeof z_choose_zmedia === 'function') {z_choose_zmedia(", ObjectBin/binary, ");}">>
-                ]}]}, Context);
-        _ ->
-            Context
-    end,
-    z_render:dialog_close(Context1).
+                    noop;
+                Thumbnail ->
+                    %% Save thumbnail in Zotonic, as this seems to be the only way
+                    %% to show the thumbnail in the admin. Notifications such as
+                    %% media_stillimage only work for resources that already have a
+                    %% depiction and thus are not suitable for fetching depictions
+                    %% from outside (linked) sources.
+                    case m_media:depiction(Object, Context) of
+                        undefined ->
+                            case m_media:replace_url(Thumbnail, Object, [], Context) of
+                                {ok, _Medium} ->
+                                    noop;
+                                {error, Reason} ->
+                                    lager:error("Could not insert medium ~p: ~p", [Thumbnail, Reason])
+                            end;
+                        _MediumId ->
+                            noop
+                    end
+            end,
+            ObjectBin = z_convert:to_binary(Object),
+            Context1 = case proplists:get_value(predicate, Args) of
+                           depiction ->
+                               z_render:wire({script, [{script, [
+                                   <<"if (typeof z_choose_zmedia === 'function') {z_choose_zmedia(", ObjectBin/binary, ");}">>
+                               ]}]}, Context);
+                           _ ->
+                               Context
+                       end,
+            z_render:dialog_close(Context1);
+        {error, _} ->
+            z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context)
+    end.
 
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).
