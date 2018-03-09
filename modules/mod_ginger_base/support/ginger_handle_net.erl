@@ -78,7 +78,7 @@ request(Url, Data, CertificateFile, KeyFile) ->
             lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~p ~s", [Data, Url, StatusCode, Body]),
             {error, StatusCode};
         {error, Reason} ->
-            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~s", [Data, Url, Reason]),
+            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~p", [Data, Url, Reason]),
             {error, Reason}
     end.
 

@@ -9,32 +9,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-01-25 14:23+0100\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "PO-Revision-Date: 2016-01-26 10:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.8.1\n"
 
-#: /vagrant/modules/mod_ginger_foundation/templates/page.media.tpl:32
+#: user/modules/mod_ginger_foundation/templates/page.media.tpl:34
 msgid "Actors: "
 msgstr "Acteurs:"
 
-#: /vagrant/modules/mod_ginger_foundation/templates/all-in.tpl:11
-msgid "Everything for "
-msgstr "Alles voor "
+#: user/modules/mod_ginger_foundation/templates/page.publication.tpl:40
+msgid "Contract all"
+msgstr ""
 
-#: /vagrant/modules/mod_ginger_foundation/templates/email_base.tpl:4
-msgid "Hello from Zotonic"
-msgstr "Hallo van Ginger"
+#: user/modules/mod_ginger_foundation/templates/_admin_features.category.tpl:9
+msgid "Enable comments"
+msgstr ""
 
-#: /vagrant/modules/mod_ginger_foundation/templates/page.collection.tpl:37
-#: /vagrant/modules/mod_ginger_foundation/templates/page.keyword.tpl:35
+#: user/modules/mod_ginger_foundation/templates/all-in.tpl:11
+#, fuzzy
+msgid "Everything for: "
+msgstr "Alles voor: "
+
+#: user/modules/mod_ginger_foundation/templates/page.publication.tpl:40
+msgid "Expand all"
+msgstr ""
+
+#: user/modules/mod_ginger_foundation/templates/page.keyword.tpl:37
+#: user/modules/mod_ginger_foundation/templates/page.collection.tpl:39
 msgid "Inhoud"
 msgstr "Inhoud"
+
+#~ msgid "Hello from Zotonic"
+#~ msgstr "Hallo van Ginger"
 
 #~ msgid "Authored"
 #~ msgstr "Geschreven door"

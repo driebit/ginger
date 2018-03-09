@@ -9,7 +9,7 @@ as
 %}
     <label class="control-label" for="{{ html_id }}">{_ Month _}</label>
     <select class="form-control" name="dt:m:1:{{ name }}" id="{{ html_id }}">
-        <option{% if value == "" %} selected{% endif %}></option>
+        <option value=""{% if value == "" %} selected{% endif %}></option>
         <option value="1"{% if value == 1 %} selected{% endif %}>{_ Jan _}</option>
         <option value="2"{% if value == 2 %} selected{% endif %}>{_ Feb _}</option>
         <option value="3"{% if value == 3 %} selected{% endif %}>{_ Mar _}</option>
