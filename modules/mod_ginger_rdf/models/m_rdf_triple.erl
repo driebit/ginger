@@ -56,7 +56,7 @@ find(#triple{subject=Subject, predicate=Predicate, object=Object}, Context) ->
     end.
 
 %% @doc Insert a triple, making sure no duplicates are created
--spec insert(#triple{}, #context{}) -> {ok, integer()} | {error, string()}.
+-spec insert(#triple{}, #context{}) -> {ok, integer()} | {error, term()}.
 insert(#triple{
     type=_Type,
     subject=Subject,
@@ -65,13 +65,22 @@ insert(#triple{
     object=Object,
     object_props=ObjectProps
 }, Context) ->
+    SubjectId = m_rdf:ensure_resource(Subject, SubjectProps, Context),
     PredicateId = ensure_predicate(Predicate, Context),
-    m_edge:insert(
-        m_rdf:ensure_resource(Subject, SubjectProps, Context),
-        PredicateId,
-        m_rdf:ensure_resource(Object, ObjectProps, Context),
-        Context
-    ).
+    ObjectId = m_rdf:ensure_resource(Object, ObjectProps, Context),
+    case {SubjectId, PredicateId, ObjectId} of
+        {SubjectId, PredicateId, ObjectId}
+            when is_integer(SubjectId), is_integer(PredicateId), is_integer(ObjectId) ->
+            m_edge:insert(
+                SubjectId,
+                PredicateId,
+                ObjectId,
+                Context
+            );
+        _ ->
+            {error, eacces}
+    end.
+
 
 %% @doc Ensure predicate exists. If it doesn't yet exist, create it.
 -spec ensure_predicate(string(), #context{}) -> integer().

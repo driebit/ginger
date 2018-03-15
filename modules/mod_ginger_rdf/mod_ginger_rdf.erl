@@ -6,8 +6,8 @@
 
 -mod_title("Ginger RDF").
 -mod_description("RDF in Zotonic").
--mod_prio(500).
--mod_schema(1).
+-mod_prio(400).
+-mod_schema(4).
 
 -behaviour(gen_server).
 
@@ -17,6 +17,7 @@
 -export([
     manage_schema/2,
     pid_observe_rsc_update_done/3,
+    observe_acl_is_allowed/2,
     observe_content_types_dispatch/3,
     observe_search_query/2,
     init/1,
@@ -31,10 +32,15 @@
 
 -record(state, {context}).
 
-manage_schema(install, Context) ->
+manage_schema(_, Context) ->
     Datamodel = #datamodel{
         categories=[
             {rdf, meta, [{title, <<"RDF resource">>}]}
+        ],
+        resources=[
+            {rdf_content_group, content_group, [
+                {title, <<"RDF resources">>}
+            ]}
         ]
     },
     z_datamodel:manage(?MODULE, Datamodel, Context),
@@ -57,6 +63,22 @@ manage_schema(install, Context) ->
 %%      links to the resource
 pid_observe_rsc_update_done(Pid, #rsc_update_done{id=Id, post_is_a=CatList}, _Context) ->
     gen_server:cast(Pid, #find_links{id=Id, is_a=CatList}).
+
+may_modify(Id, Context) when is_integer(Id)->
+    case m_rsc:is_a(Id, rdf, Context) of
+        true -> false;
+        _ -> undefined
+    end;
+may_modify(_Id, _Context) ->
+    undefined.
+
+%% @doc Block editing of RDF resources bij default.
+observe_acl_is_allowed(#acl_is_allowed{action=insert, object=Id}, Context) ->
+    may_modify(Id, Context);
+observe_acl_is_allowed(#acl_is_allowed{action=update, object=Id}, Context) ->
+    may_modify(Id, Context);
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
 
 observe_search_query(#search_query{} = Query, Context) ->
     ginger_rdf_search:search_query(Query, Context).
@@ -94,41 +116,45 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
             {title, z_context:get_q("object_title", Context)}
         ]
     },
-    {ok, EdgeId} = m_rdf_triple:insert(Triple, Context),
+    case m_rdf_triple:insert(Triple, Context) of
+        {ok, EdgeId} ->
 
-    Props = z_context:get_q("object_props", Context),
-    {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
-    case proplists:get_value(<<"thumbnail">>, Props) of
-        undefined ->
-            noop;
-        Thumbnail ->
-            %% Save thumbnail in Zotonic, as this seems to be the only way
-            %% to show the thumbnail in the admin. Notifications such as
-            %% media_stillimage only work for resources that already have a
-            %% depiction and thus are not suitable for fetching depictions
-            %% from outside (linked) sources.
-            case m_media:depiction(Object, Context) of
+            Props = z_context:get_q("object_props", Context),
+            {_S, _P, Object} = m_edge:get_triple(EdgeId, Context),
+            case proplists:get_value(<<"thumbnail">>, Props) of
                 undefined ->
-                    case m_media:replace_url(Thumbnail, Object, [], Context) of
-                        {ok, _Medium} ->
-                            noop;
-                        {error, Reason} ->
-                            lager:error("Could not insert medium ~p: ~p", [Thumbnail, Reason])
-                    end;
-                _MediumId ->
-                    noop
-            end
-    end,
-    ObjectBin = z_convert:to_binary(Object),
-    Context1 = case proplists:get_value(predicate, Args) of
-        depiction ->
-            z_render:wire({script, [{script, [
-                    <<"if (typeof z_choose_zmedia === 'function') {z_choose_zmedia(", ObjectBin/binary, ");}">>
-                ]}]}, Context);
-        _ ->
-            Context
-    end,
-    z_render:dialog_close(Context1).
+                    noop;
+                Thumbnail ->
+                    %% Save thumbnail in Zotonic, as this seems to be the only way
+                    %% to show the thumbnail in the admin. Notifications such as
+                    %% media_stillimage only work for resources that already have a
+                    %% depiction and thus are not suitable for fetching depictions
+                    %% from outside (linked) sources.
+                    case m_media:depiction(Object, Context) of
+                        undefined ->
+                            case m_media:replace_url(Thumbnail, Object, [], Context) of
+                                {ok, _Medium} ->
+                                    noop;
+                                {error, Reason} ->
+                                    lager:error("Could not insert medium ~p: ~p", [Thumbnail, Reason])
+                            end;
+                        _MediumId ->
+                            noop
+                    end
+            end,
+            ObjectBin = z_convert:to_binary(Object),
+            Context1 = case proplists:get_value(predicate, Args) of
+                           depiction ->
+                               z_render:wire({script, [{script, [
+                                   <<"if (typeof z_choose_zmedia === 'function') {z_choose_zmedia(", ObjectBin/binary, ");}">>
+                               ]}]}, Context);
+                           _ ->
+                               Context
+                       end,
+            z_render:dialog_close(Context1);
+        {error, _} ->
+            z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context)
+    end.
 
 start_link(Args) when is_list(Args) ->
     gen_server:start_link(?MODULE, Args, []).
