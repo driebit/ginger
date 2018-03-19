@@ -140,13 +140,9 @@
 	.adlib-download__list__wrapper {
 		@extend %list--adlib;
 
-		width: 94vw;
-		left: -118px;
-
-		@include mq(min-width, 500px) {
-			width: 320px;
-			left: 0;
-		}
+		width: 320px;
+		max-width: 94vw;
+		left: 0;
 
 		&:before {
 			display:none;
