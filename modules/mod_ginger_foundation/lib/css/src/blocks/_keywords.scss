@@ -4,7 +4,7 @@
 }
 
 .keywords__label {
-    padding-left: 0;
+    @extend %btn;
 }
 
 .keywords__list {
@@ -35,7 +35,6 @@
 
     .keywords__label {
         width: 30%;
-        @extend %btn;
         float: left;
         margin-bottom: 0;
         cursor: auto;

@@ -151,11 +151,13 @@
         bottom: 0px;
         left: 0px;
         z-index: 0;
-        @extend %cf;
     }
 
     .main-footer__container {
-        @extend %main-container;
+        width: 90%;
+        @include size(max-width, 1000);
+        margin: 0 auto;
+        position: relative;
     }
 
     .main-footer__column {
