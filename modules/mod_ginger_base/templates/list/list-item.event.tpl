@@ -1,7 +1,15 @@
 {% extends "list/list-item.tpl" %}
 
 {% block list_item_date %}
-    <time datetime="{{ id.date_start|date:"Y-F-jTH:i" }}" class="list__item__content__date">{{ id.date_start|date:"j M Y - H:i" }}</time>
+
+    <time datetime="{{ id.date_start|date:"Y-F-jTH:i" }}" class="list__item__content__date">
+        {% if id.date_is_all_day %}
+            {{ id.date_start|date:"j M Y" }}
+        {% else %}
+            {{ id.date_start|date:"j M Y - H:i" }}
+        {% endif %}
+    </time>
+
 {% endblock %}
 
 {% block list_item_location %}
