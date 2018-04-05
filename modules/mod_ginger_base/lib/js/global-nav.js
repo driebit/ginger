@@ -48,7 +48,8 @@
         _handleDocumentClick: function(event) {
             event.stopPropagation();
 
-            var $target = $(event.originalEvent.target),
+            var the_event = event.originalEvent || event,
+                $target = $(the_event.target),
                 isOpen = $('.global-nav:eq(0)').hasClass('is-open'),
                 me = this;
 
