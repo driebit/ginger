@@ -1,6 +1,6 @@
 {% extends "base.tpl" %}
 
-{% block title %}{_ Search _}: {{ q.qs }}{% endblock %}
+{% block title %}{_ Search _}: {{ q.qs|escape }}{% endblock %}
 
 {% block body_class %}t--search{% endblock %}
 
