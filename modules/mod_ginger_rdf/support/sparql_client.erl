@@ -4,10 +4,12 @@
 -export([
     describe/2,
     query/2,
-    query/3
+    query/3,
+    get_resource/3
 ]).
 
 -include_lib("zotonic.hrl").
+-include_lib("../include/rdf.hrl").
 
 describe(Endpoint, <<"https://", _/binary>> = Uri) ->
     describe(Endpoint, <<"<", Uri/binary, ">">>);
@@ -28,6 +30,18 @@ query(Endpoint, Query, Headers) ->
             undefined;
         Map ->
             decode(Map)
+    end.
+
+%% @doc
+-spec get_resource(binary(), binary(), [binary()]) -> #rdf_resource{} | undefined.
+get_resource(Endpoint, Uri, Properties) ->
+    {Query, Arguments} = sparql_query:select_properties(Uri, Properties),
+    case query(Endpoint, Query, #{<<"Accept">> => <<"application/json">>}) of
+        undefined ->
+            unfined;
+        #{<<"results">> := #{<<"bindings">> := [Bindings]}} ->
+            ResolvedBindings = sparql_query:resolve_arguments(Bindings, Arguments),
+            sparql_result:result_to_rdf(ResolvedBindings, Uri)
     end.
 
 decode(#{<<"@graph">> := _} = Data) ->
