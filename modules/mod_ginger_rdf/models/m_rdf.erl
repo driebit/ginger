@@ -16,7 +16,9 @@
     object/3,
     objects/2,
     filter_subject/2,
+    ensure_resource/2,
     ensure_resource/3,
+    ensure_resource_edges/4,
     lookup_triple/2,
     to_triples/2
 ]).
@@ -91,6 +93,14 @@ find_resource(Uri, Context) when is_integer(Uri) ->
 find_resource(Uri, Context) ->
     m_rsc:uri_lookup(Uri, Context).
 
+%% @doc Ensure RDF resource or URI is a non-authoritative (pointer) resource in
+%%      Zotonic.
+ensure_resource(#rdf_resource{id = Uri} = Rdf, Context) ->
+    Props = rdf_to_rsc_props(Rdf),
+    ensure_resource(Uri, Props, Context);
+ensure_resource(Uri, Context) when is_binary(Uri) ->
+    ensure_resource(Uri, [], Context).
+
 %% @doc Ensure URI or Id is a resource in Zotonic and update an existing resource
 -spec ensure_resource(string(), list(), #context{}) -> integer() | {error, term()}.
 ensure_resource(RscId, Props, Context) when is_integer(RscId) ->
@@ -135,6 +145,23 @@ ensure_resource(Uri, Props0, Context) ->
             {error, eacces}
     end.
 
+%% @doc Ensure a Zotonic resource has edges to a set of external RDFs.
+-spec ensure_resource_edges(m_rsc:resource(), atom(), [#rdf_resource{} | binary()], z:context()) -> ok.
+ensure_resource_edges(Subject, Predicate, Rdfs, Context) ->
+    Ids = lists:map(
+        fun(Rdf) ->
+            ensure_resource(Rdf, Context)
+        end,
+        Rdfs
+    ),
+    ok = m_edge:replace(Subject, Predicate, Ids, Context).
+
+%% @doc Derive Zotonic resource properties from RDF triples.
+-spec rdf_to_rsc_props(#rdf_resource{}) -> proplists:proplist().
+rdf_to_rsc_props(#rdf_resource{triples = Triples}) ->
+    [
+        {title, lookup_triple(title, Triples)}
+    ].
 
 %% @doc Fetch a RDF resource
 rsc(Uri, Context) ->
