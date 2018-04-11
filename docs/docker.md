@@ -64,7 +64,7 @@ docker-compose exec postgres psql -U zotonic
 2. Then run:
 
     ```bash
-    $ make import-db-file db=site-name file=site-dump.sql
+    $ make import-db-file site=site-name file=site-dump.sql
     ```
 
 ### Import a database from a remote backup
