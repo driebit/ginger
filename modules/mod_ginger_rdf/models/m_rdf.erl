@@ -91,7 +91,7 @@ object(Url, Predicate, Context) ->
 find_resource(Uri, Context) when is_integer(Uri) ->
     m_rsc:rid(Uri, Context);
 find_resource(Uri, Context) ->
-    m_rsc:uri_lookup(Uri, Context).
+    m_rsc:uri_lookup(z_sanitize:uri(Uri), Context).
 
 %% @doc Ensure RDF resource or URI is a non-authoritative (pointer) resource in
 %%      Zotonic.
