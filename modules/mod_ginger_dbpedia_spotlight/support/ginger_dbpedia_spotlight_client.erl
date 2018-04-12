@@ -32,9 +32,16 @@ candidates(Text, Language) ->
     },
     case request(Language, <<"/candidates">>, Request) of
         undefined ->
+            %% Failed HTTP request.
             undefined;
-        #{<<"annotation">> := #{<<"surfaceForm">> := Entities}} ->
-            [fix_uri(E, Language) || E <- Entities]
+        #{<<"annotation">> := #{<<"surfaceForm">> := Entities}} when is_list(Entities) ->
+            [fix_uri(E, Language) || E <- Entities];
+        #{<<"annotation">> := #{<<"surfaceForm">> := Entity}} when is_map(Entity) ->
+            %% A single found entity is unfortunately not returned as a list but an object instead.
+            [fix_uri(Entity, Language)];
+        _ ->
+            %% No candidates found.
+            []
     end.
 
 -spec request(atom(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
@@ -75,4 +82,3 @@ qs(#dbpedia_spotlight_request{text = T, confidence = C, types = Y, sparql = S, p
 fix_uri(#{<<"resource">> := #{<<"@uri">> := Uri} = Rsc} = Entity, Language) ->
     FullUri = <<"http://", (z_convert:to_binary(Language))/binary, ".dbpedia.org/resource/", Uri/binary>>,
     Entity#{<<"resource">> => Rsc#{<<"@uri">> => FullUri}}.
-    
