@@ -20,28 +20,34 @@
 %% @doc Extract annotation URIs to DBpedia resources from the Zotonic resource's texts.
 -spec annotate(m_resource:resource(), atom(), z:context()) -> [map()] | undefined.
 annotate(Rsc, Language, Context) ->
-    Texts = rsc_entity_text(Rsc, Language, Context),
-    ginger_dbpedia_spotlight_client:annotate(Texts, Language).
+    Text = rsc_entity_text(Rsc, Language, Context),
+    ginger_dbpedia_spotlight_client:annotate(Text, Language).
 
 %% @doc Extract candidate URIs to DBpedia resources from the Zotonic resource's texts.
--spec candidates(m_rsc:resource(), atom(), z:context()) -> [binary()] | undefined.
+-spec candidates(m_rsc:resource(), atom(), z:context()) -> [binary()].
 candidates(Rsc, Language, Context) ->
-    Texts = rsc_entity_text(Rsc, Language, Context),
-    case ginger_dbpedia_spotlight_client:candidates(Texts, Language) of
+    Text = rsc_entity_text(Rsc, Language, Context),
+    case ginger_dbpedia_spotlight_client:candidates(Text, Language) of
         undefined ->
-            undefined;
+            [];
         Candidates ->
             lists:map(fun extract_uri/1, Candidates)
     end.
 
-%% @doc Get texts of and related to the Zotonic resource which will be used for entity extraction.
--spec rsc_entity_text(m_rsc:resource(), atom(), z:context()) -> [binary()].
+%% @doc Get text of and related to the Zotonic resource which will be used for entity extraction.
+-spec rsc_entity_text(m_rsc:resource(), atom(), z:context()) -> binary().
 rsc_entity_text(Rsc, Language, Context) ->
     DefaultTexts = [text(Rsc, P, Language, Context) || P <- [title, subtitle, summary, body]],
-    z_notifier:foldl(#rsc_entity_text{id = Rsc, language = Language}, DefaultTexts, Context).
+    lists:foldl(
+        fun(B, Acc) ->
+            <<Acc/binary, " ", B/binary>>
+        end,
+        <<>>,
+        z_notifier:foldl(#rsc_entity_text{id = Rsc, language = Language}, DefaultTexts, Context)
+    ).
 
 text(Rsc, Property, Language, Context) ->
-    z_trans:trans(m_rsc:p(Rsc, Property, Context), Language).
+    z_trans:trans(m_rsc:p(Rsc, Property, <<>>, Context), Language).
 
 extract_uri(#{<<"resource">> := #{<<"@uri">> := Uri}}) ->
     Uri.

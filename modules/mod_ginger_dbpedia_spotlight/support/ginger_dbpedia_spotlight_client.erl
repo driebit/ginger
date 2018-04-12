@@ -17,7 +17,7 @@
 %% @doc A 4 step process - Spotting, Candidate Mapping, Disambiguation and Linking / Stats - for
 %%      linking unstructured information sources.
 -spec annotate(binary(), atom()) -> binary().
-annotate(Text, Language) ->
+annotate(Text, Language) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
@@ -25,8 +25,8 @@ annotate(Text, Language) ->
 
 %% @doc A 2 step process - Spotting, Candidate Mapping - for linking unstructured information
 %%      sources.
--spec candidates(binary(), atom()) -> [map()].
-candidates(Text, Language) ->
+-spec candidates(binary(), atom()) -> [map()] | undefined.
+candidates(Text, Language) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
@@ -58,17 +58,7 @@ request(Endpoint, Language, Method, #dbpedia_spotlight_request{} = Request) ->
 -spec qs(#dbpedia_spotlight_request{}) -> binary().
 qs(#dbpedia_spotlight_request{text = T, confidence = C, types = Y, sparql = S, policy = P}) ->
     Types = string:join(Y, ","),
-    Text = z_convert:to_binary(
-        z_url:url_encode(
-            lists:foldl(
-                fun(B, Acc) ->
-                    <<Acc/binary, " ", B/binary>>
-                end,
-                <<>>,
-                T
-            )
-        )
-    ),
+    Text = z_convert:to_binary(z_url:url_encode(z_html:strip(T))),
     <<
         "?text=", Text/binary,
         "&confidence=", (z_convert:to_binary(C))/binary,
