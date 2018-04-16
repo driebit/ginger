@@ -30,11 +30,8 @@
             </header>
 
             <section>
-                {% if rsc.summary %}
-                    {{ rsc.summary|truncate:400 }}
-                {% else %}
-                    {{ rsc.body|truncate:400 }}
-                {% endif %}
+
+                <p>{{ rsc.id|summary:400 }}</p>
 
                 <p><a href="{% url page use_absolute_url id=rsc.id %}" target="_blank" class="ginger-embed__readmore">Lees verder</a></p>
             </section>
