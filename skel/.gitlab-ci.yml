@@ -1,0 +1,89 @@
+services:
+    - postgres:9.5
+    - elasticsearch:5.1
+
+variables:
+    POSTGRES_USER: zotonic
+    POSTGRES_DB: ${CI_PROJECT_NAME}
+
+build-npm:
+    stage: build
+    image: node:8.9.1
+    artifacts:
+        name: "${CI_COMMIT_SHA}"
+        expire_in: 1 day
+        paths:
+            - lib/css/site/screen.css
+    script:
+        # Clone Ginger for its SCSS files that are imported in sites.
+        - git clone https://github.com/driebit/ginger.git
+        - npm install
+        - npm run build
+
+.test_template: &test_template
+    stage: test
+    image: driebit/ginger:${GINGER_VERSION}
+    before_script:
+        - apk add --no-cache $BUILD_APKS
+        - git -C /opt/ginger/modules clone https://github.com/driebit/mod_elasticsearch
+        - ln -s $CI_PROJECT_DIR /opt/ginger/sites/
+        - cd /opt/zotonic
+        - DEBUG=1 make
+    script: /opt/zotonic/bin/zotonic sitetest $CI_PROJECT_NAME
+
+test_ginger_stable:
+    <<: *test_template
+    variables:
+        GINGER_VERSION: stable
+    only:
+        - production
+
+test_ginger_latest:
+    <<: *test_template
+    variables:
+        GINGER_VERSION: latest
+    except:
+        - production
+
+.deploy_template: &deploy_template
+    stage: deploy
+    script:
+        - apk add --no-cache openssh-client rsync
+        - eval $(ssh-agent -s)
+        - echo "$DEPLOY_PRIVATE_KEY" | ssh-add -
+        - mkdir -p ~/.ssh
+        - echo "$DEPLOY_PUBLIC_KEYS" > ~/.ssh/known_hosts
+        - rsync -Pav --delete --exclude files/ --exclude config.d/ . zotonic@${ZOTONIC_HOST}:/srv/zotonic/sites/${CI_PROJECT_NAME}
+        - ssh zotonic@${ZOTONIC_HOST} "zotonic rpc 'schema reset [${CI_PROJECT_NAME}]'"
+
+deploy_test:
+    <<: *deploy_template
+    environment:
+        name: test
+        url: "http://${CI_PROJECT_NAME}.${GINGER_TEST}"
+    variables:
+        ZOTONIC_HOST: $GINGER_TEST
+    only:
+        - master
+
+deploy_acc:
+    <<: *deploy_template
+    environment:
+        name: acceptance
+        url: "https://${CI_PROJECT_NAME}.${GINGER_ACC}"
+    variables:
+        ZOTONIC_HOST: $GINGER_ACC
+    only:
+        - acceptance
+
+.deploy_prod:
+    <<: *deploy_template
+    environment:
+        name: production
+        url: "PRODUCTION URL HERE"
+    variables:
+        ZOTONIC_HOST: "PRODUCTION HOST HERE"
+    only:
+        - production
+    when: manual
+
