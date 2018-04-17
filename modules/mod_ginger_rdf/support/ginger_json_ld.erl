@@ -247,6 +247,9 @@ deserialize(<<"@id">>, Uri, #rdf_resource{} = Acc, _Context) ->
     Acc#rdf_resource{id = Uri};
 deserialize(Predicate, #{<<"@id">> := Uri}, #rdf_resource{} = Acc, Context) ->
     deserialize(Predicate, Uri, Acc, Context);
+deserialize(<<"@type">>, Type, #rdf_resource{id = Subject, triples = Triples} = Acc, _Context) ->
+    Triple = triple(Subject, <<"rdf:type">>, Type),
+    Acc#rdf_resource{triples = [Triple | Triples]};
 deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc, _Context) ->
     AllTriples = lists:foldl(
         fun(#{<<"@id">> := _Subject} = Map, ParentAcc) ->
