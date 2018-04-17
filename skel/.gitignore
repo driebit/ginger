@@ -1,6 +1,7 @@
 .DS_Store
 files/*
 !files/fixtures
+lib/css/site
 node_modules
 .sass-cache
 config.d
