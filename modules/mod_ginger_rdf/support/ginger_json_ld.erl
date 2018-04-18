@@ -68,6 +68,8 @@ resolve_predicate(<<"http://", _/binary>> = Predicate, _Context) ->
     Predicate;
 resolve_predicate(<<"https://", _/binary>> = Predicate, _Context) ->
     Predicate;
+resolve_predicate(<<"@type">>, _Context) ->
+    <<?NS_RDF, "type">>;
 resolve_predicate(Predicate, Context) ->
     case binary:split(Predicate, <<":">>) of
         [Namespace, Property] ->
@@ -247,9 +249,6 @@ deserialize(<<"@id">>, Uri, #rdf_resource{} = Acc, _Context) ->
     Acc#rdf_resource{id = Uri};
 deserialize(Predicate, #{<<"@id">> := Uri}, #rdf_resource{} = Acc, Context) ->
     deserialize(Predicate, Uri, Acc, Context);
-deserialize(<<"@type">>, Type, #rdf_resource{id = Subject, triples = Triples} = Acc, _Context) ->
-    Triple = triple(Subject, <<"rdf:type">>, Type),
-    Acc#rdf_resource{triples = [Triple | Triples]};
 deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc, _Context) ->
     AllTriples = lists:foldl(
         fun(#{<<"@id">> := _Subject} = Map, ParentAcc) ->
@@ -296,7 +295,7 @@ triple_to_json(#triple{type = resource, predicate = Predicate, object = Object})
     {Predicate, [{<<"@id">>, Object}]}.
 
 triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, type = resource, object = Object}, #rdf_resource{id = Id}) ->
-    #{<<"@type">> => Object};
+    #{<<"@type">> => #{<<"@id">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
