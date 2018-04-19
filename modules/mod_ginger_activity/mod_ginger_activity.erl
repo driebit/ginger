@@ -15,10 +15,17 @@
     init/1,
     event/2,
     register_activity/2,
+    register_activity/3,
     pid_observe_ginger_activity/3
 ]).
 
 -include("include/ginger_activity.hrl").
+
+-type activity() :: #ginger_activity{}.
+
+-export_type([
+    activity/0
+]).
 
 init(Context) ->
     case z_db:table_exists(activity_log, Context) of
@@ -59,7 +66,9 @@ init(Context) ->
                 create index activity_log_rsc_id_index on activity_log (rsc_id);
             ", Context),
             ok
-    end.
+    end,
+    m_ginger_activity:ensure_target_column(Context),
+    m_ginger_activity_inbox:init(Context).
 
 % @doc postback for activating resources
 event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
@@ -72,7 +81,12 @@ event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
     end.
 
 % @doc logical entry point for registering activity
-register_activity(RscId, Context) ->
+-spec register_activity(m_rsc:resource(), z:context()) -> ok.
+register_activity(Rsc, Context) ->
+    register_activity(Rsc, undefined, Context).
+
+-spec register_activity(m_rsc:resource(), m_rsc:resource(), z:context()) -> ok.
+register_activity(RscId, Target, Context) ->
     Time = calendar:universal_time(),
     UserId = z_acl:user(Context),
     IpAddress = case z_context:get_reqdata(Context) of
@@ -85,28 +99,46 @@ register_activity(RscId, Context) ->
                     z_convert:to_binary(string:strip(lists:last(string:tokens(Hosts, ","))))
             end
     end,
-    Entry = #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress},
-    z_notifier:notify({ginger_activity, Entry}, Context),
+    Activity = #ginger_activity{
+        rsc_id = RscId,
+        target_id = Target,
+        time = Time,
+        user_id = UserId,
+        ip_address = IpAddress
+    },
+    z_notifier:notify({ginger_activity, Activity}, Context),
     ok.
 
-pid_observe_ginger_activity(_Pid, {ginger_activity, Entry}, Context) ->
-    #entry{rsc_id = RscId, time = Time, user_id = UserId, ip_address = IpAddress} = Entry,
+pid_observe_ginger_activity(_Pid, {ginger_activity, Activity}, Context) ->
+    #ginger_activity{rsc_id = RscId} = Activity,
     case z_convert:to_bool(m_config:get_value(mod_ginger_activity, persist_activity, Context)) of
         true ->
-            insert_activity(RscId, Time, UserId, IpAddress, Context),
+            insert_activity(Activity, Context),
             z_pivot_rsc:pivot(RscId, Context),
             ok;
         false ->
             ok
     end.
 
-% @doc single entry point for inserting activity into the database
-% insert_activity(RscId, Context) ->
-%     insert_activity(RscId, calendar:local_time(), Context).
-% insert_activity(RscId, DateTime, Context) ->
-%     insert_activity(RscId, DateTime, undefined, Context).
-% insert_activity(RscId, DateTime, UserId, Context) ->
-%     insert_activity(RscId, DateTime, UserId, undefined, Context).
-insert_activity(RscId, DateTime, UserId, IpAddress, Context) ->
-    Props = [{rsc_id, RscId}, {time, DateTime}, {user_id, UserId}, {ip_address, IpAddress}],
-    z_db:insert(activity_log, Props, Context).
+-spec insert_activity(activity(), z:context()) -> ok.
+insert_activity(Activity, Context) ->
+    #ginger_activity{
+        rsc_id = Rsc,
+        target_id = Target,
+        time = Time,
+        user_id = User,
+        ip_address = Ip
+    } = Activity,
+
+    Props = [
+        {rsc_id, Rsc},
+        {target_id, Target},
+        {time, Time},
+        {user_id, User},
+        {ip_address, Ip}
+    ],
+    {ok, Id} = z_db:insert(activity_log, Props, Context),
+    ActivityWithId = Activity#ginger_activity{id = Id},
+    z_notifier:notify_sync(#ginger_activity_inserted{activity = ActivityWithId}, Context),
+    ok.
+
