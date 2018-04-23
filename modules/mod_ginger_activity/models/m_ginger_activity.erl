@@ -1,11 +1,13 @@
 -module(m_ginger_activity).
+
 -behaviour(gen_model).
 
 -export([
     rsc_count/2,
     m_find_value/3,
     m_to_list/2,
-    m_value/2
+    m_value/2,
+    ensure_target_column/1
 ]).
 
 -include_lib("zotonic.hrl").
@@ -27,3 +29,20 @@ m_to_list(_, _Context) ->
 
 m_value(_, _Context) ->
     undefined.
+
+ensure_target_column(Context) ->
+    case lists:member(target_id, z_db:column_names(activity_log, Context)) of
+        true ->
+            ok;
+        false ->
+            [] = z_db:q("
+                alter table activity_log
+                    add column target_id int,
+                    add constraint fk_activity_log_target_id
+                        foreign key (target_id)
+                        references rsc (id)
+                        on delete cascade
+                ;",
+                Context
+            )
+    end.
