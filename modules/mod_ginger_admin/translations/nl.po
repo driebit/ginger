@@ -9,30 +9,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-22 18:57+0100\n"
-"PO-Revision-Date: 2016-03-22 18:57+0100\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-04-24 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: /vagrant/modules/mod_ginger_admin/templates/admin_logon.tpl:4
+#: user/modules/mod_ginger_admin/templates/admin_logon.tpl:4
 msgid "Admin log on"
 msgstr "Admin inlog"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:51
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:51
 msgid "Back to logon form"
 msgstr "Terug naar login"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:5
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:5
 msgid "Below you can enter a new password for your account"
 msgstr "Hieronder vindt u een nieuw wachtwoord voor uw account kunt invoeren"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:47
+#: user/modules/mod_ginger_admin/templates/_admin_footer.tpl:13
+msgid "Close this notion"
+msgstr "Sluit deze reminder"
+
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:47
 msgid ""
 "For security reasons password reset codes are only kept for a limited amount "
 "of time and can only be used once."
@@ -40,45 +44,55 @@ msgstr ""
 "Om veiligheidsredenen wordt het wachtwoord reset codes slechts bewaard voor "
 "een beperkte hoeveelheid tijd en kan slechts eenmaal gebruikt worden."
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:10
+#: user/modules/mod_ginger_admin/templates/_admin_footer.tpl:12
+msgid ""
+"From 25 May onwards, the renewed European privacy legislation (GDPR) will be "
+"enforced, which makes having a complete privacy policy on your website extra "
+"important. Check wether your policy is complete, or update it."
+msgstr ""
+"Vanaf 25 mei is de vernieuwde Europese privacywetgeving (AVG) van kracht "
+"waardoor het extra belangrijk is dat je een goede en volledige privacy "
+"policy op je site hebt. Bekijk of je privacy policy voldoet of vul ‘m aan."
+
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:10
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:17
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:17
 msgid "Repeat password"
 msgstr "Herhaal wachtwoord"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:34
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:34
 msgid "Reset password and Log on"
 msgstr "Verander wachtwoord en login"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:3
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:3
 msgid "Reset your password"
 msgstr "Verander je wachtwoord"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:45
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:45
 msgid "Sorry, your password reset code is unknown or expired"
 msgstr ""
 "Sorry de code waarmee je wachtwoord kan worden veranderd is onbekend of "
 "verlopen"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:27
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:27
 msgid "Stay logged on unless I log off."
 msgstr "Blijf ingelogd tenzij ik uitlog."
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:48
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:48
 msgid "You can"
 msgstr "U kunt"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:39
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:39
 msgid "Your password will be reset and you will be logged on as"
 msgstr "Uw wachtwoord wordt gereset en u zal worden aangemeld als"
 
-#: /vagrant/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:48
+#: user/modules/mod_ginger_admin/templates/_logon_password_reset.tpl:48
 msgid "request a new password reset code"
 msgstr "Vraag een wachtwoord reset code aan."
 
-#: /vagrant/modules/mod_ginger_admin/templates/admin_logon.tpl:12
+#: user/modules/mod_ginger_admin/templates/admin_logon.tpl:12
 msgid "visit site"
 msgstr "bezoek site"
 

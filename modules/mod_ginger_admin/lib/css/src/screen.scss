@@ -1,6 +1,5 @@
 @import "variables";
 @import "mixins";
 @import "base";
-@import "blocks/nav"; 
-@import "blocks/pagination"; 
-@import "pages/logon"; 
+@import "blocks/*";
+@import "pages/*";
