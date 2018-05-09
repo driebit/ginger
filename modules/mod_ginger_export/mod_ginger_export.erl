@@ -139,10 +139,14 @@ rsc_fields() ->
     ].
 
 -spec observe_export_resource_header(#export_resource_header{}, #context{}) -> tuple().
+observe_export_resource_header(#export_resource_header{content_type = "text/csv", id = _Id}, _Context) ->
+    {ok, ginger_export_rsc:get_headers()};
 observe_export_resource_header(#export_resource_header{id = _Id}, _Context) ->
-    {ok, ginger_export_rsc:get_headers()}.
+    undefined.
 
 -spec observe_export_resource_encode(#export_resource_encode{}, #context{}) -> {ok, list()}.
 observe_export_resource_encode(#export_resource_encode{content_type = "text/csv", data = Id}, Context) when is_integer(Id) ->
     Data = ginger_export_rsc:export(Id, Context),
-    {ok, export_encode_csv:encode(Data, Context)}.
+    {ok, export_encode_csv:encode(Data, Context)};
+observe_export_resource_encode(#export_resource_encode{data = Id}, _Context) when is_integer(Id) ->
+    undefined.
