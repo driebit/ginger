@@ -9,9 +9,7 @@
             // Set hasAvgCookie
             this._getCookies();
 
-            console.log(this.hasAvgCookie);
-
-            if (this.hasAvgCookie != true) {
+            if (!this.hasAvgCookie) {
                 this.element.addClass('-show');
             }
 
