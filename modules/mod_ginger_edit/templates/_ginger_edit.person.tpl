@@ -10,7 +10,7 @@
     {% catinclude "_admin_edit_links.tpl" id is_editable=is_editable %}
 
 
-    {% catinclude "_admin_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
+    {% catinclude "_ginger_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
 
     {% if id.category_id.feature_show_geodata %}
         {% optional include "_geomap_admin_location.tpl" %}
