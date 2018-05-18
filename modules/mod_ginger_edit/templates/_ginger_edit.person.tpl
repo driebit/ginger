@@ -9,9 +9,8 @@
 
     {% catinclude "_admin_edit_links.tpl" id is_editable=is_editable %}
 
-    {% if m.rsc[id.category_id].feature_show_address %}
-        {% catinclude "_admin_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
-    {% endif %}
+
+    {% catinclude "_admin_edit_content_address.tpl" id is_editable=is_editable languages=languages %}
 
     {% if id.category_id.feature_show_geodata %}
         {% optional include "_geomap_admin_location.tpl" %}
