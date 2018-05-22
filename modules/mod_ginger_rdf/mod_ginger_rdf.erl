@@ -151,7 +151,12 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
                            _ ->
                                Context
                        end,
-            z_render:dialog_close(Context1);
+            case z_convert:to_bool(proplists:get_value(autoclose, Args)) of
+                true ->
+                    z_render:dialog_close(Context1);
+                false ->
+                    Context1
+            end;
         {error, _} ->
             z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context)
     end.

@@ -15,6 +15,13 @@
                 data-feedback="trigger: 'dialog-connect-find-linked-data', delegate: 'mod_ginger_rdf', template: '_action_dialog_connect_tab_find_linked_data_results.tpl'">
             </div>
 
+            <div class="modal-footer">
+                <a class="btn btn-default" id="{{ #close }}">
+                    {% if autoclose %}{_ Cancel _}{% else %}{_ Ok _}{% endif %}
+                </a>
+                {% wire id=#close action={dialog_close} %}
+            </div>
+
         </form>
 
     </div>
@@ -34,6 +41,7 @@
         }
     %}
     {% javascript %}
+        $('#dialog-connect-find-linked-data').submit(function() { return false; });
         $('#dialog-connect-find-linked-data').change();
         $("#dialog-connect-found-linked-data").on('click', '.thumbnail', function(e) {
             e.preventDefault();
@@ -42,6 +50,8 @@
                 object: $(this).data('id'),
                 object_title: $(this).data('title')
             });
+            $(this).effect("highlight").toggleClass("thumbnail-connected");
+            $('#{{ #close }}').removeClass("btn-default").addClass("btn-primary");
         });
     {% endjavascript %}
 {% endif %}
