@@ -51,7 +51,9 @@ get_resource(Endpoint, Uri, Properties) ->
     case query(Endpoint, Query, #{<<"Accept">> => <<"application/json">>}) of
         undefined ->
             unfined;
-        #{<<"results">> := #{<<"bindings">> := [Bindings]}} ->
+        %% Take the first bindings row in case multiple rows were returned because of properties
+        %% with multiple values.
+        #{<<"results">> := #{<<"bindings">> := [Bindings | _]}} ->
             ResolvedBindings = sparql_query:resolve_arguments(Bindings, Arguments),
             sparql_result:result_to_rdf(ResolvedBindings, Uri)
     end.
