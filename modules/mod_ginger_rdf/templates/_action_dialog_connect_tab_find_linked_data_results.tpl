@@ -1,4 +1,4 @@
-<div id="dialog_connect_results" class="connect-results">
+<div class="connect-results">
 
     {% with m.search[{rdf pagelen=10 id=subject_id text=text|default:"" filters=filters}] as result %}
 
