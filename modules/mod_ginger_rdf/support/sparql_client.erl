@@ -34,6 +34,7 @@ query(Endpoint, Query) ->
 %% @doc Execute a SPARQL query with some HTTP headers.
 -spec query(url(), binary(), map()) -> list().
 query(Endpoint, Query, Headers) ->
+    lager:debug("sparql_client query on endpoint ~s: ~s", [Endpoint, Query]),
     Qs = z_convert:to_binary(z_url:url_encode(Query)),
     Url = <<Endpoint/binary, "?query=", Qs/binary>>,
     case ginger_http_client:get(Url, Headers) of
