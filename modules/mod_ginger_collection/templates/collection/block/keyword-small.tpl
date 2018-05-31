@@ -3,7 +3,7 @@
 {% block link %}{{ url }}{% endblock %}
 
 {% block item_image %}
-    {% include "list/list-item-image.tpl" url=dbpedia_rdf.thumbnail|default:wikidata_rdf.thumbnail %}
+    {% include "list/list-item-image.tpl" url=dbpedia_rdf.thumbnail|default:wikidata_rdf.thumbnail|https %}
 {% endblock %}
 
 {% block item_title %}
