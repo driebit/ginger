@@ -15,20 +15,20 @@
             <article class="adlib-object__creator">
 
                 <section class="adlib-object__creator-image">
-                    {% if dbpedia.thumbnail %}
+                    {% if dbpedia.thumbnail|first as thumbnail %}
                         <img
-                            src="{{ dbpedia.thumbnail|https }}"
+                            src="{{ thumbnail|https }}"
                             alt="{{ creator.title }}">
                     {% endif %}
                 </section>
 
                 <section class="adlib-object__creator-title">
                     <div>
-                        <h6>{{ rkd_artist.kwalificatie|join:", " }}</h6>
+                        <h6>{{ rkd_artist.kwalificatie|join:", "|truncate:50 }}</h6>
                         <h3>{{ rkd_artist.virtualFields.hoofdTitel.kunstenaarsnaam.contents }}</h3>
                         <small>
                             {{ rkd_artist.geboorteplaats }}, {{ rkd_artist.geboortedatum_begin|isodate:"j F Y" }}
-                            {% if rkd_artist.sterfdatum_begin != "null" %} – {% if rkd_artist.geboorteplaats != rkd_artist.sterfplaats %}{{ rkd_artist.sterfplaats }}, {% endif %}{{ rkd_artist.sterfdatum_begin|isodate:"j F Y"|default:rkd_artist.sterfdatum_eind|isodate:"j F Y" }}{% endif %}
+                            {% if rkd_artist.sterfdatum_begin != "null" %} – {% if rkd_artist.geboorteplaats != rkd_artist.sterfplaats %}{{ rkd_artist.sterfplaats }}, {% endif %}{{ (rkd_artist.sterfdatum_begin|default:rkd_artist.sterfdatum_eind)|isodate:"j F Y" }}{% endif %}
                         </small>
                     </div>
                 </section>
