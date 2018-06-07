@@ -4,7 +4,7 @@
 
     {% include "masthead/masthead.tpl" id=id %}
 
-    <main>
+    <main id="main-content" role="main">
 
         {% include "person/person-profile.tpl" id=id %}
 
