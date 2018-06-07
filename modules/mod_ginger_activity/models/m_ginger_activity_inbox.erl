@@ -86,7 +86,9 @@ insert(ActivityId, UserId, Context) ->
             {user_id, UserId}
         ],
         Context
-    ).
+    ),
+    Topic = <<"~site/user/", (z_convert:to_binary(UserId))/binary, "/activities">>,
+    ok = z_mqtt:publish(Topic, ActivityId, z_acl:sudo(Context)).
 
 table() ->
     "activity_inbox".
