@@ -1,0 +1,28 @@
+#%RAML 1.0
+---
+title: Ginger
+baseUri: http://{domain}/data/{version}
+version: 1
+
+/resources:
+    get:
+        queryParameters:
+            cat:
+                required: false
+                description: A category name
+            hasobject:
+                required: false
+                description: A predicate name (of an outgoing edge)
+            hassubject:
+                required: false
+                description: A predicate name (of an incoming edge)
+
+    /{id}:
+        get:
+        /incoming-edges:
+            get:
+                queryParameters:
+                    predicate:
+                        required: false
+    /path/{path}:
+        get:
