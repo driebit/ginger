@@ -24,7 +24,7 @@ init(Args) ->
     {ok, #state{mode = Mode}}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
-    {false, Req, State};
+    {true, Req, State};
 resource_exists(Req, State) ->
     {false, Req, State}.
 
