@@ -17,9 +17,9 @@
 init(Config) ->
     {ok, Config}.
 
-content_types_provided(Req, State) ->
+content_types_provided(Req, _) ->
     Context = z_context:new(Req, ?MODULE),
-    {[{"application/json", to_json}], Req, State#state{context = Context}}.
+    {[{"application/json", to_json}], Req, #state{context = Context}}.
 
 to_json(Req, State = #state{context = Context}) ->
     %% TODO:
