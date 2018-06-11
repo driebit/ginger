@@ -27,5 +27,6 @@ to_json(Req, State = #state{context = Context}) ->
     %% - incorporate access control
     %% - load and convert resources (instead of returning IDs)
     %% - process query parameters
-    Resources = z_search:query_([{Json = jsx:encode(Resources),
+    Resources = z_search:query_([{filter, ["is_published", true]}], Context),
+    Json = jsx:encode(Resources),
     {Json, Req, State}.
