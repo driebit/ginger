@@ -45,6 +45,12 @@ directory:
 $ make gulp site=your_site_name
 ```
 
+To run the tests for a module, e.g. mod_ginger_collection:
+
+```bash
+$ docker-compose run zotonic bin/zotonic runtests mod_ginger_collection
+```
+
 For more, see the [Docker](docs/docker.md) doc chapter.
 
 Sites overview
