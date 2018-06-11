@@ -10,9 +10,43 @@ schemes:
     - http
     - https
 
+definitions:
+    Resource:
+        type: object
+        # http://docs.zotonic.com/en/0.x/ref/models/model_rsc.html#model-rsc
+        properties:
+            id:
+                type: integer
+                example: 42
+            title:
+                $ref: '#/definitions/Translation'
+            body:
+                $ref: '#/definitions/Translation'
+            # "page_path" and "page_url" property
+            path:
+                type: string
+                example: "/project/23"
+            # "is_a" property
+            category:
+                type: array
+                items:
+                    type: string
+                example: ["text", "article"]
+            # TODO: media
+    Translation:
+        type: object
+        properties:
+            en:
+                type: string
+                example: "Hello world"
+            nl:
+                type: string
+                example: "Hallo wereld"
+
 paths:
     /resources:
         get:
+            produces: ["application/json"]
             parameters:
                 - in: query
                   name: cat
@@ -29,12 +63,26 @@ paths:
                   type: string
                   required: false
                   description: A predicate name (of an incoming edge)
+            responses:
+                200:
+                    description: A list of resources
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#definitions/Resource'
+
     /resources/{id}:
         get:
+            produces: ["application/json"]
             parameters:
                 - in: path
                   type: integer
                   required: true
+            responses:
+                200:
+                    description: A resource
+                    schema:
+                        $ref: '#definitions/Resource'
     /resources/{id}/incoming-edges:
         get:
             parameters:
@@ -43,7 +91,13 @@ paths:
                   required: true
     /resources/path/{path}:
         get:
+            produces: ["application/json"]
             parameters:
                 - in: path
                   type: string
                   required: true
+            responses:
+                200:
+                    description: A resource
+                    schema:
+                        $ref: '#definitions/Resource'
