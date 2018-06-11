@@ -23,7 +23,7 @@ init(Args) ->
     Mode = proplists:get_value(mode, Args),
     {ok, #state{mode = Mode}}.
 
-resource_exists(Req, State = #state{mode = colletion}) ->
+resource_exists(Req, State = #state{mode = collection}) ->
     {false, Req, State};
 resource_exists(Req, State) ->
     {false, Req, State}.
