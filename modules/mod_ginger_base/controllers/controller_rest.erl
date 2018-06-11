@@ -1,4 +1,4 @@
--module(controller_mod_ginger_rest).
+-module(controller_rest).
 
 -export([
          init/1,
