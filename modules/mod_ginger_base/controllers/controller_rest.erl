@@ -12,16 +12,17 @@
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, {context}).
+-record(state, {context, mode}).
 
-init(Config) ->
-    {ok, Config}.
+init(Args) ->
+    Mode = proplists:get_value(mode, Args),
+    {ok, #state{mode = Mode}}.
 
-content_types_provided(Req, _) ->
+content_types_provided(Req, State) ->
     Context = z_context:new(Req, ?MODULE),
-    {[{"application/json", to_json}], Req, #state{context = Context}}.
+    {[{"application/json", to_json}], Req, State#state{context = Context}}.
 
-to_json(Req, State = #state{context = Context}) ->
+to_json(Req, State = #state{context = Context, mode = collection}) ->
     %% TODO:
     %% - incorporate access control
     %% - load and convert resources (instead of returning IDs)

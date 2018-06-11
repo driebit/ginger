@@ -5,7 +5,7 @@
     {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
     %% REST API
-    {data, ["data"], controller_rest, []},
+    {data, ["data", "resources"], controller_rest, [{mode, collection}]},
 
     %% Normal page to show a resource.
     {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
