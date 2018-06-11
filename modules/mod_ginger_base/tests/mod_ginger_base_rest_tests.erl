@@ -5,8 +5,16 @@
 
 -record(state, {mode}).
 
-resource_exists_test() ->
-    State = #state{mode = collection},
-    {Result, _, _} =  controller_rest:resource_exists(req, State),
-    ?assertEqual(true, Result),
-    ok.
+resource_exists_test_() ->
+    [
+     fun () ->
+             State = #state{mode = collection},
+             {Result, _, _} =  controller_rest:resource_exists(req, State),
+             ?assertEqual(true, Result)
+     end,
+     fun () ->
+             State = #state{mode = document},
+             {Result, _, _} =  controller_rest:resource_exists(req, State),
+             ?assertEqual(false, Result)
+     end
+    ].
