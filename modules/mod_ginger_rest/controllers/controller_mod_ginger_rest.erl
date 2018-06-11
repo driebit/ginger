@@ -1,8 +1,9 @@
 -module(controller_mod_ginger_rest).
 
--export([ init/1
-        , content_types_provided/2
-        , to_json/2
+-export([
+         init/1,
+         content_types_provided/2,
+         to_json/2
         ]).
 
 
