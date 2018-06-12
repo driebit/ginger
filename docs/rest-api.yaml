@@ -24,6 +24,10 @@ definitions:
                 $ref: '#/definitions/Translation'
             summary:
                 $ref: '#/definitions/Translation'
+            publication_date:
+                type: string
+                format: date
+                example: "2018-06-12T09:01:44Z"
             # "page_path" and "page_url" property
             path:
                 type: string

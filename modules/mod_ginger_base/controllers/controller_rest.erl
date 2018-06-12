@@ -56,6 +56,7 @@ id_to_rsc(Id, Context) ->
       {body, translation(Id, body, DefaultLanguage, Context)},
       {summary, translation(Id, summary, DefaultLanguage, Context)},
       {path, m_rsc:page_url(Id, Context)},
+      {publication_date, m_rsc:p(Id, publication_start, Context)},
       {category, proplists:get_value(is_a, m_rsc:p(Id, category, Context))}
     ].
 
