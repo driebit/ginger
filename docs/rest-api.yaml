@@ -25,7 +25,7 @@ definitions:
             # "page_path" and "page_url" property
             path:
                 type: string
-                example: "/project/23"
+                example: "/project/42"
             # "is_a" property
             category:
                 type: array
