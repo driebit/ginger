@@ -41,7 +41,7 @@ to_json(Req, State = #state{mode = collection}) ->
              [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
              Context),
     ResourceIds= z_search:query_(Args, Context),
-    Resources = lists:map(fun(Id) -> id_to_rsc(Id, Context) end, ResourceIds),
+    Resources = [id_to_rsc(Id, Context) || Id <- ResourceIds],
     Json = jsx:encode(Resources),
     {Json, Req, State}.
 
@@ -49,7 +49,23 @@ to_json(Req, State = #state{mode = collection}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-id_to_rsc(Id, _Context) ->
-    [ {id, Id}
+id_to_rsc(Id, Context) ->
+    DefaultLanguage = z_trans:default_language(Context),
+    [ {id, Id} ,
+      {title, translation(Id, title, DefaultLanguage, Context)},
+      {body, translation(Id, body, DefaultLanguage, Context)}
     ].
 
+%%%-----------------------------------------------------------------------------
+%%% Translation
+%%%-----------------------------------------------------------------------------
+
+translation(Id, Prop, DefaultLanguage, Context) ->
+    format_trans(m_rsc:p(Id, Prop, <<>>, Context), DefaultLanguage).
+
+%% I don't think we want to escape by default, we could give a func as argument,
+%% not sure if thats better though.
+format_trans({trans, Translations}, _DefaultLanguage) ->
+    [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
+format_trans(Value, DefaultLanguage) ->
+    [{DefaultLanguage, z_html:unescape(Value)}].
