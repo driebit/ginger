@@ -42,6 +42,7 @@ definitions:
             nl:
                 type: string
                 example: "Hallo wereld"
+        minProperties: 1
 
 paths:
     /resources:
