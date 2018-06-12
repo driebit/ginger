@@ -22,6 +22,8 @@ definitions:
                 $ref: '#/definitions/Translation'
             body:
                 $ref: '#/definitions/Translation'
+            summary:
+                $ref: '#/definitions/Translation'
             # "page_path" and "page_url" property
             path:
                 type: string
