@@ -33,6 +33,8 @@ definitions:
                     type: string
                 example: ["text", "article"]
             # TODO: media
+            properties:
+                type: object
     Translation:
         type: object
         properties:
