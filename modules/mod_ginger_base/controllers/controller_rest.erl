@@ -40,10 +40,16 @@ to_json(Req, State = #state{mode = collection}) ->
     Args = ginger_search:query_arguments(
              [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
              Context),
-    Resources = z_search:query_(Args, Context),
+    ResourceIds= z_search:query_(Args, Context),
+    Resources = lists:map(fun(Id) -> id_to_rsc(Id, Context) end, ResourceIds),
     Json = jsx:encode(Resources),
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+id_to_rsc(Id, _Context) ->
+    [ {id, Id}
+    ].
+
