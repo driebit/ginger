@@ -53,7 +53,8 @@ id_to_rsc(Id, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
     [ {id, Id} ,
       {title, translation(Id, title, DefaultLanguage, Context)},
-      {body, translation(Id, body, DefaultLanguage, Context)}
+      {body, translation(Id, body, DefaultLanguage, Context)},
+      {path, m_rsc:page_url(Id, Context)}
     ].
 
 %%%-----------------------------------------------------------------------------
