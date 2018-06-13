@@ -25,6 +25,9 @@ init(Args) ->
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
+resource_exists(Req, State = #state{mode = document}) ->
+    %% TODO: check if resource exists
+    {false, Req, State};
 resource_exists(Req, State) ->
     {false, Req, State}.
 
