@@ -58,6 +58,7 @@ to_json(Req, State = #state{mode = document}) ->
 
 get_rsc(Id, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
+    CustomProps = custom_props(Id, Context),
     #{
       id => Id,
       title => translation(Id, title, DefaultLanguage, Context),
@@ -66,11 +67,11 @@ get_rsc(Id, Context) ->
       path => m_rsc:page_url(Id, Context),
       publication_date => m_rsc:p(Id, publication_start, Context),
       category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-      properties => case custom_props(Id, Context) of
-                        #{} ->
+      properties => case maps:size(CustomProps) of
+                        0 ->
                             null;
-                        Props ->
-                            Props
+                        _ ->
+                            CustomProps
                     end
      }.
 
