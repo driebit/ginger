@@ -26,8 +26,10 @@ init(Args) ->
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
 resource_exists(Req, State = #state{mode = document}) ->
-    %% TODO: check if resource exists
-    {false, Req, State};
+    Id = wrq:path_info(id, Req),
+    Context = z_context:new(Req, ?MODULE),
+    Exists = m_rsc:exists(Id, Context),
+    {Exists, Req, State};
 resource_exists(Req, State) ->
     {false, Req, State}.
 
@@ -43,7 +45,11 @@ to_json(Req, State = #state{mode = collection}) ->
              Context),
     Ids = z_search:query_(Args, Context),
     Json = jsx:encode([get_rsc(Id, Context) || Id <- Ids]),
-    {Json, Req, State}.
+    {Json, Req, State};
+to_json(Req, State = #state{mode = document}) ->
+    Id = wrq:path_info(id, Req),
+    Context = z_context:new(Req, ?MODULE),
+    Json = jsx:encode(get_rsc(Id, Context)),
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
