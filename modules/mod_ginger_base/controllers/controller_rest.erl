@@ -36,23 +36,21 @@ content_types_provided(Req, State) ->
 
 to_json(Req, State = #state{mode = collection}) ->
     %% TODO:
-    %% - incorporate access control
-    %% - load and convert resources (instead of returning IDs)
     %% - process query parameters
     Context = z_context:new(Req, ?MODULE),
     Args = ginger_search:query_arguments(
              [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
              Context),
-    ResourceIds= z_search:query_(Args, Context),
-    Resources = [id_to_rsc(Id, Context) || Id <- ResourceIds],
-    Json = jsx:encode(Resources),
+    Ids = z_search:query_(Args, Context),
+    Json = jsx:encode([get_rsc(Id, Context) || Id <- Ids]),
+    {Json, Req, State}.
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-id_to_rsc(Id, Context) ->
+get_rsc(Id, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
     #{
        id => Id,
