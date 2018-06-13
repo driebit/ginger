@@ -50,7 +50,7 @@ to_json(Req, State = #state{mode = collection}) ->
     Json = jsx:encode([get_rsc(Id, Context) || Id <- Ids]),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document}) ->
-    Id = wrq:path_info(id, Req),
+    Id = erlang:list_to_integer(wrq:path_info(id, Req)),
     Context = z_context:new(Req, ?MODULE),
     Json = jsx:encode(get_rsc(Id, Context)),
     {Json, Req, State}.
