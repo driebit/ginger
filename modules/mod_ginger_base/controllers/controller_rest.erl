@@ -38,8 +38,11 @@ content_types_provided(Req, State) ->
 
 to_json(Req, State = #state{mode = collection}) ->
     Context = z_context:new(Req, ?MODULE),
-    Qs = proplists_keep(["cat", "hasobject", "hassubject"], wrq:req_qs(Req)),
-    Args1 = ?DEBUG(search_query:parse_request_args(Qs)),
+    Filter = fun (Key) ->
+                     lists:member(Key, ["cat", "hasobject", "hassubject"])
+             end,
+    Qs = proplists_filter(Filter, wrq:req_qs(Req)),
+    Args1 = search_query:parse_request_args(Qs),
     Args2 = ginger_search:query_arguments(
               [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
               Context),
@@ -77,7 +80,8 @@ get_rsc(Id, Context) ->
 
 custom_props(Id, Context) ->
     Rsc = m_rsc:get_visible(Id, Context),
-    maps:from_list(proplists_delete(default_props(), Rsc)).
+    Filter = fun (Key) -> not(lists:member(Key, default_props())) end,
+    maps:from_list(proplists_filter(Filter, Rsc)).
 
 translation(Id, Prop, DefaultLanguage, Context) ->
     case m_rsc:p(Id, Prop, <<>>, Context) of
@@ -87,24 +91,10 @@ translation(Id, Prop, DefaultLanguage, Context) ->
             [{DefaultLanguage, Value}]
     end.
 
-proplists_delete(Keys, List) ->
+proplists_filter(Filter, List) ->
     lists:foldr(
       fun (Key, Acc) ->
-              case lists:member(Key, Keys) of
-                  false ->
-                      Acc;
-                  true ->
-                      proplists:delete(Key, Acc)
-              end
-      end,
-      List,
-      proplists:get_keys(List)
-     ).
-
-proplists_keep(Keys, List) ->
-    lists:foldr(
-      fun (Key, Acc) ->
-              case lists:member(Key, Keys) of
+              case Filter(Key) of
                   true ->
                       Acc;
                   false ->
