@@ -59,14 +59,14 @@ to_json(Req, State = #state{mode = document}) ->
 get_rsc(Id, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
     #{
-       id => Id,
-       title => translation(Id, title, DefaultLanguage, Context),
-       body => translation(Id, body, DefaultLanguage, Context),
-       summary => translation(Id, summary, DefaultLanguage, Context),
-       path => m_rsc:page_url(Id, Context),
-       publication_date => m_rsc:p(Id, publication_start, Context),
-       category => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
-    }.
+      id => Id,
+      title => translation(Id, title, DefaultLanguage, Context),
+      body => translation(Id, body, DefaultLanguage, Context),
+      summary => translation(Id, summary, DefaultLanguage, Context),
+      path => m_rsc:page_url(Id, Context),
+      publication_date => m_rsc:p(Id, publication_start, Context),
+      category => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
+     }.
 
 translation(Id, Prop, DefaultLanguage, Context) ->
     case m_rsc:p(Id, Prop, <<>>, Context) of
