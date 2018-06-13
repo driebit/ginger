@@ -39,9 +39,24 @@ definitions:
                     type: string
                 minItems: 1
                 example: ["text", "article"]
-            # TODO: media
             properties:
                 type: object
+            # values are mapped from the resource edges to these props
+            media:
+                type: object
+                properties:
+                    depiction:
+                        type: array
+                        items:
+                            $ref: '#/definitions/Media'
+                    preview:
+                        type: array
+                        items:
+                            $ref: '#/definitions/Media'
+                    banner:
+                        type: array
+                        items:
+                            $ref: '#/definitions/Media'
         required:
             - id
             - title
@@ -50,6 +65,7 @@ definitions:
             - publication_date
             - path
             - category
+            - media
     Translation:
         type: object
         properties:
@@ -60,6 +76,21 @@ definitions:
                 type: string
                 example: "Hallo wereld"
         minProperties: 1
+    Media:
+        type: object
+        properties:
+            url:
+                type: string
+                example: "/images/foo.jpeg"
+            width:
+                type: integer
+                example: 1920
+            height:
+                type: integer
+                example: 1280
+            imageclass:
+                type: string
+                example: "thumbnail"
 
 paths:
     /resources:
