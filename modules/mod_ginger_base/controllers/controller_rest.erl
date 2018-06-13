@@ -68,11 +68,9 @@ id_to_rsc(Id, Context) ->
 %%%-----------------------------------------------------------------------------
 
 translation(Id, Prop, DefaultLanguage, Context) ->
-    format_trans(m_rsc:p(Id, Prop, <<>>, Context), DefaultLanguage).
-
-%% I don't think we want to escape by default, we could give a func as argument,
-%% not sure if thats better though.
-format_trans({trans, Translations}, _DefaultLanguage) ->
-    [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
-format_trans(Value, DefaultLanguage) ->
-    [{DefaultLanguage, z_html:unescape(Value)}].
+    case m_rsc:p(Id, Prop, <<>>, Context) of
+        {trans, Translations} ->
+            [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
+        Value ->
+            [{DefaultLanguage, Value}]
+    end.
