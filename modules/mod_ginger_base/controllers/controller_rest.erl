@@ -37,13 +37,13 @@ content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 to_json(Req, State = #state{mode = collection}) ->
-    %% TODO:
-    %% - process query parameters
     Context = z_context:new(Req, ?MODULE),
-    Args = ginger_search:query_arguments(
-             [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
-             Context),
-    Ids = z_search:query_(Args, Context),
+    Qs = proplists_keep(["cat", "hasobject", "hassubject"], wrq:req_qs(Req)),
+    Args1 = ?DEBUG(search_query:parse_request_args(Qs)),
+    Args2 = ginger_search:query_arguments(
+              [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
+              Context),
+    Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode([get_rsc(Id, Context) || Id <- Ids]),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document}) ->
@@ -75,3 +75,17 @@ translation(Id, Prop, DefaultLanguage, Context) ->
         Value ->
             [{DefaultLanguage, Value}]
     end.
+
+proplists_keep(Keys, List) ->
+    lists:foldr(
+      fun (Key, Acc) ->
+              case lists:member(Key, Keys) of
+                  true ->
+                      Acc;
+                  false ->
+                      proplists:delete(Key, Acc)
+              end
+      end,
+      List,
+      proplists:get_keys(List)
+     ).
