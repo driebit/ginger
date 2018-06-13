@@ -5,7 +5,11 @@
     fan_out/3,
     for_user/2,
     delete/2,
-    delete/3
+    delete/3,
+    count_for_user/2,
+    seen_at_for_user/2,
+    update_seen_at_for_user/3,
+    most_recent_at_for_user/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -22,6 +26,24 @@ for_user(UserId, Context) ->
         Context
     ),
     [ginger_activity(A) || A <- Activities].
+
+-spec count_for_user(m_rsc:resource(), z:context()) -> integer().
+count_for_user(User, Context) ->
+    z_db:q1("select count(id) from activity_log where user_id = $1;",
+            [z_convert:to_integer(User)], Context).
+
+-spec seen_at_for_user(m_rsc:resource(), z:context()) -> calendar:datetime() | undefined.
+seen_at_for_user(User, Context) ->
+    m_rsc:p(User, notifications_seen_at, Context).
+
+-spec update_seen_at_for_user(m_rsc:resource(), calendar:datetime(), z:context()) -> ok.
+update_seen_at_for_user(User, DateTime, Context) ->
+    m_rsc:update(User, [ {notifications_seen_at, DateTime} ], Context).
+
+-spec most_recent_at_for_user(m_rsc:resource(), z:context()) -> calendar:datetime() | undefined.
+most_recent_at_for_user(User, Context) ->
+    z_db:q1("select time from activity_log where user_id = $1 order by time desc;",
+            [z_convert:to_integer(User)], Context).
 
 %% @doc Delete all activities from the user's stream.
 -spec delete(m_rsc:resource(), z:context()) -> ok.
