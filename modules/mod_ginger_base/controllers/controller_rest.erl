@@ -65,8 +65,18 @@ get_rsc(Id, Context) ->
       summary => translation(Id, summary, DefaultLanguage, Context),
       path => m_rsc:page_url(Id, Context),
       publication_date => m_rsc:p(Id, publication_start, Context),
-      category => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
+      category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
+      properties => case custom_props(Id, Context) of
+                        #{} ->
+                            null;
+                        Props ->
+                            Props
+                    end
      }.
+
+custom_props(Id, Context) ->
+    Rsc = m_rsc:get_visible(Id, Context),
+    maps:from_list(proplists_delete(default_props(), Rsc)).
 
 translation(Id, Prop, DefaultLanguage, Context) ->
     case m_rsc:p(Id, Prop, <<>>, Context) of
@@ -75,6 +85,20 @@ translation(Id, Prop, DefaultLanguage, Context) ->
         Value ->
             [{DefaultLanguage, Value}]
     end.
+
+proplists_delete(Keys, List) ->
+    lists:foldr(
+      fun (Key, Acc) ->
+              case lists:member(Key, Keys) of
+                  false ->
+                      Acc;
+                  true ->
+                      proplists:delete(Key, Acc)
+              end
+      end,
+      List,
+      proplists:get_keys(List)
+     ).
 
 proplists_keep(Keys, List) ->
     lists:foldr(
@@ -89,3 +113,40 @@ proplists_keep(Keys, List) ->
       List,
       proplists:get_keys(List)
      ).
+
+default_props() ->
+    [
+     category_id,
+     content_group_id,
+     created,
+     creator_id,
+     date_end,
+     date_start,
+     id,
+     installed_by,
+     is_authoritative,
+     is_dependent,
+     is_featured,
+     is_protected,
+     is_published,
+     is_unfindable,
+     language,
+     managed_props,
+     modified,
+     modifier_id,
+     name,
+     page_path,
+     pivot_geocode,
+     pivot_geocode_qhash,
+     pivot_location_lat,
+     pivot_location_lng,
+     publication_end,
+     publication_start,
+     seo_noindex,
+     slug,
+     title,
+     tz,
+     uri,
+     version,
+     visible_for
+    ].

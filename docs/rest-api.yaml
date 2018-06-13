@@ -37,10 +37,19 @@ definitions:
                 type: array
                 items:
                     type: string
+                minItems: 1
                 example: ["text", "article"]
             # TODO: media
             properties:
                 type: object
+        required:
+            - id
+            - title
+            - body
+            - summary
+            - publication_date
+            - path
+            - category
     Translation:
         type: object
         properties:
