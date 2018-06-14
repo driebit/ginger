@@ -19,7 +19,7 @@
 -spec for_user(m_rsc:resource(), z:context()) -> [mod_ginger_activity:activity()].
 for_user(UserId, Context) ->
     Activities = z_db:assoc("
-        select * from activity_inbox
+        select activity_log.id, activity_log.rsc_id, activity_log.time, activity_log.target_id, activity_log.user_id as user_id from activity_inbox
         left join activity_log on activity_log.id = activity_inbox.activity_id
         where activity_inbox.user_id = $1",
         [UserId],
@@ -29,8 +29,8 @@ for_user(UserId, Context) ->
 
 -spec count_for_user(m_rsc:resource(), z:context()) -> integer().
 count_for_user(User, Context) ->
-    z_db:q1("select count(id) from activity_log where user_id = $1;",
-            [z_convert:to_integer(User)], Context).
+    z_db:q1("select count(user_id) from " ++ table() ++ " where user_id = $1;",
+        [z_convert:to_integer(User)], Context).
 
 -spec seen_at_for_user(m_rsc:resource(), z:context()) -> calendar:datetime() | undefined.
 seen_at_for_user(User, Context) ->
@@ -42,8 +42,11 @@ update_seen_at_for_user(User, DateTime, Context) ->
 
 -spec most_recent_at_for_user(m_rsc:resource(), z:context()) -> calendar:datetime() | undefined.
 most_recent_at_for_user(User, Context) ->
-    z_db:q1("select time from activity_log where user_id = $1 order by time desc;",
-            [z_convert:to_integer(User)], Context).
+    z_db:q1("
+        select max(activity_log.time) from activity_inbox
+        left join activity_log on activity_log.id = activity_inbox.activity_id
+        where activity_inbox.user_id = $1",
+        [z_convert:to_integer(User)], Context).
 
 %% @doc Delete all activities from the user's stream.
 -spec delete(m_rsc:resource(), z:context()) -> ok.
