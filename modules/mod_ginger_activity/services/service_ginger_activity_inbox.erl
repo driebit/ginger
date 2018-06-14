@@ -41,6 +41,7 @@ to_json(Activity, Context) ->
         user_id = Actor,
         rsc_id = Object,
         target_id = Target,
+        to = To,
         time = Time
     } = Activity,
     Map = #{
@@ -56,7 +57,8 @@ to_json(Activity, Context) ->
             <<"type">> => m_rsc:p(m_rsc:p(Object, category_id, Context), name, Context),
             <<"name">> => z_trans:trans(m_rsc:p(Object, title, Context), Context),
             <<"content">> => content(Object, Context)
-        }
+        },
+        <<"to">> => To
     },
     with_target(Target, Map, Context).
 
