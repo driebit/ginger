@@ -61,13 +61,12 @@ to_json(Req, State = #state{mode = document}) ->
 %%%-----------------------------------------------------------------------------
 
 get_rsc(Id, Context) ->
-    DefaultLanguage = z_trans:default_language(Context),
     CustomProps = custom_props(Id, Context),
     #{
       id => Id,
-      title => translation(Id, title, DefaultLanguage, Context),
-      body => translation(Id, body, DefaultLanguage, Context),
-      summary => translation(Id, summary, DefaultLanguage, Context),
+      title => translation(Id, title, Context),
+      body => translation(Id, body, Context),
+      summary => translation(Id, summary, Context),
       path => m_rsc:page_url(Id, Context),
       publication_date => m_rsc:p(Id, publication_start, Context),
       category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
@@ -84,7 +83,8 @@ custom_props(Id, Context) ->
     Filter = fun (Key) -> not(lists:member(Key, default_props())) end,
     maps:from_list(proplists_filter(Filter, Rsc)).
 
-translation(Id, Prop, DefaultLanguage, Context) ->
+translation(Id, Prop, Context) ->
+    DefaultLanguage = z_trans:default_language(Context),
     case m_rsc:p(Id, Prop, <<>>, Context) of
         {trans, Translations} ->
             [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
