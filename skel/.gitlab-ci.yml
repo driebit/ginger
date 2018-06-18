@@ -6,19 +6,34 @@ variables:
     POSTGRES_USER: zotonic
     POSTGRES_DB: ${CI_PROJECT_NAME}
 
-build-npm:
-    stage: build
-    image: node:8.9.1
-    artifacts:
-        name: "${CI_COMMIT_SHA}"
-        expire_in: 1 day
-        paths:
-            - lib/css/site/screen.css
-    script:
-        # Clone Ginger for its SCSS files that are imported in sites.
-        - git clone https://github.com/driebit/ginger.git
-        - npm install
-        - npm run build
+# Elm CI build
+# 
+# build:
+#     stage: build
+#     image: node:8.9.1
+#     artifacts:
+#         name: "${CI_COMMIT_SHA}"
+#         expire_in: 1 day
+#         paths:
+#             - lib/dist
+#     script:
+#         - make build
+
+# Template CI build
+# 
+# build-npm:
+#     stage: build
+#     image: node:8.9.1
+#     artifacts:
+#         name: "${CI_COMMIT_SHA}"
+#         expire_in: 1 day
+#         paths:
+#             - lib/css/site/screen.css
+#     script:
+#         # Clone Ginger for its SCSS files that are imported in sites.
+#         - git clone https://github.com/driebit/ginger.git
+#         - npm install
+#         - npm run build
 
 .test_template: &test_template
     stage: test
