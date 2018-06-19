@@ -52,7 +52,7 @@ help:
 
 init:
 	git clone https://github.com/driebit/elm-skeleton ${ELM_DIR}
-	git clone https://gitlab.driebit.nl/driebit/scss-skeleton ${SCSS_DIR}
+	git clone https://github.com/driebit/scss-skeleton ${SCSS_DIR}
 	make deps
 	make all
 
