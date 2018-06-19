@@ -67,8 +67,8 @@ as possible:
     "items": [
         {
             "actor": {
-                "name":"Jan Jansen",
-                "type":"Person"
+                "name": "Jan Jansen",
+                "type": "Person"
             },
             "id": "/nl/activities/inbox/7",
             "object": {
@@ -87,8 +87,8 @@ as possible:
         },
         {
             "actor": {
-                "name":"Jan Jansen",
-                "type":"Person"
+                "name": "Jan Jansen",
+                "type": "Person"
             },
             "id": "/nl/activities/inbox/8",
             "object": {
