@@ -218,6 +218,56 @@
     .list__item__locations {
         @include size(margin-bottom, 10);
     }
+
+    @include mq(min-width, $smallBreakpoint) {
+        display: block;
+        width: 100%;
+        @include size(height, 230);
+
+        a {
+            display: block;
+            height: 100%;
+        }
+
+        article {
+            height: 100%;
+        }
+
+        img {
+            display: none;
+        }
+
+        .list__item__content__meta {
+            width: 15%;
+            height: 100%;
+            @include size(padding, 20, 15, 0);
+            float: left;
+            border-right: 2px dotted $mainThemeColor;
+            vertical-align: top;
+        }
+
+        .list__item__content {
+            width: 65%;
+            height: 100%;
+            @include size(padding-top, 20);
+            @include size(padding-left, 25);
+            float: left;
+            position: static;
+            vertical-align: top;
+        }
+
+        .list__item__content__meta + .list__item__content {
+            width: 50%;
+        }
+
+        .list__item__content__date {
+            width: 100%;
+            @include vertical-align;
+            margin: 0;
+            @include size(font-size, 21);
+            text-align: center;
+        }
+    }
 }
 
 .list__item--vertical__image {
@@ -226,6 +276,42 @@
     min-height: 140px;
     background-image: url('/lib/images/fallback.png');
     background-position: center center;
+
+    @include mq(min-width, $smallBreakpoint) {
+        width: 35%;
+        height: 100%;
+        float: left;
+        background-position: top center;
+        background-size: cover;
+        vertical-align: top;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.list__item--vertical__date {
+    @include mq(min-width, $smallBreakpoint) {
+        height: 100%;
+        position: relative;
+        line-height: 1.1;
+    }
+}
+
+.list__item__content__date__day {
+    @include mq(min-width, $smallBreakpoint) {
+        display: block;
+        @include size(font-size, 50);
+        line-height: 1;
+        font-weight: 400;
+    }
+}
+
+.list__item__content__date__year {
+    @include mq(min-width, $smallBreakpoint) {
+        display: block;
+    }
 }
 
 .list__item__content__location {
@@ -358,86 +444,6 @@
 
     .list__more {
         @include size(padding, 19, 20, 16);
-    }
-
-    .list__item--vertical {
-        display: block;
-        width: 100%;
-        @include size(height, 230);
-
-        a {
-            display: block;
-            height: 100%;
-        }
-
-        article {
-            height: 100%;
-        }
-
-        img {
-            display: none;
-        }
-
-        .list__item__content__meta {
-            width: 15%;
-            height: 100%;
-            @include size(padding, 20, 15, 0);
-            float: left;
-            border-right: 2px dotted $mainThemeColor;
-            vertical-align: top;
-        }
-
-        .list__item__content {
-            width: 65%;
-            height: 100%;
-            @include size(padding-top, 20);
-            @include size(padding-left, 25);
-            float: left;
-            position: static;
-            vertical-align: top;
-        }
-
-        .list__item__content__meta + .list__item__content {
-            width: 50%;
-        }
-
-        .list__item__content__date {
-            width: 100%;
-            @include vertical-align;
-            margin: 0;
-            @include size(font-size, 21);
-            text-align: center;
-        }
-    }
-
-    .list__item--vertical__date {
-        height: 100%;
-        position: relative;
-        line-height: 1.1;
-    }
-
-    .list__item__content__date__day {
-        display: block;
-        @include size(font-size, 50);
-        line-height: 1;
-        font-weight: 400;
-    }
-
-    .list__item__content__date__year {
-        display: block;
-    }
-
-    .list__item--vertical__image {
-        width: 35%;
-        height: 100%;
-        float: left;
-        background-position: top center;
-        background-size: cover;
-        vertical-align: top;
-
-        img {
-            max-width: 100%;
-        }
     }
 
     .list__item--member {
