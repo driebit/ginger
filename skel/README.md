@@ -15,6 +15,7 @@
 3. `make test` - Run Elm-test
 4. `make build` - Build for production
 
+
 ## Configuration
 
 (Describe configuration settings for your site...)
@@ -22,3 +23,8 @@
 ## Custom Services
 
 (If the module contains API services, list them here.)
+
+## Notes
+
+- `Makefile` and `templates/main.tpl` can be removed for template based development
+- `gulpfile.js`, `lib/css` and `lib/js` can be removed for Elm based development
