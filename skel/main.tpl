@@ -25,8 +25,8 @@
         <title>Webapp</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-        {% lib "js/main.js" %}
-        {% lib "css/style.css" %}
+        {% lib "dist/main.js" %}
+        {% lib "dist/style.css" %}
 
         {% include "favicon.tpl" %}
         {% include "mod_seo_html_head.tpl" %}
