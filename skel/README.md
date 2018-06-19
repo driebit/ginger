@@ -13,7 +13,7 @@
 1. `make init` - Install dependencies, clone Elm and Scss skeleton
 2. `make watch` - Develop, compile on change
 3. `make test` - Run Elm-test
-3. `make build` - Build for production
+4. `make build` - Build for production
 
 ## Configuration
 
