@@ -1,41 +1,24 @@
-# Skeleton
+# (Site name)
 
-Initial setup for developing Elm or template based websites with Ginger/Zotonic.
+(Description for your site)
 
-## Develop templates
+## Getting started
 
-### Init
-```
-npm install
-```
+### Template + Scss based
+1. `npm install` - Install dependencies
+2. `npm start` - Develop, compile on change
+3. `npm run build` - Build for production
 
-### Develop
-Watch Js and Scss files and transpile/compile on change
-```
-npm start
-```
+### Elm + Scss based
+1. `make init` - Install dependencies, clone Elm and Scss skeleton
+2. `make watch` - Develop, compile on change
+3. `make test` - Run Elm-test
+3. `make build` - Build for production
 
-### Build
-```
-npm build
-```
+## Configuration
 
-## Develop Elm
+(Describe configuration settings for your site...)
 
-### Init
-Clone Elm and Scss skeletons to lib directory, install dependencies and compile.
-```
-make init
-```
+## Custom Services
 
-### Develop
-Watch Elm and Scss files and compile on change
-```
-make watch
-```
-
-### Build
-```
-make build
-```
-
+(If the module contains API services, list them here.)
