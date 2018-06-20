@@ -10,7 +10,7 @@ encode(Value) ->
         true ->
             z_convert:to_binary(Value);
         false ->
-            erlang:error(<<"Invalid string">>, Value)
+            ginger_type:error("string", Value)
     end.
 
 

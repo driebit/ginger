@@ -4,8 +4,8 @@
 
 -include("zotonic.hrl").
 
--spec encode(term()) -> number().
+-spec encode(term()) -> list().
 encode({trans, Translations}) ->
     [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
 encode(Value) ->
-    erlang:error(<<"Expecting a translated string">>, Value).
+    ginger_type:error("ginger translation", Value).

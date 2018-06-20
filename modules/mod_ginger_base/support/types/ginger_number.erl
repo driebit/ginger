@@ -8,4 +8,4 @@
 encode(Value) when is_number(Value) ->
     Value;
 encode(Value) ->
-    erlang:error(<<"Expecting a number">>, Value).
+    ginger_type:error("number", Value).

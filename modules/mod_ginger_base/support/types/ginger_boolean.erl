@@ -8,4 +8,4 @@
 encode(Value) when is_boolean(Value) ->
     Value;
 encode(Value) ->
-    erlang:error(<<"Expecting a true or false atom">>, Value).
+    ginger_type:error("boolean", Value).

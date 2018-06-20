@@ -9,5 +9,5 @@ encode(Value) ->
         true ->
             Value;
         false ->
-            erlang:error(<<"Expecting date()">>, Value)
+            ginger_type:error("date", Value)
     end.
