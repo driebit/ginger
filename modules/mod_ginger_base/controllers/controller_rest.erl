@@ -61,7 +61,6 @@ to_json(Req, State = #state{mode = document}) ->
 %%%-----------------------------------------------------------------------------
 
 get_rsc(Id, Context) ->
-    CustomProps = custom_props(Id, Context),
     #{
       id => Id,
       title => translation(Id, title, Context),
@@ -70,18 +69,21 @@ get_rsc(Id, Context) ->
       path => m_rsc:page_url(Id, Context),
       publication_date => m_rsc:p(Id, publication_start, Context),
       category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-      properties => case maps:size(CustomProps) of
-                        0 ->
-                            null;
-                        _ ->
-                            CustomProps
-                    end
+      properties => custom_props(Id, Context)
      }.
 
 custom_props(Id, Context) ->
-    Rsc = m_rsc:get_visible(Id, Context),
-    Filter = fun (Key) -> not(lists:member(Key, default_props())) end,
-    maps:from_list(proplists_filter(Filter, Rsc)).
+    case m_site:get(types, Context) of
+        undefined ->
+            null;
+        CustomProps ->
+            maps:map(
+               fun (PropName, TypeModule) ->
+                       TypeModule:encode(m_rsc:p(Id, PropName, Context))
+               end,
+               CustomProps
+            )
+    end.
 
 translation(Id, Prop, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
@@ -105,83 +107,3 @@ proplists_filter(Filter, List) ->
       List,
       proplists:get_keys(List)
      ).
-
-default_props() ->
-    [
-     address_city,
-     address_country,
-     address_postcode,
-     address_state,
-     address_street_1,
-     address_street_2,
-     blocks,
-     body,
-     category_id,
-     content_group_id,
-     created,
-     creator_id,
-     custom_slug,
-     date_end,
-     date_is_all_day,
-     date_remarks,
-     date_start,
-     email,
-     feature_enable_comments,
-     id,
-     installed_by,
-     is_authoritative,
-     is_dependent,
-     is_featured,
-     is_page_path_multiple,
-     is_protected,
-     is_published,
-     is_unfindable,
-     is_website_redirect,
-     language,
-     license,
-     mail_city,
-     mail_country,
-     mail_postcode,
-     mail_state,
-     mail_street_1,
-     mail_street_2,
-     managed_props,
-     menu,
-     modified,
-     modifier_id,
-     name,
-     name_first,
-     name_middle,
-     name_surname,
-     name_surname_prefix,
-     original_filename,
-     page_path,
-     phone,
-     phone_alt,
-     phone_emergency,
-     phone_mobile,
-     pivot_geocode,
-     pivot_geocode_qhash,
-     pivot_location_lat,
-     pivot_location_lng,
-     pref_tz,
-     publication_end,
-     publication_start,
-     reversed,
-     rights,
-     seo_desc,
-     seo_keywords,
-     seo_noindex,
-     seo_title,
-     short_title,
-     slug,
-     subtitle,
-     summary,
-     title,
-     title_slug,
-     tz,
-     uri,
-     version,
-     visible_for,
-     website
-    ].
