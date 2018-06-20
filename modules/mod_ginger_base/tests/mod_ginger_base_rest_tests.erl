@@ -7,12 +7,12 @@
 
 resource_exists_test_() ->
     [
-     fun () ->
+     fun() ->
              State = #state{mode = collection},
              {Result, _, _} =  controller_rest:resource_exists(req, State),
              ?assertEqual(true, Result)
      end,
-     fun () ->
+     fun() ->
              State = #state{mode = document},
              {Result, _, _} =  controller_rest:resource_exists(req, State),
              ?assertEqual(false, Result)
