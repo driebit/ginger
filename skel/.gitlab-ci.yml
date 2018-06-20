@@ -6,6 +6,13 @@ variables:
     POSTGRES_USER: zotonic
     POSTGRES_DB: ${CI_PROJECT_NAME}
 
+lint:
+    stage: build
+    image: erlang:20.3-alpine
+    script:
+        - wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
+        - ./rebar3 lint
+
 build-npm:
     stage: build
     image: node:8.9.1
