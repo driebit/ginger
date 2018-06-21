@@ -4,6 +4,7 @@
 
 -include("zotonic.hrl").
 
+%% TODO: Improve code readabilty
 -spec error(string(), term()) -> string().
 error(Expected, Value) ->
     Message =
@@ -17,7 +18,7 @@ error(Expected, Value) ->
           newline()
         ],
     io:format(lists:flatten(Message)),
-    erlang:error("***Unexpected value***").
+    erlang:error("***Unexpected value, see error message***").
 
 -spec color(string(), string()) -> string().
 color(Text, Color) ->
@@ -30,10 +31,3 @@ newline() ->
 -spec to_string(term()) -> string().
 to_string(Term) ->
     lists:flatten(io_lib:format("~p",[Term])).
-
-%% Expectation = "I was expecting the value to be: " ++ color(Expected, "32"),
-%% ActualValue = ", but it is: " ++ color(lists:flatten(io_lib:format("~p",[Value])), "33"),
-%% io:format("~n" ++ color("Encoding error", "31") ++ "~n"),
-%% io:format(Expectation ++ ActualValue ++ "~n~n"),
-%% erlang:error(Expectation ++ ActualValue).
-
