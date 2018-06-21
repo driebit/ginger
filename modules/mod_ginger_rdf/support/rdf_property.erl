@@ -14,34 +14,34 @@
 -include_lib("zotonic.hrl").
 -include_lib("../include/rdf.hrl").
 
--spec 'dbpedia-owl'(binary()) -> binary().
+-spec 'dbpedia-owl'(binary()) -> ginger_uri:uri().
 'dbpedia-owl'(Property) ->
     property(?NS_DBPEDIA_OWL, Property).
 
--spec foaf(binary()) -> binary().
+-spec foaf(binary()) -> ginger_uri:uri().
 foaf(Property) ->
     property(?NS_FOAF, Property).
 
--spec geo(binary()) -> binary().
+-spec geo(binary()) -> ginger_uri:uri().
 geo(Property) ->
     property(?NS_GEO, Property).
 
--spec rdf(binary()) -> binary().
+-spec rdf(binary()) -> ginger_uri:uri().
 rdf(Property) ->
     property(?NS_RDF, Property).
 
--spec rdfs(binary()) -> binary().
+-spec rdfs(binary()) -> ginger_uri:uri().
 rdfs(Property) ->
     property(?NS_RDF_SCHEMA, Property).
 
--spec schema(binary()) -> binary().
+-spec schema(binary()) -> ginger_uri:uri().
 schema(Property) ->
     property(?NS_SCHEMA_ORG, Property).
 
--spec vcard(binary()) -> binary().
+-spec vcard(binary()) -> ginger_uri:uri().
 vcard(Property) ->
     property(?NS_VCARD, Property).
 
--spec property(binary() | string(), binary()) -> binary().
+-spec property(binary() | string(), binary()) -> ginger_uri:uri().
 property(Namespace, Property) ->
-    <<(z_convert:to_binary(Namespace))/binary, Property/binary>>.
+    ginger_uri:uri(<<(z_convert:to_binary(Namespace))/binary, Property/binary>>).
