@@ -4,10 +4,14 @@
 
 -include("zotonic.hrl").
 
-encode(Value) ->
-    case calendar:valid_date(Value) of
+%% TODO: Test for valid datetime() not valid_date
+-spec encode(calendar:datetime()) -> calendar:datetime().
+encode({Date, _Time} = Value) ->
+    case calendar:valid_date(Date) of
         true ->
             Value;
-        false ->
-            ginger_type:error("date", Value)
-    end.
+        _ ->
+            ginger_type:error("datetime", Value)
+    end;
+encode(Value) ->
+    ginger_type:error("datetime", Value).
