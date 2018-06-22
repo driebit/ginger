@@ -17,7 +17,7 @@ error(Expected, Value) ->
           newline(),
           newline()
         ],
-    io:format(lists:flatten(Message)),
+    io:format(standard_error, lists:flatten(Message), []),
     erlang:error("***Unexpected value, see error message***").
 
 -spec color(string(), string()) -> string().
