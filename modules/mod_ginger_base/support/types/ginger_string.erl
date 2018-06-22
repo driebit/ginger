@@ -5,6 +5,8 @@
 -include("zotonic.hrl").
 
 -spec encode(term()) -> binary().
+encode(<<Value/binary>>) ->
+    encode(binary:bin_to_list(Value));
 encode(Value) ->
     case z_string:is_string(Value) of
         true ->
@@ -12,5 +14,3 @@ encode(Value) ->
         false ->
             ginger_type:error("string", Value)
     end.
-
-

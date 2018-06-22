@@ -3,13 +3,13 @@
 -include_lib("eunit/include/eunit.hrl").
 -include("zotonic.hrl").
 
-
 encode_test() ->
     ?assertEqual(<<"">>, ginger_string:encode("")),
     ?assertEqual(<<"Hello">>, ginger_string:encode("Hello")),
     ?assertEqual(<<"ABC">>, ginger_string:encode([65, 66, 67])),
     ?assertEqual(<<"">>, ginger_string:encode([])),
-    %% ?assertEqual(<<"Hello">>, ginger_string:encode(<<"Hello">>)), <- Should succeed ?
+    ?assertEqual(<<"">>, ginger_string:encode(<<"">>)),
+    ?assertEqual(<<"Hello">>, ginger_string:encode(<<"Hello">>)),
     ?assertError("***Unexpected value, see error message***", ginger_string:encode([1])),
     ?assertError("***Unexpected value, see error message***", ginger_string:encode(#{})),
     ?assertError("***Unexpected value, see error message***", ginger_string:encode(hello)),
