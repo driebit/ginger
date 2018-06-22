@@ -16,6 +16,12 @@
     is_wikidata_uri/1
 ]).
 
+%% @doc Usage: m.dbpedia["http://nl.dbpedia.org/resource/Nederland"]
+-spec m_find_value(ginger_uri:uri() | atom(), #m{}, z:context()) -> #rdf_resource{}.
+m_find_value(<<"http://", Uri/binary>>, #m{}, Context) ->
+    get_resource(Uri, Context);
+m_find_value(<<"https://", Uri/binary>>, #m{}, Context) ->
+    get_resource(Uri, Context);
 m_find_value(Language, #m{value = undefined} = M, _Context) ->
     M#m{value = Language};
 m_find_value(Uri, #m{value = Language}, Context) ->
