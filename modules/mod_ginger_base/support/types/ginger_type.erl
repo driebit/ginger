@@ -34,7 +34,9 @@ toColorCode(red) ->
 toColorCode(green) ->
     "32";
 toColorCode(yellow) ->
-    "33".
+    "33";
+toColorCode(_) ->
+    "".
 
 -spec newline() -> string().
 newline() ->
