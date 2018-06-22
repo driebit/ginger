@@ -10,4 +10,5 @@ encode_test() ->
     ?assertError("***Unexpected value, see error message***", ginger_number:encode(#{})),
     ?assertError("***Unexpected value, see error message***", ginger_number:encode(hello)),
     ?assertError("***Unexpected value, see error message***", ginger_number:encode("Hello")),
+    ?assertError("***Unexpected value, see error message***", ginger_number:encode(<<"Hello">>)),
     ?assertError("***Unexpected value, see error message***", ginger_number:encode(true)).
