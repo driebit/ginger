@@ -31,7 +31,7 @@ script:
     - docker version
     - docker-compose version
     - docker-compose run --rm zotonic make
-    - docker-compose run zotonic bin/zotonic runtests mod_ginger_activity mod_ginger_collection mod_ginger_rdf
+    - docker-compose run zotonic bin/zotonic runtests mod_ginger_activity mod_ginger_collection mod_ginger_rdf m_rdf
 
 notifications:
     slack:
