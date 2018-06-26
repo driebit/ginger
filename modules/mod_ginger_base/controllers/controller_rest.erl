@@ -48,7 +48,7 @@ to_json(Req, State = #state{mode = collection}) ->
               Context),
     %% TODO: limit to 1000 results
     Ids = z_search:query_(Args1 ++ Args2, Context),
-    Json = jsx:encode(add_edges([get_rsc(Id, Context) || Id <- Ids], Context)),
+    Json = jsx:encode(get_rscs(Ids, Context)),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document}) ->
     Id = erlang:list_to_integer(wrq:path_info(id, Req)),
@@ -59,6 +59,10 @@ to_json(Req, State = #state{mode = document}) ->
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+get_rscs(Ids, Context) ->
+    Rscs = [get_rsc(Id, Context) || Id <- Ids],
+    add_edges(Rscs, Context).
 
 get_rsc(Id, Context) ->
     #{
