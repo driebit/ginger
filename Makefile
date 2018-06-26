@@ -16,8 +16,9 @@ help:
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
 	@echo "  gulp site=your_site     Run Gulp in a site directory"
 	@echo "  clean-node              Delete all node_modules directories"
-	@echo "  import-db-file          Import database from file (site=site-name file=site-dump.sql)"
+	@echo "  import-db-file          Import database from file in ginger data dir (site=site-name file=site-dump.sql)"
 	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
 	@echo "  test site=site-name     Run brower site tests in Docker container (args=Nightwatch arguments url=http://...)"
@@ -57,6 +58,9 @@ dump-db:
 
 shell:
 	@docker-compose exec zotonic bin/zotonic shell
+
+prompt:
+	@docker-compose run zotonic sh
 
 psql:
 	@docker-compose exec postgres psql -U zotonic

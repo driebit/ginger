@@ -48,6 +48,7 @@ parse_query_term(Term, Values, QueryArgs) when
     Term =:= <<"object_category.rdfs:label.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>;
+    Term =:= <<"schema:about.rdfs:label.keyword">>;
     Term =:= <<"rdf:type.rdfs:label.keyword">>
 ->
     QueryArgs ++ lists:map(

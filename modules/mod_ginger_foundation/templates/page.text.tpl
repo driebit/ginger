@@ -3,7 +3,7 @@
 {% block body_class %}t--article-sided{% endblock %}
 
 {% block content %}
-    <main class="page--sided">
+    <main id="main-content" role="main" class="page--sided">
         <div class="main-content--sided">
         <article>
 

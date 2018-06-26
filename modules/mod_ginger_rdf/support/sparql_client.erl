@@ -34,6 +34,7 @@ query(Endpoint, Query) ->
 %% @doc Execute a SPARQL query with some HTTP headers.
 -spec query(url(), binary(), map()) -> list().
 query(Endpoint, Query, Headers) ->
+    lager:debug("sparql_client query on endpoint ~s: ~s", [Endpoint, Query]),
     Qs = z_convert:to_binary(z_url:url_encode(Query)),
     Url = <<Endpoint/binary, "?query=", Qs/binary>>,
     case ginger_http_client:get(Url, Headers) of
@@ -50,7 +51,9 @@ get_resource(Endpoint, Uri, Properties) ->
     case query(Endpoint, Query, #{<<"Accept">> => <<"application/json">>}) of
         undefined ->
             unfined;
-        #{<<"results">> := #{<<"bindings">> := [Bindings]}} ->
+        %% Take the first bindings row in case multiple rows were returned because of properties
+        %% with multiple values.
+        #{<<"results">> := #{<<"bindings">> := [Bindings | _]}} ->
             ResolvedBindings = sparql_query:resolve_arguments(Bindings, Arguments),
             sparql_result:result_to_rdf(ResolvedBindings, Uri)
     end.
