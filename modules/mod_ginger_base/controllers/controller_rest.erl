@@ -48,7 +48,7 @@ to_json(Req, State = #state{mode = collection}) ->
               Context),
     %% TODO: limit to 1000 results
     Ids = z_search:query_(Args1 ++ Args2, Context),
-    Json = jsx:encode([get_rsc(Id, Context) || Id <- Ids]),
+    Json = jsx:encode(add_edges([get_rsc(Id, Context) || Id <- Ids], Context)),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document}) ->
     Id = erlang:list_to_integer(wrq:path_info(id, Req)),
@@ -71,6 +71,25 @@ get_rsc(Id, Context) ->
       category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
       properties => custom_props(Id, Context)
      }.
+
+add_edges(Resources, Context) ->
+    lists:map(
+      fun(Resource) ->
+              Id = maps:get(id, Resource),
+              Edges = edges(Id, Context),
+              maps:put(edges, Edges, Resource)
+      end,
+      Resources
+     ).
+
+edges(ResourceId, Context) ->
+    EdgeIds = m_edge:objects(ResourceId, Context),
+    lists:map(
+      fun(EdgeId) ->
+              get_rsc(EdgeId, Context)
+      end,
+      EdgeIds
+     ).
 
 custom_props(Id, Context) ->
     case m_site:get(types, Context) of
