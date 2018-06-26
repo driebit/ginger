@@ -53,7 +53,7 @@ to_json(Req, State = #state{mode = collection}) ->
 to_json(Req, State = #state{mode = document}) ->
     Id = erlang:list_to_integer(wrq:path_info(id, Req)),
     Context = z_context:new(Req, ?MODULE),
-    Json = jsx:encode(get_rsc(Id, Context)),
+    Json = jsx:encode(add_edge(get_rsc(Id, Context), Context)),
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
@@ -77,23 +77,15 @@ get_rsc(Id, Context) ->
      }.
 
 add_edges(Resources, Context) ->
-    lists:map(
-      fun(Resource) ->
-              Id = maps:get(id, Resource),
-              Edges = edges(Id, Context),
-              maps:put(edges, Edges, Resource)
-      end,
-      Resources
-     ).
+    [add_edge(Resource, Context) || Resource <- Resources].
 
-edges(ResourceId, Context) ->
+add_edge(Resource = #{id := Id}, Context) ->
+    Edges = get_edges(Id, Context),
+    maps:put(edges, Edges, Resource).
+
+get_edges(ResourceId, Context) ->
     EdgeIds = m_edge:objects(ResourceId, Context),
-    lists:map(
-      fun(EdgeId) ->
-              get_rsc(EdgeId, Context)
-      end,
-      EdgeIds
-     ).
+    [get_rsc(Id, Context) || Id <- EdgeIds].
 
 custom_props(Id, Context) ->
     case m_site:get(types, Context) of
