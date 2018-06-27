@@ -132,7 +132,15 @@ mediaclasses(Context) ->
                    R#mediaclass_index.key#mediaclass_index_key.site == Site
               ]
              ),
-    lists:usort(qlc:eval(Q)).
+    lists:filter(
+      fun
+          (<<"admin-", _/bytes>>) ->
+              false;
+          (_) ->
+              true
+      end,
+      lists:usort(qlc:eval(Q))
+     ).
 
 custom_props(Id, Context) ->
     case m_site:get(types, Context) of
