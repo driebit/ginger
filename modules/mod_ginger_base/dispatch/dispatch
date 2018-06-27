@@ -6,7 +6,8 @@
 
     %% REST API
     {data, ["data", "resources"], controller_rest, [{mode, collection}]},
-    {data, ["data", "resources", id], controller_rest, [{mode, document}]},
+    {data, ["data", "resources", id], controller_rest, [{mode, document}, {path_info, id}]},
+    {data, ["data", "resources", "path", path], controller_rest, [{mode, document}, {path_info, path}]},
 
     %% Normal page to show a resource.
     {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},

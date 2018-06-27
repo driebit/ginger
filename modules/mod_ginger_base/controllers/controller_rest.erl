@@ -2,6 +2,7 @@
 
 -export([
          init/1,
+         malformed_request/2,
          resource_exists/2,
          content_types_provided/2,
          to_json/2
@@ -12,7 +13,7 @@
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, {mode}).
+-record(state, {mode, path_info}).
 
 
 %%%-----------------------------------------------------------------------------
@@ -20,18 +21,40 @@
 %%%-----------------------------------------------------------------------------
 
 init(Args) ->
-    Mode = proplists:get_value(mode, Args),
-    {ok, #state{mode = Mode}}.
+    Mode =  proplists:get_value(mode, Args),
+    PathInfo = proplists:get_value(path_info, Args),
+    {ok, #state{mode = Mode, path_info = PathInfo}}.
+
+malformed_request(Req, State = #state{mode = collection}) ->
+    {false, Req, State};
+malformed_request(Req, State = #state{mode = document, path_info = path}) ->
+    {false, Req, State};
+malformed_request(Req, State = #state{mode = document, path_info = id}) ->
+    case string:to_integer(wrq:path_info(id, Req)) of
+        {error, _Reason} ->
+            {true, Req, State};
+        {_Int, []} ->
+            {false, Req, State};
+        {_Int, _Rest} ->
+            {true, Req, State}
+    end.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
-resource_exists(Req, State = #state{mode = document}) ->
-    Id = wrq:path_info(id, Req),
+resource_exists(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
-    Exists = m_rsc:exists(Id, Context),
-    {Exists, Req, State};
-resource_exists(Req, State) ->
-    {false, Req, State}.
+    case PathInfo of
+        id ->
+            Id = wrq:path_info(id, Req),
+            {m_rsc:exists(Id, Context), Req, State};
+        path ->
+            case path_to_id(wrq:path_info(path, Req), Context) of
+                {ok, Id} ->
+                    {m_rsc:exists(Id, Context), Req, State};
+                {error, _} ->
+                    {false, Req, State}
+            end
+    end.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
@@ -50,9 +73,17 @@ to_json(Req, State = #state{mode = collection}) ->
     Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode(get_rscs(Ids, Context)),
     {Json, Req, State};
-to_json(Req, State = #state{mode = document}) ->
-    Id = erlang:list_to_integer(wrq:path_info(id, Req)),
+to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
+    Id = erlang:list_to_integer(
+           case PathInfo of
+               id ->
+                   wrq:path_info(id, Req);
+               path ->
+                   {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
+                   Result
+           end
+          ),
     Json = jsx:encode(add_edges(get_rsc(Id, Context), Context)),
     {Json, Req, State}.
 
@@ -118,3 +149,20 @@ proplists_filter(Filter, List) ->
       List,
       proplists:get_keys(List)
      ).
+
+path_to_id("/", Context) ->
+    m_rsc:name_to_id("home", Context);
+path_to_id(Path, Context) ->
+    case string:tokens(Path, "/") of
+        ["page", Id | _] ->
+            {ok, Id};
+        [_Language, "page", Id | _] ->
+            {ok, Id};
+        _ ->
+            case m_rsc:page_path_to_id(Path, Context) of
+                {redirect, Id} ->
+                    {ok, Id};
+                Result ->
+                    Result
+            end
+    end.
