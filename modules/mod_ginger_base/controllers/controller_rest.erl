@@ -59,11 +59,12 @@ content_types_provided(Req, State) ->
 
 to_json(Req, State = #state{mode = collection}) ->
     Context = z_context:new(Req, ?MODULE),
-    Qs = proplists_filter(
-           fun (Key) -> lists:member(Key, ["cat", "hasobject", "hassubject"]) end,
-           wrq:req_qs(Req)
-          ),
-    Args1 = search_query:parse_request_args(Qs),
+    Args1 = search_query:parse_request_args(
+              proplists_filter(
+                fun (Key) -> lists:member(Key, ["cat", "hasobject", "hassubject"]) end,
+                wrq:req_qs(Req)
+               )
+             ),
     Args2 = ginger_search:query_arguments(
               [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
               Context
