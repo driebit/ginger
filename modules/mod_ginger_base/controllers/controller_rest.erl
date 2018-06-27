@@ -91,24 +91,35 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-rsc(Id, Context, true) ->
-    edges(rsc(Id, Context, false), Context);
 rsc(Id, Context, IncludeEdges) ->
-    Map = #{
-            id => Id,
-            title => translation(Id, title, Context),
-            body => translation(Id, body, Context),
-            summary => translation(Id, summary, Context),
-            path => m_rsc:page_url(Id, Context),
-            publication_date => m_rsc:p(Id, publication_start, Context),
-            category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-            properties => custom_props(Id, Context)
-           },
-    case IncludeEdges of
+    Map1 = #{
+             id => Id,
+             title => translation(Id, title, Context),
+             body => translation(Id, body, Context),
+             summary => translation(Id, summary, Context),
+             path => m_rsc:page_url(Id, Context),
+             publication_date => m_rsc:p(Id, publication_start, Context),
+             categories => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
+             properties => custom_props(Id, Context)
+            },
+    Map2 = case IncludeEdges of
+               false ->
+                   Map1;
+               true ->
+                   Map1#{edges => edges(Id, Context)}
+           end,
+    case lists:member(image, maps:get(categories, Map2)) of
         false ->
-            Map;
+            Map2;
         true ->
-            Map#{edges => edges(Id, Context)}
+            Url = fun(Class) ->
+                          Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+                          {ok, Result} = z_media_tag:url(Id, Opts, Context),
+                          ?DEBUG(Result),
+                          Result
+                  end,
+            Media = [#{mediaclass => Class, url => Url(Class)} || Class <- mediaclasses(Context)],
+            Map2#{media => Media}
     end.
 
 edges(RscId, Context) ->

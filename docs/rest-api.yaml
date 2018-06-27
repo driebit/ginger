@@ -46,6 +46,10 @@ definitions:
               type: array
               items:
                 $ref: '#/definitions/Resource'
+            media:
+              type: array
+              items:
+                $ref: '#/definitions/Media'
         required:
             - id
             - title
@@ -55,7 +59,6 @@ definitions:
             - path
             - category
             - properties
-            - edges
     Translation:
         type: object
         properties:
@@ -72,13 +75,13 @@ definitions:
             url:
                 type: string
                 example: "/images/foo.jpeg"
-            width:
-                type: integer
-                example: 1920
-            height:
-                type: integer
-                example: 1280
-            imageclass:
+            # width:
+            #     type: integer
+            #     example: 1920
+            # height:
+            #     type: integer
+            #     example: 1280
+            mediaclass:
                 type: string
                 example: "thumbnail"
 
