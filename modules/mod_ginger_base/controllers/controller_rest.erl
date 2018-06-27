@@ -10,6 +10,7 @@
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
+-include_lib("stdlib/include/qlc.hrl").
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
@@ -112,6 +113,15 @@ rsc(Id, Context, IncludeEdges) ->
 
 edges(RscId, Context) ->
     [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
+
+mediaclasses(Context) ->
+    Site = z_context:site(Context),
+    Q = qlc:q([ R#mediaclass_index.key#mediaclass_index_key.mediaclass
+                || R <- ets:table(?MEDIACLASS_INDEX),
+                   R#mediaclass_index.key#mediaclass_index_key.site == Site
+              ]
+             ),
+    lists:usort(qlc:eval(Q)).
 
 custom_props(Id, Context) ->
     case m_site:get(types, Context) of
