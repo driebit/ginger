@@ -28,7 +28,8 @@ for_user(UserId, Context) ->
             activity_log.user_id as user_id
         from activity_inbox
         left join activity_log on activity_log.id = activity_inbox.activity_id
-        where activity_inbox.user_id = $1",
+        where activity_inbox.user_id = $1
+        order by activity_log.time desc",
         [UserId],
         Context
     ),
