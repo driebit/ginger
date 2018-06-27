@@ -108,7 +108,6 @@ serialize_recursive_test() ->
 
 rdf_export_test() ->
     Context = context(),
-
     Props = [
         {category, text},
         {title, {trans, [
@@ -141,6 +140,19 @@ rdf_export_test() ->
         },
         Map
     ).
+
+rdf_export_test_no_category_uri_test() ->
+    Context = context(),
+    Props = [
+        {category, meta},
+        {is_published, true}
+    ],
+    {ok, Id} = m_rsc:insert(Props, z_acl:sudo(Context)),
+    Rdf = m_rdf_export:to_rdf(Id, Context),
+    Map = ginger_json_ld:serialize_to_map(Rdf),
+
+    %% If category has no URI, it must not be added to @type.
+    ?assertEqual(false, maps:is_key(<<"@type">>, Map)).
 
 address_to_triples_test() ->
     Props = [

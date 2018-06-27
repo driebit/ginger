@@ -79,12 +79,17 @@ edges_to_triples(Edges, Ontologies, Context) ->
 
 -spec types(m_rsc:resource(), z:context()) -> [m_rdf:triple()].
 types(Category, Context) ->
-    [
-        #triple{
-            predicate = rdf_property:rdf(<<"type">>),
-            object = get_category_uri(Category, Context)
-        }
-    ].
+    case get_category_uri(Category, Context) of
+        undefined ->
+            [];
+        _ ->
+            [
+                #triple{
+                    predicate = rdf_property:rdf(<<"type">>),
+                    object = get_category_uri(Category, Context)
+                }
+            ]
+    end.
 
 %% @doc Get category URI, starting at the most specific category and falling
 %%      back to parent categories
