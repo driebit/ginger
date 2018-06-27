@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 .PHONY: elm assets watch minify
 
 default: all
@@ -46,6 +48,7 @@ help:
 	@echo "  distclean              Remove build files and dependencies"
 	@echo "  help                   Show list of make commands"
 	@echo "  init                   Initialize site, clone Elm and Scss skeletons and install deps"
+	@echo "  minify                 Minify JS and Css files"
 	@echo "  watch                  Compile all Elm and Scss files on file change and reload browser"
 	@echo "  watch-elm              Compile all Elm files on file change and reload browser"
 	@echo "  watch-scss             Compile all Scss files on file change and reload browser"
@@ -61,7 +64,7 @@ livereload:
 
 minify:
 	@uglifyjs lib/dist/main.js -c --output='lib/dist/main.js'
-	# @cleancss -o lib/dist/style.css lib/dist/style.css
+	@cleancss -o lib/dist/style.css lib/dist/style.css
 
 scss:
 	$(MAKE) -C ${SCSS_DIR}
