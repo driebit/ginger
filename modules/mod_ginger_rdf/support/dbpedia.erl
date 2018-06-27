@@ -21,7 +21,7 @@ search(#search_query{search = {dbpedia, Args}}) ->
         <<"?s WHERE ">>,
         Args
     ),
-    
+
     Language = z_convert:to_binary(proplists:get_value(lang, Args, <<>>)),
     Result = describe(SparqlQuery, Language),
     #search_result{result = [Result]}.
@@ -38,6 +38,9 @@ parse_argument(rkd_uri, <<"https://rkd.nl/explore/artists/", Id/binary>> = Uri, 
     <<Sparql/binary, "{", (iolist_to_binary(Clause))/binary, "}">>;
 parse_argument(same_as, Uri, Sparql) ->
     <<Sparql/binary, "{?s <http://www.w3.org/2002/07/owl#sameAs> <", Uri/binary, "}">>;
+parse_argument(text, Text, Sparql) ->
+    Text2 = z_convert:to_binary(Text),
+    <<Sparql/binary, "{?s rdfs:label ?label. ?label bif:contains \"", Text2/binary, "\"}">>;
 parse_argument(_, _, Sparql) ->
     Sparql.
 
@@ -56,7 +59,7 @@ describe(Resource, Language) when not is_list(Resource); not is_binary(Language)
 -spec get_resource(binary(), [binary()], atom()) -> #rdf_resource{} | undefined.
 get_resource(Uri, Properties, Language) ->
     sparql_client:get_resource(endpoint(Language), Uri, Properties).
-    
+
 endpoint(<<>>) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
 endpoint(Language) ->
