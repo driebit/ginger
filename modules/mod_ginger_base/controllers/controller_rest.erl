@@ -66,8 +66,8 @@ to_json(Req, State = #state{mode = collection}) ->
     Args1 = search_query:parse_request_args(Qs),
     Args2 = ginger_search:query_arguments(
               [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
-              Context),
-    %% TODO: limit to 1000 results
+              Context
+             ),
     Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode(get_rscs(Ids, Context)),
     {Json, Req, State};
