@@ -3,6 +3,7 @@
 
 -export([
     'dbpedia-owl'/1,
+    dcterms/1,
     foaf/1,
     geo/1,
     rdf/1,
@@ -17,6 +18,10 @@
 -spec 'dbpedia-owl'(binary()) -> ginger_uri:uri().
 'dbpedia-owl'(Property) ->
     property(?NS_DBPEDIA_OWL, Property).
+
+-spec dcterms(binary()) -> ginger_uri:uri().
+dcterms(Property) ->
+    property(?NS_DCTERMS, Property).
 
 -spec foaf(binary()) -> ginger_uri:uri().
 foaf(Property) ->

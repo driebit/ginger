@@ -210,9 +210,14 @@ serialize_to_map(#rdf_resource{id = Id, triples = Triples} = RdfResource) ->
                     merge_values(TripleJson, Acc)
             end
         end,
-        #{<<"@id">> => Id},
+        id(Id),
         Triples
     ).
+
+id(undefined) ->
+    #{};
+id(Id) ->
+    #{<<"@id">> => Id}.
 
 compact(Map) when is_map(Map) ->
     maps:fold(
@@ -294,12 +299,18 @@ triple_to_json(#triple{type = literal, predicate = Predicate, object = Object}) 
 triple_to_json(#triple{type = resource, predicate = Predicate, object = Object}) ->
     {Predicate, [{<<"@id">>, Object}]}.
 
-triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, type = resource, object = Object}, #rdf_resource{id = Id}) ->
+triple_to_map(#triple{object = #rdf_value{value = undefined}}, #rdf_resource{}) ->
+    %% Ignore empty triples without object.
+    undefined;
+triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Object}, #rdf_resource{id = Id}) when is_binary(Object) ->
     #{<<"@type">> => #{<<"@id">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
+triple_to_map(#triple{predicate = Predicate, object = #rdf_resource{} = Object}, #rdf_resource{}) ->
+    %% Embedded objects.
+    #{Predicate => serialize_to_map(Object)};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rdf_resource{id = Id} = RdfResource) ->
     %% Nest values from referenced objects.
     #{Predicate => merge_triples(RdfResource, Object)};
