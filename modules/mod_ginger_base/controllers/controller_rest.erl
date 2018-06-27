@@ -41,19 +41,17 @@ malformed_request(Req, State = #state{mode = document, path_info = id}) ->
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
-resource_exists(Req, State = #state{mode = document, path_info = PathInfo}) ->
+resource_exists(Req, State = #state{mode = document, path_info = id}) ->
     Context = z_context:new(Req, ?MODULE),
-    case PathInfo of
-        id ->
-            Id = wrq:path_info(id, Req),
+    Id = wrq:path_info(id, Req),
+    {m_rsc:exists(Id, Context), Req, State};
+resource_exists(Req, State = #state{mode = document, path_info = path}) ->
+    Context = z_context:new(Req, ?MODULE),
+    case path_to_id(wrq:path_info(path, Req), Context) of
+        {ok, Id} ->
             {m_rsc:exists(Id, Context), Req, State};
-        path ->
-            case path_to_id(wrq:path_info(path, Req), Context) of
-                {ok, Id} ->
-                    {m_rsc:exists(Id, Context), Req, State};
-                {error, _} ->
-                    {false, Req, State}
-            end
+        {error, _} ->
+            {false, Req, State}
     end.
 
 content_types_provided(Req, State) ->
