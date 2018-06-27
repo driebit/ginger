@@ -112,14 +112,16 @@ rsc(Id, Context, IncludeEdges) ->
         false ->
             Map2;
         true ->
-            Url = fun(Class) ->
-                          Opts = [{use_absolute_url, true}, {mediaclass, Class}],
-                          {ok, Result} = z_media_tag:url(Id, Opts, Context),
-                          ?DEBUG(Result),
-                          Result
+            Media = fun(Class, Acc) ->
+                            Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+                            case z_media_tag:url(Id, Opts, Context) of
+                                {ok, Url} ->
+                                    [#{mediaclass => Class, url => Url} | Acc];
+                                _ ->
+                                    Acc
+                            end
                   end,
-            Media = [#{mediaclass => Class, url => Url(Class)} || Class <- mediaclasses(Context)],
-            Map2#{media => Media}
+            Map2#{media => lists:foldl(Media, [], mediaclasses(Context))}
     end.
 
 edges(RscId, Context) ->
