@@ -70,7 +70,7 @@ to_json(Req, State = #state{mode = collection}) ->
               Context
              ),
     Ids = z_search:query_(Args1 ++ Args2, Context),
-    Json = jsx:encode(get_rscs(Ids, Context)),
+    Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
@@ -83,35 +83,35 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
                    Result
            end
           ),
-    Json = jsx:encode(add_edges(get_rsc(Id, Context), Context)),
+    Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-get_rscs(Ids, Context) ->
-    [add_edges(get_rsc(Id, Context), Context) || Id <- Ids].
+rsc(Id, Context, true) ->
+    edges(rsc(Id, Context, false), Context);
+rsc(Id, Context, IncludeEdges) ->
+    Map = #{
+            id => Id,
+            title => translation(Id, title, Context),
+            body => translation(Id, body, Context),
+            summary => translation(Id, summary, Context),
+            path => m_rsc:page_url(Id, Context),
+            publication_date => m_rsc:p(Id, publication_start, Context),
+            category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
+            properties => custom_props(Id, Context)
+           },
+    case IncludeEdges of
+        false ->
+            Map;
+        true ->
+            Map#{edges => edges(Id, Context)}
+    end.
 
-get_rsc(Id, Context) ->
-    #{
-      id => Id,
-      title => translation(Id, title, Context),
-      body => translation(Id, body, Context),
-      summary => translation(Id, summary, Context),
-      path => m_rsc:page_url(Id, Context),
-      publication_date => m_rsc:p(Id, publication_start, Context),
-      category => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-      properties => custom_props(Id, Context)
-     }.
-
-add_edges(Rsc = #{id := Id}, Context) ->
-    Edges = get_edges(Id, Context),
-    maps:put(edges, Edges, Rsc).
-
-get_edges(RscId, Context) ->
-    EdgeIds = m_edge:objects(RscId, Context),
-    [get_rsc(Id, Context) || Id <- EdgeIds].
+edges(RscId, Context) ->
+    [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
 
 custom_props(Id, Context) ->
     case m_site:get(types, Context) of
