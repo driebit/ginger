@@ -108,9 +108,15 @@ rsc(Id, Context, IncludeEdges) ->
                true ->
                    Map1#{edges => edges(Id, Context)}
            end,
-    case lists:member(image, maps:get(categories, Map2)) of
+    media(Map2, Context).
+
+edges(RscId, Context) ->
+    [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
+
+media(Rsc = #{id := Id}, Context) ->
+    case lists:member(image, maps:get(categories, Rsc)) of
         false ->
-            Map2;
+            Rsc;
         true ->
             Media = fun(Class, Acc) ->
                             Opts = [{use_absolute_url, true}, {mediaclass, Class}],
@@ -120,12 +126,9 @@ rsc(Id, Context, IncludeEdges) ->
                                 _ ->
                                     Acc
                             end
-                  end,
-            Map2#{media => lists:foldl(Media, [], mediaclasses(Context))}
+                    end,
+            Rsc#{media => lists:foldl(Media, [], mediaclasses(Context))}
     end.
-
-edges(RscId, Context) ->
-    [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
 
 mediaclasses(Context) ->
     Site = z_context:site(Context),
