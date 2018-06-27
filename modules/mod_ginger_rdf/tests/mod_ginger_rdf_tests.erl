@@ -105,3 +105,75 @@ serialize_recursive_test() ->
         <<"owl:sameAs">> => <<"http://dinges.com/123">>
     },
     ?assertEqual(Expected, Map).
+
+rdf_export_test() ->
+    Context = context(),
+
+    Props = [
+        {category, text},
+        {title, {trans, [
+            {nl, <<"Een mooie titel">>}
+        ]}},
+        {is_published, true}
+    ],
+    {ok, Id} = m_rsc:insert(Props, z_acl:sudo(Context)),
+    Rdf = m_rdf_export:to_rdf(Id, Context),
+    Map = ginger_json_ld:serialize_to_map(Rdf),
+    ?assertEqual(
+        #{
+            <<"@id">> => m_rsc:p(Id, uri, Context),
+            <<"@type">> => #{
+                <<"@id">> => <<"http://purl.org/dc/dcmitype/Text">>
+            },
+            <<"http://schema.org/dateCreated">> =>
+                #{<<"@value">> => m_rsc:p(Id, created, Context)
+            },
+            <<"http://schema.org/dateModified">> => #{
+                <<"@value">> => m_rsc:p(Id, modified, Context)
+            },
+            <<"http://schema.org/datePublished">> => #{
+                <<"@value">> => m_rsc:p(Id, publication_start, Context)
+            },
+            <<"http://schema.org/name">> => #{
+                <<"@value">> => <<"Een mooie titel">>,
+                <<"language">> => nl
+            }
+        },
+        Map
+    ).
+
+address_to_triples_test() ->
+    Props = [
+        {address_city, <<"Amsterdam">>},
+        {address_street_1, <<"Oudezijds Voorburgwal 282">>},
+        {address_country, <<"Nederland">>}
+    ],
+    Triples = schema_org:property_to_triples({address_country, <<"Amsterdam">>}, Props, context()),
+    Map = ginger_json_ld:serialize_to_map(#rdf_resource{triples = Triples}),
+    ?assertEqual(
+        #{
+            <<"http://schema.org/location">> => #{
+                <<"@type">> => #{
+                    <<"@id">> => <<"http://schema.org/Place">>
+                },
+                <<"http://schema.org/address">> => #{
+                    <<"@type">> => #{
+                        <<"@id">> => <<"http://schema.org/PostalAddress">>
+                    },
+                    <<"http://schema.org/streetAddress">> => #{
+                        <<"@value">> => <<"Oudezijds Voorburgwal 282">>
+                    },
+                    <<"http://schema.org/addressLocality">> => #{
+                        <<"@value">> => <<"Amsterdam">>
+                    },
+                    <<"http://schema.org/addressCountry">> => #{
+                        <<"@value">> => <<"Nederland">>
+                    }
+                }
+            }
+        },
+        Map
+    ).
+
+context() ->
+    z_context:new(testsandboxdb).

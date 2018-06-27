@@ -27,8 +27,8 @@
 }).
 
 -record(rdf_resource, {
-    id :: binary(),
-    triples = [] :: [#triple{}]
+    id :: ginger_uri:uri(),
+    triples = [] :: [m_rdf:triple()]
 }).
 
 -record(rdf_search, {
