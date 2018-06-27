@@ -41,22 +41,11 @@ definitions:
                 example: ["text", "article"]
             properties:
                 type: object
-            # values are mapped from the resource edges to these props
-            media:
-                type: object
-                properties:
-                    depiction:
-                        type: array
-                        items:
-                            $ref: '#/definitions/Media'
-                    preview:
-                        type: array
-                        items:
-                            $ref: '#/definitions/Media'
-                    banner:
-                        type: array
-                        items:
-                            $ref: '#/definitions/Media'
+            # edges include all properties but edges
+            edges:
+              type: array
+              items:
+                $ref: '#/definitions/Resource'
         required:
             - id
             - title
@@ -65,7 +54,8 @@ definitions:
             - publication_date
             - path
             - category
-            - media
+            - properties
+            - edges
     Translation:
         type: object
         properties:
