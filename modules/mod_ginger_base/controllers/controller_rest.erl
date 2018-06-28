@@ -127,7 +127,7 @@ media(Rsc = #{id := Id}, Context) ->
                                     Acc
                             end
                     end,
-            Rsc#{media => lists:foldl(Media, [], mediaclasses(Context))}
+            Rsc#{media => lists:foldr(Media, [], mediaclasses(Context))}
     end.
 
 mediaclasses(Context) ->
