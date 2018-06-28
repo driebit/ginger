@@ -60,11 +60,11 @@ init:
 	make all
 
 livereload:
-	@livereload . -e 'js, css'
+	@node_modules/livereload/bin/livereload.js . -e 'js, css'
 
 minify:
-	@uglifyjs lib/dist/main.js -c --output='lib/dist/main.js'
-	@cleancss -o lib/dist/style.css lib/dist/style.css
+	@node_modules/uglify-js/bin/uglifyjs lib/dist/main.js -c --output='lib/dist/main.js'
+	@node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
 
 scss:
 	$(MAKE) -C ${SCSS_DIR}
