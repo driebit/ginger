@@ -191,18 +191,6 @@ rdf_resource(SubjectUri, Triples) ->
         triples = [with_subject(SubjectUri, Triple) || Triple <- Triples]
     }.
 
-%% @doc Return publisher triples based on the site name and hostname
--spec publisher_triples(#context{}) -> [#triple{}].
-publisher_triples(Context) ->
-    Hostname = z_context:abs_url(<<"">>, Context),
-    [
-        #triple{
-            type = resource,
-            predicate = <<?NS_DCTERMS, "publisher">>,
-            object = Hostname
-        }
-    ].
-
 %% @doc Find all objects matching the predicate.
 -spec objects(rdf_resource(), binary()) -> list().
 objects(#rdf_resource{triples = Triples}, Predicate) ->
@@ -345,29 +333,6 @@ with_subject(SubjectUri, #triple{subject = undefined} = Triple) ->
     Triple#triple{subject = SubjectUri};
 with_subject(_SubjectUri, #triple{} = Triple) ->
     Triple.
-
-%% @doc Get category URI, starting at the most specific category and falling
-%%      back to parent categories
-get_category_uri([], _Context) ->
-    undefined;
-get_category_uri([Category|T], Context) ->
-    %% Don't use m_rsc:p(Id, uri, Context) as that will return all URIs, even
-    %% including generated ones (http://site.com/id/123). We only want to return
-    %% a URI if it has been set explicitly.
-    case m_rsc:get_visible(Category, Context) of
-        undefined ->
-            undefined;
-        Props ->
-            case proplists:get_value(uri, Props) of
-                undefined ->
-                    %% Fall back to parent category
-                    get_category_uri(T, Context);
-                Uri ->
-                    Uri
-            end
-    end;
-get_category_uri(Category, Context) ->
-    get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
 
 to_json_ld(Id, Context) ->
     jsx:encode(ginger_json_ld:serialize_to_map(to_triples(Id, Context))).

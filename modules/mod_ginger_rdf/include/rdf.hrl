@@ -20,10 +20,10 @@
 -record(triple, {
     type = literal :: resource | literal,
     subject :: undefined | binary(),
-    subject_props = [] :: list(),
-    predicate :: binary(),
-    object :: binary() | #rdf_value{},
-    object_props = [] :: list()
+    subject_props = [] :: proplists:proplist(),
+    predicate :: m_rdf:predicate(),
+    object :: ginger_uri:uri() | #rdf_value{},
+    object_props = [] :: proplists:proplist()
 }).
 
 -record(rdf_resource, {
@@ -53,5 +53,5 @@
 
 %% @doc Notification to convert a Zotonic resource to an RDF resource
 -record(rsc_to_rdf, {
-    id :: integer()
+    id :: m_rsc:resource()
 }).
