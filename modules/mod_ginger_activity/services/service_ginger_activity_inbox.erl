@@ -21,6 +21,13 @@ process_get(_ReqData, Context) ->
     },
     jsx:encode(Json).
 
+%% @doc Record when the inbox items were last seen by the user.
+process_post(#wm_reqdata{method = 'POST'}, Context) ->
+    User = z_acl:user(Context),
+    DateTime = calendar:universal_time(),
+    m_ginger_activity_inbox:update_seen_at_for_user(User, DateTime, Context),
+    <<>>;
+
 %% @doc Delete an item from the user's activity stream inbox.
 process_post(#wm_reqdata{method = 'DELETE'}, Context) ->
     User = z_acl:user(Context),
@@ -41,6 +48,7 @@ to_json(Activity, Context) ->
         user_id = Actor,
         rsc_id = Object,
         target_id = Target,
+        to = To,
         time = Time
     } = Activity,
     Map = #{
@@ -56,7 +64,8 @@ to_json(Activity, Context) ->
             <<"type">> => m_rsc:p(m_rsc:p(Object, category_id, Context), name, Context),
             <<"name">> => z_trans:trans(m_rsc:p(Object, title, Context), Context),
             <<"content">> => content(Object, Context)
-        }
+        },
+        <<"to">> => To
     },
     with_target(Target, Map, Context).
 

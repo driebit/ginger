@@ -10,12 +10,14 @@
 -include_lib("zotonic.hrl").
 
 -mod_prio(500).
+-mod_schema(1).
 
 -export([
-    init/1,
+    manage_schema/2,
     event/2,
     register_activity/2,
     register_activity/3,
+    register_activity/4,
     pid_observe_ginger_activity/3
 ]).
 
@@ -27,7 +29,8 @@
     activity/0
 ]).
 
-init(Context) ->
+-spec manage_schema(pos_integer(), z:context()) -> ok.
+manage_schema(_Version, Context) ->
     case z_db:table_exists(activity_log, Context) of
         true ->
             [] = z_db:q("
@@ -67,8 +70,9 @@ init(Context) ->
             ", Context),
             ok
     end,
-    m_ginger_activity:ensure_target_column(Context),
-    m_ginger_activity_inbox:init(Context).
+    m_ginger_activity:init(Context),
+    m_ginger_activity_inbox:init(Context),
+    ok.
 
 % @doc postback for activating resources
 event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
@@ -81,32 +85,23 @@ event({postback,{activate, Args}, _TriggerId, _TargetId}, Context) ->
     end.
 
 % @doc logical entry point for registering activity
--spec register_activity(m_rsc:resource(), z:context()) -> ok.
+-spec register_activity(m_rsc:resource() | activity(), z:context()) -> ok.
+register_activity(#ginger_activity{} = Activity, Context) ->
+    z_notifier:notify({ginger_activity, Activity}, Context),
+    ok;
 register_activity(Rsc, Context) ->
     register_activity(Rsc, undefined, Context).
 
 -spec register_activity(m_rsc:resource(), m_rsc:resource(), z:context()) -> ok.
 register_activity(RscId, Target, Context) ->
-    Time = calendar:universal_time(),
-    UserId = z_acl:user(Context),
-    IpAddress = case z_context:get_reqdata(Context) of
-        undefined -> undefined;
-        Value ->
-            case proplists:get_value("x-forwarded-for", wrq:req_headers(Value)) of
-                undefined ->
-                    z_convert:to_binary(wrq:peer(Value));
-                Hosts ->
-                    z_convert:to_binary(string:strip(lists:last(string:tokens(Hosts, ","))))
-            end
-    end,
-    Activity = #ginger_activity{
-        rsc_id = RscId,
-        target_id = Target,
-        time = Time,
-        user_id = UserId,
-        ip_address = IpAddress
-    },
-    z_notifier:notify({ginger_activity, Activity}, Context),
+    register_activity(RscId, Target, [], Context).
+
+-spec register_activity(m_rsc:resource(), m_rsc:resource(), [integer()], z:context()) -> ok.
+register_activity(RscId, Target, Mentions, Context) ->
+    Activity = m_ginger_activity:activity(RscId, Context),
+    WithTarget = m_ginger_activity:target(Activity, Target),
+    WithMentions = m_ginger_activity:to(WithTarget, Mentions),
+    z_notifier:notify({ginger_activity, WithMentions}, Context),
     ok.
 
 pid_observe_ginger_activity(_Pid, {ginger_activity, Activity}, Context) ->
@@ -125,6 +120,7 @@ insert_activity(Activity, Context) ->
     #ginger_activity{
         rsc_id = Rsc,
         target_id = Target,
+        to = To,
         time = Time,
         user_id = User,
         ip_address = Ip
@@ -133,6 +129,7 @@ insert_activity(Activity, Context) ->
     Props = [
         {rsc_id, Rsc},
         {target_id, Target},
+        {to_ids, ?DB_PROPS(To)},
         {time, Time},
         {user_id, User},
         {ip_address, Ip}
@@ -141,4 +138,3 @@ insert_activity(Activity, Context) ->
     ActivityWithId = Activity#ginger_activity{id = Id},
     z_notifier:notify_sync(#ginger_activity_inserted{activity = ActivityWithId}, Context),
     ok.
-

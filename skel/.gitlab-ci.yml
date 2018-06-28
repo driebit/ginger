@@ -35,6 +35,13 @@ variables:
 #         - npm install
 #         - npm run build
 
+lint:
+    stage: build
+    image: erlang:20.3-alpine
+    script:
+        - wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
+        - ./rebar3 lint
+
 .test_template: &test_template
     stage: test
     image: driebit/ginger:${GINGER_VERSION}
