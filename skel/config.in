@@ -1,5 +1,5 @@
 [
-    {enabled, true},
+    {enabled, false},
     {hostname, "%%SITE%%.docker.test"},
     {redirect, false},
     {dbdatabase, "%%SITE%%"},
