@@ -16,11 +16,7 @@ all: elm scss assets
 assets:
 	@mkdir -p lib/dist/assets/ && cp -R ${ASSETS_DIR} lib/dist/
 
-build:
-	make deps
-	$(MAKE) test -C ${ELM_DIR}
-	make all
-	make minify
+build: deps test all minify
 
 clean:
 	@rm -Rf dist/*
@@ -53,6 +49,7 @@ help:
 	@echo "  livereload             Start livereload server, watch js and css file"
 	@echo "  minify                 Minify JS and Css files"
 	@echo "  scss                   Compile Scss files"
+	@echo "  test                   Run the Elm tests"
 	@echo "  watch                  Compile all Elm and Scss files on file change and reload browser"
 	@echo "  watch-elm              Compile all Elm files on file change and reload browser"
 	@echo "  watch-scss             Compile all Scss files on file change and reload browser"
@@ -73,6 +70,9 @@ minify:
 scss:
 	$(MAKE) -C ${SCSS_DIR}
 	@cp ${SCSS_DIR}/dist/style.css lib/dist/
+
+test:
+	$(MAKE) test -C ${ELM_DIR}
 
 watch-elm:
 	make livereload & find ${ELM_DIR}/src -name '*.elm' | entr make elm
