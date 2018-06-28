@@ -119,12 +119,6 @@ paths:
                     description: A resource
                     schema:
                         $ref: '#definitions/Resource'
-    /resources/{id}/incoming-edges:
-        get:
-            parameters:
-                - in: path
-                  type: integer
-                  required: true
     /resources/path/{path}:
         get:
             produces: ["application/json"]
