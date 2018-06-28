@@ -26,7 +26,7 @@ property_to_triples({birth_city, Value}, _Properties, Context) ->
         }
     ];
 property_to_triples({body, Value}, _Properties, Context) ->
-    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"description">>), Value, Context);
+    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"text">>), Value, Context);
 property_to_triples({created, Value}, _Properties, _Context) ->
     [
         #triple{
@@ -38,14 +38,14 @@ property_to_triples({date_start, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"startDate">>),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
         }
     ];
 property_to_triples({date_end, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"endDate">>),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
         }
     ];
 property_to_triples({license, Value}, _Properties, _Context) ->
@@ -97,6 +97,8 @@ property_to_triples({publication_start, Value}, _Properties, _Context) ->
     ];
 property_to_triples({subtitle, Value}, _Properties, Context) ->
     m_rdf_export:translations_to_rdf(rdf_property:schema(<<"alternateName">>), Value, Context);
+property_to_triples({summary, Value}, _Props, Context) ->
+    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"description">>), Value, Context);
 property_to_triples({title, Value}, _Properties, Context) ->
     m_rdf_export:translations_to_rdf(rdf_property:schema(<<"name">>), Value, Context);
 property_to_triples({website, Value}, _Properties, _Context) ->
@@ -138,6 +140,19 @@ edge_to_triples(_Edge, <<?NS_FOAF, "depiction">>, Subject, Object, Context) ->
                 }
             ]
     end;
+edge_to_triples(_Edge, <<"http://purl.org/dc/elements/1.1/subject">>, Subject, Object, Context) ->
+    with_title(
+        [
+            #triple{
+                type = resource,
+                predicate = rdf_property:schema(<<"about">>),
+                subject = m_rsc:p(Subject, uri, Context),
+                object = m_rsc:p(Object, uri, Context)
+            }
+        ],
+        Object,
+        Context
+    );
 
 edge_to_triples(_Edge, _Uri, _Subject, _Object, _Context) ->
     %% Ignore all other edges.
