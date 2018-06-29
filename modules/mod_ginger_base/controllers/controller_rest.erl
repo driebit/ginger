@@ -152,11 +152,17 @@ custom_props(Id, Context) ->
         undefined ->
             null;
         CustomProps ->
-            maps:map(
-               fun (PropName, TypeModule) ->
-                       TypeModule:encode(m_rsc:p(Id, PropName, Context))
-               end,
-               CustomProps
+            maps:fold(
+              fun(PropName, TypeModule, Acc) ->
+                      case m_rsc:p(Id, PropName, Context) of
+                          undefined ->
+                              Acc;
+                          Value ->
+                              Acc#{PropName => TypeModule:encode(Value)}
+                      end
+              end,
+              #{},
+              CustomProps
             )
     end.
 
