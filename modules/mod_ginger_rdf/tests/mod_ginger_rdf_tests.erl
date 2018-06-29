@@ -187,5 +187,36 @@ address_to_triples_test() ->
         Map
     ).
 
+serialize_to_turtle_test() ->
+    Resource =
+        #rdf_resource{
+           id = <<"http://dinges.com/123">>,
+           triples = [
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"dcterms:creator">>,
+                         object = <<"http://dinges.com/456">>
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/456">>,
+                         predicate = <<"rdfs:label">>,
+                         object = #rdf_value{value = <<"Pietje Puk">>}
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/456">>,
+                         predicate = <<"http://www.w3.org/2000/01/rdf-schema#label">>,
+                         object = #rdf_value{value = <<"Pietje Puk">>}
+                        }
+                     ]
+          },
+    Expected = [
+                <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.\n">>,
+                <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".\n">>,
+                <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".\n">>
+               ],
+    Actual = ginger_turtle:serialize(Resource),
+    ?assertEqual(Expected, Actual),
+    ok.
+
 context() ->
     z_context:new(testsandboxdb).
