@@ -245,6 +245,7 @@ lookup_triple(title, Triples) ->
         [
             <<"http://purl.org/dc/terms/title">>,
             <<?NS_RDF_SCHEMA, "label">>,
+            <<"http://nl.dbpedia.org/property/naam">>,
             <<"http://purl.org/dc/elements/1.1/title">> %% legacy
         ],
         Triples
