@@ -115,7 +115,7 @@ edges(RscId, Context) ->
       fun({Key, Rscs}) ->
               [ #{
                   predicate_name => Key,
-                  rcs => rsc(proplists:get_value(object_id, Rsc), Context, false)
+                  resource => rsc(proplists:get_value(object_id, Rsc), Context, false)
                  }
                 || Rsc <- Rscs
               ]
