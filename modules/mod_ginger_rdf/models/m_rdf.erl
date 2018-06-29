@@ -74,7 +74,7 @@ m_value(#m{}, _Context) ->
     undefined.
 
 merge(#rdf_resource{triples = Triples1} = Rdf1, #rdf_resource{triples = Triples2}) ->
-    Rdf1#rdf_resource{triples = Triples1 ++ Triples2}.
+    Rdf1#rdf_resource{triples = lists:usort(Triples1 ++ Triples2)}.
 
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->
