@@ -12,6 +12,7 @@
     m_to_list/2,
     m_value/2,
     find_resource/2,
+    merge/1,
     merge/2,
     object/3,
     objects/2,
@@ -73,6 +74,25 @@ m_to_list(_, _Context) ->
 m_value(#m{}, _Context) ->
     undefined.
 
+%% @doc Merge a list of RDF resources, grouping them by their subject URIs.
+-spec merge([rdf_resource()]) -> [rdf_resource()].
+merge(RdfResources) ->
+    maps:values(
+        lists:foldl(
+            fun(#rdf_resource{id = Uri} = Resource, Acc) ->
+                case maps:get(Uri, Acc, undefined) of
+                    undefined ->
+                        #{Uri => Resource};
+                    Current ->
+                        #{Uri => merge(Current, Resource)}
+                end
+            end,
+            #{},
+            RdfResources
+        )
+    ).
+
+-spec merge(rdf_resource(), rdf_resource) -> rdf_resource().
 merge(#rdf_resource{triples = Triples1} = Rdf1, #rdf_resource{triples = Triples2}) ->
     Rdf1#rdf_resource{triples = lists:usort(Triples1 ++ Triples2)}.
 
