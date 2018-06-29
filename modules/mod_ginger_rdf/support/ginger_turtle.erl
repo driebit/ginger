@@ -34,6 +34,7 @@ uri(U = <<"http://", _/binary>>) ->
 uri(U = <<"https://", _/binary>>) ->
     brackets(U);
 uri(U) ->
+    %% Prefixed URI
     U.
 
 -spec brackets(binary()) -> binary().
