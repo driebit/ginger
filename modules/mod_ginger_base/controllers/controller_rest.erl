@@ -111,9 +111,14 @@ rsc(Id, Context, IncludeEdges) ->
     media(Map2, Context).
 
 edges(RscId, Context) ->
-    lists:map(
+    lists:flatmap(
       fun({Key, Rscs}) ->
-              [{Key, [rsc(proplists:get_value(object_id, Rsc), Context, false) || Rsc <- Rscs]}]
+              [ #{
+                  predicate_name => Key,
+                  rcs => rsc(proplists:get_value(object_id, Rsc), Context, false)
+                 }
+                || Rsc <- Rscs
+              ]
       end,
       m_edge:get_edges(RscId, Context)).
 
