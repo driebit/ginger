@@ -111,7 +111,12 @@ rsc(Id, Context, IncludeEdges) ->
     media(Map2, Context).
 
 edges(RscId, Context) ->
-    [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
+    Edges = maps:from_list(m_edge:get_edges(RscId, Context)),
+    maps:map(
+      fun(_Key, Rscs) ->
+              [rsc(proplists:get_value(object_id, Rsc), Context, false) || Rsc <- Rscs]
+      end,
+      Edges).
 
 media(Rsc = #{id := Id}, Context) ->
     case lists:member(image, maps:get(categories, Rsc)) of
