@@ -45,7 +45,12 @@ definitions:
             edges:
               type: array
               items:
-                $ref: '#/definitions/Resource'
+                type: object
+                properties:
+                    predicate:
+                      type: string
+                    resource:
+                      $ref: '#/definitions/Resource'
             media:
               type: array
               items:
