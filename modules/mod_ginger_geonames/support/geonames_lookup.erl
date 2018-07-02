@@ -13,26 +13,27 @@
 -spec schedule_reverse_lookup(m_rsc:resource(), z:context())
         -> {ok, pos_integer()} | {error, no_geo}.
 schedule_reverse_lookup(Id, Context) ->
-    Geo = geo(Id, Context),
-    case has_geo(Geo) of
-        true ->
+    case geo(Id, Context) of
+        undefined ->
+            {error, no_geo};
+        _ ->
             z_pivot_rsc:insert_task(
                 ?MODULE,
                 reverse_lookup,
                 <<"geonames-lookup-", (z_convert:to_binary(Id))/binary>>,
                 [Id],
                 Context
-            );
-        false ->
-            {error, no_geo}
+            )
     end.
 
 %% @doc Look up a place name in GeoNames. If one is found, send a notification.
 -spec reverse_lookup(m_rsc:resource(), z:context()) -> ok | {delay, pos_integer()}.
 reverse_lookup(Id, Context) ->
-    Geo = geo(Id, Context),
-    case has_geo(Geo) of
-        true ->
+    case geo(Id, Context) of
+        undefined ->
+             %% Resource has no geo coordinates any longer, so ignore.
+            ok;
+        Geo ->
             case geonames_client:find_nearby_place_name(Geo, Context) of
                 [Place | _] ->
                     %% Location found, so notify.
@@ -43,16 +44,14 @@ reverse_lookup(Id, Context) ->
                 _ ->
                     %% API unreachable or credit limits hit, so try again later.
                     {delay, 60}
-            end;
-        false ->
-            %% Resource has no geo coordinates any longer, so ignore.
-            ok
+            end
     end.
 
--spec geo(m_rsc:resource(), z:context()) -> {float(), float()}.
+-spec geo(m_rsc:resource(), z:context()) -> {float(), float()} | undefined.
 geo(Id, Context) ->
-    {m_rsc:p(Id, pivot_location_lat, Context), m_rsc:p(Id, pivot_location_lng, Context)}.
+    geo({m_rsc:p(Id, pivot_location_lat, Context), m_rsc:p(Id, pivot_location_lng, Context)}).
 
--spec has_geo({float(), float()}) -> boolean().
-has_geo({Lat, Long}) ->
-    Lat =/= undefined andalso Long =/= undefined.
+geo({Latitude, Longitude}) when Latitude =/= undefined andalso Longitude =/= undefined ->
+    undefined;
+geo(Geo) ->
+    Geo.
