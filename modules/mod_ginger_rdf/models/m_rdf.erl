@@ -82,9 +82,9 @@ merge(RdfResources) ->
             fun(#rdf_resource{id = Uri} = Resource, Acc) ->
                 case maps:get(Uri, Acc, undefined) of
                     undefined ->
-                        #{Uri => Resource};
+                        Acc#{Uri => Resource};
                     Current ->
-                        #{Uri => merge(Current, Resource)}
+                        Acc#{Uri => merge(Current, Resource)}
                 end
             end,
             #{},
