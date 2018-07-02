@@ -75,15 +75,14 @@ to_json(Req, State = #state{mode = collection}) ->
     {Json, Req, State};
 to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
-    Id = erlang:list_to_integer(
-           case PathInfo of
-               id ->
-                   wrq:path_info(id, Req);
-               path ->
-                   {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
-                   Result
-           end
-          ),
+    Id =
+        case PathInfo of
+            id ->
+                erlang:list_to_integer(wrq:path_info(id, Req));
+            path ->
+                {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
+                Result
+        end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
