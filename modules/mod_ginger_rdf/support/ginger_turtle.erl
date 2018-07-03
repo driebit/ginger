@@ -48,7 +48,6 @@ blank_node(Rsc) ->
 
 literal({{Y, Mo, D}, {H, Mn, S}}) ->
     erlang:list_to_binary(
-      %% zotonic: z_datetime:format/?
       io_lib:format(
         "~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0BZ",
         [Y, Mo, D, H, Mn, S]
