@@ -33,7 +33,7 @@
 
 {% else %}
 
-    <a href="#" data-video-url="media/attachment/{{ id.medium.filename }}" data-video-width="{{ id.medium.width }}" data-video-height="{{ id.medium.height }}" class="lightbox lightbox-video-embed default-video-player" rel="body" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
+    <a href="#" data-video-url="/media/attachment/{{ id.medium.filename }}" data-video-width="{{ id.medium.width }}" data-video-height="{{ id.medium.height }}" class="lightbox lightbox-video-embed default-video-player" rel="body" {% if id.summary %}title="{{ id.summary }}"{% endif %}>
         {% image id mediaclass="media-thumb" title=id.title alt=id.title %}
     </a>
 {% endif %}
