@@ -3,7 +3,7 @@
 -include("zotonic.hrl").
 -include("../include/rdf.hrl").
 
--export([serialize/1, escape/1, escape_char/1]).
+-export([serialize/1]).
 
 %% @doc Serialize a RDF resource to Turtle (https://www.w3.org/TR/turtle/)
 -spec serialize(m_rdf:rdf_resource()) -> iodata().
