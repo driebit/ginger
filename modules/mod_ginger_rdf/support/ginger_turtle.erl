@@ -78,5 +78,5 @@ escape(<<$', Rest/binary>>) ->
     <<$\\, $', (escape(Rest))/binary>>;
 escape(<<$\\, Rest/binary>>) ->
     <<$\\, $\\, (escape(Rest))/binary>>;
-escape(<<C/utf8, Cs/binary>>) ->
-    <<C/utf8, (escape(Cs))/binary>>.
+escape(<<Char/utf8, Rest/binary>>) ->
+    <<Char/utf8, (escape(Rest))/binary>>.
