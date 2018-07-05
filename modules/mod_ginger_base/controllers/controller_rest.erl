@@ -67,7 +67,7 @@ to_json(Req, State = #state{mode = collection}) ->
                )
              ),
     Args2 = ginger_search:query_arguments(
-              [{cat_exclude_defaults, false}, {filter, ["is_published", true]}],
+              [{cat_exclude_defaults, true}, {filter, ["is_published", true]}],
               Context
              ),
     Ids = z_search:query_(Args1 ++ Args2, Context),
@@ -75,15 +75,14 @@ to_json(Req, State = #state{mode = collection}) ->
     {Json, Req, State};
 to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
-    Id = erlang:list_to_integer(
-           case PathInfo of
-               id ->
-                   wrq:path_info(id, Req);
-               path ->
-                   {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
-                   Result
-           end
-          ),
+    Id =
+        case PathInfo of
+            id ->
+                erlang:list_to_integer(wrq:path_info(id, Req));
+            path ->
+                {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
+                Result
+        end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
@@ -111,7 +110,16 @@ rsc(Id, Context, IncludeEdges) ->
     media(Map2, Context).
 
 edges(RscId, Context) ->
-    [rsc(Id, Context, false) || Id <- m_edge:objects(RscId, Context)].
+    lists:flatmap(
+      fun({Key, Rscs}) ->
+              [ #{
+                  predicate_name => Key,
+                  resource => rsc(proplists:get_value(object_id, Rsc), Context, false)
+                 }
+                || Rsc <- Rscs
+              ]
+      end,
+      m_edge:get_edges(RscId, Context)).
 
 media(Rsc = #{id := Id}, Context) ->
     case lists:member(image, maps:get(categories, Rsc)) of
@@ -152,11 +160,17 @@ custom_props(Id, Context) ->
         undefined ->
             null;
         CustomProps ->
-            maps:map(
-               fun (PropName, TypeModule) ->
-                       TypeModule:encode(m_rsc:p(Id, PropName, Context))
-               end,
-               CustomProps
+            maps:fold(
+              fun(PropName, TypeModule, Acc) ->
+                      case m_rsc:p(Id, PropName, Context) of
+                          undefined ->
+                              Acc;
+                          Value ->
+                              Acc#{PropName => TypeModule:encode(Value)}
+                      end
+              end,
+              #{},
+              CustomProps
             )
     end.
 
