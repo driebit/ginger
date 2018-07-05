@@ -188,10 +188,25 @@ address_to_triples_test() ->
     ).
 
 serialize_to_turtle_test() ->
+    NestedRsc = #rdf_resource{
+                   id = <<"http://example.com/1">>,
+                   triples = [
+                              #triple{
+                                 subject = <<"http://dinges.com/123">>,
+                                 predicate = <<"foaf:age">>,
+                                 object = #rdf_value{value = 42}
+                                }
+                             ]
+                  },
     Resource =
         #rdf_resource{
            id = <<"http://dinges.com/123">>,
            triples = [
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"foaf:age">>,
+                         object = NestedRsc
+                        },
                       #triple{
                          subject = <<"http://dinges.com/123">>,
                          predicate = <<"dcterms:creator">>,
@@ -210,11 +225,14 @@ serialize_to_turtle_test() ->
                      ]
           },
     Expected = [
-                <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.\n">>,
-                <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".\n">>,
-                <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".\n">>
+                <<"<http://dinges.com/123> foaf:age _:72814541.">>,
+                <<"_:72814541 foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.">>,
+                <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".">>,
+                <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".">>,
+                <<>>
                ],
-    Actual = ginger_turtle:serialize(Resource),
+    Actual = binary:split(erlang:list_to_binary(ginger_turtle:serialize(Resource)), <<"\n">>, [global]),
     ?assertEqual(Expected, Actual),
     ok.
 
