@@ -46,7 +46,8 @@ object(O) ->
 blank_node(Rsc) ->
     <<"_:", (erlang:integer_to_binary(erlang:phash2(Rsc)))/binary>>.
 
-literal({{Y, Mo, D}, {H, Mn, S}}) ->
+literal({{Y, Mo, D}, {H, Mn, S}})
+  when is_integer(Y), is_integer(Mo), is_integer(D), is_integer(H), is_integer(Mn), is_integer(S) ->
     erlang:list_to_binary(
       io_lib:format(
         "~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0BZ",
@@ -58,7 +59,11 @@ literal(V) when is_binary(V) ->
 literal(V) when is_list(V) ->
     escape(erlang:list_to_binary(V));
 literal(V) ->
-    V.
+    try
+        io_lib:format("~s", [V])
+    catch
+        _:_ -> io_lib:format("~p", [V])
+    end.
 
 escape(<<>>) ->
     <<>>;
