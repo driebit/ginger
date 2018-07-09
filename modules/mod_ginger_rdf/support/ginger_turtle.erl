@@ -15,7 +15,7 @@ triple_to_turtle(#triple{subject = S, predicate = P, object = #rdf_resource{} = 
             undefined ->
                 blank_node(Rsc);
             _ ->
-                uri_or_blank_node(Rsc#rdf_resource.id)
+                escape_uri(Rsc#rdf_resource.id)
         end,
     Ts = [triple_to_turtle(T#triple{subject = O}) || T <- Rsc#rdf_resource.triples],
     [to_line(subject(S), predicate(P), O), Ts];
@@ -28,16 +28,16 @@ to_line(S, P, O) ->
     [S, " ", P, " ", O, ".\n"].
 
 subject(X) ->
-    uri_or_blank_node(X).
+    escape_uri(X).
 
 predicate(X) ->
-    uri_or_blank_node(X).
+    escape_uri(X).
 
-uri_or_blank_node(U = <<"http://", _/binary>>) ->
+escape_uri(U = <<"http://", _/binary>>) ->
     [$<, U, $>];
-uri_or_blank_node(U = <<"https://", _/binary>>) ->
+escape_uri(U = <<"https://", _/binary>>) ->
     [$<, U, $>];
-uri_or_blank_node(U) ->
+escape_uri(U) ->
     %% Prefixed URI or not an URI (i.e. blank node)
     U.
 
@@ -46,7 +46,7 @@ object(#rdf_value{value = undefined}) ->
 object(#rdf_value{value = V}) ->
     [$", literal(V), $"];
 object(O) ->
-    uri_or_blank_node(O).
+    escape_uri(O).
 
 blank_node(Rsc) ->
     <<"_:", (erlang:integer_to_binary(erlang:phash2(Rsc)))/binary>>.
