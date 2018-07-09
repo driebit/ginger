@@ -51,7 +51,9 @@ reverse_lookup(Id, Context) ->
 geo(Id, Context) ->
     geo({m_rsc:p(Id, pivot_location_lat, Context), m_rsc:p(Id, pivot_location_lng, Context)}).
 
-geo({Latitude, Longitude}) when Latitude =/= undefined andalso Longitude =/= undefined ->
+geo({undefined, _Longitude}) ->
+    undefined;
+geo({_Latitude, undefined}) ->
     undefined;
 geo(Geo) ->
     Geo.
