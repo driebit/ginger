@@ -1,6 +1,7 @@
 -module(mod_ginger_rdf_tests).
 
 -include_lib("eunit/include/eunit.hrl").
+-include_lib("hamcrest/include/hamcrest.hrl").
 -include("zotonic.hrl").
 -include("../include/rdf.hrl").
 
@@ -198,6 +199,16 @@ serialize_to_turtle_test() ->
                                  }
                               ]
                    },
+    NestedRsc2 = #rdf_resource{
+                    id = undefined,
+                    triples = [
+                               #triple{
+                                  subject = <<"http://dinges.com/123">>,
+                                  predicate = <<"foaf:age">>,
+                                  object = #rdf_value{value = 42}
+                                 }
+                              ]
+                   },
     Resource =
         #rdf_resource{
            id = <<"http://dinges.com/123">>,
@@ -206,6 +217,11 @@ serialize_to_turtle_test() ->
                          subject = <<"http://dinges.com/123">>,
                          predicate = <<"foaf:age">>,
                          object = NestedRsc1
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"foaf:age">>,
+                         object = NestedRsc2
                         },
                       #triple{
                          subject = <<"http://dinges.com/123">>,
@@ -225,15 +241,18 @@ serialize_to_turtle_test() ->
                      ]
           },
     Expected = [
-                <<"<http://dinges.com/123> foaf:age _:72814541.">>,
-                <<"_:72814541 foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> foaf:age <http://example.com/1>.">>,
+                <<"<http://example.com/1> foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> foaf:age _:104915255.">>,
+                <<"_:104915255 foaf:age \"42\".">>,
                 <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.">>,
                 <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".">>,
                 <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".">>,
                 <<>>
                ],
-    Actual = binary:split(erlang:list_to_binary(ginger_turtle:serialize(Resource)), <<"\n">>, [global]),
-    ?assertEqual(Expected, Actual),
+    Actual = binary:split(erlang:list_to_binary(ginger_turtle:serialize(Resource)), <<"\n">>, [global]),    ?assertEqual(Expected, Actual),
+    %% ?_assert(Actual =:= Expected orelse ?debugFmt("~p is not ~p", [Actual, Expected])),
+
     ok.
 
 context() ->

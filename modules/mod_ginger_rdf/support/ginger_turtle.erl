@@ -11,7 +11,12 @@ serialize(#rdf_resource{triples = Triples}) ->
     [triple_to_turtle(T) || T <- Triples].
 
 triple_to_turtle(#triple{subject = S, predicate = P, object = #rdf_resource{} = Rsc}) ->
-    O = blank_node(Rsc),
+    O = case Rsc#rdf_resource.id of
+            undefined ->
+                blank_node(Rsc);
+            _ ->
+                uri_or_blank_node(Rsc#rdf_resource.id)
+        end,
     Ts = [triple_to_turtle(T#triple{subject = O}) || T <- Rsc#rdf_resource.triples],
     [to_line(subject(S), predicate(P), O), Ts];
 triple_to_turtle(#triple{subject = undefined, predicate = P, object = O}) ->
@@ -33,7 +38,7 @@ uri_or_blank_node(U = <<"http://", _/binary>>) ->
 uri_or_blank_node(U = <<"https://", _/binary>>) ->
     [$<, U, $>];
 uri_or_blank_node(U) ->
-    %% Prefixed URI or blank node
+    %% Prefixed URI or not an URI (i.e. blank node)
     U.
 
 object(#rdf_value{value = undefined}) ->
