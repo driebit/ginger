@@ -188,16 +188,16 @@ address_to_triples_test() ->
     ).
 
 serialize_to_turtle_test() ->
-    NestedRsc = #rdf_resource{
-                   id = <<"http://example.com/1">>,
-                   triples = [
-                              #triple{
-                                 subject = <<"http://dinges.com/123">>,
-                                 predicate = <<"foaf:age">>,
-                                 object = #rdf_value{value = 42}
-                                }
-                             ]
-                  },
+    NestedRsc1 = #rdf_resource{
+                    id = <<"http://example.com/1">>,
+                    triples = [
+                               #triple{
+                                  subject = <<"http://dinges.com/123">>,
+                                  predicate = <<"foaf:age">>,
+                                  object = #rdf_value{value = 42}
+                                 }
+                              ]
+                   },
     Resource =
         #rdf_resource{
            id = <<"http://dinges.com/123">>,
@@ -205,7 +205,7 @@ serialize_to_turtle_test() ->
                       #triple{
                          subject = <<"http://dinges.com/123">>,
                          predicate = <<"foaf:age">>,
-                         object = NestedRsc
+                         object = NestedRsc1
                         },
                       #triple{
                          subject = <<"http://dinges.com/123">>,
