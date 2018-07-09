@@ -241,6 +241,17 @@ serialize_to_turtle_test() ->
                      ]
           },
     Expected = [
+                <<"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns>.">>,
+                <<"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.">>,
+                <<"@prefix foaf: <http://xmlns.com/foaf/0.1/>.">>,
+                <<"@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.">>,
+                <<"@prefix dcterms: <http://purl.org/dc/terms/>.">>,
+                <<"@prefix dctype: <http://purl.org/dc/dcmitype/>.">>,
+                <<"@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.">>,
+                <<"@prefix dbpedia-owl: <http://dbpedia.org/ontology/>.">>,
+                <<"@prefix dbpedia: <http://dbpedia.org/property/>.">>,
+                <<"@prefix schema: <http://schema.org/>.">>,
+                <<>>,
                 <<"<http://dinges.com/123> foaf:age <http://example.com/1>.">>,
                 <<"<http://example.com/1> foaf:age \"42\".">>,
                 <<"<http://dinges.com/123> foaf:age _:104915255.">>,
