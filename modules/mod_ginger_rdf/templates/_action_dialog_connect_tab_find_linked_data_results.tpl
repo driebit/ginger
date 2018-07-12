@@ -12,7 +12,6 @@
         </div>
 
         {% block results %}
-            <p>{% if result|length > 0 %}{{ result.total }} {_ results _}{% endif %}</p>
         {% endblock %}
 
         <div id="dialog_connect_loop_linked_data_results" class="thumbnails">
