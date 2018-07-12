@@ -28,7 +28,7 @@ describe(Endpoint, <<"https://", _/binary>> = Uri) ->
 describe(Endpoint, <<"http://", _/binary>> = Uri) ->
     describe(Endpoint, <<"<", Uri/binary, ">">>);
 describe(Endpoint, Clause) ->
-    query(Endpoint, (<<"DESCRIBE ", Clause/binary>>)).
+    query(Endpoint, (<<"DESCRIBE ", Clause/binary>>), #{<<"Accept">> => <<"application/json">>}).
 
 %% @doc Execute a SPARQL query.
 -spec query(url(), query()) -> binary() | undefined.
@@ -88,7 +88,7 @@ get_resource(Endpoint, Uri, Properties) ->
 %% @doc Try to decode the response from the SPARQL endpoint.
 -spec decode(map()) -> m_rdf:rdf_resource() | map().
 decode(#{<<"@graph">> := _} = Data) ->
-    %% Only DESCRIBE queries return JSON-LD.
+    %% Only DESCRIBE and CONSTRUCT queries return JSON-LD.
     ginger_json_ld:deserialize(Data);
 decode(Data) ->
     %% Other SPARQL queries return JSON.
