@@ -12,6 +12,7 @@
     m_to_list/2,
     m_value/2,
     find_resource/2,
+    merge/1,
     merge/2,
     object/3,
     objects/2,
@@ -73,8 +74,27 @@ m_to_list(_, _Context) ->
 m_value(#m{}, _Context) ->
     undefined.
 
+%% @doc Merge a list of RDF resources, grouping them by their subject URIs.
+-spec merge([rdf_resource()]) -> [rdf_resource()].
+merge(RdfResources) ->
+    maps:values(
+        lists:foldl(
+            fun(#rdf_resource{id = Uri} = Resource, Acc) ->
+                case maps:get(Uri, Acc, undefined) of
+                    undefined ->
+                        Acc#{Uri => Resource};
+                    Current ->
+                        Acc#{Uri => merge(Current, Resource)}
+                end
+            end,
+            #{},
+            RdfResources
+        )
+    ).
+
+-spec merge(rdf_resource(), rdf_resource) -> rdf_resource().
 merge(#rdf_resource{triples = Triples1} = Rdf1, #rdf_resource{triples = Triples2}) ->
-    Rdf1#rdf_resource{triples = Triples1 ++ Triples2}.
+    Rdf1#rdf_resource{triples = lists:usort(Triples1 ++ Triples2)}.
 
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->
@@ -225,6 +245,7 @@ lookup_triple(title, Triples) ->
         [
             <<"http://purl.org/dc/terms/title">>,
             <<?NS_RDF_SCHEMA, "label">>,
+            <<"http://nl.dbpedia.org/property/naam">>,
             <<"http://purl.org/dc/elements/1.1/title">> %% legacy
         ],
         Triples
