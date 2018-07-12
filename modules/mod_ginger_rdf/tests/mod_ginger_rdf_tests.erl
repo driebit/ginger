@@ -187,5 +187,82 @@ address_to_triples_test() ->
         Map
     ).
 
+serialize_to_turtle_test() ->
+    NestedRsc1 = #rdf_resource{
+                    id = <<"http://example.com/1">>,
+                    triples = [
+                               #triple{
+                                  subject = <<"http://dinges.com/123">>,
+                                  predicate = <<"foaf:age">>,
+                                  object = #rdf_value{value = 42}
+                                 }
+                              ]
+                   },
+    NestedRsc2 = #rdf_resource{
+                    id = undefined,
+                    triples = [
+                               #triple{
+                                  subject = <<"http://dinges.com/123">>,
+                                  predicate = <<"foaf:age">>,
+                                  object = #rdf_value{value = 42}
+                                 }
+                              ]
+                   },
+    Resource =
+        #rdf_resource{
+           id = <<"http://dinges.com/123">>,
+           triples = [
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"foaf:age">>,
+                         object = NestedRsc1
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"foaf:age">>,
+                         object = NestedRsc2
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/123">>,
+                         predicate = <<"dcterms:creator">>,
+                         object = <<"http://dinges.com/456">>
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/456">>,
+                         predicate = <<"rdfs:label">>,
+                         object = #rdf_value{value = <<"Pietje Puk">>}
+                        },
+                      #triple{
+                         subject = <<"http://dinges.com/456">>,
+                         predicate = <<"http://www.w3.org/2000/01/rdf-schema#label">>,
+                         object = #rdf_value{value = <<"Pietje Puk">>}
+                        }
+                     ]
+          },
+    Expected = [
+                <<"@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns>.">>,
+                <<"@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.">>,
+                <<"@prefix foaf: <http://xmlns.com/foaf/0.1/>.">>,
+                <<"@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.">>,
+                <<"@prefix dcterms: <http://purl.org/dc/terms/>.">>,
+                <<"@prefix dctype: <http://purl.org/dc/dcmitype/>.">>,
+                <<"@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.">>,
+                <<"@prefix dbpedia-owl: <http://dbpedia.org/ontology/>.">>,
+                <<"@prefix dbpedia: <http://dbpedia.org/property/>.">>,
+                <<"@prefix schema: <http://schema.org/>.">>,
+                <<>>,
+                <<"<http://dinges.com/123> foaf:age <http://example.com/1>.">>,
+                <<"<http://example.com/1> foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> foaf:age _:104915255.">>,
+                <<"_:104915255 foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.">>,
+                <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".">>,
+                <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".">>,
+                <<>>
+               ],
+    Actual = binary:split(erlang:list_to_binary(ginger_turtle:serialize(Resource)), <<"\n">>, [global]),
+    ?assertEqual(Expected, Actual),
+    ok.
+
 context() ->
     z_context:new(testsandboxdb).
