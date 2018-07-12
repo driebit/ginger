@@ -64,14 +64,13 @@ query_rdf(Endpoint, Query, Headers) ->
         #{<<"results">> := #{<<"bindings">> := Bindings}} ->
             %% Result set can have multiple rows with same ?s (subject URI), so combine those into
             %% RDF resources.
-            RdfResources = lists:map(
+            lists:map(
                 fun(#{<<"s">> := #{<<"value">> := Uri}} = Binding) ->
                     ResolvedBindings = sparql_query:resolve_arguments(Binding, Query),
                     sparql_result:result_to_rdf(ResolvedBindings, Uri)
                 end,
                 Bindings
-            ),
-            m_rdf:merge(RdfResources)
+            )
     end.
 
 %% @doc Get specified properties from a single resource.
