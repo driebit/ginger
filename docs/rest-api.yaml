@@ -1,0 +1,138 @@
+swagger: "2.0"
+info:
+    title: "Ginger REST API documentation"
+    description: "Documentation for the Ginger REST API"
+    version: 0.1
+
+host: DOMAIN
+basePath: "/data"
+schemes:
+    - http
+    - https
+
+definitions:
+    Resource:
+        type: object
+        # http://docs.zotonic.com/en/0.x/ref/models/model_rsc.html#model-rsc
+        properties:
+            id:
+                type: integer
+                example: 42
+            title:
+                $ref: '#/definitions/Translation'
+            body:
+                $ref: '#/definitions/Translation'
+            summary:
+                $ref: '#/definitions/Translation'
+            publication_date:
+                type: string
+                format: date
+                example: "2018-06-12T09:01:44Z"
+            # "page_path" and "page_url" property
+            path:
+                type: string
+                example: "/project/42"
+            # "is_a" property
+            category:
+                type: array
+                items:
+                    type: string
+                minItems: 1
+                example: ["text", "article"]
+            properties:
+                type: object
+            # edges include all properties but edges
+            edges:
+              type: array
+              items:
+                type: object
+                properties:
+                    predicate:
+                      type: string
+                    resource:
+                      $ref: '#/definitions/Resource'
+            media:
+              type: array
+              items:
+                $ref: '#/definitions/Media'
+        required:
+            - id
+            - title
+            - body
+            - summary
+            - publication_date
+            - path
+            - category
+            - properties
+    Translation:
+        type: object
+        properties:
+            en:
+                type: string
+                example: "Hello world"
+            nl:
+                type: string
+                example: "Hallo wereld"
+        minProperties: 1
+    Media:
+        type: object
+        properties:
+            url:
+                type: string
+                example: "http://example.org/images/foo.gif"
+            mediaclass:
+                type: string
+                example: "thumbnail"
+
+paths:
+    /resources:
+        get:
+            produces: ["application/json"]
+            parameters:
+                - in: query
+                  name: cat
+                  type: string
+                  required: false
+                  description: A category name
+                - in: query
+                  name: hasobject
+                  type: string
+                  required: false
+                  description: A predicate name (of an outgoing edge)
+                - in: query
+                  name: hassubject
+                  type: string
+                  required: false
+                  description: A predicate name (of an incoming edge)
+            responses:
+                200:
+                    description: A list of resources
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#definitions/Resource'
+
+    /resources/{id}:
+        get:
+            produces: ["application/json"]
+            parameters:
+                - in: path
+                  type: integer
+                  required: true
+            responses:
+                200:
+                    description: A resource
+                    schema:
+                        $ref: '#definitions/Resource'
+    /resources/path/{path}:
+        get:
+            produces: ["application/json"]
+            parameters:
+                - in: path
+                  type: string
+                  required: true
+            responses:
+                200:
+                    description: A resource
+                    schema:
+                        $ref: '#definitions/Resource'

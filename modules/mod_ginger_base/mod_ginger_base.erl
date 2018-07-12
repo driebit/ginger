@@ -232,7 +232,7 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
                             z_template:render("map/map-infobox-data-item.tpl", [{item, Data}], Context)
                 end,
     Element = z_context:get_q(element, Context),
-    
+
     EscapedRender = z_utils:js_escape(iolist_to_binary(Render)),
     JS = erlang:iolist_to_binary(
         [
@@ -253,7 +253,7 @@ observe_admin_rscform(#admin_rscform{}, Post, _Context) ->
     ginger_date:update_granularity(Post).
 
 observe_custom_pivot({custom_pivot, Id}, Context) ->
-    Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, Context)),
+    Excluded = z_convert:to_bool(m_rsc:p(Id, is_unfindable, z_acl:sudo(Context))),
     {ginger_search, [{is_unfindable, Excluded}]}.
 
 %% @doc Add some virtual properties
