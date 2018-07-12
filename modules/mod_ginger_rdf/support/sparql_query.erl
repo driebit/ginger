@@ -4,6 +4,7 @@
 -export([
     select/1,
     select/2,
+    distinct/1,
     resolve_arguments/2,
     and_where/2,
     limit/2,
@@ -18,6 +19,7 @@
 
 -record(sparql_query, {
     select = [] :: [binary()],
+    distinct = false :: boolean(),
     where = [] :: [binary()],
     arguments = #{} :: arguments(),
     offset = 0 :: non_neg_integer(),
@@ -33,9 +35,15 @@
 
 %% @doc Construct textual SPARQL query.
 -spec query(sparql_query()) -> binary().
-query(#sparql_query{select = Selects, where = Where, offset = Offset, limit = Limit}) ->
-    <<
-        "SELECT ", (ginger_binary:join(Selects, <<" ">>))/binary,
+query(Query) ->
+    #sparql_query{
+        select = Selects,
+        distinct = Distinct,
+        where = Where,
+        offset = Offset,
+        limit = Limit
+    } = Query,
+    <<"SELECT ", (query_distinct(Distinct))/binary, (ginger_binary:join(Selects, <<" ">>))/binary,
         " { ", (ginger_binary:join(Where, <<" ">>))/binary, " } ",
         " OFFSET ", (integer_to_binary(Offset))/binary,
         " LIMIT ", (integer_to_binary(Limit))/binary
@@ -55,6 +63,11 @@ select(Predicates) ->
 select(Uri, Predicates) ->
     Query = select(Predicates),
     and_where(<<"VALUES ?s {<", Uri/binary, ">}">>, Query).
+
+%% @doc Eliminate duplicate solutions.
+-spec distinct(sparql_query()) -> sparql_query().
+distinct(Query) ->
+    Query#sparql_query{distinct = true}.
 
 %% @doc Resolve query arguments by replacing numerical placeholders with their
 %%      LD predicate counterparts stored in Arguments.
@@ -99,3 +112,8 @@ add_argument(Property, #sparql_query{} = Query) ->
         arguments = Arguments#{Next => Property},
         where = [<<"OPTIONAL {?s <", Property/binary, "> ?", Next/binary, "}">> | Where]
     }.
+
+query_distinct(true) ->
+    <<"DISTINCT ">>;
+query_distinct(false) ->
+    <<>>.
