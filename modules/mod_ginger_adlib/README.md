@@ -28,6 +28,13 @@ Pull records from the Adlib API that have been changed since a moment in time
 mod_ginger_adlib:pull_updates("-1 week", Context).
 ```
 
+Pull a single record from Adlib (where `collect` is the Adlib database and
+`123` the Adlib priref):
+
+```erlang
+mod_ginger_adlib:pull_record(<<"collect">>, 123, Context).
+```
+
 ## Search
 
 In your template:
