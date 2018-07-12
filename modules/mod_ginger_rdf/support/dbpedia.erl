@@ -28,7 +28,9 @@ search(#search_query{search = {dbpedia, Args}, offsetlimit = {Offset, Limit}}) -
         sparql_query:limit(Limit,
             sparql_query:offset(Offset,
                 sparql_query:and_where(iolist_to_binary(Wheres),
-                    sparql_query:select(Predicates)
+                    sparql_query:distinct(
+                        sparql_query:select(Predicates)
+                    )
                 )
             )
         ),
