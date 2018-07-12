@@ -62,8 +62,6 @@ query_rdf(Endpoint, Query, Headers) ->
         undefined ->
             undefined;
         #{<<"results">> := #{<<"bindings">> := Bindings}} ->
-            %% Result set can have multiple rows with same ?s (subject URI), so combine those into
-            %% RDF resources.
             lists:map(
                 fun(#{<<"s">> := #{<<"value">> := Uri}} = Binding) ->
                     ResolvedBindings = sparql_query:resolve_arguments(Binding, Query),
