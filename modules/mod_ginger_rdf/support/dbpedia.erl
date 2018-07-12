@@ -20,9 +20,9 @@ search(#search_query{search = {dbpedia, Args}, offsetlimit = {Offset, Limit}}) -
     Predicates = proplists:get_value(properties, Args, default_properties()),
     Wheres = [parse_argument(Key, Value) || {Key, Value} <- Args] ++ [
         %% Exclude redirect pages.
-        <<"FILTER NOT EXISTS {?s <http://dbpedia.org/ontology/wikiPageRedirects> ?x} ">>,
+        <<"FILTER NOT EXISTS {?s <http://dbpedia.org/ontology/wikiPageRedirects> []} ">>,
         %% Only include resources that have a Wikipedia page.
-        <<"FILTER EXISTS {?s <", (rdf_property:foaf(<<"isPrimaryTopicOf">>))/binary, "> ?x} ">>
+        <<"FILTER EXISTS {?s <", (rdf_property:foaf(<<"isPrimaryTopicOf">>))/binary, "> []} ">>
     ],
     Query =
         sparql_query:limit(Limit,
