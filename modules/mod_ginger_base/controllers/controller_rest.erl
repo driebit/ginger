@@ -162,12 +162,13 @@ custom_props(Id, Context) ->
         CustomProps ->
             maps:fold(
               fun(PropName, TypeModule, Acc) ->
-                      case m_rsc:p(Id, PropName, Context) of
-                          undefined ->
-                              Acc;
-                          Value ->
-                              Acc#{PropName => TypeModule:encode(Value)}
-                      end
+                  Value = m_rsc:p(Id, PropName, Context),
+                  case z_utils:is_empty(Value) of
+                      true ->
+                          Acc;
+                      false ->
+                          Acc#{PropName => TypeModule:encode(Value)}
+                  end
               end,
               #{},
               CustomProps
