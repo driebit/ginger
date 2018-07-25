@@ -27,6 +27,6 @@
         "gulp-uglify": "^3.0.0",
         "livereload": "0.7.x",
         "lost": "^6.6.2",
-        "uglify-js": "^3.3.16"
+        "uglify-js": "^3.4.5"
     }
 }

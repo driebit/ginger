@@ -8,18 +8,19 @@ NPM_PATH := ./node_modules/.bin
 ASSETS_DIR := ./lib/assets
 ELM_DIR := ./lib/elm
 SCSS_DIR := ./lib/scss
+DIST_DIR := ./lib/dist
 
 export PATH := $(NPM_PATH):$(PATH)
 
 all: elm scss assets
 
 assets:
-	@mkdir -p lib/dist/assets/ && cp -R ${ASSETS_DIR} lib/dist/
+	@mkdir -p ${DIST_DIR}/assets/ && cp -R ${ASSETS_DIR} ${DIST_DIR}
 
 build: deps test all minify
 
 clean:
-	@rm -Rf dist/*
+	@rm -Rf ${DIST_DIR}/*
 
 deps:
 	@npm install
@@ -33,7 +34,7 @@ distclean: clean
 
 elm:
 	$(MAKE) -C ${ELM_DIR}
-	@cp ${ELM_DIR}/dist/main.js lib/dist/
+	@cp ${ELM_DIR}/dist/main.js ${DIST_DIR}
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
@@ -63,13 +64,14 @@ init:
 livereload:
 	@node_modules/livereload/bin/livereload.js . -e 'js, css'
 
+	# @node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
+
 minify:
-	@node_modules/uglify-js/bin/uglifyjs lib/dist/main.js -c --output='lib/dist/main.js'
-	@node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
+	npx uglify-js ${DIST_DIR}/elm.js --output=${DIST_DIR}/elm.js --compress 'passes=3 keep_fargs=false'
 
 scss:
 	$(MAKE) -C ${SCSS_DIR}
-	@cp ${SCSS_DIR}/dist/style.css lib/dist/
+	@cp ${SCSS_DIR}/dist/style.css ${DIST_DIR}
 
 test:
 	$(MAKE) test -C ${ELM_DIR}
