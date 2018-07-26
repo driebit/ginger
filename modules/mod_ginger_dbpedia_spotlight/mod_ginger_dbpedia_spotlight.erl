@@ -24,26 +24,32 @@ annotate(Rsc, Language, Context) ->
     ginger_dbpedia_spotlight_client:annotate(Text, Language).
 
 %% @doc Extract candidate URIs to DBpedia resources from the Zotonic resource's texts.
--spec candidates(m_rsc:resource(), atom(), z:context()) -> [binary()].
+-spec candidates(m_rsc:resource(), atom(), z:context()) -> [ginger_uri:uri()].
 candidates(Rsc, Language, Context) ->
-    Text = rsc_entity_text(Rsc, Language, Context),
-    case ginger_dbpedia_spotlight_client:candidates(Text, Language) of
-        undefined ->
+    case rsc_entity_text(Rsc, Language, Context) of
+        <<>> ->
             [];
-        Candidates ->
-            lists:map(fun extract_uri/1, Candidates)
-    end.
+        Text ->
+            case ginger_dbpedia_spotlight_client:candidates(Text, Language) of
+                undefined ->
+                    [];
+                Candidates ->
+                    lists:map(fun extract_uri/1, Candidates)
+            end
+     end.
 
 %% @doc Get text of and related to the Zotonic resource which will be used for entity extraction.
 -spec rsc_entity_text(m_rsc:resource(), atom(), z:context()) -> binary().
 rsc_entity_text(Rsc, Language, Context) ->
     DefaultTexts = [text(Rsc, P, Language, Context) || P <- [title, subtitle, summary, body]],
-    lists:foldl(
-        fun(B, Acc) ->
-            <<Acc/binary, " ", B/binary>>
-        end,
-        <<>>,
-        z_notifier:foldl(#rsc_entity_text{id = Rsc, language = Language}, DefaultTexts, Context)
+    z_string:trim(
+        lists:foldl(
+            fun(B, Acc) ->
+                <<Acc/binary, " ", B/binary>>
+            end,
+            <<>>,
+            z_notifier:foldl(#rsc_entity_text{id = Rsc, language = Language}, DefaultTexts, Context)
+        )
     ).
 
 text(Rsc, Property, Language, Context) ->
