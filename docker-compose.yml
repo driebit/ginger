@@ -44,6 +44,7 @@ services:
             - 443:8443
         environment:
             MAKE: "true"
+            HEART_DISABLE: "true"
             LOGSTASH_HOST: "localhost"
             LOGSTASH_PORT: 5514
         networks:
