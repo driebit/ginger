@@ -18,7 +18,10 @@
 }).
 
 -record(triple, {
+    %% DEPRECATED: type property is deprecated. Construct an object = #rdf_value{value = ...}
+    %% instead.
     type = literal :: resource | literal,
+
     subject :: undefined | binary(),
     subject_props = [] :: proplists:proplist(),
     predicate :: m_rdf:predicate(),
