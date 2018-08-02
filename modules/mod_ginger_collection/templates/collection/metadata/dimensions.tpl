@@ -11,6 +11,11 @@
     <dd>{{ depth['schema:value'] }} {{ depth['schema:unitText'] }}</dd>
 {% endif %}
 
+{% if record['dbpedia-owl:length'] as depth %}
+    <dt>{_ Length _}</dt>
+    <dd>{{ depth['schema:value'] }} {{ depth['schema:unitText'] }}</dd>
+{% endif %}
+
 {% if record['schema:duration'] as duration %}
     <dt>{_ Duration _}</dt>
     <dd>{{ duration|iso8601 }}</dd>

@@ -130,7 +130,7 @@ map_dimension_type(<<"diepte">>) ->
 map_dimension_type(<<"hoogte">>) ->
     <<"schema:height">>;
 map_dimension_type(<<"lengte">>) ->
-    <<"schema:depth">>;
+    <<"dbpedia-owl:length">>;
 map_dimension_type(<<"diameter">>) ->
     <<"dbpedia-owl:diameter">>;
 map_dimension_type(_Type) ->
