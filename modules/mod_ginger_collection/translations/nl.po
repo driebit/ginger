@@ -231,7 +231,7 @@ msgstr "Geen collectie-objecten gevonden."
 #: user/modules/mod_ginger_collection/templates/list/list.tpl:77
 #, fuzzy
 msgid "No results"
-msgstr "Resultaten gevonden"
+msgstr "Geen resultaten gevonden"
 
 #: user/modules/mod_ginger_collection/templates/collection/metadata/notes.tpl:2
 msgid "Notes"
