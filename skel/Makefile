@@ -64,8 +64,6 @@ init:
 livereload:
 	@node_modules/livereload/bin/livereload.js . -e 'js, css'
 
-	# @node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
-
 minify:
 	npx uglify-js ${DIST_DIR}/elm.js --output=${DIST_DIR}/elm.js --compress 'passes=3 keep_fargs=false'
 
