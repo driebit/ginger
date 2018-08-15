@@ -179,9 +179,12 @@ translation(Id, Prop, Context) ->
     DefaultLanguage = z_trans:default_language(Context),
     case m_rsc:p(Id, Prop, <<>>, Context) of
         {trans, Translations} ->
-            [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
+            [ {Key, z_html:unescape(filter_show_media:show_media(Value, Context))}
+              || {Key, Value} <- Translations
+            ];
         Value ->
-            [{DefaultLanguage, Value}]
+            [ {DefaultLanguage, z_html:unescape(filter_show_media:show_media(Value, Context))}
+            ]
     end.
 
 proplists_filter(Filter, List) ->
