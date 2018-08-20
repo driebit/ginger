@@ -116,7 +116,7 @@ edges(RscId, Context) ->
                   predicate_name => Key,
                   resource => rsc(proplists:get_value(object_id, Rsc), Context, false)
                  }
-                || Rsc <- Rscs
+                || Rsc <- lists:reverse(Rscs)
               ]
       end,
       m_edge:get_edges(RscId, Context)).
