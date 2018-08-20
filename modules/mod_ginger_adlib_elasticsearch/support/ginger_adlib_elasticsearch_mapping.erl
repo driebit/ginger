@@ -29,10 +29,8 @@ map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"objec
     Acc#{
         <<"dcterms:identifier">> => Value
     };
-map_property(<<"creator">> = Key, [Value], Acc) ->
-    Acc#{Key => parse_name(Value)};
 map_property(<<"creator">> = Key, Value, Acc) ->
-    Acc#{Key => parse_name(Value)};
+    Acc#{Key => [ parse_name(Creator) || Creator <- to_list(Value) ]};
 map_property(<<"creator.role">>, Value, Acc) ->
     Acc#{<<"role">> => Value};
 map_property(<<"production.date.start">> = Key, Value, Acc) when value =/= <<"?">> ->
