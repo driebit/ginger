@@ -7,4 +7,5 @@ node_modules
 config.d
 npm-debug.log
 translations/template/
+translations/*.mo
 tmp/*
