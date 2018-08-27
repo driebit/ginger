@@ -12,7 +12,7 @@
 -include_lib("../include/ginger_dbpedia_spotlight.hrl").
 -include_lib("zotonic.hrl").
 
--define(ENDPOINT, <<"http://model.dbpedia-spotlight.org">>).
+-define(ENDPOINT, <<"https://api.dbpedia-spotlight.org">>).
 
 %% @doc A 4 step process - Spotting, Candidate Mapping, Disambiguation and Linking / Stats - for
 %%      linking unstructured information sources.
