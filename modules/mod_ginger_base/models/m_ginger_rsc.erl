@@ -2,6 +2,7 @@
 
 -export([
     abstract/2,
+    media/2,
     translations/2
 ]).
 
@@ -10,11 +11,12 @@
 -type resource_properties() :: map().
 
 -include_lib("zotonic.hrl").
+-include_lib("stdlib/include/qlc.hrl").
 
 %% @doc Get short representation of a resource.
 -spec abstract(m_rsc:resource(), z:context()) -> resource_properties().
 abstract(Id, Context) ->
-    #{
+    Abstract = #{
         id => Id,
         title => translations(Id, title, Context),
         body => translations(Id, body, Context),
@@ -58,3 +60,44 @@ custom_props(Id, Context) ->
                 CustomProps
             )
     end.
+
+-spec media(map(), z:context()) -> map().
+media(Rsc, Context) ->
+    media(Rsc, mediaclasses(Context), Context).
+
+-spec media(map(), [atom()], z:context()) -> map().
+media(Rsc = #{id := Id}, Mediaclasses, Context) ->
+    case m_media:get(Id, Context) of
+        undefined ->
+            Rsc;
+        _ ->
+            Media = fun(Class, Acc) ->
+                Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+                case z_media_tag:url(Id, Opts, Context) of
+                    {ok, Url} ->
+                        [#{mediaclass => Class, url => Url} | Acc];
+                    _ ->
+                        Acc
+                end
+                    end,
+            Rsc#{media => lists:foldr(Media, [], Mediaclasses)}
+    end.
+
+%% @doc Get all mediaclasses for the site.
+-spec mediaclasses(z:context()) -> [atom()].
+mediaclasses(Context) ->
+    Site = z_context:site(Context),
+    Q = qlc:q([ R#mediaclass_index.key#mediaclass_index_key.mediaclass
+                || R <- ets:table(?MEDIACLASS_INDEX),
+                   R#mediaclass_index.key#mediaclass_index_key.site == Site
+              ]
+             ),
+    lists:filter(
+      fun
+          (<<"admin-", _/bytes>>) ->
+              false;
+          (_) ->
+              true
+      end,
+      lists:usort(qlc:eval(Q))
+     ).
