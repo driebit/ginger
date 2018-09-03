@@ -6,6 +6,6 @@
     {% elseif id.medium.width == 0 %}
         {{ id.title }}
     {% else %}
-        {% image id.depiction class="img-auto" alt="" crop=id.depiction.id.crop_center %}
+        {% image id.depiction mediaclass="landscale-medium" class="img-auto" alt="" crop=id.depiction.id.crop_center %}
     {% endif %}
 </a>
