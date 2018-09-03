@@ -25,9 +25,16 @@ to_json(Req, State) ->
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
 
     Result = z_search:search({Type, arguments(RequestArgs)}, {Offset, Limit}, Context),
-    #search_result{result = Results, facets = _Facets} = Result,
+    #search_result{
+        result = Results,
+        facets = _Facets,
+        total = Total
+    } = Result,
 
-    SearchResults = #{<<"result">> => [search_result(R, Context) || R <- Results]},
+    SearchResults = #{
+        <<"result">> => [search_result(R, Context) || R <- Results],
+        <<"total">> => Total
+    },
     Json = jsx:encode(SearchResults),
 
     {Json, Req, State}.
