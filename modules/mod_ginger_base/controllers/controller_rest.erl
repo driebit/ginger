@@ -91,25 +91,12 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 
 rsc(Id, Context, IncludeEdges) ->
     Map1 = m_ginger_rest:rsc(Id, Context),
-    Map2 = case IncludeEdges of
-               false ->
-                   Map1;
-               true ->
-                   Map1#{edges => edges(Id, Context)}
-           end,
-    m_ginger_rest:with_media(Map2, Context).
-
-edges(RscId, Context) ->
-    lists:flatmap(
-      fun({Key, Rscs}) ->
-              [ #{
-                  predicate_name => Key,
-                  resource => rsc(proplists:get_value(object_id, Rsc), Context, false)
-                 }
-                || Rsc <- lists:reverse(Rscs)
-              ]
-      end,
-      m_edge:get_edges(RscId, Context)).
+    case IncludeEdges of
+        false ->
+            Map1;
+        true ->
+            Map1#{edges => m_ginger_rest:with_edges(Map1, Context)}
+    end.
 
 proplists_filter(Filter, List) ->
     lists:foldr(

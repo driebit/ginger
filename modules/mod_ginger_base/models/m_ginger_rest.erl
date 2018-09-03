@@ -3,6 +3,7 @@
 
 -export([
     rsc/2,
+    with_edges/2,
     with_edges/3,
     translations/2
 ]).
@@ -29,6 +30,24 @@ rsc(Id, Context) ->
     },
     with_media(Rsc, Context).
 
+%% @doc Add all edges to resource.
+-spec with_edges(map(), z:context()) -> map().
+with_edges(Rsc = #{<<"id">> := Id}, Context) ->
+    Edges = lists:flatmap(
+        fun({Key, Edges}) ->
+            [
+                #{
+                    <<"predicate_name">> => Key,
+                    <<"resource">> => rsc(proplists:get_value(object_id, Edge), Context)
+                } || Edge <- lists:reverse(Edges)
+            ]
+        end,
+        m_edge:get_edges(Id, Context)
+    ),
+    Rsc#{<<"edges">> => Edges}.
+
+%% @doc Add edges of specific predicates to resource.
+-spec with_edges(map(), [atom()], z:context()) -> map().
 with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
     Edges = lists:flatmap(
         fun(Predicate) ->
