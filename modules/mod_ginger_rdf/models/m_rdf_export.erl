@@ -126,7 +126,7 @@ translations_to_rdf(Predicate, Translations, Context) ->
                 }
             }
         end,
-        m_ginger_rsc:translations(Translations, Context)
+        m_ginger_rest:translations(Translations, Context)
     ).
 
 %% @doc Try to find media triples and add them to the set of triples.

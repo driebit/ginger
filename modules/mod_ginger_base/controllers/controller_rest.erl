@@ -90,14 +90,14 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%%-----------------------------------------------------------------------------
 
 rsc(Id, Context, IncludeEdges) ->
-    Map1 = m_ginger_rsc:abstract(Id, Context),
+    Map1 = m_ginger_rest:rsc(Id, Context),
     Map2 = case IncludeEdges of
                false ->
                    Map1;
                true ->
                    Map1#{edges => edges(Id, Context)}
            end,
-    m_ginger_rsc:media(Map2, Context).
+    m_ginger_rest:with_media(Map2, Context).
 
 edges(RscId, Context) ->
     lists:flatmap(

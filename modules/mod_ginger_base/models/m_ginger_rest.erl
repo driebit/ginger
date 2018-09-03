@@ -1,8 +1,9 @@
--module(m_ginger_rsc).
+%% @doc Model for REST representations of Zotonic resources.
+-module(m_ginger_rest).
 
 -export([
-    abstract/2,
-    media/2,
+    rsc/2,
+    with_edges/3,
     translations/2
 ]).
 
@@ -13,19 +14,35 @@
 -include_lib("zotonic.hrl").
 -include_lib("stdlib/include/qlc.hrl").
 
-%% @doc Get short representation of a resource.
--spec abstract(m_rsc:resource(), z:context()) -> resource_properties().
-abstract(Id, Context) ->
-    Abstract = #{
-        id => Id,
-        title => translations(Id, title, Context),
-        body => translations(Id, body, Context),
-        summary => translations(Id, summary, Context),
-        path => m_rsc:page_url(Id, Context),
-        publication_date => m_rsc:p(Id, publication_start, null, Context),
-        categories => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-        properties => custom_props(Id, Context)
-    }.
+%% @doc Get REST resource properties.
+-spec rsc(m_rsc:resource(), z:context()) -> resource_properties().
+rsc(Id, Context) ->
+    Rsc = #{
+        <<"id">> => Id,
+        <<"title">> => translations(Id, title, Context),
+        <<"body">> => translations(Id, body, Context),
+        <<"summary">> => translations(Id, summary, Context),
+        <<"path">> => m_rsc:page_url(Id, Context),
+        <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context),
+        <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
+        <<"properties">> => custom_props(Id, Context)
+    },
+    with_media(Rsc, Context).
+
+with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
+    Edges = lists:flatmap(
+        fun(Predicate) ->
+            #rsc_list{list = Objects} = m_rsc:o(Id, Predicate, Context),
+            [
+                #{
+                    <<"predicate_name">> => Predicate,
+                    <<"resources">> => [rsc(O, Context) || O <- Objects]
+                }
+            ]
+        end,
+        Predicates
+    ),
+    Rsc#{<<"edges">> => Edges}.
 
 %% @doc Get resource translations.
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
@@ -61,12 +78,12 @@ custom_props(Id, Context) ->
             )
     end.
 
--spec media(map(), z:context()) -> map().
-media(Rsc, Context) ->
-    media(Rsc, mediaclasses(Context), Context).
+-spec with_media(map(), z:context()) -> map().
+with_media(Rsc, Context) ->
+    with_media(Rsc, mediaclasses(Context), Context).
 
--spec media(map(), [atom()], z:context()) -> map().
-media(Rsc = #{id := Id}, Mediaclasses, Context) ->
+-spec with_media(map(), [atom()], z:context()) -> map().
+with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
     case m_media:get(Id, Context) of
         undefined ->
             Rsc;
@@ -80,7 +97,7 @@ media(Rsc = #{id := Id}, Mediaclasses, Context) ->
                         Acc
                 end
                     end,
-            Rsc#{media => lists:foldr(Media, [], Mediaclasses)}
+            Rsc#{<<"media">> => lists:foldr(Media, [], Mediaclasses)}
     end.
 
 %% @doc Get all mediaclasses for the site.

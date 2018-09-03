@@ -1,4 +1,4 @@
-%% @doc Search API controller.
+%% @doc Execute searches and retrieve results in JSON.
 -module(controller_search).
 
 -export([
@@ -39,8 +39,11 @@ to_json(Req, State) ->
 
     {Json, Req, State}.
 
+-spec search_result(m_rsc:resource() | map(), z:context()) -> map().
 search_result(Id, Context) when is_integer(Id) ->
-    m_ginger_rsc:abstract(Id, Context);
+    Rsc = m_ginger_rest:rsc(Id, Context),
+    ?DEBUG(Rsc),
+    m_ginger_rest:with_edges(Rsc, [depiction], Context);
 search_result(Document, _Context) when is_map(Document) ->
     %% Return a document (such as an Elasticsearch document) as is.
     Document.
