@@ -91,16 +91,7 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%%-----------------------------------------------------------------------------
 
 rsc(Id, Context, IncludeEdges) ->
-    Map1 = #{
-             id => Id,
-             title => translation(Id, title, Context),
-             body => translation(Id, body, Context),
-             summary => translation(Id, summary, Context),
-             path => m_rsc:page_url(Id, Context),
-             publication_date => m_rsc:p(Id, publication_start, Context),
-             categories => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-             properties => custom_props(Id, Context)
-            },
+    Map1 = m_ginger_rsc:abstract(Id, Context),
     Map2 = case IncludeEdges of
                false ->
                    Map1;
@@ -154,38 +145,6 @@ mediaclasses(Context) ->
       end,
       lists:usort(qlc:eval(Q))
      ).
-
-custom_props(Id, Context) ->
-    case m_site:get(types, Context) of
-        undefined ->
-            null;
-        CustomProps ->
-            maps:fold(
-              fun(PropName, TypeModule, Acc) ->
-                  Value = m_rsc:p(Id, PropName, Context),
-                  case z_utils:is_empty(Value) of
-                      true ->
-                          Acc;
-                      false ->
-                          Acc#{PropName => TypeModule:encode(Value)}
-                  end
-              end,
-              #{},
-              CustomProps
-            )
-    end.
-
-translation(Id, Prop, Context) ->
-    DefaultLanguage = z_trans:default_language(Context),
-    case m_rsc:p(Id, Prop, <<>>, Context) of
-        {trans, Translations} ->
-            [ {Key, z_html:unescape(filter_show_media:show_media(Value, Context))}
-              || {Key, Value} <- Translations
-            ];
-        Value ->
-            [ {DefaultLanguage, z_html:unescape(filter_show_media:show_media(Value, Context))}
-            ]
-    end.
 
 proplists_filter(Filter, List) ->
     lists:foldr(
