@@ -55,7 +55,7 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
             [
                 #{
                     <<"predicate_name">> => Predicate,
-                    <<"resources">> => [rsc(O, Context) || O <- Objects]
+                    <<"resource">> => [rsc(O, Context) || O <- Objects]
                 }
             ]
         end,
