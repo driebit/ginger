@@ -31,13 +31,28 @@ to_json(Req, State) ->
         total = Total
     } = Result,
 
+    VisibleResults = lists:filter(
+        fun(R) ->
+            visible(R, Context)
+        end,
+        Results
+    ),
+
     SearchResults = #{
-        <<"result">> => [search_result(R, Context) || R <- Results],
+        <<"result">> => [search_result(R, Context) || R <- VisibleResults],
         <<"total">> => Total
     },
     Json = jsx:encode(SearchResults),
 
     {Json, Req, State}.
+
+%% @doc Is a search result visible for the current user?
+-spec visible(m_rsc:resource() | map(), z:context()) -> boolean().
+visible(Id, Context) when is_integer(Id) ->
+    m_rsc:is_visible(Id, Context);
+visible(Document, _Context) when is_map(Document) ->
+    %% All documents are visible.
+    true.
 
 -spec search_result(m_rsc:resource() | map(), z:context()) -> map().
 search_result(Id, Context) when is_integer(Id) ->

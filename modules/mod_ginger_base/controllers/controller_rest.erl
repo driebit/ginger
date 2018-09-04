@@ -95,7 +95,7 @@ rsc(Id, Context, IncludeEdges) ->
         false ->
             Map1;
         true ->
-            Map1#{edges => m_ginger_rest:with_edges(Map1, Context)}
+            m_ginger_rest:with_edges(Map1, Context)
     end.
 
 proplists_filter(Filter, List) ->
