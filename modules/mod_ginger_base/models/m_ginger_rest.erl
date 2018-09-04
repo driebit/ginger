@@ -34,12 +34,12 @@ rsc(Id, Context) ->
 -spec with_edges(map(), z:context()) -> map().
 with_edges(Rsc = #{<<"id">> := Id}, Context) ->
     Edges = lists:flatmap(
-        fun({Key, Edges}) ->
+        fun({Predicate, PredicateEdges}) ->
             [
                 #{
-                    <<"predicate_name">> => Key,
+                    <<"predicate_name">> => Predicate,
                     <<"resource">> => rsc(proplists:get_value(object_id, Edge), Context)
-                } || Edge <- lists:reverse(Edges)
+                } || Edge <- lists:reverse(PredicateEdges)
             ]
         end,
         m_edge:get_edges(Id, Context)
