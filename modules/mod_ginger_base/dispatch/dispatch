@@ -10,7 +10,7 @@
     {data, ["data", "resources", "path", path], controller_rest, [{mode, document}, {path_info, path}]},
 
     %% Search API
-    {search, ["data", "search"], controller_search, []},
+    {data_search, ["data", "search"], controller_search, []},
 
     %% Normal page to show a resource.
     {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
