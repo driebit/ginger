@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
     title: "Ginger REST API documentation"
     description: "Documentation for the Ginger REST API"
-    version: 0.1
+    version: "0.1"
 
 host: DOMAIN
 basePath: "/data"
@@ -110,29 +110,33 @@ paths:
                     schema:
                         type: array
                         items:
-                            $ref: '#definitions/Resource'
+                            $ref: '#/definitions/Resource'
 
     /resources/{id}:
         get:
             produces: ["application/json"]
             parameters:
                 - in: path
+                  name: id
                   type: integer
                   required: true
             responses:
                 200:
                     description: A resource
                     schema:
-                        $ref: '#definitions/Resource'
+                        $ref: '#/definitions/Resource'
+
     /resources/path/{path}:
         get:
             produces: ["application/json"]
             parameters:
                 - in: path
+                  name: path
                   type: string
                   required: true
             responses:
                 200:
                     description: A resource
                     schema:
-                        $ref: '#definitions/Resource'
+                        $ref: '#/definitions/Resource'
+
