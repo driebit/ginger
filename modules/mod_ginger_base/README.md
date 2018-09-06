@@ -50,8 +50,6 @@ Only works on [Elasticsearch](https://github.com/driebit/mod_elasticsearch).
 
 ### cat_promote_recent
 
-Boost result ranking for resources in certain 
-
 Boost result ranking for resources that are in specific categories. So, to make
 recent articles more relevant: 
 
