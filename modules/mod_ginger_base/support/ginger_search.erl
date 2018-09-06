@@ -15,6 +15,7 @@
     anykeyword,
     cat_exclude_defaults,
     cat_exclude_unfindable,
+    cat_promote,
     cat_promote_recent,
     custompivots,
     filters,
@@ -218,6 +219,14 @@ parse_argument({cat_exclude_unfindable, Val}) ->
                 []
         end
     end;
+
+parse_argument({cat_promote, []}) ->
+    [];
+parse_argument({cat_promote, Categories}) ->
+    score_function(#{
+        <<"filter">> => [{cat, Categories}],
+        <<"weight">> => 3
+    });
 
 parse_argument({cat_promote_recent, []}) ->
     [];
