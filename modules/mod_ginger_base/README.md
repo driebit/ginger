@@ -20,7 +20,7 @@ arguments for more advanced searches. Each argument is described below.
 
 ### boost_featured
 
-Boost result ranking for featured resources, i.e. resources for which 
+Boost result ranking for featured resources, i.e. resources for which
 `is_featured` is true:
 
 ```erlang
@@ -33,9 +33,9 @@ or:
 z_search:search({ginger_search, [{text, <<"foo">>}, {boost_featured, false}]}, Context).
 ```
 
-Defaults to `true`. 
+Defaults to `true`.
 
-Only works on [Elasticsearch](https://github.com/driebit/mod_elasticsearch). 
+Only works on [Elasticsearch](https://github.com/driebit/mod_elasticsearch).
 
 ### cat_promote
 
@@ -51,7 +51,7 @@ Only works on [Elasticsearch](https://github.com/driebit/mod_elasticsearch).
 ### cat_promote_recent
 
 Boost result ranking for resources that are in specific categories. So, to make
-recent articles more relevant: 
+recent articles more relevant:
 
 ```erlang
 z_search:search({ginger_search, [{text, <<"foo">>}, {cat_promote_recent, [person, article]}]}, Context).
