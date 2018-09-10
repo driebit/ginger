@@ -33,7 +33,7 @@ help:
 addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
 
-api-docs:
+api-doc:
 	@yaml2json docs/rest-api.yaml > /tmp/rest-api.json
 	@spectacle -1 -t /tmp -f ginger-rest-api.html /tmp/rest-api.json
 
