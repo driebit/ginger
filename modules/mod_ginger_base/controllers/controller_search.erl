@@ -17,33 +17,34 @@ content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 to_json(Req, State) ->
+    %% Init
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
-
+    %% Get search params from request
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "1")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
-
+    %% Perform search
     Result = z_search:search({Type, arguments(RequestArgs)}, {Offset, Limit}, Context),
     #search_result{
         result = Results,
         facets = _Facets,
         total = Total
     } = Result,
-
+    %% Filter search results not visible for current user
     VisibleResults = lists:filter(
         fun(R) ->
             visible(R, Context)
         end,
         Results
     ),
-
+    %% Serialize to JSON
     SearchResults = #{
         <<"result">> => [search_result(R, Context) || R <- VisibleResults],
         <<"total">> => Total
     },
     Json = jsx:encode(SearchResults),
-
+    %% Done
     {Json, Req, State}.
 
 %% @doc Is a search result visible for the current user?
