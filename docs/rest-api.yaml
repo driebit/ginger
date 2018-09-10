@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
     title: "Ginger REST API documentation"
     description: "Documentation for the Ginger REST API"
-    version: "0.1"
+    version: "0.2"
 
 host: DOMAIN
 basePath: "/data"
@@ -139,4 +139,74 @@ paths:
                     description: A resource
                     schema:
                         $ref: '#/definitions/Resource'
+
+    /search:
+        get:
+            produces: ["application/json"]
+            description: "Search resources"
+            parameters:
+                - in: query
+                  name: text
+                  type: string
+                  required: false
+                  description: Textual search query.
+                - in: query
+                  name: cat
+                  type: string
+                  required: false
+                  description: Category to filter on.
+                - in: query
+                  name: cat_promote
+                  type: string
+                  required: false
+                  description: Boost result ranking for resources that are in specific categories.
+                - in: query
+                  name: cat_promote_recent
+                  type: string
+                  required: false
+                  description: Boost result ranking for recently published resources that are in specific categories.
+                - in: query
+                  name: has_geo
+                  type: string
+                  required: false
+                  description: Only return search results that have geo coordinates (latitude and longitude).
+                - in: query
+                  name: offset
+                  type: integer
+                  required: false
+                  description: Offset the list of search results.
+                  default: 1
+                - in: query
+                  name: limit
+                  type: integer
+                  required: false
+                  description: Limit the list of search results.
+                  default: 1000
+                - in: query
+                  name: sort
+                  type: string
+                  required: false
+                  description: Property to search results on. Prepend with `-` for descending sort.
+                - in: query
+                  name: type
+                  type: string
+                  required: false
+                  default: 'ginger_search'
+                  description: The search type.
+            responses:
+                200:
+                    description: Search results.
+                    schema:
+                        type: object
+                        properties:
+                            result:
+                                type: array
+                                items:
+                                    $ref: '#/definitions/Resource'
+                            total:
+                                type: integer
+                                description: 'The total number of search results.'
+                                example: 42
+
+
 

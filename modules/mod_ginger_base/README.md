@@ -50,8 +50,8 @@ Only works on [Elasticsearch](https://github.com/driebit/mod_elasticsearch).
 
 ### cat_promote_recent
 
-Boost result ranking for resources that are in specific categories. So, to make
-recent articles more relevant:
+Boost result ranking for recently published resources that are in specific
+categories. So, to make recent articles more relevant:
 
 ```erlang
 z_search:search({ginger_search, [{text, <<"foo">>}, {cat_promote_recent, [person, article]}]}, Context).
