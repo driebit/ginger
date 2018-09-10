@@ -24,8 +24,7 @@
         unfinished_or_nodate,
         authoritative
 %}
-
-    {% with m.search[{ginger_search cat=cat cat_exclude=cat_exclude cat_exclude_defaults=cat_exclude_defaults authoritative=authoritative unfinished_or_nodate=unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen}] as result %}
+    {% with m.search[{ginger_search cat=cat cat_exclude=cat_exclude cat_exclude_defaults=cat_exclude_defaults cat_promote=cat_promote cat_promote_recent=cat_promote_recent authoritative=authoritative unfinished_or_nodate=unfinished_or_nodate content_group=content_group text=search_text pagelen=pagelen}] as result %}
         {% include results_template result=result %}
     {% endwith %}
 

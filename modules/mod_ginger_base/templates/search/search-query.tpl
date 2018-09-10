@@ -90,6 +90,7 @@
             custompivots=custompivots
             ongoing_on_date=ongoing_on_date
             page=page
+            cat_promote=cat_promote
             cat_promote_recent=cat_promote_recent
             index=index
             collection=collection
