@@ -175,7 +175,7 @@ paths:
                   type: integer
                   required: false
                   description: Offset the list of search results.
-                  default: 1
+                  default: 0
                 - in: query
                   name: limit
                   type: integer
