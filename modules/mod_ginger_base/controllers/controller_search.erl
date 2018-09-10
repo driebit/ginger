@@ -22,10 +22,10 @@ to_json(Req, State) ->
     RequestArgs = wrq:req_qs(Req),
     %% Get search params from request
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
-    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "1")),
+    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
-    %% Perform search
-    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset, Limit}, Context),
+    %% Perform search (Zotonic offsets start at 1)
+    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
     #search_result{
         result = Results,
         facets = _Facets,
