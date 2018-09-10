@@ -90,12 +90,12 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%%-----------------------------------------------------------------------------
 
 rsc(Id, Context, IncludeEdges) ->
-    Map1 = m_ginger_rest:rsc(Id, Context),
+    Map = m_ginger_rest:rsc(Id, Context),
     case IncludeEdges of
         false ->
-            Map1;
+            Map;
         true ->
-            m_ginger_rest:with_edges(Map1, Context)
+            m_ginger_rest:with_edges(Map, Context)
     end.
 
 proplists_filter(Filter, List) ->
