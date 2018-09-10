@@ -18,3 +18,4 @@ tests/screenshots
 /docs/rest-api.json
 /docs/public
 /docs/Makefile
+/node_modules

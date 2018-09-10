@@ -8,9 +8,14 @@ target test-chrome: url=http://$(site).docker.test
 
 include .env
 
+NPM_PATH := ./node_modules/.bin
+export PATH := $(NPM_PATH):$(PATH)
+
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
+	@echo "  api-doc                 Generate API doc"
+	@echo "  deps					 Install dependencies"
 	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
 	@echo "  down                    Stop containers"
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
@@ -30,6 +35,12 @@ help:
 addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
 
+api-doc:
+	@yaml2json docs/rest-api.yaml > /tmp/rest-api.json
+	@spectacle -1 -t /tmp -f ginger-rest-api.html /tmp/rest-api.json
+
+deps:
+	@npm install
 gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
 	docker run --rm -it -p 35729:35729 --workdir /app -v "`pwd`/sites/$(site)":/app:delegated -v "`pwd`/modules":/modules:delegated --env MODULES_DIR=/modules node:8.9.1-alpine sh -c "npm install && npm start"

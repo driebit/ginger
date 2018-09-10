@@ -1,0 +1,28 @@
+{
+  "name": "ginger",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/driebit/ginger.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/driebit/ginger/issues"
+  },
+  "homepage": "https://github.com/driebit/ginger#readme",
+  "devDependencies": {
+    "spectacle-docs": "^1.0.5",
+    "yamljs": "^0.3.0"
+  }
+}
