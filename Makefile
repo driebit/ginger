@@ -14,6 +14,8 @@ export PATH := $(NPM_PATH):$(PATH)
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
+	@echo "  api-doc                 Generate API doc"
+	@echo "  deps					 Install dependencies"
 	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
 	@echo "  down                    Stop containers"
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
