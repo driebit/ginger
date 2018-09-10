@@ -8,6 +8,9 @@ target test-chrome: url=http://$(site).docker.test
 
 include .env
 
+NPM_PATH := ./node_modules/.bin
+export PATH := $(NPM_PATH):$(PATH)
+
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
@@ -29,6 +32,10 @@ help:
 
 addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
+
+api-docs:
+	@yaml2json docs/rest-api.yaml > tmp/rest-api.json
+	@spectacle -1 -t tmp tmp/rest-api.json
 
 gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
