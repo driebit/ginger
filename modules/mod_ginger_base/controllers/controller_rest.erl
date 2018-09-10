@@ -10,7 +10,6 @@
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
--include_lib("stdlib/include/qlc.hrl").
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
@@ -91,100 +90,12 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%%-----------------------------------------------------------------------------
 
 rsc(Id, Context, IncludeEdges) ->
-    Map1 = #{
-             id => Id,
-             title => translation(Id, title, Context),
-             body => translation(Id, body, Context),
-             summary => translation(Id, summary, Context),
-             path => m_rsc:page_url(Id, Context),
-             publication_date => m_rsc:p(Id, publication_start, Context),
-             categories => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-             properties => custom_props(Id, Context)
-            },
-    Map2 = case IncludeEdges of
-               false ->
-                   Map1;
-               true ->
-                   Map1#{edges => edges(Id, Context)}
-           end,
-    media(Map2, Context).
-
-edges(RscId, Context) ->
-    lists:flatmap(
-      fun({Key, Rscs}) ->
-              [ #{
-                  predicate_name => Key,
-                  resource => rsc(proplists:get_value(object_id, Rsc), Context, false)
-                 }
-                || Rsc <- lists:reverse(Rscs)
-              ]
-      end,
-      m_edge:get_edges(RscId, Context)).
-
-media(Rsc = #{id := Id}, Context) ->
-    case lists:member(image, maps:get(categories, Rsc)) of
+    Map = m_ginger_rest:rsc(Id, Context),
+    case IncludeEdges of
         false ->
-            Rsc;
+            Map;
         true ->
-            Media = fun(Class, Acc) ->
-                            Opts = [{use_absolute_url, true}, {mediaclass, Class}],
-                            case z_media_tag:url(Id, Opts, Context) of
-                                {ok, Url} ->
-                                    [#{mediaclass => Class, url => Url} | Acc];
-                                _ ->
-                                    Acc
-                            end
-                    end,
-            Rsc#{media => lists:foldr(Media, [], mediaclasses(Context))}
-    end.
-
-mediaclasses(Context) ->
-    Site = z_context:site(Context),
-    Q = qlc:q([ R#mediaclass_index.key#mediaclass_index_key.mediaclass
-                || R <- ets:table(?MEDIACLASS_INDEX),
-                   R#mediaclass_index.key#mediaclass_index_key.site == Site
-              ]
-             ),
-    lists:filter(
-      fun
-          (<<"admin-", _/bytes>>) ->
-              false;
-          (_) ->
-              true
-      end,
-      lists:usort(qlc:eval(Q))
-     ).
-
-custom_props(Id, Context) ->
-    case m_site:get(types, Context) of
-        undefined ->
-            null;
-        CustomProps ->
-            maps:fold(
-              fun(PropName, TypeModule, Acc) ->
-                  Value = m_rsc:p(Id, PropName, Context),
-                  case z_utils:is_empty(Value) of
-                      true ->
-                          Acc;
-                      false ->
-                          Acc#{PropName => TypeModule:encode(Value)}
-                  end
-              end,
-              #{},
-              CustomProps
-            )
-    end.
-
-translation(Id, Prop, Context) ->
-    DefaultLanguage = z_trans:default_language(Context),
-    case m_rsc:p(Id, Prop, <<>>, Context) of
-        {trans, Translations} ->
-            [ {Key, z_html:unescape(filter_show_media:show_media(Value, Context))}
-              || {Key, Value} <- Translations
-            ];
-        Value ->
-            [ {DefaultLanguage, z_html:unescape(filter_show_media:show_media(Value, Context))}
-            ]
+            m_ginger_rest:with_edges(Map, Context)
     end.
 
 proplists_filter(Filter, List) ->
