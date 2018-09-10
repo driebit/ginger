@@ -34,7 +34,7 @@ to_json(Req, State) ->
     %% Filter search results not visible for current user
     VisibleResults = lists:filter(
         fun(R) ->
-            visible(R, Context)
+            is_visible(R, Context)
         end,
         Results
     ),
@@ -48,10 +48,10 @@ to_json(Req, State) ->
     {Json, Req, State}.
 
 %% @doc Is a search result visible for the current user?
--spec visible(m_rsc:resource() | map(), z:context()) -> boolean().
-visible(Id, Context) when is_integer(Id) ->
+-spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
+is_visible(Id, Context) when is_integer(Id) ->
     m_rsc:is_visible(Id, Context);
-visible(Document, _Context) when is_map(Document) ->
+is_visible(Document, _Context) when is_map(Document) ->
     %% All documents are visible.
     true.
 
