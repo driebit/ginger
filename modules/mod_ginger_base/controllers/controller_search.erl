@@ -21,7 +21,7 @@ to_json(Req, State) ->
     RequestArgs = wrq:req_qs(Req),
 
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
-    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
+    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "1")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
 
     Result = z_search:search({Type, arguments(RequestArgs)}, {Offset, Limit}, Context),
