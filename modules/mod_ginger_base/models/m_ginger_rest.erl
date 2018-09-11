@@ -95,7 +95,7 @@ custom_props(Id, Context) ->
                 #{},
                 CustomProps
             ) of
-                #{} ->
+                Map when map_size(Map) =:= 0 ->
                     null;
                 CustomPropsValues ->
                     CustomPropsValues
