@@ -82,7 +82,7 @@ custom_props(Id, Context) ->
         undefined ->
             null;
         CustomProps ->
-            maps:fold(
+            case maps:fold(
                 fun(PropName, TypeModule, Acc) ->
                     Value = m_rsc:p(Id, PropName, Context),
                     case z_utils:is_empty(Value) of
@@ -94,7 +94,12 @@ custom_props(Id, Context) ->
                 end,
                 #{},
                 CustomProps
-            )
+            ) of
+                #{} ->
+                    null;
+                CustomPropsValues ->
+                    CustomPropsValues
+            end
     end.
 
 -spec with_media(map(), z:context()) -> map().
