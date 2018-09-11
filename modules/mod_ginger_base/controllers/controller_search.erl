@@ -63,13 +63,29 @@ search_result(Document, _Context) when is_map(Document) ->
     %% Return a document (such as an Elasticsearch document) as is.
     Document.
 
+%% @doc Process and filter request arguments.
 -spec arguments([{string(), any()}]) -> proplists:proplist().
 arguments(RequestArgs) ->
-    Args = [{list_to_existing_atom(Key), Value} || {Key, Value} <- RequestArgs],
-    filter(Args).
+    Args = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
+    whitelisted(Args).
 
--spec filter(proplists:proplist()) -> proplists:proplist().
-filter(Arguments) ->
+%% @doc Pre-process request argument if needed.
+-spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
+argument({filter, Value}) when is_binary(Value) ->
+    case binary:split(Value, <<"=">>) of
+        [K, V] ->
+            {filter, [K, V]};
+        _ ->
+            {filter, Value}
+    end;
+argument({filter, Value}) ->
+    argument({filter, list_to_binary(Value)});
+argument(Argument) ->
+    Argument.
+
+%% @doc Only allow whitelisted values.
+-spec whitelisted(proplists:proplist()) -> proplists:proplist().
+whitelisted(Arguments) ->
     lists:filter(
         fun({Key, _Value}) ->
             lists:member(Key, whitelist())
@@ -80,4 +96,4 @@ filter(Arguments) ->
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
 whitelist() ->
-    [cat, cat_promote_recent, hasobject, hassubject, text, sort, has_geo].
+    [cat, cat_promote_recent, filter, hasobject, hassubject, text, sort, has_geo].
