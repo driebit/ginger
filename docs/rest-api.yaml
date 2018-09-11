@@ -183,6 +183,11 @@ paths:
                   description: Limit the list of search results.
                   default: 1000
                 - in: query
+                  name: filter
+                  type: string
+                  required: false
+                  description: Filter search results by a property (`filter=title=Oh yeah`).
+                - in: query
                   name: sort
                   type: string
                   required: false
