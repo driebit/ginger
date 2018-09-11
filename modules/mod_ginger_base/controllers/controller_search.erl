@@ -76,7 +76,13 @@ argument({filter, Value}) when is_binary(Value) ->
         [K, V] ->
             {filter, [K, V]};
         _ ->
-            {filter, Value}
+            case binary:split(Value, <<"~">>) of
+                [K, V] ->
+                    %% Match multiple words as a phrase to get most relevant results.
+                    {filter, [K, match_phrase, V]};
+                _ ->
+                    {filter, Value}
+            end
     end;
 argument({filter, Value}) ->
     argument({filter, list_to_binary(Value)});
