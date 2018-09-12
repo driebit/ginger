@@ -38,7 +38,13 @@ gulp.task('sass', () => {
     gulp.src(`${paths.scssSrc}/screen.scss`)
         .pipe(plumber())
         .pipe(globbing({ extensions: ['.scss'] }))
-        .pipe(sass({ outputStyle: 'compressed' }))
+        .pipe(sass({
+            outputStyle: 'compressed',
+            includePaths: [
+                '../../modules',
+                './ginger/modules',
+            ]
+        }))
         .on('error', sass.logError)
         .pipe(postcss([
             lost(),
