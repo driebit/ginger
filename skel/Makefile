@@ -64,7 +64,7 @@ livereload:
 	@node_modules/livereload/bin/livereload.js . -e 'js, css'
 
 minify:
-	@node_modules/uglify-js/bin/uglifyjs lib/dist/main.js -c --output='lib/dist/main.js'
+	@npx uglify-js ${DIST_DIR}/main.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | npx uglify-js --mangle --output=${DIST_DIR}/main.js
 	@node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
 
 scss:
