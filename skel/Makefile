@@ -15,7 +15,7 @@ export PATH := $(NPM_PATH):$(PATH)
 all: elm scss assets
 
 assets:
-	@mkdir -p ${DIST_DIR}/assets/ && cp -R ${ASSETS_DIR} ${DIST_DIR}/
+	@mkdir -p ${DIST_DIR}/assets/ && cp -R ${ASSETS_DIR} ${DIST_DIR}
 
 build: deps test all minify
 
