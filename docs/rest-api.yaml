@@ -183,6 +183,11 @@ paths:
                   description: Limit the list of search results.
                   default: 1000
                 - in: query
+                  name: facet
+                  type: string
+                  required: false
+                  description: Return facet for a property in the search results (`facet=date_start`).
+                - in: query
                   name: filter
                   type: string
                   required: false

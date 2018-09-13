@@ -28,9 +28,10 @@ to_json(Req, State) ->
     Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
     #search_result{
         result = Results,
-        facets = _Facets,
+        facets = Facets,
         total = Total
     } = Result,
+
     %% Filter search results not visible for current user
     VisibleResults = lists:filter(
         fun(R) ->
@@ -41,7 +42,8 @@ to_json(Req, State) ->
     %% Serialize to JSON
     SearchResults = #{
         <<"result">> => [search_result(R, Context) || R <- VisibleResults],
-        <<"total">> => Total
+        <<"total">> => Total,
+        <<"facets">> => facets(Facets)
     },
     Json = jsx:encode(SearchResults),
     %% Done
@@ -102,4 +104,37 @@ whitelisted(Arguments) ->
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
 whitelist() ->
-    [cat, cat_promote_recent, filter, hasobject, hassubject, text, sort, has_geo].
+    [cat, cat_promote_recent, facet, filter, global_facet, hasobject, hassubject, text, sort, has_geo].
+
+%% @doc Combine separate facets (date_start_min, date_start_max) into one property
+%% (date_start.min, date_start.max).
+-spec facets(map()) -> map().
+facets(Facets) ->
+    maps:fold(
+        fun(K, V, Acc) ->
+            Skip = byte_size(K) - 4,
+            Seven = byte_size(K) - 7,
+            case K of
+                <<Field:Skip/binary, "_min">> ->
+                    Acc#{Field => maps:put(<<"min">>, V, maps:get(Field, Acc, #{}))};
+                <<Field:Skip/binary, "_max">> ->
+                    Acc#{Field => maps:put(<<"max">>, V, maps:get(Field, Acc, #{}))};
+                <<Field:Seven/binary, "_global">> ->
+                    Min = maps:get(<<Field/binary, "_min">>, V),
+                    Max = maps:get(<<Field/binary, "_max">>, V),
+                    Acc#{
+                        Field => maps:merge(
+                            #{
+                                <<"global_min">> => Min,
+                                <<"global_max">> => Max
+                            },
+                            maps:get(Field, Acc, #{})
+                        )
+                    };
+                _ ->
+                    Acc#{K => V}
+            end
+        end,
+        #{},
+        Facets
+    ).
