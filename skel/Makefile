@@ -6,6 +6,7 @@ default: all
 
 NPM_PATH := ./node_modules/.bin
 ASSETS_DIR := ./lib/assets
+DIST_DIR := ./lib/dist
 ELM_DIR := ./lib/elm
 SCSS_DIR := ./lib/scss
 
@@ -14,12 +15,12 @@ export PATH := $(NPM_PATH):$(PATH)
 all: elm scss assets
 
 assets:
-	@mkdir -p lib/dist/assets/ && cp -R ${ASSETS_DIR} lib/dist/
+	@mkdir -p ${DIST_DIR}/assets/ && cp -R ${ASSETS_DIR} ${DIST_DIR}/
 
 build: deps test all minify
 
 clean:
-	@rm -Rf dist/*
+	@rm -Rf ${DIST_DIR}/*
 
 deps:
 	@npm install
@@ -33,7 +34,7 @@ distclean: clean
 
 elm:
 	$(MAKE) -C ${ELM_DIR}
-	@cp ${ELM_DIR}/dist/main.js lib/dist/
+	@cp ${ELM_DIR}/dist/main.js ${DIST_DIR}
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
@@ -65,11 +66,11 @@ livereload:
 
 minify:
 	@npx uglify-js ${DIST_DIR}/main.js --compress 'pure_funcs="F2,F3,F4,F5,F6,F7,F8,F9,A2,A3,A4,A5,A6,A7,A8,A9",pure_getters,keep_fargs=false,unsafe_comps,unsafe' | npx uglify-js --mangle --output=${DIST_DIR}/main.js
-	@node_modules/clean-css-cli/bin/cleancss -o lib/dist/style.css lib/dist/style.css
+	@node_modules/clean-css-cli/bin/cleancss -o ${DIST_DIR}/style.css ${DIST_DIR}/style.css
 
 scss:
 	$(MAKE) -C ${SCSS_DIR}
-	@cp ${SCSS_DIR}/dist/style.css lib/dist/
+	@cp ${SCSS_DIR}/dist/style.css ${DIST_DIR}
 
 test:
 	$(MAKE) test -C ${ELM_DIR}
