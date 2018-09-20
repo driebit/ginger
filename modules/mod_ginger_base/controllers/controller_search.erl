@@ -108,7 +108,9 @@ whitelist() ->
 
 %% @doc Combine separate facets (date_start_min, date_start_max) into one property
 %% (date_start.min, date_start.max).
--spec facets(map()) -> map().
+-spec facets(list() | map()) -> map().
+facets([]) ->
+    null;
 facets(Facets) ->
     maps:fold(
         fun(K, V, Acc) ->
