@@ -102,4 +102,4 @@ whitelisted(Arguments) ->
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
 whitelist() ->
-    [cat, cat_promote_recent, filter, hasobject, hassubject, text, sort, has_geo].
+    [cat, cat_exclude, cat_promote_recent, filter, hasobject, hassubject, text, sort, has_geo].
