@@ -37,7 +37,11 @@ to_json(Req, State) ->
 	    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
 	    Query2 = [{has_geo, <<"true">>} | Query1],
 	    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
-	    Coordinates = lists:map(fun(Item) -> get_in([<<"_source">>, <<"geolocation">>], Item) end,
+	    Coordinates = lists:map(fun(Item) -> 
+                                            Id = maps:get(<<"_id">>, Item),
+                                            Location = get_in([<<"_source">>, <<"geolocation">>], Item),
+                                            #{id => Id, coords => Location}
+                                    end,
 				    SearchResults#search_result.result),
 	    Json = jiffy:encode(Coordinates),
 	    {Json, Req, State};
