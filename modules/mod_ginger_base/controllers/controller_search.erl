@@ -16,36 +16,77 @@ init(Args) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
+get_in([Key], Map) ->
+    maps:get(Key, Map);
+get_in([Key|Keys], Map) ->
+    get_in(Keys, maps:get(Key, Map)).
+
 to_json(Req, State) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
+
     %% Get search params from request
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
+    
     %% Perform search (Zotonic offsets start at 1)
-    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
-    #search_result{
-        result = Results,
-        facets = _Facets,
-        total = Total
-    } = Result,
-    %% Filter search results not visible for current user
-    VisibleResults = lists:filter(
-        fun(R) ->
-            is_visible(R, Context)
-        end,
-        Results
-    ),
-    %% Serialize to JSON
-    SearchResults = #{
-        <<"result">> => [search_result(R, Context) || R <- VisibleResults],
-        <<"total">> => Total
-    },
-    Json = jsx:encode(SearchResults),
-    %% Done
-    {Json, Req, State}.
+    case proplists:get_value(mode, State) of 
+	coordinates ->
+	    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
+	    Query2 = [{has_geo, <<"true">>} | Query1],
+	    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
+	    Coordinates = lists:map(fun(Item) -> get_in([<<"_source">>, <<"geolocation">>], Item) end,
+					SearchResults#search_result.result),
+	    Json = jiffy:encode(Coordinates),
+	    {Json, Req, State};
+	_ ->
+	    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
+	    #search_result{
+	       result = Results,
+	       facets = _Facets,
+	       total = Total
+	      } = Result,
+	    %% Filter search results not visible for current user
+	    VisibleResults = lists:filter(
+			       fun(R) ->
+				       is_visible(R, Context)
+			       end,
+			       Results
+			      ),
+	    %% Serialize to JSON
+	    SearchResults = #{
+			      <<"result">> => [search_result(R, Context) || R <- VisibleResults],
+			      <<"total">> => Total
+			     },
+	    SR = json_map(fun(V) -> stringify_dates(V, Context) end, SearchResults),
+	    Json = jiffy:encode(SR),
+	    {Json, Req, State}
+    end.
+
+
+is_proplist([{K,_}]) when is_atom(K) ->
+    true;
+is_proplist([{K, _}|L]) when is_atom(K) ->
+    is_proplist(L);
+is_proplist(_) -> false.
+
+
+json_map(F, Elm) when is_map(Elm) ->
+    maps:fold(fun(K,V,A) -> A#{K => json_map(F, V)} end, #{}, Elm);
+json_map(F, Elm) when is_list(Elm) ->
+    case is_proplist(Elm) of
+	true -> json_map(F, maps:from_list(Elm));
+	false -> lists:map(fun(V) -> json_map(F, V) end, Elm)
+    end;
+json_map(F, Elm) ->
+    F(Elm).
+
+stringify_dates({{_Y, _M, _D},{_H, _Mi, _S}} = Date, Context) ->
+    z_datetime:format(Date, "c", Context);
+stringify_dates(V, _Context) ->
+     V.
 
 %% @doc Is a search result visible for the current user?
 -spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
