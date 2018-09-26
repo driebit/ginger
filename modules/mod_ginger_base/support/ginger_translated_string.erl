@@ -6,6 +6,8 @@
 
 -spec encode(term()) -> list().
 encode({trans, Translations}) ->
-    [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
+    lists:foldl(fun({Key, Value}, Acc) ->
+                        Acc#{Key => z_html:unescape(Value)} end, 
+                #{}, Translations);
 encode(Value) ->
     ginger_type:error("ginger translation", Value).

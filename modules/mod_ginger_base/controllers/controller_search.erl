@@ -16,6 +16,8 @@ init(Args) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
+%% @doc Retrieve a value from nested maps
+-spec get_in([term()], map()) -> term().
 get_in([Key], Map) ->
     maps:get(Key, Map);
 get_in([Key|Keys], Map) ->
@@ -34,9 +36,12 @@ to_json(Req, State) ->
     %% Perform search (Zotonic offsets start at 1)
     case proplists:get_value(mode, State) of 
         coordinates ->
+            %% We're only interested in the geolocation and id fields
 	    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
+            %% And it doesn't make sense to retrieve any results without coordinates
 	    Query2 = [{has_geo, <<"true">>} | Query1],
 	    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
+            %% Strip any unneeded data
 	    Coordinates = lists:map(fun(Item) -> 
                                             Id = maps:get(<<"_id">>, Item),
                                             Location = get_in([<<"_source">>, <<"geolocation">>], Item),
@@ -46,6 +51,7 @@ to_json(Req, State) ->
 	    Json = jiffy:encode(Coordinates),
 	    {Json, Req, State};
         _ ->
+            ?DEBUG("Regular search"),
 	    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
 	    #search_result{
 	       result = Results,
@@ -64,32 +70,29 @@ to_json(Req, State) ->
 			      <<"result">> => [search_result(R, Context) || R <- VisibleResults],
 			      <<"total">> => Total
 			     },
-	    SR = json_map(fun(V) -> stringify_dates(V, Context) end, SearchResults),
+	    SR = json_map(fun(V) -> stringify_date(V, Context) end, SearchResults),
+            ?DEBUG(SR),
 	    Json = jiffy:encode(SR),
 	    {Json, Req, State}
     end.
 
-
-is_proplist([{K,_}]) when is_atom(K) ->
-    true;
-is_proplist([{K, _}|L]) when is_atom(K) ->
-    is_proplist(L);
-is_proplist(_) -> false.
-
-
+%% @doc Apply a function to all leaf values of a JSON-like structure
+-type json_leaf() :: string() | binary() | integer() | true | false | null.
+-type json_node() :: map() | list() | json_leaf().
+-spec json_map(fun((json_leaf()) -> json_leaf()), json_node()) -> json_node().
+                        
 json_map(F, Elm) when is_map(Elm) ->
     maps:fold(fun(K,V,A) -> A#{K => json_map(F, V)} end, #{}, Elm);
 json_map(F, Elm) when is_list(Elm) ->
-    case is_proplist(Elm) of
-        true -> json_map(F, maps:from_list(Elm));
-        false -> lists:map(fun(V) -> json_map(F, V) end, Elm)
-    end;
+    lists:map(fun(V) -> json_map(F, V) end, Elm);
 json_map(F, Elm) ->
     F(Elm).
 
-stringify_dates({{_Y, _M, _D},{_H, _Mi, _S}} = Date, Context) ->
+%% @doc Converts a Erlang formatted date-time to an ISO-8601 string. 
+%% Simply returns anything else
+stringify_date({{_Y, _M, _D},{_H, _Mi, _S}} = Date, Context) ->
     z_datetime:format(Date, "c", Context);
-stringify_dates(V, _Context) ->
+stringify_date(V, _Context) ->
     V.
 
 %% @doc Is a search result visible for the current user?
