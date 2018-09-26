@@ -51,7 +51,6 @@ to_json(Req, State) ->
 	    Json = jiffy:encode(Coordinates),
 	    {Json, Req, State};
         _ ->
-            ?DEBUG("Regular search"),
 	    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
 	    #search_result{
 	       result = Results,
@@ -71,7 +70,6 @@ to_json(Req, State) ->
 			      <<"total">> => Total
 			     },
 	    SR = json_map(fun(V) -> stringify_date(V, Context) end, SearchResults),
-            ?DEBUG(SR),
 	    Json = jiffy:encode(SR),
 	    {Json, Req, State}
     end.
