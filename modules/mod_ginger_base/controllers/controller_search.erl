@@ -38,7 +38,7 @@ to_json(Req, State) ->
 	    Coordinates = 
                 lists:map(
                   fun(Item) -> 
-                          #{<<"id">> := Id,
+                          #{<<"_id">> := Id,
                             <<"_source">> :=
                                 #{<<"geolocation">> := 
                                       #{<<"lat">> := Lat,
