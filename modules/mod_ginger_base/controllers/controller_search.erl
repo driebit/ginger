@@ -74,29 +74,9 @@ to_json(Req, State) ->
 			      <<"result">> => [search_result(R, Context) || R <- VisibleResults],
 			      <<"total">> => Total
 			     },
-	    SR = json_map(fun(V) -> stringify_date(V, Context) end, SearchResults),
-	    Json = jiffy:encode(SR),
+	    Json = jsx:encode(SearchResults),
 	    {Json, Req, State}
     end.
-
-%% @doc Apply a function to all leaf values of a JSON-like structure
--type json_leaf() :: string() | binary() | integer() | true | false | null.
--type json_node() :: map() | list() | json_leaf().
--spec json_map(fun((json_leaf()) -> json_leaf()), json_node()) -> json_node().
-                        
-json_map(F, Elm) when is_map(Elm) ->
-    maps:fold(fun(K,V,A) -> A#{K => json_map(F, V)} end, #{}, Elm);
-json_map(F, Elm) when is_list(Elm) ->
-    lists:map(fun(V) -> json_map(F, V) end, Elm);
-json_map(F, Elm) ->
-    F(Elm).
-
-%% @doc Converts a Erlang formatted date-time to an ISO-8601 string. 
-%% Simply returns anything else
-stringify_date({{_Y, _M, _D},{_H, _Mi, _S}} = Date, Context) ->
-    z_datetime:format(Date, "c", Context);
-stringify_date(V, _Context) ->
-    V.
 
 %% @doc Is a search result visible for the current user?
 -spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
