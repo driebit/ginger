@@ -26,13 +26,13 @@ to_json(Req, State) ->
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
     
-    %% Perform search (Zotonic offsets start at 1)
     case proplists:get_value(mode, State) of 
         coordinates ->
             %% We're only interested in the geolocation and id fields
 	    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
             %% And it doesn't make sense to retrieve any results without coordinates
 	    Query2 = [{has_geo, <<"true">>} | Query1],
+            %% Perform search (Zotonic offsets start at 1)
 	    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
             %% Strip any unneeded data
 	    Coordinates = 
@@ -55,6 +55,7 @@ to_json(Req, State) ->
 	    Json = jiffy:encode(Result),
 	    {Json, Req, State};
         _ ->
+            %% Perform search (Zotonic offsets start at 1)
 	    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
 	    #search_result{
 	       result = Results,
