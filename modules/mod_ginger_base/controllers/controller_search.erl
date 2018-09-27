@@ -16,13 +16,6 @@ init(Args) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-%% @doc Retrieve a value from nested maps
--spec get_in([term()], map()) -> term().
-get_in([Key], Map) ->
-    maps:get(Key, Map);
-get_in([Key|Keys], Map) ->
-    get_in(Keys, maps:get(Key, Map)).
-
 to_json(Req, State) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
@@ -45,10 +38,14 @@ to_json(Req, State) ->
 	    Coordinates = 
                 lists:map(
                   fun(Item) -> 
-                          Id = maps:get(<<"_id">>, Item),
-                          #{<<"lat">> := Lat,
-                            <<"lon">> := Lon} = 
-                              get_in([<<"_source">>, <<"geolocation">>], Item),
+                          #{<<"id">> := Id,
+                            <<"_source">> :=
+                                #{<<"geolocation">> := 
+                                      #{<<"lat">> := Lat,
+                                        <<"lon">> := Lon
+                                       }
+                                 }
+                           } = Item,
                           #{id => list_to_integer(binary_to_list(Id)),
                             lat => Lat, lng => Lon}
                   end,
