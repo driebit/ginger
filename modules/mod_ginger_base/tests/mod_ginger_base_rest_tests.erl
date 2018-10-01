@@ -14,7 +14,10 @@ api_test() ->
     {ok, Id1} = m_rsc:insert([{category, text}, {title, <<"Title">>}, {published, true}], Sudo),
     %% Set up request and state
     Req1 = #wm_reqdata{
-              path_info = dict:from_list([{id, erlang:integer_to_list(Id1)}])
+              path_info = dict:from_list([ {id, erlang:integer_to_list(Id1)}
+                                         , {zotonic_host, testsandboxdb}
+                                         ]
+                                        )
              },
     {ok, State1} = controller_rest:init([{mode, document}, {path_info, id}]),
     {Result1, Req2, State2} = controller_rest:malformed_request(Req1, State1),
