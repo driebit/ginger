@@ -154,7 +154,12 @@ paths:
                   name: cat
                   type: string
                   required: false
-                  description: Category to filter on.
+                  description: Include resources of this category in the result.
+                - in: query
+                  name: cat_exclude
+                  type: string
+                  required: false
+                  description: Exclude resources of this category from the result.
                 - in: query
                   name: cat_promote
                   type: string

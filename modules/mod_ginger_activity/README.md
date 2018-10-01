@@ -13,6 +13,12 @@ Features:
 * Log IP addresses.
 * Notify users of activity on resources they are interested in.
 
+Configuration
+-------------
+
+To persist activities in the database, set the `mod_ginger_activity.persist_activity` configuration
+flag to `true`. 
+
 Usage
 -----
 
