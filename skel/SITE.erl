@@ -13,5 +13,5 @@
     manage_schema/2
 ]).
 
-manage_schema(_, Context) ->
-    #datamodel{}.
+manage_schema(_Type, Context) ->
+    %%site%%_data_fixtures:load(Context).
