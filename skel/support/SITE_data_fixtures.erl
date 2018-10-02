@@ -28,8 +28,7 @@ load(Context) ->
     ok.
 
 %% @doc This data is always loaded.
-%% Change _Context to Context to
-get_prod_data(_Context) ->
+get_prod_data(Context) ->
     #datamodel{
         categories = [
             % {unique_name, under_category, [
@@ -61,13 +60,22 @@ get_prod_data(_Context) ->
         ],
         data = [
             {acl_rules, [
-
+                % {module, [
+                %     {acl_user_group_id, acl_user_group_unique_name},
+                %     {actions, [use]},
+                %     {module, module_name}
+                % ]},
+                % {rsc, [
+                %     {acl_user_group_id, acl_user_group_unique_name},
+                %     {actions, [view, insert, update, delete, link]},
+                %     {category_id, category_unique_name}
+                % ]},
             ]}
         ]
     }.
 
 %% @doc This data is only loaded in dev environment
-get_dev_data(_Context) ->
+get_dev_data(Context) ->
     #datamodel{
         categories = [
             % {unique_name, under_category, [
