@@ -7,12 +7,58 @@
 -module(ginger_date).
 
 -export([
+    from_binary/1,
+    to_binary/1,
     granularity/1,
     split/2,
     update_granularity/1
 ]).
 
 -include("zotonic.hrl").
+
+-record(ginger_date, {
+    year :: integer(),
+    month :: calendar:month(),
+    day :: calendar:day()
+}).
+
+-opaque ginger_date() :: #ginger_date{}.
+
+-export_type([
+    ginger_date/0
+]).
+
+-spec from_binary(binary()) -> ginger_date().
+from_binary(<<"-", Datetime/binary>>) ->
+    %% Year < 0
+    case z_utils:only_digits(Datetime) of
+        true ->
+            %% Year only
+            Year = z_convert:to_integer(Datetime),
+            #ginger_date{year = -Year};
+        false ->
+            %% Full date
+            {{Y, M, D}, _T} = z_datetime:to_datetime(Datetime),
+            #ginger_date{year = -Y, month = M, day = D}
+    end;
+from_binary(Datetime) ->
+    %% Year >= 0
+    case z_utils:only_digits(Datetime) of
+        true ->
+            Year = z_convert:to_integer(Datetime),
+            #ginger_date{year = Year};
+        _ ->
+            {{Y, M, D}, _T} = z_datetime:to_datetime(Datetime),
+            #ginger_date{year = Y, month = M, day = D}
+    end.
+
+-spec to_binary(ginger_date()) -> binary().
+to_binary(#ginger_date{year = Y, month = undefined, day = undefined}) ->
+    z_dateformat:format({Y, 1, 1}, "x", en);
+to_binary(#ginger_date{year = Y, month = M, day = undefined}) ->
+    z_dateformat:format({Y, M, 1}, "x-m", en);
+to_binary(#ginger_date{year = Y, month = M, day = D}) ->
+    z_dateformat:format({Y, M, D}, "x-m-d", en).
 
 granularity({undefined, _Month, _Day}) ->
     undefined;
