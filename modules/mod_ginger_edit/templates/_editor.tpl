@@ -13,7 +13,8 @@ overrides_tpl: (optional) template location that contains JavaScript overrides f
         subject_id=id
         predicate=`depiction`
         is_zmedia
-        tab="depiction"
+        tab=media_tab|default:"depiction"
+        tabs_enabled=media_tabs_enabled
         callback="window.zAdminMediaDone"
         center=0
         autoclose
