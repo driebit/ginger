@@ -9,6 +9,7 @@
 -define(NS_DBPEDIA_OWL, "http://dbpedia.org/ontology/").
 -define(NS_DBPEDIA, "http://dbpedia.org/property/").
 -define(NS_SCHEMA_ORG, "http://schema.org/").
+-define(NS_ACL, "http://www.w3.org/ns/auth/acl#").
 
 -record(rdf_get, {uri}).
 

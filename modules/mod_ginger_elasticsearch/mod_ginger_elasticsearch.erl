@@ -43,21 +43,25 @@ triple_to_map(#triple{subject = Subject, predicate = Predicate, object = Object}
 
 map_object(#rdf_value{value = {{_, _, _}, {_, _, _}} = Value}) ->
     #{
-        <<"object_value">> => Value,
+        <<"object_value">> => [Value],
         <<"object_date">> => Value
     };
+map_object(#rdf_value{value = [_V|_Vs] = Values}) ->
+    #{
+      <<"object_value">> => Values
+     };
 map_object(#rdf_value{value = Value}) ->
     try
         Date = ginger_date:to_binary(Value),
         #{
             <<"object_date">> => Date,
-            <<"object_value">> => ?DEBUG(Date)
+            <<"object_value">> => [?DEBUG(Date)]
         }
     catch
         error:function_clause ->
             ?DEBUG(Value),
             %% Plain text value.
-            #{<<"object_value">> => Value}
+            #{<<"object_value">> => [Value]}
     end;
 map_object(Uri) ->
     #{
