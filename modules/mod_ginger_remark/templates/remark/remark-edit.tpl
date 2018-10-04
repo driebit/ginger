@@ -40,40 +40,13 @@
 
     {% wire id="rscform" type="submit" postback={rscform on_success={script script="$(document).trigger('remark:saved', " ++ the_remark_id ++ ");" }} delegate="mod_ginger_edit" %}
 
-    {% wire name="zmedia"
-    action={
-        dialog_open
-        template="_action_dialog_connect.tpl"
-        title=_"Insert image"
-        subject_id=the_remark_id
-        predicate=`depiction`
-        tab="upload"
-        tabs_enabled=["upload","oembed"]
-        callback="window.zAdminMediaDone"
-        center=0
-    }
-    %}
-
-    {% wire name="zlink"
-    action={
-        dialog_open
-        template="_action_dialog_connect.tpl"
-        title=_"Add link"
-        subject_id=the_remark_id
-        is_zlink
-        tab="find"
-        callback="window.zAdminLinkDone"
-        center=0
-    } %}
-
     {% javascript %}
-        z_editor.init();
         $(document).trigger('remark:editing', {{ the_remark_id }});
         {% if is_new == 1 %}
             $(document).trigger('remark:new', {{ the_remark_id }});
         {% endif %}
     {% endjavascript %}
 
+    {% include "_editor.tpl" overrides_tpl="_tinymce_overrides.tpl" media_tab="upload" media_tabs_enabled=["upload", "oembed"] id=the_remark_id %}
 {% endwith %}
 
-{% include "_editor.tpl" overrides_tpl="_tinymce_overrides.tpl" %}
