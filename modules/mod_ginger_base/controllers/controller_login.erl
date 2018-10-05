@@ -34,13 +34,10 @@ process_post(ReqData, _) ->
             case z_auth:is_enabled(Id, C) of
                 true ->
                     {ok, C2} = z_session_manager:start_session(ensure, C#context.session_id, C),
-                    RD = C2#context.wm_reqdata,
-                    H = wrq:get_resp_header("Set-Cookie", RD),
-                    H2 = re:replace(H, "; HttpOnly", "", [{return, list}]), % yikes!
-                    ?WM_REPLY(
-                       true,
-                       C2#context{wm_reqdata = wrq:set_resp_header("Set-Cookie", H2, RD)}
-                      );
+                    z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
+                    z_context:set_session(auth_user_id, Id, C2),
+                    z_context:set_session(user_id, Id, C2),
+                    ?WM_REPLY(true, C2);
                 _ ->
                     ?WM_REPLY(true, C)
             end;
