@@ -37,6 +37,7 @@ process_post(ReqData, _) ->
                     z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
+                    %% TODO: Respond with user info
                     ?WM_REPLY(true, C2);
                 _ ->
                     ?WM_REPLY(true, C)
