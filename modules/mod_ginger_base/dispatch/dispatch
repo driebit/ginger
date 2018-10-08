@@ -9,6 +9,9 @@
     {data, ["data", "resources", id], controller_rest, [{mode, document}, {path_info, id}]},
     {data, ["data", "resources", "path", path], controller_rest, [{mode, document}, {path_info, path}]},
 
+    %% Auth API
+    {data_login, ["data", "login"], controller_login, []},
+
     %% Search API
     {data_search, ["data", "search"], controller_search, []},
 
