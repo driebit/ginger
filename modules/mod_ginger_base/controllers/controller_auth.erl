@@ -1,4 +1,4 @@
--module(controller_login).
+-module(controller_auth).
 
 -export([
          init/1,
@@ -14,15 +14,19 @@
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
+-spec init(list()) -> {ok, undefined}.
 init([]) ->
     {ok, undefined}.
 
+-spec allowed_methods(any(), any()) -> {list(), any(), any()}.
 allowed_methods(ReqData, State) ->
-    {[ 'POST', 'HEAD'], ReqData, State}.
+    {['POST', 'HEAD', 'GET'], ReqData, State}.
 
+-spec post_is_create(any(), z:context()) -> {boolean(), any(), z:context()}.
 post_is_create(ReqData, Context) ->
     {false, ReqData, Context}.
 
+-spec process_post(any(), any()) -> {{atom(), integer()}, any(), z:context()}.
 process_post(ReqData, _) ->
     {B, _} =  wrq:req_body(ReqData),
     M = jsx:decode(B, [return_maps, {labels, atom}]),
@@ -37,11 +41,33 @@ process_post(ReqData, _) ->
                     z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
-                    %% TODO: Respond with user info
-                    ?WM_REPLY(true, C2);
+                    {{halt, 200}, wrq:set_resp_body(response(true, Id, C2), ReqData), C2};
                 _ ->
-                    ?WM_REPLY(true, C)
+                    {{halt, 200}, wrq:set_resp_body(response(true, Id, C), ReqData), C}
             end;
         {error, _} ->
-            ?WM_REPLY(true, C)
+            {{halt, 200}, wrq:set_resp_body(response(false, undefined, C), ReqData), C}
     end.
+
+-spec response(boolean(), integer(), #context{}) -> binary().
+response(Success, Id, Context) ->
+    {IsVerified, User} =
+        case Success of
+            true ->
+                {m_identity:is_verified(Id, Context), m_ginger_rest:rsc(Id, Context)};
+            false ->
+                {null, null}
+        end,
+    Response =
+        #{ <<"loggedin">> => Success,
+           <<"message">> => message(Success),
+           <<"is_verified">> => IsVerified,
+           <<"user">> => User
+         },
+    jsx:encode(Response).
+
+-spec message(boolean()) -> binary().
+message(false) ->
+    <<"Error">>;
+message(true) ->
+    <<"Successfully logged in">>.
