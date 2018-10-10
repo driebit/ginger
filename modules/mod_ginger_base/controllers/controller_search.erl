@@ -20,27 +20,27 @@ to_json(Req, State) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
-    
+
     %% Get search params from request
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
-    
-    case proplists:get_value(mode, State) of 
+
+    case proplists:get_value(mode, State) of
         coordinates ->
             %% We're only interested in the geolocation and id fields
-	    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
+            Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
             %% And it doesn't make sense to retrieve any results without coordinates
-	    Query2 = [{has_geo, <<"true">>} | Query1],
+            Query2 = [{has_geo, <<"true">>} | Query1],
             %% Perform search (Zotonic offsets start at 1)
-	    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
+            SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
             %% Strip any unneeded data
-	    Coordinates = 
+            Coordinates =
                 lists:map(
-                  fun(Item) -> 
+                  fun(Item) ->
                           #{<<"_id">> := Id,
                             <<"_source">> :=
-                                #{<<"geolocation">> := 
+                                #{<<"geolocation">> :=
                                       #{<<"lat">> := Lat,
                                         <<"lon">> := Lon
                                        }
@@ -52,30 +52,30 @@ to_json(Req, State) ->
                   SearchResults#search_result.result),
             Result = #{<<"result">> => Coordinates,
                        <<"total">> => SearchResults#search_result.total},
-	    Json = jiffy:encode(Result),
-	    {Json, Req, State};
+            Json = jiffy:encode(Result),
+            {Json, Req, State};
         _ ->
             %% Perform search (Zotonic offsets start at 1)
-	    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
-	    #search_result{
-	       result = Results,
-	       facets = _Facets,
-	       total = Total
-	      } = Result,
-	    %% Filter search results not visible for current user
-	    VisibleResults = lists:filter(
-			       fun(R) ->
-				       is_visible(R, Context)
-			       end,
-			       Results
-			      ),
-	    %% Serialize to JSON
-	    SearchResults = #{
-			      <<"result">> => [search_result(R, Context) || R <- VisibleResults],
-			      <<"total">> => Total
-			     },
-	    Json = jsx:encode(SearchResults),
-	    {Json, Req, State}
+            Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
+            #search_result{
+               result = Results,
+               facets = _Facets,
+               total = Total
+              } = Result,
+            %% Filter search results not visible for current user
+            VisibleResults = lists:filter(
+                               fun(R) ->
+                                       is_visible(R, Context)
+                               end,
+                               Results
+                              ),
+            %% Serialize to JSON
+            SearchResults = #{
+                              <<"result">> => [search_result(R, Context) || R <- VisibleResults],
+                              <<"total">> => Total
+                             },
+            Json = jsx:encode(SearchResults),
+            {Json, Req, State}
     end.
 
 %% @doc Is a search result visible for the current user?
