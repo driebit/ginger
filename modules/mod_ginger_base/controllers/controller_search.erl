@@ -74,7 +74,7 @@ to_json(Req, State) ->
                               <<"result">> => [search_result(R, Context) || R <- VisibleResults],
                               <<"total">> => Total
                              },
-            Json = jsx:encode(SearchResults),
+            Json = jiffy:encode(SearchResults),
             {Json, Req, State}
     end.
 

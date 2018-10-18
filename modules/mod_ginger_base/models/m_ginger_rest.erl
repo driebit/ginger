@@ -9,7 +9,7 @@
 ]).
 
 -type language() :: atom().
--type translations() :: [{language(), binary()}].
+-type translations() :: [#{language() => binary()}].
 -type resource_properties() :: map().
 
 -include_lib("zotonic.hrl").
@@ -64,11 +64,14 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
     Rsc#{<<"edges">> => Edges}.
 
 %% @doc Get resource translations.
--spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
+-spec translations(binary() | {trans, proplists:proplist()}, z:context()) -> translations().
 translations({trans, Translations}, Context) ->
-    [{Key, z_html:unescape(filter_show_media:show_media(Value, Context))} || {Key, Value} <- Translations];
+    lists:foldl(fun({Key, Value}, Acc) ->
+		       V = z_html:unescape(filter_show_media:show_media(Value, Context)),
+		       Acc#{Key => V}
+	       end, #{}, Translations);
 translations(Value, Context) ->
-    [{z_trans:default_language(Context), z_html:unescape(filter_show_media:show_media(Value, Context))}].
+    #{z_trans:default_language(Context) => z_html:unescape(filter_show_media:show_media(Value, Context))}.
 
 %% @doc Get resource property translations.
 -spec translations(m_rsc:resource(), atom(), z:context()) -> translations().

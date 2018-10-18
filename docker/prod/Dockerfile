@@ -1,6 +1,8 @@
 ARG ZOTONIC_VERSION=0.x
 FROM zotonic/zotonic:${ZOTONIC_VERSION}
 
+ENV ERLASTIC_SEARCH_JSON_MODULE jiffy
+
 ADD . /opt/ginger
 COPY docker/prod/etc_zotonic /etc/zotonic
 
