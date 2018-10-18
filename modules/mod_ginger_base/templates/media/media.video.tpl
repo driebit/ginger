@@ -1,9 +1,11 @@
 {% with class|default:"media--video video-wrapper" as class %}
     {% if id.medium.mime=="video/mp4" or id.medium.mime=="video/webm" or id.medium.mime=="video/ogg" %}
         <div class="{{ class }}">
-            <video width="600" height="400" controls>
-              <source src="/media/attachment/{{ id.medium.filename }}" type="{{ id.medium.mime }}">
-            </video>
+            {% with id.o.depiction as dep %}
+                <video width="600" height="400" muted {% if dep %}poster="{% image_url dep.id mediaclass='landscape-large' %}"{% endif %} controls>
+                  <source src="/media/attachment/{{ id.medium.filename }}" type="{{ id.medium.mime }}">
+                </video>
+            {% endwith %}
         </div>
     {% elseif id.medium.mime=="video/x-flv"%}
         <div class="{{ class }}">
