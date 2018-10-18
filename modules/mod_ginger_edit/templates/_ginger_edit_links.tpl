@@ -30,15 +30,17 @@
                 <label class="control-label" for="website">{_ Website _}</label>
                 <input class="form-control" id="website" name="website" value="{{ r.website }}">
             </div>
-            <div class="form-group checkbox">
-                <label>
-                    <input type="checkbox" id="field-is-website=redirect" name="is_website_redirect" value="1"
-                        {% if r.is_website_redirect %}checked{% endif %}
-                        {% if not is_editable %}disabled="disabled"{% endif %}
-                    />
-                    {_ Redirect to website on page view _}
-                </label>
-            </div>
+            {% if not id.category_id == m.rsc.person.id %}
+                <div class="form-group checkbox">
+                    <label>
+                        <input type="checkbox" id="field-is-website=redirect" name="is_website_redirect" value="1"
+                            {% if r.is_website_redirect %}checked{% endif %}
+                            {% if not is_editable %}disabled="disabled"{% endif %}
+                        />
+                        {_ Redirect to website on page view _}
+                    </label>
+                </div>
+            {% endif %}
 
         </div>
     </div>
