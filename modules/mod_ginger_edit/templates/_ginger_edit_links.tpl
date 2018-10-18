@@ -30,7 +30,7 @@
                 <label class="control-label" for="website">{_ Website _}</label>
                 <input class="form-control" id="website" name="website" value="{{ r.website }}">
             </div>
-            {% if not id.category_id == m.rsc.person.id %}
+            {% if not id|is_a:"person" %}
                 <div class="form-group checkbox">
                     <label>
                         <input type="checkbox" id="field-is-website=redirect" name="is_website_redirect" value="1"
