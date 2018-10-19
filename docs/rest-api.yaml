@@ -145,7 +145,10 @@ paths:
                     description: A resource
                     schema:
                         $ref: '#/definitions/Resource'
-
+        put:
+            consumes: ["application/json"]
+        patch:
+            consumes: ["application/json"]
     /resources/path/{path}:
         get:
             produces: ["application/json"]
