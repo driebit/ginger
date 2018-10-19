@@ -130,6 +130,8 @@ paths:
                                 items:
                                     $ref: '#/definitions/Resource'
 
+        post:
+            consumes: ["application/json"]
     /resources/{id}:
         get:
             produces: ["application/json"]
