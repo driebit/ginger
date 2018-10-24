@@ -149,6 +149,10 @@ paths:
             consumes: ["application/json"]
         patch:
             consumes: ["application/json"]
+        delete:
+            responses:
+                204:
+                    description: The resource has been deleted
     /resources/path/{path}:
         get:
             produces: ["application/json"]
