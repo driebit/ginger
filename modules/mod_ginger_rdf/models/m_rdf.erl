@@ -62,10 +62,10 @@ m_find_value(id, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
 m_find_value(uri, #m{value = #rdf_resource{id = Id}}, _Context) ->
     Id;
-m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, _Context) ->
+m_find_value(Predicate, #m{value = #rdf_resource{triples = Triples}}, Context) ->
     case lookup_triple(Predicate, Triples) of
         undefined -> undefined;
-        #triple{object = Object} -> literal_object_value(Object)
+        #triple{object = Object} -> literal_object_value(Object, Context)
     end.
 
 m_to_list(_, _Context) ->
@@ -359,10 +359,67 @@ to_json_ld(Id, Context) ->
     jsx:encode(ginger_json_ld:serialize_to_map(to_triples(Id, Context))).
 
 %% @doc Extract literal value from triple object(s).
--spec literal_object_value([#rdf_value{}] | #rdf_value{} | any()) -> binary() | list().
-literal_object_value(Objects) when is_list(Objects) ->
-    [literal_object_value(Object) ||  Object <- Objects];
-literal_object_value(#rdf_value{value = Value}) ->
+-spec literal_object_value([#rdf_value{}] | #rdf_value{} | any(), #context{}) -> binary() | list().
+literal_object_value(Objects, Context) when is_list(Objects) ->
+    literal_object_value_translation(Objects, Context);
+literal_object_value(#rdf_value{value = Value}, _Context) ->
     Value;
-literal_object_value(Other) ->
+literal_object_value(Other, _Context) ->
     Other.
+
+%% @doc Determine whether a given language matches the expected (or desired) language.
+%%      E.g. given language <<"en-GB">> should match :en as well as <<"en">>.
+-spec language_matches(binary(), atom() | binary()) -> boolean().
+language_matches(LanguageGiven, LanguageExpected) when is_atom(LanguageExpected) ->
+    language_matches(LanguageGiven, atom_to_binary(LanguageExpected, utf8));
+language_matches(LanguageGiven, LanguageExpected) when is_binary(LanguageGiven), is_binary(LanguageExpected) ->
+    case binary:match(LanguageGiven, LanguageExpected) of
+        {0, _} ->
+            true;
+        _ ->
+            false
+    end;
+language_matches(_, _) ->
+    false.
+
+%% @doc Select matching translations and untranslated values from a list of #rdf_value.
+-spec literal_object_value_translation([#rdf_value{}] | any(), #context{}) -> binary() | list().
+literal_object_value_translation([#rdf_value{}|_] = Objects, #context{} = Context) ->
+    Language = z_context:language(Context),
+    % First try to match the preferred language
+    % nl as set language should match values like nl-NL
+    { Translations, OtherValues } =
+        lists:foldr(
+            fun( Object, { Ts, OVs } ) ->
+                case Object of
+                    #rdf_value{value = V, language = undefined} ->
+                        { Ts, [V|OVs] };
+                    #rdf_value{value = _, language = _} ->
+                        { [Object|Ts], OVs };
+                    _ ->
+                        { Ts, [Object|OVs] }
+                end
+            end,
+            { [], [] },
+            Objects
+        ),
+    Translated =
+        case [V || #rdf_value{value = V, language = L} <- Translations, language_matches(L, Language)] of
+            [] ->
+                % Fall back to default language
+                % Should we also see if we have a z_context:fallback_language()?
+                DefaultLanguage = z_trans:default_language(Context),
+                [V || #rdf_value{value = V, language = L} <- Translations, language_matches(L, DefaultLanguage)];
+            Vs -> Vs
+        end,
+    % Include any untranslated values
+    case Translated ++ OtherValues of
+        [] ->
+            undefined;
+        [SingleValue] ->
+            SingleValue;
+        Values ->
+            Values
+    end;
+literal_object_value_translation(Objects, _Context) ->
+    Objects.
