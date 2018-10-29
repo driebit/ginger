@@ -91,10 +91,15 @@ parse_argument(text, Text) ->
 parse_argument(_, _) ->
     <<>>.
 
-query(Query, Language) when Language =:= <<"nl">>; Language =:= <<"wikidata">>; Language =:= <<>> ->
+query(Query, Language) when Language =:= <<"nl">>;
+                            Language =:= <<"wikidata">>;
+                            Language =:= <<>>;
+                            Language =:= "nl" ->
     sparql_client:query_rdf(endpoint(Language), Query).
 
 endpoint(<<>>) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
+endpoint(Language) when is_list(Language) ->
+    endpoint(list_to_binary(Language));
 endpoint(Language) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<Language/binary, ".">>).
