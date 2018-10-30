@@ -8,6 +8,7 @@
 -mod_description("RDF in Zotonic").
 -mod_prio(400).
 -mod_schema(4).
+-mod_depends([mod_content_groups]).
 
 -behaviour(gen_server).
 
