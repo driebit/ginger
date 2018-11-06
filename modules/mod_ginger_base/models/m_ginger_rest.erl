@@ -23,7 +23,7 @@ rsc(Id, Context) ->
         <<"title">> => translations(Id, title, Context),
         <<"body">> => translations(Id, body, Context),
         <<"summary">> => translations(Id, summary, Context),
-        <<"path">> => m_rsc:page_url(Id, Context),
+        <<"path">> => m_rsc:p(Id, page_path, m_rsc:page_url(Id, Context), Context),
         <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context),
         <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
         <<"properties">> => custom_props(Id, Context)
