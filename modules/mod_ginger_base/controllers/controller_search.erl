@@ -10,8 +10,11 @@
 -include_lib("zotonic.hrl").
 -include_lib("controller_webmachine_helper.hrl").
 
+-record(state, {mode = undefined}).
+
 init(Args) ->
-    {ok, Args}.
+    Mode = proplists:get_value(mode, Args),
+    {ok, #state{mode = Mode}}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
@@ -26,7 +29,7 @@ to_json(Req, State) ->
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
 
-    case proplists:get_value(mode, State) of
+    case State#state.mode of
         coordinates ->
             %% We're only interested in the geolocation and id fields
             Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
