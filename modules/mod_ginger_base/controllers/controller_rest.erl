@@ -61,7 +61,7 @@ to_json(Req, State = #state{mode = collection}) ->
     Context = z_context:new(Req, ?MODULE),
     Args1 = search_query:parse_request_args(
               proplists_filter(
-                fun (Key) -> lists:member(Key, ["cat", "hasobject", "hassubject"]) end,
+                fun (Key) -> lists:member(Key, supported_search_args()) end,
                 wrq:req_qs(Req)
                )
              ),
@@ -88,6 +88,9 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+supported_search_args() ->
+    ["cat", "hasobject", "hassubject", "sort"].
 
 rsc(Id, Context, IncludeEdges) ->
     Map = m_ginger_rest:rsc(Id, Context),
