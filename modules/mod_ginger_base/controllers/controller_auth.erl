@@ -72,8 +72,8 @@ to_json(ReqData, _) ->
 
 -spec user(integer(), #context{}) -> map().
 user(Id, Context) ->
-    #{<<"identity">> => proplists:delete(propb, m_identity:get(Id, Context)),
-      <<"resource">> => m_ginger_rest:rsc(Id, Context)
+    #{ <<"identity">> => proplists:delete(propb, m_identity:get(Id, Context))
+     , <<"resource">> => m_ginger_rest:rsc(Id, Context)
      }.
 
 -spec response(integer, any(), any(), z:context()) -> {{atom(), integer()}, any(), z:context()}.
