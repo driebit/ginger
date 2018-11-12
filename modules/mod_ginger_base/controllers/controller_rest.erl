@@ -20,9 +20,9 @@
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
-init(Args) ->
-    Mode =  proplists:get_value(mode, Args),
-    PathInfo = proplists:get_value(path_info, Args),
+init([Args]) ->
+    Mode =  maps:get(mode, Args),
+    PathInfo = maps:get(path_info, Args, undefined),
     {ok, #state{mode = Mode, path_info = PathInfo}}.
 
 malformed_request(Req, State = #state{mode = collection}) ->
