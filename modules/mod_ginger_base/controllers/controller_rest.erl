@@ -235,6 +235,20 @@ resource_exists_test_() ->
                 meck:expect(m_rsc, exists, 2, true),
                 {true, _, _} = resource_exists(req, State)
         end
-        %% TODO: 3rd clause
+      , fun () ->
+                meck:expect(z_context, new, 2, ok),
+                State = #state{ mode = document
+                              , collection = resources
+                              , path_info = path
+                              },
+                meck:expect(wrq, path_info, 2, "/"),
+                meck:expect(m_rsc, name_to_id, 2, {ok, 1}),
+                meck:expect(m_rsc, exists, 2, true),
+                {true, _, _} = resource_exists(req, State),
+                meck:expect(m_rsc, exists, 2, false),
+                {false, _, _} = resource_exists(req, State),
+                meck:expect(m_rsc, name_to_id, 2, {error, whatever}),
+                {false, _, _} = resource_exists(req, State)
+        end
       ]
     }.
