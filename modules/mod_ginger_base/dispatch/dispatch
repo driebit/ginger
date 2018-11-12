@@ -5,6 +5,9 @@
  {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
  %% REST API
+ {data, ["data", "edges"], controller_rest,
+  [#{mode => collection, collection => edges}]
+ },
  {data, ["data", "resources"], controller_rest,
   [#{mode => collection, collection => resources}]
  },
