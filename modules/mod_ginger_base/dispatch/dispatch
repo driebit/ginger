@@ -1,37 +1,37 @@
 %% -*- mode: erlang -*-
 %% Put your dispatch rules here.
 [
-    %% The home page, just shows the "home.tpl" template.
-    {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
+ %% The home page, just shows the "home.tpl" template.
+ {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
-    %% REST API
-    {data, ["data", "resources"], controller_rest,
-     [#{mode => collection, collection => resources}]
-    },
-    {data, ["data", "resources", id], controller_rest,
-     [#{mode => document, collection => resources, path_info => id}]
-    },
-    {data, ["data", "resources", "path", path], controller_rest,
-     [#{mode => document, collection => resources, path_info => path}]
-    },
+ %% REST API
+ {data, ["data", "resources"], controller_rest,
+  [#{mode => collection, collection => resources}]
+ },
+ {data, ["data", "resources", id], controller_rest,
+  [#{mode => document, collection => resources, path_info => id}]
+ },
+ {data, ["data", "resources", "path", path], controller_rest,
+  [#{mode => document, collection => resources, path_info => path}]
+ },
 
-    %% Auth API
-    {data_auth, ["data", "auth"], controller_auth, []},
+ %% Auth API
+ {data_auth, ["data", "auth"], controller_auth, []},
 
-    %% Search API
-    {data_search, ["data", "search"], controller_search, []},
-    {data_search_coordinates, ["data", "search", "coordinates"], controller_search, [{mode, coordinates}]},
+ %% Search API
+ {data_search, ["data", "search"], controller_search, []},
+ {data_search_coordinates, ["data", "search", "coordinates"], controller_search, [{mode, coordinates}]},
 
-    %% Normal page to show a resource.
-    {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
-    {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
+ %% Normal page to show a resource.
+ {page, ["page", id],       controller_page, [ {template, {cat, "page.tpl"}} ]},
+ {page, ["page", id, slug],     controller_page, [ {template, {cat, "page.tpl"}} ]},
 
-    %% Simple search page
-    {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
+ %% Simple search page
+ {search, ["search"], controller_template, [ {template, "search.tpl"} ]},
 
-    %% Custom all-in set
-    {all_in, ["all-in"], controller_template, [ {template, "all-in.tpl"} ]},
+ %% Custom all-in set
+ {all_in, ["all-in"], controller_template, [ {template, "all-in.tpl"} ]},
 
-    %% comments overview page
-    {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]}
+ %% comments overview page
+ {comments, ["comments"], controller_template, [ {template, "comments.tpl"} ]}
 ].
