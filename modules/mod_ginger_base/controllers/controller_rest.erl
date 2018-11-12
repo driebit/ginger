@@ -201,3 +201,39 @@ malformed_request_test_() ->
         end
       ]
     }.
+
+resource_exists_test_() ->
+    { setup
+      %% setup
+    , fun () ->
+              meck:new(z_context),
+              meck:new(wrq),
+              meck:new(m_rsc),
+              ok
+      end
+      %% cleanup
+    , fun (_) ->
+              meck:unload(m_rsc),
+              meck:unload(wrq),
+              meck:unload(z_context),
+              ok
+      end
+      %% tests
+    , [ fun () ->
+                State = #state{mode = collection, collection = resources},
+                {true, _, _} = resource_exists(req, State)
+        end
+      , fun () ->
+                meck:expect(z_context, new, 2, ok),
+                meck:expect(wrq, path_info, 2, "1"),
+                State = #state{ mode = document
+                              , collection = resources
+                              , path_info = id
+                              },
+                meck:expect(m_rsc, exists, 2, false),
+                {false, _, _} = resource_exists(req, State)
+                meck:expect(m_rsc, exists, 2, true),
+                {true, _, _} = resource_exists(req, State)
+        end
+      ]
+    }.
