@@ -10,6 +10,7 @@
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
+-include_lib("eunit/include/eunit.hrl").
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
@@ -132,3 +133,31 @@ path_to_id(Path, Context) ->
                     Result
             end
     end.
+
+%%%-----------------------------------------------------------------------------
+%%% Tests
+%%%-----------------------------------------------------------------------------
+
+init_test_() ->
+    { setup
+      %% setup
+    , fun () -> ok end
+      %% cleanup
+    , fun (_) -> ok end
+      %% tests
+    , [ fun () ->
+                Map = #{mode => collection, collection => edges},
+                {ok, State} = init([Map]),
+                collection = State#state.mode,
+                edges = State#state.collection,
+                undefined = State#state.path_info
+        end
+      , fun () ->
+                Map = #{mode => collection, collection => resources, path_info => id},
+                {ok, State} = init([Map]),
+                collection = State#state.mode,
+                resources = State#state.collection,
+                id = State#state.path_info
+        end
+      ]
+    }.
