@@ -4,6 +4,7 @@
          init/1,
          allow_missing_post/2,
          malformed_request/2,
+         allowed_methods/2,
          resource_exists/2,
          content_types_provided/2,
          to_json/2
@@ -46,6 +47,11 @@ malformed_request(Req, State = #state{mode = document, collection = resources, p
         {_Int, _Rest} ->
             {true, Req, State}
     end.
+
+allowed_methods(Req, State = #state{mode = collection, collection = edges}) ->
+    {['POST', 'HEAD'], Req, State};
+allowed_methods(Req, State) ->
+    {['GET', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -182,6 +188,28 @@ allow_missing_post_test_() ->
                     allow_missing_post(req, #state{mode = collection, collection = resources}),
                 {false, _, _ } =
                     allow_missing_post(req, #state{mode = document})
+        end
+      ]
+    }.
+
+allowed_methods_test_() ->
+    { setup
+      %% setup
+    , fun () -> ok end
+      %% cleanup
+    , fun (_) -> ok end
+      %% tests
+    , [ fun () ->
+                {Methods1, _, _ } =
+                    allowed_methods(req, #state{mode = collection, collection = edges}),
+                ?assert(lists:member('POST', Methods1)),
+                ?assertNot(lists:member('GET', Methods1)),
+                {Methods2, _, _ } =
+                    allowed_methods(req, #state{mode = collection, collection = resources}),
+                ?assertNot(lists:member('POST', Methods2)),
+                {Methods3, _, _ } =
+                    allowed_methods(req, #state{mode = document}),
+                ?assertNot(lists:member('POST', Methods3))
         end
       ]
     }.
