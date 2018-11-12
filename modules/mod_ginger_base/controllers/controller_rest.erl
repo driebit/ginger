@@ -161,3 +161,43 @@ init_test_() ->
         end
       ]
     }.
+
+malformed_request_test_() ->
+    { setup
+      %% setup
+    , fun () -> meck:new(wrq) end
+      %% cleanup
+    , fun (_) -> meck:unload(wrq) end
+      %% tests
+    , [ fun () ->
+                {false, _, _} =
+                    malformed_request(req, #state{mode = collection})
+        end
+      , fun () ->
+                {false, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = path
+                                                 }
+                                     )
+        end
+      , fun () ->
+                meck:expect(wrq, path_info, 2, "not-an-integer"),
+                {true, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = id
+                                                 }
+                                     )
+        end
+      , fun () ->
+                meck:expect(wrq, path_info, 2, "23"),
+                {false, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = id
+                                                 }
+                                     )
+        end
+      ]
+    }.
