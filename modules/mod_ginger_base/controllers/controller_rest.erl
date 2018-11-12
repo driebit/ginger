@@ -2,6 +2,7 @@
 
 -export([
          init/1,
+         allow_missing_post/2,
          malformed_request/2,
          resource_exists/2,
          content_types_provided/2,
@@ -26,6 +27,11 @@ init([Args]) ->
     Collection = maps:get(collection, Args, undefined),
     PathInfo = maps:get(path_info, Args, undefined),
     {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
+
+allow_missing_post(Req, State = #state{mode = collection, collection = edges}) ->
+    {true, Req, State};
+allow_missing_post(Req, State) ->
+    {false, Req, State}.
 
 malformed_request(Req, State = #state{mode = collection}) ->
     {false, Req, State};
@@ -158,6 +164,24 @@ init_test_() ->
                 collection = State#state.mode,
                 resources = State#state.collection,
                 id = State#state.path_info
+        end
+      ]
+    }.
+
+allow_missing_post_test_() ->
+    { setup
+      %% setup
+    , fun () -> ok end
+      %% cleanup
+    , fun (_) -> ok end
+      %% tests
+    , [ fun () ->
+                {true, _, _ } =
+                    allow_missing_post(req, #state{mode = collection, collection = edges}),
+                {false, _, _ } =
+                    allow_missing_post(req, #state{mode = collection, collection = resources}),
+                {false, _, _ } =
+                    allow_missing_post(req, #state{mode = document})
         end
       ]
     }.
