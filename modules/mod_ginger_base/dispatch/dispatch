@@ -5,9 +5,15 @@
     {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
     %% REST API
-    {data, ["data", "resources"], controller_rest, [#{mode => collection}]},
-    {data, ["data", "resources", id], controller_rest, [#{mode => document, path_info => id}]},
-    {data, ["data", "resources", "path", path], controller_rest, [#{mode => document, path_info => path}]},
+    {data, ["data", "resources"], controller_rest,
+     [#{mode => collection, collection => resources}]
+    },
+    {data, ["data", "resources", id], controller_rest,
+     [#{mode => document, collection => resources, path_info => id}]
+    },
+    {data, ["data", "resources", "path", path], controller_rest,
+     [#{mode => document, collection => resources, path_info => path}]
+    },
 
     %% Auth API
     {data_auth, ["data", "auth"], controller_auth, []},
