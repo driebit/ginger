@@ -231,7 +231,7 @@ resource_exists_test_() ->
                               , path_info = id
                               },
                 meck:expect(m_rsc, exists, 2, false),
-                {false, _, _} = resource_exists(req, State)
+                {false, _, _} = resource_exists(req, State),
                 meck:expect(m_rsc, exists, 2, true),
                 {true, _, _} = resource_exists(req, State)
         end
