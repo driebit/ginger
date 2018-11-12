@@ -13,7 +13,7 @@
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, {mode, path_info}).
+-record(state, {mode, collection, path_info}).
 
 
 %%%-----------------------------------------------------------------------------
@@ -22,8 +22,9 @@
 
 init([Args]) ->
     Mode =  maps:get(mode, Args),
+    Collection = maps:get(collection, Args, undefined),
     PathInfo = maps:get(path_info, Args, undefined),
-    {ok, #state{mode = Mode, path_info = PathInfo}}.
+    {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
 
 malformed_request(Req, State = #state{mode = collection}) ->
     {false, Req, State};
