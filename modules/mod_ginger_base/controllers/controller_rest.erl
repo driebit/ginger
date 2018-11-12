@@ -10,6 +10,7 @@
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
+-include_lib("eunit/include/eunit.hrl").
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
@@ -132,3 +133,122 @@ path_to_id(Path, Context) ->
                     Result
             end
     end.
+
+%%%-----------------------------------------------------------------------------
+%%% Tests
+%%%-----------------------------------------------------------------------------
+
+init_test_() ->
+    { setup
+      %% setup
+    , fun () -> ok end
+      %% cleanup
+    , fun (_) -> ok end
+      %% tests
+    , [ fun () ->
+                Map = #{mode => collection, collection => edges},
+                {ok, State} = init([Map]),
+                collection = State#state.mode,
+                edges = State#state.collection,
+                undefined = State#state.path_info
+        end
+      , fun () ->
+                Map = #{mode => collection, collection => resources, path_info => id},
+                {ok, State} = init([Map]),
+                collection = State#state.mode,
+                resources = State#state.collection,
+                id = State#state.path_info
+        end
+      ]
+    }.
+
+malformed_request_test_() ->
+    { setup
+      %% setup
+    , fun () -> meck:new(wrq) end
+      %% cleanup
+    , fun (_) -> meck:unload(wrq) end
+      %% tests
+    , [ fun () ->
+                {false, _, _} =
+                    malformed_request(req, #state{mode = collection})
+        end
+      , fun () ->
+                {false, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = path
+                                                 }
+                                     )
+        end
+      , fun () ->
+                meck:expect(wrq, path_info, 2, "not-an-integer"),
+                {true, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = id
+                                                 }
+                                     )
+        end
+      , fun () ->
+                meck:expect(wrq, path_info, 2, "23"),
+                {false, _, _} =
+                    malformed_request(req, #state{ mode = document
+                                                 , collection = resources
+                                                 , path_info = id
+                                                 }
+                                     )
+        end
+      ]
+    }.
+
+resource_exists_test_() ->
+    { setup
+      %% setup
+    , fun () ->
+              meck:new(z_context),
+              meck:new(wrq),
+              meck:new(m_rsc),
+              ok
+      end
+      %% cleanup
+    , fun (_) ->
+              meck:unload(m_rsc),
+              meck:unload(wrq),
+              meck:unload(z_context),
+              ok
+      end
+      %% tests
+    , [ fun () ->
+                State = #state{mode = collection, collection = resources},
+                {true, _, _} = resource_exists(req, State)
+        end
+      , fun () ->
+                meck:expect(z_context, new, 2, ok),
+                meck:expect(wrq, path_info, 2, "1"),
+                State = #state{ mode = document
+                              , collection = resources
+                              , path_info = id
+                              },
+                meck:expect(m_rsc, exists, 2, false),
+                {false, _, _} = resource_exists(req, State),
+                meck:expect(m_rsc, exists, 2, true),
+                {true, _, _} = resource_exists(req, State)
+        end
+      , fun () ->
+                meck:expect(z_context, new, 2, ok),
+                State = #state{ mode = document
+                              , collection = resources
+                              , path_info = path
+                              },
+                meck:expect(wrq, path_info, 2, "/"),
+                meck:expect(m_rsc, name_to_id, 2, {ok, 1}),
+                meck:expect(m_rsc, exists, 2, true),
+                {true, _, _} = resource_exists(req, State),
+                meck:expect(m_rsc, exists, 2, false),
+                {false, _, _} = resource_exists(req, State),
+                meck:expect(m_rsc, name_to_id, 2, {error, whatever}),
+                {false, _, _} = resource_exists(req, State)
+        end
+      ]
+    }.
