@@ -13,23 +13,24 @@
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, {mode, path_info}).
+-record(state, {mode, collection, path_info}).
 
 
 %%%-----------------------------------------------------------------------------
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
-init(Args) ->
-    Mode =  proplists:get_value(mode, Args),
-    PathInfo = proplists:get_value(path_info, Args),
-    {ok, #state{mode = Mode, path_info = PathInfo}}.
+init([Args]) ->
+    Mode =  maps:get(mode, Args),
+    Collection = maps:get(collection, Args, undefined),
+    PathInfo = maps:get(path_info, Args, undefined),
+    {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
 
 malformed_request(Req, State = #state{mode = collection}) ->
     {false, Req, State};
-malformed_request(Req, State = #state{mode = document, path_info = path}) ->
+malformed_request(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
     {false, Req, State};
-malformed_request(Req, State = #state{mode = document, path_info = id}) ->
+malformed_request(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
     case string:to_integer(wrq:path_info(id, Req)) of
         {error, _Reason} ->
             {true, Req, State};
@@ -41,11 +42,11 @@ malformed_request(Req, State = #state{mode = document, path_info = id}) ->
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
-resource_exists(Req, State = #state{mode = document, path_info = id}) ->
+resource_exists(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
     Context = z_context:new(Req, ?MODULE),
     Id = wrq:path_info(id, Req),
     {m_rsc:exists(Id, Context), Req, State};
-resource_exists(Req, State = #state{mode = document, path_info = path}) ->
+resource_exists(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
     Context = z_context:new(Req, ?MODULE),
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
@@ -57,7 +58,7 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(Req, State = #state{mode = collection}) ->
+to_json(Req, State = #state{mode = collection, collection = resources}) ->
     Context = z_context:new(Req, ?MODULE),
     Args1 = search_query:parse_request_args(
               proplists_filter(
@@ -72,7 +73,7 @@ to_json(Req, State = #state{mode = collection}) ->
     Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
-to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
+to_json(Req, State = #state{mode = document, collection = resources, path_info = PathInfo}) ->
     Context = z_context:new(Req, ?MODULE),
     Id =
         case PathInfo of
