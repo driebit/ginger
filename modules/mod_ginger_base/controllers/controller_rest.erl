@@ -235,5 +235,6 @@ resource_exists_test_() ->
                 meck:expect(m_rsc, exists, 2, true),
                 {true, _, _} = resource_exists(req, State)
         end
+        %% TODO: 3rd clause
       ]
     }.
