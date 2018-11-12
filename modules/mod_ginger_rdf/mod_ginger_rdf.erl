@@ -86,7 +86,11 @@ observe_search_query(#search_query{} = Query, Context) ->
 
 -spec observe_content_types_dispatch(#content_types_dispatch{}, list(), #context{}) -> list().
 observe_content_types_dispatch(#content_types_dispatch{}, Acc, _Context) ->
-    [{"application/ld+json", rsc_json_ld} | Acc].
+    [
+        {"application/ld+json", rsc_json_ld},
+        {"text/turtle", rsc_turtle}
+
+    | Acc].
 
 %% @doc Find related items in linked data
 -spec event(#postback_notify{}, #context{}) -> list().
