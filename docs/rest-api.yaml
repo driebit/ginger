@@ -171,6 +171,11 @@ paths:
                   required: false
                   description: Boost result ranking for recently published resources that are in specific categories.
                 - in: query
+                  name: content_group
+                  type: string
+                  required: false
+                  description: Only return search results that are in this content group (unique name or id).
+                - in: query
                   name: has_geo
                   type: string
                   required: false
