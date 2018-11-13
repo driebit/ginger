@@ -8,20 +8,7 @@
 %% @doc Serialize a RDF resource to Turtle (https://www.w3.org/TR/turtle/)
 -spec serialize(m_rdf:rdf_resource()) -> iodata().
 serialize(#rdf_resource{triples = Triples}) ->
-    [
-     "@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns>.\n",
-     "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.\n",
-     "@prefix foaf: <http://xmlns.com/foaf/0.1/>.\n",
-     "@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>.\n",
-     "@prefix dcterms: <http://purl.org/dc/terms/>.\n",
-     "@prefix dctype: <http://purl.org/dc/dcmitype/>.\n",
-     "@prefix vcard: <http://www.w3.org/2006/vcard/ns#>.\n",
-     "@prefix dbpedia-owl: <http://dbpedia.org/ontology/>.\n",
-     "@prefix dbpedia: <http://dbpedia.org/property/>.\n",
-     "@prefix schema: <http://schema.org/>.\n",
-     "\n",
-     [triple_to_turtle(T) || T <- Triples]
-    ].
+   [triple_to_turtle(T) || T <- Triples].
 
 triple_to_turtle(#triple{subject = S, predicate = P, object = #rdf_resource{} = Rsc}) ->
     O = case Rsc#rdf_resource.id of
