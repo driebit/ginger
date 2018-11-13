@@ -56,6 +56,8 @@ escape_uri(U) ->
 
 object(#rdf_value{value = undefined}) ->
     [$", $"];
+object(#rdf_value{value = V, language = Language}) when Language =/= undefined ->
+    [$", literal(V), $", $@, z_convert:to_binary(Language)];
 object(#rdf_value{value = V}) ->
     [$", literal(V), $"];
 object(O) ->
