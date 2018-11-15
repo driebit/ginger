@@ -89,7 +89,7 @@ test-chrome:
 
 .PHONY: tests
 tests:
-	@docker-compose run zotonic bash -c 'make && ls ebin/*ginger*tests.beam | sed -e "s|ebin/||" | sed -e "s|.beam||" | bin/zotonic runtests'
+	docker-compose run --rm zotonic MODULES=$(ls ebin/*ginger*tests.beam | sed -e 's|ebin/||' | sed -e 's|.beam||') bin/zotonic runtests $MODULES
 
 up:
 	@docker-compose up --build zotonic kibana
