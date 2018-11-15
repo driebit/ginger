@@ -28,7 +28,7 @@ help:
 	@echo "  psql                    Open PostgreSQL interactive terminal"
 	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
 	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
-	@echo "  tests					 Run all Ginger Erlang tests"
+	@echo "  tests					 Find all Ginger tests and run them"
 	@echo "  up                      Start containers"
 	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
 	@echo "  update                  Update containers"
@@ -89,7 +89,7 @@ test-chrome:
 
 .PHONY: tests
 tests:
-	docker-compose run --rm zotonic MODULES=$(ls ebin/*ginger*tests.beam | sed -e 's|ebin/||' | sed -e 's|.beam||') bin/zotonic runtests $MODULES
+	docker-compose run --rm zotonic /scripts/runtests.sh
 
 up:
 	@docker-compose up --build zotonic kibana
