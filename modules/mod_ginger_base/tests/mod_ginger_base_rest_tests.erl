@@ -1,6 +1,7 @@
 -module(mod_ginger_base_rest_tests).
 
 -include_lib("eunit/include/eunit.hrl").
+-include_lib("zotonic.hrl").
 
 get_existing_resource_test_() ->
     {ok, Id} = m_rsc:insert([{category, text}, {title, <<"Title">>}, {published, true}], context()),
