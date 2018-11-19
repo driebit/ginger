@@ -2,7 +2,6 @@
 
 -include_lib("proper/include/proper.hrl").
 -include_lib("eunit/include/eunit.hrl").
--include("zotonic.hrl").
 
 encode_test() ->
     ?assertEqual(
