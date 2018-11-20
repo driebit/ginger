@@ -1,3 +1,4 @@
 [
-    {rsc_json_ld, ["rdf", id], controller_rdf, []}
+    {rsc_json_ld, ["rdf", id], controller_rdf, [{serialization, json_ld}]},
+    {rsc_turtle, ["turtle", id], controller_rdf, [{serialization, turtle}]}
 ].
