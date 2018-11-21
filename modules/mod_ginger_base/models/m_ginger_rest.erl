@@ -26,7 +26,7 @@ rsc(Id, Context) ->
            , <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context)
            , <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
            , <<"properties">> => custom_props(Id, Context)
-           , <<"blocks">> => m_rsc:p(Id, blocks, Context)
+           , <<"blocks">> => blocks(Id, Context)
            },
     with_media(Rsc, Context).
 
@@ -67,6 +67,8 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
 translations({trans, Translations}, Context) ->
     [{Key, z_html:unescape(filter_show_media:show_media(Value, Context))} || {Key, Value} <- Translations];
+translations(undefined, Context) ->
+    [{z_trans:default_language(Context), null}];
 translations(Value, Context) ->
     [{z_trans:default_language(Context), z_html:unescape(filter_show_media:show_media(Value, Context))}].
 
@@ -142,3 +144,20 @@ mediaclasses(Context) ->
       end,
       lists:usort(qlc:eval(Q))
      ).
+
+%% @doc Get resource blocks.
+-spec blocks(m_rsc:resouce(), z:context()) -> [map()].
+blocks(Id, Context) ->
+    [block(Block, Context) || Block <- m_rsc:p(Id, blocks, [], Context)].
+
+%% @doc Maybe translate each block property.
+-spec block(proplists:proplist(), z:context()) -> map.
+block(Block, Context) ->
+    #{
+        <<"type">> => proplists:get_value(type, Block),
+        <<"name">> => proplists:get_value(name, Block),
+        <<"style">> => proplists:get_value(style, Block, null),
+        <<"header">> => translations(proplists:get_value(header, Block), Context),
+        <<"body">> => translations(proplists:get_value(body, Block), Context),
+        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null)
+    }.
