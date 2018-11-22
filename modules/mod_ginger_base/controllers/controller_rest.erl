@@ -2,6 +2,7 @@
 
 -export([
          init/1,
+         service_available/2,
          malformed_request/2,
          allowed_methods/2,
          resource_exists/2,
@@ -17,7 +18,12 @@
 
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, {mode, collection, path_info}).
+-record(state, { mode = undefined
+               , collection = undefined
+               , path_info = undefined
+               , context = undefined
+               }
+       ).
 
 
 %%%-----------------------------------------------------------------------------
@@ -29,6 +35,10 @@ init([Args]) ->
     Collection = maps:get(collection, Args, undefined),
     PathInfo = maps:get(path_info, Args, undefined),
     {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
+
+service_available(Req, State) ->
+    Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
+    {true, Req, State#state{context = Context}}.
 
 malformed_request(Req, State = #state{mode = collection}) ->
     {false, Req, State};
@@ -52,11 +62,11 @@ allowed_methods(Req, State) ->
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
 resource_exists(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
-    Context = z_context:new(Req, ?MODULE),
+    Context = State#state.context,
     Id = wrq:path_info(id, Req),
     {m_rsc:exists(Id, Context), Req, State};
 resource_exists(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
-    Context = z_context:new(Req, ?MODULE),
+    Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
             {m_rsc:exists(Id, Context), Req, State};
@@ -68,7 +78,7 @@ content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 to_json(Req, State = #state{mode = collection, collection = resources}) ->
-    Context = z_context:new(Req, ?MODULE),
+    Context = State#state.context,
     Args1 = search_query:parse_request_args(
               proplists_filter(
                 fun (Key) -> lists:member(Key, supported_search_args()) end,
@@ -83,7 +93,7 @@ to_json(Req, State = #state{mode = collection, collection = resources}) ->
     Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document, collection = resources, path_info = PathInfo}) ->
-    Context = z_context:new(Req, ?MODULE),
+    Context = State#state.context,
     Id =
         case PathInfo of
             id ->
@@ -96,8 +106,7 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
     {Json, Req, State}.
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
-    Context = z_context:new(Req, ?MODULE),
-    ?DEBUG(Context),
+    Context = State#state.context,
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
     Subject = maps:get(subject, Data),
