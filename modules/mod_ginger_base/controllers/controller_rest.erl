@@ -6,8 +6,10 @@
          allowed_methods/2,
          resource_exists/2,
          content_types_provided/2,
-         to_json/2
-        ]).
+         to_json/2,
+         process_post/2
+        ]
+       ).
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
@@ -92,6 +94,24 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
         end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
+
+process_post(Req, State = #state{mode = collection, collection = edges}) ->
+    Context = z_context:new(Req, ?MODULE),
+    ?DEBUG(Context),
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Subject = maps:get(subject, Data),
+    {ok, Predicate} = m_rsc:name_to_id(maps:get(predicate, Data), Context),
+    Object = maps:get(object, Data),
+    lager:debug("Subject = ~p, Predicate = ~p, Object = ~p", [Subject, Predicate, Object]),
+    case m_edge:insert(Subject, Predicate, Object, Context) of
+        {ok, EdgeId} ->
+            lager:debug("EdgeId = ~p", [EdgeId]),
+            {true, Req1, State};
+        {error, Reason} ->
+            lager:debug("Reason = ~p", [Reason]),
+            {false, Req1, State}
+    end.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
