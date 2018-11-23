@@ -341,10 +341,6 @@ process_post_test_() ->
                 {true, _, _} = process_post(req, State),
                 meck:expect(m_edge, insert, 4, {error, {acl, false}}),
                 {false, _, _} = process_post(req, State),
-                %% meck:expect(m_rsc, exists, 2, false),
-                %% {false, _, _} = resource_exists(req, State),
-                %% meck:expect(m_rsc, exists, 2, true),
-                %% {true, _, _} = resource_exists(req, State)
                 ok
         end
       ]
