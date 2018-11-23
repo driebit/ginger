@@ -14,7 +14,7 @@ get_existing_resource_test_() ->
                                                  ]
                                                 )
                      },
-             {ok, State} = controller_rest:init([{mode, document}, {path_info, id}]),
+             {ok, State} = controller_rest:init([#{mode => document, path_info => id}]),
              {Req, State}
      end,
      %% cleanup
