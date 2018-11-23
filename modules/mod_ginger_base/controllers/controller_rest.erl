@@ -111,13 +111,10 @@ process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Subject = maps:get(subject, Data),
     {ok, Predicate} = m_rsc:name_to_id(maps:get(predicate, Data), Context),
     Object = maps:get(object, Data),
-    lager:debug("Subject = ~p, Predicate = ~p, Object = ~p", [Subject, Predicate, Object]),
     case m_edge:insert(Subject, Predicate, Object, Context) of
-        {ok, EdgeId} ->
-            lager:debug("EdgeId = ~p", [EdgeId]),
+        {ok, _EdgeId} ->
             {true, Req1, State};
-        {error, Reason} ->
-            lager:debug("Reason = ~p", [Reason]),
+        {error, _Reason} ->
             {false, Req1, State}
     end.
 
@@ -305,6 +302,50 @@ resource_exists_test_() ->
                 {false, _, _} = resource_exists(req, State),
                 meck:expect(m_rsc, name_to_id, 2, {error, whatever}),
                 {false, _, _} = resource_exists(req, State)
+        end
+      ]
+    }.
+
+process_post_test_() ->
+    { setup
+      %% setup
+    , fun () ->
+              meck:new(wrq),
+              meck:new(m_rsc),
+              meck:new(m_edge),
+              ok
+      end
+      %% cleanup
+    , fun (_) ->
+              meck:unload(m_edge),
+              meck:unload(m_rsc),
+              meck:unload(wrq),
+              ok
+      end
+      %% tests
+    , [ fun () ->
+                State = #state{ mode = collection
+                              , collection = edges
+                              , context = context
+                              },
+                Body = jsx:encode(#{ subject => 1
+                                   , predicate => <<"depiction">>
+                                   , object => 2
+                                   }
+                                 ),
+                meck:expect(wrq, req_body, 1, {Body, req}),
+                PredicateId = 3,
+                meck:expect(m_rsc, name_to_id, 2, {ok, PredicateId}),
+                EdgeId = 4,
+                meck:expect(m_edge, insert, 4, {ok, EdgeId}),
+                {true, _, _} = process_post(req, State),
+                meck:expect(m_edge, insert, 4, {error, {acl, false}}),
+                {false, _, _} = process_post(req, State),
+                %% meck:expect(m_rsc, exists, 2, false),
+                %% {false, _, _} = resource_exists(req, State),
+                %% meck:expect(m_rsc, exists, 2, true),
+                %% {true, _, _} = resource_exists(req, State)
+                ok
         end
       ]
     }.
