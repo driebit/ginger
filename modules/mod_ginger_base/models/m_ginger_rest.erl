@@ -26,7 +26,7 @@ rsc(Id, Context) ->
            , <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context)
            , <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
            , <<"properties">> => custom_props(Id, Context)
-           , <<"blocks">> => m_rsc:p(Id, blocks, Context)
+           , <<"blocks">> => m_rsc:p(Id, blocks, [], Context)
            },
     with_media(Rsc, Context).
 
