@@ -19,7 +19,8 @@
  },
 
  %% Auth API
- {data_auth, ["data", "auth"], controller_auth, []},
+ {data_auth, ["data", "auth", "login"], controller_auth, [#{mode => login}]},
+ {data_auth, ["data", "auth", "logout"], controller_auth, [#{mode => logout}]},
 
  %% Search API
  {data_search, ["data", "search"], controller_search, []},
