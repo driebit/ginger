@@ -207,19 +207,29 @@ init_test_() ->
 
 allowed_methods_test_() ->
     [ fun () ->
-              {Methods1, _, _ } =
+              {Methods, _, _ } =
                   allowed_methods(req, #state{mode = collection, collection = edges}),
-              ?assert(lists:member('POST', Methods1)),
-              ?assertNot(lists:member('GET', Methods1)),
-              {Methods2, _, _ } =
+              ?assert(lists:member('POST', Methods)),
+              ?assertNot(lists:member('GET', Methods)),
+              ok
+      end
+    , fun () ->
+              {Methods, _, _ } =
                   allowed_methods(req, #state{mode = collection, collection = resources}),
-              ?assertNot(lists:member('POST', Methods2)),
-              {Methods3, _, _ } =
+              ?assertNot(lists:member('POST', Methods)),
+              ok
+      end
+    , fun () ->
+              {Methods, _, _ } =
                   allowed_methods(req, #state{mode = document}),
-              ?assertNot(lists:member('POST', Methods3)),
-              {Methods4, _, _ } =
+              ?assertNot(lists:member('POST', Methods)),
+              ok
+      end
+    , fun () ->
+              {Methods, _, _ } =
                   allowed_methods(req, #state{mode = document, collection = edges}),
-              ?assert(lists:member('DELETE', Methods4))
+              ?assert(lists:member('DELETE', Methods)),
+              ok
       end
     ].
 
