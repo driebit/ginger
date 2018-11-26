@@ -8,6 +8,7 @@
          resource_exists/2,
          content_types_provided/2,
          to_json/2,
+         delete_resource/2,
          process_post/2
         ]
        ).
@@ -112,6 +113,9 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
         end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
+
+delete_resource(Req, State) ->
+    {false, Req, State}.
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
