@@ -112,8 +112,13 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
-delete_resource(Req, State) ->
-    {false, Req, State}.
+delete_resource(Req, State = #state{mode = document, collection = edges}) ->
+    Context = State#state.context,
+    Subject = integer_path_info(subject, Req),
+    Predicate = predicate_id_from_path(Req, Context),
+    Object = integer_path_info(object, Req),
+    ok = m_edge:delete(Subject, Predicate, Object, Context),
+    {true, Req, State}.
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
