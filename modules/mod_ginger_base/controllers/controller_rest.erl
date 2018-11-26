@@ -10,7 +10,7 @@
         , delete_resource/2
         , process_post/2
         ]
-    ).
+       ).
 
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
@@ -23,91 +23,90 @@
                , path_info = undefined
                , context = undefined
                }
-    ).
+       ).
 
 %%%-----------------------------------------------------------------------------
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
 init([Args]) ->
-Mode =  maps:get(mode, Args),
-Collection = maps:get(collection, Args, undefined),
-PathInfo = maps:get(path_info, Args, undefined),
-{ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
+    Mode =  maps:get(mode, Args),
+    Collection = maps:get(collection, Args, undefined),
+    PathInfo = maps:get(path_info, Args, undefined),
+    {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
 
 service_available(Req, State) ->
-Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
-{true, Req, State#state{context = Context}}.
+    Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
+    {true, Req, State#state{context = Context}}.
 
 malformed_request(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
-case string:to_integer(wrq:path_info(id, Req)) of
-    {error, _Reason} ->
-        {true, Req, State};
-    {_Int, []} ->
-        {false, Req, State};
-    {_Int, _Rest} ->
-        {true, Req, State}
-end;
+    case string:to_integer(wrq:path_info(id, Req)) of
+        {error, _Reason} ->
+            {true, Req, State};
+        {_Int, []} ->
+            {false, Req, State};
+        {_Int, _Rest} ->
+            {true, Req, State}
+    end;
 malformed_request(Req, State) ->
-{false, Req, State}.
-
+    {false, Req, State}.
 
 allowed_methods(Req, State = #state{mode = document, collection = edges}) ->
-{['DELETE', 'HEAD'], Req, State};
+    {['DELETE', 'HEAD'], Req, State};
 allowed_methods(Req, State = #state{mode = collection, collection = edges}) ->
-{['POST', 'HEAD'], Req, State};
+    {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
-{['GET', 'HEAD'], Req, State}.
+    {['GET', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
-{true, Req, State};
+    {true, Req, State};
 resource_exists(Req, State = #state{mode = document, collection = edges}) ->
-Context = State#state.context,
-Subject = integer_path_info(subject, Req),
-Predicate = predicate_id_from_path(Req, Context),
-Object = integer_path_info(object, Req),
-Result = undefined /= m_edge:get_id(Subject, Predicate, Object, Context),
-{Result, Req, State};
+    Context = State#state.context,
+    Subject = integer_path_info(subject, Req),
+    Predicate = predicate_id_from_path(Req, Context),
+    Object = integer_path_info(object, Req),
+    Result = undefined /= m_edge:get_id(Subject, Predicate, Object, Context),
+    {Result, Req, State};
 resource_exists(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
-Context = State#state.context,
-Id = wrq:path_info(id, Req),
-{m_rsc:exists(Id, Context), Req, State};
+    Context = State#state.context,
+    Id = wrq:path_info(id, Req),
+    {m_rsc:exists(Id, Context), Req, State};
 resource_exists(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
-Context = State#state.context,
-case path_to_id(wrq:path_info(path, Req), Context) of
-    {ok, Id} ->
-        {m_rsc:exists(Id, Context), Req, State};
-    {error, _} ->
-        {false, Req, State}
-end.
+    Context = State#state.context,
+    case path_to_id(wrq:path_info(path, Req), Context) of
+        {ok, Id} ->
+            {m_rsc:exists(Id, Context), Req, State};
+        {error, _} ->
+            {false, Req, State}
+    end.
 
 content_types_provided(Req, State) ->
-{[{"application/json", to_json}], Req, State}.
+    {[{"application/json", to_json}], Req, State}.
 
 to_json(Req, State = #state{mode = collection, collection = resources}) ->
-Context = State#state.context,
-Args1 = search_query:parse_request_args(
-            proplists_filter(
-            fun (Key) -> lists:member(Key, supported_search_args()) end,
-            wrq:req_qs(Req)
-            )
-            ),
-Args2 = ginger_search:query_arguments(
-            [{cat_exclude_defaults, true}, {filter, ["is_published", true]}],
-            Context
-            ),
-Ids = z_search:query_(Args1 ++ Args2, Context),
-Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
-{Json, Req, State};
+    Context = State#state.context,
+    Args1 = search_query:parse_request_args(
+              proplists_filter(
+                fun (Key) -> lists:member(Key, supported_search_args()) end,
+                wrq:req_qs(Req)
+               )
+             ),
+    Args2 = ginger_search:query_arguments(
+              [{cat_exclude_defaults, true}, {filter, ["is_published", true]}],
+              Context
+             ),
+    Ids = z_search:query_(Args1 ++ Args2, Context),
+    Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
+    {Json, Req, State};
 to_json(Req, State = #state{mode = document, collection = resources, path_info = PathInfo}) ->
-Context = State#state.context,
-Id =
-    case PathInfo of
-        id ->
-            integer_path_info(id, Req);
-        path ->
-            {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
-            Result
+    Context = State#state.context,
+    Id =
+        case PathInfo of
+            id ->
+                integer_path_info(id, Req);
+            path ->
+                {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
+                Result
         end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
