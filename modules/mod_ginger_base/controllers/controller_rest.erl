@@ -311,18 +311,11 @@ resource_exists_test_() ->
                 State = #state{ mode = document
                               , collection = edges
                               },
-                meck:expect(
-                  wrq,
-                  path_info,
-                  fun
-                      (subject, req) ->
-                          "1";
-                      (object, req) ->
-                          "2";
-                      (predicate, req) ->
-                          "depiction"
-                  end
-                 ),
+                meck_wrq_path_info(#{ subject => "1"
+                                    , object => "2"
+                                    , predicate => "depiction"
+                                    }
+                                  ),
                 meck:expect(m_rsc, name_to_id, 2, {ok, 3}),
                 meck:expect(m_edge, get_id, 4, undefined),
                 {false, _, _} = resource_exists(req, State),
@@ -342,16 +335,10 @@ process_post_test_() ->
                               , collection = edges
                               , context = context
                               },
-                meck:expect(
-                  wrq,
-                  path_info,
-                  fun
-                      (id, req) ->
-                          "1";
-                      (predicate, req) ->
-                          "depiction"
-                  end
-                 ),
+                meck_wrq_path_info(#{ id => "1"
+                                    , predicate => "depiction"
+                                    }
+                                  ),
                 Body = jsx:encode(#{object => 2}),
                 meck:expect(wrq, req_body, 1, {Body, req}),
                 PredicateId = 3,
@@ -370,3 +357,7 @@ setup_cleanup(Modules) ->
     Setup = fun () -> lists:foreach(fun meck:new/1, Modules) end,
     Cleanup = fun (_) -> lists:foreach(fun meck:unload/1, lists:reverse(Modules)) end,
     {Setup, Cleanup}.
+
+meck_wrq_path_info(Data) ->
+    Fun = fun (Binding, _Req) -> maps:get(Binding, Data, undefined) end,
+    meck:expect(wrq, path_info, Fun).
