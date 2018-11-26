@@ -106,8 +106,8 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
-    {ok, Subject} = wrq:path_info(id, Req),
-    {ok, Name} = wrq:path_info(predicate, Req),
+    Subject = wrq:path_info(id, Req),
+    Name = wrq:path_info(predicate, Req),
     {ok, Predicate} = m_rsc:name_to_id(Name, Context),
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
@@ -334,9 +334,9 @@ process_post_test_() ->
                   path_info,
                   fun
                       (id, req) ->
-                          {ok, 1};
+                          1;
                       (predicate, req) ->
-                          {ok, depiction}
+                          depiction
                   end
                  ),
                 Body = jsx:encode(#{ subject => 1
