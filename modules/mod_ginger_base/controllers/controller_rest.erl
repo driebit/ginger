@@ -236,11 +236,8 @@ allowed_methods_test_() ->
     }.
 
 malformed_request_test_() ->
-    { setup
-      %% setup
-    , fun () -> meck:new(wrq) end
-      %% cleanup
-    , fun (_) -> meck:unload(wrq) end
+    {Setup, Cleanup} = setup_cleanup([wrq]),
+    { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
                 {false, _, _} =
@@ -276,23 +273,8 @@ malformed_request_test_() ->
     }.
 
 resource_exists_test_() ->
-    { setup
-      %% setup
-    , fun () ->
-              meck:new(z_context),
-              meck:new(wrq),
-              meck:new(m_rsc),
-              meck:new(m_edge),
-              ok
-      end
-      %% cleanup
-    , fun (_) ->
-              meck:unload(m_edge),
-              meck:unload(m_rsc),
-              meck:unload(wrq),
-              meck:unload(z_context),
-              ok
-      end
+    {Setup, Cleanup} = setup_cleanup([z_context, wrq, m_rsc, m_edge]),
+    { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
                 State = #state{mode = collection, collection = resources},
@@ -352,21 +334,8 @@ resource_exists_test_() ->
     }.
 
 process_post_test_() ->
-    { setup
-      %% setup
-    , fun () ->
-              meck:new(wrq),
-              meck:new(m_rsc),
-              meck:new(m_edge),
-              ok
-      end
-      %% cleanup
-    , fun (_) ->
-              meck:unload(m_edge),
-              meck:unload(m_rsc),
-              meck:unload(wrq),
-              ok
-      end
+    {Setup, Cleanup} = setup_cleanup([wrq, m_rsc, m_edge]),
+    { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
                 State = #state{ mode = collection
@@ -396,3 +365,8 @@ process_post_test_() ->
         end
       ]
     }.
+
+setup_cleanup(Modules) ->
+    Setup = fun () -> lists:foreach(fun meck:new/1, Modules) end,
+    Cleanup = fun (_) -> lists:foreach(fun meck:unload/1, lists:reverse(Modules)) end,
+    {Setup, Cleanup}.
