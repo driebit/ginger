@@ -96,7 +96,7 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
     Id =
         case PathInfo of
             id ->
-                erlang:list_to_integer(wrq:path_info(id, Req));
+                id_from_path(Req);
             path ->
                 {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
                 Result
@@ -106,10 +106,11 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
+    Subject = id_from_path(Req),
+    Name = wrq:path_info(predicate, Req),
+    {ok, Predicate} = m_rsc:name_to_id(Name, Context),
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    Subject = maps:get(subject, Data),
-    {ok, Predicate} = m_rsc:name_to_id(maps:get(predicate, Data), Context),
     Object = maps:get(object, Data),
     case m_edge:insert(Subject, Predicate, Object, Context) of
         {ok, _EdgeId} ->
@@ -164,6 +165,9 @@ path_to_id(Path, Context) ->
                     Result
             end
     end.
+
+id_from_path(Req) ->
+    erlang:list_to_integer(wrq:path_info(id, Req)).
 
 %%%-----------------------------------------------------------------------------
 %%% Tests
@@ -328,11 +332,17 @@ process_post_test_() ->
                               , collection = edges
                               , context = context
                               },
-                Body = jsx:encode(#{ subject => 1
-                                   , predicate => <<"depiction">>
-                                   , object => 2
-                                   }
-                                 ),
+                meck:expect(
+                  wrq,
+                  path_info,
+                  fun
+                      (id, req) ->
+                          "1";
+                      (predicate, req) ->
+                          "depiction"
+                  end
+                 ),
+                Body = jsx:encode(#{object => 2}),
                 meck:expect(wrq, req_body, 1, {Body, req}),
                 PredicateId = 3,
                 meck:expect(m_rsc, name_to_id, 2, {ok, PredicateId}),
