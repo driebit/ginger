@@ -337,16 +337,12 @@ process_post_test_() ->
                   path_info,
                   fun
                       (id, req) ->
-                          1;
+                          "1";
                       (predicate, req) ->
-                          depiction
+                          "depiction"
                   end
                  ),
-                Body = jsx:encode(#{ subject => 1
-                                   , predicate => <<"depiction">>
-                                   , object => 2
-                                   }
-                                 ),
+                Body = jsx:encode(#{object => 2}),
                 meck:expect(wrq, req_body, 1, {Body, req}),
                 PredicateId = 3,
                 meck:expect(m_rsc, name_to_id, 2, {ok, PredicateId}),
