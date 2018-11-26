@@ -19,10 +19,10 @@
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
 -record(state, { mode = undefined
-            , collection = undefined
-            , path_info = undefined
-            , context = undefined
-            }
+               , collection = undefined
+               , path_info = undefined
+               , context = undefined
+               }
     ).
 
 %%%-----------------------------------------------------------------------------
