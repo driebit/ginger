@@ -126,6 +126,28 @@ paths:
                     schema:
                         $ref: '#/definitions/Resource'
 
+    /resources/{id}/edges/{predicate}:
+        post:
+            consumes: ["application/json"]
+            parameters:
+                - in: path
+                  name: id
+                  type: integer
+                  required: true
+                  description: the ID of the subject
+                - in: path
+                  name: predicate
+                  type: string
+                  required: true
+                  description: the name of the predicate
+                - in: body
+                  schema:
+                      type: object
+                      properties:
+                          object:
+                              type: integer
+                              description: the ID of the object
+
     /resources/path/{path}:
         get:
             produces: ["application/json"]
@@ -222,6 +244,3 @@ paths:
                                 type: integer
                                 description: 'The total number of search results.'
                                 example: 42
-
-
-
