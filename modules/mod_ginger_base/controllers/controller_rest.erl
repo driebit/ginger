@@ -1,15 +1,14 @@
 -module(controller_rest).
 
--export([
-         init/1,
-         service_available/2,
-         malformed_request/2,
-         allowed_methods/2,
-         resource_exists/2,
-         content_types_provided/2,
-         to_json/2,
-         delete_resource/2,
-         process_post/2
+-export([ init/1
+        , service_available/2
+        , malformed_request/2
+        , allowed_methods/2
+        , resource_exists/2
+        , content_types_provided/2
+        , to_json/2
+        , delete_resource/2
+        , process_post/2
         ]
        ).
 
