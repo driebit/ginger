@@ -192,14 +192,16 @@ init_test_() ->
               {ok, State} = init([Map]),
               collection = State#state.mode,
               edges = State#state.collection,
-              undefined = State#state.path_info
+              undefined = State#state.path_info,
+              ok
       end
     , fun () ->
               Map = #{mode => collection, collection => resources, path_info => id},
               {ok, State} = init([Map]),
               collection = State#state.mode,
               resources = State#state.collection,
-              id = State#state.path_info
+              id = State#state.path_info,
+              ok
       end
     ].
 
@@ -227,7 +229,8 @@ malformed_request_test_() ->
       %% tests
     , [ fun () ->
                 {false, _, _} =
-                    malformed_request(req, #state{mode = collection})
+                    malformed_request(req, #state{mode = collection}),
+                ok
         end
       , fun () ->
                 {false, _, _} =
@@ -235,7 +238,8 @@ malformed_request_test_() ->
                                                  , collection = resources
                                                  , path_info = path
                                                  }
-                                     )
+                                     ),
+                ok
         end
       , fun () ->
                 meck:expect(wrq, path_info, 2, "not-an-integer"),
@@ -244,7 +248,8 @@ malformed_request_test_() ->
                                                  , collection = resources
                                                  , path_info = id
                                                  }
-                                     )
+                                     ),
+                ok
         end
       , fun () ->
                 meck:expect(wrq, path_info, 2, "23"),
@@ -253,7 +258,8 @@ malformed_request_test_() ->
                                                  , collection = resources
                                                  , path_info = id
                                                  }
-                                     )
+                                     ),
+                ok
         end
       ]
     }.
@@ -264,7 +270,8 @@ resource_exists_test_() ->
       %% tests
     , [ fun () ->
                 State = #state{mode = collection, collection = resources},
-                {true, _, _} = resource_exists(req, State)
+                {true, _, _} = resource_exists(req, State),
+                ok
         end
       , fun () ->
                 State = #state{ mode = document
@@ -276,7 +283,8 @@ resource_exists_test_() ->
                 meck:expect(m_rsc, exists, 2, false),
                 {false, _, _} = resource_exists(req, State),
                 meck:expect(m_rsc, exists, 2, true),
-                {true, _, _} = resource_exists(req, State)
+                {true, _, _} = resource_exists(req, State),
+                ok
         end
       , fun () ->
                 State = #state{ mode = document
@@ -291,7 +299,8 @@ resource_exists_test_() ->
                 meck:expect(m_rsc, exists, 2, false),
                 {false, _, _} = resource_exists(req, State),
                 meck:expect(m_rsc, name_to_id, 2, {error, whatever}),
-                {false, _, _} = resource_exists(req, State)
+                {false, _, _} = resource_exists(req, State),
+                ok
         end
       , fun () ->
                 State = #state{ mode = document
