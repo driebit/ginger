@@ -187,53 +187,39 @@ predicate_id_from_path(Req, Context) ->
 %%%-----------------------------------------------------------------------------
 
 init_test_() ->
-    { setup
-      %% setup
-    , fun () -> ok end
-      %% cleanup
-    , fun (_) -> ok end
-      %% tests
-    , [ fun () ->
-                Map = #{mode => collection, collection => edges},
-                {ok, State} = init([Map]),
-                collection = State#state.mode,
-                edges = State#state.collection,
-                undefined = State#state.path_info
-        end
-      , fun () ->
-                Map = #{mode => collection, collection => resources, path_info => id},
-                {ok, State} = init([Map]),
-                collection = State#state.mode,
-                resources = State#state.collection,
-                id = State#state.path_info
-        end
-      ]
-    }.
+    [ fun () ->
+              Map = #{mode => collection, collection => edges},
+              {ok, State} = init([Map]),
+              collection = State#state.mode,
+              edges = State#state.collection,
+              undefined = State#state.path_info
+      end
+    , fun () ->
+              Map = #{mode => collection, collection => resources, path_info => id},
+              {ok, State} = init([Map]),
+              collection = State#state.mode,
+              resources = State#state.collection,
+              id = State#state.path_info
+      end
+    ].
 
 allowed_methods_test_() ->
-    { setup
-      %% setup
-    , fun () -> ok end
-      %% cleanup
-    , fun (_) -> ok end
-      %% tests
-    , [ fun () ->
-                {Methods1, _, _ } =
-                    allowed_methods(req, #state{mode = collection, collection = edges}),
-                ?assert(lists:member('POST', Methods1)),
-                ?assertNot(lists:member('GET', Methods1)),
-                {Methods2, _, _ } =
-                    allowed_methods(req, #state{mode = collection, collection = resources}),
-                ?assertNot(lists:member('POST', Methods2)),
-                {Methods3, _, _ } =
-                    allowed_methods(req, #state{mode = document}),
-                ?assertNot(lists:member('POST', Methods3)),
-                {Methods4, _, _ } =
-                    allowed_methods(req, #state{mode = document, collection = edges}),
-                ?assert(lists:member('DELETE', Methods4))
-        end
-      ]
-    }.
+    [ fun () ->
+              {Methods1, _, _ } =
+                  allowed_methods(req, #state{mode = collection, collection = edges}),
+              ?assert(lists:member('POST', Methods1)),
+              ?assertNot(lists:member('GET', Methods1)),
+              {Methods2, _, _ } =
+                  allowed_methods(req, #state{mode = collection, collection = resources}),
+              ?assertNot(lists:member('POST', Methods2)),
+              {Methods3, _, _ } =
+                  allowed_methods(req, #state{mode = document}),
+              ?assertNot(lists:member('POST', Methods3)),
+              {Methods4, _, _ } =
+                  allowed_methods(req, #state{mode = document, collection = edges}),
+              ?assert(lists:member('DELETE', Methods4))
+      end
+    ].
 
 malformed_request_test_() ->
     {Setup, Cleanup} = setup_cleanup([wrq]),
