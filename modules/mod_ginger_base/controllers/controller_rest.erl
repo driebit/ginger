@@ -39,10 +39,6 @@ service_available(Req, State) ->
     Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
     {true, Req, State#state{context = Context}}.
 
-malformed_request(Req, State = #state{mode = collection}) ->
-    {false, Req, State};
-malformed_request(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
-    {false, Req, State};
 malformed_request(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
     case string:to_integer(wrq:path_info(id, Req)) of
         {error, _Reason} ->
@@ -51,7 +47,10 @@ malformed_request(Req, State = #state{mode = document, collection = resources, p
             {false, Req, State};
         {_Int, _Rest} ->
             {true, Req, State}
-    end.
+    end;
+malformed_request(Req, State) ->
+    {false, Req, State}.
+
 
 allowed_methods(Req, State = #state{mode = document, collection = edges}) ->
     {['DELETE', 'HEAD'], Req, State};
