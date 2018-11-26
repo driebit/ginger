@@ -53,6 +53,8 @@ malformed_request(Req, State = #state{mode = document, collection = resources, p
             {true, Req, State}
     end.
 
+allowed_methods(Req, State = #state{mode = document, collection = edges}) ->
+    {['DELETE', 'HEAD'], Req, State};
 allowed_methods(Req, State = #state{mode = collection, collection = edges}) ->
     {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
@@ -214,7 +216,10 @@ allowed_methods_test_() ->
                 ?assertNot(lists:member('POST', Methods2)),
                 {Methods3, _, _ } =
                     allowed_methods(req, #state{mode = document}),
-                ?assertNot(lists:member('POST', Methods3))
+                ?assertNot(lists:member('POST', Methods3)),
+                {Methods4, _, _ } =
+                    allowed_methods(req, #state{mode = document, collection = edges}),
+                ?assert(lists:member('DELETE', Methods4))
         end
       ]
     }.
