@@ -98,7 +98,7 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
     Id =
         case PathInfo of
             id ->
-                id_from_path(Req);
+                integer_path_info(id, Req);
             path ->
                 {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
                 Result
@@ -108,7 +108,7 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
 
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
-    Subject = id_from_path(Req),
+    Subject = integer_path_info(id, Req),
     Name = wrq:path_info(predicate, Req),
     {ok, Predicate} = m_rsc:name_to_id(Name, Context),
     {Body, Req1} = wrq:req_body(Req),
@@ -168,8 +168,8 @@ path_to_id(Path, Context) ->
             end
     end.
 
-id_from_path(Req) ->
-    erlang:list_to_integer(wrq:path_info(id, Req)).
+integer_path_info(Binding, Req) ->
+    erlang:list_to_integer(wrq:path_info(Binding, Req)).
 
 %%%-----------------------------------------------------------------------------
 %%% Tests
