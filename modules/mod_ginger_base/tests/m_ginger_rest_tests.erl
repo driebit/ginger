@@ -37,9 +37,7 @@ rsc_blocks_test() ->
         maps:get(<<"header">>, Block1)
     ),
     ?assertEqual(
-        [
-            {en, <<"Untranslated body">>}
-        ],
+        [{nl, <<"Untranslated body">>}],
         maps:get(<<"body">>, Block1)
     ),
 
