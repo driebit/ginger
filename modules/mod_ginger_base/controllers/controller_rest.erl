@@ -62,6 +62,13 @@ allowed_methods(Req, State) ->
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
+resource_exists(Req, State = #state{mode = document, collection = edges}) ->
+    Context = State#state.context,
+    Subject = integer_path_info(subject, Req),
+    Predicate = predicate_id_from_path(Req, Context),
+    Object = integer_path_info(object, Req),
+    Result = undefined /= m_edge:get_id(Subject, Predicate, Object, Context),
+    {Result, Req, State};
 resource_exists(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
     Context = State#state.context,
     Id = wrq:path_info(id, Req),
@@ -109,8 +116,7 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
 process_post(Req, State = #state{mode = collection, collection = edges}) ->
     Context = State#state.context,
     Subject = integer_path_info(id, Req),
-    Name = wrq:path_info(predicate, Req),
-    {ok, Predicate} = m_rsc:name_to_id(Name, Context),
+    Predicate = predicate_id_from_path(Req, Context),
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
     Object = maps:get(object, Data),
@@ -170,6 +176,11 @@ path_to_id(Path, Context) ->
 
 integer_path_info(Binding, Req) ->
     erlang:list_to_integer(wrq:path_info(Binding, Req)).
+
+predicate_id_from_path(Req, Context) ->
+    Name = wrq:path_info(predicate, Req),
+    {ok, Id} = m_rsc:name_to_id(Name, Context),
+    Id.
 
 %%%-----------------------------------------------------------------------------
 %%% Tests
@@ -271,10 +282,12 @@ resource_exists_test_() ->
               meck:new(z_context),
               meck:new(wrq),
               meck:new(m_rsc),
+              meck:new(m_edge),
               ok
       end
       %% cleanup
     , fun (_) ->
+              meck:unload(m_edge),
               meck:unload(m_rsc),
               meck:unload(wrq),
               meck:unload(z_context),
@@ -311,6 +324,29 @@ resource_exists_test_() ->
                 {false, _, _} = resource_exists(req, State),
                 meck:expect(m_rsc, name_to_id, 2, {error, whatever}),
                 {false, _, _} = resource_exists(req, State)
+        end
+      , fun () ->
+                State = #state{ mode = document
+                              , collection = edges
+                              },
+                meck:expect(
+                  wrq,
+                  path_info,
+                  fun
+                      (subject, req) ->
+                          "1";
+                      (object, req) ->
+                          "2";
+                      (predicate, req) ->
+                          "depiction"
+                  end
+                 ),
+                meck:expect(m_rsc, name_to_id, 2, {ok, 3}),
+                meck:expect(m_edge, get_id, 4, undefined),
+                {false, _, _} = resource_exists(req, State),
+                meck:expect(m_edge, get_id, 4, 3),
+                {true, _, _} = resource_exists(req, State),
+                ok
         end
       ]
     }.
