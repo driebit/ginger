@@ -32,9 +32,9 @@ get_existing_resource_test_() ->
              {Result3, _Req4, _State4} = controller_rest:to_json(Req3, State3),
              Map = jsx:decode(Result3, [{labels, atom}, return_maps]),
              %% Assertions
-             [ ?assertEqual(false, Result1),
-               ?assertEqual(true, Result2),
-               ?assertEqual(Id, maps:get(id, Map, undefined))
+             [ ?_assertEqual(false, Result1),
+               ?_assertEqual(true, Result2),
+               ?_assertEqual(Id, maps:get(id, Map, undefined))
              ]
      end
     }.
