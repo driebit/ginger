@@ -124,11 +124,13 @@ resource_exists_test_() ->
         end,
         fun () ->
                 State = #state{mode = document},
-                meck_wrq_path_info(#{ subject => "1"
-                                    , object => "2"
-                                    , predicate => "depiction"
-                                    }
-                                  ),
+                controller_rest:meck_map_lookup(
+                  wrq, path_info,
+                  #{ subject => "1"
+                   , object => "2"
+                   , predicate => "depiction"
+                   }
+                 ),
                 meck:expect(m_rsc, name_to_id, 2, {ok, 3}),
                 meck:expect(m_edge, get_id, 4, undefined),
                 {false, _, _} = resource_exists(req, State),
@@ -147,10 +149,12 @@ process_post_test_() ->
                 State = #state{ mode = collection
                               , context = context
                               },
-                meck_wrq_path_info(#{ id => "1"
-                                    , predicate => "depiction"
-                                    }
-                                  ),
+                controller_rest:meck_map_lookup(
+                  wrq, path_info,
+                  #{ id => "1"
+                   , predicate => "depiction"
+                   }
+                 ),
                 Body = jsx:encode(#{object => 2}),
                 meck:expect(wrq, req_body, 1, {Body, req}),
                 PredicateId = 3,
@@ -164,7 +168,3 @@ process_post_test_() ->
         end
       ]
     }.
-
-meck_wrq_path_info(Data) ->
-    Fun = fun (Binding, _Req) -> maps:get(Binding, Data, undefined) end,
-    meck:expect(wrq, path_info, Fun).
