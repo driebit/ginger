@@ -171,7 +171,7 @@ allowed_methods_test_() ->
     ].
 
 malformed_request_test_() ->
-    {Setup, Cleanup} = setup_cleanup([wrq]),
+    {Setup, Cleanup} = controller_rest:setup_cleanup([wrq]),
     { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
@@ -209,7 +209,7 @@ malformed_request_test_() ->
     }.
 
 resource_exists_test_() ->
-    {Setup, Cleanup} = setup_cleanup([z_context, wrq, m_rsc, m_edge]),
+    {Setup, Cleanup} = controller_rest:setup_cleanup([z_context, wrq, m_rsc, m_edge]),
     { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
@@ -242,8 +242,3 @@ resource_exists_test_() ->
         end
       ]
     }.
-
-setup_cleanup(Modules) ->
-    Setup = fun () -> lists:foreach(fun meck:new/1, Modules) end,
-    Cleanup = fun (_) -> lists:foreach(fun meck:unload/1, lists:reverse(Modules)) end,
-    {Setup, Cleanup}.
