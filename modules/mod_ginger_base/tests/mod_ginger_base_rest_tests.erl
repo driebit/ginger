@@ -9,6 +9,7 @@ get_existing_resource_test_() ->
      %% setup
      fun () ->
              Req = #wm_reqdata{
+                      req_cookie = "yumyum",
                       path_info = dict:from_list([ {id, erlang:integer_to_list(Id)}
                                                  , {zotonic_host, testsandboxdb}
                                                  ]
@@ -26,13 +27,15 @@ get_existing_resource_test_() ->
              m_rsc:delete(Id, context())
      end,
      %% tests/instantiator
-     fun ({Req1, State1}) ->
+     fun ({Req, State}) ->
+             {Result, Req1, State1} = controller_rest:service_available(Req, State),
              {Result1, Req2, State2} = controller_rest:malformed_request(Req1, State1),
              {Result2, Req3, State3} = controller_rest:resource_exists(Req2, State2),
              {Result3, _Req4, _State4} = controller_rest:to_json(Req3, State3),
              Map = jsx:decode(Result3, [{labels, atom}, return_maps]),
              %% Assertions
-             [ ?_assertEqual(false, Result1),
+             [ ?_assertEqual(true, Result),
+               ?_assertEqual(false, Result1),
                ?_assertEqual(true, Result2),
                ?_assertEqual(Id, maps:get(id, Map, undefined))
              ]
