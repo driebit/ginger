@@ -11,11 +11,11 @@
  {data, ["data", "resources", id], controller_rest,
   [#{mode => document, collection => resources, path_info => id}]
  },
- {data, ["data", "resources", id, "edges", predicate], controller_rest,
-  [#{mode => collection, collection => edges}]
+ {data, ["data", "resources", id, "edges", predicate], controller_rest_edges,
+  [#{mode => collection}]
  },
- {data, ["data", "resources", subject, "edges", predicate, object], controller_rest,
-  [#{mode => document, collection => edges}]
+ {data, ["data", "resources", subject, "edges", predicate, object], controller_rest_edges,
+  [#{mode => document}]
  },
  {data, ["data", "resources", "path", path], controller_rest,
   [#{mode => document, collection => resources, path_info => path}]
