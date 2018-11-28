@@ -1,4 +1,4 @@
--module(controller_rest).
+-module(controller_rest_resources).
 
 -export([ init/1
         , service_available/2
@@ -7,8 +7,6 @@
         , resource_exists/2
         , content_types_provided/2
         , to_json/2
-        , delete_resource/2
-        , process_post/2
         ]
        ).
 
@@ -19,7 +17,6 @@
 %% NB: the Webmachine documenation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
 -record(state, { mode = undefined
-               , collection = undefined
                , path_info = undefined
                , context = undefined
                }
@@ -31,15 +28,14 @@
 
 init([Args]) ->
     Mode =  maps:get(mode, Args),
-    Collection = maps:get(collection, Args, undefined),
     PathInfo = maps:get(path_info, Args, undefined),
-    {ok, #state{mode = Mode, collection = Collection, path_info = PathInfo}}.
+    {ok, #state{mode = Mode, path_info = PathInfo}}.
 
 service_available(Req, State) ->
     Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
     {true, Req, State#state{context = Context}}.
 
-malformed_request(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
+malformed_request(Req, State = #state{mode = document, path_info = id}) ->
     case string:to_integer(wrq:path_info(id, Req)) of
         {error, _Reason} ->
             {true, Req, State};
@@ -51,27 +47,16 @@ malformed_request(Req, State = #state{mode = document, collection = resources, p
 malformed_request(Req, State) ->
     {false, Req, State}.
 
-allowed_methods(Req, State = #state{mode = document, collection = edges}) ->
-    {['DELETE', 'HEAD'], Req, State};
-allowed_methods(Req, State = #state{mode = collection, collection = edges}) ->
-    {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
     {['GET', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
-resource_exists(Req, State = #state{mode = document, collection = edges}) ->
-    Context = State#state.context,
-    Subject = integer_path_info(subject, Req),
-    Predicate = predicate_id_from_path(Req, Context),
-    Object = integer_path_info(object, Req),
-    Result = undefined /= m_edge:get_id(Subject, Predicate, Object, Context),
-    {Result, Req, State};
-resource_exists(Req, State = #state{mode = document, collection = resources, path_info = id}) ->
+resource_exists(Req, State = #state{mode = document, path_info = id}) ->
     Context = State#state.context,
     Id = wrq:path_info(id, Req),
     {m_rsc:exists(Id, Context), Req, State};
-resource_exists(Req, State = #state{mode = document, collection = resources, path_info = path}) ->
+resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
@@ -83,7 +68,7 @@ resource_exists(Req, State = #state{mode = document, collection = resources, pat
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(Req, State = #state{mode = collection, collection = resources}) ->
+to_json(Req, State = #state{mode = collection}) ->
     Context = State#state.context,
     Args1 = search_query:parse_request_args(
               proplists_filter(
@@ -98,7 +83,7 @@ to_json(Req, State = #state{mode = collection, collection = resources}) ->
     Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
-to_json(Req, State = #state{mode = document, collection = resources, path_info = PathInfo}) ->
+to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Context = State#state.context,
     Id =
         case PathInfo of
@@ -110,28 +95,6 @@ to_json(Req, State = #state{mode = document, collection = resources, path_info =
         end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
-
-delete_resource(Req, State = #state{mode = document, collection = edges}) ->
-    Context = State#state.context,
-    Subject = integer_path_info(subject, Req),
-    Predicate = predicate_id_from_path(Req, Context),
-    Object = integer_path_info(object, Req),
-    ok = m_edge:delete(Subject, Predicate, Object, Context),
-    {true, Req, State}.
-
-process_post(Req, State = #state{mode = collection, collection = edges}) ->
-    Context = State#state.context,
-    Subject = integer_path_info(id, Req),
-    Predicate = predicate_id_from_path(Req, Context),
-    {Body, Req1} = wrq:req_body(Req),
-    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    Object = maps:get(object, Data),
-    case m_edge:insert(Subject, Predicate, Object, Context) of
-        {ok, _EdgeId} ->
-            {true, Req1, State};
-        {error, _Reason} ->
-            {false, Req1, State}
-    end.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
@@ -183,29 +146,15 @@ path_to_id(Path, Context) ->
 integer_path_info(Binding, Req) ->
     erlang:list_to_integer(wrq:path_info(Binding, Req)).
 
-predicate_id_from_path(Req, Context) ->
-    Name = wrq:path_info(predicate, Req),
-    {ok, Id} = m_rsc:name_to_id(Name, Context),
-    Id.
-
 %%%-----------------------------------------------------------------------------
 %%% Tests
 %%%-----------------------------------------------------------------------------
 
 init_test_() ->
     [ fun () ->
-              Map = #{mode => collection, collection => edges},
+              Map = #{mode => collection, path_info => id},
               {ok, State} = init([Map]),
               collection = State#state.mode,
-              edges = State#state.collection,
-              undefined = State#state.path_info,
-              ok
-      end
-    , fun () ->
-              Map = #{mode => collection, collection => resources, path_info => id},
-              {ok, State} = init([Map]),
-              collection = State#state.mode,
-              resources = State#state.collection,
               id = State#state.path_info,
               ok
       end
@@ -213,34 +162,16 @@ init_test_() ->
 
 allowed_methods_test_() ->
     [ fun () ->
-              {Methods, _, _ } =
-                  allowed_methods(req, #state{mode = collection, collection = edges}),
-              ?assert(lists:member('POST', Methods)),
-              ?assertNot(lists:member('GET', Methods)),
-              ok
-      end
-    , fun () ->
-              {Methods, _, _ } =
-                  allowed_methods(req, #state{mode = collection, collection = resources}),
-              ?assertNot(lists:member('POST', Methods)),
-              ok
-      end
-    , fun () ->
-              {Methods, _, _ } =
-                  allowed_methods(req, #state{mode = document}),
-              ?assertNot(lists:member('POST', Methods)),
-              ok
-      end
-    , fun () ->
-              {Methods, _, _ } =
-                  allowed_methods(req, #state{mode = document, collection = edges}),
-              ?assert(lists:member('DELETE', Methods)),
+              {Methods, _, _} = allowed_methods(req, state),
+              ?assert(lists:member('GET', Methods)),
+              ?assert(lists:member('HEAD', Methods)),
+              ?assertEqual(2, erlang:length(Methods)),
               ok
       end
     ].
 
 malformed_request_test_() ->
-    {Setup, Cleanup} = setup_cleanup([wrq]),
+    {Setup, Cleanup} = controller_rest:setup_cleanup([wrq]),
     { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
@@ -251,7 +182,6 @@ malformed_request_test_() ->
       , fun () ->
                 {false, _, _} =
                     malformed_request(req, #state{ mode = document
-                                                 , collection = resources
                                                  , path_info = path
                                                  }
                                      ),
@@ -261,7 +191,6 @@ malformed_request_test_() ->
                 meck:expect(wrq, path_info, 2, "not-an-integer"),
                 {true, _, _} =
                     malformed_request(req, #state{ mode = document
-                                                 , collection = resources
                                                  , path_info = id
                                                  }
                                      ),
@@ -271,7 +200,6 @@ malformed_request_test_() ->
                 meck:expect(wrq, path_info, 2, "23"),
                 {false, _, _} =
                     malformed_request(req, #state{ mode = document
-                                                 , collection = resources
                                                  , path_info = id
                                                  }
                                      ),
@@ -281,19 +209,16 @@ malformed_request_test_() ->
     }.
 
 resource_exists_test_() ->
-    {Setup, Cleanup} = setup_cleanup([z_context, wrq, m_rsc, m_edge]),
+    {Setup, Cleanup} = controller_rest:setup_cleanup([z_context, wrq, m_rsc, m_edge]),
     { setup, Setup, Cleanup
       %% tests
     , [ fun () ->
-                State = #state{mode = collection, collection = resources},
+                State = #state{mode = collection},
                 {true, _, _} = resource_exists(req, State),
                 ok
         end
       , fun () ->
-                State = #state{ mode = document
-                              , collection = resources
-                              , path_info = id
-                              },
+                State = #state{mode = document, path_info = id},
                 meck:expect(z_context, new, 2, ok),
                 meck:expect(wrq, path_info, 2, "1"),
                 meck:expect(m_rsc, exists, 2, false),
@@ -303,10 +228,7 @@ resource_exists_test_() ->
                 ok
         end
       , fun () ->
-                State = #state{ mode = document
-                              , collection = resources
-                              , path_info = path
-                              },
+                State = #state{mode = document, path_info = path},
                 meck:expect(z_context, new, 2, ok),
                 meck:expect(wrq, path_info, 2, "/"),
                 meck:expect(m_rsc, name_to_id, 2, {ok, 1}),
@@ -318,57 +240,5 @@ resource_exists_test_() ->
                 {false, _, _} = resource_exists(req, State),
                 ok
         end
-      , fun () ->
-                State = #state{ mode = document
-                              , collection = edges
-                              },
-                meck_wrq_path_info(#{ subject => "1"
-                                    , object => "2"
-                                    , predicate => "depiction"
-                                    }
-                                  ),
-                meck:expect(m_rsc, name_to_id, 2, {ok, 3}),
-                meck:expect(m_edge, get_id, 4, undefined),
-                {false, _, _} = resource_exists(req, State),
-                meck:expect(m_edge, get_id, 4, 3),
-                {true, _, _} = resource_exists(req, State),
-                ok
-        end
       ]
     }.
-
-process_post_test_() ->
-    {Setup, Cleanup} = setup_cleanup([wrq, m_rsc, m_edge]),
-    { setup, Setup, Cleanup
-      %% tests
-    , [ fun () ->
-                State = #state{ mode = collection
-                              , collection = edges
-                              , context = context
-                              },
-                meck_wrq_path_info(#{ id => "1"
-                                    , predicate => "depiction"
-                                    }
-                                  ),
-                Body = jsx:encode(#{object => 2}),
-                meck:expect(wrq, req_body, 1, {Body, req}),
-                PredicateId = 3,
-                meck:expect(m_rsc, name_to_id, 2, {ok, PredicateId}),
-                EdgeId = 4,
-                meck:expect(m_edge, insert, 4, {ok, EdgeId}),
-                {true, _, _} = process_post(req, State),
-                meck:expect(m_edge, insert, 4, {error, {acl, false}}),
-                {false, _, _} = process_post(req, State),
-                ok
-        end
-      ]
-    }.
-
-setup_cleanup(Modules) ->
-    Setup = fun () -> lists:foreach(fun meck:new/1, Modules) end,
-    Cleanup = fun (_) -> lists:foreach(fun meck:unload/1, lists:reverse(Modules)) end,
-    {Setup, Cleanup}.
-
-meck_wrq_path_info(Data) ->
-    Fun = fun (Binding, _Req) -> maps:get(Binding, Data, undefined) end,
-    meck:expect(wrq, path_info, Fun).
