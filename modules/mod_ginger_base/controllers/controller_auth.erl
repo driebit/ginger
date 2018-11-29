@@ -1,7 +1,6 @@
 -module(controller_auth).
 
 -export([ init/1
-        , service_available/2
         , allowed_methods/2
         , post_is_create/2
         , process_post/2
@@ -15,10 +14,7 @@
 
 %% NB: the Webmachine documentation uses "context" where we use "state",
 %% we reserve "context" for the way it's used by Zotonic/Ginger.
--record(state, { mode = undefined
-               , context = undefined
-               }
-       ).
+-record(state, { mode = undefined}).
 
 %%%-----------------------------------------------------------------------------
 %%% Resource functions
@@ -27,18 +23,14 @@
 init([Args]) ->
     {ok, #state{mode = maps:get(mode, Args)}}.
 
-service_available(Req, State) ->
-    Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
-    {true, Req, State#state{context = Context}}.
-
 allowed_methods(Req, State) ->
     {['POST', 'HEAD', 'GET'], Req, State}.
 
 post_is_create(Req, Context) ->
     {false, Req, Context}.
 
-process_post(Req, State = #state{mode = login}) ->
-    C = State#state.context,
+process_post(Req, #state{mode = login}) ->
+    C = z_context:new(Req, ?MODULE),
     {B, Req1} = wrq:req_body(Req),
     M = jsx:decode(B, [return_maps, {labels, atom}]),
     U = maps:get(username, M, undefined),
@@ -51,29 +43,34 @@ process_post(Req, State = #state{mode = login}) ->
                     z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
-                    response(200, user(Id, C2), C2#context.wm_reqdata, C2);
+                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C2)), Req1),
+                    {true, Req2, C2};
                 _ ->
-                    response(200, user(Id, C), Req1, C)
+                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req1),
+                    {true, Req2, C}
             end;
         {error, _} ->
-            response(400, <<"Error">>, Req1, C)
-    end.
+            {{halt, 400}, Req1, C}
+    end;
+process_post(Req, #state{mode = logout}) ->
+    C = z_context:new(Req, ?MODULE),
+    {ok, C1} = z_session_manager:continue_session(C),
+    {ok, C2} = z_session_manager:stop_session(C1),
+    response(200, <<>>, C2#context.wm_reqdata, C2).
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(Req, State = #state{mode = login}) ->
-    C = State#state.context,
-    {ok, C2} = z_session_manager:continue_session(C),
-    case z_session:get(auth_user_id, C2) of
+to_json(Req, #state{mode = login}) ->
+    {ok, C} = z_session_manager:continue_session(z_context:new(Req, ?MODULE)),
+    case z_session:get(auth_user_id, C) of
         undefined ->
-            response(400, <<"Error">>, Req, C);
+            Req2 = wrq:set_resp_body(jsx:encode(<<"">>)),
+            {{halt, 400}, Req2, C};
         Id ->
-            response(200, user(Id, C2), C2#context.wm_reqdata, C2)
-    end;
-to_json(_Req, State = #state{mode = logout}) ->
-    {ok, C1} = z_session_manager:stop_session(State#state.context),
-    response(200, <<>>, C1#context.wm_reqdata, C1).
+            Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req),
+            {{halt, 200}, Req2, C}
+    end.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
