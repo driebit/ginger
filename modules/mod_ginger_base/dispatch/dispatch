@@ -4,21 +4,23 @@
  %% The home page, just shows the "home.tpl" template.
  {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
- %% REST API
- {data, ["data", "resources"], controller_rest,
+ %% Rest API resources
+ {data, ["data", "resources"], controller_rest_resources,
   [#{mode => collection}]
  },
- {data, ["data", "resources", id], controller_rest,
+ {data, ["data", "resources", id], controller_rest_resources,
   [#{mode => document, path_info => id}]
  },
+ {data, ["data", "resources", "path", path], controller_rest_resources,
+  [#{mode => document, path_info => path}]
+ },
+
+ %% Rest API edges
  {data, ["data", "resources", id, "edges", predicate], controller_rest_edges,
   [#{mode => collection}]
  },
  {data, ["data", "resources", subject, "edges", predicate, object], controller_rest_edges,
   [#{mode => document}]
- },
- {data, ["data", "resources", "path", path], controller_rest,
-  [#{mode => document, path_info => path}]
  },
 
  %% Auth API
