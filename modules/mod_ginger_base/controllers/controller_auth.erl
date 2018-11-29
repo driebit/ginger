@@ -54,9 +54,13 @@ process_post(Req, #state{mode = login}) ->
     end;
 process_post(Req, #state{mode = logout}) ->
     C = z_context:new(Req, ?MODULE),
-    {ok, C1} = z_session_manager:continue_session(C),
-    {ok, C2} = z_session_manager:stop_session(C1),
-    response(200, <<>>, C2#context.wm_reqdata, C2).
+    {ok, C2} = z_session_manager:continue_session(C),
+    case z_session_manager:stop_session(C2) of
+        {ok, C3} ->
+            {{halt, 204}, Req, C3};
+        _ ->
+            {{halt, 400}, Req, C2}
+    end.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
@@ -65,11 +69,10 @@ to_json(Req, #state{mode = login}) ->
     {ok, C} = z_session_manager:continue_session(z_context:new(Req, ?MODULE)),
     case z_session:get(auth_user_id, C) of
         undefined ->
-            Req2 = wrq:set_resp_body(jsx:encode(<<"">>)),
-            {{halt, 400}, Req2, C};
+            {{halt, 400}, Req, C};
         Id ->
             Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req),
-            {{halt, 200}, Req2, C}
+            {true, Req2, C}
     end.
 
 %%%-----------------------------------------------------------------------------
@@ -80,6 +83,3 @@ user(Id, Context) ->
     #{ <<"identity">> => proplists:delete(propb, m_identity:get(Id, Context))
      , <<"resource">> => m_ginger_rest:rsc(Id, Context)
      }.
-
-response(Status, Body, Req, Context) ->
-    {{halt, Status}, wrq:set_resp_body(jsx:encode(Body), Req), Context}.
