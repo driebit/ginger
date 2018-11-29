@@ -98,11 +98,34 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     {Json, Req, State}.
 
 process_post(Req, State = #state{mode = collection}) ->
-    {false, Req, State}.
+    Context = State#state.context,
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    lager:debug("Data = ~p", [Data]),
+    Props = lists:foldl( fun post_props/2
+                       , []
+                       , maps:to_list(Data)
+                       ),
+    {ok, Id} = m_rsc:insert(Props, Context),
+    Location = "/data/resources/" ++ erlang:integer_to_list(Id),
+    Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
+    {{halt, 201}, Req2, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+post_props(Trans = {summary, _}, Acc) ->
+    trans(Trans, Acc);
+post_props(Trans = {body, _}, Acc) ->
+    trans(Trans, Acc);
+post_props(Trans = {title, _}, Acc) ->
+    trans(Trans, Acc);
+post_props({Key, Value}, Acc) ->
+    [{Key, Value} | Acc].
+
+trans({Key, Value}, Acc) ->
+    [{Key, {trans, maps:to_list(Value)}} | Acc].
 
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
