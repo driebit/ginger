@@ -48,7 +48,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -164,8 +164,9 @@ allowed_methods_test_() ->
     [ fun () ->
               {Methods, _, _} = allowed_methods(req, state),
               ?assert(lists:member('GET', Methods)),
+              ?assert(lists:member('POST', Methods)),
               ?assert(lists:member('HEAD', Methods)),
-              ?assertEqual(2, erlang:length(Methods)),
+              ?assertEqual(3, erlang:length(Methods)),
               ok
       end
     ].
