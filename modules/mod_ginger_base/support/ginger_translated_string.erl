@@ -7,5 +7,6 @@
 -spec encode(term()) -> list().
 encode({trans, Translations}) ->
     [{Key, z_html:unescape(Value)} || {Key, Value} <- Translations];
+
 encode(Value) ->
     ginger_type:error("ginger translation", Value).

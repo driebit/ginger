@@ -26,8 +26,9 @@ help:
 	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
-	@echo "  test site=site-name     Run brower site tests in Docker container (args=Nightwatch arguments url=http://...)"
-	@echo "  test-chrome =site-name  Run brower site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
+	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  tests					 Find all Ginger tests and run them"
 	@echo "  up                      Start containers"
 	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
 	@echo "  update                  Update containers"
@@ -85,6 +86,10 @@ test:
 test-chrome:
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
 	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="$(url)" npm --prefix tests/ run test-chrome -- $(args)
+
+.PHONY: tests
+tests:
+	docker-compose run --rm zotonic /scripts/runtests.sh
 
 up:
 	@docker-compose up --build zotonic kibana

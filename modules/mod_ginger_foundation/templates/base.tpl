@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <!--
- #################################
-	   _      _      _     _ _
-	__| |_ __(_) ___| |__ (_) |_
-   / _` | '__| |/ _ \ '_ \| | __|
-  | (_| | |  | |  __/ |_) | | |_
-   \__,_|_|  |_|\___|_.__/|_|\__|
+#################################
+      _      _      _     _ _
+   __| |_ __(_) ___| |__ (_) |_
+  / _` | '__| |/ _ \ '_ \| | __|
+ | (_| | |  | |  __/ |_) | | |_
+  \__,_|_|  |_|\___|_.__/|_|\__|
 
- ############ driebit ############
+############ driebit ############
 
- geavanceerde internet applicaties
+ geavanceerde internetapplicaties
 
-		 Oudezijds Voorburgwal 282
-				 1012 GL Amsterdam
-					020 - 420 8449
-				   info@driebit.nl
-					www.driebit.nl
+        Oudezijds Voorburgwal 282
+                1012 GL Amsterdam
+                   020 - 420 8449
+                  info@driebit.nl
+                   www.driebit.nl
 
-##################################
+#################################
 //-->
 <!--[if IE 8 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie8"> <![endif]-->
 <!--[if IE 9 ]> <html lang="{{ z_language|default:"en"|escape }}" class="ie9"> <![endif]-->

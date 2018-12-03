@@ -21,8 +21,6 @@
 -include("zotonic.hrl").
 
 manage_schema(_Version, Context) ->
-    m_config:set_value(site, html_elt_extra, <<"embed,iframe,object,script,ginger-embed">>, Context),
-    m_config:set_value(site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>, Context),
     Datamodel = #datamodel{
         categories=[
             {ginger_embed, media, [

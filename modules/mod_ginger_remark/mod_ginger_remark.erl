@@ -23,7 +23,6 @@
 ]).
 
 manage_schema(_Version, Context) ->
-    m_config:set_value(i18n, language, nl, Context),
     Datamodel = #datamodel{
         categories=[
             {remark, text, [

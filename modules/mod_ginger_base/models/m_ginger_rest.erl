@@ -18,16 +18,16 @@
 %% @doc Get REST resource properties.
 -spec rsc(m_rsc:resource(), z:context()) -> resource_properties().
 rsc(Id, Context) ->
-    Rsc = #{
-        <<"id">> => Id,
-        <<"title">> => translations(Id, title, Context),
-        <<"body">> => translations(Id, body, Context),
-        <<"summary">> => translations(Id, summary, Context),
-        <<"path">> => m_rsc:page_url(Id, Context),
-        <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context),
-        <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context)),
-        <<"properties">> => custom_props(Id, Context)
-    },
+    Rsc = #{ <<"id">> => Id
+           , <<"title">> => translations(Id, title, Context)
+           , <<"body">> => translations(Id, body, Context)
+           , <<"summary">> => translations(Id, summary, Context)
+           , <<"path">> => m_rsc:p(Id, page_path, m_rsc:page_url(Id, Context), Context)
+           , <<"publication_date">> => m_rsc:p(Id, publication_start, null, Context)
+           , <<"categories">> => proplists:get_value(is_a, m_rsc:p(Id, category, Context))
+           , <<"properties">> => custom_props(Id, Context)
+           , <<"blocks">> => blocks(Id, Context)
+           },
     with_media(Rsc, Context).
 
 %% @doc Add all edges to resource.
@@ -67,8 +67,10 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
 translations({trans, Translations}, Context) ->
     [{Key, z_html:unescape(filter_show_media:show_media(Value, Context))} || {Key, Value} <- Translations];
+translations(undefined, Context) ->
+    [{z_trans:default_language(Context), null}];
 translations(Value, Context) ->
-    [{z_trans:default_language(Context), Value}].
+    [{z_trans:default_language(Context), z_html:unescape(filter_show_media:show_media(Value, Context))}].
 
 %% @doc Get resource property translations.
 -spec translations(m_rsc:resource(), atom(), z:context()) -> translations().
@@ -142,3 +144,20 @@ mediaclasses(Context) ->
       end,
       lists:usort(qlc:eval(Q))
      ).
+
+%% @doc Get resource blocks.
+-spec blocks(m_rsc:resouce(), z:context()) -> [map()].
+blocks(Id, Context) ->
+    [block(Block, Context) || Block <- m_rsc:p(Id, blocks, [], Context)].
+
+%% @doc Maybe translate each block property.
+-spec block(proplists:proplist(), z:context()) -> map.
+block(Block, Context) ->
+    #{
+        <<"type">> => proplists:get_value(type, Block),
+        <<"name">> => proplists:get_value(name, Block),
+        <<"style">> => proplists:get_value(style, Block, null),
+        <<"header">> => translations(proplists:get_value(header, Block), Context),
+        <<"body">> => translations(proplists:get_value(body, Block), Context),
+        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null)
+    }.
