@@ -2,7 +2,7 @@
     {% if text %}
         {% with m.geonames[{search text=text}] as places %}
             <div id="dialog_connect_loop_geonames_results" class="thumbnails">
-                {% include "_action_dialog_connect_tab_find_geonames_results_loop.tpl" result=places %}
+                {% include "_action_dialog_connect_tab_find_geonames_results_loop.tpl" result=places show_no_results %}
             </div>
         {% endwith %}
     {% else %}
@@ -10,7 +10,7 @@
         {% if [subject_id]|location_defined %}
             {% with m.geonames[{geo_lookup id=subject_id}] as places %}
                 <div id="dialog_connect_loop_geonames_results" class="thumbnails">
-                    {% include "_action_dialog_connect_tab_find_geonames_results_loop.tpl" result=places|reversed %}
+                    {% include "_action_dialog_connect_tab_find_geonames_results_loop.tpl" result=places|reversed show_no_results %}
                 </div>
             {% endwith %}
         {% else %}
