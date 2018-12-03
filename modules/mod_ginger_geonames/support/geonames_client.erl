@@ -14,7 +14,7 @@
 search(Params, Context) ->
     ParamsWithType = [{<<"type">>, <<"json">>} | Params],
     Url = url(<<"search">>, ParamsWithType, Context),
-    ginger_http_client:get(Url).
+    result(ginger_http_client:get(Url)).
 
 %% @doc Reversely geocode a place name based on coordinates.
 -spec find_nearby_place_name(coordinates(), z:context()) -> [map()].
@@ -35,18 +35,25 @@ find_nearby(Api, {Latitude, Longitude}, Context) ->
         ],
         Context
     ),
-    case ginger_http_client:get(Url) of
-        undefined ->
-            [];
-        #{<<"geonames">> := Locations} ->
-            Locations;
-        #{<<"ocean">> := Ocean} ->
-            [Ocean]
-    end.
+    result(ginger_http_client:get(Url)).
 
 %% @doc Construct GeoNames API URL.
 -spec url(binary(), proplists:proplist(), z:context()) -> ginger_uri:uri().
 url(Api, Params, Context) ->
     Url = <<"http://api.geonames.org/", Api/binary>>,
-    ParamsWithUsername = [{<<"username">>, mod_ginger_geonames:username(Context)} | Params],
-    ginger_http_client:url_with_query_string(Url, ParamsWithUsername).
+    WithDefaults = z_utils:props_merge(default_params(Context), Params),
+    ginger_http_client:url_with_query_string(Url, WithDefaults).
+
+-spec default_params(z:context()) -> proplists:proplist().
+default_params(Context) ->
+    [
+        {<<"username">>, mod_ginger_geonames:username(Context)},
+        {<<"lang">>, z_context:language(Context)}
+    ].
+
+result(undefined) ->
+    [];
+result(#{<<"geonames">> := Places}) ->
+    Places;
+result(#{<<"ocean">> := Ocean}) ->
+    Ocean.
