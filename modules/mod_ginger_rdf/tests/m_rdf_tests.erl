@@ -11,14 +11,12 @@ m_find_value_test() ->
             #triple{
                 subject = <<"http://dinges.com/123">>,
                 predicate = <<"dc:author">>,
-                object = [
-                    #rdf_value{
-                        value = <<"Author 1">>
-                    },
-                    #rdf_value{
-                        value = <<"Author 2">>
-                    }
-                ]
+                object = #rdf_value{value = <<"Author 1">>}
+              },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = <<"dc:author">>,
+                object = #rdf_value{value = <<"Author 2">>}
             },
             #triple{
                 subject = <<"http://dinges.com/123">>,
@@ -30,19 +28,9 @@ m_find_value_test() ->
             #triple{
                 subject = <<"http://dinges.com/123">>,
                 predicate = <<"single_value_in_list">>,
-                object = [#rdf_value{
+                object = #rdf_value{
                     value = <<"Value2">>
-                }]
-            },
-            #triple{
-                subject = <<"http://dinges.com/123">>,
-                predicate = <<"nonrecord_content_in_list">>,
-                object = [<<"Value3">>]
-            },
-            #triple{
-                subject = <<"http://dinges.com/123">>,
-                predicate = <<"empty_list_object">>,
-                object = []
+                }
             },
             #triple{
                 subject = <<"http://dinges.com/123">>,
@@ -52,16 +40,18 @@ m_find_value_test() ->
             #triple{
                 subject = <<"http://dinges.com/123">>,
                 predicate = <<"dc:title">>,
-                object = [
-                    #rdf_value{
-                        language = <<"nl-NL">>,
-                        value = <<"Goed verhaal broer!">>
-                    },
-                    #rdf_value{
-                        language = <<"en-US">>,
-                        value = <<"Good story bro!">>
-                    }
-                ]
+                object = #rdf_value{
+                    language = <<"nl-NL">>,
+                    value = <<"Goed verhaal broer!">>
+                }
+            },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = <<"dc:title">>,
+                object = #rdf_value{
+                    language = <<"en-US">>,
+                    value = <<"Good story bro!">>
+                }
             }
         ]
     },
