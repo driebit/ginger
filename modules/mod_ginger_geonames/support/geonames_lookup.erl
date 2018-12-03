@@ -3,7 +3,8 @@
 
 -export([
     schedule_reverse_lookup/2,
-    reverse_lookup/2
+    reverse_lookup/2,
+    reverse_lookup_callback/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -19,16 +20,27 @@ schedule_reverse_lookup(Id, Context) ->
         _ ->
             z_pivot_rsc:insert_task(
                 ?MODULE,
-                reverse_lookup,
+                reverse_lookup_callback,
                 <<"geonames-lookup-", (z_convert:to_binary(Id))/binary>>,
                 [Id],
                 Context
             )
     end.
 
-%% @doc Look up a place name in GeoNames. If one is found, send a notification.
--spec reverse_lookup(m_rsc:resource(), z:context()) -> ok | {delay, pos_integer()}.
+%% @doc Find GeoNames places based on a resource's geo coordinates.
+-spec reverse_lookup(m_rsc:resource(), z:context()) -> [map()] | {error, no_geo}.
 reverse_lookup(Id, Context) ->
+    case geo(Id, Context) of
+        undefined ->
+            {error, no_geo};
+        Geo ->
+            geonames_client:extended_find_nearby(Geo, Context)
+    end.
+
+%% @doc Callback for schedule_reverse_lookup/2.
+%%      Look up a place name in GeoNames. If one is found, send a notification.
+-spec reverse_lookup_callback(m_rsc:resource(), z:context()) -> ok | {delay, pos_integer()}.
+reverse_lookup_callback(Id, Context) ->
     case geo(Id, Context) of
         undefined ->
              %% Resource has no geo coordinates any longer, so ignore.
