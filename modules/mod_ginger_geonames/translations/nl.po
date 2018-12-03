@@ -36,7 +36,7 @@ msgstr "Inwoners:"
 #: ./user/modules/mod_ginger_geonames/templates/_media_upload_panel_geonames.tpl:11
 msgid ""
 "Search places in GeoNames"
-msgstr "Zoeken plaatsen in GeoNames"
+msgstr "Zoek plaatsen in GeoNames"
 
 #: ./user/modules/mod_ginger_geonames/templates/_action_dialog_connect_tab_find_geonames_results.tpl:17
 msgid ""
