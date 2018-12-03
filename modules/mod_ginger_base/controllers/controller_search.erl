@@ -60,9 +60,9 @@ to_json(Req, State) ->
             %% Perform search (Zotonic offsets start at 1)
             Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
             #search_result{
-               result = Results,
-               facets = Facets,
-               total = Total
+                result = Results,
+                facets = Facets,
+                total = Total
             } = Result,
             %% Filter search results not visible for current user
             VisibleResults = lists:filter(
