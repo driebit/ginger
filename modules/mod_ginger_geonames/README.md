@@ -64,10 +64,10 @@ To get the complete URI for a GeoNames place based on its id (e.g. `2759794`):
 {{ m.geonames[2759794].uri }}
 ```
 
-To find place names based on a resource’s geo coordinates:
+To find place names based on a resource’s geo coordinates (e.g. resource `123`):
 
 ```dtl
-{% for place in m.geonames[{geo_lookup id=subject_id}] %}
+{% for place in m.geonames[{geo_lookup id=123}] %}
     {% print place %}
 {% endwith %}
 ```
