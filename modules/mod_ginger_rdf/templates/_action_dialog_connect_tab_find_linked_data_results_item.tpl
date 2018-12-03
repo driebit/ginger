@@ -2,7 +2,7 @@
     m.rdf[rdf].id,
     m.rdf[rdf].type,
     m.rdf[rdf].title,
-    m.rdf[rdf].description,
+    m.rdf[rdf].description|default:m.rdf[rdf].abstract,
     m.rdf[rdf].thumbnail,
     m.rdf[rdf].rights
 as

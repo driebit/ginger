@@ -12,6 +12,7 @@
     m_to_list/2,
     m_value/2,
     find_resource/2,
+    merge/1,
     merge/2,
     object/3,
     objects/2,
@@ -20,14 +21,18 @@
     ensure_resource/3,
     ensure_resource_edges/4,
     lookup_triple/2,
-    to_triples/2
+    to_triples/2,
+    rdf_resource/2
 ]).
 
 -opaque rdf_resource() :: #rdf_resource{}.
 -opaque triple() :: #triple{}.
+-type predicate() :: ginger_uri:uri().
+
 -export_type([
     rdf_resource/0,
-    triple/0
+    triple/0,
+    predicate/0
 ]).
 
 m_find_value(#rdf_resource{} = Rdf, #m{value = undefined} = M, _Context) ->
@@ -69,8 +74,27 @@ m_to_list(_, _Context) ->
 m_value(#m{}, _Context) ->
     undefined.
 
+%% @doc Merge a list of RDF resources, grouping them by their subject URIs.
+-spec merge([rdf_resource()]) -> [rdf_resource()].
+merge(RdfResources) ->
+    maps:values(
+        lists:foldl(
+            fun(#rdf_resource{id = Uri} = Resource, Acc) ->
+                case maps:get(Uri, Acc, undefined) of
+                    undefined ->
+                        Acc#{Uri => Resource};
+                    Current ->
+                        Acc#{Uri => merge(Current, Resource)}
+                end
+            end,
+            #{},
+            RdfResources
+        )
+    ).
+
+-spec merge(rdf_resource(), rdf_resource) -> rdf_resource().
 merge(#rdf_resource{triples = Triples1} = Rdf1, #rdf_resource{triples = Triples2}) ->
-    Rdf1#rdf_resource{triples = Triples1 ++ Triples2}.
+    Rdf1#rdf_resource{triples = lists:usort(Triples1 ++ Triples2)}.
 
 %% @doc Fetch an object from a RDF resource
 object(Url, Predicate, Context) ->
@@ -178,72 +202,7 @@ rsc(Uri, Context) ->
 %% @doc Export resource to a set of triples
 -spec to_triples(integer(), #context{}) -> #rdf_resource{}.
 to_triples(Id, Context) ->
-    Props = case m_rsc:get_visible(Id, Context) of
-		undefined -> [];
-		VisibleProps -> VisibleProps
-	end,
-
-    Triples = lists:flatten(
-        %% Resource properties
-        lists:filtermap(
-            fun(Prop) ->
-                case property_to_triples(Prop, Props, Context) of
-                    [] ->
-                        false;
-                    PropTriples ->
-                        {true, PropTriples}
-                end
-            end,
-            Props
-        ) ++
-
-        %% Site title is publisher
-        publisher_triples(Context) ++
-
-        %% Outgoing resource edges
-        lists:filtermap(
-            fun({Key, Edges}) ->
-                Predicate = m_predicate:get(Key, Context),
-                case proplists:get_value(uri, Predicate) of
-                    undefined ->
-                        false;
-                    PredicateUri ->
-                        {true, lists:filtermap(
-                            fun(Edge) ->
-                                Subject = proplists:get_value(subject_id, Edge),
-                                Object = proplists:get_value(object_id, Edge),
-
-                                {true, [
-                                    #triple{
-                                        type = resource,
-                                        predicate = PredicateUri,
-                                        subject = m_rsc:p(Subject, uri, Context),
-                                        object = m_rsc:p(Object, uri, Context)
-                                    },
-
-                                    %% Add literal triple with the edge's object
-                                    %% title for convenience.
-                                    #triple{
-                                        predicate = <<?NS_DCTERMS, "title">>,
-                                        subject = m_rsc:p(Object, uri, Context),
-                                        object = #rdf_value{value = z_trans:trans(m_rsc:p(Object, title, Context), Context)}
-                                    }
-                                ]}
-                            end,
-                            Edges
-                        )}
-                end
-            end,
-            m_edge:get_edges(Id, Context)
-        )
-    ),
-
-    %% Find thumbnail
-    WithThumbnail =
-        with_original_media(Id, with_thumbnail(Id, Triples, Context), Context),
-
-    Result = z_notifier:foldr(#rsc_to_rdf{id = Id}, WithThumbnail, Context),
-    rdf_resource(m_rsc:p(Id, uri, Context), Result).
+    m_rdf_export:to_rdf(Id, Context).
 
 -spec rdf_resource(binary(), [#triple{}]) -> #rdf_resource{}.
 rdf_resource(SubjectUri, Triples) ->
@@ -251,172 +210,6 @@ rdf_resource(SubjectUri, Triples) ->
         id = SubjectUri,
         triples = [with_subject(SubjectUri, Triple) || Triple <- Triples]
     }.
-
-%% Each property can map to one or more triples
-property_to_triples({_, <<>>}, _Props, _Context) ->
-    %% Skip empty binary values
-    [];
-property_to_triples({_, undefined}, _Props, _Context) ->
-    %% Skip undefined values
-    [];
-property_to_triples({address_city, Value}, _Props, _Context) ->
-    [
-        #triple{predicate = <<?NS_VCARD, "locality">>, object = #rdf_value{value = Value}}
-    ];
-property_to_triples({address_country, Value}, _Props, _Context) ->
-    [
-        #triple{predicate = <<?NS_VCARD, "country-name">>, object = #rdf_value{value = Value}}
-    ];
-property_to_triples({address_postcode, Value}, _Props, _Context) ->
-    [
-        #triple{predicate = <<?NS_VCARD, "postal-code">>, object = #rdf_value{value = Value}}
-    ];
-property_to_triples({address_street_1, Value}, _Props, _Context) ->
-    [
-        #triple{predicate = <<?NS_VCARD, "street-address">>, object = #rdf_value{value = Value}}
-    ];
-property_to_triples({body, Value}, _Props, Context) ->
-    %% TODO add support for multilingual properties
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "description">>,
-            object = #rdf_value{value = z_html:strip(z_trans:trans(Value, Context))}
-        }
-    ];
-property_to_triples({category_id, Value}, _Props, Context) ->
-    case get_category_uri(Value, Context) of
-        undefined ->
-            [];
-        Uri ->
-            [
-                #triple{
-                    type = resource,
-                    predicate = <<?NS_RDF, "type">>,
-                    object = Uri
-                }
-            ]
-    end;
-property_to_triples({created, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "created">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({date_start, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "date">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({modified, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "modified">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({name_first, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_FOAF, "firstName">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({name_surname, Value}, Props, _Context) ->
-    Surname = case proplists:get_value(name_surname_prefix, Props) of
-        undefined ->
-            Value;
-        <<>> ->
-            Value;
-        Prefix ->
-            iolist_to_binary([Prefix, <<" ">>, Value])
-    end,
-    [
-        #triple{
-            predicate = <<?NS_FOAF, "familyName">>,
-            object = #rdf_value{value = Surname}
-        }
-    ];
-property_to_triples({phone, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_FOAF, "phone">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({pivot_location_lat, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_GEO, "lat">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({pivot_location_lng, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_GEO, "long">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({publication_start, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "issued">>,
-            object = #rdf_value{value = Value}
-        }
-    ];
-property_to_triples({license, Value}, _Props, _Context) ->
-    [
-        #triple{
-            type = resource,
-            predicate = <<?NS_DCTERMS, "license">>,
-            object = Value
-        }
-    ];
-property_to_triples({subtitle, Value}, _Props, Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "alternative">>,
-            object = #rdf_value{value = z_trans:trans(Value, Context)}
-        }
-    ];
-property_to_triples({summary, Value}, _Props, Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "abstract">>,
-            object = #rdf_value{value = z_trans:trans(Value, Context)}
-        }
-    ];
-property_to_triples({title, Value}, _Props, Context) ->
-    [
-        #triple{
-            predicate = <<?NS_DCTERMS, "title">>,
-            object = #rdf_value{value = z_trans:trans(Value, Context)}
-        }
-    ];
-property_to_triples({website, Value}, _Props, _Context) ->
-    [
-        #triple{
-            predicate = <<?NS_FOAF, "homepage">>,
-            object = Value
-        }
-    ];
-property_to_triples({_Prop, _Val}, _, _) ->
-    [].
-
-%% @doc Return publisher triples based on the site name and hostname
--spec publisher_triples(#context{}) -> [#triple{}].
-publisher_triples(Context) ->
-    Hostname = z_context:abs_url(<<"">>, Context),
-    [
-        #triple{
-            type = resource,
-            predicate = <<?NS_DCTERMS, "publisher">>,
-            object = Hostname
-        }
-    ].
 
 %% @doc Find all objects matching the predicate.
 -spec objects(rdf_resource(), binary()) -> list().
@@ -452,6 +245,7 @@ lookup_triple(title, Triples) ->
         [
             <<"http://purl.org/dc/terms/title">>,
             <<?NS_RDF_SCHEMA, "label">>,
+            <<"http://nl.dbpedia.org/property/naam">>,
             <<"http://purl.org/dc/elements/1.1/title">> %% legacy
         ],
         Triples
@@ -554,69 +348,12 @@ lookup_triples([Predicate | Rest], Triples) ->
 lookup_triples([], _Triples) ->
     undefined.
 
-%% @doc Try to media triples and add them
--spec with_thumbnail(integer(), list(), #context{}) -> list().
-with_thumbnail(Id, Triples, Context) ->
-    maybe_add_media(
-        fun() ->
-            z_media_tag:url(Id, [{mediaclass, <<"foaf-thumbnail">>}, {use_absolute_url, true}], Context)
-        end,
-        <<?NS_FOAF, "thumbnail">>,
-        Triples
-    ).
-
-%% @doc Try to find media triples and add them
--spec with_original_media(integer(), list(), #context{}) -> list().
-with_original_media(Id, Triples, Context) ->
-    maybe_add_media(
-        fun() ->
-            z_media_tag:url(Id, [{use_absolute_url, true}], Context)
-        end,
-        <<?NS_FOAF, "depiction">>,
-        Triples
-    ).
-
 %% @doc Add subject URI to each triple that has none.
 -spec with_subject(binary(), #triple{}) -> #triple{}.
 with_subject(SubjectUri, #triple{subject = undefined} = Triple) ->
     Triple#triple{subject = SubjectUri};
 with_subject(_SubjectUri, #triple{} = Triple) ->
     Triple.
-
-maybe_add_media(Fun, Predicate, Triples) ->
-    case Fun() of
-        {ok, MediaUrl} ->
-            Triples ++ [#triple{
-                type = resource,
-                predicate = Predicate,
-                object = MediaUrl
-            }];
-        {error, _} ->
-            Triples
-    end.
-
-%% @doc Get category URI, starting at the most specific category and falling
-%%      back to parent categories
-get_category_uri([], _Context) ->
-    undefined;
-get_category_uri([Category|T], Context) ->
-    %% Don't use m_rsc:p(Id, uri, Context) as that will return all URIs, even
-    %% including generated ones (http://site.com/id/123). We only want to return
-    %% a URI if it has been set explicitly.
-    case m_rsc:get_visible(Category, Context) of
-        undefined ->
-            undefined;
-        Props ->
-            case proplists:get_value(uri, Props) of
-                undefined ->
-                    %% Fall back to parent category
-                    get_category_uri(T, Context);
-                Uri ->
-                    Uri
-            end
-    end;
-get_category_uri(Category, Context) ->
-    get_category_uri(lists:reverse(m_category:is_a(Category, Context)), Context).
 
 to_json_ld(Id, Context) ->
     jsx:encode(ginger_json_ld:serialize_to_map(to_triples(Id, Context))).

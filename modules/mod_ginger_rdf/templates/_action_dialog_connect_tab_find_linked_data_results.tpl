@@ -1,4 +1,4 @@
-<div id="dialog_connect_results" class="connect-results">
+<div class="connect-results">
 
     {% with m.search[{rdf pagelen=10 id=subject_id text=text|default:"" filters=filters}] as result %}
 
@@ -12,7 +12,6 @@
         </div>
 
         {% block results %}
-            <p>{% if result|length > 0 %}{{ result.total }} {_ results _}{% endif %}</p>
         {% endblock %}
 
         <div id="dialog_connect_loop_linked_data_results" class="thumbnails">

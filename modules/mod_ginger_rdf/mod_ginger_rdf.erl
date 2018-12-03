@@ -8,6 +8,7 @@
 -mod_description("RDF in Zotonic").
 -mod_prio(400).
 -mod_schema(4).
+-mod_depends([mod_content_groups]).
 
 -behaviour(gen_server).
 
@@ -85,7 +86,11 @@ observe_search_query(#search_query{} = Query, Context) ->
 
 -spec observe_content_types_dispatch(#content_types_dispatch{}, list(), #context{}) -> list().
 observe_content_types_dispatch(#content_types_dispatch{}, Acc, _Context) ->
-    [{"application/ld+json", rsc_json_ld} | Acc].
+    [
+        {"application/ld+json", rsc_json_ld},
+        {"text/turtle", rsc_turtle}
+
+    | Acc].
 
 %% @doc Find related items in linked data
 -spec event(#postback_notify{}, #context{}) -> list().
@@ -151,7 +156,12 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
                            _ ->
                                Context
                        end,
-            z_render:dialog_close(Context1);
+            case z_convert:to_bool(proplists:get_value(autoclose, Args)) of
+                true ->
+                    z_render:dialog_close(Context1);
+                false ->
+                    Context1
+            end;
         {error, _} ->
             z_render:growl_error(?__("Insufficient rights to update RDF resources", Context), Context)
     end.

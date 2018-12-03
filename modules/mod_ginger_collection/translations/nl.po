@@ -60,7 +60,7 @@ msgstr "Overige medewerkers"
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:148
 #: user/modules/mod_ginger_collection/templates/collection/creator.tpl:12
-#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:33
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:48
 msgid "Creator"
 msgstr "Vervaardiger"
 
@@ -69,7 +69,7 @@ msgid "Credit line"
 msgstr "Naamsvermelding"
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:164
-#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:29
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:44
 msgid "Dating"
 msgstr "Datering"
 
@@ -77,7 +77,7 @@ msgstr "Datering"
 msgid "Depth"
 msgstr "Diepte"
 
-#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:61
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:76
 msgid "Detailed description"
 msgstr "Uitgebreide beschrijving"
 
@@ -85,15 +85,20 @@ msgstr "Uitgebreide beschrijving"
 msgid "Digital source"
 msgstr "Digitale bron"
 
-#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:20
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:25
 msgid "Dimensions"
 msgstr "Afmetingen"
 
-#: user/modules/mod_ginger_collection/templates/collection/download.tpl:3
+#: user/modules/mod_ginger_collection/templates/collection/download-button.tpl:3
 msgid "Download"
 msgstr "Download"
 
-#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:15
+#: user/modules/mod_ginger_collection/templates/collection/downloads.tpl:19
+#, fuzzy
+msgid "Downloads"
+msgstr "Download"
+
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:20
 msgid "Duration"
 msgstr "Tijdsduur"
 
@@ -158,6 +163,7 @@ msgid "If you want to refer this object then use this URL"
 msgstr "Als u naar dit object wilt verwijzen gebruik dan de duurzame URL:"
 
 #: user/modules/mod_ginger_collection/templates/collection/search/components/filters-image.tpl:2
+#: user/modules/mod_ginger_collection/templates/collection/download-link.tpl:1
 msgid "Image"
 msgstr "Beeld"
 
@@ -165,7 +171,7 @@ msgstr "Beeld"
 msgid "In"
 msgstr ""
 
-#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:78
+#: user/modules/mod_ginger_collection/templates/page.collection_object.tpl:93
 msgid "Institute"
 msgstr "Museum"
 
@@ -184,6 +190,10 @@ msgstr "Taal"
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:243
 msgid "Last updated"
 msgstr "Laatst gewijzigd"
+
+#: user/modules/mod_ginger_collection/templates/collection/metadata/dimensions.tpl:15
+msgid "Length"
+msgstr "Lengte"
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:202
 msgid "License"
@@ -209,9 +219,19 @@ msgstr ""
 msgid "Museum collection"
 msgstr "Museumcollectie"
 
+#: user/modules/mod_ginger_collection/templates/collection/prevnext.tpl:14
+msgid "Next"
+msgstr ""
+
 #: user/modules/mod_ginger_collection/templates/_action_dialog_connect_tab_find_collection_results_loop.tpl:12
 msgid "No collection objects found."
 msgstr "Geen collectie-objecten gevonden."
+
+#: user/modules/mod_ginger_collection/templates/list/list.tpl:11
+#: user/modules/mod_ginger_collection/templates/list/list.tpl:77
+#, fuzzy
+msgid "No results"
+msgstr "Geen resultaten gevonden"
 
 #: user/modules/mod_ginger_collection/templates/collection/metadata/notes.tpl:2
 msgid "Notes"
@@ -260,6 +280,10 @@ msgstr ""
 #: user/modules/mod_ginger_collection/templates/search-suggestions/search-suggestions.tpl:19
 msgid "Press enter to search"
 msgstr "Druk op enter om te zoeken"
+
+#: user/modules/mod_ginger_collection/templates/collection/prevnext.tpl:8
+msgid "Previous"
+msgstr ""
 
 #: user/modules/mod_ginger_collection/templates/collection/record-meta.tpl:171
 msgid "Produced in"
@@ -327,6 +351,10 @@ msgstr "Serie"
 
 #: user/modules/mod_ginger_collection/templates/collection/share.tpl:2
 msgid "Share"
+msgstr ""
+
+#: user/modules/mod_ginger_collection/templates/list/list.tpl:8
+msgid "Show more results..."
 msgstr ""
 
 #: user/modules/mod_ginger_collection/templates/collection/search/components/filters-subjects.tpl:4

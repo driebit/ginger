@@ -6,19 +6,41 @@ variables:
     POSTGRES_USER: zotonic
     POSTGRES_DB: ${CI_PROJECT_NAME}
 
-build-npm:
+# Elm CI build
+# 
+# build:
+#     stage: build
+#     image: node:8.9.1
+#     artifacts:
+#         name: "${CI_COMMIT_SHA}"
+#         expire_in: 1 day
+#         paths:
+#             - lib/dist
+#     script:
+#         - make build
+
+# Template CI build
+# 
+# build-npm:
+#     stage: build
+#     image: node:8.9.1
+#     artifacts:
+#         name: "${CI_COMMIT_SHA}"
+#         expire_in: 1 day
+#         paths:
+#             - lib/css/site/screen.css
+#     script:
+#         # Clone Ginger for its SCSS files that are imported in sites.
+#         - git clone https://github.com/driebit/ginger.git
+#         - npm install
+#         - npm run build
+
+lint:
     stage: build
-    image: node:8.9.1
-    artifacts:
-        name: "${CI_COMMIT_SHA}"
-        expire_in: 1 day
-        paths:
-            - lib/css/site/screen.css
+    image: erlang:20.3-alpine
     script:
-        # Clone Ginger for its SCSS files that are imported in sites.
-        - git clone https://github.com/driebit/ginger.git
-        - npm install
-        - npm run build
+        - wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
+        - ./rebar3 lint
 
 .test_template: &test_template
     stage: test

@@ -29,10 +29,8 @@ map_property(Key, Value, Acc) when Key =:= <<"object_number">>; Key =:= <<"objec
     Acc#{
         <<"dcterms:identifier">> => Value
     };
-map_property(<<"creator">> = Key, [Value], Acc) ->
-    Acc#{Key => parse_name(Value)};
 map_property(<<"creator">> = Key, Value, Acc) ->
-    Acc#{Key => parse_name(Value)};
+    Acc#{Key => [ parse_name(Creator) || Creator <- to_list(Value) ]};
 map_property(<<"creator.role">>, Value, Acc) ->
     Acc#{<<"role">> => Value};
 map_property(<<"production.date.start">> = Key, Value, Acc) when value =/= <<"?">> ->
@@ -130,7 +128,7 @@ map_dimension_type(<<"diepte">>) ->
 map_dimension_type(<<"hoogte">>) ->
     <<"schema:height">>;
 map_dimension_type(<<"lengte">>) ->
-    <<"schema:depth">>;
+    <<"dbpedia-owl:length">>;
 map_dimension_type(<<"diameter">>) ->
     <<"dbpedia-owl:diameter">>;
 map_dimension_type(_Type) ->

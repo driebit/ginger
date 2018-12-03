@@ -14,3 +14,8 @@ tests/screenshots
 .idea
 .vscode
 *.po~
+/api.html
+/docs/rest-api.json
+/docs/public
+/docs/Makefile
+/node_modules

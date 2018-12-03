@@ -18,17 +18,20 @@
 }).
 
 -record(triple, {
+    %% DEPRECATED: type property is deprecated. Construct an object = #rdf_value{value = ...}
+    %% instead.
     type = literal :: resource | literal,
+
     subject :: undefined | binary(),
-    subject_props = [] :: list(),
-    predicate :: binary(),
-    object :: binary() | #rdf_value{},
-    object_props = [] :: list()
+    subject_props = [] :: proplists:proplist(),
+    predicate :: m_rdf:predicate(),
+    object :: ginger_uri:uri() | #rdf_value{},
+    object_props = [] :: proplists:proplist()
 }).
 
 -record(rdf_resource, {
-    id :: binary(),
-    triples = [] :: [#triple{}]
+    id :: ginger_uri:uri(),
+    triples = [] :: [m_rdf:triple()]
 }).
 
 -record(rdf_search, {
@@ -53,5 +56,5 @@
 
 %% @doc Notification to convert a Zotonic resource to an RDF resource
 -record(rsc_to_rdf, {
-    id :: integer()
+    id :: m_rsc:resource()
 }).

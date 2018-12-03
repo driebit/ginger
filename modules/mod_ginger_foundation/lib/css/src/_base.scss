@@ -4,6 +4,51 @@
     box-sizing: border-box;
 }
 
+@keyframes outline-animate {
+    0% {
+        outline-offset: .5rem
+    }
+
+    to {
+        outline-offset: -.1rem
+    }
+}
+
+*:focus {
+    outline: 0.2rem solid #51CBEE;
+    animation: outline-animate .1s linear 0s 1 normal;
+    animation-fill-mode: forwards;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px,1px,1px,1px);
+    overflow: hidden;
+    height: 1px;
+    width: 1px;
+    word-wrap: normal;
+
+    @include setInteractive {
+        position: fixed !important;
+        width: 100% !important;
+        clip: auto;
+        overflow: visible;
+        height: auto;
+        z-index: 2000;
+    }
+}
+
+.skip-link {
+    text-align: center;
+    padding: 7px;
+    display: block;
+    background-color: $white;
+    font-size: 2rem;
+    line-height: 2.6rem;
+    color: $mainThemeColor;
+    z-index: 1002;
+}
+
 html {
     min-height: 100%;
     position: relative;
@@ -58,18 +103,21 @@ h1, h2, h3, h4, p, ol, ul, table {
     margin: 0 0 1em 0;
 }
 
+.h1,
 h1 {
     @include size(font-size, 35);
     @include size(line-height, 36);
     @include size(margin-bottom, 10);
 }
 
+.h2,
 h2 {
     @include size(font-size, 28);
     @include size(line-height, 30);
     @include size(margin-bottom, 10);
 }
 
+.h3,
 h3 {
     @include size(font-size, 25);
     @include size(line-height, 28);

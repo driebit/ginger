@@ -1,0 +1,4 @@
+[
+    {activity_notifications, ["activities", "inbox"], controller_api, [{module, "ginger_activity"}, {method, "inbox"}]},
+    {activity_notification, ["activities", "inbox", id], controller_api, [{module, "ginger_activity"}, {method, "inbox"}]}
+].

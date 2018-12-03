@@ -48,6 +48,7 @@ parse_query_term(Term, Values, QueryArgs) when
     Term =:= <<"object_category.rdfs:label.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>;
+    Term =:= <<"schema:about.rdfs:label.keyword">>;
     Term =:= <<"rdf:type.rdfs:label.keyword">>
 ->
     QueryArgs ++ lists:map(
@@ -118,7 +119,7 @@ map_facet({Name, Props}) ->
 map_edge(<<"depiction">>) ->
     [
         {hasanyobject, [[<<"*">>, <<"depiction">>]]},
-        {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
+        {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
     ];
 map_edge(_) ->
     [].

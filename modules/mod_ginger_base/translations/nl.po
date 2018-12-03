@@ -558,6 +558,10 @@ msgstr "Deze pagina heeft geen inkomende relaties"
 msgid "Title"
 msgstr "Titel"
 
+#: user/modules/mod_ginger_base/templates/admin_seo.tpl:43
+msgid "This setting can only be changed in the site config file."
+msgstr "Deze instelling kun je alleen wijzigen in het site-configuratiebestand."
+
 #: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:66
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:66
 #: user/modules/mod_ginger_base/templates/share/share.tpl:12

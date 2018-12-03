@@ -5,8 +5,8 @@
 
 -include("zotonic.hrl").
 
--spec https(binary(), z:context()) -> binary().
-https(<<"http://", Uri/binary>>, _Context) ->
-    <<"https://", Uri/binary>>;
+-spec https(ginger_uri:uri() | undefined, z:context()) -> ginger_uri:uri().
+https(undefined, _Context) ->
+    undefined;
 https(Uri, _Context) ->
-    Uri.
+    ginger_uri:https(Uri).

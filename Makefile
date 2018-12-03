@@ -8,20 +8,27 @@ target test-chrome: url=http://$(site).docker.test
 
 include .env
 
+NPM_PATH := ./node_modules/.bin
+export PATH := $(NPM_PATH):$(PATH)
+
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
+	@echo "  api-doc                 Generate API doc"
+	@echo "  deps					 Install dependencies"
 	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
 	@echo "  down                    Stop containers"
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
 	@echo "  gulp site=your_site     Run Gulp in a site directory"
 	@echo "  clean-node              Delete all node_modules directories"
-	@echo "  import-db-file          Import database from file (site=site-name file=site-dump.sql)"
+	@echo "  import-db-file          Import database from file in ginger data dir (site=site-name file=site-dump.sql)"
 	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
-	@echo "  test site=site-name     Run brower site tests in Docker container (args=Nightwatch arguments url=http://...)"
-	@echo "  test-chrome =site-name  Run brower site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
+	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  tests					 Find all Ginger tests and run them"
 	@echo "  up                      Start containers"
 	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
 	@echo "  update                  Update containers"
@@ -29,6 +36,12 @@ help:
 addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
 
+api-doc:
+	@yaml2json docs/rest-api.yaml > /tmp/rest-api.json
+	@spectacle -1 -t /tmp -f ginger-rest-api.html /tmp/rest-api.json
+
+deps:
+	@npm install
 gulp:
 	# Env MODULES_DIR can be used in Gulpfiles, if necessary.
 	docker run --rm -it -p 35729:35729 --workdir /app -v "`pwd`/sites/$(site)":/app:delegated -v "`pwd`/modules":/modules:delegated --env MODULES_DIR=/modules node:8.9.1-alpine sh -c "npm install && npm start"
@@ -58,6 +71,9 @@ dump-db:
 shell:
 	@docker-compose exec zotonic bin/zotonic shell
 
+prompt:
+	@docker-compose run zotonic sh
+
 psql:
 	@docker-compose exec postgres psql -U zotonic
 
@@ -70,6 +86,10 @@ test:
 test-chrome:
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
 	FEATURES_PATH=../sites/$(site)/features LAUNCH_URL="$(url)" npm --prefix tests/ run test-chrome -- $(args)
+
+.PHONY: tests
+tests:
+	docker-compose run --rm zotonic /scripts/runtests.sh
 
 up:
 	@docker-compose up --build zotonic kibana

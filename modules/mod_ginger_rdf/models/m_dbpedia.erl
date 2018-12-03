@@ -16,6 +16,12 @@
     is_wikidata_uri/1
 ]).
 
+%% @doc Usage: m.dbpedia["http://nl.dbpedia.org/resource/Nederland"]
+-spec m_find_value(ginger_uri:uri() | atom(), #m{}, z:context()) -> #rdf_resource{}.
+m_find_value(<<"http://", Uri/binary>>, #m{}, Context) ->
+    get_resource(Uri, Context);
+m_find_value(<<"https://", Uri/binary>>, #m{}, Context) ->
+    get_resource(Uri, Context);
 m_find_value(Language, #m{value = undefined} = M, _Context) ->
     M#m{value = Language};
 m_find_value(Uri, #m{value = Language}, Context) ->
@@ -34,16 +40,16 @@ get_resource(<<"http://", Url/binary>>, Context) ->
 get_resource(<<"https://", Url/binary>>, Context) ->
     get_resource(Url, Context);
 get_resource(<<"wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
-    get_resource(Uri, wikidata, Context);
+    get_resource(Uri, <<"wikidata">>, Context);
 get_resource(<<"nl.dbpedia.org", _/binary>> = Uri, Context) ->
-    get_resource(Uri, nl, Context);
+    get_resource(Uri, <<"nl">>, Context);
 get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
-    get_resource(Uri, '', Context).
+    get_resource(Uri, <<>>, Context).
 
 get_resource(Uri, Language, Context) ->
     z_depcache:memo(
         fun() ->
-            dbpedia:describe(<<"http://", Uri/binary>>, Language)
+            dbpedia:get_resource(<<"http://", Uri/binary>>, Language)
         end,
         {Uri, Language},
         Context
