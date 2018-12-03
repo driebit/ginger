@@ -102,10 +102,7 @@ process_post(Req, State = #state{mode = collection}) ->
     %% Create resource
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    Props = lists:foldl( fun post_props/2
-                       , []
-                       , maps:to_list(Data)
-                       ),
+    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
     {ok, Id} = m_rsc:insert(Props, Context),
     %% Create edges
     lists:foreach(
