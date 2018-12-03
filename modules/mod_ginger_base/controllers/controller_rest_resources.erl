@@ -99,9 +99,9 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
 
 process_post(Req, State = #state{mode = collection}) ->
     Context = State#state.context,
+    %% Create resource
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    lager:debug("Data = ~p", [Data]),
     Props = lists:foldl( fun post_props/2
                        , []
                        , maps:to_list(Data)
@@ -109,6 +109,16 @@ process_post(Req, State = #state{mode = collection}) ->
     {ok, Id} = m_rsc:insert(Props, Context),
     Location = "/data/resources/" ++ erlang:integer_to_list(Id),
     Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
+    %% Create edges
+    lists:foreach(
+      fun (Edge) ->
+              {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
+              {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
+
+      end,
+      maps:get(edges, Data, [])
+     ),
+    %% Done
     {{halt, 201}, Req2, State}.
 
 %%%-----------------------------------------------------------------------------
