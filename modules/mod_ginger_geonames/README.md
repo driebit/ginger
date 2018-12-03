@@ -8,6 +8,8 @@ This module is part of [Ginger](http://github.com/driebit/ginger).
 Features:
 
 * [reverse geocoding](http://www.geonames.org/export/reverse-geocoding.html)
+* view all GeoNames results for a resource’s geo coordinates
+* manually search by name.
 
 Configuration
 -------------
@@ -17,6 +19,14 @@ your [GeoNames username](http://www.geonames.org/export/).
       
 Usage
 -----
+
+### Search GeoNames
+
+This module adds a ‘GeoNames’ tab to the find dialog. When adding an edge
+in the admin, select this tab to search GeoNames for places. Each place that 
+you select will be inserted as an [RDF resource](../mod_ginger_rdf/README.md).   
+
+### Erlang
 
 ```erlang
 geonames_client:find_nearby_place_name({52.08095165, 5.12768031549829}, Context).
@@ -43,3 +53,22 @@ returns:
    <<"population">> => 290529,
    <<"toponymName">> => <<"Utrecht">>}]
 ```
+
+### Models
+
+#### m_geonames
+
+To get the complete URI for a GeoNames place based on its id (e.g. `2759794`):
+
+```dtl
+{{ m.geonames[2759794].uri }}
+```
+
+To find place names based on a resource’s geo coordinates:
+
+```dtl
+{% for place in with m.geonames[{geo_lookup id=subject_id}] %}
+    {% print place %}
+{% endwith %}
+```
+

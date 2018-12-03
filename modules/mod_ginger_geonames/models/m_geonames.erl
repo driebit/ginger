@@ -11,6 +11,10 @@
     m_value/2
 ]).
 
+m_find_value(uri, #m{value = undefined} = M, _Context) ->
+    M#m{value = uri};
+m_find_value(GeoNamesId, #m{value = uri}, _Context) ->
+    mod_ginger_geonames:uri(GeoNamesId);
 m_find_value({geo_lookup, Params}, #m{value = undefined}, Context) ->
     case proplists:get_value(id, Params) of
         undefined ->
