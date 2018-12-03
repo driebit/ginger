@@ -107,8 +107,6 @@ process_post(Req, State = #state{mode = collection}) ->
                        , maps:to_list(Data)
                        ),
     {ok, Id} = m_rsc:insert(Props, Context),
-    Location = "/data/resources/" ++ erlang:integer_to_list(Id),
-    Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
     %% Create edges
     lists:foreach(
       fun (Edge) ->
@@ -118,6 +116,9 @@ process_post(Req, State = #state{mode = collection}) ->
       end,
       maps:get(edges, Data, [])
      ),
+    %% Set "Location" header
+    Location = "/data/resources/" ++ erlang:integer_to_list(Id),
+    Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
     %% Done
     {{halt, 201}, Req2, State}.
 
