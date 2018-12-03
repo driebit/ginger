@@ -7,7 +7,7 @@ encode_test() ->
     ?assertEqual(
        true,
        proper:quickcheck(
-         ?FORALL(X, proper_types:number(), ginger_boolean:encode(X) =:= X)
+         ?FORALL(X, proper_types:number(), ginger_number:encode(X) =:= X)
         )
       ),
     ?assertError(_, ginger_number:encode([1])),

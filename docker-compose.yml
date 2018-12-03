@@ -39,6 +39,7 @@ services:
             - ./modules:/opt/zotonic/user/modules
             - ./sites:/opt/zotonic/user/sites
             - ./skel:/opt/zotonic/priv/skel/ginger
+            - ./scripts:/scripts
         ports:
             - 80:8000
             - 443:8443
