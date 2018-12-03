@@ -3,8 +3,11 @@
 
 -export([
     search/2,
-    find_nearby_place_name/2
+    find_nearby_place_name/2,
+    extended_find_nearby/2
 ]).
+
+-type coordinates() :: {float(), float()}.
 
 %% @doc Search GeoNames.
 -spec search(proplists:proplist(), z:context()) -> list().
@@ -14,10 +17,18 @@ search(Params, Context) ->
     ginger_http_client:get(Url).
 
 %% @doc Reversely geocode a place name based on coordinates.
--spec find_nearby_place_name({float(), float()}, z:context()) -> [map()].
-find_nearby_place_name({Latitude, Longitude}, Context) ->
+-spec find_nearby_place_name(coordinates(), z:context()) -> [map()].
+find_nearby_place_name(Coordinates, Context) ->
+    find_nearby(<<"findNearbyPlaceNameJSON">>, Coordinates, Context).
+
+-spec extended_find_nearby(coordinates(), z:context()) -> [map()].
+extended_find_nearby(Coordinates, Context) ->
+    find_nearby(<<"extendedFindNearbyJSON">>, Coordinates, Context).
+
+-spec find_nearby(binary(), coordinates(), z:context()) -> [map()].
+find_nearby(Api, {Latitude, Longitude}, Context) ->
     Url = url(
-        <<"findNearbyPlaceNameJSON">>,
+        Api,
         [
             {<<"lat">>, Latitude},
             {<<"lng">>, Longitude}
@@ -28,7 +39,9 @@ find_nearby_place_name({Latitude, Longitude}, Context) ->
         undefined ->
             [];
         #{<<"geonames">> := Locations} ->
-            Locations
+            Locations;
+        #{<<"ocean">> := Ocean} ->
+            [Ocean]
     end.
 
 %% @doc Construct GeoNames API URL.
