@@ -115,14 +115,18 @@ process_post(Req, State = #state{mode = collection}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-post_props(Trans = {summary, _}, Acc) ->
-    trans(Trans, Acc);
 post_props(Trans = {body, _}, Acc) ->
     trans(Trans, Acc);
-post_props(Trans = {title, _}, Acc) ->
+post_props({category, Value}, Acc) ->
+    [{category, Value} | Acc];
+post_props({path, Value}, Acc) ->
+    [{path, Value} | Acc].
+post_props({properties, Value}, Acc) ->
+    maps:to_list(Value) ++ Acc;
+post_props(Trans = {summary, _}, Acc) ->
     trans(Trans, Acc);
-post_props({Key, Value}, Acc) ->
-    [{Key, Value} | Acc].
+post_props(Trans = {title, _}, Acc) ->
+    trans(Trans, Acc).
 
 trans({Key, Value}, Acc) ->
     [{Key, {trans, maps:to_list(Value)}} | Acc].
