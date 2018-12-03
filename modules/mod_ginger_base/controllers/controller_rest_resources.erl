@@ -124,7 +124,7 @@ post_props({edges, _}, Acc) ->
 post_props({is_published, Value}, Acc) ->
     [{is_published, Value} | Acc];
 post_props({path, Value}, Acc) ->
-    [{path, Value} | Acc].
+    [{path, Value} | Acc];
 post_props({properties, Value}, Acc) ->
     maps:to_list(Value) ++ Acc;
 post_props(Trans = {summary, _}, Acc) ->
