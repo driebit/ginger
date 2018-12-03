@@ -107,8 +107,8 @@ process_post(Req, State = #state{mode = collection}) ->
     %% Create edges
     lists:foreach(
       fun (Edge) ->
-              {ok, Predicate} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
-              {ok, _EdgeId} = m_edge:insert(Id, Predicate, maps:get(object, Edge), Context)
+              {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
+              {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
 
       end,
       maps:get(edges, Data, [])
