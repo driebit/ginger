@@ -62,7 +62,7 @@ content_types_provided(Req, State) ->
 
 to_json(Req, State = #state{mode = login}) ->
     {ok, C} = z_session_manager:continue_session(z_context:new(Req, ?MODULE)),
-    case z_session:get(auth_user_id, C) of
+    case z_session:get(user_id, C) of
         none ->
             {{halt, 400}, C#context.wm_reqdata, State};
         Id ->
