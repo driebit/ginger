@@ -29,7 +29,7 @@ allowed_methods(Req, State) ->
 post_is_create(Req, Context) ->
     {false, Req, Context}.
 
-process_post(Req, #state{mode = login}) ->
+process_post(Req, State = #state{mode = login}) ->
     C = z_context:new(Req, ?MODULE),
     {B, Req1} = wrq:req_body(Req),
     M = jsx:decode(B, [return_maps, {labels, atom}]),
@@ -44,13 +44,12 @@ process_post(Req, #state{mode = login}) ->
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
                     Req2 = wrq:set_resp_body(jsx:encode(user(Id, C2)), C2#context.wm_reqdata),
-                    {true, Req2, C2};
+                    {true, Req2, State};
                 _ ->
-                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req1),
-                    {true, Req2, C}
+                    {{halt, 400}, Req1, State}
             end;
         {error, _} ->
-            {{halt, 400}, Req1, C}
+            {{halt, 400}, Req1, State}
     end;
 process_post(Req, #state{mode = logout}) ->
     C = z_context:new(Req, ?MODULE),
