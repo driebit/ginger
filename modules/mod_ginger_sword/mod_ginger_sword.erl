@@ -17,8 +17,13 @@
 observe_rsc_update_done(Update, Context) ->
     case z_convert:to_bool(m_config:get_value(mod_ginger_sword, publish_sword, Context)) of
         true ->
-            on_rsc_update_done(Update, Context),
-            ok;
+            case should_publish_resource_category(Update, Context) of
+                true ->
+                    on_rsc_update_done(Update, Context),
+                    ok;
+                false ->
+                    ok
+            end;
         false ->
             ok
     end.
@@ -62,6 +67,12 @@ sword_url(Context) ->
 slug_prefix(Context) ->
     z_convert:to_list(m_config:get_value(mod_ginger_sword, slug_prefix, Context)).
 
+publish_categories(Context) ->
+    CatBin = m_config:get_value(mod_ginger_sword, publish_categories, Context),
+    CatList = binary:split(CatBin, <<",">>, [global]),
+    sets:from_list(CatList).
+
+
 %% Functions that format the data for transport
 
 format_slug(RscId, Context) ->
@@ -87,26 +98,12 @@ render_rdf_body(RscId, Context) ->
             <<"">>
     end.
 
-http_request(Method, URL, QueryParams, Body) ->
-    UrlWithParams = case QueryParams of
-                        [] ->
-                            URL;
-                        _ ->
-                            ginger_http_client:url_with_query_string(URL, QueryParams)
-                    end,
-    case Body of
-        undefined ->
-            ginger_http_client:request(
-              Method,
-              UrlWithParams,
-              []);
-        _ ->
-            ginger_http_client:request(
-              Method,
-              UrlWithParams,
-              [],
-              Body)
-    end.
+http_request(Method, URL, Headers, Body) ->
+    ginger_http_client:request(
+      Method,
+      URL,
+      Headers,
+      Body).
 
 create_rsc(RscId, Context) ->
     URI = format_rsc_uri(RscId, Context),
@@ -130,7 +127,7 @@ delete_rsc(RscId, Context) ->
 
     URI = format_rsc_uri(RscId, Context),
     ?zInfo("Deleting " ++ format_rsc_uri(RscId, Context) ++ " from SWORD endpoint", Context),
-    http_request(delete, URI, [], undefined).
+    http_request(delete, URI, [], #{}).
 
 %% Task queueing
 
@@ -155,23 +152,20 @@ queue_task(Task, RscId, Context) ->
                             Context).
 
 %% @doc Takes a category path and determines if it must be published
-cat_must_publish([]) ->
-    false;
-cat_must_publish(IsA) ->
-    story == lists:last(IsA).
+should_publish_resource_category(Update, Context) ->
+    IsA = Update#rsc_update_done.post_is_a,
+    List = lists:map(fun(Atom) -> atom_to_binary(Atom, utf8) end, IsA),
+    Set = sets:from_list(List),
+    Intersection = sets:intersection(Set, publish_categories(Context)),
+    sets:size(Intersection) > 0.
 
-%% @doc Determines if a resource state is published (to the aggregator)
-state_is_published(_Props, IsA) ->
-    cat_must_publish(IsA).
 
 %% @doc Determine publication states based on the resource update notification
 derive_publish_states(UpdateDone) ->
     PreProps = UpdateDone#rsc_update_done.pre_props,
-    PreIsA = UpdateDone#rsc_update_done.pre_is_a,
     PostProps = UpdateDone#rsc_update_done.post_props,
-    PostIsA = UpdateDone#rsc_update_done.post_is_a,
-    BeforePublished = state_is_published(PreProps, PreIsA),
-    AfterPublished = state_is_published(PostProps, PostIsA),
+    BeforePublished = proplists:get_value(is_published, PreProps, false),
+    AfterPublished = proplists:get_value(is_published, PostProps, false),
     {BeforePublished, AfterPublished}.
 
 %% @doc Determines if the resource is being published during the update
