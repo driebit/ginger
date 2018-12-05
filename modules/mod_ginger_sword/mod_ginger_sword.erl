@@ -31,9 +31,9 @@ dispatch_task(update, RscId, Context) ->
     dispatch_task(fun update_rsc/2, RscId, Context);
 dispatch_task(delete, RscId, Context) ->
     dispatch_task(fun delete_rsc/2, RscId, Context);
-dispatch_task(TaskFn, RscId, Context) when is_function(TaskFn) ->
+dispatch_task(TaskFun, RscId, Context) when is_function(TaskFun) ->
     try
-        case TaskFn(RscId, Context) of
+        case TaskFun(RscId, Context) of
             {error, _} ->
                 {delay, 60};
             Resp ->
