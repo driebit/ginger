@@ -240,6 +240,30 @@ parse_argument({cat_promote_recent, Categories}) ->
         }
     });
 
+parse_argument({facet, Property}) when is_list(Property) ->
+    parse_argument({facet, list_to_binary(Property)});
+parse_argument({facet, <<"date_", _/binary>> = Property}) ->
+    %% A facet on a date property is a min/max range.
+    [
+        {agg, [<<Property/binary, "_min">>, <<"min">>, [{field, Property}]]},
+        {agg, [<<Property/binary, "_max">>, <<"max">>, [{field, Property}]]},
+        {agg, [<<Property/binary, "_global">>, [
+            {global, #{}},
+            {aggs, #{
+                <<Property/binary, "_min">> => #{
+                    <<"min">> => #{
+                        <<"field">> => Property
+                    }
+                },
+                <<Property/binary, "_max">> => #{
+                    <<"max">> => #{
+                        <<"field">> => Property
+                    }
+                }
+            }}
+        ]]}
+    ];
+
 parse_argument({filters, Filters}) ->
     lists:map(
         fun(Filter) ->

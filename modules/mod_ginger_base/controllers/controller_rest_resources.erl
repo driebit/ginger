@@ -7,6 +7,7 @@
         , resource_exists/2
         , content_types_provided/2
         , to_json/2
+        , process_post/2
         ]
        ).
 
@@ -48,7 +49,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -96,9 +97,51 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
+process_post(Req, State = #state{mode = collection}) ->
+    Context = State#state.context,
+    %% Create resource
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+    {ok, Id} = m_rsc:insert(Props, Context),
+    %% Create edges
+    lists:foreach(
+      fun (Edge) ->
+              {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
+              {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
+
+      end,
+      maps:get(edges, Data, [])
+     ),
+    %% Set "Location" header
+    Location = "/data/resources/" ++ erlang:integer_to_list(Id),
+    Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
+    %% Done
+    {{halt, 201}, Req2, State}.
+
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+post_props(Trans = {body, _}, Acc) ->
+    trans(Trans, Acc);
+post_props({category, Value}, Acc) ->
+    [{category, Value} | Acc];
+post_props({edges, _}, Acc) ->
+    Acc;
+post_props({is_published, Value}, Acc) ->
+    [{is_published, Value} | Acc];
+post_props({path, Value}, Acc) ->
+    [{path, Value} | Acc];
+post_props({properties, Value}, Acc) ->
+    maps:to_list(Value) ++ Acc;
+post_props(Trans = {summary, _}, Acc) ->
+    trans(Trans, Acc);
+post_props(Trans = {title, _}, Acc) ->
+    trans(Trans, Acc).
+
+trans({Key, Value}, Acc) ->
+    [{Key, {trans, maps:to_list(Value)}} | Acc].
 
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
@@ -164,8 +207,9 @@ allowed_methods_test_() ->
     [ fun () ->
               {Methods, _, _} = allowed_methods(req, state),
               ?assert(lists:member('GET', Methods)),
+              ?assert(lists:member('POST', Methods)),
               ?assert(lists:member('HEAD', Methods)),
-              ?assertEqual(2, erlang:length(Methods)),
+              ?assertEqual(3, erlang:length(Methods)),
               ok
       end
     ].

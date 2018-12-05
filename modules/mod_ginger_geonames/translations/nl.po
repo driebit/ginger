@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# NB: Consider using poEdit <http://poedit.sourceforge.net>
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ./user/modules/mod_ginger_geonames/templates/_admin_configure_module.tpl:3
+msgid ""
+"GeoNames username"
+msgstr "GeoNames-gebruikersnaam"
+
+#: ./user/modules/mod_ginger_geonames/templates/_action_dialog_connect_tab_find_geonames_results_loop.tpl:12
+msgid ""
+"No GeoNames places found."
+msgstr "Geen plaatsen gevonden in GeoNames."
+
+#: ./user/modules/mod_ginger_geonames/templates/_action_dialog_connect_tab_find_geonames_results_item.tpl:19
+msgid ""
+"Population"
+msgstr "Inwoners:"
+
+#: ./user/modules/mod_ginger_geonames/templates/_media_upload_panel_geonames.tpl:11
+msgid ""
+"Search places in GeoNames"
+msgstr "Zoek plaatsen in GeoNames"
+
+#: ./user/modules/mod_ginger_geonames/templates/_action_dialog_connect_tab_find_geonames_results.tpl:17
+msgid ""
+"The page has no location coordinates."
+msgstr "De pagina heeft geen locatiecoördinaten"

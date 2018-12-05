@@ -23,7 +23,6 @@ to_json(Req, State) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
-
     %% Get search params from request
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
@@ -61,10 +60,10 @@ to_json(Req, State) ->
             %% Perform search (Zotonic offsets start at 1)
             Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
             #search_result{
-               result = Results,
-               facets = _Facets,
-               total = Total
-              } = Result,
+                result = Results,
+                facets = Facets,
+                total = Total
+            } = Result,
             %% Filter search results not visible for current user
             VisibleResults = lists:filter(
                                fun(R) ->
@@ -74,9 +73,10 @@ to_json(Req, State) ->
                               ),
             %% Serialize to JSON
             SearchResults = #{
-                              <<"result">> => [search_result(R, Context) || R <- VisibleResults],
-                              <<"total">> => Total
-                             },
+                <<"result">> => [search_result(R, Context) || R <- VisibleResults],
+                <<"total">> => Total,
+                <<"facets">> => facets(Facets)
+            },
             Json = jsx:encode(SearchResults),
             {Json, Req, State}
     end.
@@ -137,3 +137,38 @@ whitelisted(Arguments) ->
 -spec whitelist() -> [atom()].
 whitelist() ->
     [cat, cat_exclude, cat_promote_recent, content_group, filter, hasobject, hassubject, text, sort, has_geo].
+
+%% @doc Combine separate facets (date_start_min, date_start_max) into one property
+%% (date_start.min, date_start.max).
+-spec facets(list() | map()) -> map().
+facets([]) ->
+    null;
+facets(Facets) ->
+    maps:fold(
+        fun(K, V, Acc) ->
+            Skip = byte_size(K) - 4,
+            Seven = byte_size(K) - 7,
+            case K of
+                <<Field:Skip/binary, "_min">> ->
+                    Acc#{Field => maps:put(<<"min">>, V, maps:get(Field, Acc, #{}))};
+                <<Field:Skip/binary, "_max">> ->
+                    Acc#{Field => maps:put(<<"max">>, V, maps:get(Field, Acc, #{}))};
+                <<Field:Seven/binary, "_global">> ->
+                    Min = maps:get(<<Field/binary, "_min">>, V),
+                    Max = maps:get(<<Field/binary, "_max">>, V),
+                    Acc#{
+                        Field => maps:merge(
+                            #{
+                                <<"global_min">> => Min,
+                                <<"global_max">> => Max
+                            },
+                            maps:get(Field, Acc, #{})
+                        )
+                    };
+                _ ->
+                    Acc#{K => V}
+            end
+        end,
+        #{},
+        Facets
+    ).
