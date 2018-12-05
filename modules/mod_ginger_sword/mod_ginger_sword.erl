@@ -82,23 +82,30 @@ render_rdf_body(RscId, Context) ->
     case m_rsc:exists(RscId, Context) of
         true ->
             RdfResource = m_rdf:to_triples(RscId, AC),
-            JsonLd = ginger_json_ld:serialize_to_map(RdfResource),
-            jsx:encode(JsonLd);
+            ginger_json_ld:serialize_to_map(RdfResource);
         false ->
             <<"">>
     end.
 
-http_request(Method, Request, _Context) ->
-    Resp = httpc:request(Method, Request, [], []),
-    {Status, _} = Resp,
-    case Status of
-        ok ->
-            Resp;
+http_request(Method, URL, QueryParams, Body) ->
+    UrlWithParams = case QueryParams of
+                        [] ->
+                            URL;
+                        _ ->
+                            ginger_http_client:url_with_query_string(URL, QueryParams)
+                    end,
+    case Body of
+        undefined ->
+            ginger_http_client:request(
+              Method,
+              UrlWithParams,
+              []);
         _ ->
-            lager:warning("Http request failed"),
-            lager:info("~p~n", [Request]),
-            lager:info("~p~n", [Resp]),
-            Resp
+            ginger_http_client:request(
+              Method,
+              UrlWithParams,
+              [],
+              Body)
     end.
 
 create_rsc(RscId, Context) ->
@@ -106,13 +113,13 @@ create_rsc(RscId, Context) ->
     Body = render_rdf_body(RscId, Context),
     Slug = format_slug(RscId, Context),
     ?zInfo("Creating " ++ format_rsc_uri(RscId, Context) ++ " in SWORD endpoint", Context),
-    http_request(post, {URI, [{"Slug", Slug}], "application/json", Body}, Context).
+    http_request(post, URI, [{"Slug", Slug}], Body).
 
 update_rsc(RscId, Context) ->
     URI = format_rsc_uri(RscId, Context),
     Body = render_rdf_body(RscId, Context),
     ?zInfo("Updating " ++ format_rsc_uri(RscId, Context) ++ " in SWORD endpoint", Context),
-    http_request(put, {URI, [], "application/json", Body}, Context).
+    http_request(put, URI, [], Body) .
 
 delete_rsc(RscId, Context) ->
     %% Make sure no more create and update tasks are scheduled
@@ -123,7 +130,7 @@ delete_rsc(RscId, Context) ->
 
     URI = format_rsc_uri(RscId, Context),
     ?zInfo("Deleting " ++ format_rsc_uri(RscId, Context) ++ " from SWORD endpoint", Context),
-    http_request(delete, {URI, []}, Context).
+    http_request(delete, URI, [], undefined).
 
 %% Task queueing
 
@@ -132,9 +139,11 @@ unique_key(Task, RscId) ->
     "sword-" ++ z_convert:to_list(Task) ++ "-" ++ z_convert:to_list(RscId).
 
 %% @doc Checks if HTTP response contains error code
-resp_is_succes(Resp) ->
-    {_, {{_, Code, _}, _Headers, _Body}} = Resp,
-    (Code >= 200) and (Code < 300).
+resp_is_succes({error, _}) ->
+    false;
+resp_is_succes(_) ->
+    true.
+
 
 %% @doc Adds a new durable task to the queue
 queue_task(Task, RscId, Context) ->
