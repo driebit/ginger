@@ -153,12 +153,7 @@ cat_must_publish(IsA) ->
                    _ ->
                        lists:last(IsA)
                end,
-    lists:any(
-      fun(Cat) ->
-              ExactCat == Cat
-      end,
-      [story]
-     ).
+    lists:any(fun(Cat) -> ExactCat == Cat end, [story]).
 
 %% @doc Determines if a resource state is published (to the aggregator)
 state_is_published(_Props, IsA) ->
