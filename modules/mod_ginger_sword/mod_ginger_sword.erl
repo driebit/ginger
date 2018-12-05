@@ -199,21 +199,24 @@ rsc_being_updated(#rsc_update_done{} = RscUpdate) ->
 %% Observe resource editing
 
 %% @doc Should be called from observer_rsc_update_done
-on_rsc_update_done(#rsc_update_done{action = insert, id = Id} = RscUpdate, Context) ->
+on_rsc_update_done(#rsc_update_done{action = insert} = RscUpdate, Context) ->
+    Id = RscUpdate#rsc_update_done.id,
     case rsc_being_published(RscUpdate) of
         true ->
             queue_task(create, Id, Context);
         false ->
             ok
     end;
-on_rsc_update_done(#rsc_update_done{action = delete, id = Id} = RscUpdate, Context) ->
+on_rsc_update_done(#rsc_update_done{action = delete} = RscUpdate, Context) ->
+    Id = RscUpdate#rsc_update_done.id,
     case rsc_being_unpublished(RscUpdate) of
         true ->
             queue_task(delete, Id, Context);
         false ->
             ok
     end;
-on_rsc_update_done(#rsc_update_done{action = update, id = Id} = RscUpdate, Context) ->
+on_rsc_update_done(#rsc_update_done{action = update} = RscUpdate, Context) ->
+    Id = RscUpdate#rsc_update_done.id,
     BeingPublished = rsc_being_published(RscUpdate),
     BeingUpdated = rsc_being_updated(RscUpdate),
     BeingUnpublished = rsc_being_unpublished(RscUpdate),
