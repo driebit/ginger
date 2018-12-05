@@ -12,29 +12,29 @@
 -include("controller_webmachine_helper.hrl").
 -include("zotonic.hrl").
 
+%% NB: the Webmachine documentation uses "context" where we use "state",
+%% we reserve "context" for the way it's used by Zotonic/Ginger.
+-record(state, {mode = undefined}).
+
 %%%-----------------------------------------------------------------------------
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
--spec init(list()) -> {ok, undefined}.
-init([]) ->
-    {ok, undefined}.
+init([Args]) ->
+    {ok, #state{mode = maps:get(mode, Args)}}.
 
--spec allowed_methods(any(), any()) -> {list(), any(), any()}.
-allowed_methods(ReqData, State) ->
-    {['POST', 'HEAD', 'GET'], ReqData, State}.
+allowed_methods(Req, State) ->
+    {['POST', 'HEAD', 'GET'], Req, State}.
 
--spec post_is_create(any(), z:context()) -> {boolean(), any(), z:context()}.
-post_is_create(ReqData, Context) ->
-    {false, ReqData, Context}.
+post_is_create(Req, Context) ->
+    {false, Req, Context}.
 
--spec process_post(any(), any()) -> {{atom(), integer()}, any(), z:context()}.
-process_post(ReqData, _) ->
-    {B, _} = wrq:req_body(ReqData),
+process_post(Req, State = #state{mode = login}) ->
+    C = z_context:new(Req, ?MODULE),
+    {B, Req1} = wrq:req_body(Req),
     M = jsx:decode(B, [return_maps, {labels, atom}]),
     U = maps:get(username, M, undefined),
     P = maps:get(password, M, undefined),
-    C = z_context:new(ReqData, ?MODULE),
     case m_identity:check_username_pw(U, P, C) of
         {ok, Id} ->
             case z_auth:is_enabled(Id, C) of
@@ -43,39 +43,38 @@ process_post(ReqData, _) ->
                     z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
-                    response(200, user(Id, C2), C2#context.wm_reqdata, C2);
+                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C2)), C2#context.wm_reqdata),
+                    {true, Req2, State};
                 _ ->
-                    response(200, user(Id, C), ReqData, C)
+                    {{halt, 400}, Req1, State}
             end;
         {error, _} ->
-            response(400, <<"Error">>, ReqData, C)
-    end.
+            {{halt, 400}, Req1, State}
+    end;
+process_post(Req, State = #state{mode = logout}) ->
+    C = z_context:new(Req, ?MODULE),
+    {ok, C2} = z_session_manager:continue_session(C),
+    {ok, C3} = z_session_manager:stop_session(C2),
+    {{halt, 204}, C3#context.wm_reqdata, State}.
 
--spec content_types_provided(any(), any()) -> {list(), any(), any()}.
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
--spec to_json(any(), any()) -> {{atom(), integer()}, any(), z:context()}.
-to_json(ReqData, _) ->
-    C = z_context:new(ReqData, ?MODULE),
-    {ok, C2} = z_session_manager:continue_session(C),
-    case z_session:get(auth_user_id, C2) of
-        undefined ->
-            response(400, <<"Error">>, ReqData, C);
+to_json(Req, State = #state{mode = status}) ->
+    {ok, C} = z_session_manager:continue_session(z_context:new(Req, ?MODULE)),
+    case z_session:get(user_id, C) of
+        none ->
+            {{halt, 400}, C#context.wm_reqdata, State};
         Id ->
-            response(200, user(Id, C2), C2#context.wm_reqdata, C2)
+            Body = jsx:encode(user(Id, C)),
+            {Body, C#context.wm_reqdata, State}
     end.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
--spec user(integer(), #context{}) -> map().
 user(Id, Context) ->
     #{ <<"identity">> => proplists:delete(propb, m_identity:get(Id, Context))
      , <<"resource">> => m_ginger_rest:rsc(Id, Context)
      }.
-
--spec response(integer, any(), any(), z:context()) -> {{atom(), integer()}, any(), z:context()}.
-response(Status, Body, ReqData, Context) ->
-    {{halt, Status}, wrq:set_resp_body(jsx:encode(Body), ReqData), Context}.
