@@ -38,8 +38,10 @@ dispatch_task(TaskFn, RscId, Context) when is_function(TaskFn) ->
                 {delay, 60};
             Resp ->
                 case resp_is_succes(Resp) of
-                    true -> Resp;
-                    false -> {delay, 60}
+                    true ->
+                        Resp;
+                    false ->
+                        {delay, 60}
                 end
         end
     catch
