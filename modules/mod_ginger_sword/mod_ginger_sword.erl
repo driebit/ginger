@@ -161,10 +161,10 @@ state_is_published(_Props, IsA) ->
 
 %% @doc Determine publication states based on the resource update notification
 derive_publish_states(UpdateDone) ->
-    #rsc_update_done{pre_props = PreProps,
-                     pre_is_a = PreIsA,
-                     post_props = PostProps,
-                     post_is_a = PostIsA} = UpdateDone,
+    PreProps = UpdateDone#rsc_update_done.pre_props,
+    PreIsA = UpdateDone#rsc_update_done.pre_is_a,
+    PostProps = UpdateDone#rsc_update_done.post_props,
+    PostIsA = UpdateDone#rsc_update_done.post_is_a,
     BeforePublished = state_is_published(PreProps, PreIsA),
     AfterPublished = state_is_published(PostProps, PostIsA),
     {BeforePublished, AfterPublished}.
