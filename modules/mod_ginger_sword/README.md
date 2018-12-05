@@ -1,7 +1,7 @@
 mod_ginger_sword
 ====================
 
-A Zotonic module for uploading resources to a SWORD endpoint
+A Zotonic module for uploading resources to a [SWORD](https://en.wikipedia.org/wiki/SWORD_%28protocol%29) endpoint.
 
 This module is part of [Ginger](http://github.com/driebit/ginger). It depends on `mod_ginger_rdf`.
 
