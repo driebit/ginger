@@ -146,14 +146,10 @@ queue_task(Task, RscId, Context) ->
                             Context).
 
 %% @doc Takes a category path and determines if it must be published
+cat_must_publish([]) ->
+    false;
 cat_must_publish(IsA) ->
-    ExactCat = case IsA of
-                   [] ->
-                       undefined;
-                   _ ->
-                       lists:last(IsA)
-               end,
-    lists:any(fun(Cat) -> ExactCat == Cat end, [story]).
+    story == lists:last(Isa).
 
 %% @doc Determines if a resource state is published (to the aggregator)
 state_is_published(_Props, IsA) ->
