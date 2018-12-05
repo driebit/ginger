@@ -43,7 +43,7 @@ process_post(Req, #state{mode = login}) ->
                     z_context:set_session(auth_timestamp, calendar:universal_time(), C2),
                     z_context:set_session(auth_user_id, Id, C2),
                     z_context:set_session(user_id, Id, C2),
-                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C2)), Req1),
+                    Req2 = wrq:set_resp_body(jsx:encode(user(Id, C2)), C2#context.wm_reqdata),
                     {true, Req2, C2};
                 _ ->
                     Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req1),
