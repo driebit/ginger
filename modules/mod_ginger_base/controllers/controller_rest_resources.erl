@@ -5,6 +5,7 @@
         , malformed_request/2
         , allowed_methods/2
         , resource_exists/2
+        , delete_resource/2
         , content_types_provided/2
         , to_json/2
         , process_post/2
@@ -68,6 +69,10 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
+
+delete_resource(Req, State = #state{mode = document}) ->
+    ok = m_rsc:delete(State#state.document_id, State#state.context),
+    {true, Req, State}.
 
 to_json(Req, State = #state{mode = collection}) ->
     Context = State#state.context,
