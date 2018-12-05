@@ -51,15 +51,11 @@ process_post(Req, State = #state{mode = login}) ->
         {error, _} ->
             {{halt, 400}, Req1, State}
     end;
-process_post(Req, #state{mode = logout}) ->
+process_post(Req, State = #state{mode = logout}) ->
     C = z_context:new(Req, ?MODULE),
     {ok, C2} = z_session_manager:continue_session(C),
-    case z_session_manager:stop_session(C2) of
-        {ok, C3} ->
-            {{halt, 204}, Req, C3};
-        _ ->
-            {{halt, 400}, Req, C2}
-    end.
+    {ok, C3} = z_session_manager:stop_session(C2),
+    {{halt, 204}, C3#context.wm_reqdata, State}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
