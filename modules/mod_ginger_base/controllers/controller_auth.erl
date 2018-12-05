@@ -60,14 +60,14 @@ process_post(Req, State = #state{mode = logout}) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(Req, #state{mode = login}) ->
+to_json(Req, State = #state{mode = login}) ->
     {ok, C} = z_session_manager:continue_session(z_context:new(Req, ?MODULE)),
     case z_session:get(auth_user_id, C) of
-        undefined ->
-            {{halt, 400}, Req, C};
+        none ->
+            {{halt, 400}, C#context.wm_reqdata, State};
         Id ->
-            Req2 = wrq:set_resp_body(jsx:encode(user(Id, C)), Req),
-            {true, Req2, C}
+            Body = jsx:encode(user(Id, C)),
+            {Body, C#context.wm_reqdata, State}
     end.
 
 %%%-----------------------------------------------------------------------------
