@@ -14,6 +14,46 @@
 
 -include_lib("zotonic.hrl").
 
+observe_rsc_update_done(Update, Context) ->
+    case z_convert:to_bool(m_config:get_value(mod_ginger_sword, publish_sword, Context)) of
+        true ->
+            on_rsc_update_done(Update, Context),
+            ok;
+        false ->
+            ok
+    end.
+
+%% @doc Dispatches a task from the queue
+%% If an error of some sort occurs delay the task
+dispatch_task(create, RscId, Context) ->
+    dispatch_task(fun create_rsc/2, RscId, Context);
+dispatch_task(update, RscId, Context) ->
+    dispatch_task(fun update_rsc/2, RscId, Context);
+dispatch_task(delete, RscId, Context) ->
+    dispatch_task(fun delete_rsc/2, RscId, Context);
+dispatch_task(TaskFn, RscId, Context) when is_function(TaskFn) ->
+    try
+        case TaskFn(RscId, Context) of
+            {error, _} ->
+                {delay, 60};
+            Resp ->
+                case resp_is_succes(Resp) of
+                    true -> Resp;
+                    false -> {delay, 60}
+                end
+        end
+    catch
+        Error:Reason ->
+            ?zWarning(io_lib:format("Sword publish failed(~p:~p):~n ~p",
+                                    [Error, Reason, erlang:get_stacktrace()]),
+                      Context),
+            {delay, 60}
+    end.
+
+%% @doc Cancels all scheduled publication tasks
+cancel_tasks(Context) ->
+    z_pivot_rsc:delete_task(mod_ginger_sword, dispatch_task, Context).
+
 sword_url(Context) ->
     z_convert:to_list(m_config:get_value(mod_ginger_sword, sword_url, Context)).
 
@@ -93,37 +133,6 @@ unique_key(Task, RscId) ->
 resp_is_succes(Resp) ->
     {_, {{_, Code, _}, _Headers, _Body}} = Resp,
     (Code >= 200) and (Code < 300).
-
-%% @doc Dispatches a task from the queue
-%% If an error of some sort occurs delay the task
-dispatch_task(create, RscId, Context) ->
-    dispatch_task(fun create_rsc/2, RscId, Context);
-dispatch_task(update, RscId, Context) ->
-    dispatch_task(fun update_rsc/2, RscId, Context);
-dispatch_task(delete, RscId, Context) ->
-    dispatch_task(fun delete_rsc/2, RscId, Context);
-dispatch_task(TaskFn, RscId, Context) when is_function(TaskFn) ->
-    try
-        case TaskFn(RscId, Context) of
-            {error, _} ->
-                {delay, 60};
-            Resp ->
-                case resp_is_succes(Resp) of
-                    true -> Resp;
-                    false -> {delay, 60}
-                end
-        end
-    catch
-        Error:Reason ->
-            ?zWarning(io_lib:format("Sword publish failed(~p:~p):~n ~p",
-                                    [Error, Reason, erlang:get_stacktrace()]),
-                      Context),
-            {delay, 60}
-    end.
-
-%% @doc Cancels all scheduled publication tasks
-cancel_tasks(Context) ->
-    z_pivot_rsc:delete_task(mod_ginger_sword, dispatch_task, Context).
 
 %% @doc Adds a new durable task to the queue
 queue_task(Task, RscId, Context) ->
@@ -219,14 +228,5 @@ on_rsc_update_done(#rsc_update_done{action = update, id = Id} = RscUpdate, Conte
         {_, _, true} ->
             queue_task(delete, Id, Context);
         _ ->
-            ok
-    end.
-
-observe_rsc_update_done(Update, Context) ->
-    case z_convert:to_bool(m_config:get_value(mod_ginger_sword, publish_sword, Context)) of
-        true ->
-            on_rsc_update_done(Update, Context),
-            ok;
-        false ->
             ok
     end.
