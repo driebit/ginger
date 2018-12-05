@@ -20,6 +20,7 @@
 -record(state, { mode = undefined
                , path_info = undefined
                , context = undefined
+               , document_id = undefined
                }
        ).
 
@@ -40,8 +41,8 @@ malformed_request(Req, State = #state{mode = document, path_info = id}) ->
     case string:to_integer(wrq:path_info(id, Req)) of
         {error, _Reason} ->
             {true, Req, State};
-        {_Int, []} ->
-            {false, Req, State};
+        {Id, []} ->
+            {false, Req, State#state{document_id = Id}};
         {_Int, _Rest} ->
             {true, Req, State}
     end;
@@ -55,8 +56,7 @@ resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = id}) ->
     Context = State#state.context,
-    Id = wrq:path_info(id, Req),
-    {m_rsc:exists(Id, Context), Req, State};
+    {m_rsc:exists(State#state.document_id, Context), Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
@@ -89,7 +89,7 @@ to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
     Id =
         case PathInfo of
             id ->
-                integer_path_info(id, Req);
+                State#state.document_id;
             path ->
                 {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
                 Result
@@ -186,9 +186,6 @@ path_to_id(Path, Context) ->
             end
     end.
 
-integer_path_info(Binding, Req) ->
-    erlang:list_to_integer(wrq:path_info(Binding, Req)).
-
 %%%-----------------------------------------------------------------------------
 %%% Tests
 %%%-----------------------------------------------------------------------------
@@ -243,11 +240,12 @@ malformed_request_test_() ->
         end
       , fun () ->
                 meck:expect(wrq, path_info, 2, "23"),
-                {false, _, _} =
+                {false, _, State} =
                     malformed_request(req, #state{ mode = document
                                                  , path_info = id
                                                  }
                                      ),
+                23 = State#state.document_id,
                 ok
         end
       ]
