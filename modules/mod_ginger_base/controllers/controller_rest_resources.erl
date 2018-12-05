@@ -239,11 +239,12 @@ malformed_request_test_() ->
         end
       , fun () ->
                 meck:expect(wrq, path_info, 2, "23"),
-                {false, _, _} =
+                {false, _, State} =
                     malformed_request(req, #state{ mode = document
                                                  , path_info = id
                                                  }
                                      ),
+                23 = State#state.document_id,
                 ok
         end
       ]
