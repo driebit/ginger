@@ -149,7 +149,7 @@ queue_task(Task, RscId, Context) ->
 cat_must_publish([]) ->
     false;
 cat_must_publish(IsA) ->
-    story == lists:last(Isa).
+    story == lists:last(IsA).
 
 %% @doc Determines if a resource state is published (to the aggregator)
 state_is_published(_Props, IsA) ->
