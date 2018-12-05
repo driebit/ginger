@@ -82,8 +82,8 @@ render_rdf_body(RscId, Context) ->
     case m_rsc:exists(RscId, Context) of
         true ->
             RdfResource = m_rdf:to_triples(RscId, AC),
-            JsonLd = ginger_json_ld:serialize(RdfResource),
-            iolist_to_binary(mochijson2:encode(JsonLd));
+            JsonLd = ginger_json_ld:serialize_to_map(RdfResource),
+            jsx:encode(JsonLd);
         false ->
             <<"">>
     end.
