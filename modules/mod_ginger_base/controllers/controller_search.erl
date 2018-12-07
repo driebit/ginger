@@ -24,9 +24,7 @@ to_json(Req, State = #state{mode = coordinates}) ->
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
     %% Get search params from request
-    Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
-    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
-    Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
+    {Type, Offset, Limit} = search_params(Req),
     %% We're only interested in the geolocation and id fields
     Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
     %% And it doesn't make sense to retrieve any results without coordinates
@@ -58,9 +56,7 @@ to_json(Req, State) ->
     Context  = z_context:new(Req, ?MODULE),
     RequestArgs = wrq:req_qs(Req),
     %% Get search params from request
-    Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
-    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
-    Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
+    {Type, Offset, Limit} = search_params(Req),
     %% Perform search (Zotonic offsets start at 1)
     Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
     %% Filter search results not visible for current user
@@ -76,6 +72,13 @@ to_json(Req, State) ->
               }
             ),
     {Json, Req, State}.
+
+search_params(Req) ->
+    RequestArgs = wrq:req_qs(Req),
+    Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
+    Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
+    Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
+    {Type, Offset, Limit}.
 
 %% @doc Is a search result visible for the current user?
 -spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
