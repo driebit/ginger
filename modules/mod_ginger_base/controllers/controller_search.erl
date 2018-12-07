@@ -53,36 +53,12 @@ to_json(Req, State) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-coordinates(SearchResult) ->
-    Id = maps:get(<<"_id">>, SearchResult),
-    Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, SearchResult)),
-    #{ id => erlang:binary_to_integer(Id)
-     , lat => maps:get(<<"lat">>, Location)
-     , lng => maps:get(<<"lon">>, Location)
-     }.
-
 params(Req) ->
     RequestArgs = wrq:req_qs(Req),
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
     Limit = list_to_integer(proplists:get_value("limit", RequestArgs, "1000")),
     {Type, Offset, Limit}.
-
-%% @doc Is a search result visible for the current user?
--spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
-is_visible(Id, Context) when is_integer(Id) ->
-    m_rsc:is_visible(Id, Context);
-is_visible(Document, _Context) when is_map(Document) ->
-    %% All documents are visible.
-    true.
-
--spec search_result(m_rsc:resource() | map(), z:context()) -> map().
-search_result(Id, Context) when is_integer(Id) ->
-    Rsc = m_ginger_rest:rsc(Id, Context),
-    m_ginger_rest:with_edges(Rsc, [depiction], Context);
-search_result(Document, _Context) when is_map(Document) ->
-    %% Return a document (such as an Elasticsearch document) as is.
-    Document.
 
 %% @doc Process and filter request arguments.
 -spec arguments(wrq:rd()) -> proplists:proplist().
@@ -123,6 +99,30 @@ whitelisted(Arguments) ->
 -spec whitelist() -> [atom()].
 whitelist() ->
     [cat, cat_exclude, cat_promote_recent, content_group, filter, hasobject, hassubject, text, sort, has_geo].
+
+coordinates(SearchResult) ->
+    Id = maps:get(<<"_id">>, SearchResult),
+    Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, SearchResult)),
+    #{ id => erlang:binary_to_integer(Id)
+     , lat => maps:get(<<"lat">>, Location)
+     , lng => maps:get(<<"lon">>, Location)
+     }.
+
+%% @doc Is a search result visible for the current user?
+-spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
+is_visible(Id, Context) when is_integer(Id) ->
+    m_rsc:is_visible(Id, Context);
+is_visible(Document, _Context) when is_map(Document) ->
+    %% All documents are visible.
+    true.
+
+-spec search_result(m_rsc:resource() | map(), z:context()) -> map().
+search_result(Id, Context) when is_integer(Id) ->
+    Rsc = m_ginger_rest:rsc(Id, Context),
+    m_ginger_rest:with_edges(Rsc, [depiction], Context);
+search_result(Document, _Context) when is_map(Document) ->
+    %% Return a document (such as an Elasticsearch document) as is.
+    Document.
 
 %% @doc Combine separate facets (date_start_min, date_start_max) into one property
 %% (date_start.min, date_start.max).
