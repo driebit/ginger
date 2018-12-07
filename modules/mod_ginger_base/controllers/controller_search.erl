@@ -26,11 +26,10 @@ content_types_provided(Req, State) ->
 to_json(Req, State = #state{mode = coordinates}) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
-    RequestArgs = wrq:req_qs(Req),
     %% Get search params from request
     {Type, Offset, Limit} = search_params(Req),
     %% We're only interested in the geolocation and id fields
-    Query1 = [{source, [<<"geolocation">>]} | arguments(RequestArgs)],
+    Query1 = [{source, [<<"geolocation">>]} | arguments(Req)],
     %% And it doesn't make sense to retrieve any results without coordinates
     Query2 = [{has_geo, <<"true">>} | Query1],
     %% Perform search (Zotonic offsets start at 1)
@@ -46,11 +45,10 @@ to_json(Req, State = #state{mode = coordinates}) ->
 to_json(Req, State) ->
     %% Init
     Context  = z_context:new(Req, ?MODULE),
-    RequestArgs = wrq:req_qs(Req),
     %% Get search params from request
     {Type, Offset, Limit} = search_params(Req),
     %% Perform search (Zotonic offsets start at 1)
-    Result = z_search:search({Type, arguments(RequestArgs)}, {Offset + 1, Limit}, Context),
+    Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
     %% Filter search results not visible for current user
     VisibleResults = lists:filter(
                        fun(R) -> is_visible(R, Context) end,
@@ -102,8 +100,9 @@ search_result(Document, _Context) when is_map(Document) ->
     Document.
 
 %% @doc Process and filter request arguments.
--spec arguments([{string(), any()}]) -> proplists:proplist().
-arguments(RequestArgs) ->
+-spec arguments(wrq:rd()) -> proplists:proplist().
+arguments(Req) ->
+    RequestArgs = wrq:req_qs(Req),
     Args = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
     whitelisted(Args).
 
