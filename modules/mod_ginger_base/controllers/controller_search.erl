@@ -65,7 +65,10 @@ params(Req) ->
 arguments(Req) ->
     RequestArgs = wrq:req_qs(Req),
     Args = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
-    whitelisted(Args).
+    lists:filter(
+      fun({Key, _Value}) -> lists:member(Key, whitelist()) end,
+      Args
+     ).
 
 %% @doc Pre-process request argument if needed.
 -spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
@@ -86,14 +89,6 @@ argument({filter, Value}) ->
     argument({filter, list_to_binary(Value)});
 argument(Argument) ->
     Argument.
-
-%% @doc Only allow whitelisted values.
--spec whitelisted(proplists:proplist()) -> proplists:proplist().
-whitelisted(Arguments) ->
-    lists:filter(
-      fun({Key, _Value}) -> lists:member(Key, whitelist()) end,
-      Arguments
-     ).
 
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
