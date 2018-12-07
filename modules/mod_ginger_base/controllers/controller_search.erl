@@ -48,11 +48,13 @@ to_json(Req, State = #state{mode = coordinates}) ->
           end,
           SearchResults#search_result.result
          ),
+    %% Serialize to JSON
     Json = jsx:encode(
              #{ result => Coordinates
               , total => SearchResults#search_result.total
               }
             ),
+    %% Done
     {Json, Req, State};
 to_json(Req, State) ->
     %% Init
@@ -74,6 +76,7 @@ to_json(Req, State) ->
               , facets => facets(Result#search_result.facets)
               }
             ),
+    %% Done
     {Json, Req, State}.
 
 %%%-----------------------------------------------------------------------------
