@@ -38,8 +38,8 @@ to_json(Req, State) ->
                  };
             _ ->
                 Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
-                #{ result => [ search_result(R, Context)
-                               || R <- Result#search_result.result , is_visible(R, Context)
+                #{ result => [ search_result(R, Context) || R <- Result#search_result.result
+                                                                , is_visible(R, Context)
                              ]
                  , total => Result#search_result.total
                  , facets => facets(Result#search_result.facets)
