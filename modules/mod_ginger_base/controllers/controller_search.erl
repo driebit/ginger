@@ -1,11 +1,11 @@
 %% @doc Execute searches and retrieve results in JSON.
 -module(controller_search).
 
--export([
-    init/1,
-    content_types_provided/2,
-    to_json/2
-]).
+-export([ init/1
+        , content_types_provided/2
+        , to_json/2
+        ]
+       ).
 
 -include_lib("zotonic.hrl").
 -include_lib("controller_webmachine_helper.hrl").
