@@ -28,12 +28,11 @@ to_json(Req, State = #state{mode = coordinates}) ->
     Context  = z_context:new(Req, ?MODULE),
     %% Get search params from request
     {Type, Offset, Limit} = search_params(Req),
-    %% We're only interested in the geolocation and id fields
-    Query1 = [{source, [<<"geolocation">>]} | arguments(Req)],
-    %% And it doesn't make sense to retrieve any results without coordinates
-    Query2 = [{has_geo, <<"true">>} | Query1],
+    %% We're only interested in the geolocation and id field, also it doesn't make sense to retrieve
+    %% any results without coordinates
+    Query = [{source, [<<"geolocation">>]}, {has_geo, <<"true">>} | arguments(Req)],
     %% Perform search (Zotonic offsets start at 1)
-    SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
+    SearchResults = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
     %% Serialize to JSON
     Json = jsx:encode(
              #{ result => [coordinates(R) || R <- SearchResults]
