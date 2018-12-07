@@ -35,7 +35,7 @@ to_json(Req, State = #state{mode = coordinates}) ->
     SearchResult = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
     %% Serialize to JSON
     Json = jsx:encode(
-             #{ result => [coordinates(R) || R <- SearchResult]
+             #{ result => [coordinates(R) || R <- SearchResult#search_result.result]
               , total => SearchResult#search_result.total
               }
             ),
