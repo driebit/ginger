@@ -66,9 +66,7 @@ to_json(Req, State) ->
             } = Result,
             %% Filter search results not visible for current user
             VisibleResults = lists:filter(
-                               fun(R) ->
-                                       is_visible(R, Context)
-                               end,
+                               fun(R) -> is_visible(R, Context) end,
                                Results
                               ),
             %% Serialize to JSON
@@ -127,9 +125,7 @@ argument(Argument) ->
 -spec whitelisted(proplists:proplist()) -> proplists:proplist().
 whitelisted(Arguments) ->
     lists:filter(
-      fun({Key, _Value}) ->
-              lists:member(Key, whitelist())
-      end,
+      fun({Key, _Value}) -> lists:member(Key, whitelist()) end,
       Arguments
      ).
 
