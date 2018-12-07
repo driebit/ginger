@@ -36,18 +36,7 @@ to_json(Req, State = #state{mode = coordinates}) ->
     %% Perform search (Zotonic offsets start at 1)
     SearchResults = z_search:search({Type, Query2}, {Offset + 1, Limit}, Context),
     %% Strip any unneeded data
-    Coordinates =
-        lists:map(
-          fun(Item) ->
-                  Id = maps:get(<<"_id">>, Item),
-                  Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, Item)),
-                  #{ id => erlang:binary_to_integer(Id)
-                   , lat => maps:get(<<"lat">>, Location)
-                   , lng => maps:get(<<"lon">>, Location)
-                   }
-          end,
-          SearchResults#search_result.result
-         ),
+    Coordinates = [coordinates(R) || R <- SearchResults],
     %% Serialize to JSON
     Json = jsx:encode(
              #{ result => Coordinates
@@ -82,6 +71,14 @@ to_json(Req, State) ->
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
+
+coordinates(SearchResult) ->
+        Id = maps:get(<<"_id">>, SearchResult),
+        Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, SearchResult)),
+        #{ id => erlang:binary_to_integer(Id)
+         , lat => maps:get(<<"lat">>, Location)
+         , lng => maps:get(<<"lon">>, Location)
+         }.
 
 search_params(Req) ->
     RequestArgs = wrq:req_qs(Req),
