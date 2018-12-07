@@ -47,9 +47,11 @@ to_json(Req, State = #state{mode = coordinates}) ->
                     lat => Lat, lng => Lon}
           end,
           SearchResults#search_result.result),
-    Result = #{<<"result">> => Coordinates,
-               <<"total">> => SearchResults#search_result.total},
-    Json = jiffy:encode(Result),
+    Json = jiffy:encode(
+             #{ <<"result">> => Coordinates
+              , <<"total">> => SearchResults#search_result.total
+              }
+            ),
     {Json, Req, State};
 to_json(Req, State) ->
     %% Init
