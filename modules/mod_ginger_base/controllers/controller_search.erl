@@ -47,7 +47,7 @@ to_json(Req, State = #state{mode = coordinates}) ->
                                }
                          }
                    } = Item,
-                  #{ id => list_to_integer(binary_to_list(Id))
+                  #{ id => erlang:binary_to_integer(Id)
                    , lat => Lat
                    , lng => Lon
                    }
