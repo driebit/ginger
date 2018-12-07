@@ -39,17 +39,11 @@ to_json(Req, State = #state{mode = coordinates}) ->
     Coordinates =
         lists:map(
           fun(Item) ->
-                  #{ <<"_id">> := Id,
-                     <<"_source">> :=
-                         #{<<"geolocation">> :=
-                              #{<<"lat">> := Lat,
-                                <<"lon">> := Lon
-                               }
-                         }
-                   } = Item,
+                  Id = maps:get(<<"_id">>, Item),
+                  Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, Item)),
                   #{ id => erlang:binary_to_integer(Id)
-                   , lat => Lat
-                   , lng => Lon
+                   , lat => maps:get(<<"lat">>, Location)
+                   , lng => maps:get(<<"lon">>, Location)
                    }
           end,
           SearchResults#search_result.result
