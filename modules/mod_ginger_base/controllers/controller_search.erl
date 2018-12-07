@@ -65,10 +65,7 @@ params(Req) ->
 arguments(Req) ->
     RequestArgs = wrq:req_qs(Req),
     Args = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
-    lists:filter(
-      fun({Key, _Value}) -> lists:member(Key, whitelist()) end,
-      Args
-     ).
+    [{Key, Value} || {Key, Value} <- Args, lists:member(Key, whitelist())].
 
 %% @doc Pre-process request argument if needed.
 -spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
