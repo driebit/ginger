@@ -25,7 +25,7 @@ content_types_provided(Req, State) ->
 
 to_json(Req, State) ->
     Context  = z_context:new(Req, ?MODULE),
-    {Type, Offset, Limit} = search_params(Req),
+    {Type, Offset, Limit} = params(Req),
     Data =
         case State#state.mode of
             coordinates ->
@@ -61,7 +61,7 @@ coordinates(SearchResult) ->
      , lng => maps:get(<<"lon">>, Location)
      }.
 
-search_params(Req) ->
+params(Req) ->
     RequestArgs = wrq:req_qs(Req),
     Type = list_to_atom(proplists:get_value("type", RequestArgs, "ginger_search")),
     Offset = list_to_integer(proplists:get_value("offset", RequestArgs, "0")),
