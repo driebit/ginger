@@ -90,7 +90,17 @@ argument(Argument) ->
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
 whitelist() ->
-    [cat, cat_exclude, cat_promote_recent, content_group, filter, hasobject, hassubject, text, sort, has_geo].
+    [ cat
+    , cat_exclude
+    , cat_promote_recent
+    , content_group
+    , filter
+    , has_geo
+    , hasobject
+    , hassubject
+    , sort
+    , text
+    ].
 
 coordinates(SearchResult) ->
     Id = maps:get(<<"_id">>, SearchResult),
