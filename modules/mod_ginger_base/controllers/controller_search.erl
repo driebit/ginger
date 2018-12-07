@@ -69,12 +69,12 @@ to_json(Req, State) ->
                        Result#search_result.result
                       ),
     %% Serialize to JSON
-    SearchResults = #{
-                      <<"result">> => [search_result(R, Context) || R <- VisibleResults],
-                      <<"total">> => Result#search_result.total,
-                      <<"facets">> => facets(Result#search_result.facets)
-                     },
-    Json = jsx:encode(SearchResults),
+    Json = jsx:encode(
+             #{ <<"result">> => [search_result(R, Context) || R <- VisibleResults]
+              , <<"total">> => Result#search_result.total
+              , <<"facets">> => facets(Result#search_result.facets)
+              }
+            ),
     {Json, Req, State}.
 
 %% @doc Is a search result visible for the current user?
