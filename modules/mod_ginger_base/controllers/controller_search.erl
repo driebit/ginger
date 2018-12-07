@@ -43,8 +43,10 @@ to_json(Req, State = #state{mode = coordinates}) ->
                                }
                          }
                    } = Item,
-                  #{id => list_to_integer(binary_to_list(Id)),
-                    lat => Lat, lng => Lon}
+                  #{ id => list_to_integer(binary_to_list(Id))
+                   , lat => Lat
+                   , lng => Lon
+                   }
           end,
           SearchResults#search_result.result
          ),
