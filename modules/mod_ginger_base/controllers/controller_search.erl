@@ -23,45 +23,31 @@ init(Args) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(Req, State = #state{mode = coordinates}) ->
-    %% Init
-    Context  = z_context:new(Req, ?MODULE),
-    %% Get search params from request
-    {Type, Offset, Limit} = search_params(Req),
-    %% We're only interested in the geolocation and id field, also it doesn't make sense to retrieve
-    %% any results without coordinates
-    Query = [{source, [<<"geolocation">>]}, {has_geo, <<"true">>} | arguments(Req)],
-    %% Perform search (Zotonic offsets start at 1)
-    Result = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
-    %% Serialize to JSON
-    Json = jsx:encode(
-             #{ result => [coordinates(R) || R <- Result#search_result.result]
-              , total => Result#search_result.total
-              }
-            ),
-    %% Done
-    {Json, Req, State};
 to_json(Req, State) ->
-    %% Init
     Context  = z_context:new(Req, ?MODULE),
-    %% Get search params from request
     {Type, Offset, Limit} = search_params(Req),
-    %% Perform search (Zotonic offsets start at 1)
-    Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
-    %% Filter search results not visible for current user
-    VisibleResults = lists:filter(
-                       fun(R) -> is_visible(R, Context) end,
-                       Result#search_result.result
-                      ),
-    %% Serialize to JSON
-    Json = jsx:encode(
-             #{ result => [search_result(R, Context) || R <- VisibleResults]
-              , total => Result#search_result.total
-              , facets => facets(Result#search_result.facets)
-              }
-            ),
-    %% Done
-    {Json, Req, State}.
+    Data =
+        case State#state.mode of
+            coordinates ->
+                %% We're only interested in the geolocation and id field, also it doesn't make sense
+                %% to retrieve results without coordinates
+                Query = [{source, [<<"geolocation">>]}, {has_geo, <<"true">>} | arguments(Req)],
+                Result = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
+                #{ result => [coordinates(R) || R <- Result#search_result.result]
+                 , total => Result#search_result.total
+                 };
+            _ ->
+                Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
+                VisibleResults = lists:filter(
+                                   fun(R) -> is_visible(R, Context) end,
+                                   Result#search_result.result
+                                  ),
+                #{ result => [search_result(R, Context) || R <- VisibleResults]
+                 , total => Result#search_result.total
+                 , facets => facets(Result#search_result.facets)
+                 }
+        end,
+    {jsx:decode(Data), Req, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
