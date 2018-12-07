@@ -5,6 +5,7 @@
         , malformed_request/2
         , allowed_methods/2
         , resource_exists/2
+        , delete_resource/2
         , content_types_provided/2
         , to_json/2
         , process_post/2
@@ -50,7 +51,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'POST', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'DELETE', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -68,6 +69,10 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
+
+delete_resource(Req, State = #state{mode = document}) ->
+    ok = m_rsc:delete(State#state.document_id, State#state.context),
+    {true, Req, State}.
 
 to_json(Req, State = #state{mode = collection}) ->
     Context = State#state.context,
@@ -198,8 +203,9 @@ allowed_methods_test_() ->
               {Methods, _, _} = allowed_methods(req, state),
               ?assert(lists:member('GET', Methods)),
               ?assert(lists:member('POST', Methods)),
+              ?assert(lists:member('DELETE', Methods)),
               ?assert(lists:member('HEAD', Methods)),
-              ?assertEqual(3, erlang:length(Methods)),
+              ?assertEqual(4, erlang:length(Methods)),
               ok
       end
     ].
