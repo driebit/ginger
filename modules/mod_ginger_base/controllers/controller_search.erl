@@ -32,11 +32,11 @@ to_json(Req, State = #state{mode = coordinates}) ->
     %% any results without coordinates
     Query = [{source, [<<"geolocation">>]}, {has_geo, <<"true">>} | arguments(Req)],
     %% Perform search (Zotonic offsets start at 1)
-    SearchResults = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
+    SearchResult = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
     %% Serialize to JSON
     Json = jsx:encode(
-             #{ result => [coordinates(R) || R <- SearchResults]
-              , total => SearchResults#search_result.total
+             #{ result => [coordinates(R) || R <- SearchResult]
+              , total => SearchResult#search_result.total
               }
             ),
     %% Done
