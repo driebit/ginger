@@ -61,7 +61,7 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
-            {m_rsc:exists(Id, Context), Req, State};
+            {m_rsc:exists(Id, Context), Req, State#state{document_id = Id}};
         {error, _} ->
             {false, Req, State}
     end.
@@ -84,16 +84,9 @@ to_json(Req, State = #state{mode = collection}) ->
     Ids = z_search:query_(Args1 ++ Args2, Context),
     Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
-to_json(Req, State = #state{mode = document, path_info = PathInfo}) ->
+to_json(Req, State = #state{mode = document}) ->
+    Id = State#state.document_id,
     Context = State#state.context,
-    Id =
-        case PathInfo of
-            id ->
-                State#state.document_id;
-            path ->
-                {ok, Result} = path_to_id(wrq:path_info(path, Req), Context),
-                Result
-        end,
     Json = jsx:encode(rsc(Id, Context, true)),
     {Json, Req, State}.
 
