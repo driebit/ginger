@@ -48,7 +48,7 @@ to_json(Req, State = #state{mode = coordinates}) ->
           end,
           SearchResults#search_result.result
          ),
-    Json = jiffy:encode(
+    Json = jsx:encode(
              #{ <<"result">> => Coordinates
               , <<"total">> => SearchResults#search_result.total
               }
