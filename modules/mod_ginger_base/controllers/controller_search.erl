@@ -35,9 +35,9 @@ to_json(Req, State = #state{mode = coordinates}) ->
     Coordinates =
         lists:map(
           fun(Item) ->
-                  #{<<"_id">> := Id,
-                    <<"_source">> :=
-                        #{<<"geolocation">> :=
+                  #{ <<"_id">> := Id,
+                     <<"_source">> :=
+                         #{<<"geolocation">> :=
                               #{<<"lat">> := Lat,
                                 <<"lon">> := Lon
                                }
@@ -46,7 +46,8 @@ to_json(Req, State = #state{mode = coordinates}) ->
                   #{id => list_to_integer(binary_to_list(Id)),
                     lat => Lat, lng => Lon}
           end,
-          SearchResults#search_result.result),
+          SearchResults#search_result.result
+         ),
     Json = jiffy:encode(
              #{ <<"result">> => Coordinates
               , <<"total">> => SearchResults#search_result.total
