@@ -71,12 +71,12 @@ to_json(Req, State) ->
 %%%-----------------------------------------------------------------------------
 
 coordinates(SearchResult) ->
-        Id = maps:get(<<"_id">>, SearchResult),
-        Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, SearchResult)),
-        #{ id => erlang:binary_to_integer(Id)
-         , lat => maps:get(<<"lat">>, Location)
-         , lng => maps:get(<<"lon">>, Location)
-         }.
+    Id = maps:get(<<"_id">>, SearchResult),
+    Location = maps:get(<<"geolocation">>, maps:get(<<"_source">>, SearchResult)),
+    #{ id => erlang:binary_to_integer(Id)
+     , lat => maps:get(<<"lat">>, Location)
+     , lng => maps:get(<<"lon">>, Location)
+     }.
 
 search_params(Req) ->
     RequestArgs = wrq:req_qs(Req),
