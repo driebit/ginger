@@ -51,8 +51,8 @@ to_json(Req, State = #state{mode = coordinates}) ->
           SearchResults#search_result.result
          ),
     Json = jsx:encode(
-             #{ <<"result">> => Coordinates
-              , <<"total">> => SearchResults#search_result.total
+             #{ result => Coordinates
+              , total => SearchResults#search_result.total
               }
             ),
     {Json, Req, State};
@@ -71,9 +71,9 @@ to_json(Req, State) ->
                       ),
     %% Serialize to JSON
     Json = jsx:encode(
-             #{ <<"result">> => [search_result(R, Context) || R <- VisibleResults]
-              , <<"total">> => Result#search_result.total
-              , <<"facets">> => facets(Result#search_result.facets)
+             #{ result => [search_result(R, Context) || R <- VisibleResults]
+              , total => Result#search_result.total
+              , facets => facets(Result#search_result.facets)
               }
             ),
     {Json, Req, State}.
