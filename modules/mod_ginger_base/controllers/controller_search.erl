@@ -64,8 +64,8 @@ params(Req) ->
 -spec arguments(wrq:rd()) -> proplists:proplist().
 arguments(Req) ->
     RequestArgs = wrq:req_qs(Req),
-    Args = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
-    [{Key, Value} || {Key, Value} <- Args, lists:member(Key, whitelist())].
+    Arguments = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
+    [{Key, Value} || {Key, Value} <- Arguments, lists:member(Key, whitelist())].
 
 %% @doc Pre-process request argument if needed.
 -spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
