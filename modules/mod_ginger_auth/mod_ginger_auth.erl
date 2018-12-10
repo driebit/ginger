@@ -59,6 +59,7 @@ observe_logon_actions(#logon_actions{args=Args}, _Acc, Context) ->
 observe_signup_form_fields(signup_form_fields, _FormProps, _Context) ->
     [
     {name_first, false},
+    {name_surname_prefix, false},
     {name_surname, false},
     {email, true},
     {block_email, false}
