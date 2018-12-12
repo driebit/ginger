@@ -35,7 +35,7 @@ process_post(Req, State = #state{mode = reset}) ->
     Context = z_context:new(Req, ?MODULE),
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    Email = maps:get(email, Data, undefined),
+    Email = maps:get(email, Data),
     controller_logon:reminder(Email, Context),
     {{halt, 204}, Req1, State};
 process_post(Req, State = #state{mode = login}) ->
