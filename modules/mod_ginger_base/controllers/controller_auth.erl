@@ -23,12 +23,21 @@
 init([Args]) ->
     {ok, #state{mode = maps:get(mode, Args)}}.
 
+allowed_methods(Req, State = #state{mode = reset}) ->
+    {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
     {['POST', 'HEAD', 'GET'], Req, State}.
 
 post_is_create(Req, Context) ->
     {false, Req, Context}.
 
+process_post(Req, State = #state{mode = reset}) ->
+    Context = z_context:new(Req, ?MODULE),
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Email = maps:get(email, Data, undefined),
+    controller_logon:reminder(Email, Context),
+    {{halt, 204}, Req1, State};
 process_post(Req, State = #state{mode = login}) ->
     Context = z_context:new(Req, ?MODULE),
     {Body, Req1} = wrq:req_body(Req),
