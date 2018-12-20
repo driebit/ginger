@@ -23,6 +23,8 @@
 init([Args]) ->
     {ok, #state{mode = maps:get(mode, Args)}}.
 
+allowed_methods(Req, State = #state{mode = new}) ->
+    {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State = #state{mode = reset}) ->
     {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
@@ -31,6 +33,17 @@ allowed_methods(Req, State) ->
 post_is_create(Req, Context) ->
     {false, Req, Context}.
 
+process_post(Req, State = #state{mode = new}) ->
+    Context = z_context:new(Req, ?MODULE),
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Email = maps:get(email, Data), % TODO: validate email
+    Password = maps:get(password, Data),
+    Identity = {username_pw, {Email, Password}, true, true},
+    RequestConfirm = true,
+    {ok, Id} = mod_signup:signup([{email, Email}], [{identity, Identity}], RequestConfirm, Context),
+    ok = mod_signup:request_verification(Id, Context),
+    {{halt, 204}, Req1, State};
 process_post(Req, State = #state{mode = reset}) ->
     Context = z_context:new(Req, ?MODULE),
     {Body, Req1} = wrq:req_body(Req),
