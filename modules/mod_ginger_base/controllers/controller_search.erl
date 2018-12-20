@@ -45,7 +45,7 @@ to_json(Req, State) ->
                  , facets => facets(Result#search_result.facets)
                  }
         end,
-    {jsx:decode(Data), Req, State}.
+    {jsx:encode(Data), Req, State}.
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
