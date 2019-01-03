@@ -4,33 +4,30 @@
 
 -export([
     annotate/2,
-    candidates/2,
-    request/3,
-    request/4
+    candidates/3,
+    request/3
 ]).
 
 -include_lib("../include/ginger_dbpedia_spotlight.hrl").
 -include_lib("zotonic.hrl").
 
--define(ENDPOINT, <<"https://api.dbpedia-spotlight.org">>).
-
 %% @doc A 4 step process - Spotting, Candidate Mapping, Disambiguation and Linking / Stats - for
 %%      linking unstructured information sources.
--spec annotate(binary(), atom()) -> binary().
-annotate(Text, Language) when is_binary(Text) ->
+-spec annotate(binary(), binary()) -> binary().
+annotate(Endpoint, Text) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
-    request(Language, <<"/annotate">>, Request).
+    request(Endpoint, <<"/annotate">>, Request).
 
 %% @doc A 2 step process - Spotting, Candidate Mapping - for linking unstructured information
 %%      sources.
--spec candidates(binary(), atom()) -> [map()] | undefined.
-candidates(Text, Language) when is_binary(Text) ->
+-spec candidates(binary(), binary(), atom()) -> [map()] | undefined.
+candidates(Endpoint, Text, Language) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
-    case request(Language, <<"/candidates">>, Request) of
+    case request(Endpoint, <<"/candidates">>, Request) of
         undefined ->
             %% Failed HTTP request.
             undefined;
@@ -44,14 +41,10 @@ candidates(Text, Language) when is_binary(Text) ->
             []
     end.
 
--spec request(atom(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
-request(Language, Method, #dbpedia_spotlight_request{} = Request) ->
-    request(?ENDPOINT, Language, Method, Request).
-
--spec request(binary(), atom(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
-request(Endpoint, Language, Method, #dbpedia_spotlight_request{} = Request) ->
+-spec request(binary(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
+request(Endpoint, Method, #dbpedia_spotlight_request{} = Request) ->
     Qs = qs(Request),
-    Url = <<Endpoint/binary, "/", (z_convert:to_binary(Language))/binary, Method/binary, Qs/binary>>,
+    Url = <<Endpoint/binary, Method/binary, Qs/binary>>,
     ginger_http_client:get(Url, []).
 
 %% @doc Build query string.
