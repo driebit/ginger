@@ -15,11 +15,13 @@ Features:
 Configuration
 -------------
 
-If you use your own DBpedia Spotlight server, you can configure that:
+If you run your own DBpedia Spotlight server, you can configure that:
 
 ```erlang
 m_config:set_value(mod_ginger_dbpedia_spotlight, endpoint, <<"http://yourinstance.local/rest">>, Context).
 ```
+
+By default, the [public DBpedia endpoints](https://status.dbpedia-spotlight.org/) will be used.
 
 Usage
 -----

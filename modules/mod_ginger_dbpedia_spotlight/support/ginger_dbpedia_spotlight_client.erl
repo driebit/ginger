@@ -3,9 +3,9 @@
 -module(ginger_dbpedia_spotlight_client).
 
 -export([
-    annotate/3,
+    annotate/2,
     candidates/3,
-    request/4
+    request/3
 ]).
 
 -include_lib("../include/ginger_dbpedia_spotlight.hrl").
@@ -13,12 +13,12 @@
 
 %% @doc A 4 step process - Spotting, Candidate Mapping, Disambiguation and Linking / Stats - for
 %%      linking unstructured information sources.
--spec annotate(binary(), binary(), atom()) -> binary().
-annotate(Endpoint, Text, Language) when is_binary(Text) ->
+-spec annotate(binary(), binary()) -> binary().
+annotate(Endpoint, Text) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
-    request(Endpoint, Language, <<"/annotate">>, Request).
+    request(Endpoint, <<"/annotate">>, Request).
 
 %% @doc A 2 step process - Spotting, Candidate Mapping - for linking unstructured information
 %%      sources.
@@ -27,7 +27,7 @@ candidates(Endpoint, Text, Language) when is_binary(Text) ->
     Request = #dbpedia_spotlight_request{
         text = Text
     },
-    case request(Endpoint, Language, <<"/candidates">>, Request) of
+    case request(Endpoint, <<"/candidates">>, Request) of
         undefined ->
             %% Failed HTTP request.
             undefined;
@@ -41,10 +41,10 @@ candidates(Endpoint, Text, Language) when is_binary(Text) ->
             []
     end.
 
--spec request(binary(), atom(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
-request(Endpoint, Language, Method, #dbpedia_spotlight_request{} = Request) ->
+-spec request(binary(), binary(), #dbpedia_spotlight_request{}) -> map() | undefined.
+request(Endpoint, Method, #dbpedia_spotlight_request{} = Request) ->
     Qs = qs(Request),
-    Url = <<Endpoint/binary, "/", (z_convert:to_binary(Language))/binary, Method/binary, Qs/binary>>,
+    Url = <<Endpoint/binary, Method/binary, Qs/binary>>,
     ginger_http_client:get(Url, []).
 
 %% @doc Build query string.
