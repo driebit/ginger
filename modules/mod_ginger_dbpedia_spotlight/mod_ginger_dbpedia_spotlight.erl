@@ -21,7 +21,7 @@
 -spec annotate(m_resource:resource(), atom(), z:context()) -> [map()] | undefined.
 annotate(Rsc, Language, Context) ->
     Text = rsc_entity_text(Rsc, Language, Context),
-    ginger_dbpedia_spotlight_client:annotate(Text, Language).
+    ginger_dbpedia_spotlight_client:annotate(endpoint(Language, Context), Text).
 
 %% @doc Extract candidate URIs to DBpedia resources from the Zotonic resource's texts.
 -spec candidates(m_rsc:resource(), atom(), z:context()) -> [ginger_uri:uri()].
@@ -30,13 +30,23 @@ candidates(Rsc, Language, Context) ->
         <<>> ->
             [];
         Text ->
-            case ginger_dbpedia_spotlight_client:candidates(Text, Language) of
+            case ginger_dbpedia_spotlight_client:candidates(endpoint(Language, Context), Text, Language) of
                 undefined ->
                     [];
                 Candidates ->
                     lists:map(fun extract_uri/1, Candidates)
             end
      end.
+
+%% @doc Get DBpedia Spotlight endpoint.
+-spec endpoint(atom(), z:context()) -> binary().
+endpoint(Language, Context) ->
+    m_config:get_value(
+        ?MODULE,
+        endpoint,
+        <<"https://api.dbpedia-spotlight.org/", (z_convert:to_binary(Language))/binary>>,
+        Context
+    ).
 
 %% @doc Get text of and related to the Zotonic resource which will be used for entity extraction.
 -spec rsc_entity_text(m_rsc:resource(), atom(), z:context()) -> binary().
