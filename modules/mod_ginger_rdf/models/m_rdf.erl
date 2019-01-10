@@ -178,7 +178,7 @@ ensure_resource_edges(Subject, Predicate, Rdfs, Context) ->
         end,
         Rdfs
     ),
-    ok = m_edge:replace(Subject, Predicate, Ids, Context).
+    ok = m_edge:replace(Subject, Predicate, unique(Ids), Context).
 
 %% @doc Derive Zotonic resource properties from RDF triples.
 -spec rdf_to_rsc_props(#rdf_resource{}) -> proplists:proplist().
@@ -366,3 +366,7 @@ literal_object_value(#rdf_value{value = Value}) ->
     Value;
 literal_object_value(Other) ->
     Other.
+
+-spec unique([any()]) -> [any()].
+unique(Ids) ->
+    sets:to_list(sets:from_list(Ids)).
