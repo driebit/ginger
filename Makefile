@@ -15,7 +15,7 @@ help:
 	@echo "Run: make <target> where <target> is one of the following:"
 	@echo "  addsite name=site-name  Create a new site"
 	@echo "  api-doc                 Generate API doc"
-	@echo "  deps					 Install dependencies"
+	@echo "  deps                    Install dependencies"
 	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
 	@echo "  down                    Stop containers"
 	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
@@ -28,8 +28,9 @@ help:
 	@echo "  psql                    Open PostgreSQL interactive terminal"
 	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
 	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
-	@echo "  tests					 Find all Ginger tests and run them"
+	@echo "  tests                   Find all Ginger tests and run them"
 	@echo "  up                      Start containers"
+	@echo "  up-support              Start all containers except Zotonic itself (for running Zotonic outside Docker)"
 	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
 	@echo "  update                  Update containers"
 
@@ -94,6 +95,9 @@ tests:
 up:
 	@docker-compose up --build zotonic kibana
 	@echo "> Started. Open http://localhost in your browser."
+
+up-support:
+	@docker-compose up --build kibana postgres
 
 up-zotonic:
 # See https://github.com/zotonic/zotonic/issues/1321
