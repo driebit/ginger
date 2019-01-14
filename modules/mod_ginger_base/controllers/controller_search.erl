@@ -82,22 +82,26 @@ argument({filter, Value}) when is_binary(Value) ->
     end;
 argument({filter, Value}) ->
     argument({filter, list_to_binary(Value)});
+argument({upcoming, _Value}) ->
+    {upcoming, true};
 argument(Argument) ->
     Argument.
 
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
 whitelist() ->
-    [ cat
-    , cat_exclude
-    , cat_promote_recent
-    , content_group
-    , filter
-    , has_geo
-    , hasobject
-    , hassubject
-    , sort
-    , text
+    [
+        cat,
+        cat_exclude,
+        cat_promote_recent,
+        content_group,
+        filter,
+        has_geo,
+        hasobject,
+        hassubject,
+        sort,
+        text,
+        upcoming
     ].
 
 coordinates(SearchResult) ->

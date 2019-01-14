@@ -235,7 +235,12 @@ paths:
                   required: false
                   default: 'ginger_search'
                   description: The search type.
-            responses:
+                - in: query
+                  name: upcoming
+                  type: string
+                  required: false
+                  description: Only return search results that have a date_start in the future.
+           responses:
                 200:
                     description: Search results.
                     schema:
