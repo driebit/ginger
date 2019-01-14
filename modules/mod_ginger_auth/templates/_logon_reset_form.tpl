@@ -3,7 +3,7 @@ Params:
 - username: set by controller_logon
 #}
 {% if username %}
-    {% wire id="password_reset" type="submit" postback={reset} delegate=`mod_authentication` %}
+    {% wire id="password_reset" type="submit" postback={reset secret=secret username=username} delegate=`controller_logon` %}
     <form id="password_reset" method="post" action="postback" class="z_logon_form">
         <input type="hidden" name="secret" value="{{ secret|escape }}" />
 
