@@ -15,6 +15,8 @@ Params:
             }, 100);
         {% endjavascript %}
     </form>
+{% elseif error == `ratelimit` %}
+    <h2 class="z-logon-title">{_ Sorry, too many retries _}</h2>
 {% else %}
     <h2 class="z-logon-title">{_ Sorry, your password reset code is unknown or expired _}</h2>
     <p>{_ For security reasons, password reset codes are only kept for a limited amount of time and can only be used once. _}</p>
