@@ -98,10 +98,9 @@
         },
 
         _documentClick: function(event) {
-
             var me = this;
 
-            if (!$(event.target).closest('form[role="search"]').length) {
+            if (!$(event.target).closest('form[role="search"]').length && $('.global-nav__search').length > 0) {
 
                 var searchWidgets = $(':ui-search_suggestions'),
                     isOpen = false;
@@ -118,17 +117,13 @@
                     $(document).trigger('search:close');
                 }
             }
-
         },
 
         _documentKeyUp: function(event) {
-
             if (event.keyCode == 27) {
                 $(document).trigger('search:close');
                 $(document).trigger('menu:close');
             }
         }
-
-
     });
 })(jQuery);
