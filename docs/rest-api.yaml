@@ -236,6 +236,11 @@ paths:
                   default: 'ginger_search'
                   description: The search type.
                 - in: query
+                  name: unfinished
+                  type: string
+                  required: false
+                  description: Only return search results that have a date_end in the future.
+                - in: query
                   name: upcoming
                   type: string
                   required: false

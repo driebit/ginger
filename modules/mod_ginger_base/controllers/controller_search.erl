@@ -84,6 +84,8 @@ argument({filter, Value}) ->
     argument({filter, list_to_binary(Value)});
 argument({upcoming, _Value}) ->
     {upcoming, true};
+argument({unfinished, _Value}) ->
+    {unfinished, true};
 argument(Argument) ->
     Argument.
 
@@ -101,6 +103,7 @@ whitelist() ->
         hassubject,
         sort,
         text,
+        unfinished,
         upcoming
     ].
 
