@@ -98,6 +98,12 @@ to_json(Req, State = #state{mode = status}) ->
 %%%-----------------------------------------------------------------------------
 
 user(Id, Context) ->
-    #{ <<"identity">> => proplists:delete(propb, m_identity:get(Id, Context))
+    Identity =
+        % m_identity:get_rsc fetches the identity details linked to the rsc id
+        case m_identity:get_rsc_by_type(Id, username_pw, Context) of
+            [FirstIdentity|_Rest] -> proplists:delete(propb, FirstIdentity);
+            _ -> null
+        end,
+    #{ <<"identity">> => Identity
      , <<"resource">> => m_ginger_rest:rsc(Id, Context)
      }.
