@@ -29,7 +29,7 @@ Clone this repository and install [Docker](https://www.docker.com/getdocker).
 You can run Ginger in three ways:
 
 1. all-in Docker (easiest)
-2. [selective Docker](#selective-docker-recommended) (**recommended** because it’s more flexible and has better 
+2. [selective Docker](#2-selective-docker-recommended) (**recommended** because it’s more flexible and has better 
    performance while being only slightly harder to set up)
 3. don’t use Docker at all (hardest). 
 
@@ -111,14 +111,16 @@ Point Zotonic to your Ginger sites/ and modules/ directories:
 
 ```bash
 $ mkdir zotonic/user
-$ ln -s ginger/sites zotonic/user/sites
-$ ln -s ginger/modules zotonic/user/modules
+$ ln -s ../../ginger/sites zotonic/user/sites
+$ ln -s ../../ginger/modules zotonic/user/modules
 ```
 
 And run Zotonic:
 
 ```bash
-$ cd zotonic/
+$ cd ginger
+$ make up-support
+$ cd ../zotonic
 $ bin/zotonic debug
 ```
 
