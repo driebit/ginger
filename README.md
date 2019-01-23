@@ -131,8 +131,7 @@ First the supporting Docker containers are started, then Zotonic is run.
 Zotonic is then available on http://localhost.
 
 When you quit Zotonic through Ctrl+C, the Docker containers are stopped 
-as 
-well.
+as well.
 
 Sites overview
 ---------------
