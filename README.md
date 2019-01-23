@@ -92,6 +92,7 @@ First, install Install Erlang locally:
 
 ```bash
 $ brew install erlang@20
+$ brew link erlang@20 --force
 ```
 
 Then clone both Ginger and Zotonic:
