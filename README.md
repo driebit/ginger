@@ -105,7 +105,8 @@ $ git clone https://github.com/zotonic/zotonic.git --branch 0.x
 Copy Ginger’s configuration file, which includes its dependencies:
 
 ```bash
-cp ginger/config/zotonic.config ~/.zotonic/0/zotonic.config
+$ mkdir -p ~/.zotonic/0
+$ cp ginger/config/zotonic.config ~/.zotonic/0/zotonic.config
 ```
 
 Point Zotonic to your Ginger sites/ and modules/ directories:
