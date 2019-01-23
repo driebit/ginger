@@ -88,10 +88,10 @@ source code, too.
 All other services (PostgreSQL, Elasticsearch, Kibana) still run in
 containers.
 
-First, install Install Erlang locally:
+First, install install Erlang locally:
 
 ```bash
-$ brew install erlang@20
+$ brew install erlang@20 imagemagick
 $ brew link erlang@20 --force
 ```
 
@@ -121,12 +121,18 @@ And run Zotonic:
 
 ```bash
 $ cd ginger
-$ make up-support
-$ cd ../zotonic
-$ bin/zotonic debug
+$ make start
 ```
 
-Zotonic then runs on port 8000: http://localhost:8000.
+You have to enter your account’s sudo password to enable port forwarding 
+(from port 80 to 8000).
+
+First the supporting Docker containers are started, then Zotonic is run.
+Zotonic is then available on http://localhost.
+
+When you quit Zotonic through Ctrl+C, the Docker containers are stopped 
+as 
+well.
 
 Sites overview
 ---------------
