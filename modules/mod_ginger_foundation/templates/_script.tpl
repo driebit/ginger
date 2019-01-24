@@ -30,7 +30,7 @@
 %}
 
 {% if m.modules.active.mod_geo %}
-    <script src="//maps.googleapis.com/maps/api/js?key={{ m.config.mod_geo.api_key.value|escape }}&amp;libraries=places&amp;language=nl&amp;v=3.31"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ m.config.mod_geo.api_key.value|escape }}&amp;libraries=places&amp;language=nl&amp;v=3.31"></script>
     {% lib
         "js/vendors/infobox_packed.js"
         "js/vendors/markerclusterer.js"
