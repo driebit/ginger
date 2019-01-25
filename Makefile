@@ -86,7 +86,7 @@ start: up-support
 	@bash -c "trap 'trap - SIGINT SIGTERM ERR; docker-compose stop elasticsearch kibana postgres; exit 0' SIGINT SIGTERM ERR; $(MAKE) start-zotonic"
 
 start-zotonic:
-	../zotonic/bin/zotonic debug
+	cd ${ZOTONIC}; bin/zotonic debug
 
 test:
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
