@@ -130,8 +130,7 @@ You have to enter your account’s sudo password to enable port forwarding
 First the supporting Docker containers are started, then Zotonic is run.
 Zotonic is then available on http://localhost.
 
-When you quit Zotonic through Ctrl+C, the Docker containers are stopped 
-as well.
+When you quit Zotonic, the Docker containers are stopped as well.
 
 Sites overview
 ---------------

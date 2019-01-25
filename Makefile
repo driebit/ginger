@@ -83,7 +83,7 @@ psql:
 
 start: up-support
 	echo "rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 8000" | sudo pfctl -ef -; true
-	@bash -c "trap 'trap - SIGINT SIGTERM ERR; docker-compose stop elasticsearch kibana postgres; exit 0' SIGINT SIGTERM ERR; $(MAKE) start-zotonic"
+	@bash -c "trap 'trap - SIGINT SIGTERM 0 ERR; docker-compose stop elasticsearch kibana postgres; exit 0' SIGINT SIGTERM 0 ERR; $(MAKE) start-zotonic"
 
 start-zotonic:
 	cd ${ZOTONIC}; bin/zotonic debug
