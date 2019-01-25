@@ -10,6 +10,8 @@ include .env
 
 NPM_PATH := ./node_modules/.bin
 export PATH := $(NPM_PATH):$(PATH)
+export JSX_FORCE_MAPS := 1
+export ERLASTIC_SEARCH_JSON_MODULE := jsx
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
