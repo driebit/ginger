@@ -28,7 +28,7 @@ help:
 	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
-	@echo "  start					 Run Zotonic on the host and all other services in containers"
+	@echo "  start                   Run Zotonic on the host and all other services in containers"
 	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
 	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
 	@echo "  tests                   Find all Ginger tests and run them"
