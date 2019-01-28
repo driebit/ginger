@@ -102,5 +102,5 @@ user(Id, Context) ->
             _ -> null
         end,
     #{ <<"identity">> => Identity
-     , <<"resource">> => m_ginger_rest:rsc(Id, Context)
+     , <<"resource">> => m_ginger_rest:with_edges(m_ginger_rest:rsc(Id, Context), Context)
      }.
