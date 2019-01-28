@@ -10,6 +10,8 @@ include .env
 
 NPM_PATH := ./node_modules/.bin
 export PATH := $(NPM_PATH):$(PATH)
+export JSX_FORCE_MAPS := 1
+export ERLASTIC_SEARCH_JSON_MODULE := jsx
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
@@ -26,6 +28,7 @@ help:
 	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
 	@echo "  psql                    Open PostgreSQL interactive terminal"
+	@echo "  start                   Run Zotonic on the host and all other services in containers"
 	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
 	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
 	@echo "  tests                   Find all Ginger tests and run them"
@@ -78,6 +81,13 @@ prompt:
 psql:
 	@docker-compose exec postgres psql -U zotonic
 
+start: up-support
+	echo "rdr pass inet proto tcp from any to any port 80 -> 127.0.0.1 port 8000" | sudo pfctl -ef -; true
+	@bash -c "trap 'trap - SIGINT SIGTERM 0 ERR; docker-compose stop elasticsearch kibana postgres; exit 0' SIGINT SIGTERM 0 ERR; $(MAKE) start-zotonic"
+
+start-zotonic:
+	cd ${ZOTONIC}; bin/zotonic debug
+
 test:
 # Disconnect and reconnect the Ginger container to refresh the site alias (see docker-compose.yml).
 	@docker network disconnect ginger_selenium ginger_zotonic_1
@@ -97,7 +107,7 @@ up:
 	@echo "> Started. Open http://localhost in your browser."
 
 up-support:
-	@docker-compose up --build kibana postgres
+	@docker-compose up -d --build kibana postgres
 
 up-zotonic:
 # See https://github.com/zotonic/zotonic/issues/1321
