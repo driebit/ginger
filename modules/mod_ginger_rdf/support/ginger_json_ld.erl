@@ -345,7 +345,7 @@ merge_values(KeyValue, Acc) ->
         undefined ->
             maps:merge(Acc, KeyValue);
         Value when is_list(Value) ->
-            Acc#{Key => [NewValue | Value]};
+            Acc#{Key => Value ++ [NewValue]};
         Value ->
-            Acc#{Key => [NewValue | [Value]]}
+            Acc#{Key => [Value] ++ [NewValue]}
     end.
