@@ -97,6 +97,7 @@ whitelist() ->
         cat_exclude,
         cat_promote_recent,
         content_group,
+        facet,
         filter,
         has_geo,
         hasobject,
@@ -131,11 +132,11 @@ search_result(Document, _Context) when is_map(Document) ->
     %% Return a document (such as an Elasticsearch document) as is.
     Document.
 
-%% @doc Combine separate facets (date_start_min, date_start_max) into one property
-%% (date_start.min, date_start.max).
+%% @doc Combine separate facets in the search result into one property:
+%% (date_start_min, date_start_max) into (date_start.min, date_start.max).
 -spec facets(list() | map()) -> map().
 facets([]) ->
-    null;
+    [];
 facets(Facets) ->
     maps:fold(
         fun(K, V, Acc) ->

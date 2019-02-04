@@ -259,3 +259,6 @@ paths:
                                 type: integer
                                 description: 'The total number of search results.'
                                 example: 42
+                            facets:
+                                type: array
+                                description: 'The search result facets (aggregations).'
