@@ -67,19 +67,8 @@ arguments(Req) ->
 
 %% @doc Pre-process request argument if needed.
 -spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
-argument({filter, Value}) when is_binary(Value) ->
-    case binary:split(Value, <<"=">>) of
-        [K, V] ->
-            {filter, [K, V]};
-        _ ->
-            case binary:split(Value, <<"~">>) of
-                [K, V] ->
-                    %% Match multiple words as a phrase to get most relevant results.
-                    {filter, [K, match_phrase, V]};
-                _ ->
-                    {filter, Value}
-            end
-    end;
+argument({filter, Filter}) when is_binary(Filter) ->
+    parse_filter(Filter);
 argument({filter, Value}) ->
     argument({filter, list_to_binary(Value)});
 argument({upcoming, _Value}) ->
@@ -115,6 +104,43 @@ coordinates(SearchResult) ->
      , lat => maps:get(<<"lat">>, Location)
      , lng => maps:get(<<"lon">>, Location)
      }.
+
+%% @doc Parse search API 'filter' argument.
+-spec parse_filter(binary()) -> {filter, binary() | list()}.
+parse_filter(Filter) ->
+    Pattern = <<"(", (ginger_binary:join(filter_operators(), <<"|">>))/binary, ")">>,
+    case re:split(Filter, Pattern, [{parts, 2}]) of
+        [Key, Operator, Value] ->
+            {filter, [Key, filter_operator(Operator), Value]};
+        _ ->
+            %% No filter operator, so default to equals.
+            {filter, Filter}
+    end.
+
+%% @doc Operators that we support in the 'filter' search API argument.
+-spec filter_operators() -> [binary()].
+filter_operators() ->
+    [
+        <<">=">>, <<"<=">>,
+        <<">">>, <<"<">>,
+        <<"=">>, <<"~">>
+    ].
+
+%% @doc Map the search operators exposed in the search API to the internally
+%%      used ones.
+-spec filter_operator(binary()) -> binary().
+filter_operator(<<"=">>) ->
+    <<"eq">>;
+filter_operator(<<"~">>) ->
+    <<"match_phrase">>;
+filter_operator(<<"<">>) ->
+    <<"lt">>;
+filter_operator(<<"<=">>) ->
+    <<"lte">>;
+filter_operator(<<">">>) ->
+    <<"gt">>;
+filter_operator(<<">=">>) ->
+    <<"gte">>.
 
 %% @doc Is a search result visible for the current user?
 -spec is_visible(m_rsc:resource() | map(), z:context()) -> boolean().
