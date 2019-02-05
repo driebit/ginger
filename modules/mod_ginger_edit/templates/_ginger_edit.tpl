@@ -11,7 +11,7 @@
 
 	<input type="hidden" name="id" id="id" value="{{ id }}" />
     {% validate type={presence} id="id" %}
-    <input type="hidden" name="view_location" value="{{ view_location }}" />
+    <input type="hidden" name="view_location" value="{{ view_location|escape }}" />
 
     {% block meta_data %}
 	<div class="meta-data row">
@@ -128,7 +128,7 @@
             z_editor.init();
         }
     });
-    
+
     $(document).on('keypress', ':input:not(textarea)', function (e) {
        if (e.which == 13) e.preventDefault();
     });

@@ -1,6 +1,6 @@
 {% with
-    remark_page|default:q.remark_page|default:1|to_integer,
-    remark_page_length|default:q.remark_page_length|default:20|to_integer,
+    remark_page|default:q.remark_page|default:1|to_integer|escape,
+    remark_page_length|default:q.remark_page_length|default:20|to_integer|escape,
     show_form|default:false,
     order|default:"desc"
     as
