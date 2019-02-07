@@ -16,8 +16,8 @@
 -include_lib("stdlib/include/qlc.hrl").
 
 %% @doc Get REST resource properties.
--spec rsc(m_rsc:resource(), z:context()) -> resource_properties().
-rsc(Id, Context) ->
+-spec rsc(m_rsc:resource(), z:context()) -> resource_properties() | undefined.
+rsc(Id, Context) when is_integer(Id) ->
     Rsc = #{ <<"id">> => Id
            , <<"title">> => translations(Id, title, Context)
            , <<"body">> => translations(Id, body, Context)
@@ -28,7 +28,14 @@ rsc(Id, Context) ->
            , <<"properties">> => custom_props(Id, Context)
            , <<"blocks">> => blocks(Id, Context)
            },
-    with_media(Rsc, Context).
+    with_media(Rsc, Context);
+rsc(UniqueName, Context) ->
+    case m_rsc:name_to_id(UniqueName, Context) of
+        {ok, Id} ->
+            rsc(Id, Context);
+        _ ->
+            undefined
+    end.
 
 %% @doc Add all edges to resource.
 -spec with_edges(map(), z:context()) -> map().
