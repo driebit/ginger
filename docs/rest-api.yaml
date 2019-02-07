@@ -223,7 +223,7 @@ paths:
                   name: filter
                   type: string
                   required: false
-                  description: Filter search results by a property (`filter=title=Oh yeah`).
+                  description: Filter search results by a property (`filter=title=Oh yeah`, `filter=date_start>=2000-01-01`).
                 - in: query
                   name: sort
                   type: string
@@ -245,7 +245,7 @@ paths:
                   type: string
                   required: false
                   description: Only return search results that have a date_start in the future.
-           responses:
+            responses:
                 200:
                     description: Search results.
                     schema:
