@@ -24,8 +24,8 @@ as
                 {% for bucket in buckets %}
                     {% with forloop.counter as i %}
                         <li>
-                            <input id="{{ #search_filter_value.i }}" type="checkbox" value="{{ bucket.key}}"{% if values|index_of:(bucket.key) > 0 %} checked="checked"{% endif %}>
-                            <label for="{{ #search_filter_value.i }}">{{ bucket.key|escape }} <span>({{ bucket.doc_count }})</span></label>
+                            <input id="{{ #search_filter_value.i }}" type="checkbox" value="{{ bucket.key|escape }}"{% if values|index_of:(bucket.key) > 0 %} checked="checked"{% endif %}>
+                            <label for="{{ #search_filter_value.i }}">{{ bucket.key|escape }} <span>({{ bucket.doc_count|escape }})</span></label>
                         </li>
                     {% endwith %}
                 {% endfor %}
