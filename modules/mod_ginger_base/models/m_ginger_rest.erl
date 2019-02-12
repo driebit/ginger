@@ -148,7 +148,12 @@ mediaclasses(Context) ->
 %% @doc Get resource blocks.
 -spec blocks(m_rsc:resouce(), z:context()) -> [map()].
 blocks(Id, Context) ->
-    [block(Block, Context) || Block <- m_rsc:p(Id, blocks, [], Context)].
+    case m_rsc:p(Id, blocks, [], Context) of
+        <<>> ->
+            [];
+        Blocks ->
+            [block(Block, Context) || Block <- Blocks]
+    end.
 
 %% @doc Maybe translate each block property.
 -spec block(proplists:proplist(), z:context()) -> map.
