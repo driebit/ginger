@@ -21,7 +21,7 @@
 -record(state, { mode = undefined
                , path_info = undefined
                , context = undefined
-               , document_id = undefined
+               , rsc_id = undefined :: m_rsc:resource()
                }
        ).
 
@@ -39,13 +39,11 @@ service_available(Req, State) ->
     {true, Req, State#state{context = Context}}.
 
 malformed_request(Req, State = #state{mode = document, path_info = id}) ->
-    case string:to_integer(wrq:path_info(id, Req)) of
-        {error, _Reason} ->
+    case wrq:path_info(id, Req) of
+        undefined ->
             {true, Req, State};
-        {Id, []} ->
-            {false, Req, State#state{document_id = Id}};
-        {_Int, _Rest} ->
-            {true, Req, State}
+        Id ->
+            {false, Req, State#state{rsc_id = Id}}
     end;
 malformed_request(Req, State) ->
     {false, Req, State}.
@@ -57,12 +55,12 @@ resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = id}) ->
     Context = State#state.context,
-    {m_rsc:exists(State#state.document_id, Context), Req, State};
+    {m_rsc:exists(State#state.rsc_id, Context), Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
-            {m_rsc:exists(Id, Context), Req, State#state{document_id = Id}};
+            {m_rsc:exists(Id, Context), Req, State#state{rsc_id = Id}};
         {error, _} ->
             {false, Req, State}
     end.
@@ -71,7 +69,7 @@ content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 delete_resource(Req, State = #state{mode = document}) ->
-    ok = m_rsc:delete(State#state.document_id, State#state.context),
+    ok = m_rsc:delete(State#state.rsc_id, State#state.context),
     {true, Req, State}.
 
 to_json(Req, State = #state{mode = collection}) ->
@@ -90,7 +88,7 @@ to_json(Req, State = #state{mode = collection}) ->
     Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
     {Json, Req, State};
 to_json(Req, State = #state{mode = document}) ->
-    Id = State#state.document_id,
+    Id = State#state.rsc_id,
     Context = State#state.context,
     Rsc = m_ginger_rest:rsc(Id, Context),
     Json = jsx:encode(m_ginger_rest:with_edges(Rsc, Context)),
@@ -226,25 +224,6 @@ malformed_request_test_() ->
                                                  , path_info = path
                                                  }
                                      ),
-                ok
-        end
-      , fun () ->
-                meck:expect(wrq, path_info, 2, "not-an-integer"),
-                {true, _, _} =
-                    malformed_request(req, #state{ mode = document
-                                                 , path_info = id
-                                                 }
-                                     ),
-                ok
-        end
-      , fun () ->
-                meck:expect(wrq, path_info, 2, "23"),
-                {false, _, State} =
-                    malformed_request(req, #state{ mode = document
-                                                 , path_info = id
-                                                 }
-                                     ),
-                23 = State#state.document_id,
                 ok
         end
       ]
