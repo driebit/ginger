@@ -92,7 +92,8 @@ to_json(Req, State = #state{mode = collection}) ->
 to_json(Req, State = #state{mode = document}) ->
     Id = State#state.document_id,
     Context = State#state.context,
-    Json = jsx:encode(rsc(Id, Context, true)),
+    Rsc = m_ginger_rest:rsc(Id, Context),
+    Json = jsx:encode(m_ginger_rest:with_edges(Rsc, Context)),
     {Json, Req, State}.
 
 process_post(Req, State = #state{mode = collection}) ->
