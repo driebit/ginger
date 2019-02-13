@@ -84,6 +84,7 @@ whitelist() ->
     [
         cat,
         cat_exclude,
+        cat_promote,
         cat_promote_recent,
         content_group,
         facet,
@@ -153,7 +154,7 @@ is_visible(Document, _Context) when is_map(Document) ->
 -spec search_result(m_rsc:resource() | map(), z:context()) -> map().
 search_result(Id, Context) when is_integer(Id) ->
     Rsc = m_ginger_rest:rsc(Id, Context),
-    m_ginger_rest:with_edges(Rsc, [depiction], Context);
+    m_ginger_rest:with_edges(Rsc, Context);
 search_result(Document, _Context) when is_map(Document) ->
     %% Return a document (such as an Elasticsearch document) as is.
     Document.
