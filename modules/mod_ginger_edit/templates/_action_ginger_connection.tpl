@@ -41,6 +41,7 @@
                             nocatselect
                             nocgselect
                             hide_help_text=hide_help_text
+                            dialog_help_text=dialog_help_text
                             tab=tab|default:'new'}
             %}
         {% else %}
@@ -67,6 +68,7 @@
                             nocatselect
                             nocgselect
                             hide_help_text=hide_help_text
+                            dialog_help_text=dialog_help_text
                             tab=tab|default:'new'}
             %}
         {% endif %}
