@@ -1,36 +1,38 @@
-<div class="tab-pane {% if is_active %}active{% endif %}" id="{{ tab }}-find">
-	
-    <p>{% if not hide_help_text %}{_ Find an existing page to connect _}{% endif %}</p>
+{% with dialog_help_text|default:_"Find an existing page to connect" as dialog_help_text %}
+    <div class="tab-pane {% if is_active %}active{% endif %}" id="{{ tab }}-find">
 
-	<form id="ginger-dialog-connect-find" class="row">
-        <input type="hidden" name="find_category" id="find_category" value="{{ cat }}">
-        <input type="hidden" name="cat_exclude" id="cat_exclude" value="{{ cat_exclude }}">
-        <input type="hidden" name="find_cg" id="find_cg" value="{{ content_group }}">
-		<input type="hidden" name="subject_id" value="{{ subject_id }}" />
-        <input type="hidden" name="object_id" value="{{ object_id }}" />
-		<input type="hidden" name="predicate" value="{{ predicate|default:'' }}" />
-        <div class="col-md-8">
-		    <input name="find_text" type="text" value="" placeholder="{_ Type text to search _}" class="do_autofocus form-control" />
+        <p>{% if not hide_help_text %}{{ dialog_help_text }}{% endif %}</p>
+
+    	<form id="ginger-dialog-connect-find" class="row">
+            <input type="hidden" name="find_category" id="find_category" value="{{ cat }}">
+            <input type="hidden" name="cat_exclude" id="cat_exclude" value="{{ cat_exclude }}">
+            <input type="hidden" name="find_cg" id="find_cg" value="{{ content_group }}">
+    		<input type="hidden" name="subject_id" value="{{ subject_id }}" />
+            <input type="hidden" name="object_id" value="{{ object_id }}" />
+    		<input type="hidden" name="predicate" value="{{ predicate|default:'' }}" />
+            <div class="col-md-8">
+    		    <input name="find_text" type="text" value="" placeholder="{_ Type text to search _}" class="do_autofocus form-control" />
+            </div>
+
+            <div class="col-md-4">
+                {% block category_select %}
+    	        {% endblock %}
+            </div>
+    	</form>
+
+    	<div id="dialog-connect-found" class="do_feedback"
+    		data-feedback="trigger: 'ginger-dialog-connect-find', delegate: 'mod_ginger_edit'">
         </div>
 
-        <div class="col-md-4">
-            {% block category_select %}
-	        {% endblock %}
+        <div class="modal-footer">
+            <a class="btn btn-default" id="{{ #close }}">
+             {% if autoclose %}{_ Cancel _}{% else %}{_ Ok _}{% endif %}
+            </a>
+            {% wire id=#close action={dialog_close} %}
         </div>
-	</form>
 
-	<div id="dialog-connect-found" class="do_feedback"
-		data-feedback="trigger: 'ginger-dialog-connect-find', delegate: 'mod_ginger_edit'">
     </div>
-
-    <div class="modal-footer">
-        <a class="btn btn-default" id="{{ #close }}">
-         {% if autoclose %}{_ Cancel _}{% else %}{_ Ok _}{% endif %}
-        </a>
-        {% wire id=#close action={dialog_close} %}
-    </div>
-
-</div>
+{% endwith %}
 {% wire name="dialog_connect_find"
     action={postback
         delegate=delegate|default:"mod_admin"

@@ -88,6 +88,7 @@ paths:
     /resources:
         get:
             produces: ["application/json"]
+            description: "Get multiple resources"
             parameters:
                 - in: query
                   name: cat
@@ -115,6 +116,7 @@ paths:
     /resources/{id}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by id"
             parameters:
                 - in: path
                   name: id
@@ -129,6 +131,7 @@ paths:
     /resources/{id}/edges/{predicate}:
         post:
             consumes: ["application/json"]
+            description: "Create edges"
             parameters:
                 - in: path
                   name: id
@@ -151,6 +154,7 @@ paths:
     /resources/path/{path}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by path"
             parameters:
                 - in: path
                   name: path
@@ -223,7 +227,7 @@ paths:
                   name: filter
                   type: string
                   required: false
-                  description: Filter search results by a property (`filter=title=Oh yeah`).
+                  description: Filter search results by a property (`filter=title=Oh yeah`, `filter=date_start>=2000-01-01`).
                 - in: query
                   name: sort
                   type: string
@@ -235,6 +239,16 @@ paths:
                   required: false
                   default: 'ginger_search'
                   description: The search type.
+                - in: query
+                  name: unfinished
+                  type: string
+                  required: false
+                  description: Only return search results that have a date_end in the future.
+                - in: query
+                  name: upcoming
+                  type: string
+                  required: false
+                  description: Only return search results that have a date_start in the future.
             responses:
                 200:
                     description: Search results.
@@ -249,3 +263,6 @@ paths:
                                 type: integer
                                 description: 'The total number of search results.'
                                 example: 42
+                            facets:
+                                type: array
+                                description: 'The search result facets (aggregations).'

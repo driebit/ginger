@@ -26,7 +26,16 @@ Getting started
 
 Clone this repository and install [Docker](https://www.docker.com/getdocker).
 
-Then open a terminal in the Ginger directory and start the containers:
+You can run Ginger in three ways:
+
+1. all-in Docker (easiest)
+2. [selective Docker](#2-selective-docker-recommended) (**recommended** because it’s more flexible and has better 
+   performance while being only slightly harder to set up)
+3. don’t use Docker at all (hardest). 
+
+### 1. All-in Docker
+
+To run Ginger completely in Docker containers, open a terminal and enter:
 
 ```bash
 $ make up
@@ -65,6 +74,63 @@ $ make && bin/zotonic runtests mod_ginger_collection
 ```
 
 For more, see the [Docker](docs/docker.md) doc chapter.
+
+### 2. Selective Docker (recommended)
+
+Due to limitations in Docker for Mac, file synchronization performance suffers
+when you have large amounts of files (i.e. many sites with node_modules/ 
+directories).
+
+By running Zotonic directly on your host (outside Docker) we circumvent this
+limitation. Another advantage is that you can directly make changes in Zotonic
+source code, too. 
+
+All other services (PostgreSQL, Elasticsearch, Kibana) still run in
+containers.
+
+First, install install Erlang locally:
+
+```bash
+$ brew install erlang@20 imagemagick
+$ brew link erlang@20 --force
+```
+
+Then clone both Ginger and Zotonic:
+
+```bash
+$ git clone https://github.com/driebit/ginger.git
+$ git clone https://github.com/zotonic/zotonic.git --branch 0.x 
+```
+
+Copy Ginger’s configuration file, which includes its dependencies:
+
+```bash
+$ mkdir -p ~/.zotonic/0
+$ cp ginger/config/zotonic.config ~/.zotonic/0/zotonic.config
+```
+
+Point Zotonic to your Ginger sites/ and modules/ directories:
+
+```bash
+$ mkdir zotonic/user
+$ ln -s ../../ginger/sites zotonic/user/sites
+$ ln -s ../../ginger/modules zotonic/user/modules
+```
+
+And run Zotonic:
+
+```bash
+$ cd ginger
+$ make start
+```
+
+You have to enter your account’s sudo password to enable port forwarding 
+(from port 80 to 8000).
+
+First the supporting Docker containers are started, then Zotonic is run.
+Zotonic is then available on http://localhost.
+
+When you quit Zotonic, the Docker containers are stopped as well.
 
 Sites overview
 ---------------

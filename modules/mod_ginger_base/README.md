@@ -74,3 +74,7 @@ Only return search results that have no geo coordinates:
 ```erlang
 z_search:search({ginger_search, [{has_geo, false}]}, Context).
 ```
+
+### Ginger Search HTTP API
+
+For the JSON HTTP API, please see [rest-api.yml](../../docs/rest-api.yaml).
