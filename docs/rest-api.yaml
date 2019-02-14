@@ -88,6 +88,7 @@ paths:
     /resources:
         get:
             produces: ["application/json"]
+            description: "Get multiple resources"
             parameters:
                 - in: query
                   name: cat
@@ -115,6 +116,7 @@ paths:
     /resources/{id}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by id"
             parameters:
                 - in: path
                   name: id
@@ -129,6 +131,7 @@ paths:
     /resources/{id}/edges/{predicate}:
         post:
             consumes: ["application/json"]
+            description: "Create edges"
             parameters:
                 - in: path
                   name: id
@@ -151,6 +154,7 @@ paths:
     /resources/path/{path}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by path"
             parameters:
                 - in: path
                   name: path
