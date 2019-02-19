@@ -40,8 +40,12 @@ iso8601(<<"-", Datetime/binary>>, Format, Context) ->
             filter_date:date({{-Year, 1, 1}, {0, 0, 0}}, year_format(Format), Context);
         false ->
             %% Full date
-            {{Y, M, D}, T} = z_datetime:to_datetime(Datetime),
-            filter_date:date({{-Y, M, D}, T}, Format, Context)
+            case z_datetime:to_datetime(Datetime) of
+                undefined ->
+                    undefined;
+                {{Y, M, D}, T} ->
+                    filter_date:date({{-Y, M, D}, T}, Format, Context)
+            end
     end;
 iso8601(Datetime, Format, Context) ->
     %% Year >= 0
@@ -49,8 +53,12 @@ iso8601(Datetime, Format, Context) ->
         true ->
             Datetime;
         _ ->
-            Tuples = z_datetime:to_datetime(Datetime),
-            filter_date:date(Tuples, Format, Context)
+            case z_datetime:to_datetime(Datetime) of
+                undefined ->
+                    undefined;
+                Tuples ->
+                    filter_date:date(Tuples, Format, Context)
+            end
     end.
 
 year_format(<<"x">>) ->
