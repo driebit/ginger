@@ -133,7 +133,7 @@ rdf_export_test() ->
             <<"http://schema.org/datePublished">> => #{
                 <<"@value">> => m_rsc:p(Id, publication_start, Context)
             },
-            <<"http://schema.org/name">> => #{
+            <<"http://schema.org/headline">> => #{
                 <<"@value">> => <<"Een mooie titel">>,
                 <<"language">> => nl
             }
