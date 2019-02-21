@@ -20,36 +20,40 @@
 }).
 
 init(Args) ->
-    {ok, #state{serialization = proplists:get_value(serialization, Args)}}.
+    {ok, Args}.
 
-service_available(ReqData, State) ->
-    Context  = z_context:new(ReqData, ?MODULE),
-    z_context:lager_md(Context),
-    Context1 = z_context:ensure_all(Context),
-    ReqData1 = set_cors_headers(ReqData, Context1),
-    case wrq:method(ReqData1) of
+service_available(ReqData, Args) ->
+    Context = z_context:new_request(ReqData, [], ?MODULE),
+    Context2 = set_cors_headers(Context),
+    State = #state{context = Context2, serialization = proplists:get_value(serialization, Args)},
+    case wrq:method(ReqData) of
         'OPTIONS' ->
-            {{halt, 204}, ReqData1, State#state{context = Context1}};
+            {{halt, 204}, z_context:get_reqdata(Context), State};
         _ ->
-            {true, ReqData1, State#state{context = Context1}}
+            {true, z_context:get_reqdata(Context), State}
     end.
 
 resource_exists(ReqData, State = #state{context = Context}) ->
-    {m_rsc:is_visible(z_context:get_q(id, Context), Context), ReqData, State}.
+    Context1 = ?WM_REQ(ReqData, Context),
+    Context2 = z_context:ensure_qs(Context1),
+    {m_rsc:is_visible(id(Context2), Context2), ReqData, State#state{context = Context2}}.
 
-content_types_provided(ReqData, State) ->
+content_types_provided(ReqData, Context) ->
     {
         [
             {"application/ld+json", rdf},
             {"text/turtle", rdf}
         ],
         ReqData,
-        State
+        Context
     }.
 
-rdf(_ReqData, #state{context = Context, serialization = Serialization}) ->
-    Id = m_rsc:rid(z_context:get_q(id, Context), Context),
-    RdfResource = m_rdf:to_triples(Id, Context),
+id(Context) ->
+    m_rsc:rid(z_context:get_q(id, Context), Context).
+
+rdf(ReqData, #state{context = Context, serialization = Serialization}) ->
+    Context1 = z_context:set_reqdata(ReqData, Context),
+    RdfResource = m_rdf:to_triples(id(Context1), Context),
     SerializedRdf = serialize(RdfResource, Serialization),
     ?WM_REPLY(SerializedRdf, Context).
 
@@ -65,17 +69,17 @@ serialize(RdfResource, turtle) ->
 %%      Unlike controller_api:set_cors_header, this function doesn't look at the
 %%      configuration but unconditionally exposes this controller between
 %%      domains. This makes sharing content much easier.
-set_cors_headers(ReqData, Context) ->
+set_cors_headers(Context) ->
     lists:foldl(
         fun ({K, Def}, Acc) ->
             case m_config:get_value(site, K, Def, Context) of
                 undefined ->
                     Acc;
                 V ->
-                    wrq:set_resp_header(z_convert:to_list(K), z_convert:to_list(V), Acc)
+                    z_context:set_resp_header(atom_to_list(K), V, Acc)
             end
         end,
-        ReqData,
+        Context,
         [
             {'Access-Control-Allow-Origin', "*"},
             {'Access-Control-Max-Age', undefined}
