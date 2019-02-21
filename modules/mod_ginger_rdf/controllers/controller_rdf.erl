@@ -35,7 +35,7 @@ service_available(ReqData, State) ->
     end.
 
 resource_exists(ReqData, State = #state{context = Context}) ->
-    {m_rsc:exists(z_context:get_q(id, Context), Context), ReqData, State}.
+    {m_rsc:is_visible(z_context:get_q(id, Context), Context), ReqData, State}.
 
 content_types_provided(ReqData, State) ->
     {
