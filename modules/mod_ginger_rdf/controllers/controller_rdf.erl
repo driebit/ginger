@@ -16,6 +16,7 @@
 
 -record(state, {
     serialization :: atom(),
+    ontology :: atom(),
     context :: z:context()
 }).
 
@@ -25,7 +26,11 @@ init(Args) ->
 service_available(ReqData, Args) ->
     Context = z_context:new_request(ReqData, [], ?MODULE),
     Context2 = set_cors_headers(Context),
-    State = #state{context = Context2, serialization = proplists:get_value(serialization, Args)},
+    State = #state{
+        context = Context2,
+        serialization = proplists:get_value(serialization, Args),
+        ontology = proplists:get_value(ontology, Args)
+    },
     case wrq:method(ReqData) of
         'OPTIONS' ->
             {{halt, 204}, z_context:get_reqdata(Context), State};
@@ -51,11 +56,11 @@ content_types_provided(ReqData, Context) ->
 id(Context) ->
     m_rsc:rid(z_context:get_q(id, Context), Context).
 
-rdf(ReqData, #state{context = Context, serialization = Serialization}) ->
-    Context1 = z_context:set_reqdata(ReqData, Context),
-    RdfResource = m_rdf:to_triples(id(Context1), Context),
-    SerializedRdf = serialize(RdfResource, Serialization),
-    ?WM_REPLY(SerializedRdf, Context).
+rdf(ReqData, State) ->
+    Context1 = z_context:set_reqdata(ReqData, State#state.context),
+    RdfResource = m_rdf_export:to_rdf(id(Context1), [State#state.ontology], Context1),
+    SerializedRdf = serialize(RdfResource, State#state.serialization),
+    ?WM_REPLY(SerializedRdf, Context1).
 
 %% @doc Serialize RDF resource into one of the RDF serialization formats.
 -spec serialize(#rdf_resource{}, json_ld | turtle) -> binary().
