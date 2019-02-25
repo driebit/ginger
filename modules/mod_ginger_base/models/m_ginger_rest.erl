@@ -168,8 +168,6 @@ block(Block, Context) ->
     #{
         <<"type">> => proplists:get_value(type, Block),
         <<"name">> => proplists:get_value(name, Block),
-        <<"style">> => proplists:get_value(style, Block, null),
-        <<"header">> => translations(proplists:get_value(header, Block), Context),
         <<"body">> => translations(proplists:get_value(body, Block), Context),
         <<"rsc_id">> => proplists:get_value(rsc_id, Block, null)
     }.
