@@ -11,17 +11,12 @@ rsc_blocks_test() ->
                 [
                     {type, <<"header">>},
                     {name, <<"translated_header">>},
-                    {header, {trans, [
-                        {nl, <<"Vertaalde header">>},
-                        {en, <<"Translated header">>}
-                    ]}},
                     {body, <<"Untranslated body">>}
                 ],
 
                 [
                     {type, <<"page">>},
                     {name, <<"page2">>},
-                    {style, <<"quote">>},
                     {rsc_id, 19013}
                 ]
             ]}
@@ -31,13 +26,6 @@ rsc_blocks_test() ->
     #{<<"blocks">> := [Block1, Block2]} = Rest = m_ginger_rest:rsc(Id, context()),
     ?assertEqual(
         [
-            {nl, <<"Vertaalde header">>},
-            {en, <<"Translated header">>}
-        ],
-        maps:get(<<"header">>, Block1)
-    ),
-    ?assertEqual(
-        [
             {en, <<"Untranslated body">>}
         ],
         maps:get(<<"body">>, Block1)
@@ -45,7 +33,6 @@ rsc_blocks_test() ->
 
     ?assertEqual(<<"page">>, maps:get(<<"type">>, Block2)),
     ?assertEqual(<<"page2">>, maps:get(<<"name">>, Block2)),
-    ?assertEqual(<<"quote">>, maps:get(<<"style">>, Block2)),
     ?assertEqual(19013, maps:get(<<"rsc_id">>, Block2)),
 
     jsx:encode(Rest).
