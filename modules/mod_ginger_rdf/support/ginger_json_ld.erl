@@ -307,7 +307,7 @@ triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Ob
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => #{<<"@value">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
-    #{Predicate => #{<<"@value">> => Object, <<"language">> => Lang}};
+    #{Predicate => #{<<"@value">> => Object, <<"@language">> => Lang}};
 triple_to_map(#triple{predicate = Predicate, object = #rdf_resource{} = Object}, #rdf_resource{}) ->
     %% Embedded objects.
     #{Predicate => serialize_to_map(Object)};
