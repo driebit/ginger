@@ -9,7 +9,7 @@ as
         <source src="/media/attachment/{{ id.medium.filename }}" type="{{ id.medium.mime }}">
     </audio>
 
-    {% if caption|default:m.rsc[id].summary|default:id.title as caption %}
+    {% if caption|default:id.summary|default:id.title as caption %}
         <div class="{{ class }}__caption">
             {{ caption }}
         </div>
