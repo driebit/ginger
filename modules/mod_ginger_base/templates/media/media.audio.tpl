@@ -10,7 +10,7 @@ as
     </audio>
 
     {% if caption|default:m.rsc[id].summary|default:id.title as caption %}
-        <div>
+        <div class="{{ class }}__caption">
             {{ caption }}
         </div>
     {% endif %}
