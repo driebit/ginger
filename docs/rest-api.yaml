@@ -112,6 +112,31 @@ paths:
                         type: array
                         items:
                             $ref: '#/definitions/Resource'
+        post:
+            consumes: ["application/json"]
+            description: "Create a resource"
+            parameters:
+                - in: body
+                  schema:
+                      type: object
+                      properties:
+                          title:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          body:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          summary:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          category:
+                              type: string
+                              description: "A Ginger category"
+                              required: true
+                          properties:
+                              type: string
+                              description: "Properties that are not included in the default REST GET response"
+                              required: falses
 
     /resources/{id}:
         get:
