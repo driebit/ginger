@@ -99,19 +99,14 @@ process_post(Req, State = #state{mode = collection}) ->
     %% Create resource
     {Body, Req1} = wrq:req_body(Req),
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    case maps:get(category, Data, undefined) of
-        undefined ->
-            lager:error("Category is missing from the request body", []),
-            {{halt, 400}, Req1, State};
-        _Cat ->
-            Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
-            {ok, Id} = m_rsc:insert(Props, Context),
+    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+    try m_rsc:insert(Props, Context) of
+        {ok, Id} ->
             %% Create edges
             lists:foreach(
               fun (Edge) ->
                       {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
                       {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
-
               end,
               maps:get(edges, Data, [])
              ),
@@ -120,6 +115,15 @@ process_post(Req, State = #state{mode = collection}) ->
             Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
             %% Done
             {{halt, 201}, Req2, State}
+    catch
+        throw:{{error, nocategory}, _} ->
+            lager:error("Category is missing from the request body", []),
+            {{halt, 400}, Req1, State};
+        throw:{{error, eacces}, _} ->
+            lager:error("Insert now allowed", []),
+            {{halt, 403}, Req1, State};
+        throw:{_} ->
+            {{halt, 500}, Req1, State}
     end.
 
 %%%-----------------------------------------------------------------------------
