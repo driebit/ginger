@@ -120,7 +120,6 @@ process_post(Req, State = #state{mode = collection}) ->
             lager:error("Category is missing from the request body", []),
             {{halt, 400}, Req1, State};
         throw:{{error, eacces}, _} ->
-            lager:error("Insert now allowed", []),
             {{halt, 403}, Req1, State};
         throw:{_} ->
             {{halt, 500}, Req1, State}
