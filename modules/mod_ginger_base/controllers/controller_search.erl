@@ -163,6 +163,8 @@ search_result(Document, _Context) when is_map(Document) ->
 %% @doc Combine separate facets in the search result into one property:
 %% (date_start_min, date_start_max) into (date_start.min, date_start.max).
 -spec facets(list() | map()) -> map().
+facets(undefined) ->
+    [];
 facets([]) ->
     [];
 facets(Facets) ->
