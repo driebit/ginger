@@ -5,6 +5,4 @@
 -mod_description("Default template and dispatch rules for a single page app").
 -mod_prio(200).
 
--export([]).
-
 -include("zotonic.hrl").
