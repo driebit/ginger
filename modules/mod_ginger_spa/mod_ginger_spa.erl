@@ -3,7 +3,7 @@
 
 -mod_title("Ginger SPA Module").
 -mod_description("Default template and dispatch rules for a single page app").
--mod_prio(500).
+-mod_prio(200).
 
 -export([]).
 

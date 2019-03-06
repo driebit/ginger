@@ -41,7 +41,7 @@
 
     <body id="body">
         <script type="text/javascript">
-            var app = Elm.Main.fullscreen();
+            var app = Elm.Main.init();
         </script>
     </body>
 </html>
