@@ -20,6 +20,7 @@
 rsc(Id, Context) when is_integer(Id) ->
     Rsc = #{ <<"id">> => Id
            , <<"title">> => translations(Id, title, Context)
+           , <<"subtitle">> => translations(Id, subtitle, Context)
            , <<"body">> => translations(Id, body, Context)
            , <<"summary">> => translations(Id, summary, Context)
            , <<"path">> => m_rsc:p(Id, page_path, m_rsc:page_url(Id, Context), Context)
