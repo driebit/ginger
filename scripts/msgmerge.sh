@@ -7,8 +7,7 @@ do
     if [ -e "../nl.po" ]
     then
         echo "Merging into nl.po from '$i'"
-        msgmerge ../nl.po `basename $i` > ../x.po
-        mv ../x.po ../nl.po
+        msgmerge --update ../nl.po `basename $i`
     else
         echo "Making new nl.po from '$i'"
         cp `basename $i` ../nl.po
