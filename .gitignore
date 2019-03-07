@@ -6,7 +6,6 @@ sites/*
 !sites/.gitkeep
 modules/*
 !modules/mod_ginger*
-modules/*/translations/template
 tests/node_modules
 tests/reports
 tests/screenshots
