@@ -75,7 +75,7 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
 translations({trans, Translations}, Context) ->
     [{Key, z_html:unescape(filter_show_media:show_media(Value, Context))} || {Key, Value} <- Translations];
 translations(undefined, Context) ->
-    [{z_trans:default_language(Context), null}];
+    [{z_trans:default_language(Context), <<"">>}];
 translations(Value, Context) ->
     [{z_trans:default_language(Context), z_html:unescape(filter_show_media:show_media(Value, Context))}].
 
