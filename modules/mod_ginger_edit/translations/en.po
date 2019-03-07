@@ -359,8 +359,8 @@ msgid "You entered an unknown username or e-mail address.  Please try again."
 msgstr "You entered an unknown username or e-mail address.  Please try again."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:3
-msgid "You entered an unknown username or password.  Please try again."
-msgstr "You entered an unknown username or password.  Please try again."
+msgid "You entered an unknown username or password. Please try again."
+msgstr "You entered an unknown username or password. Please try again."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:5
 msgid ""

@@ -1,22 +1,9 @@
-{% extends "admin_base.tpl" %}
-
-{% block title %}
-{_ Admin log on _}
-{% endblock %}
+{% overrules %}
 
 {% block bodyclass %}noframe t-login{% endblock %}
 
-{% block navigation %}
-<div class="navbar navbar-branded navbar-fixed-top">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="http://{{ m.site.hostname }}" title="{_ visit site _}"><span class="zotonic-logo"><em>Zotonic</em></span></a>
-    </div>
-</div>
-{% endblock %}
-
 {% block content %}
     <div class="widget admin-logon">
-
         <div class="widget-header"><img alt="Driebit Ginger" class="logon-logo" src="/lib/images/ginger-logo.png"></div>
         <div class="widget-content">
             {% include

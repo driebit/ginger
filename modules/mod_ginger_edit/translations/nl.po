@@ -335,7 +335,7 @@ msgstr ""
 "nogmaals."
 
 #: /vagrant/modules/mod_ginger_edit/templates/_logon_error.tpl:3
-msgid "You entered an unknown username or password.  Please try again."
+msgid "You entered an unknown username or password. Please try again."
 msgstr ""
 "Je hebt een onbekende gebruikersnaam of wachtwoord ingevoerd. Probeer het "
 "nogmaals."

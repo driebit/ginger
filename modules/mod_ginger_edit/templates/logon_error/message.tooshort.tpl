@@ -1,0 +1,1 @@
+<p>{_ Your new password is too short. _}</p>
