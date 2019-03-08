@@ -6,9 +6,11 @@
         , allowed_methods/2
         , resource_exists/2
         , delete_resource/2
+        , content_types_accepted/2
         , content_types_provided/2
         , to_json/2
         , process_post/2
+        , process_put/2
         ]
        ).
 
@@ -49,7 +51,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'POST', 'DELETE', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'PUT', 'DELETE', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -64,6 +66,9 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
         {error, _} ->
             {false, Req, State}
     end.
+
+content_types_accepted(Req, State) ->
+    {[{"application/json", to_json}], Req, State}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
@@ -114,8 +119,9 @@ process_post(Req, State = #state{mode = collection}) ->
     Location = "/data/resources/" ++ erlang:integer_to_list(Id),
     Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
     %% Done
-    {{halt, 201}, Req2, State};
-process_post(Req, State = #state{mode = document, path_info = id}) ->
+    {{halt, 201}, Req2, State}.
+
+process_put(Req, State = #state{mode = document, path_info = id}) ->
     Context = State#state.context,
     %% Update resource
     Id = State#state.rsc_id,
