@@ -114,7 +114,22 @@ process_post(Req, State = #state{mode = collection}) ->
     Location = "/data/resources/" ++ erlang:integer_to_list(Id),
     Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
     %% Done
-    {{halt, 201}, Req2, State}.
+    {{halt, 201}, Req2, State};
+process_post(Req, State = #state{mode = document, path_info = id}) ->
+    Context = State#state.context,
+    %% Update resource
+    Id = State#state.rsc_id,
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+    EscapeText = true,
+    case m_rsc:update(Id, Props, EscapeText, Context) of
+        {ok, _} ->
+            {{halt, 201}, Req1, State};
+        {error, _} ->
+            {{halt, 400}, Req1, State}
+    end.
+
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
