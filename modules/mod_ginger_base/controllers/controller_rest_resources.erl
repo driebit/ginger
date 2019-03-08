@@ -6,9 +6,11 @@
         , allowed_methods/2
         , resource_exists/2
         , delete_resource/2
+        , content_types_accepted/2
         , content_types_provided/2
         , to_json/2
         , process_post/2
+        , process_put/2
         ]
        ).
 
@@ -49,7 +51,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'POST', 'DELETE', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'PUT', 'DELETE', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
@@ -64,6 +66,9 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
         {error, _} ->
             {false, Req, State}
     end.
+
+content_types_accepted(Req, State) ->
+    {[{"application/json", to_json}], Req, State}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
@@ -115,6 +120,22 @@ process_post(Req, State = #state{mode = collection}) ->
     Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
     %% Done
     {{halt, 201}, Req2, State}.
+
+process_put(Req, State = #state{mode = document, path_info = id}) ->
+    Context = State#state.context,
+    %% Update resource
+    Id = State#state.rsc_id,
+    {Body, Req1} = wrq:req_body(Req),
+    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+    EscapeText = true,
+    case m_rsc:update(Id, Props, EscapeText, Context) of
+        {ok, _} ->
+            {{halt, 201}, Req1, State};
+        {error, _} ->
+            {{halt, 400}, Req1, State}
+    end.
+
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
