@@ -155,6 +155,12 @@ validate([Validator|Validators], Input) ->
 %%% Validators
 %%%-----------------------------------------------------------------------------
 
+%% These functions are used to validate input. Each function takes some input necessary
+%% for creating closures and returns a unary function that tries something. It succeeds
+%% it returns {ok, Output}, which the 'validate' function above will then feed into the
+%% next validator function. If it fails, the process is aborted.
+
+%% @doc returns a validator that checks whether a password matches the regex from the config
 password_matches_regex(Password, Context) ->
     case z_convert:to_list(
            m_config:get_value(mod_admin_identity, password_regex, Context)) of
@@ -172,6 +178,8 @@ password_matches_regex(Password, Context) ->
                     end
             end
     end.
+
+%% @doc returns a validator that checks whether a password is long enough
 password_has_min_length(Password, Context) ->
     PasswordMinLength = z_convert:to_integer(
                           m_config:get_value(mod_ginger_base, password_min_length, "6", Context)),
@@ -186,7 +194,7 @@ password_has_min_length(Password, Context) ->
               end
     end.
 
-%% @doc Validate whether a password is long enough and contains the right characters
+%% @doc returns a validator that checks whether a password is long enough and contains the right characters
 -spec is_password_valid(binary(), z_context:context()) -> ok | {error, string()}.
 is_password_valid(Password, Context) ->
     Validators =
@@ -196,6 +204,7 @@ is_password_valid(Password, Context) ->
             validate(Validators, undefined)
     end.
 
+%% @doc returns a validator that checks whether two passwords match
 passwords_match(Password1, Password2) ->
     fun(_) ->
             case Password1 =:= Password2 of
@@ -206,6 +215,8 @@ passwords_match(Password1, Password2) ->
             end
     end.
 
+%% @doc returns a validator that checks whether a Secret corresponds to a user, and
+%% returns the users Id if so
 valid_reminder_secret(Secret, Context) ->
     fun(_) ->
             case get_by_reminder_secret(Secret, Context) of
@@ -216,6 +227,8 @@ valid_reminder_secret(Secret, Context) ->
             end
     end.
 
+%% @doc returns a validator that takes a userId and checks whether that user has
+%% a username. It returns a tuple of {id, name} if so.
 has_username(Context) ->
     fun(UserId) ->
             case m_identity:get_username(UserId, Context) of
@@ -226,11 +239,15 @@ has_username(Context) ->
             end
     end.
 
+%% @doc returns a validator that checks whether the given username and password match,
+%% and returns the user id if so.
 check_username_pw(Username, Password, Context) ->
     fun(_) ->
             m_identity:check_username_pw(Username, Password, Context)
     end.
 
+%% @doc returns a validator that takes a user id and checks whether the corresponding
+%% user can log in. Returns a context with that user logged in if so.
 login(Context) ->
     fun(Id) ->
             case z_auth:logon(Id, Context) of
