@@ -225,7 +225,8 @@ allowed_methods_test_() ->
               ?assert(lists:member('POST', Methods)),
               ?assert(lists:member('DELETE', Methods)),
               ?assert(lists:member('HEAD', Methods)),
-              ?assertEqual(4, erlang:length(Methods)),
+              ?assert(lists:member('PUT', Methods)),
+              ?assertEqual(5, erlang:length(Methods)),
               ok
       end
     ].
