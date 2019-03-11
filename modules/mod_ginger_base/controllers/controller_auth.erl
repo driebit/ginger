@@ -61,7 +61,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
     case {Password1,Password2} of
         {A,_} when length(A) < PasswordMinLength ->
             Msg = io_lib:format("Your new password is too short! The minimum password length is ~p", [PasswordMinLength]),
-            {{halt, 500},wrq:set_resp_body(Msg, Req), State};
+            {{halt, 400},wrq:set_resp_body(Msg, Req), State};
         {P,P} ->
             {ok, UserId} = get_by_reminder_secret(Secret, Context),
             case m_identity:get_username(UserId, Context) of
@@ -74,7 +74,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
             end;
         {_,_} ->
             Msg =  "The two provided passwords don't match",
-            {{halt, 500},wrq:set_resp_body(Msg, Req), State}
+            {{halt, 400},wrq:set_resp_body(Msg, Req), State}
     end;
 process_post(Req, State = #state{mode = reset}) ->
     Context = State#state.context,
