@@ -59,11 +59,17 @@ process_post(Req, State = #state{mode = reset_password}) ->
       password2 := Password2} = jsx:decode(Body, [return_maps, {labels, atom}]),
     PasswordMinLength = z_convert:to_integer(
                           m_config:get_value(mod_ginger_base, password_min_length, "6", Context)),
-    case {Password1,Password2} of
-        {A,_} when length(A) < PasswordMinLength ->
+    %% Default to ".", which matches on any character
+    PasswordRegex = m_config:get_value(mod_admin_identity, password_regex, ".", Context),
+    Match = re:run(Password1, PasswordRegex),
+    case {Password1,Password2, Match} of
+        {A,_, _} when length(A) < PasswordMinLength ->
             Msg = io_lib:format("Your new password is too short! The minimum password length is ~p", [PasswordMinLength]),
             {{halt, 400},wrq:set_resp_body(Msg, Req), State};
-        {P,P} ->
+        {_, _, nomatch} ->
+            Msg = "Your new password does not match our password rules",
+            {{halt, 400},wrq:set_resp_body(Msg, Req), State};
+        {P,P, _} ->
             case get_by_reminder_secret(Secret, Context) of
                 {ok, UserId} ->
                     case m_identity:get_username(UserId, Context) of
@@ -79,7 +85,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
                     Msg = "There is no matching user for the given secret.",
                     {{halt, 400},wrq:set_resp_body(Msg, Req), State}
             end;
-        {_,_} ->
+        {_,_, _} ->
             Msg =  "The two provided passwords don't match",
             {{halt, 400},wrq:set_resp_body(Msg, Req), State}
     end;
