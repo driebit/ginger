@@ -31,6 +31,8 @@ allowed_methods(Req, State = #state{mode = new}) ->
     {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State = #state{mode = reset}) ->
     {['POST', 'HEAD'], Req, State};
+allowed_methods(Req, State = #state{mode = reset_password}) ->
+    {['POST', 'HEAD'], Req, State};
 allowed_methods(Req, State) ->
     {['POST', 'HEAD', 'GET'], Req, State}.
 
@@ -48,6 +50,32 @@ process_post(Req, State = #state{mode = new}) ->
     {ok, Id} = mod_signup:signup([{email, Email}], [{identity, Identity}], RequestConfirm, Context),
     ok = mod_signup:request_verification(Id, Context),
     {{halt, 204}, Req1, State};
+process_post(Req, State = #state{mode = reset_password}) ->
+    Context = State#state.context,
+    Username = z_string:trim(z_context:get_q("u", Context)),
+    Secret = z_string:trim(z_context:get_q("secret", Context)),
+    Password1 = z_string:trim(z_context:get_q("password1", Context)),
+    Password2 = z_string:trim(z_context:get_q("password2", Context)),
+    PasswordMinLength = z_convert:to_integer(
+                          m_config:get_value(mod_ginger_base, password_min_length, "6", Context)),
+    case {Password1,Password2} of
+        {A,_} when length(A) < PasswordMinLength ->
+            Msg = io_lib:format("Your new password is too short! The minimum password length is ~p", [PasswordMinLength]),
+            {{halt, 500},wrq:set_resp_body(Msg, Req), State};
+        {P,P} ->
+            {ok, UserId} = get_by_reminder_secret(Secret, Context),
+            case m_identity:get_username(UserId, Context) of
+                undefined ->
+                    throw({error, "User does not have an username defined."});
+                Username ->
+                    m_identity:set_username_pw(UserId, Username, Password1, z_acl:sudo(Context)),
+                    m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
+                    {204, Req, State}
+            end;
+        {_,_} ->
+            Msg =  "The two provided passwords don't match",
+            {{halt, 500},wrq:set_resp_body(Msg, Req), State}
+    end;
 process_post(Req, State = #state{mode = reset}) ->
     Context = State#state.context,
     {Body, Req1} = wrq:req_body(Req),
@@ -104,3 +132,9 @@ user(Id, Context) ->
     #{ <<"identity">> => Identity
      , <<"resource">> => m_ginger_rest:with_edges(m_ginger_rest:rsc(Id, Context), Context)
      }.
+
+get_by_reminder_secret(Code, Context) ->
+    case m_identity:lookup_by_type_and_key("logon_reminder_secret", Code, Context) of
+        undefined -> undefined;
+        Row -> {ok, proplists:get_value(rsc_id, Row)}
+    end.
