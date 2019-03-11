@@ -53,7 +53,7 @@ process_post(Req, State = #state{mode = new}) ->
 process_post(Req, State = #state{mode = reset_password}) ->
     Context = State#state.context,
     {Body, Req1} = wrq:req_body(Req),
-    #{u := Username,
+    #{username := Username,
       secret := Secret,
       password1 := Password1,
       password2 := Password2} = jsx:decode(Body, [return_maps, {labels, atom}]),
