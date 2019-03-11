@@ -52,10 +52,11 @@ process_post(Req, State = #state{mode = new}) ->
     {{halt, 204}, Req1, State};
 process_post(Req, State = #state{mode = reset_password}) ->
     Context = State#state.context,
-    Username = z_string:trim(z_context:get_q("u", Context)),
-    Secret = z_string:trim(z_context:get_q("secret", Context)),
-    Password1 = z_string:trim(z_context:get_q("password1", Context)),
-    Password2 = z_string:trim(z_context:get_q("password2", Context)),
+    {Body, Req1} = wrq:req_body(Req),
+    #{u := Username,
+      secret := Secret,
+      password1 := Password1,
+      password2 := Password2} = jsx:decode(Body, [return_maps, {labels, atom}]),
     PasswordMinLength = z_convert:to_integer(
                           m_config:get_value(mod_ginger_base, password_min_length, "6", Context)),
     case {Password1,Password2} of
@@ -63,14 +64,20 @@ process_post(Req, State = #state{mode = reset_password}) ->
             Msg = io_lib:format("Your new password is too short! The minimum password length is ~p", [PasswordMinLength]),
             {{halt, 400},wrq:set_resp_body(Msg, Req), State};
         {P,P} ->
-            {ok, UserId} = get_by_reminder_secret(Secret, Context),
-            case m_identity:get_username(UserId, Context) of
-                undefined ->
-                    throw({error, "User does not have an username defined."});
-                Username ->
-                    m_identity:set_username_pw(UserId, Username, Password1, z_acl:sudo(Context)),
-                    m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
-                    {204, Req, State}
+            case get_by_reminder_secret(Secret, Context) of
+                {ok, UserId} ->
+                    case m_identity:get_username(UserId, Context) of
+                        undefined ->
+                            Msg =  "User does not have an username defined.",
+                            {{halt, 500},wrq:set_resp_body(Msg, Req), State};
+                        Username ->
+                            m_identity:set_username_pw(UserId, Username, Password1, z_acl:sudo(Context)),
+                            m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
+                            {{halt, 204}, Req1, State}
+                    end;
+                _ ->
+                    Msg = "There is no matching user for the given secret.",
+                    {{halt, 400},wrq:set_resp_body(Msg, Req), State}
             end;
         {_,_} ->
             Msg =  "The two provided passwords don't match",
