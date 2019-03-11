@@ -60,7 +60,8 @@ process_post(Req, State = #state{mode = reset_password}) ->
     PasswordMinLength = z_convert:to_integer(
                           m_config:get_value(mod_ginger_base, password_min_length, "6", Context)),
     %% Default to ".", which matches on any character
-    PasswordRegex = m_config:get_value(mod_admin_identity, password_regex, ".", Context),
+    PasswordRegex = z_convert:to_list(
+                      m_config:get_value(mod_admin_identity, password_regex, ".", Context)),
     Match = re:run(Password1, PasswordRegex),
     case {Password1,Password2, Match} of
         {A,_, _} when length(A) < PasswordMinLength ->
