@@ -1,8 +1,8 @@
 <aside>
-    {% if m.rsc["hasbanner"] %}
-        {% include "aside-connection/aside-add-connection.tpl" id=id cat="image" predicate="hasbanner" tab="upload" tabs_enabled=["upload","find"] %}
+    {% if m.rsc.hasbanner.exists %}
+        {% include "aside-connection/aside-add-connection.tpl" id=id cat="image" predicate="hasbanner" tab="new" tabs_enabled=["new","find"] %}
     {% endif %}
-    {% if m.rsc["hasprofilepicture"] %}
-        {% include "aside-connection/aside-add-connection.tpl" id=id cat="image" predicate="hasprofilepicture" tab="upload" tabs_enabled=["upload","find"] %}
+    {% if m.rsc.hasprofilepicture.exists %}
+        {% include "aside-connection/aside-add-connection.tpl" id=id cat="image" predicate="hasprofilepicture" tab="new" tabs_enabled=["new","find"] %}
     {% endif %}
 </aside>

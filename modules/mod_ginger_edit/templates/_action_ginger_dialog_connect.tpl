@@ -10,10 +10,28 @@
 {% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:[[]] as author %}
 {% with objects++author as objects %}
 
+{% with redirect|default:(dispatch=="ginger_edit")|if:[]:`ginger_edit` as redirect %}
+
     <ul class="nav nav-pills">
         {% block tabs %}
         {% if cat_name!='keyword' %}
             {% if not (tabs_enabled and tabs_enabled|length == 1) %}
+                {% if not tabs_enabled or "new"|member:tabs_enabled %}
+                    <li class="active">
+                        <a data-toggle="tab" href="#{{ #tab }}-findnew">
+                            {% if predicate and (subject_id or object_id) %}
+                                {_ Find or Create Page _}
+                            {% else %}
+                                {_ Create Page _}
+                            {% endif %}
+                        </a>
+                    </li>
+                {% elseif "find"|member:tabs_enabled %}
+                    <li {% if tab == "find" %}class="active"{% endif %}>
+                        <a data-toggle="tab" data-id="{{m.rsc[cat_name].id}}" data-name="{{cat_name}}" href="#{{ #tab }}-find">{_ Find Page _}</a>
+                    </li>
+                {% endif %}
+{#
                 {% if "find"|member:tabs_enabled %}
                     <li {% if tab == "find" %}class="active"{% endif %}>
                         <a data-toggle="tab" data-id="{{m.rsc[cat_name].id}}" data-name="{{cat_name}}" href="#{{ #tab }}-find">{_ Find Page _}</a>
@@ -24,7 +42,8 @@
                         <a data-toggle="tab" href="#{{ #tab }}-new">{_ New Page _}</a>
                     </li>
                 {% endif %}
-                {% if "upload"|member:tabs_enabled %}
+#}
+                {% if "upload"|member:tabs_enabled and not "new"|member:tabs_enabled %}
                     <li {% if tab == "upload" %}class="active"{% endif %}>
                         <a data-toggle="tab" href="#{{ #tab }}-upload">{_ Upload File _}</a>
                     </li>
@@ -68,25 +87,41 @@
     <div class="tab-content" id="dialog-connect-panels">
         {% block tabs_content %}
 
+            {% if not tabs_enabled or "new"|member:tabs_enabled %}
+                {% with (direction == 'in')|if:([[object_id, predicate]]++objects):objects as objects %}
+                    {% include "_action_dialog_connect_tab_findnew.tpl"
+                        tab=#tab
+                        predicate=predicate
+                        delegate=delegate
+                        subject_id=subject_id
+                        object_id=object_id
+                        is_active=`true`
+                        title=""
+                        cat=cat
+                        cg_id=cg_id
+                        content_group=content_group
+                    %}
+                {% endwith %}
+            {% elseif "find"|member:tabs_enabled %}
+                {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab
+                        predicate=predicate object_id=object_id subject_id=subject_id redirect=redirect
+                        content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions %}
+            {% endif %}
+
+{#
             {% if direction=='in' %}
                 {% if "new"|member:tabs_enabled %}
                     {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]]++objects title=""
                             cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" actions=actions redirect=redirect %}
-                {% endif %}
-                {% if "find"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate object_id=object_id redirect=redirect
-                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions %}
                 {% endif %}
             {% else %}
                 {% if "new"|member:tabs_enabled %}
                     {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id objects=objects title=""
                             cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" actions=actions redirect=redirect %}
                 {% endif %}
-                {% if "find"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
-                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions %}
-                {% endif %}
             {% endif %}
+#}
+
             {% if "url"|member:tabs_enabled %}
                 {% include "_action_dialog_media_upload_tab_url.tpl"
                 tab=#tab
@@ -98,7 +133,7 @@
                 title=""
                 %}
             {% endif %}
-            {% if "upload"|member:tabs_enabled %}
+            {% if "upload"|member:tabs_enabled and not "new"|member:tabs_enabled %}
                 {% include "_action_dialog_media_upload_tab_upload.tpl"
                     tab=#tab
                     predicate=predicate
@@ -111,6 +146,8 @@
 
         {% endblock %}
     </div>
+
+{% endwith %}
 
 {% endwith %}
 {% endwith %}
