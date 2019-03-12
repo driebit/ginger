@@ -90,7 +90,7 @@ process_post(Req, State = #state{mode = login}) ->
     Context = State#state.context,
     Validators =
         [check_username_pw(Username, Password, Context),
-         login(Context)],
+         can_login(Context)],
     case pipeline(Validators, undefined) of
         {ok, {Id, UserContext}} ->
             Req2 = wrq:set_resp_body(jsx:encode(user(Id, UserContext)), UserContext#context.wm_reqdata),
@@ -248,7 +248,7 @@ check_username_pw(Username, Password, Context) ->
 
 %% @doc returns a validator that takes a user id and checks whether the corresponding
 %% user can log in. Returns a context with that user logged in if so.
-login(Context) ->
+can_login(Context) ->
     fun(Id) ->
             case z_auth:logon(Id, Context) of
                 {ok, UserContext} ->
