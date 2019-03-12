@@ -45,7 +45,7 @@ process_post(Req, State = #state{mode = new}) ->
     Data = jsx:decode(Body, [return_maps, {labels, atom}]),
     Email = maps:get(email, Data), % TODO: validate email
     Password = maps:get(password, Data),
-    case validate([is_password_valid(Password, Context)], undefined) of
+    case pipeline([is_password_valid(Password, Context)], undefined) of
         {ok, _} ->
             Identity = {username_pw, {Email, Password}, true, true},
             RequestConfirm = true,
@@ -67,7 +67,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
          is_password_valid(Password1, Context),
          valid_reminder_secret(Secret, Context),
          has_username(Context)],
-    case validate(Validators, undefined) of
+    case pipeline(Validators, undefined) of
         {ok, {UserId,  Username}} ->
             m_identity:set_username_pw(UserId, Username, Password1, z_acl:sudo(Context)),
             m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
@@ -91,7 +91,7 @@ process_post(Req, State = #state{mode = login}) ->
     Validators =
         [check_username_pw(Username, Password, Context),
          login(Context)],
-    case validate(Validators, undefined) of
+    case pipeline(Validators, undefined) of
         {ok, {Id, UserContext}} ->
             Req2 = wrq:set_resp_body(jsx:encode(user(Id, UserContext)), UserContext#context.wm_reqdata),
             {true, Req2, State};
@@ -141,12 +141,12 @@ get_by_reminder_secret(Code, Context) ->
 %% @doc Takes a list of unary functions that return either {error, Reason} or
 %% {ok, Output} and succesively apply the functions to the output of the previous
 %% function, until all funtions are evaluated, or one returns an error
-validate([], Input) ->
+pipeline([], Input) ->
     {ok, Input};
-validate([Validator|Validators], Input) ->
-    case Validator(Input) of
+pipeline([F|Fs], Input) ->
+    case F(Input) of
         {ok, Output} ->
-            validate(Validators, Output);
+            pipeline(Fs, Output);
         {error, Error} ->
             {error, Error}
     end.
@@ -201,7 +201,7 @@ is_password_valid(Password, Context) ->
         [password_matches_regex(Password, Context),
          password_has_min_length(Password, Context)],
     fun(_) ->
-            validate(Validators, undefined)
+            pipeline(Validators, undefined)
     end.
 
 %% @doc returns a validator that checks whether two passwords match
