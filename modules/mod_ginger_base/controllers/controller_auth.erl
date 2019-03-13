@@ -49,11 +49,19 @@ process_post(Req, State = #state{mode = new}) ->
         {ok, _} ->
             Identity = {username_pw, {Email, Password}, true, true},
             RequestConfirm = true,
-            {ok, Id} = mod_signup:signup([{email, Email}], [{identity, Identity}], RequestConfirm, Context),
-            ok = mod_signup:request_verification(Id, Context),
-            {{halt, 204}, Req1, State};
+            case mod_signup:signup([{email, Email}],
+                                   [{identity, Identity}],
+                                   RequestConfirm, Context) of
+                {ok, Id} ->
+                    mod_signup:request_verification(Id, Context),
+                    {{halt, 204}, Req1, State};
+                {error, {identity_in_use, username}} ->
+                    Msg = <<"There is already a user with that username">>,
+                    {{halt, 400}, wrq:set_resp_body(
+                                    jsx:encode(#{msg => Msg}), Req1), State}
+            end;
         {error, Error} ->
-            {{halt, 400}, wrq:set_resp_body(Error, Req), State}
+            {{halt, 400}, wrq:set_resp_body(Error, Req1), State}
     end;
 process_post(Req, State = #state{mode = reset_password}) ->
     Context = State#state.context,
