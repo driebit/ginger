@@ -51,6 +51,10 @@ definitions:
                       type: string
                     resource:
                       $ref: '#/definitions/Resource'
+            blocks:
+              type: array
+              items:
+                $ref: '#/definitions/Block'
             media:
               type: array
               items:
@@ -74,6 +78,22 @@ definitions:
                 type: string
                 example: "Hallo wereld"
         minProperties: 1
+    Block:
+        type: object
+        properties:
+            name:
+                type: string
+                example: "text1"
+            type:
+                type: string
+                example: "text"
+            body:
+                type: Translation
+            rsc_id:
+                type: number
+                example: 123
+            properties:
+                type: object
     Media:
         type: object
         properties:

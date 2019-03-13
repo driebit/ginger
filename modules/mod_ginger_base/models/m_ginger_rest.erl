@@ -170,5 +170,31 @@ block(Block, Context) ->
         <<"type">> => proplists:get_value(type, Block),
         <<"name">> => proplists:get_value(name, Block),
         <<"body">> => translations(proplists:get_value(body, Block), Context),
-        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null)
+        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null),
+        <<"properties">> => custom_block_props(Block, Context)
     }.
+
+%% @doc Get block custom properties as defined in the site's config.
+custom_block_props(Block, Context) ->
+    case m_site:get(block_types, Context) of
+        undefined ->
+            null;
+        CustomProps ->
+            case maps:fold(
+                fun(PropName, TypeModule, Acc) ->
+                    case proplists:get_value(PropName, Block, undefined) of
+                        undefined ->
+                            Acc;
+                        Value ->
+                            Acc#{PropName => TypeModule:encode(Value)}
+                    end
+                end,
+                #{},
+                CustomProps
+            ) of
+                Map when map_size(Map) =:= 0 ->
+                    null;
+                CustomPropsValues ->
+                    CustomPropsValues
+            end
+    end.
