@@ -96,7 +96,8 @@ whitelist() ->
         sort,
         text,
         unfinished,
-        upcoming
+        upcoming,
+        cat_exclude_defaults
     ].
 
 coordinates(SearchResult) ->
