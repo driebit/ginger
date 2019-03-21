@@ -91,9 +91,10 @@ to_json(Req, State = #state{mode = collection}) ->
         {Json, Req, State}
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while fetching the resources: ~p~n~p",
-                                [Error, erlang:get_stacktrace()]),
-            lager:error(Msg),
+            Msg = io_lib:format("An error occurred while fetching the resources: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
             {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
     end;
 to_json(Req, State = #state{mode = document}) ->
