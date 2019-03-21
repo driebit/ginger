@@ -105,9 +105,10 @@ to_json(Req, State = #state{mode = document}) ->
         {Json, Req, State}
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while fetching the resource: ~p~n~p",
-                                [Error, erlang:get_stacktrace()]),
-            lager:error(Msg),
+            Msg = io_lib:format("An error occurred while fetching the resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
             {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
     end.
 
@@ -134,9 +135,10 @@ process_post(Req, State = #state{mode = collection}) ->
         {{halt, 201}, Req2, State}
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while storing the new resource: ~p~n~p",
-                                [Error, erlang:get_stacktrace()]),
-            lager:error(Msg),
+            Msg = io_lib:format("An error occurred while storing the new resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
             {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
     end.
 
@@ -157,9 +159,10 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
         end
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while storing the new resource: ~p~n~p",
-                                [Error, erlang:get_stacktrace()]),
-            lager:error(Msg),
+            Msg = io_lib:format("An error occurred while storing the new resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
             {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
     end.
 
