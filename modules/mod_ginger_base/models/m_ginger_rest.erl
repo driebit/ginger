@@ -124,32 +124,40 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
         Medium ->
             case proplists:get_value(mime, Medium) of
                 <<"image", _Rest/binary>> ->
-                    Images = lists:foldr(
-                               fun(Class, Acc) ->
-                                       Opts = [{use_absolute_url, true}, {mediaclass, Class}],
-                                       case z_media_tag:url(Id, Opts, Context) of
-                                           {ok, Url} ->
-                                               [#{mediaclass => Class, url => Url} | Acc];
-                                           _ ->
-                                               Acc
-                                       end
-                               end, [], Mediaclasses),
-                    Rsc#{<<"media">> => Images};
+                    Rsc#{<<"media">> => image_urls(Id, Mediaclasses, Context)};
                 <<"text/html-oembed">> ->
-                    case proplists:get_value(oembed, Medium) of
+                    case embedded_video_tag(Medium) of
                         undefined ->
                             Rsc;
-                        EmbeddedInfo ->
-                            case proplists:get_value(html, EmbeddedInfo) of
-                                undefined ->
-                                    Rsc;
-                                Url ->
-                                    Rsc#{<<"media">> => #{url => Url}}
-                            end
+                        Url ->
+                            Rsc#{<<"media">> => #{url => Url}}
                     end
             end
     end.
 
+%% @doc Create a list of maps containing the given mediaclasses and corresponding URLs
+-spec image_urls(m_rsc:resource(), [binary()], z:context()) -> [map()].
+image_urls(RscId, Mediaclasses, Context) ->
+    lists:foldr(
+      fun(Class, Acc) ->
+              Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+              case z_media_tag:url(RscId, Opts, Context) of
+                  {ok, Url} ->
+                      [#{mediaclass => Class, url => Url} | Acc];
+                  _ ->
+                      Acc
+              end
+      end, [], Mediaclasses).
+
+%% #doc Given a medium record, retrieve a resource's embedded video tag
+-spec embedded_video_tag(list()) -> undefined | map().
+embedded_video_tag(Medium) ->
+    case proplists:get_value(oembed, Medium) of
+        undefined ->
+            undefined;
+        EmbeddedInfo ->
+            proplists:get_value(html, EmbeddedInfo)
+    end.
 
 %% @doc Get all mediaclasses for the site.
 -spec mediaclasses(z:context()) -> [atom()].
