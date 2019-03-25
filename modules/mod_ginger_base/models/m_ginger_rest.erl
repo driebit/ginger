@@ -121,18 +121,35 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
     case m_media:get(Id, Context) of
         undefined ->
             Rsc;
-        _ ->
-            Media = fun(Class, Acc) ->
-                Opts = [{use_absolute_url, true}, {mediaclass, Class}],
-                case z_media_tag:url(Id, Opts, Context) of
-                    {ok, Url} ->
-                        [#{mediaclass => Class, url => Url} | Acc];
-                    _ ->
-                        Acc
-                end
-                    end,
-            Rsc#{<<"media">> => lists:foldr(Media, [], Mediaclasses)}
+        Medium ->
+            case proplists:get_value(mime, Medium) of
+                <<"image", _Rest/binary>> ->
+                    Images = lists:foldr(
+                               fun(Class, Acc) ->
+                                       Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+                                       case z_media_tag:url(Id, Opts, Context) of
+                                           {ok, Url} ->
+                                               [#{mediaclass => Class, url => Url} | Acc];
+                                           _ ->
+                                               Acc
+                                       end
+                               end, [], Mediaclasses),
+                    Rsc#{<<"media">> => Images};
+                <<"text/html-oembed">> ->
+                    case proplists:get_value(oembed, Medium) of
+                        undefined ->
+                            Rsc;
+                        EmbeddedInfo ->
+                            case proplists:get_value(html, EmbeddedInfo) of
+                                undefined ->
+                                    Rsc;
+                                Url ->
+                                    Rsc#{<<"media">> => #{url => Url}}
+                            end
+                    end
+            end
     end.
+
 
 %% @doc Get all mediaclasses for the site.
 -spec mediaclasses(z:context()) -> [atom()].
