@@ -126,11 +126,14 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
                 <<"image", _Rest/binary>> ->
                     Rsc#{<<"media">> => image_urls(Id, Mediaclasses, Context)};
                 <<"text/html-oembed">> ->
-                    case embedded_video_tag(Medium) of
+                    case proplists:get_value(oembed, Medium) of
                         undefined ->
                             Rsc;
-                        Url ->
-                            Rsc#{<<"media">> => #{url => Url}}
+                        EmbeddedInfo ->
+                            Url = proplists:get_value(html, EmbeddedInfo),
+                            Height = proplists:get_value(height, EmbeddedInfo, null),
+                            Width = proplists:get_value(width, EmbeddedInfo, null),
+                            Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
                     end
             end
     end.
@@ -148,16 +151,6 @@ image_urls(RscId, Mediaclasses, Context) ->
                       Acc
               end
       end, [], Mediaclasses).
-
-%% #doc Given a medium record, retrieve a resource's embedded video tag
--spec embedded_video_tag(list()) -> undefined | map().
-embedded_video_tag(Medium) ->
-    case proplists:get_value(oembed, Medium) of
-        undefined ->
-            undefined;
-        EmbeddedInfo ->
-            proplists:get_value(html, EmbeddedInfo)
-    end.
 
 %% @doc Get all mediaclasses for the site.
 -spec mediaclasses(z:context()) -> [atom()].
