@@ -152,16 +152,6 @@ image_urls(RscId, Mediaclasses, Context) ->
               end
       end, [], Mediaclasses).
 
-%% #doc Given a medium record, retrieve a resource's embedded video tag
--spec embedded_video_tag(list()) -> undefined | map().
-embedded_video_tag(Medium) ->
-    case proplists:get_value(oembed, Medium) of
-        undefined ->
-            undefined;
-        EmbeddedInfo ->
-            proplists:get_value(html, EmbeddedInfo)
-    end.
-
 %% @doc Get all mediaclasses for the site.
 -spec mediaclasses(z:context()) -> [atom()].
 mediaclasses(Context) ->
