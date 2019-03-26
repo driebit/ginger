@@ -128,7 +128,7 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
                 <<"text/html-oembed">> ->
                     case proplists:get_value(oembed, Medium) of
                         undefined ->
-                            undefined;
+                            Rsc;
                         EmbeddedInfo ->
                             Url = proplists:get_value(html, EmbeddedInfo),
                             Height = proplists:get_value(height, EmbeddedInfo, null),
