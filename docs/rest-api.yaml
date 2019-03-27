@@ -125,6 +125,11 @@ paths:
                   type: string
                   required: false
                   description: A predicate name (of an incoming edge)
+                - in: query
+                  name: depth
+                  type: int
+                  required: false
+                  description: The depth of edges to return. Defaults to 1
             responses:
                 200:
                     description: A list of resources
@@ -167,6 +172,11 @@ paths:
                   name: id
                   type: integer
                   required: true
+                - in: query
+                  name: depth
+                  type: int
+                  required: false
+                  description: The depth of edges to return. Defaults to 1
             responses:
                 200:
                     description: A resource
@@ -205,6 +215,11 @@ paths:
                   name: path
                   type: string
                   required: true
+                - in: query
+                  name: depth
+                  type: int
+                  required: false
+                  description: The depth of edges to return. Defaults to 1
             responses:
                 200:
                     description: A resource

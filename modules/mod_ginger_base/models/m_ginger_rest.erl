@@ -3,8 +3,8 @@
 
 -export([
     rsc/2,
-    with_edges/2,
     with_edges/3,
+    with_edges/4,
     translations/2
 ]).
 
@@ -39,37 +39,58 @@ rsc(UniqueName, Context) ->
     end.
 
 %% @doc Add all edges to resource.
--spec with_edges(map(), z:context()) -> map().
-with_edges(Rsc = #{<<"id">> := Id}, Context) ->
+-spec with_edges(map(), integer(), z:context()) -> map().
+with_edges(Rsc = #{<<"id">> := Id}, Depth, Context) ->
     Edges = lists:flatmap(
-        fun({Predicate, PredicateEdges}) ->
-            [
-                #{
-                    <<"predicate_name">> => Predicate,
-                    <<"resource">> => rsc(proplists:get_value(object_id, Edge), Context)
-                } || Edge <- lists:reverse(PredicateEdges)
-            ]
-        end,
-        m_edge:get_edges(Id, Context)
-    ),
+              fun({Predicate, PredicateEdges}) ->
+                      [
+                       #{
+                         <<"predicate_name">> => Predicate,
+                         <<"resource">> =>
+                             case Depth of
+                                 1 ->
+                                     rsc(proplists:get_value(object_id, Edge), Context);
+                                 N ->
+                                     Rsc2 = rsc(proplists:get_value(object_id, Edge), Context),
+                                     with_edges(Rsc2, (N - 1), Context)
+                             end
+                        }
+                       || Edge <- lists:reverse(PredicateEdges)
+                      ]
+              end,
+              m_edge:get_edges(Id, Context)
+             ),
     Rsc#{<<"edges">> => Edges}.
 
+
 %% @doc Add edges of specific predicates to resource.
--spec with_edges(map(), [atom()], z:context()) -> map().
-with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
+-spec with_edges(map(), [atom()], integer(), z:context()) -> map().
+with_edges(Rsc = #{<<"id">> := Id}, Predicates, Depth, Context) ->
     Edges = lists:flatmap(
         fun(Predicate) ->
             #rsc_list{list = Objects} = m_rsc:o(Id, Predicate, Context),
             [
                 #{
                     <<"predicate_name">> => Predicate,
-                    <<"resource">> => rsc(Object, Context)
+                    <<"resource">> =>
+                      case Depth of
+                          1 ->
+                              rsc(Object, Context);
+                          N ->
+                              with_edges(rsc(Object, Context), Predicates, (N - 1), Context)
+                      end
                 } || Object <- Objects
             ]
         end,
         Predicates
     ),
-    Rsc#{<<"edges">> => Edges}.
+    case Depth of
+        1 ->
+            Rsc#{<<"edges">> => Edges};
+        N ->
+            Edges2 = lists:map(fun(Edge) -> with_edges(Edge, Predicates, (N - 1), Context) end, Edges),
+            Rsc#{<<"edges">> => Edges2}
+    end.
 
 %% @doc Get resource translations.
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().

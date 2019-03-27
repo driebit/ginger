@@ -87,7 +87,8 @@ to_json(Req, State = #state{mode = collection}) ->
                   )
                 ),
         Ids = z_search:query_(Args, Context),
-        Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
+        {EdgeDepth, _} = string:to_integer(wrq:get_qs_value("depth", "1", Req)),
+        Json = jsx:encode([rsc(Id, Context, EdgeDepth) || Id <- Ids]),
         {Json, Req, State}
     catch
         _:Error ->
@@ -102,7 +103,8 @@ to_json(Req, State = #state{mode = document}) ->
         Id = State#state.rsc_id,
         Context = State#state.context,
         Rsc = m_ginger_rest:rsc(Id, Context),
-        Json = jsx:encode(m_ginger_rest:with_edges(Rsc, Context)),
+        {EdgeDepth, _} = string:to_integer(wrq:get_qs_value("depth", "1", Req)),
+        Json = jsx:encode(m_ginger_rest:with_edges(Rsc, EdgeDepth, Context)),
         {Json, Req, State}
     catch
         _:Error ->
@@ -193,13 +195,13 @@ trans({Key, Value}, Acc) ->
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
 
-rsc(Id, Context, IncludeEdges) ->
+rsc(Id, Context, EdgeDepth) ->
     Map = m_ginger_rest:rsc(Id, Context),
-    case IncludeEdges of
+    case EdgeDepth > 0 of
         false ->
             Map;
         true ->
-            m_ginger_rest:with_edges(Map, Context)
+            m_ginger_rest:with_edges(Map, EdgeDepth, Context)
     end.
 
 proplists_filter(Filter, List) ->
