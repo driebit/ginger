@@ -84,13 +84,7 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Depth, Context) ->
         end,
         Predicates
     ),
-    case Depth of
-        1 ->
-            Rsc#{<<"edges">> => Edges};
-        N ->
-            Edges2 = lists:map(fun(Edge) -> with_edges(Edge, Predicates, (N - 1), Context) end, Edges),
-            Rsc#{<<"edges">> => Edges2}
-    end.
+    Rsc#{<<"edges">> => Edges}.
 
 %% @doc Get resource translations.
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
