@@ -102,9 +102,8 @@ to_json(Req, State = #state{mode = document}) ->
     try
         Id = State#state.rsc_id,
         Context = State#state.context,
-        Rsc = m_ginger_rest:rsc(Id, Context),
         {EdgeDepth, _} = string:to_integer(wrq:get_qs_value("depth", "1", Req)),
-        Json = jsx:encode(m_ginger_rest:with_edges(Rsc, EdgeDepth, Context)),
+        Json = jsx:encode(rsc(Id, Context, EdgeDepth)),
         {Json, Req, State}
     catch
         _:Error ->
