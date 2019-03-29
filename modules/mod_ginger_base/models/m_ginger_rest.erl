@@ -135,6 +135,16 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
                             Width = proplists:get_value(width, EmbeddedInfo, null),
                             Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
                     end;
+                <<"text/html-video-embed">> ->
+                    case proplists:get_value(video_embed_code, Medium) of
+                        undefined ->
+                            Rsc;
+                        EmbedCode ->
+                            Url = EmbedCode,
+                            Height = proplists:get_value(height, Medium, null),
+                            Width = proplists:get_value(width, Medium, null),
+                            Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
+                    end;
                 _ ->
                     Rsc
             end
