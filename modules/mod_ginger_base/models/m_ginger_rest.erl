@@ -134,7 +134,9 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
                             Height = proplists:get_value(height, EmbeddedInfo, null),
                             Width = proplists:get_value(width, EmbeddedInfo, null),
                             Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
-                    end
+                    end;
+                _ ->
+                    Rsc
             end
     end.
 
