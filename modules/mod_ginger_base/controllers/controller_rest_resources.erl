@@ -103,7 +103,7 @@ to_json(Req, State = #state{mode = document}) ->
         Id = State#state.rsc_id,
         Context = State#state.context,
         {EdgeDepth, _} = string:to_integer(wrq:get_qs_value("depth", "1", Req)),
-        Json = jsx:encode(rsc(Id, Context, EdgeDepth)),
+        Json = jsx:encode(rsc(Id, EdgeDepth, Context)),
         {Json, Req, State}
     catch
         _:Error ->
@@ -194,7 +194,7 @@ trans({Key, Value}, Acc) ->
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
 
-rsc(Id, Context, EdgeDepth) ->
+rsc(Id, EdgeDepth, Context) ->
     Map = m_ginger_rest:rsc(Id, Context),
     case EdgeDepth > 0 of
         false ->
