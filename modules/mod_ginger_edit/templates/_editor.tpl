@@ -8,7 +8,7 @@ overrides_tpl: (optional) template location that contains JavaScript overrides f
 {% wire name="zmedia"
     action={
         dialog_open
-        template="_action_dialog_connect.tpl"
+        template="_action_ginger_dialog_connect.tpl"
         title=_"Insert image"
         subject_id=id
         predicate=`depiction`
@@ -24,7 +24,7 @@ overrides_tpl: (optional) template location that contains JavaScript overrides f
 {% wire name="zlink"
     action={
         dialog_open
-        template="_action_dialog_connect.tpl"
+        template="_action_ginger_dialog_connect.tpl"
         title=_"Add link"
         subject_id=id
         is_zlink
