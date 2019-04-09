@@ -68,7 +68,7 @@ resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     end.
 
 content_types_accepted(Req, State) ->
-    {[{"application/json", to_json}], Req, State}.
+    {[{"application/json", process_put}], Req, State}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
