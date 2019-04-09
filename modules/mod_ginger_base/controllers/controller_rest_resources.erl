@@ -119,7 +119,7 @@ process_post(Req, State = #state{mode = collection}) ->
         %% Create resource
         {Body, Req1} = wrq:req_body(Req),
         Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-        Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+        Props = lists:foldl(fun process_props/2, [], maps:to_list(Data)),
         {ok, Id} = m_rsc:insert(Props, Context),
         %% Create edges
         lists:foreach(
@@ -150,7 +150,7 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
         Id = State#state.rsc_id,
         {Body, Req1} = wrq:req_body(Req),
         Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-        Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
+        Props = lists:foldl(fun process_props/2, [], maps:to_list(Data)),
         EscapeText = true,
         case m_rsc:update(Id, Props, EscapeText, Context) of
             {ok, _} ->
@@ -160,7 +160,7 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
         end
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while storing the new resource: ~p",
+            Msg = io_lib:format("An error occurred while patching the resource: ~p",
                                 [Error]),
             MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
             lager:error(MsgWithStackTrace),
@@ -172,23 +172,12 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-post_props({category, Value}, Acc) ->
-    [{category, Value} | Acc];
-post_props({edges, _}, Acc) ->
+process_props({edges, _}, Acc) ->
     Acc;
-post_props({is_published, Value}, Acc) ->
-    [{is_published, Value} | Acc];
-post_props({path, Value}, Acc) ->
-    [{path, Value} | Acc];
-post_props({properties, Value}, Acc) ->
-    lists:foldl(fun post_props/2, [], maps:to_list(Value)) ++ Acc;
-post_props(Trans = {_Key, _}, Acc) ->
-    trans(Trans, Acc).
-
-trans({Key, Value}, Acc) when is_map(Value) ->
-    [{Key, {trans, maps:to_list(Value)}} | Acc];
-trans({Key, Value}, Acc) ->
-    [{Key, Value} | Acc].
+process_props({properties, Value}, Acc) ->
+    lists:foldl(fun process_props/2, [], maps:to_list(Value)) ++ Acc;
+process_props(Value, Acc) ->
+    [Value | Acc].
 
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
