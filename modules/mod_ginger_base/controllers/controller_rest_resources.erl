@@ -160,7 +160,7 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
         end
     catch
         _:Error ->
-            Msg = io_lib:format("An error occurred while storing the new resource: ~p",
+            Msg = io_lib:format("An error occurred while patching the resource: ~p",
                                 [Error]),
             MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
             lager:error(MsgWithStackTrace),
@@ -172,14 +172,8 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-process_props({category, Value}, Acc) ->
-    [{category, Value} | Acc];
 process_props({edges, _}, Acc) ->
     Acc;
-process_props({is_published, Value}, Acc) ->
-    [{is_published, Value} | Acc];
-process_props({path, Value}, Acc) ->
-    [{path, Value} | Acc];
 process_props({properties, Value}, Acc) ->
     lists:foldl(fun process_props/2, [], maps:to_list(Value)) ++ Acc;
 process_props(Value, Acc) ->
