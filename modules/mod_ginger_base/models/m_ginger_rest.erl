@@ -121,18 +121,48 @@ with_media(Rsc = #{<<"id">> := Id}, Mediaclasses, Context) ->
     case m_media:get(Id, Context) of
         undefined ->
             Rsc;
-        _ ->
-            Media = fun(Class, Acc) ->
-                Opts = [{use_absolute_url, true}, {mediaclass, Class}],
-                case z_media_tag:url(Id, Opts, Context) of
-                    {ok, Url} ->
-                        [#{mediaclass => Class, url => Url} | Acc];
-                    _ ->
-                        Acc
-                end
-                    end,
-            Rsc#{<<"media">> => lists:foldr(Media, [], Mediaclasses)}
+        Medium ->
+            case proplists:get_value(mime, Medium) of
+                <<"image", _Rest/binary>> ->
+                    Rsc#{<<"media">> => image_urls(Id, Mediaclasses, Context)};
+                <<"text/html-oembed">> ->
+                    case proplists:get_value(oembed, Medium) of
+                        undefined ->
+                            Rsc;
+                        EmbeddedInfo ->
+                            Url = proplists:get_value(html, EmbeddedInfo),
+                            Height = proplists:get_value(height, EmbeddedInfo, null),
+                            Width = proplists:get_value(width, EmbeddedInfo, null),
+                            Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
+                    end;
+                <<"text/html-video-embed">> ->
+                    case proplists:get_value(video_embed_code, Medium) of
+                        undefined ->
+                            Rsc;
+                        EmbedCode ->
+                            Url = EmbedCode,
+                            Height = proplists:get_value(preview_height, Medium, null),
+                            Width = proplists:get_value(preview_width, Medium, null),
+                            Rsc#{<<"media">> => #{url => Url, width => Width, height => Height}}
+                    end;
+                _ ->
+                    Rsc
+            end
     end.
+
+%% @doc Create a list of maps containing the given mediaclasses and corresponding URLs
+-spec image_urls(m_rsc:resource(), [binary()], z:context()) -> [map()].
+image_urls(RscId, Mediaclasses, Context) ->
+    lists:foldr(
+      fun(Class, Acc) ->
+              Opts = [{use_absolute_url, true}, {mediaclass, Class}],
+              case z_media_tag:url(RscId, Opts, Context) of
+                  {ok, Url} ->
+                      [#{mediaclass => Class, url => Url} | Acc];
+                  _ ->
+                      Acc
+              end
+      end, [], Mediaclasses).
 
 %% @doc Get all mediaclasses for the site.
 -spec mediaclasses(z:context()) -> [atom()].
@@ -169,6 +199,34 @@ block(Block, Context) ->
     #{
         <<"type">> => proplists:get_value(type, Block),
         <<"name">> => proplists:get_value(name, Block),
+        <<"title">> => translations(proplists:get_value(title, Block), Context),
+        <<"subtitle">> => translations(proplists:get_value(subtitle, Block), Context),
         <<"body">> => translations(proplists:get_value(body, Block), Context),
-        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null)
+        <<"rsc_id">> => proplists:get_value(rsc_id, Block, null),
+        <<"properties">> => custom_block_props(Block, Context)
     }.
+
+%% @doc Get block custom properties as defined in the site's config.
+custom_block_props(Block, Context) ->
+    case m_site:get(block_types, Context) of
+        undefined ->
+            null;
+        CustomProps ->
+            case maps:fold(
+                fun(PropName, TypeModule, Acc) ->
+                    case proplists:get_value(PropName, Block, undefined) of
+                        undefined ->
+                            Acc;
+                        Value ->
+                            Acc#{PropName => TypeModule:encode(Value)}
+                    end
+                end,
+                #{},
+                CustomProps
+            ) of
+                Map when map_size(Map) =:= 0 ->
+                    null;
+                CustomPropsValues ->
+                    CustomPropsValues
+            end
+    end.

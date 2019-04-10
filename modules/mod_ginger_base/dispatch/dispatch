@@ -28,6 +28,7 @@
  {data_auth, ["data", "auth", "logout"], controller_auth, [#{mode => logout}]},
  {data_auth, ["data", "auth", "status"], controller_auth, [#{mode => status}]},
  {data_auth, ["data", "auth", "reset"], controller_auth, [#{mode => reset}]},
+ {data_auth, ["data", "auth", "resetpassword"], controller_auth, [#{mode => reset_password}]},
  {data_auth, ["data", "auth", "new"], controller_auth, [#{mode => new}]},
 
  %% Search API

@@ -74,7 +74,11 @@ parse_query_term(<<"subset">>, Types, QueryArgs) ->
         Types
     ),
     QueryArgs ++ [{filter, [[<<"_type">>, Type] || Type <- AllTypes]}];
-parse_query_term(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>; Key =:= <<"dcterms:created">>; Key =:= <<"date_start">> ->
+parse_query_term(Key, Range, QueryArgs) when Key =:= <<"dcterms:date">>;
+                                             Key =:= <<"dbpedia-owl:productionStartDate">>;
+                                             Key =:= <<"dbpedia-owl:productionEndDate">>;
+                                             Key =:= <<"dcterms:created">>;
+                                             Key =:= <<"date_start">> ->
     IncludeMissing = proplists:get_value(<<"include_missing">>, Range, false),
     QueryArgs
         ++ date_filter(Key, <<"gte">>, proplists:get_value(<<"min">>, Range), IncludeMissing)
