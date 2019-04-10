@@ -26,6 +26,9 @@ of some resource):
 curl -L -H Accept:application/ld+json http://yoursite.com/id/123
 ```
 
+Only visible (published) resources will return data; any invisible resource 
+returns a 404.
+
 Only predicates with a URI will be included in the output. If you’re missing
 one of your custom predicates, give it the URI of some property in one of the
 linked data vocabularies. You can do so in the admin, on the predicate’s edit

@@ -4,11 +4,13 @@
 -export([
     schedule_reverse_lookup/2,
     reverse_lookup/2,
-    reverse_lookup_callback/2
+    reverse_lookup_callback/3
 ]).
 
 -include_lib("zotonic.hrl").
 -include_lib("../include/ginger_geonames.hrl").
+
+-type geo() :: {float(), float()}.
 
 %% @doc Schedule a reverse lookup.
 -spec schedule_reverse_lookup(m_rsc:resource(), z:context())
@@ -17,12 +19,12 @@ schedule_reverse_lookup(Id, Context) ->
     case geo(Id, Context) of
         undefined ->
             {error, no_geo};
-        _ ->
+        Geo ->
             z_pivot_rsc:insert_task(
                 ?MODULE,
                 reverse_lookup_callback,
                 <<"geonames-lookup-", (z_convert:to_binary(Id))/binary>>,
-                [Id],
+                [Id, Geo],
                 Context
             )
     end.
@@ -39,27 +41,21 @@ reverse_lookup(Id, Context) ->
 
 %% @doc Callback for schedule_reverse_lookup/2.
 %%      Look up a place name in GeoNames. If one is found, send a notification.
--spec reverse_lookup_callback(m_rsc:resource(), z:context()) -> ok | {delay, pos_integer()}.
-reverse_lookup_callback(Id, Context) ->
-    case geo(Id, Context) of
-        undefined ->
-             %% Resource has no geo coordinates any longer, so ignore.
+-spec reverse_lookup_callback(m_rsc:resource(), geo(), z:context()) -> ok | {delay, pos_integer()}.
+reverse_lookup_callback(Id, Geo, Context) ->
+    case geonames_client:find_nearby_place_name(Geo, Context) of
+        [Place | _] ->
+            %% Location found, so notify.
+            z_notifier:notify(#geoname_found{id = Id, place = Place}, Context);
+        [] ->
+            %% No locations found, so remove task from queue and return.
             ok;
-        Geo ->
-            case geonames_client:find_nearby_place_name(Geo, Context) of
-                [Place | _] ->
-                    %% Location found, so notify.
-                    z_notifier:notify(#geoname_found{id = Id, place = Place}, Context);
-                [] ->
-                    %% No locations found, so remove task from queue and return.
-                    ok;
-                _ ->
-                    %% API unreachable or credit limits hit, so try again later.
-                    {delay, 60}
-            end
+        _ ->
+            %% API unreachable or credit limits hit, so try again later.
+            {delay, 60}
     end.
 
--spec geo(m_rsc:resource(), z:context()) -> {float(), float()} | undefined.
+-spec geo(m_rsc:resource(), z:context()) -> geo() | undefined.
 geo(Id, Context) ->
     geo({m_rsc:p(Id, pivot_location_lat, Context), m_rsc:p(Id, pivot_location_lng, Context)}).
 

@@ -91,7 +91,7 @@ containers.
 First, install install Erlang locally:
 
 ```bash
-$ brew install erlang@20 imagemagick
+$ brew install erlang@20 fswatch imagemagick
 $ brew link erlang@20 --force
 ```
 

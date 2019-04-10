@@ -1,0 +1,3 @@
+[{home, [], controller_template, [ {template, "page.tpl"} ]},
+ {search, ["search"], controller_template, [ {template, "page.tpl"} ]}
+].

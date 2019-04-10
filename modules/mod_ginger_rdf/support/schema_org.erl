@@ -96,11 +96,11 @@ property_to_triples({publication_start, Value}, _Properties, _Context) ->
         }
     ];
 property_to_triples({subtitle, Value}, _Properties, Context) ->
-    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"alternateName">>), Value, Context);
+    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"alternativeHeadline">>), Value, Context);
 property_to_triples({summary, Value}, _Props, Context) ->
     m_rdf_export:translations_to_rdf(rdf_property:schema(<<"description">>), Value, Context);
 property_to_triples({title, Value}, _Properties, Context) ->
-    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"name">>), Value, Context);
+    m_rdf_export:translations_to_rdf(rdf_property:schema(<<"headline">>), Value, Context);
 property_to_triples({website, Value}, _Properties, _Context) ->
     [
         #triple{
