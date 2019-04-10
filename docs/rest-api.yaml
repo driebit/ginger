@@ -51,6 +51,10 @@ definitions:
                       type: string
                     resource:
                       $ref: '#/definitions/Resource'
+            blocks:
+              type: array
+              items:
+                $ref: '#/definitions/Block'
             media:
               type: array
               items:
@@ -74,6 +78,22 @@ definitions:
                 type: string
                 example: "Hallo wereld"
         minProperties: 1
+    Block:
+        type: object
+        properties:
+            name:
+                type: string
+                example: "text1"
+            type:
+                type: string
+                example: "text"
+            body:
+                type: Translation
+            rsc_id:
+                type: number
+                example: 123
+            properties:
+                type: object
     Media:
         type: object
         properties:
@@ -88,6 +108,7 @@ paths:
     /resources:
         get:
             produces: ["application/json"]
+            description: "Get multiple resources"
             parameters:
                 - in: query
                   name: cat
@@ -111,10 +132,36 @@ paths:
                         type: array
                         items:
                             $ref: '#/definitions/Resource'
+        post:
+            consumes: ["application/json"]
+            description: "Create a resource"
+            parameters:
+                - in: body
+                  schema:
+                      type: object
+                      properties:
+                          title:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          body:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          summary:
+                              $ref: '#/definitions/Translation'
+                              required: false
+                          category:
+                              type: string
+                              description: "A Ginger category"
+                              required: true
+                          properties:
+                              type: string
+                              description: "Properties that are not included in the default REST GET response"
+                              required: falses
 
     /resources/{id}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by id"
             parameters:
                 - in: path
                   name: id
@@ -129,6 +176,7 @@ paths:
     /resources/{id}/edges/{predicate}:
         post:
             consumes: ["application/json"]
+            description: "Create edges"
             parameters:
                 - in: path
                   name: id
@@ -151,6 +199,7 @@ paths:
     /resources/path/{path}:
         get:
             produces: ["application/json"]
+            description: "Get a single resource by path"
             parameters:
                 - in: path
                   name: path
@@ -223,7 +272,7 @@ paths:
                   name: filter
                   type: string
                   required: false
-                  description: Filter search results by a property (`filter=title=Oh yeah`).
+                  description: Filter search results by a property (`filter=title=Oh yeah`, `filter=date_start>=2000-01-01`).
                 - in: query
                   name: sort
                   type: string
@@ -245,7 +294,7 @@ paths:
                   type: string
                   required: false
                   description: Only return search results that have a date_start in the future.
-           responses:
+            responses:
                 200:
                     description: Search results.
                     schema:
@@ -259,3 +308,6 @@ paths:
                                 type: integer
                                 description: 'The total number of search results.'
                                 example: 42
+                            facets:
+                                type: array
+                                description: 'The search result facets (aggregations).'

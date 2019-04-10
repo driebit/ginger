@@ -6,9 +6,11 @@
         , allowed_methods/2
         , resource_exists/2
         , delete_resource/2
+        , content_types_accepted/2
         , content_types_provided/2
         , to_json/2
         , process_post/2
+        , process_put/2
         ]
        ).
 
@@ -21,7 +23,7 @@
 -record(state, { mode = undefined
                , path_info = undefined
                , context = undefined
-               , document_id = undefined
+               , rsc_id = undefined :: m_rsc:resource()
                }
        ).
 
@@ -39,107 +41,143 @@ service_available(Req, State) ->
     {true, Req, State#state{context = Context}}.
 
 malformed_request(Req, State = #state{mode = document, path_info = id}) ->
-    case string:to_integer(wrq:path_info(id, Req)) of
-        {error, _Reason} ->
+    case wrq:path_info(id, Req) of
+        undefined ->
             {true, Req, State};
-        {Id, []} ->
-            {false, Req, State#state{document_id = Id}};
-        {_Int, _Rest} ->
-            {true, Req, State}
+        Id ->
+            {false, Req, State#state{rsc_id = Id}}
     end;
 malformed_request(Req, State) ->
     {false, Req, State}.
 
 allowed_methods(Req, State) ->
-    {['GET', 'POST', 'DELETE', 'HEAD'], Req, State}.
+    {['GET', 'POST', 'PUT', 'DELETE', 'HEAD'], Req, State}.
 
 resource_exists(Req, State = #state{mode = collection}) ->
     {true, Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = id}) ->
     Context = State#state.context,
-    {m_rsc:exists(State#state.document_id, Context), Req, State};
+    {m_rsc:exists(State#state.rsc_id, Context), Req, State};
 resource_exists(Req, State = #state{mode = document, path_info = path}) ->
     Context = State#state.context,
     case path_to_id(wrq:path_info(path, Req), Context) of
         {ok, Id} ->
-            {m_rsc:exists(Id, Context), Req, State#state{document_id = Id}};
+            {m_rsc:exists(Id, Context), Req, State#state{rsc_id = Id}};
         {error, _} ->
             {false, Req, State}
     end.
+
+content_types_accepted(Req, State) ->
+    {[{"application/json", process_put}], Req, State}.
 
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 delete_resource(Req, State = #state{mode = document}) ->
-    ok = m_rsc:delete(State#state.document_id, State#state.context),
+    ok = m_rsc:delete(State#state.rsc_id, State#state.context),
     {true, Req, State}.
 
 to_json(Req, State = #state{mode = collection}) ->
-    Context = State#state.context,
-    Args1 = search_query:parse_request_args(
-              proplists_filter(
-                fun (Key) -> lists:member(Key, supported_search_args()) end,
-                wrq:req_qs(Req)
-               )
-             ),
-    Args2 = ginger_search:query_arguments(
-              [{cat_exclude_defaults, true}, {filter, ["is_published", true]}],
-              Context
-             ),
-    Ids = z_search:query_(Args1 ++ Args2, Context),
-    Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
-    {Json, Req, State};
+    try
+        Context = State#state.context,
+        Args = search_query:parse_request_args(
+                 proplists_filter(
+                   fun (Key) -> lists:member(Key, supported_search_args()) end,
+                   wrq:req_qs(Req)
+                  )
+                ),
+        Ids = z_search:query_(Args, Context),
+        Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
+        {Json, Req, State}
+    catch
+        _:Error ->
+            Msg = io_lib:format("An error occurred while fetching the resources: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
+            {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
+    end;
 to_json(Req, State = #state{mode = document}) ->
-    Id = State#state.document_id,
-    Context = State#state.context,
-    Json = jsx:encode(rsc(Id, Context, true)),
-    {Json, Req, State}.
+    try
+        Id = State#state.rsc_id,
+        Context = State#state.context,
+        Rsc = m_ginger_rest:rsc(Id, Context),
+        Json = jsx:encode(m_ginger_rest:with_edges(Rsc, Context)),
+        {Json, Req, State}
+    catch
+        _:Error ->
+            Msg = io_lib:format("An error occurred while fetching the resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
+            {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
+    end.
 
 process_post(Req, State = #state{mode = collection}) ->
-    Context = State#state.context,
-    %% Create resource
-    {Body, Req1} = wrq:req_body(Req),
-    Data = jsx:decode(Body, [return_maps, {labels, atom}]),
-    Props = lists:foldl(fun post_props/2, [], maps:to_list(Data)),
-    {ok, Id} = m_rsc:insert(Props, Context),
-    %% Create edges
-    lists:foreach(
-      fun (Edge) ->
-              {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
-              {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
+    try
+        Context = State#state.context,
+        %% Create resource
+        {Body, Req1} = wrq:req_body(Req),
+        Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+        Props = lists:foldl(fun process_props/2, [], maps:to_list(Data)),
+        {ok, Id} = m_rsc:insert(Props, Context),
+        %% Create edges
+        lists:foreach(
+          fun (Edge) ->
+                  {ok, PredicateId} = m_rsc:name_to_id(maps:get(predicate, Edge), Context),
+                  {ok, _EdgeId} = m_edge:insert(Id, PredicateId, maps:get(object, Edge), Context)
+          end,
+          maps:get(edges, Data, [])
+         ),
+        %% Set "Location" header
+        Location = "/data/resources/" ++ erlang:integer_to_list(Id),
+        Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
+        %% Done
+        {{halt, 201}, Req2, State}
+    catch
+        _:Error ->
+            Msg = io_lib:format("An error occurred while storing the new resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
+            {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
+    end.
 
-      end,
-      maps:get(edges, Data, [])
-     ),
-    %% Set "Location" header
-    Location = "/data/resources/" ++ erlang:integer_to_list(Id),
-    Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
-    %% Done
-    {{halt, 201}, Req2, State}.
+process_put(Req, State = #state{mode = document, path_info = id}) ->
+    try
+        Context = State#state.context,
+        %% Update resource
+        Id = State#state.rsc_id,
+        {Body, Req1} = wrq:req_body(Req),
+        Data = jsx:decode(Body, [return_maps, {labels, atom}]),
+        Props = lists:foldl(fun process_props/2, [], maps:to_list(Data)),
+        EscapeText = true,
+        case m_rsc:update(Id, Props, EscapeText, Context) of
+            {ok, _} ->
+                {{halt, 201}, Req1, State};
+            {error, _} ->
+                {{halt, 400}, Req1, State}
+        end
+    catch
+        _:Error ->
+            Msg = io_lib:format("An error occurred while patching the resource: ~p",
+                                [Error]),
+            MsgWithStackTrace = io_lib:format("~s~n~p", [Msg, erlang:get_stacktrace()]),
+            lager:error(MsgWithStackTrace),
+            {{halt, 500}, wrq:set_resp_body(Msg, Req), State}
+    end.
+
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
-post_props(Trans = {body, _}, Acc) ->
-    trans(Trans, Acc);
-post_props({category, Value}, Acc) ->
-    [{category, Value} | Acc];
-post_props({edges, _}, Acc) ->
+process_props({edges, _}, Acc) ->
     Acc;
-post_props({is_published, Value}, Acc) ->
-    [{is_published, Value} | Acc];
-post_props({path, Value}, Acc) ->
-    [{path, Value} | Acc];
-post_props({properties, Value}, Acc) ->
-    maps:to_list(Value) ++ Acc;
-post_props(Trans = {summary, _}, Acc) ->
-    trans(Trans, Acc);
-post_props(Trans = {title, _}, Acc) ->
-    trans(Trans, Acc).
-
-trans({Key, Value}, Acc) ->
-    [{Key, {trans, maps:to_list(Value)}} | Acc].
+process_props({properties, Value}, Acc) ->
+    lists:foldl(fun process_props/2, [], maps:to_list(Value)) ++ Acc;
+process_props(Value, Acc) ->
+    [Value | Acc].
 
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
@@ -205,7 +243,8 @@ allowed_methods_test_() ->
               ?assert(lists:member('POST', Methods)),
               ?assert(lists:member('DELETE', Methods)),
               ?assert(lists:member('HEAD', Methods)),
-              ?assertEqual(4, erlang:length(Methods)),
+              ?assert(lists:member('PUT', Methods)),
+              ?assertEqual(5, erlang:length(Methods)),
               ok
       end
     ].
@@ -225,25 +264,6 @@ malformed_request_test_() ->
                                                  , path_info = path
                                                  }
                                      ),
-                ok
-        end
-      , fun () ->
-                meck:expect(wrq, path_info, 2, "not-an-integer"),
-                {true, _, _} =
-                    malformed_request(req, #state{ mode = document
-                                                 , path_info = id
-                                                 }
-                                     ),
-                ok
-        end
-      , fun () ->
-                meck:expect(wrq, path_info, 2, "23"),
-                {false, _, State} =
-                    malformed_request(req, #state{ mode = document
-                                                 , path_info = id
-                                                 }
-                                     ),
-                23 = State#state.document_id,
                 ok
         end
       ]
