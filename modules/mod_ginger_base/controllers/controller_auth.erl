@@ -61,7 +61,7 @@ process_post(Req, State = #state{mode = new}) ->
                                     jsx:encode(#{msg => Msg}), Req1), State}
             end;
         {error, Error} ->
-            {{halt, 400}, wrq:set_resp_body(Error, Req1), State}
+            {{halt, 400}, wrq:set_resp_body(z_convert:to_list(Error), Req1), State}
     end;
 process_post(Req, State = #state{mode = reset_password}) ->
     Context = State#state.context,
@@ -81,7 +81,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
             m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
             {{halt, 204}, Req1, State};
         {error, Error} ->
-            {{halt, 400}, wrg:set_resp_body(Error, Req1), State}
+            {{halt, 400}, wrg:set_resp_body(z_convert:to_list(Error), Req1), State}
     end;
 process_post(Req, State = #state{mode = reset}) ->
     Context = State#state.context,
@@ -104,7 +104,7 @@ process_post(Req, State = #state{mode = login}) ->
             Req2 = wrq:set_resp_body(jsx:encode(user(Id, UserContext)), UserContext#context.wm_reqdata),
             {true, Req2, State};
         {error, Error} ->
-            {{halt, 400}, wrq:set_resp_body(Error, Req1), State}
+            {{halt, 400}, wrq:set_resp_body(z_convert:to_list(Error), Req1), State}
     end;
 process_post(_Req, State = #state{mode = logout}) ->
     Context = controller_logoff:reset_rememberme_cookie_and_logoff(State#state.context),
