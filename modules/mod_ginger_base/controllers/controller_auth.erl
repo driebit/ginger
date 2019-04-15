@@ -81,7 +81,7 @@ process_post(Req, State = #state{mode = reset_password}) ->
             m_identity:delete_by_type(UserId, "logon_reminder_secret", Context),
             {{halt, 204}, Req1, State};
         {error, Error} ->
-            {{halt, 400}, wrg:set_resp_body(z_convert:to_list(Error), Req1), State}
+            {{halt, 400}, wrq:set_resp_body(z_convert:to_list(Error), Req1), State}
     end;
 process_post(Req, State = #state{mode = reset}) ->
     Context = State#state.context,
