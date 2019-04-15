@@ -22,7 +22,7 @@
 
                     <a class="btn btn-default" id="{{ #connect }}" href="#connect"><i class="icon glyphicon glyphicon-camera"></i> {% block depiction_btn_title %}{_ add media item _}{% endblock %}</a>
                     {% wire id=#connect
-                        action={dialog_open template="_action_dialog_connect.tpl"
+                        action={dialog_open template="_action_ginger_dialog_connect.tpl"
                             title=[_"Add:", " ", m.rsc.depiction.title|lower]
                             subject_id=id
                             edge_template="_rsc_edge_media.tpl"
