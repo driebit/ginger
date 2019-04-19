@@ -1,6 +1,7 @@
 -module(controller_rest_edges).
 
 -export([ init/1
+        , is_authorized/2
         , service_available/2
         , allowed_methods/2
         , resource_exists/2
@@ -24,13 +25,27 @@
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
-init([Args]) ->
-    Mode =  maps:get(mode, Args),
+init(Args) ->
+    Mode = proplists:get_value(mode, Args),
     {ok, #state{mode = Mode}}.
 
 service_available(Req, State) ->
     Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
     {true, Req, State#state{context = Context}}.
+
+is_authorized(Req, State) ->
+    case lists:member(wrq:method(Req), ['POST', 'DELETE']) of
+        false ->
+            {true, Req, State};
+        true ->
+            Context = State#state.context,
+            case z_acl:user(Context) of
+                undefined ->
+                    {{halt, 401}, Req, Context};
+                _Id ->
+                    {true, Req, State}
+            end
+    end.
 
 allowed_methods(Req, State = #state{mode = document}) ->
     {['DELETE', 'HEAD'], Req, State};
