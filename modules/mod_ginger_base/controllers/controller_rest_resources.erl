@@ -135,6 +135,10 @@ process_post(Req, State = #state{mode = collection}) ->
         %% Done
         {{halt, 201}, Req2, State}
     catch
+        throw:{{error, nocategory}, _} ->
+            Msg = "Category is missing from the request body",
+            lager:error(Msg),
+            {{halt, 400}, wrq:set_resp_body(Msg, Req), State};
         _:Error ->
             Msg = io_lib:format("An error occurred while storing the new resource: ~p",
                                 [Error]),
