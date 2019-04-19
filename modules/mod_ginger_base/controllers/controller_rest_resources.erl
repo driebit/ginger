@@ -129,11 +129,14 @@ process_post(Req, State = #state{mode = collection}) ->
           end,
           maps:get(edges, Data, [])
          ),
-        %% Set "Location" header
-        Location = "/data/resources/" ++ erlang:integer_to_list(Id),
-        Req2 = wrq:set_resp_headers([{"Location", Location}], Req1),
+        %% Set "Location" and "Content-Type" header
+        Headers = [{"Location", "/data/resources/" ++ erlang:integer_to_list(Id)},
+                   {"Content-Type", "application/json"}
+                  ],
+        Req2 = wrq:set_resp_headers(Headers, Req1),
+        Rsc = m_ginger_rest:with_edges(m_ginger_rest:rsc(Id, Context), Context),
         %% Done
-        {{halt, 201}, Req2, State}
+        {{halt, 201}, wrq:set_resp_body(jsx:encode(Rsc), Req2), State}
     catch
         _:Error ->
             Msg = io_lib:format("An error occurred while storing the new resource: ~p",
