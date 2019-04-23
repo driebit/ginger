@@ -102,7 +102,8 @@ process_post(Req, State = #state{mode = login}) ->
     case pipeline(Validators, undefined) of
         {ok, {Id, UserContext}} ->
             Req2 = wrq:set_resp_body(jsx:encode(user(Id, UserContext)), UserContext#context.wm_reqdata),
-            {true, Req2, State};
+            Req3 = wrq:set_resp_headers([{"Content-Type", "application/json"}], Req2),
+            {true, Req3, State};
         {error, Error} ->
             {{halt, 400}, wrq:set_resp_body(z_convert:to_list(Error), Req1), State}
     end;
