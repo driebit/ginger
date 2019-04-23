@@ -1,6 +1,7 @@
 -module(controller_rest_resources).
 
 -export([ init/1
+        , is_authorized/2
         , service_available/2
         , malformed_request/2
         , allowed_methods/2
@@ -31,9 +32,9 @@
 %%% Resource functions
 %%%-----------------------------------------------------------------------------
 
-init([Args]) ->
-    Mode =  maps:get(mode, Args),
-    PathInfo = maps:get(path_info, Args, undefined),
+init(Args) ->
+    Mode = proplists:get_value(mode, Args),
+    PathInfo = proplists:get_value(path_info, Args, undefined),
     {ok, #state{mode = Mode, path_info = PathInfo}}.
 
 service_available(Req, State) ->
@@ -49,6 +50,21 @@ malformed_request(Req, State = #state{mode = document, path_info = id}) ->
     end;
 malformed_request(Req, State) ->
     {false, Req, State}.
+
+is_authorized(Req, State) ->
+    %% Auth checks are only necessary for these methods.
+    case lists:member(wrq:method(Req), ['POST', 'PUT', 'DELETE']) of
+        false ->
+            {true, Req, State};
+        true ->
+            Context = State#state.context,
+            case z_acl:user(Context) of
+                undefined ->
+                    {{halt, 401}, Req, Context};
+                _Id ->
+                    {true, Req, State}
+            end
+    end.
 
 allowed_methods(Req, State) ->
     {['GET', 'POST', 'PUT', 'DELETE', 'HEAD'], Req, State}.

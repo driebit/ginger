@@ -5,22 +5,20 @@
  {home, [], controller_template, [ {template, "home.tpl"}, {id, home} ]},
 
  %% Rest API resources
- {data, ["data", "resources"], controller_rest_resources,
-  [#{mode => collection}]
- },
+ {data, ["data", "resources"], controller_rest_resources, [{mode, collection}]},
  {data, ["data", "resources", id], controller_rest_resources,
-  [#{mode => document, path_info => id}]
+  [{mode, document}, {path_info, id}]
  },
  {data, ["data", "resources", "path", path], controller_rest_resources,
-  [#{mode => document, path_info => path}]
+  [{mode, document}, {path_info, path}]
  },
 
  %% Rest API edges
  {data, ["data", "resources", id, "edges", predicate], controller_rest_edges,
-  [#{mode => collection}]
+  [{mode, collection}]
  },
  {data, ["data", "resources", subject, "edges", predicate, object], controller_rest_edges,
-  [#{mode => document}]
+  [{mode, document}]
  },
 
  %% Auth API
