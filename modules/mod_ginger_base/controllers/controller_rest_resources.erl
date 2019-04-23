@@ -52,6 +52,7 @@ malformed_request(Req, State) ->
     {false, Req, State}.
 
 is_authorized(Req, State) ->
+    %% Don't check GET and HEAD
     case lists:member(wrq:method(Req), ['POST', 'PUT', 'DELETE']) of
         false ->
             {true, Req, State};

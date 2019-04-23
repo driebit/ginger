@@ -34,6 +34,7 @@ service_available(Req, State) ->
     {true, Req, State#state{context = Context}}.
 
 is_authorized(Req, State) ->
+    %% Don't check HEAD
     case lists:member(wrq:method(Req), ['POST', 'DELETE']) of
         false ->
             {true, Req, State};
