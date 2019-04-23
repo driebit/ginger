@@ -42,7 +42,8 @@ is_authorized(Req, State) ->
             Context = State#state.context,
             case z_acl:user(Context) of
                 undefined ->
-                    {{halt, 401}, Req, Context};
+                    %% Return a 403 instead of a 401 as we don't use HTTP authentication
+                    {{halt, 403}, Req, Context};
                 _Id ->
                     {true, Req, State}
             end
