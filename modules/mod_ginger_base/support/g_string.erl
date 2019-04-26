@@ -16,6 +16,8 @@
 
 %% @doc Check if a string contains another string
 -spec contains(list(), list()) -> boolean().
+contains([], []) ->
+    true;
 contains(_, []) ->
     false;
 contains(Pred, Str) ->
