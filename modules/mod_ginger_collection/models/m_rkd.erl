@@ -16,7 +16,7 @@
 m_find_value(record, #m{value = undefined} = M, _Context) ->
     M#m{value = record};
 m_find_value(<<"https://rkd.nl/explore/artists/", Id/binary>>, #m{value = record}, _Context) ->
-    case get_rkd(<<"record/artists/", Id/binary>>) of
+    case ?DEBUG(get_rkd(<<"record/artists/", Id/binary>>)) of
         undefined ->
             undefined;
         #{<<"response">> := #{<<"docs">> := [Hd | _]}} ->
@@ -33,4 +33,4 @@ m_value(#m{}, _Context) ->
 
 
 get_rkd(Path) ->
-    ginger_http_client:get(<<?RKD_ENDPOINT/binary, Path/binary>>).
+    ginger_http_client:get(<<?RKD_ENDPOINT/binary, Path/binary>>, [{"Accept", "application/json"}]).
