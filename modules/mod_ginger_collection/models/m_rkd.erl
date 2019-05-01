@@ -16,7 +16,7 @@
 m_find_value(record, #m{value = undefined} = M, _Context) ->
     M#m{value = record};
 m_find_value(<<"https://rkd.nl/explore/artists/", Id/binary>>, #m{value = record}, _Context) ->
-    case ?DEBUG(get_rkd(<<"record/artists/", Id/binary>>)) of
+    case get_rkd(<<"record/artists/", Id/binary>>) of
         undefined ->
             undefined;
         #{<<"response">> := #{<<"docs">> := [Hd | _]}} ->
