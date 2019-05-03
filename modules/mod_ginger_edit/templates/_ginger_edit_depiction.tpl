@@ -29,7 +29,7 @@
                             predicate=`depiction`
                             tab=tab|default:"upload"
                             tabs_enabled=tabs_enabled|default:["upload"]
-                            callback=``
+                            callback=""
                             actions=[
                                 {postback postback={reload_media rsc_id=id div_id=["links-",id|make_list,"-depiction"]}
                                     delegate="controller_admin_edit"}
