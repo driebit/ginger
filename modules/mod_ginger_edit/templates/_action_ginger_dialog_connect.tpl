@@ -99,6 +99,7 @@
                 %}
             {% endif %}
             {% if "upload"|member:tabs_enabled %}
+                {% print callback %}
                 {% include "_action_dialog_media_upload_tab_upload.tpl"
                     tab=#tab
                     predicate=predicate
