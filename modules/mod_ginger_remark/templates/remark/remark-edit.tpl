@@ -47,6 +47,6 @@
         {% endif %}
     {% endjavascript %}
 
-    {% include "_editor.tpl" overrides_tpl="_tinymce_overrides.tpl" media_tab="upload" media_tabs_enabled=["upload", "oembed"] id=the_remark_id %}
+    {% include "_ginger-editor.tpl" overrides_tpl="_tinymce_overrides.tpl" media_tab="upload" media_tabs_enabled=["upload", "oembed"] id=the_remark_id %}
 {% endwith %}
 
