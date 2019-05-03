@@ -51,10 +51,9 @@
                 {% button class="btn--save" text=_"Save" title=_"Save"
                           action={script script="$('#save_view').click();"}
                  %}
-                {#  <a href="{{ id.page_url }}" class="btn">{_ Close _}</a> #}
             </div>
         </div>
     </nav>
 
-    {% include "_editor.tpl" %}
+    {% include "_ginger-editor.tpl" %}
 {% endblock %}
