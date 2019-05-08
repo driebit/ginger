@@ -70,21 +70,68 @@
 
             {% if direction=='in' %}
                 {% if "new"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate objects=[[object_id, predicate]]++objects title=""
-                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" actions=actions redirect=redirect %}
+                    {% include "_action_ginger_dialog_connect_tab_new.tpl"
+                        tab=#tab
+                        predicate=predicate
+                        objects=[[object_id, predicate]]++objects
+                        title=""
+                        cg_id=cg_id
+                        nocatselect=nocatselect
+                        is_active=(tab == 'new')
+                        cat=cat callback=""
+                        actions=actions
+                        redirect=redirect
+                    %}
                 {% endif %}
                 {% if "find"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate object_id=object_id redirect=redirect
-                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions %}
+                    {% include "_action_ginger_dialog_connect_tab_find.tpl"
+                        tab=#tab
+                        predicate=predicate
+                        object_id=object_id
+                        redirect=redirect
+                        content_group=content_group
+                        creator_id=creator_id
+                        nocatselect=nocatselect
+                        is_active=(tab == 'find')
+                        title=""
+                        cat=cat_name
+                        callback=callback
+                        actions=actions
+                    %}
                 {% endif %}
             {% else %}
                 {% if "new"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_new.tpl" tab=#tab predicate=predicate subject_id=subject_id objects=objects title=""
-                            cg_id=cg_id nocatselect=nocatselect is_active=(tab == 'new') cat=cat callback="" actions=actions redirect=redirect %}
+                    {% include "_action_ginger_dialog_connect_tab_new.tpl"
+                        tab=#tab
+                        predicate=predicate
+                        subject_id=subject_id
+                        objects=objects
+                        title=""
+                        cg_id=cg_id
+                        nocatselect=nocatselect
+                        is_active=(tab == 'new')
+                        cat=cat
+                        callback=""
+                        actions=actions
+                        redirect=redirect
+                    %}
                 {% endif %}
                 {% if "find"|member:tabs_enabled %}
-                    {% include "_action_ginger_dialog_connect_tab_find.tpl" tab=#tab predicate=predicate subject_id=subject_id redirect=redirect
-                            content_group=content_group creator_id=creator_id nocatselect=nocatselect is_active=(tab == 'find') title="" cat=cat_name callback=callback actions=actions is_zlink=is_zlink %}
+                    {% include "_action_ginger_dialog_connect_tab_find.tpl"
+                        tab=#tab
+                        predicate=predicate
+                        subject_id=subject_id
+                        redirect=redirect
+                        content_group=content_group
+                        creator_id=creator_id
+                        nocatselect=nocatselect
+                        is_active=(tab == 'find')
+                        title=""
+                        cat=cat_name
+                        callback=callback
+                        actions=actions
+                        is_zlink=is_zlink
+                    %}
                 {% endif %}
             {% endif %}
             {% if "url"|member:tabs_enabled %}
@@ -108,8 +155,6 @@
                     is_active=(tab == "upload")
                 %}
             {% endif %}
-            {% all include "_media_upload_panel.tpl" tab=#tab %}
-
         {% endblock %}
     </div>
 
