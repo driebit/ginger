@@ -35,7 +35,6 @@
                     </li>
                 {% endif %}
             {% endif %}
-            {% all include "_media_upload_tab.tpl" tab=#tab %}
         {% else %}
             {% block keyword_tabs %}
             {% if "find"|member:tabs_enabled %}
@@ -146,7 +145,7 @@
                 %}
             {% endif %}
             {% if "upload"|member:tabs_enabled %}
-                {% include "_action_dialog_media_upload_tab_upload.tpl"
+                {% include "_action_ginger_dialog_media_upload_tab_upload.tpl"
                     tab=#tab
                     predicate=predicate
                     callback=callback
