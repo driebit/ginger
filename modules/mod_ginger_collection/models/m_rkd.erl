@@ -33,4 +33,4 @@ m_value(#m{}, _Context) ->
 
 
 get_rkd(Path) ->
-    ginger_http_client:get(<<?RKD_ENDPOINT/binary, Path/binary>>).
+    ginger_http_client:get(<<?RKD_ENDPOINT/binary, Path/binary>>, [{"Accept", "application/json"}]).
