@@ -103,7 +103,8 @@ to_json(Req, State = #state{mode = collection}) ->
                    wrq:req_qs(Req)
                   )
                 ),
-        Ids = z_search:query_(Args, Context),
+        SearchResult = z_search:search({ginger_search, Args}, Context),
+        Ids = SearchResult#search_result.result,
         Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
         {Json, Req, State}
     catch

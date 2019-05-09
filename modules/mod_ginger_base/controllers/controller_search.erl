@@ -24,7 +24,7 @@ content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
 to_json(Req, State) ->
-    Context  = z_context:new(Req, ?MODULE),
+    Context = z_context:continue_session(z_context:new(Req, ?MODULE)),
     {Type, Offset, Limit} = params(Req),
     Data =
         case State#state.mode of
@@ -38,11 +38,17 @@ to_json(Req, State) ->
                  , facets => facets(Result#search_result.facets)
                  };
             _ ->
-                Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
-                #{ result => [ search_result(R, Context) || R <- Result#search_result.result
-                                                                , is_visible(R, Context)
-                             ]
-                 , total => Result#search_result.total
+                %% Because is_visible cannot be added to the ElasticSearch query, we retrieve 10 times
+                %% the number of results we'll be returning, filter them on is_visible, and then
+                %% return the first `limit` results, to make (reasonably) sure we're returning the
+                %% right amount of results
+                Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit * 10}, Context),
+                VisibleResults = lists:filter(fun(R) -> is_visible(R, Context) end,
+                                               Result#search_result.result),
+                LimitedResults = lists:sublist(VisibleResults, Limit),
+                #{ result => lists:map(fun(R) -> search_result(R, Context) end,
+                                      LimitedResults)
+                 , total => total(Result)
                  , facets => facets(Result#search_result.facets)
                  }
         end,
@@ -50,7 +56,13 @@ to_json(Req, State) ->
 
 %%%-----------------------------------------------------------------------------
 %%% Internal functions
-%%%-----------------------------------------------------------------------------
+
+
+total(#search_result{total = Total}) when is_integer(Total)->
+    Total;
+%% we don't get it either
+total(_) ->
+    0.
 
 params(Req) ->
     RequestArgs = wrq:req_qs(Req),
