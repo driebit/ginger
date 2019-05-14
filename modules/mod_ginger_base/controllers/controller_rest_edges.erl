@@ -105,7 +105,7 @@ predicate_id_from_path(Req, Context) ->
 init_test_() ->
     [ fun () ->
               Map = [{mode, collection}],
-              {ok, State} = init([Map]),
+              {ok, State} = init(Map),
               collection = State#state.mode,
               ok
       end
