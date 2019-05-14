@@ -3,7 +3,6 @@ const gulp = require('gulp');
 // Scss
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
 const lost = require('lost');
 const globbing = require('gulp-css-globbing');
 
@@ -47,8 +46,7 @@ gulp.task('sass', () => {
         }))
         .on('error', sass.logError)
         .pipe(postcss([
-            lost(),
-            autoprefixer('last 2 versions', 'ie > 7')
+            lost()
         ]))
         .pipe(gulp.dest(paths.scssDest))
         .pipe(livereload());
