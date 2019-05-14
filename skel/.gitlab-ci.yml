@@ -7,7 +7,7 @@ variables:
     POSTGRES_DB: ${CI_PROJECT_NAME}
 
 # Elm CI build
-# 
+#
 # build:
 #     stage: build
 #     image: node:8.9.1
@@ -20,7 +20,7 @@ variables:
 #         - make build
 
 # Template CI build
-# 
+#
 # build-npm:
 #     stage: build
 #     image: node:8.9.1
@@ -39,7 +39,7 @@ lint:
     stage: build
     image: erlang:20.3-alpine
     script:
-        - wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
+        - apk add --no-cache wget && wget https://s3.amazonaws.com/rebar3/rebar3 && chmod +x rebar3
         - ./rebar3 lint
 
 .test_template: &test_template
