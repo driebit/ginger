@@ -252,8 +252,8 @@ path_to_id(Path, Context) ->
 
 init_test_() ->
     [ fun () ->
-              Map = #{mode => collection, path_info => id},
-              {ok, State} = init([Map]),
+              Map = [{mode, collection}, {path_info,id}],
+              {ok, State} = init(Map),
               collection = State#state.mode,
               id = State#state.path_info,
               ok
