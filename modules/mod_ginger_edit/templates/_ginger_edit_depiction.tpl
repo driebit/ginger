@@ -28,7 +28,7 @@
                             edge_template="_rsc_edge_media.tpl"
                             predicate=`depiction`
                             tab=tab|default:"upload"
-                            tabs_enabled=tabs_enabled|default:["upload"]
+                            tabs_enabled=tabs_enabled|default:["upload", "oembed"]
                             callback=""
                             actions=[
                                 {postback postback={reload_media rsc_id=id div_id=["links-",id|make_list,"-depiction"]}

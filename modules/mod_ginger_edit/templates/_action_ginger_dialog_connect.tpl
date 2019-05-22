@@ -61,6 +61,8 @@
             {% endblock %}
         {% endif %}
 
+        {% all include "_media_upload_tab.tpl" tab=#tab %}
+
         {% endblock %}
     </ul>
 
@@ -154,6 +156,9 @@
                     is_active=(tab == "upload")
                 %}
             {% endif %}
+
+            {% all include "_media_upload_panel.tpl" tab=#tab %}
+
         {% endblock %}
     </div>
 
