@@ -1,6 +1,6 @@
-{# Remove this template when zotonic 0.50.0 is on production #}
-
 {% overrules %}
+
+{# Remove this template when zotonic 0.50.0 is on production #}
 {% block category %}
     <div class="form-group row">
         <label class="control-label col-md-3" for="{{ #category }}">{_ Category _}</label>
