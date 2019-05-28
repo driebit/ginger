@@ -88,11 +88,11 @@ source code, too.
 All other services (PostgreSQL, Elasticsearch, Kibana) still run in
 containers.
 
-First, install install Erlang locally:
+First, install Zotonic’s dependencies, including Erlang:
 
 ```bash
-$ brew install erlang@20 fswatch imagemagick
-$ brew link erlang@20 --force
+$ brew install erlang@21 fswatch imagemagick
+$ brew link erlang@21 --force
 ```
 
 Then clone both Ginger and Zotonic:
