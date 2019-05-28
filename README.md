@@ -1,4 +1,3 @@
-
 [![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger)
 
 Ginger
@@ -20,6 +19,7 @@ Documentation
 * [Browser tests](docs/browser-tests.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
+* [Troubleshooting](docs/trouble.md)
 
 Getting started
 ---------------
@@ -88,11 +88,11 @@ source code, too.
 All other services (PostgreSQL, Elasticsearch, Kibana) still run in
 containers.
 
-First, install install Erlang locally:
+First, install Zotonic’s dependencies, including Erlang:
 
 ```bash
-$ brew install erlang@20 fswatch imagemagick
-$ brew link erlang@20 --force
+$ brew install erlang@21 fswatch imagemagick
+$ brew link erlang@21 --force
 ```
 
 Then clone both Ginger and Zotonic:
@@ -123,6 +123,8 @@ And run Zotonic:
 $ cd ginger
 $ make start
 ```
+
+See [Troubleshooting](docs/trouble.md) if you get errors.
 
 You have to enter your account’s sudo password to enable port forwarding 
 (from port 80 to 8000).
