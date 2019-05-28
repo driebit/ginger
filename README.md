@@ -1,4 +1,3 @@
-
 [![Build Status](https://travis-ci.org/driebit/ginger.svg?branch=master)](https://travis-ci.org/driebit/ginger)
 
 Ginger
@@ -20,6 +19,7 @@ Documentation
 * [Browser tests](docs/browser-tests.md)
 * [Templates](docs/templates.md)
 * [Anymeta import](docs/anymeta-import.md)
+* [Troubleshooting](docs/trouble.md)
 
 Getting started
 ---------------
@@ -123,6 +123,8 @@ And run Zotonic:
 $ cd ginger
 $ make start
 ```
+
+See [Troubleshooting](docs/trouble.md) if you get errors.
 
 You have to enter your account’s sudo password to enable port forwarding 
 (from port 80 to 8000).
