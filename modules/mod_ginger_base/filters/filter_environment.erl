@@ -4,7 +4,6 @@
 -include("zotonic.hrl").
 
 environment(Environment, Context) ->
-    ?DEBUG(Environment),
     case Environment of
         "dev" ->
             case ginger_environment:is_test(Context) of
