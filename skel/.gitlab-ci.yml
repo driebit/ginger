@@ -75,7 +75,7 @@ test_ginger_latest:
         - echo "$DEPLOY_PRIVATE_KEY" | ssh-add -
         - mkdir -p ~/.ssh
         - echo "$DEPLOY_PUBLIC_KEYS" > ~/.ssh/known_hosts
-        - rsync -Pav --delete --exclude files/ --exclude config.d/ . zotonic@${ZOTONIC_HOST}:/srv/zotonic/sites/${CI_PROJECT_NAME}
+        - rsync -Pav --delete --include /files/fixtures/ --exclude /files/* --exclude config.d/ . zotonic@${ZOTONIC_HOST}:/srv/zotonic/sites/${CI_PROJECT_NAME}
         - ssh zotonic@${ZOTONIC_HOST} "zotonic rpc 'schema reset [${CI_PROJECT_NAME}]'"
 
 deploy_test:
