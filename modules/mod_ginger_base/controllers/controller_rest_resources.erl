@@ -196,12 +196,28 @@ process_put(Req, State = #state{mode = document, path_info = id}) ->
 %%% Internal functions
 %%%-----------------------------------------------------------------------------
 
+language_codes() ->
+    sets:from_list([en, nl, zh, fr, de, it]).
+
 process_props({edges, _}, Acc) ->
     Acc;
 process_props({properties, Value}, Acc) ->
     lists:foldl(fun process_props/2, [], maps:to_list(Value)) ++ Acc;
+process_props({Key, Value}, Acc) when is_map(Value)->
+    Keys = sets:from_list(maps:keys(Value)),
+    case sets:is_disjoint(Keys, language_codes()) of
+        false ->
+            trans({Key, Value}, Acc);
+        true ->
+            [{Key, Value}, Acc]
+    end;
 process_props(Value, Acc) ->
     [Value | Acc].
+
+trans({Key, Value}, Acc) when is_map(Value) ->
+    [{Key, {trans, maps:to_list(Value)}} | Acc];
+trans({Key, Value}, Acc) ->
+    [{Key, Value} | Acc].
 
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
