@@ -34,15 +34,13 @@ to_json(Req, State) ->
                 Query = [{source, [<<"geolocation">>]}, {has_geo, <<"true">>} | arguments(Req)],
                 Result = z_search:search({Type, Query}, {Offset + 1, Limit}, Context),
                 #{ result => [coordinates(R) || R <- Result#search_result.result]
-                 , total => Result#search_result.total
+                 , total => total(Result, Context)
                  , facets => facets(Result#search_result.facets)
                  };
             _ ->
                 Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
-                #{ result => [ search_result(R, Context) || R <- Result#search_result.result
-                                                                , is_visible(R, Context)
-                             ]
-                 , total => Result#search_result.total
+                #{ result => total(Result, Context)
+                 , total => results(Result, Context)
                  , facets => facets(Result#search_result.facets)
                  }
         end,
@@ -78,6 +76,23 @@ argument({unfinished, _Value}) ->
     {unfinished, true};
 argument(Argument) ->
     Argument.
+
+%% @doc Count the number of search results if it's not
+%% returned directly/correctly
+total(SearchResults, Context) ->
+    case SearchResults#search_result.total of
+        X when is_number(X) ->
+            X;
+        undefined ->
+            length(results(SearchResults, Context))
+    end.
+
+%% @doc Get the visibible results from a `search_result` record and
+%% return them as a list
+results(SearchResults, Context) ->
+    [ search_result(R, Context) || R <- SearchResults#search_result.result
+                                       , is_visible(R, Context)
+    ].
 
 %% @doc Get whitelisted search arguments.
 -spec whitelist() -> [atom()].
