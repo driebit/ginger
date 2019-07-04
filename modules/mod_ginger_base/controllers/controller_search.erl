@@ -39,8 +39,8 @@ to_json(Req, State) ->
                  };
             _ ->
                 Result = z_search:search({Type, arguments(Req)}, {Offset + 1, Limit}, Context),
-                #{ result => total(Result, Context)
-                 , total => results(Result, Context)
+                #{ result => results(Result, Context)
+                 , total => total(Result, Context)
                  , facets => facets(Result#search_result.facets)
                  }
         end,
