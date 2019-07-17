@@ -71,7 +71,9 @@ $.widget("ui.search_ui", {
 
         // This should be ~pagesession, but see https://github.com/zotonic/zotonic/issues/1622
         pubzub.subscribe("~session/search/facets", function (topic, msg) {
-            me.setFacets(msg.payload);
+            if (msg.payload) {
+                me.setFacets(msg.payload);
+            }
         });
 
     },
