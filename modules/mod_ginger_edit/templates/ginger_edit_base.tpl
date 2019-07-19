@@ -49,11 +49,8 @@
 	</div>
     {% endblock %}
 
+    {% include "_ginger_edit_js_include.tpl" %}
 
-    {% include "_admin_js_include.tpl" %}
-    {% lib
-        "js/ginger_edit.js"
-    %}
     {% optional include "_ginger_edit_js_extra.tpl" %}
 
 
