@@ -48,6 +48,9 @@
     {% lib "js/admin-geo.js" %}
 {% endif %}
 
+{% if m.modules.active.mod_admin_multiupload and m.acl.is_allowed.use.mod_admin_multiupload %}
+    {% lib "js/jquery.fileupload.js" %}
+{% endif %}
 <script type="text/javascript">
 $(function()
 {
