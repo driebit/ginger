@@ -9,7 +9,6 @@
 {% with (objects|is_defined)|if:objects:[[]] as objects %}
 {% with (add_author|is_defined)|if:[[m.acl.user, 'author']]:[[]] as author %}
 {% with objects++author as objects %}
-
     <ul class="nav nav-pills">
         {% block tabs %}
         {% if cat_name!='keyword' %}
