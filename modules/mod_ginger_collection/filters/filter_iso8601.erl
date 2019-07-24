@@ -25,7 +25,7 @@ iso8601(Duration, _Context) ->
             <<Hours/binary, ":", Minutes/binary, ":", Seconds/binary>>;
         {match, _} ->
             undefined;
-        _ ->
+        nomatch ->
             undefined
     end.
 
