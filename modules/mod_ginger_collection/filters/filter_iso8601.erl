@@ -23,6 +23,8 @@ iso8601(Duration, _Context) ->
             <<Minutes/binary, ":", Seconds/binary>>;
         {match, [[Hours, Minutes, Seconds]]} ->
             <<Hours/binary, ":", Minutes/binary, ":", Seconds/binary>>;
+        {match, _} ->
+            undefined;
         nomatch ->
             undefined
     end.
