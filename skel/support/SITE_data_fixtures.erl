@@ -8,7 +8,10 @@
 -include_lib("zotonic.hrl").
 
 %% @doc Load data fixtures
-load(Context) ->
+load(Context0) ->
+    % Ensure we are loading the resources outside a transaction, just like
+    % the module manager is inserting resources after the manage_schema/2 call.
+    Context = z_context:new(Context0),
     ginger_config:install_config(
         [
             % {site, config_key, "content"},
@@ -102,9 +105,8 @@ get_dev_data(Context) ->
             % {unique_name, predicate, unique_name}
         ],
         data = [
-            {acl_rules, [
-
-            ]}
+            % Can't have acl_rules here as it would replace the ACL rules from
+            % the prod_data.
         ]
     }.
 
