@@ -43,15 +43,15 @@ rsc(UniqueName, Context) ->
 with_edges(Rsc = #{<<"id">> := Id}, Context) ->
     Edges = lists:flatmap(
         fun({Predicate, PredicateEdges}) ->
-            [
-                #{
-                    <<"predicate_name">> => Predicate,
-                    <<"resource">> => rsc(proplists:get_value(object_id, Edge), Context)
-                } || Edge <- lists:reverse(PredicateEdges)
-            ]
+                [
+                 #{
+                   <<"predicate_name">> => Predicate,
+                   <<"resource">> => rsc(proplists:get_value(object_id, Edge), Context)
+                  } || Edge <- lists:reverse(PredicateEdges),
+                       m_rsc:is_visible(proplists:get_value(object_id, Edge), Context)
+                ]
         end,
-        m_edge:get_edges(Id, Context)
-    ),
+        m_edge:get_edges(Id, Context)),
     Rsc#{<<"edges">> => Edges}.
 
 %% @doc Add edges of specific predicates to resource.
