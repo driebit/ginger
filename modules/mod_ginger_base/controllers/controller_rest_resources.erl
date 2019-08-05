@@ -104,7 +104,7 @@ to_json(Req, State = #state{mode = collection}) ->
                   )
                 ),
         Ids = z_search:query_(Args, Context),
-        Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids]),
+        Json = jsx:encode([rsc(Id, Context, true) || Id <- Ids, m_rsc:is_visible(Id, Context)]),
         {Json, Req, State}
     catch
         _:Error ->
@@ -118,9 +118,12 @@ to_json(Req, State = #state{mode = document}) ->
     try
         Id = State#state.rsc_id,
         Context = State#state.context,
-        Rsc = m_ginger_rest:rsc(Id, Context),
-        Json = jsx:encode(m_ginger_rest:with_edges(Rsc, Context)),
-        {Json, Req, State}
+        case m_rsc:is_visible(Id, Context) of
+            false ->
+                {{halt, 401}, Req, State};
+            true  ->
+                {jsx:encode(rsc(Id, Context, true)), Req, State}
+        end
     catch
         _:Error ->
             Msg = io_lib:format("An error occurred while fetching the resource: ~p",
@@ -151,7 +154,7 @@ process_post(Req, State = #state{mode = collection}) ->
                    {"Content-Type", "application/json"}
                   ],
         Req2 = wrq:set_resp_headers(Headers, Req1),
-        Rsc = m_ginger_rest:with_edges(m_ginger_rest:rsc(Id, Context), Context),
+        Rsc = rsc(Id, Context, true),
         %% Done
         {{halt, 201}, wrq:set_resp_body(jsx:encode(Rsc), Req2), State}
     catch
