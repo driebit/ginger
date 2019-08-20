@@ -74,11 +74,17 @@ with_edges(Rsc = #{<<"id">> := Id}, Predicates, Context) ->
 %% @doc Get resource translations.
 -spec translations(atom() | {trans, proplists:proplist()}, z:context()) -> translations().
 translations({trans, Translations}, Context) ->
-    [{Key, z_html:unescape(filter_show_media:show_media(Value, Context))} || {Key, Value} <- Translations];
+    [{Key, show_media(Value, Context)} || {Key, Value} <- Translations];
 translations(undefined, Context) ->
     [{z_trans:default_language(Context), <<"">>}];
 translations(Value, Context) ->
-    [{z_trans:default_language(Context), z_html:unescape(filter_show_media:show_media(Value, Context))}].
+    [{z_trans:default_language(Context), show_media(Value, Context)}].
+
+show_media(Value, Context) ->
+    case filter_show_media:show_media(Value, Context) of
+        Result when is_binary(Result) -> Result;
+        Result when is_list(Result) -> << B || B <- lists:flatten(Result) >>
+    end.
 
 %% @doc Get resource property translations.
 -spec translations(m_rsc:resource(), atom(), z:context()) -> translations().
