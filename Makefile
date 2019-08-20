@@ -24,6 +24,7 @@ help:
 	@echo "  gulp site=your_site     Run Gulp in a site directory"
 	@echo "  clean-node              Delete all node_modules directories"
 	@echo "  import-db-file          Import database from file in ginger data dir (site=site-name file=site-dump.sql)"
+	@echo "  import-db-file-alt      Import database from file in ginger data dir (site=site-name file=data/site-dump.sql)"
 	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
 	@echo "  prompt                  Open shell prompt at Zotonic container"
 	@echo "  shell                   Open Zotonic shell"
@@ -63,6 +64,11 @@ import-db-file:
 	@docker-compose exec postgres psql -U zotonic -c "CREATE DATABASE $(site) ENCODING 'UTF8' TEMPLATE template0"
 	@docker-compose exec postgres psql $(site) -U zotonic -h localhost -f $(file)
 	@docker-compose exec zotonic bin/zotonic startsite $(site)
+
+import-db-file-alt:
+	@psql -U zotonic -c "DROP DATABASE IF EXISTS $(site)"
+	@psql -U zotonic -c "CREATE DATABASE $(site) ENCODING 'UTF8' TEMPLATE template0"
+	@psql $(site) -U zotonic -h localhost -f $(file)
 
 import-db-backup:
 	@echo "> Importing $(REMOTE_BACKUP_FILE) from $(host) into $(site)"
