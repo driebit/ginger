@@ -82,8 +82,10 @@ translations(Value, Context) ->
 
 show_media(Value, Context) ->
     case filter_show_media:show_media(Value, Context) of
-        Result when is_binary(Result) -> Result;
-        Result when is_list(Result) -> << B || B <- lists:flatten(Result) >>
+        Result when is_binary(Result) ->
+            Result;
+        Result when is_list(Result) ->
+            binary:list_to_bin(lists:flatten(Result))
     end.
 
 %% @doc Get resource property translations.
