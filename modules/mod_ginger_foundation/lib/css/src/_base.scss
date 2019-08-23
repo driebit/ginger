@@ -157,6 +157,34 @@ h3 {
 figure {
     @include size(margin-bottom, 30);
     position: relative;
+
+    &.-small {
+        width: calc((100% / 4) - 40px);
+    }
+
+    &.-middle,
+    &.-medium {
+        width: calc((100% / 2) - 10px);
+    }
+
+    &.-large {
+        width: 100%;
+    }
+}
+
+.video-figure__container {
+    width: 100%;
+    padding-top: 56.25%;
+    position: relative;
+
+    iframe {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
 }
 
 figcaption {
