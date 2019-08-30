@@ -123,7 +123,7 @@ map_facet({Name, Props}) ->
 map_edge(<<"depiction">>) ->
     [
         {hasanyobject, [[<<"*">>, <<"depiction">>]]},
-        {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
+        {filter, [[<<"reproduction.value">>, exists], [<<"http://www_europeana_eu/schemas/edm/hasView.@id">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@value">>, exists], [<<"http://www_europeana_eu/schemas/edm/isShownBy.@id">>, exists], [<<"_type">>, <<"resource">>]]}
     ];
 map_edge(_) ->
     [].
