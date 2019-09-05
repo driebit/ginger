@@ -74,6 +74,10 @@ argument({upcoming, _Value}) ->
     {upcoming, true};
 argument({unfinished, _Value}) ->
     {unfinished, true};
+argument({hassubject, Value}) ->
+    {hassubject, list_to_integer(Value)};
+argument({hasobject, Value}) ->
+    {hasobject, list_to_integer(Value)};
 argument(Argument) ->
     Argument.
 
