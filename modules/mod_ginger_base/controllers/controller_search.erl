@@ -75,9 +75,17 @@ argument({upcoming, _Value}) ->
 argument({unfinished, _Value}) ->
     {unfinished, true};
 argument({hassubject, Value}) ->
-    {hassubject, list_to_integer(Value)};
+    try list_to_integer(Value) of
+        Integer -> {hassubject, Integer}
+    catch
+        error:_Error -> {hassubject, Value}
+    end;
 argument({hasobject, Value}) ->
-    {hasobject, list_to_integer(Value)};
+    try list_to_integer(Value) of
+        Integer -> {hasobject, Integer}
+    catch
+        error:_Error -> {hasobject, Value}
+    end;
 argument(Argument) ->
     Argument.
 
