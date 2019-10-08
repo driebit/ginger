@@ -118,7 +118,8 @@ to_json(_Req, State = #state{mode = status}) ->
     Context = State#state.context,
     case z_acl:user(Context) of
         undefined ->
-            {{halt, 400}, Context#context.wm_reqdata, State};
+            Body = jsx:encode(#{<<"status">> => <<"anonymous">>}),
+            {Body, Context#context.wm_reqdata, State};
         Id ->
             Body = jsx:encode(user(Id, Context)),
             {Body, Context#context.wm_reqdata, State}
