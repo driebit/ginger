@@ -41,6 +41,8 @@ as
         {% endwith %}
     </div>
 
-    {% include "media/_caption.tpl" caption=caption %}
+    {% block figcaption %}
+        {% include "media/_caption.tpl" caption=caption %}
+    {% endblock %}
 </figure>
 {% endwith %}
