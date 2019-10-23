@@ -19,6 +19,7 @@
     observe_custom_pivot/2,
     observe_rsc_get/3,
     observe_search_query/2,
+    observe_security_headers/2,
     observe_acl_is_owner/2
 ]).
 
@@ -275,6 +276,15 @@ observe_search_query(#search_query{search={ginger_geo_nearby, _Args}}=Q, Context
     ginger_geo_search:search_query(Q, Context);
 observe_search_query(#search_query{}, _Context) ->
     undefined.
+
+%% @doc Always set the Strict-Transport-Security HTTP header on responses.
+%%      This header only has effect on HTTPS, so won't affect any local non-HTTPS environments.
+-spec observe_security_headers(#security_headers{}, z:context()) -> proplists:proplist().
+observe_security_headers(#security_headers{headers = Headers}, _Context) ->
+    [
+        {"Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload"}
+        | Headers
+    ].
 
 %% @doc Authors are owners by default in Ginger
 -spec observe_acl_is_owner(#acl_is_owner{}, #context{}) -> boolean() | undefined.
