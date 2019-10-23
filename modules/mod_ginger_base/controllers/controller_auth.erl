@@ -114,15 +114,15 @@ process_post(_Req, State = #state{mode = logout}) ->
 content_types_provided(Req, State) ->
     {[{"application/json", to_json}], Req, State}.
 
-to_json(_Req, State = #state{mode = status}) ->
+to_json(Req, State = #state{mode = status}) ->
     Context = State#state.context,
     case z_acl:user(Context) of
         undefined ->
             Body = jsx:encode(#{<<"status">> => <<"anonymous">>}),
-            {Body, Context#context.wm_reqdata, State};
+            {{halt, 200}, wrq:set_resp_body(Body, Req), State};
         Id ->
             Body = jsx:encode(user(Id, Context)),
-            {Body, Context#context.wm_reqdata, State}
+            {{halt, 200}, wrq:set_resp_body(Body, Req), State}
     end.
 
 %%%-----------------------------------------------------------------------------
