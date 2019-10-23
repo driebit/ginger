@@ -25,7 +25,8 @@ as
         {% endif %}
 
         </a>
-
-    {% include "_caption.tpl" %}
+    {% block figcaption %}
+        {% include "_caption.tpl" %}
+    {% endblock %}
 </figure>
 {% endwith %}
