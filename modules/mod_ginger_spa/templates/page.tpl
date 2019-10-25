@@ -42,7 +42,6 @@
         <meta property="og:image:width" content="450" />
         <meta property="og:image:height" content="450" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@gem_groningen" />
         <meta name="twitter:title" content="{{ id.title }}" />
         <meta name="twitter:description" content="{{ id.id|summary:160 }}" />
         {% if id.o.depiction.id as image %}
