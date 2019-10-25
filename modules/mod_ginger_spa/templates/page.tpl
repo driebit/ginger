@@ -19,7 +19,7 @@
 
 #################################
 //-->
-<html lang="NL">
+<html lang="{{ q.lang|default:"nl" }}">
     <head>
         <title>
             {% block title %}
