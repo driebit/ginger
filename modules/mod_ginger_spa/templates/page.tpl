@@ -53,9 +53,34 @@
         <meta name="theme-color" content="#ffffff">
     </head>
 
-    <body id="body">
+    <body>
         <script type="text/javascript">
-            var app = Elm.Main.init();
+            var menu = {
+                main_menu: [
+                    {% for id, submenu in m.rsc.main_menu.menu %}
+                    {
+                        page_url: "{{ id.page_url }}",
+                        title: "{{ id.short_title|default:id.title }}",
+                        id: {{ id.id }}
+                    },
+                    {% endfor %}
+                ],
+                footer_menu: {
+                    subtitle: "{{ m.rsc.footer_menu.subtitle }}",
+                    summary: "{{ m.rsc.footer_menu.summary }}",
+                    items: [
+                        {% for id, submenu in m.rsc.footer_menu.menu %}
+                        {
+                            page_url: "{{ id.page_url }}",
+                            title: "{{ id.short_title|default:id.title }}",
+                            id: {{ id.id }}
+                        },
+                        {% endfor %}
+                    ]
+                }
+            };
+
+            var app = Elm.Main.init({flags: menu});
         </script>
     </body>
 </html>
