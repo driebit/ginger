@@ -21,6 +21,7 @@
 //-->
 <html lang="{{ q.lang|default:"nl" }}">
     <head>
+        <meta charset="utf-8" />
         <title>
             {% block title %}
                 {% if id %}
