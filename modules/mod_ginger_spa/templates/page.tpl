@@ -84,19 +84,31 @@
                     {% for id, submenu in m.rsc.main_menu.menu %}
                     {
                         page_url: "{{ id.page_url }}",
-                        title: "{{ id.short_title|default:id.title }}",
+                        title: {
+                            nl: "{{ id.short_title.nl|default:id.title.nl }}",
+                            en: "{{ id.short_title.en|default:id.title.en }}"
+                        },
                         id: {{ id.id }}
                     },
                     {% endfor %}
                 ],
                 footer_menu: {
-                    subtitle: "{{ m.rsc.footer_menu.subtitle }}",
-                    summary: "{{ m.rsc.footer_menu.summary }}",
+                    subtitle: {
+                        nl: "{{ m.rsc.footer_menu.subtitle.nl }}",
+                        en: "{{ m.rsc.footer_menu.subtitle.en }}"
+                    },
+                    summary: {
+                        nl: "{{ m.rsc.footer_menu.summary.nl }}",
+                        en: "{{ m.rsc.footer_menu.summary.en }}"
+                    },
                     items: [
                         {% for id, submenu in m.rsc.footer_menu.menu %}
                         {
                             page_url: "{{ id.page_url }}",
-                            title: "{{ id.short_title|default:id.title }}",
+                            title: {
+                                nl: "{{ id.short_title.nl|default:id.title.nl }}",
+                                en: "{{ id.short_title.en|default:id.title.en }}"
+                            },
                             id: {{ id.id }}
                         },
                         {% endfor %}
