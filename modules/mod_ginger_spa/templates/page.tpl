@@ -32,10 +32,29 @@
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        {% lib "dist/main.js" %}
-        {% lib "dist/style.css" %}
+        {% if m.config.site.title.value %}
+            <meta property="og:site_name" content="{{ m.config.site.title.value }}"/>
+        {% endif %}
 
-        {% include "_html_head_seo.tpl" %}
+        <meta property="og:url" content="https://{{ m.site.hostname }}{{ id.default_page_url }}"/>
+        <meta property="og:title" content="{{ id.title }}" />
+        <meta property="og:description" content="{{ id.id|summary:160 }}"/>
+        <meta property="og:image:width" content="450" />
+        <meta property="og:image:height" content="450" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@gem_groningen" />
+        <meta name="twitter:title" content="{{ id.title }}" />
+        <meta name="twitter:description" content="{{ id.id|summary:160 }}" />
+        {% if id.o.depiction.id as image %}
+            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+        {% elif id.o.hascover.id as image %}
+            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+        {% else %}
+            <meta property="og:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+            <meta property="twitter:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+        {% endif %}
 
         <link rel="apple-touch-icon" sizes="57x57" href="/lib/dist/assets/icons/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/lib/dist/assets/icons/apple-icon-60x60.png">
@@ -46,11 +65,16 @@
         <link rel="apple-touch-icon" sizes="144x144" href="/lib/dist/assets/icons/apple-icon-144x144.png">
         <link rel="apple-touch-icon" sizes="152x152" href="/lib/dist/assets/icons/apple-icon-152x152.png">
         <link rel="apple-touch-icon" sizes="180x180" href="/lib/dist/assets/icons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/lib/dist/assets/icons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/lib/dist/assets/icons/android-icon-192x192.png">
         <link rel="icon" href="/lib/dist/assets/icons/favicon.ico">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/lib/dist/assets/icons/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        {% include "_html_head_seo.tpl" %}
+
+        {% lib "dist/main.js" %}
+        {% lib "dist/style.css" %}
+
     </head>
 
     <body>
