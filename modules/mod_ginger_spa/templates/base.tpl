@@ -22,7 +22,15 @@
 <html lang="{{ q.lang|default:"nl" }}">
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}Invest-NL{% endblock %}</title>
+        <title>
+            {% block title %}
+            {% if id %}
+                {{ id.seo_title|default:id.title ++ " - " ++ m.config.site.title.value }}
+            {% else %}
+                {{ m.config.site.title.value }}
+            {% endif %}
+            {% endblock %}
+        </title>
 
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
