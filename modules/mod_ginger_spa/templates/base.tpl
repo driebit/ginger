@@ -19,7 +19,7 @@
 
 #################################
 //-->
-<html lang="{{ q.lang|default:"nl" }}">
+<html lang="{{ q.lang|default:"nl"|escape }}">
     <head>
         <meta charset="utf-8" />
         <title>
