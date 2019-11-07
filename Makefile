@@ -15,28 +15,28 @@ export ERLASTIC_SEARCH_JSON_MODULE := jsx
 
 help:
 	@echo "Run: make <target> where <target> is one of the following:"
-	@echo "  addsite name=site-name  Create a new site"
-	@echo "  api-doc                 Generate API doc"
-	@echo "  deps                    Install dependencies"
-	@echo "  disco                   Make your site available at http://[sitename].[username].ginger.test"
-	@echo "  down                    Stop containers"
-	@echo "  dump-db site=site-name  Dump database to /data directory using pg_dump"
-	@echo "  gulp site=your_site     Run Gulp in a site directory"
-	@echo "  clean-node              Delete all node_modules directories"
-	@echo "  import-db-file          Import database from file in ginger data dir (site=site-name file=site-dump.sql)"
-	@echo "  import-db-file-alt      Import database from file in ginger data dir (site=site-name file=data/site-dump.sql)"
-	@echo "  import-db-backup        Import database from a backup (host=ginger.driebit.net site=site-name)"
-	@echo "  prompt                  Open shell prompt at Zotonic container"
-	@echo "  shell                   Open Zotonic shell"
-	@echo "  psql                    Open PostgreSQL interactive terminal"
-	@echo "  start                   Run Zotonic on the host and all other services in containers"
-	@echo "  test site=site-name     Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
-	@echo "  test-chrome =site-name  Run browser site tests locally (args=Nightwatch arguments url=http://...)"
-	@echo "  tests                   Find all Ginger tests and run them"
-	@echo "  up                      Start containers"
-	@echo "  up-support              Start all containers except Zotonic itself (for running Zotonic outside Docker)"
-	@echo "  up-zotonic              Start containers with custom Zotonic checkout"
-	@echo "  update                  Update containers"
+	@echo "  addsite name=site-name     Create a new site"
+	@echo "  api-doc                    Generate API doc"
+	@echo "  deps                       Install dependencies"
+	@echo "  disco                      Make your site available at http://[sitename].[username].ginger.test"
+	@echo "  down                       Stop containers"
+	@echo "  dump-db site=site-name     Dump database to /data directory using pg_dump"
+	@echo "  gulp site=your_site        Run Gulp in a site directory"
+	@echo "  clean-node                 Delete all node_modules directories"
+	@echo "  import-db-file             Import database from file in ginger data dir (site=site-name file=site-dump.sql)"
+	@echo "  import-db-file-dockerless  Import database from file in ginger data dir (site=site-name file=data/site-dump.sql)"
+	@echo "  import-db-backup           Import database from a backup (host=ginger.driebit.net site=site-name)"
+	@echo "  prompt                     Open shell prompt at Zotonic container"
+	@echo "  shell                      Open Zotonic shell"
+	@echo "  psql                       Open PostgreSQL interactive terminal"
+	@echo "  start                      Run Zotonic on the host and all other services in containers"
+	@echo "  test site=site-name        Run browser site tests in Docker container (args=Nightwatch arguments url=http://...)"
+	@echo "  test-chrome =site-name     Run browser site tests locally (args=Nightwatch arguments url=http://...)"
+	@echo "  tests                      Find all Ginger tests and run them"
+	@echo "  up                         Start containers"
+	@echo "  up-support                 Start all containers except Zotonic itself (for running Zotonic outside Docker)"
+	@echo "  up-zotonic                 Start containers with custom Zotonic checkout"
+	@echo "  update                     Update containers"
 
 addsite:
 	@docker-compose exec zotonic bin/zotonic addsite -s ginger -H $(name).docker.test $(name)
@@ -65,7 +65,7 @@ import-db-file:
 	@docker-compose exec postgres psql $(site) -U zotonic -h localhost -f $(file)
 	@docker-compose exec zotonic bin/zotonic startsite $(site)
 
-import-db-file-alt:
+import-db-file-dockerless:
 	@psql -U zotonic -c "DROP DATABASE IF EXISTS $(site)"
 	@psql -U zotonic -c "CREATE DATABASE $(site) ENCODING 'UTF8' TEMPLATE template0"
 	@psql $(site) -U zotonic -h localhost -f $(file)
