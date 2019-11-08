@@ -103,10 +103,6 @@ get_dev_data(Context) ->
         ],
         edges = [
             % {unique_name, predicate, unique_name}
-        ],
-        data = [
-            % Can't have acl_rules here as it would replace the ACL rules from
-            % the prod_data.
         ]
     }.
 
