@@ -130,6 +130,7 @@ map_edge(_) ->
 
 map_related_to(Object) when is_map(Object) ->
     ObjectWithContext = Object#{<<"@context">> => #{
+        <<"acl">> => ?NS_ACL,
         <<"schema">> => ?NS_SCHEMA_ORG,
         <<"dcterms">> => ?NS_DCTERMS,
         <<"dbpedia-owl">> => ?NS_DBPEDIA_OWL,
