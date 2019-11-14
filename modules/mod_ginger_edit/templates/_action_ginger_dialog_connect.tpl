@@ -67,7 +67,9 @@
                 {% endblock %}
             {% endif %}
 
-            {% all include "_media_upload_tab.tpl" tab=#tab %}
+            {% block extra_tabs %}
+                {% all include "_media_upload_tab.tpl" tab=#tab %}
+            {% endblock %}
 
         {% endblock %}
     </ul>
@@ -163,7 +165,9 @@
                 %}
             {% endif %}
 
-            {% all include "_media_upload_panel.tpl" tab=#tab %}
+            {% block extra_panels %}
+                {% all include "_media_upload_panel.tpl" tab=#tab %}
+            {% endblock %}
 
         {% endblock %}
     </div>
