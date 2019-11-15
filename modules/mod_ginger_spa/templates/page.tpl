@@ -87,30 +87,10 @@
 
     <body>
         <script type="text/javascript">
-            var menu = {
-                main_menu: [
-                    {% for id, submenu in m.rsc.main_menu.menu %}
-                    {
-                        page_url: "{{ id.page_url }}",
-                        title: {
-                            nl: "{{ id.short_title.nl|default:id.title.nl }}",
-                            en: "{{ id.short_title.en|default:id.title.en }}"
-                        },
-                        id: {{ id.id }}
-                    },
-                    {% endfor %}
-                ],
-                footer_menu: {
-                    subtitle: {
-                        nl: "{{ m.rsc.footer_menu.subtitle.nl }}",
-                        en: "{{ m.rsc.footer_menu.subtitle.en }}"
-                    },
-                    summary: {
-                        nl: "{{ m.rsc.footer_menu.summary.nl }}",
-                        en: "{{ m.rsc.footer_menu.summary.en }}"
-                    },
-                    items: [
-                        {% for id, submenu in m.rsc.footer_menu.menu %}
+            {% block flags %}
+                var menu = {
+                    main_menu: [
+                        {% for id, submenu in m.rsc.main_menu.menu %}
                         {
                             page_url: "{{ id.page_url }}",
                             title: {
@@ -120,9 +100,31 @@
                             id: {{ id.id }}
                         },
                         {% endfor %}
-                    ]
-                }
-            };
+                    ],
+                    footer_menu: {
+                        subtitle: {
+                            nl: "{{ m.rsc.footer_menu.subtitle.nl }}",
+                            en: "{{ m.rsc.footer_menu.subtitle.en }}"
+                        },
+                        summary: {
+                            nl: "{{ m.rsc.footer_menu.summary.nl }}",
+                            en: "{{ m.rsc.footer_menu.summary.en }}"
+                        },
+                        items: [
+                            {% for id, submenu in m.rsc.footer_menu.menu %}
+                            {
+                                page_url: "{{ id.page_url }}",
+                                title: {
+                                    nl: "{{ id.short_title.nl|default:id.title.nl }}",
+                                    en: "{{ id.short_title.en|default:id.title.en }}"
+                                },
+                                id: {{ id.id }}
+                            },
+                            {% endfor %}
+                        ]
+                    }
+                };
+            {% endblock %}
 
             {% block elm_init %}
                 var app = Elm.Main.init({flags: menu});
