@@ -11,12 +11,16 @@ Features:
 
 ### Table of contents
 
-1. [Represent resources in RDF](#represent-resources-in-rdf)
+1. [Features](#features)
+   * [Represent resources in RDF](#represent-resources-in-rdf)
+   * [Link Zotonic resources to linked data](#link-zotonic-resources-to-linked-data) 
 2. [Notifications](#notifications)
 3. [View models](#view-models)
 
-Represent resources in RDF
---------------------------
+Features
+--------
+
+### Represent resources in RDF
 
 Enable mod_ginger_rdf in Zotonic, then request any page with the proper Accept
 header to get an RDF representation of the resource (where `123` is the id
@@ -67,13 +71,29 @@ Please note that currently only the [JSON-LD](https://www.w3.org/TR/json-ld/)
 serialization format is supported. Pull requests to add other formats are
 very welcome.
 
+### Link Zotonic resources to linked data
+
+This module comes with a linked data tab on which editors can search for linked data
+and link that to their Zotonic resources:
+
+![tab](doc/tab.jpg)
+
+To show the linked data tab, first configure a linked data source:
+
+```erlang
+m_config:set_value(mod_ginger_rdf, source, <<"https://your-linked-data-source.com">>, Context).
+```
+
+Then observe the [`#rdf_search{}` notification](#finding-linked-data) to provide the tab
+with search results.
+
 Notifications
 -------------
 
 ### Adding links
 
 On `rsv_pivot_done`, the RDF module will send a `find_links` notification. You
-can subscribe to this notifcation to enrich Zotonic resources with RDF links
+can subscribe to this notification to enrich Zotonic resources with RDF links
 to external resources. You should return a list of `#triple` records from your
 observer.
 
@@ -158,6 +178,18 @@ You can then render the RDF properties in a template:
 ```dtl
 <p>Creator: {{ m.rsc[id]['dc:creator'] }}</p>
 <p>Description: {{ m.rsc[id]['dc:description'] }}</p>
+```
+
+### Finding linked data
+
+Observe the `#rdf_search{}` notification to provide the 
+[linked data tab](#link-zotonic-resources-to-linked-data) with search results:
+
+```erlang
+-include_lib("mod_ginger_rdf/include/rdf.hrl").
+
+observe_rdf_search(#rdf_search{source = Source, query = #search_query{search = {rdf, Args}, offsetlimit = {Limit, Length}}}) ->
+    %% retrieve results from your linked data source.
 ```
 
 View models

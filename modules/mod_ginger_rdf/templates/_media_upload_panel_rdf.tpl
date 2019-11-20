@@ -1,4 +1,4 @@
-{% if not tabs_enabled or "find_rdf"|member:tabs_enabled %}
+{% if m.config.mod_ginger_rdf.source or "find_rdf"|member:tabs_enabled %}
 
     <div class="tab-pane" id="{{ tab }}-linked-data">
 
