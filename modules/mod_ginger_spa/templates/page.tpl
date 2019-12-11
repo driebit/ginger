@@ -37,7 +37,7 @@
             <meta property="og:site_name" content="{{ m.config.site.title.value }}"/>
         {% endif %}
 
-        <meta property="og:url" content="https://{{ m.site.hostname }}{{ id.default_page_url }}"/>
+        <meta property="og:url" content="https://{{ m.site.hostname }}{{ m.req.raw_path }}"/>
         <meta property="og:title" content="{{ id.title }}" />
         <meta property="og:description" content="{{ id.id|summary:160 }}"/>
         <meta property="og:image:width" content="450" />
