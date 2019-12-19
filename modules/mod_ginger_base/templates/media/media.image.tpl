@@ -26,7 +26,7 @@ as
 
         </a>
     {% block figcaption %}
-        {% include "_caption.tpl" %}
+        {% include "media/_caption.tpl" %}
     {% endblock %}
 </figure>
 {% endwith %}
