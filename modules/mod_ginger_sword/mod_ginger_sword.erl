@@ -92,7 +92,7 @@ render_rdf_body(RscId, Context) ->
     AC = z_acl:sudo(Context), % We want to publish all properties even if hidden
     case m_rsc:exists(RscId, Context) of
         true ->
-            RdfResource = m_rdf:to_triples(RscId, AC),
+            RdfResource = m_rdf_export:to_rdf(RscId, [dcterms, foaf], AC),
             ginger_json_ld:serialize_to_map(RdfResource);
         false ->
             <<"">>
