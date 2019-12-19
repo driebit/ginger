@@ -198,8 +198,8 @@ serialize(#rdf_resource{id = Id, triples = Triples}) ->
 
     z_convert:to_json({struct, Data}).
 
-%% @doc Serialize an RDF resource to a nested map (e.g. for subsequent
-%% serialization to JSON).
+%% @doc Serialize an RDF resource to a nested map (e.g. for subsequent serialization to JSON)
+%% in expanded form (https://w3c.github.io/json-ld-syntax/#expanded-document-form).
 serialize_to_map(#rdf_resource{id = Id, triples = Triples} = RdfResource) ->
     lists:foldl(
         fun(#triple{} = Triple, Acc) ->
@@ -305,15 +305,15 @@ triple_to_map(#triple{object = #rdf_value{value = undefined}}, #rdf_resource{}) 
 triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Object}, #rdf_resource{id = Id}) when is_binary(Object) ->
     #{<<"@type">> => #{<<"@id">> => Object}};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
-    #{Predicate => #{<<"@value">> => Object}};
+    #{Predicate => [#{<<"@value">> => Object}]};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
-    #{Predicate => #{<<"@value">> => Object, <<"@language">> => Lang}};
+    #{Predicate => [#{<<"@value">> => Object, <<"@language">> => Lang}]};
 triple_to_map(#triple{predicate = Predicate, object = #rdf_resource{} = Object}, #rdf_resource{}) ->
     %% Embedded objects.
-    #{Predicate => serialize_to_map(Object)};
+    #{Predicate => [serialize_to_map(Object)]};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = Object}, #rdf_resource{id = Id} = RdfResource) ->
     %% Nest values from referenced objects.
-    #{Predicate => merge_triples(RdfResource, Object)};
+    #{Predicate => [merge_triples(RdfResource, Object)]};
 triple_to_map(#triple{}, #rdf_resource{}) ->
     %% Ignore triples that belong to other subjects (they are found through the
     %% recursive call in the clause above).
@@ -344,8 +344,6 @@ merge_values(KeyValue, Acc) ->
     case maps:get(Key, Acc, undefined) of
         undefined ->
             maps:merge(Acc, KeyValue);
-        Value when is_list(Value) ->
-            Acc#{Key => Value ++ [NewValue]};
         Value ->
-            Acc#{Key => [Value] ++ [NewValue]}
+            Acc#{Key => Value ++ NewValue}
     end.

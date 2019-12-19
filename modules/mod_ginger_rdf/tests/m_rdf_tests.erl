@@ -75,11 +75,11 @@ m_find_value_test() ->
         m_rdf:m_find_value(<<"single_value">>, #m{value = Input}, ContextWithLanguage)
     ),
     ?assertEqual(
-        [<<"Value2">>],
+        <<"Value2">>,
         m_rdf:m_find_value(<<"single_value_in_list">>, #m{value = Input}, ContextWithLanguage)
     ),
     ?assertEqual(
-        [<<"Value3">>],
+        undefined,
         m_rdf:m_find_value(<<"nonrecord_content_in_list">>, #m{value = Input}, ContextWithLanguage)
     ),
     ?assertEqual(
