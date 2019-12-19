@@ -1,4 +1,4 @@
-%% @doc Export Zotonic resources to RDF in Schema.org ontology.
+%% @doc Export Zotonic resources to RDF in Dublin Core Terms ontology.
 -module(dcterms).
 
 -export([
@@ -13,32 +13,32 @@
 
 property_to_triples({body, Value}, _Props, Context) ->
     m_rdf_export:translations_to_rdf(rdf_property:dcterms(<<"description">>), Value, Context);
-property_to_triples({created, Value}, _Props, _Context) ->
+property_to_triples({created, Value}, _Props, Context) ->
     [
         #triple{
             predicate = rdf_property:dcterms(<<"created">> ),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:to_utc(Value, Context)}
         }
     ];
-property_to_triples({date_start, Value}, _Props, _Context) ->
+property_to_triples({date_start, Value}, _Props, Context) ->
     [
         #triple{
             predicate = rdf_property:dcterms(<<"date">>),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:to_utc(Value, Context)}
         }
     ];
-property_to_triples({modified, Value}, _Props, _Context) ->
+property_to_triples({modified, Value}, _Props, Context) ->
     [
         #triple{
             predicate = rdf_property:dcterms(<<"modified">>),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:to_utc(Value, Context)}
         }
     ];
-property_to_triples({publication_start, Value}, _Props, _Context) ->
+property_to_triples({publication_start, Value}, _Props, Context) ->
     [
         #triple{
             predicate = rdf_property:dcterms(<<"issued">>),
-            object = #rdf_value{value = Value}
+            object = #rdf_value{value = z_datetime:to_utc(Value, Context)}
         }
     ];
 property_to_triples({license, Value}, _Props, _Context) ->
