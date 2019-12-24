@@ -19,7 +19,7 @@ open_file(File) ->
     open(Contents).
 
 %% @doc Deserialize JSON-LD into an RDF resource
-%%      This function has been renamed to deserialize() and is here for BC.
+%% @deprecated Use deserialize/1 instead.
 -spec open(tuple() | list()) -> #rdf_resource{}.
 open(Data) when is_map(Data) ->
     open(ginger_convert:maps_to_structs(Data));
@@ -279,8 +279,26 @@ triple(Subject, Predicate, <<"http://", _/binary>> = Object) ->
     #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
 triple(Subject, Predicate, <<"https://", _/binary>> = Object)  ->
     #triple{type = resource, subject = Subject, predicate = Predicate, object = Object};
-triple(Subject, Predicate, #{<<"@id">> := Uri}) ->
-    #triple{type = resource, subject = Subject, predicate = Predicate, object = Uri};
+triple(Subject, Predicate, #{<<"@id">> := Uri} = Map) ->
+    case length(maps:keys(Map)) of
+        1 ->
+            %% Only an @id element, so a reference to a URI.
+            #triple{type = resource, subject = Subject, predicate = Predicate, object = Uri};
+        _ ->
+            %% A nested resource including an @id element and other predicates.
+            Triples = maps:fold(
+                fun(NestedPred, NestedObject, Acc) ->
+                    Acc ++ [triple(Uri, NestedPred, NestedObject)]
+                end,
+                [],
+                Map
+            ),
+            NestedResource = #rdf_resource{
+                id = Uri,
+                triples = Triples
+            },
+            #triple{type = resource, subject = Subject, predicate = Predicate, object = NestedResource}
+    end;
 triple(Subject, Predicate, #{<<"@language">> := Language, <<"@value">> := Value}) ->
     Object = #rdf_value{value = Value, language = Language},
     #triple{subject = Subject, predicate = Predicate, object = Object};
