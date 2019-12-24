@@ -267,7 +267,7 @@ lookup_triple(description, Triples) ->
         Triples
     );
 lookup_triple(type, Triples) ->
-    lookup_triple(
+    lookup_triples(
         [
             <<?NS_RDF, "type">>,
             <<"http://www.europeana.eu/schemas/edm/type">>
