@@ -31,6 +31,15 @@
                 {% endif %}
             {% endblock %}
         </title>
+
+        {% if id.seo_desc %}
+            <meta name="description" content="{{ id.seo_desc }}">
+        {% endif %}
+
+        {% if id.seo_keywords %}
+            <meta name="keywords" content="{{ id.seo_keywords }}">
+        {% endif %}
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         {% if m.config.site.title.value %}
