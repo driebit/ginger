@@ -10,6 +10,11 @@ serialize_to_map_test() ->
         triples = [
             #triple{
                 subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:rdf(<<"type">>),
+                object = <<"http://purl.org/dc/dcmitype/Text">>
+            },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
                 predicate = <<"dcterms:abstract">>,
                 object = #rdf_value{value = <<"Good story bro!">>}
             },
@@ -33,6 +38,9 @@ serialize_to_map_test() ->
     Map = ginger_json_ld:serialize_to_map(Resource),
     Expected = #{
         <<"@id">> => <<"http://dinges.com/123">>,
+        <<"@type">> => [
+            <<"http://purl.org/dc/dcmitype/Text">>
+        ],
         <<"dcterms:abstract">> => [
             #{<<"@value">> => <<"Good story bro!">>}
         ],
@@ -126,6 +134,26 @@ serialize_recursive_test() ->
     },
     ?assertEqual(Expected, Map).
 
+deserialize_test() ->
+    Resource = #rdf_resource{
+        id = <<"http://dinges.com/123">>,
+        triples = [
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:dcterms(<<"abstract">>),
+                object = #rdf_value{value = <<"Good story bro!">>}
+            },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:rdf(<<"type">>),
+                object = #rdf_value{value = <<"http://purl.org/dc/dcmitype/Text">>}
+            }
+        ]
+    },
+    Serialized = ginger_json_ld:serialize_to_map(Resource),
+    Deserialized = ginger_json_ld:deserialize(Serialized),
+    ?assertEqual(Resource, Deserialized).
+
 rdf_export_test() ->
     Context = context(),
     Props = [
@@ -141,9 +169,9 @@ rdf_export_test() ->
     ?assertEqual(
         #{
             <<"@id">> => m_rsc:p(Id, uri, Context),
-            <<"@type">> => #{
-                <<"@id">> => <<"http://purl.org/dc/dcmitype/Text">>
-            },
+            <<"@type">> => [
+                <<"http://purl.org/dc/dcmitype/Text">>
+            ],
             <<"http://schema.org/dateCreated">> => [
                 #{<<"@value">> => m_rsc:p(Id, created, Context)}
             ],
@@ -188,14 +216,14 @@ address_to_triples_test() ->
         #{
             <<"http://schema.org/location">> => [
                 #{
-                    <<"@type">> => #{
-                        <<"@id">> => <<"http://schema.org/Place">>
-                    },
+                    <<"@type">> => [
+                        <<"http://schema.org/Place">>
+                    ],
                     <<"http://schema.org/address">> => [
                         #{
-                            <<"@type">> => #{
-                                <<"@id">> => <<"http://schema.org/PostalAddress">>
-                            },
+                            <<"@type">> => [
+                                <<"http://schema.org/PostalAddress">>
+                            ],
                             <<"http://schema.org/streetAddress">> => [
                                 #{
                                     <<"@value">> => <<"Oudezijds Voorburgwal 282">>

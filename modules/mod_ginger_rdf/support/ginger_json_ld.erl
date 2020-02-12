@@ -321,7 +321,7 @@ triple_to_map(#triple{object = #rdf_value{value = undefined}}, #rdf_resource{}) 
     %% Ignore empty triples without object.
     undefined;
 triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Object}, #rdf_resource{id = Id}) when is_binary(Object) ->
-    #{<<"@type">> => #{<<"@id">> => Object}};
+    #{<<"@type">> => [Object]};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => [#{<<"@value">> => Object}]};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
