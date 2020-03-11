@@ -87,6 +87,7 @@
     </head>
 
     <body>
+        {% block noscript %}{% noscript %}
         <script type="text/javascript">
             {% block flags %}
                 var menu = {
