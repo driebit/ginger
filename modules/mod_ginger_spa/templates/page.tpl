@@ -87,6 +87,7 @@
     </head>
 
     <body>
+        {% block js_alt %}{% endblock %}
         <script type="text/javascript">
             {% block flags %}
                 var menu = {
