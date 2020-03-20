@@ -54,21 +54,21 @@
                 me = this;
 
             // Clicked on/in toggle menu button
-            if ($target.closest('[class*="toggle-menu"]').size() > 0) {
+            if ($target.closest('[class*="toggle-menu"]').length > 0) {
                 me._toggleMenu(event);
                 event.preventDefault();
                 return;
             }
 
             // Clicked on/in menu close button
-            if ($target.closest('[class*="nav__close"]').size() > 0) {
+            if ($target.closest('[class*="nav__close"]').length > 0) {
                 me._closeMenu(event);
                 event.preventDefault();
                 return;
             }
 
             //Clicked outside of menu
-            if ($target.closest('[class*="global-nav"]').size() == 0) {
+            if ($target.closest('[class*="global-nav"]').length == 0) {
                 if (isOpen) {
                     me._closeMenu(event);
                     event.preventDefault();
