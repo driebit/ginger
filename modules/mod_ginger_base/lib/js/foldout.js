@@ -25,7 +25,7 @@
                 evt.preventDefault();
             });
 
-            $('[href=#comments]').on('click', function () {
+            $('#comments-button').on('click', function () {
                 me.expand();
             });
 
