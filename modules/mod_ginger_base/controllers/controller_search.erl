@@ -61,8 +61,11 @@ params(Req) ->
 -spec arguments(wrq:rd()) -> proplists:proplist().
 arguments(Req) ->
     RequestArgs = wrq:req_qs(Req),
+    Default = {filter, ["is_unfindable", '<>', true]},
     Arguments = [argument({list_to_existing_atom(Key), Value}) || {Key, Value} <- RequestArgs],
-    [{Key, Value} || {Key, Value} <- Arguments, lists:member(Key, whitelist())].
+    FilteredArguments =
+        [{Key, Value} || {Key, Value} <- Arguments, lists:member(Key, whitelist())],
+    [Default|FilteredArguments].
 
 %% @doc Pre-process request argument if needed.
 -spec argument({atom(), list() | binary()}) -> {atom(), list() | binary()}.
