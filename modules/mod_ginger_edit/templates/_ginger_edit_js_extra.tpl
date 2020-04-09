@@ -3,7 +3,7 @@
 var has_list_content = function (element, selector) {
     var items = element.find(selector);
 
-    return items.size() > 0 ? true : false;
+    return items.length > 0 ? true : false;
 }
 
 var set_error_class = function (element, valid) {
