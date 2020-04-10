@@ -183,7 +183,7 @@
             var me = this,
                 mainContentEl = $('.' + me.element.data('main-content-class'));
 
-                if (mainContentEl.size() == 0) return false;
+                if (mainContentEl.length == 0) return false;
 
                 var masthead = $(me.element),
                 mastheadHeight = masthead[0].clientHeight,

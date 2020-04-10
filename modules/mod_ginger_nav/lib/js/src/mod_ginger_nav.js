@@ -19,7 +19,7 @@ $.widget( "ui.mod_ginger_nav", {
         me.mainMenu         = $(widgetElement.find('.mod_ginger_nav__main-nav__container__menu')[0]),
         me.menuButton       = $(widgetElement.find('.mod_ginger_nav__main-nav__toggle-menu')[0]),
         me.themeBanner      = $(widgetElement.find('.mod_ginger_nav__theme-banner')[0]),
-       
+
         //listeners
         me.searchButton.on('click', $.proxy(me._toggleSearch, me));
         me.document.on('click', $.proxy(me._documentClick, me));
@@ -28,17 +28,17 @@ $.widget( "ui.mod_ginger_nav", {
         me.themeBanner.on('click', $.proxy(me._scrollToTop, me));
 
         //init
-        if(me.themeBanner.size() > 0) {
+        if(me.themeBanner.length > 0) {
             me.body.addClass('has-theme');
         }
-        
+
 
     },
 
     _documentClick: function(event) {
 
         var me = this;
-        
+
         if (!$(event.target).closest('.mod_ginger_nav__main-nav').length) {
            if (me.searchForm.hasClass('is-visible')) {
                me._toggleSearch();
@@ -49,7 +49,7 @@ $.widget( "ui.mod_ginger_nav", {
     _toggleSearch: function() {
 
         var me = this;
-        
+
         me.searchButton.toggleClass('is-active');
 
          if(me.searchButton.hasClass('is-active')) {
