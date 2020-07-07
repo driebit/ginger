@@ -15,7 +15,7 @@
     manage_schema/2
 ]).
 
-manage_schema(install, Context) ->
+manage_schema(install, _Context) ->
     #datamodel{
         categories=[
             {message, undefined, [

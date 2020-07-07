@@ -33,7 +33,7 @@ init(Context) ->
     z_pivot_rsc:define_custom_pivot(ginger_search, [{is_unfindable, "boolean not null default false"}], Context).
 
 %% @doc When ACL is enabled, create a default user in the editors group
-manage_schema(_Version, Context) ->
+manage_schema(_Version, _Context) ->
     #datamodel{
         categories=[
             {agenda, query, [

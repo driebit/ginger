@@ -20,7 +20,7 @@
 
 -include("zotonic.hrl").
 
-manage_schema(_Version, Context) ->
+manage_schema(_Version, _Context) ->
     #datamodel{
         categories=[
             {ginger_embed, media, [

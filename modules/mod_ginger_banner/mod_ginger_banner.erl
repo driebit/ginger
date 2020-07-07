@@ -13,7 +13,7 @@
     manage_schema/2
 ]).
 
-manage_schema(_Version, Context) ->
+manage_schema(_Version, _Context) ->
     #datamodel{
         resources = [
             {message_banner, text, [

@@ -18,7 +18,7 @@
     event/2
 ]).
 
-manage_schema(install, Context) ->
+manage_schema(install, _Context) ->
     #datamodel{
         categories = [
             {rfid_device, undefined, [
