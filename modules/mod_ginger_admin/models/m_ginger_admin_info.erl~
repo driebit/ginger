@@ -1,7 +1,0 @@
--module(m_ginger_admin_info).
--behaviour(gen_model).
-
--export([m_find_value/3, m_to_list/2, m_value/2]).
-
-
-
