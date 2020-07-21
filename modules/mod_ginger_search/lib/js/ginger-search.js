@@ -65,7 +65,7 @@
                     closest = $(e.target).closest(container);
 
                  if (!container.is(e.target) // if the target of the click isn't the container...
-                     && closest.size() == 0)
+                     && closest.length == 0)
                  {
                     $('.ginger-search').removeClass('is-visible');
 

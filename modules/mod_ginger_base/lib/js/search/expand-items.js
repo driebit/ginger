@@ -21,7 +21,7 @@ $.widget("ui.expanditems", {
 
         button.hide();
 
-        if (inputs.size() > showMax) {
+        if (inputs.length > showMax) {
 
             button.show();
 

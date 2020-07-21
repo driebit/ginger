@@ -120,7 +120,7 @@
                 valid = false;
             }
 
-            if (anonymousName.size() > 0) {
+            if (anonymousName.length > 0) {
                 if (!re.test(anonymousName.val())) {
                     anonymousName.parent().addClass('has-error is-error');
                     valid = false;
