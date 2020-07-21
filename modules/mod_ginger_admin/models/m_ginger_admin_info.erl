@@ -1,4 +1,5 @@
 -module(m_ginger_admin_info).
+-mod_depends([mod_admin]).
 -behaviour(gen_model).
 
 -export([m_find_value/3,
@@ -19,9 +20,6 @@ m_find_value(erlang_info, #m{value=undefined}, _) ->
     erlang_info();
 m_find_value(directory_info, #m{value=undefined}, _) ->
     directory_info();
-m_find_value(env_info, #m{value=undefined}, _) ->
-    env_info().
-
 
 
 m_to_list(_,_) ->
@@ -31,21 +29,18 @@ directory_info() ->
     {ok, Path} = file:get_cwd(),
     Path.
 
-env_info() ->
-   os:getenv().
-
 erlang_info() ->
     erlang:system_info(system_version).
 
 git_zotonic_info() ->
     case os:find_executable("git") of
-       false -> "Could not find Git";
-       _Path -> os:cmd("(cd ../zotonic; git describe --tags)")
+        false -> "Could not find Git";
+        _Path -> os:cmd("(cd ../zotonic; git describe --tags)")
     end.
 
 git_ginger_info() ->
     case os:find_executable("git") of
-       false -> "Could not find Git";
-       _Path -> os:cmd("(cd ../ginger; git describe --tags)")
+        false -> "Could not find Git";
+        _Path -> os:cmd("(cd ../ginger; git describe --tags)")
     end.
 

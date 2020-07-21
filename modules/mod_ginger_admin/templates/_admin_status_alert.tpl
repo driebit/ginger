@@ -30,8 +30,6 @@
 
             <dt>{_ Zotonic Git _}</dt>
             <dd>{{m.ginger_admin_info.git_zotonic_info}}</dd>
-            <dt>{_ Env Vars _}</dt>
-            <dd>{{ m.ginger_admin_info.env_info | join:"<br>" }}</dd>
         {% endif %}
         <dt>{_ Zotonic Version _}</dt>
         <dd>{{ m.config.zotonic.version.value }}<dd>
