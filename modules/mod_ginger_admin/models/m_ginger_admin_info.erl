@@ -22,15 +22,18 @@ m_find_value(erlang_info, #m{value=undefined}, _) ->
 m_to_list(_,_) ->
     [].
 
+-spec erlang_info() -> string().
 erlang_info() ->
     erlang:system_info(system_version).
 
+-spec git_zotonic_info() -> string().
 git_zotonic_info() ->
     case os:find_executable("git") of
         false -> "Could not find Git";
         _Path -> os:cmd("(cd ../zotonic; git describe --tags)")
     end.
 
+-spec git_ginger_info() -> string().
 git_ginger_info() ->
     case os:find_executable("git") of
         false -> "Could not find Git";
