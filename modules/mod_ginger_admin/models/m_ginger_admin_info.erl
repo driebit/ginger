@@ -17,17 +17,10 @@ m_find_value(git_zotonic_info, #m{value=undefined}, _) ->
 m_find_value(git_ginger_info, #m{value=undefined}, _) ->
     git_ginger_info();
 m_find_value(erlang_info, #m{value=undefined}, _) ->
-    erlang_info();
-m_find_value(directory_info, #m{value=undefined}, _) ->
-    directory_info();
-
+    erlang_info().
 
 m_to_list(_,_) ->
     [].
-
-directory_info() ->
-    {ok, Path} = file:get_cwd(),
-    Path.
 
 erlang_info() ->
     erlang:system_info(system_version).

@@ -19,9 +19,6 @@
             <dt>{_ Config Files _}</dt>
             <dd>{{ m.admin_status.init_arguments.config | join:"<br>" }}</dd>
 <br>
-            <dt>{_ Beam's CWD _}</dt>
-            <dd>{{m.ginger_admin_info.directory_info}}</dd>
-
             <dt>{_ Erlang System Info _}</dt>
             <dd>{{m.ginger_admin_info.erlang_info}}</dd>
 
