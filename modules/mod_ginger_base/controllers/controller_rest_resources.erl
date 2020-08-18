@@ -282,7 +282,8 @@ with_deep_edges(Rsc = #{<<"id">> := Id}, [CurrentPredicates|DeeperPredicates], C
                             m_ginger_rest:rsc(Object, Context),
                             DeeperPredicates,
                             Context)
-                     } || Object <- Objects
+                     } || Object <- Objects,
+                          m_rsc:is_visible(m_rsc:rid(Object, Context), Context)
                     ]
             end,
               CurrentPredicates
