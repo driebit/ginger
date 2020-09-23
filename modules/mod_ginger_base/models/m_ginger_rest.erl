@@ -258,10 +258,13 @@ parse_path(String) ->
     case erl_scan:string(String) of
         {ok, Tokens, _} ->
             case erl_parse:parse_term(Tokens ++ [{dot, 1}]) of
-                {ok, Path} when
-                      is_list(Path)
-                      andalso lists:all(fun is_list/1, Path)
-                      andalso lists:all(fun(Level) -> lists:all(fun is_atom/1, Level) end, Path) -> Path;
+                {ok, Path} ->
+                    case is_list(Path)
+                        andalso lists:all(fun is_list/1, Path)
+                        andalso lists:all(fun(Level) -> lists:all(fun is_atom/1, Level) end, Path) of
+                        true -> Path;
+                        _ -> [[]]
+                    end;
                 _ -> [[]]
             end;
         _ -> [[]]
