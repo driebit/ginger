@@ -103,9 +103,13 @@ to_json(Req, State = #state{mode = collection}) ->
                    wrq:req_qs(Req)
                   )
                 ),
-        EdgePath = parse_path(proplists:get_value("edge_path", wrq:req_qs(Req), "")),
+        EdgePath = m_ginger_rest:parse_path(
+                     proplists:get_value("edge_path", wrq:req_qs(Req), "")),
         Ids = z_search:query_(Args, Context),
-        Json = jsx:encode([with_deep_edges(m_ginger_rest:rsc(Id, Context), EdgePath, Context) || Id <- Ids, m_rsc:is_visible(Id, Context)]),
+        Json = jsx:encode([m_ginger_rest:with_deep_edges(
+                             m_ginger_rest:rsc(Id, Context), EdgePath, Context)
+                           || Id <- Ids, m_rsc:is_visible(Id, Context)
+                          ]),
         {Json, Req, State}
     catch
         _:Error ->
@@ -119,13 +123,15 @@ to_json(Req, State = #state{mode = document}) ->
     try
         Id = State#state.rsc_id,
         Context = State#state.context,
-        EdgePath = parse_path(proplists:get_value("edge_path", wrq:req_qs(Req), "")),
+        EdgePath = m_ginger_rest:parse_path(
+                     proplists:get_value("edge_path", wrq:req_qs(Req), "")),
         case m_rsc:is_visible(Id, Context) of
             false ->
                 {{halt, 401}, Req, State};
             true  ->
                 Rsc = m_ginger_rest:rsc(Id, Context),
-                {jsx:encode(with_deep_edges(Rsc, EdgePath, Context)), Req, State}
+                {jsx:encode(
+                   m_ginger_rest:with_deep_edges(Rsc, EdgePath, Context)), Req, State}
         end
     catch
         _:Error ->
@@ -157,7 +163,7 @@ process_post(Req, State = #state{mode = collection}) ->
                    {"Content-Type", "application/json"}
                   ],
         Req2 = wrq:set_resp_headers(Headers, Req1),
-        Rsc = with_deep_edges(m_ginger_rest:rsc(Id, Context), [[]], Context),
+        Rsc = m_ginger_rest:with_deep_edges(m_ginger_rest:rsc(Id, Context), [[]], Context),
         %% Done
         {{halt, 201}, wrq:set_resp_body(jsx:encode(Rsc), Req2), State}
     catch
@@ -228,67 +234,6 @@ trans({Key, Value}, Acc) ->
 supported_search_args() ->
     ["cat", "hasobject", "hassubject", "sort"].
 
-parse_path(String) ->
-    case erl_scan:string(String) of
-        {ok, Tokens, _} ->
-            case erl_parse:parse_term(Tokens ++ [{dot, 1}]) of
-                            {ok, Path} when is_list(Path) -> Path;
-                            _ -> [[]]
-                        end;
-        _ -> [[]]
-    end.
-
-%% @doc Add edges to resource based on depth path
-%%
-%% Examples:
-%% +-------------------+-----------------------------------------------+
-%% | Path              | Meaning                                       |
-%% +-------------------+-----------------------------------------------+
-%% | []                | Depth 0 (No edges)                            |
-%% | [[]]              | Depth 1, no filter (default)                  |
-%% | [[], []]          | Depth 2, no filter                            |
-%% | [[], [depiction]] | Depth 2, only depiction on second order edges |
-%% +-------------------+-----------------------------------------------+
-
-with_deep_edges(Rsc, [], _Context) ->
-    Rsc;
-with_deep_edges(Rsc = #{<<"id">> := Id}, [[]|DeeperPredicates], Context) ->
-    Edges = lists:flatmap(
-              fun({Predicate, PredicateEdges}) ->
-                      [
-                       #{
-                        <<"predicate_name">> => Predicate,
-                        <<"resource">> =>
-                            with_deep_edges(
-                              m_ginger_rest:rsc(
-                                proplists:get_value(object_id, Edge),
-                                Context),
-                              DeeperPredicates, Context)
-                       } || Edge <- lists:reverse(PredicateEdges),
-                            m_rsc:is_visible(proplists:get_value(object_id, Edge), Context)
-                      ]
-              end,
-              m_edge:get_edges(Id, Context)),
-    Rsc#{<<"edges">> => Edges};
-with_deep_edges(Rsc = #{<<"id">> := Id}, [CurrentPredicates|DeeperPredicates], Context) ->
-    Edges = lists:flatmap(
-            fun(Predicate) ->
-                    #rsc_list{list = Objects} = m_rsc:o(Id, Predicate, Context),
-                    [
-                     #{
-                      <<"predicate_name">> => Predicate,
-                      <<"resource">> =>
-                          with_deep_edges(
-                            m_ginger_rest:rsc(Object, Context),
-                            DeeperPredicates,
-                            Context)
-                     } || Object <- Objects,
-                          m_rsc:is_visible(m_rsc:rid(Object, Context), Context)
-                    ]
-            end,
-              CurrentPredicates
-             ),
-    Rsc#{<<"edges">> => Edges}.
 
 proplists_filter(Filter, List) ->
     lists:foldr(
