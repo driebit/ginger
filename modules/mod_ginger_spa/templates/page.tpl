@@ -47,17 +47,17 @@
         <meta name="twitter:title" content="{{ id.title }}" />
         <meta name="twitter:description" content="{{ id.id|summary:160 }}" />
         {% if id.o.hasbanner.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="twitter:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
         {% elif id.o.hascover.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="twitter:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
         {% elif id.o.depiction.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="twitter:image" content="https://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
         {% else %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+            <meta property="og:image" content="https://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+            <meta property="twitter:image" content="https://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
         {% endif %}
 
         {% block meta_extra %}{% endblock %}
