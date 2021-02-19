@@ -56,8 +56,8 @@
             <meta property="og:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
             <meta property="twitter:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
         {% else %}
-            <meta property="og:image" content="https://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
-            <meta property="twitter:image" content="https://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+            <meta property="og:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
+            <meta property="twitter:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
         {% endif %}
 
         {% block meta_extra %}{% endblock %}
