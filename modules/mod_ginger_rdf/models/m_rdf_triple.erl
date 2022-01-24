@@ -95,16 +95,16 @@ ensure_predicate(Uri, Context) ->
 
 %% @doc Find predicate by URI
 -spec find_predicate(string(), #context{}) -> integer() | undefined.
-find_predicate(Uri, Context) ->
-    case m_rsc:uri_lookup(Uri, Context) of
+find_predicate(UriOrName, Context) ->
+    case m_rsc:uri_lookup(UriOrName, Context) of
         undefined ->
             %% Fall back to predicate name (instead of URI)
-            case m_predicate:get(Uri, Context) of
-                undefined ->
+            case m_predicate:name_to_id(UriOrName, Context) of
+                {ok, Id} ->
+                    Id;
+                _ ->
                     %% predicate needs to be created
-                    undefined;
-                PredicateProps ->
-                    proplists:get_value(id, PredicateProps)
+                    undefined
             end;
         Id -> Id
     end.
