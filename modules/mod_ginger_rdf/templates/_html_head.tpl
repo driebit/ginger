@@ -1,1 +1,3 @@
-    <link rel="alternate" type="application/ld+json" href="{% url rsc_json_ld id=id %}">
+{% if id %}
+    {% include "_html_head_ginger_rdf.tpl" %}
+{% endif %}
