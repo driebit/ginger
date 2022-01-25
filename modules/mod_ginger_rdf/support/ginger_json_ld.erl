@@ -76,7 +76,7 @@ resolve_predicate(Predicate, Context) ->
             %% Predicate with namespace, e.g, "dcterms:date"
             case resolve_context_key(Namespace, Context) of
                 undefined ->
-                    lager:error("Namespace ~p not registered", [Namespace]),
+                    lager:error("Namespace ~p for ~p not registered", [Namespace, Predicate]),
                     undefined;
                 ResolvedNamespace ->
                     erlang:iolist_to_binary([ResolvedNamespace, Property])
