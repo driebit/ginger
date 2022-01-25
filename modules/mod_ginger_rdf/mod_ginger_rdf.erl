@@ -118,7 +118,8 @@ event(#postback{message = {admin_connect_select, Args}}, Context) ->
         predicate = proplists:get_value(predicate, Args),
         object = z_context:get_q("object", Context),
         object_props = [
-            {title, z_context:get_q("object_title", Context)}
+            {title, z_context:get_q("object_title", Context)},
+            {category, proplists:get_value(category, Args, rdf)}
         ]
     },
     case m_rdf_triple:insert(Triple, Context) of
