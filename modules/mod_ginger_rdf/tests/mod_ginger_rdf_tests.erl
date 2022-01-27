@@ -156,6 +156,9 @@ deserialize_test() ->
 
 rdf_export_test() ->
     Context = context(),
+    %% Predicate must have a URI to be included in export.
+    m_rsc:update(author, [{uri, <<"http://schema.org/author">>}], z_acl:sudo(Context)),
+
     Props = [
         {category, text},
         {title, {trans, [
@@ -163,7 +166,16 @@ rdf_export_test() ->
         ]}},
         {is_published, true}
     ],
+    AuthorProps = [
+        {category, person},
+        {title, {trans, [
+            {nl, <<"Auteur van het artikel">>}
+        ]}},
+        {is_published, true}
+    ],
     {ok, Id} = m_rsc:insert(Props, z_acl:sudo(Context)),
+    {ok, AuthorId} = m_rsc:insert(AuthorProps, z_acl:sudo(Context)),
+    {ok, _EdgeId} = m_edge:insert(Id, author, AuthorId, z_acl:sudo(Context)),
     Rdf = m_rdf_export:to_rdf(Id, Context),
     Map = ginger_json_ld:serialize_to_map(Rdf),
     ?assertEqual(
@@ -185,6 +197,17 @@ rdf_export_test() ->
                 #{
                     <<"@value">> => <<"Een mooie titel">>,
                     <<"@language">> => nl
+                }
+            ],
+            <<"http://schema.org/author">> => [
+                #{
+                    <<"@id">> => m_rsc:p(AuthorId, uri, Context),
+                    <<"http://schema.org/title">> => [
+                        #{
+                            <<"@value">> => <<"Auteur van het artikel">>,
+                            <<"@language">> => nl
+                        }
+                    ]
                 }
             ]
         },
