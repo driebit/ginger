@@ -111,7 +111,9 @@ property_to_triples({website, Value}, _Properties, _Context) ->
 property_to_triples(_Property, _Properties, _Context) ->
     [].
 
-edge_to_triples(_Edge, <<"http://schema.org/", _/binary>> = Uri, Subject, Object, Context) ->
+edge_to_triples(Edge, <<"https://schema.org/", Predicate/binary>>, Subject, Object, Context) ->
+    edge_to_triples(Edge, <<"http://schema.org/", Predicate/binary>>, Subject, Object, Context);
+edge_to_triples(_Edge, <<?NS_SCHEMA_ORG, _/binary>> = Uri, Subject, Object, Context) ->
     %% Return all edges with schema.org predicate URIs.
     with_title(
         [
