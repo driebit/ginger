@@ -162,15 +162,13 @@ rdf_export_test() ->
     Props = [
         {category, text},
         {title, {trans, [
-            {nl, <<"Een mooie titel">>}
+            {nl, <<"Een mooie titel">>} %% Multilingual property.
         ]}},
         {is_published, true}
     ],
     AuthorProps = [
         {category, person},
-        {title, {trans, [
-            {nl, <<"Auteur van het artikel">>}
-        ]}},
+        {title, <<"Auteur van het artikel">>}, %% Monolingual property.
         {is_published, true}
     ],
     {ok, Id} = m_rsc:insert(Props, z_acl:sudo(Context)),
@@ -205,7 +203,7 @@ rdf_export_test() ->
                     <<"http://schema.org/title">> => [
                         #{
                             <<"@value">> => <<"Auteur van het artikel">>,
-                            <<"@language">> => nl
+                            <<"@language">> => en %% The site's default language.
                         }
                     ]
                 }
