@@ -7,7 +7,7 @@
                     <ul class="keywords__list">
                         {% for id in results %}
                             {% if id.is_visible %}
-                                <li><a href="{% url page id=rsc.id type="subject" direction="object" %}" class="keywords__list__btn">{{ m.rsc[id].title }}</a></li>
+                                <li><a href="{% url page id=id type="subject" direction="object" %}" class="keywords__list__btn">{{ m.rsc[id].title }}</a></li>
                             {% endif %}
                         {% endfor %}
                     </ul>

@@ -9,17 +9,19 @@
             {% include "page-title/page-title.tpl" id=id title=_"Everything for: "++id.title %}
         </article>
     </div>
-    {% if q.id %}
+    {% if id %}
     <aside class="main-aside">
-        {% if q.direction == 'subject' %}
-            {% with m.search.paged[{ginger_search hassubject=[q.id, q.type]  pagelen=6 page=q.page}] as result %}
-            {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
-            {% endwith %}
-        {% else %}
-            {% with m.search.paged[{ginger_search hasobject=[q.id, q.type] cat_exclude=['media'] pagelen=6 page=q.page}] as result %}
-            {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
-            {% endwith %}
-        {% endif %}
+        {% with type|default:"subject" as type %}
+            {% if direction == 'subject' %}
+                {% with m.search.paged[{ginger_search hassubject=[id, type] pagelen=6 page=q.page}] as result %}
+                    {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
+                {% endwith %}
+            {% else %}
+                {% with m.search.paged[{ginger_search hasobject=[id, type] cat_exclude=['media'] pagelen=6 page=q.page}] as result %}
+                    {% include "list/list.tpl" list_id="list--query" items=result extraClasses="" id=id %}
+                {% endwith %}
+            {% endif %}
+        {% endwith %}
     </aside>
     {% endif %}
 </main>
