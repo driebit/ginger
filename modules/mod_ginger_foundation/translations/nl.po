@@ -31,7 +31,7 @@ msgstr ""
 msgid "Enable comments"
 msgstr ""
 
-#: user/modules/mod_ginger_foundation/templates/all-in.tpl:11
+#: user/modules/mod_ginger_foundation/templates/page.keyword.tpl:9
 #, fuzzy
 msgid "Everything for: "
 msgstr "Alles voor: "
