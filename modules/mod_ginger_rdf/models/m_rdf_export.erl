@@ -5,6 +5,7 @@
     to_rdf/2,
     to_rdf/3,
     translations_to_rdf/3,
+    translations_to_rdf/4,
     with_original_media/4,
     with_thumbnail/4
 ]).
@@ -116,9 +117,14 @@ get_category_uri(Category, Context) ->
 
 -spec translations_to_rdf(m_rdf:predicate(), proplists:proplist(), z:context()) -> [m_rdf:triple()].
 translations_to_rdf(Predicate, Translations, Context) ->
+    translations_to_rdf(undefined, Predicate, Translations, Context).
+
+-spec translations_to_rdf(m_rdf:resource() | undefined, m_rdf:predicate(), proplists:proplist(), z:context()) -> [m_rdf:triple()].
+translations_to_rdf(Subject, Predicate, Translations, Context) ->
     lists:map(
         fun({Language, Value}) ->
             #triple{
+                subject = Subject,
                 predicate = Predicate,
                 object = #rdf_value{
                     language = Language,
