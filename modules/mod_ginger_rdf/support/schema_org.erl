@@ -233,7 +233,7 @@ with_title(Triples, Object, Context) ->
             Triples;
         Title ->
             Triples ++
-                m_rdf_export:translations_to_rdf(rdf_property:schema(<<"title">>), Title, Context)
+                m_rdf_export:translations_to_rdf(m_rsc:p(Object, uri, Context), rdf_property:schema(<<"title">>), Title, Context)
     end.
 
 image_object(Id, Context) ->
