@@ -308,6 +308,7 @@ triple(Subject, Predicate, #{<<"@value">> := Value}) ->
 triple(Subject, Predicate, Object) ->
     #triple{subject = Subject, predicate = Predicate, object = Object}.
 
+%% @deprecated Use triple_to_map instead
 triple_to_json(#triple{predicate = <<?NS_RDF, "type">>, type = resource, object = Object}) ->
     {<<"@type">>, Object};
 triple_to_json(#triple{type = literal, predicate = Predicate, object = Object}) ->
@@ -322,10 +323,14 @@ triple_to_map(#triple{object = #rdf_value{value = undefined}}, #rdf_resource{}) 
     undefined;
 triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Object}, #rdf_resource{id = Id}) when is_binary(Object) ->
     #{<<"@type">> => [Object]};
-triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined}}, #rdf_resource{id = Id}) ->
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined, type = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => [#{<<"@value">> => Object}]};
-triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang}}, #rdf_resource{id = Id}) ->
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined, type = Type}}, #rdf_resource{id = Id}) ->
+    #{Predicate => [#{<<"@value">> => Object, <<"@type">> => Type}]};
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang, type = undefined}}, #rdf_resource{id = Id}) ->
     #{Predicate => [#{<<"@value">> => Object, <<"@language">> => Lang}]};
+triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = Lang, type = Type}}, #rdf_resource{id = Id}) ->
+    #{Predicate => [#{<<"@value">> => Object, <<"@language">> => Lang, <<"@type">> => Type}]};
 triple_to_map(#triple{predicate = Predicate, object = #rdf_resource{} = Object}, #rdf_resource{}) ->
     %% Embedded objects.
     #{Predicate => [serialize_to_map(Object)]};
