@@ -23,29 +23,38 @@ Features
 
 ### Represent resources in RDF
 
-Enable mod_ginger_rdf in Zotonic, then request any page with content negotation,
-using the proper Accept header to get an RDF representation of the resource
-(where `123` is the id of some resource):
+Enable mod_ginger_rdf in Zotonic, then request any page with content
+negotiation, using the proper Accept header to get an RDF representation of the
+resource at its URI (where `123` is the id of some resource):
 
 ```bash
 curl -L -H Accept:application/ld+json http://yoursite.com/id/123
+curl -L -H Accept:text/turtle http://yoursite.com/id/123
 ```
 
-Only visible (published) resources will return data; any invisible resource
-returns a 404.
+For viewing in the browser, the JSON-LD RDF representation is also available at
+`http://yoursite.com/rdf/123`.
 
-Only predicates and categories with a real URI will be included in the output.
-If you’re missing one of your custom predicates, give it the URI of some
-property in one of the linked data vocabularies (for
-example `https://schema.org/Person`). You can do so in the admin, on the
-predicate’s edit page, under ‘Advanced’.
+#### Export rules
 
-The default representation uses
-the [Schema.org vocabulary](support/schema_org.erl), as
-[recommended by NDE](https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/#generic-data-model).
+The RDF export follows some rules.
+
+- Only visible (published) resources return data; any invisible resource returns
+  a 404.
+- Only edges with visible (published) objects are included in the output.
+- Only predicates that have a real URI are included in the output, so if you’re
+  missing a predicate, give it the URI of some property in one of the linked
+  data vocabularies (for example `http://schema.org/about`). You can do so in
+  the admin, on the predicate’s edit page, under ‘Advanced’.
+- The default representation uses the
+  [Schema.org vocabulary](support/schema_org.erl), as
+  [recommended by NDE](https://netwerk-digitaal-erfgoed.github.io/cm-implementation-guidelines/#generic-data-model).
+- Vocabularies can decide to include or exclude specific predicates.
 
 Observe the [`#rsc_to_rdf{}`](#changing-the-rdf-representation) notification to
-hook into the process.
+hook into the export process.
+
+#### JSON-LD serialization
 
 This JSON-LD serialization happens in two steps:
 
