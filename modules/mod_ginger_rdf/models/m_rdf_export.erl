@@ -59,6 +59,7 @@ edges_to_triples(Edges, Ontologies, Context) ->
     lists:filtermap(
         fun({Predicate, EdgesForPredicate}) ->
             Uri = m_rsc:p(Predicate, uri, Context),
+            VisibleEdgesForPredicate = lists:filter(fun (Edge) -> edge_is_visible(Edge, Context) end, EdgesForPredicate),
             case lists:flatten([
                 Ontology:edge_to_triples(
                     Predicate,
@@ -67,7 +68,7 @@ edges_to_triples(Edges, Ontologies, Context) ->
                     proplists:get_value(object_id, Edge),
                     Context
                 )
-                || Edge <- EdgesForPredicate, Ontology <- Ontologies
+                || Edge <- VisibleEdgesForPredicate, Ontology <- Ontologies
             ]) of
                 [] ->
                     false;
@@ -77,6 +78,11 @@ edges_to_triples(Edges, Ontologies, Context) ->
         end,
         Edges
     ).
+
+%% @doc The visibility of a Zotonic edge is determined by the visibility of its object.
+-spec edge_is_visible(proplists:proplist(), z:context()) -> boolean().
+edge_is_visible(Edge, Context) ->
+    m_rsc:is_visible(proplists:get_value(object_id, Edge), Context).
 
 -spec types(m_rsc:resource(), z:context()) -> [m_rdf:triple()].
 types(Category, Context) ->
