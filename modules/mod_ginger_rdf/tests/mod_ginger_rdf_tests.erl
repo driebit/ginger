@@ -183,13 +183,22 @@ rdf_export_test() ->
                 <<"http://purl.org/dc/dcmitype/Text">>
             ],
             <<"http://schema.org/dateCreated">> => [
-                #{<<"@value">> => m_rsc:p(Id, created, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, created, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/dateModified">> => [
-                #{<<"@value">> => m_rsc:p(Id, modified, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, modified, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/datePublished">> => [
-                #{<<"@value">> => m_rsc:p(Id, publication_start, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, publication_start, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/headline">> => [
                 #{
@@ -322,8 +331,8 @@ serialize_to_turtle_test() ->
     Expected = [
                 <<"<http://dinges.com/123> foaf:age <http://example.com/1>.">>,
                 <<"<http://example.com/1> foaf:age \"42\".">>,
-                <<"<http://dinges.com/123> foaf:age _:104915255.">>,
-                <<"_:104915255 foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> foaf:age _:121203557.">>,
+                <<"_:121203557 foaf:age \"42\".">>,
                 <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.">>,
                 <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".">>,
                 <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".">>,
