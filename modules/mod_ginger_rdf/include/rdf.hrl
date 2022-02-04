@@ -15,7 +15,8 @@
 
 -record(rdf_value, {
     value :: term(),
-    language = undefined :: undefined | binary()
+    language = undefined :: undefined | binary(),
+    type = undefined :: undefined | ginger_uri:uri()
 }).
 
 -record(triple, {

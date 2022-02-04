@@ -31,21 +31,21 @@ property_to_triples({created, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"dateCreated">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({date_start, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"startDate">>),
-            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
+            object = date(Value)
         }
     ];
 property_to_triples({date_end, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"endDate">>),
-            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
+            object = date(Value)
         }
     ];
 property_to_triples({license, Value}, _Properties, _Context) ->
@@ -60,7 +60,7 @@ property_to_triples({modified, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"dateModified">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({name_first, Value}, _Properties, _Context) ->
@@ -92,7 +92,7 @@ property_to_triples({publication_start, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"datePublished">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({subtitle, Value}, _Properties, Context) ->
@@ -264,3 +264,9 @@ image_object(Id, Context) ->
         Context
     ),
     #rdf_resource{triples = WithThumbnail}.
+
+date(Value) ->
+    #rdf_value{
+        value = z_datetime:undefined_if_invalid_date(Value),
+        type = rdf_property:schema(<<"DateTime">>)
+    }.
