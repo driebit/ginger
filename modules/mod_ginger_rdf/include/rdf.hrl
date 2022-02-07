@@ -19,6 +19,11 @@
     type = undefined :: undefined | ginger_uri:uri()
 }).
 
+-record(rdf_resource, {
+    id :: ginger_uri:uri(),
+    triples = [] :: [m_rdf:triple()]
+}).
+
 -record(triple, {
     %% DEPRECATED: type property is deprecated. Construct an object = #rdf_value{value = ...}
     %% instead.
@@ -27,13 +32,8 @@
     subject :: undefined | binary(),
     subject_props = [] :: proplists:proplist(),
     predicate :: m_rdf:predicate(),
-    object :: ginger_uri:uri() | #rdf_value{},
+    object :: ginger_uri:uri() | #rdf_value{} | #rdf_resource{},
     object_props = [] :: proplists:proplist()
-}).
-
--record(rdf_resource, {
-    id :: ginger_uri:uri(),
-    triples = [] :: [m_rdf:triple()]
 }).
 
 -record(rdf_search, {
