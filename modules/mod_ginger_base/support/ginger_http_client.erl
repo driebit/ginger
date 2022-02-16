@@ -12,8 +12,8 @@
     url_with_query_string/2
 ]).
 
-%% Total request timeout - 10 minutes
--define(HTTPC_TIMEOUT, 600000).
+%% Total request timeout - 30 minutes
+-define(HTTPC_TIMEOUT, 1800000).
 
 %% Connect timeout, server has to respond before this - 20 seconds
 -define(HTTPC_TIMEOUT_CONNECT, 20000).
