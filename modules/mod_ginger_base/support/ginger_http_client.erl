@@ -12,6 +12,13 @@
     url_with_query_string/2
 ]).
 
+%% Total request timeout - 30 minutes
+-define(HTTPC_TIMEOUT, 1800000).
+
+%% Connect timeout, server has to respond before this - 20 seconds
+-define(HTTPC_TIMEOUT_CONNECT, 20000).
+
+
 %% @doc GET a URL.
 -spec get(string()) -> map() | undefined.
 get(Url) ->
@@ -44,8 +51,12 @@ request(Method, Url, Headers) when is_binary(Url) ->
     request(Method, binary_to_list(Url), Headers);
 request(get, Url, Headers) ->
     lager:debug("ginger_http_client GET: ~s ~p", [Url, Headers]),
-
-    case handle_response(httpc:request(get, {Url, Headers}, [], []), Url) of
+    Result = httpc:request(
+        get,
+        {Url, Headers},
+        http_options(),
+        httpc_options()),
+    case handle_response(Result, Url) of
         {error, _} ->
             undefined;
         Response ->
@@ -54,12 +65,33 @@ request(get, Url, Headers) ->
 
 request(RequestMethod, Url, Headers, Data) ->
     JsonData = jsx:encode(Data),
-    case handle_response(httpc:request(RequestMethod, {Url, Headers, "application/json", JsonData}, [], []), Url) of
+    Result = httpc:request(
+        RequestMethod,
+        {Url, Headers, "application/json", JsonData},
+        http_options(),
+        httpc_options()),
+    case handle_response(Result, Url) of
         {error, _} ->
             undefined;
         Response ->
             decode(Response)
     end.
+
+% Use ssl {verify, verify_none} as we don't have the tls_certificates
+% application installed in Ginger 0.x sites.
+http_options() ->
+    [
+        {ssl, [{verify, verify_none}]},
+        {autoredirect, true},
+        {relaxed, true},
+        {timeout, ?HTTPC_TIMEOUT},
+        {connect_timeout, ?HTTPC_TIMEOUT_CONNECT}
+    ].
+
+httpc_options() ->
+    [
+        {body_format, binary}
+    ].
 
 url_with_query_string(Url, Params) when is_map(Params) ->
     url_with_query_string(Url, maps:to_list(Params));
@@ -84,13 +116,13 @@ handle_response(Response, Url) ->
             Body
         }} when StatusCode >= 400 ->
             lager:error("~p error ~p for URL ~p: ~p", [?MODULE, StatusCode, Url, Body]),
-            {error, {StatusCode, list_to_binary(Body)}};
+            {error, {StatusCode, Body}};
         {ok, {
             {_HTTP, _StatusCode, _OK},
             Headers,
             Body
         }} ->
-            {proplists:get_value("content-type", Headers), list_to_binary(Body)};
+            {proplists:get_value("content-type", Headers), Body};
         JsonResponse ->
             lager:error("~p unknown error for URL ~p: ~p", [?MODULE, Url, JsonResponse]),
             {error, JsonResponse}
