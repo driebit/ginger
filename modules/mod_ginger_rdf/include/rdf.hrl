@@ -3,6 +3,7 @@
 -define(NS_RDF_SCHEMA, "http://www.w3.org/2000/01/rdf-schema#").
 -define(NS_FOAF, "http://xmlns.com/foaf/0.1/").
 -define(NS_GEO, "http://www.w3.org/2003/01/geo/wgs84_pos#").
+-define(NS_HYDRA, "http://www.w3.org/ns/hydra/core#").
 -define(NS_DCTERMS, "http://purl.org/dc/terms/").
 -define(NS_DCTYPE, "http://purl.org/dc/dcmitype/").
 -define(NS_VCARD, "http://www.w3.org/2006/vcard/ns#").

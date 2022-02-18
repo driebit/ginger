@@ -19,6 +19,8 @@ triple_to_turtle(#triple{subject = S, predicate = P, object = #rdf_resource{} = 
         end,
     Ts = [triple_to_turtle(T#triple{subject = O}) || T <- Rsc#rdf_resource.triples],
     [to_line(subject(S), predicate(P), O), Ts];
+triple_to_turtle(#triple{object = undefined}) ->
+    [];
 triple_to_turtle(#triple{subject = undefined, predicate = P, object = O}) ->
     to_line(<<"[]">>, predicate(P), object(O));
 triple_to_turtle(#triple{subject = S, predicate = P, object = O}) ->

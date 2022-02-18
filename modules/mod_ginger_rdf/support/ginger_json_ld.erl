@@ -321,6 +321,8 @@ triple_to_json(#triple{type = resource, predicate = Predicate, object = Object})
 triple_to_map(#triple{object = #rdf_value{value = undefined}}, #rdf_resource{}) ->
     %% Ignore empty triples without object.
     undefined;
+triple_to_map(#triple{object = undefined}, #rdf_resource{}) ->
+    undefined;
 triple_to_map(#triple{subject = Id, predicate = <<?NS_RDF, "type">>, object = Object}, #rdf_resource{id = Id}) when is_binary(Object) ->
     #{<<"@type">> => [Object]};
 triple_to_map(#triple{subject = Id, predicate = Predicate, object = #rdf_value{value = Object, language = undefined, type = undefined}}, #rdf_resource{id = Id}) ->
@@ -358,7 +360,9 @@ merge_triples(#rdf_resource{} = RdfResource, Subject) ->
 
 %% @doc Merge a key/value map into an accumulator map, combining multiple
 %% values for the same key.
--spec merge_values(map(), map()) -> map().
+-spec merge_values(undefined | map(), map()) -> map().
+merge_values(undefined, Acc) ->
+    Acc;
 merge_values(KeyValue, Acc) ->
     %% Read current key from KeyValue pair
     Key = hd(maps:keys(KeyValue)),
