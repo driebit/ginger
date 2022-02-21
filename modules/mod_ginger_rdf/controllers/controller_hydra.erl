@@ -79,8 +79,8 @@ to_hydra(ReqData, State) ->
     } = z_search:search_pager({query, [{query_id, QueryId}]}, Page, Limit, Context),
     RdfResults = [m_rdf_export:to_rdf(Id, [State#state.ontology], Context) || Id <- Result],
 
-    HydraCollectionUrl = hydra_url(page(RequestArgs, undefined), Context), %% The Hydra collection.
-    HydraViewUrl = hydra_url(page(RequestArgs, Page), Context), %% The paged view on the Hydra collection.
+    HydraCollectionUrl = hydra_url(QueryId, page(RequestArgs, undefined), Context), %% The Hydra collection.
+    HydraViewUrl = hydra_url(QueryId, page(RequestArgs, Page), Context), %% The paged view on the Hydra collection.
     #rdf_resource{
         id = HydraCollectionUrl,
         triples = [
@@ -102,22 +102,22 @@ to_hydra(ReqData, State) ->
             #triple{
                 subject = HydraViewUrl,
                 predicate = rdf_property:hydra(<<"first">>),
-                object = hydra_url(page(RequestArgs, 1), Context)
+                object = hydra_url(QueryId, page(RequestArgs, 1), Context)
             },
             #triple{
                 subject = HydraViewUrl,
                 predicate = rdf_property:hydra(<<"next">>),
-                object = hydra_url(page(RequestArgs, Next), Context)
+                object = hydra_url(QueryId, page(RequestArgs, Next), Context)
             },
             #triple{
                 subject = HydraViewUrl,
                 predicate = rdf_property:hydra(<<"previous">>),
-                object = hydra_url(page(RequestArgs, Previous), Context)
+                object = hydra_url(QueryId, page(RequestArgs, Previous), Context)
             },
             #triple{
                 subject = HydraViewUrl,
                 predicate = rdf_property:hydra(<<"last">>),
-                object = hydra_url(page(RequestArgs, Pages), Context)
+                object = hydra_url(QueryId, page(RequestArgs, Pages), Context)
             }
             |
             [#triple{
@@ -136,10 +136,10 @@ serialize(RdfResource, json_ld) ->
 serialize(RdfResource, turtle) ->
     ginger_turtle:serialize(RdfResource).
 
-hydra_url(undefined, _) ->
+hydra_url(_, undefined, _) ->
     undefined;
-hydra_url(QueryParams, Context) ->
-    z_dispatcher:url_for(hydra, [{use_absolute_url, true} | QueryParams], undefined, Context).
+hydra_url(QueryId, QueryParams, Context) ->
+    z_dispatcher:url_for(hydra, [{use_absolute_url, true}, {id, QueryId} | QueryParams], undefined, Context).
 
 page(_, false) ->
     undefined;
