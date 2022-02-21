@@ -129,7 +129,7 @@ serialize_recursive_test() ->
     Expected = #{
         <<"@id">> => <<"http://dinges.com/123">>,
         <<"owl:sameAs">> => [
-            <<"http://dinges.com/123">>
+            #{<<"@id">> => <<"http://dinges.com/123">>}
         ]
     },
     ?assertEqual(Expected, Map).
