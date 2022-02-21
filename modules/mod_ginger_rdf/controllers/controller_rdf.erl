@@ -33,9 +33,9 @@ service_available(ReqData, Args) ->
     },
     case wrq:method(ReqData) of
         'OPTIONS' ->
-            {{halt, 204}, z_context:get_reqdata(Context), State};
+            {{halt, 204}, z_context:get_reqdata(Context2), State};
         _ ->
-            {true, z_context:get_reqdata(Context), State}
+            {true, z_context:get_reqdata(Context2), State}
     end.
 
 resource_exists(ReqData, State = #state{context = Context}) ->
