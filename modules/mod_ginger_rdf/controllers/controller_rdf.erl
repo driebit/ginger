@@ -16,7 +16,7 @@
 
 -record(state, {
     serialization :: atom(),
-    ontology :: atom(),
+    ontologies :: atom(),
     context :: z:context()
 }).
 
@@ -29,7 +29,8 @@ service_available(ReqData, Args) ->
     State = #state{
         context = Context2,
         serialization = proplists:get_value(serialization, Args),
-        ontology = proplists:get_value(ontology, Args)
+        %% Fall back to {ontology, a_single_ontology} for BC.
+        ontologies = proplists:get_value(ontologies, Args, [proplists:get_value(ontology, Args)])
     },
     case wrq:method(ReqData) of
         'OPTIONS' ->
@@ -58,7 +59,7 @@ id(Context) ->
 
 rdf(ReqData, State) ->
     Context1 = z_context:set_reqdata(ReqData, State#state.context),
-    RdfResource = m_rdf_export:to_rdf(id(Context1), [State#state.ontology], Context1),
+    RdfResource = m_rdf_export:to_rdf(id(Context1), State#state.ontologies, Context1),
     SerializedRdf = serialize(RdfResource, State#state.serialization),
     ?WM_REPLY(SerializedRdf, Context1).
 
