@@ -4,21 +4,15 @@
     allow_all_cors/1
 ]).
 
+-include_lib("zotonic.hrl").
+
 %% @doc Unlike controller_api:set_cors_header, this function doesn't look at the configuration but unconditionally
-%% exposes this controller between domains. This makes sharing content much easier.
+%% exposes the context between domains. This makes sharing content much easier.
+-spec allow_all_cors(z:context()) -> z:context().
 allow_all_cors(Context) ->
-    lists:foldl(
-        fun({K, Def}, Acc) ->
-            case m_config:get_value(site, K, Def, Context) of
-                undefined ->
-                    Acc;
-                V ->
-                    z_context:set_resp_header(atom_to_list(K), V, Acc)
-            end
-        end,
-        Context,
+    z_context:set_cors_headers(
         [
-            {'Access-Control-Allow-Origin', "*"},
-            {'Access-Control-Max-Age', undefined}
-        ]
+            {"Access-Control-Allow-Origin", "*"}
+        ],
+        Context
     ).
