@@ -13,6 +13,7 @@ Features:
 
 1. [Features](#features)
    * [Represent resources in RDF](#represent-resources-in-rdf)
+   * [Represent collections in RDF](#represent-collections-in-rdf)
    * [Inline JSON-LD](#inline-json-ld)
    * [Link Zotonic resources to linked data](#link-zotonic-resources-to-linked-data)
 2. [Notifications](#notifications)
@@ -34,6 +35,18 @@ curl -L -H Accept:text/turtle http://yoursite.com/id/123
 
 For viewing in the browser, the JSON-LD RDF representation is also available at
 `http://yoursite.com/rdf/123`.
+
+#### Represent collections in RDF
+
+Resource collections, including resources of the category `collection`, `query`
+and their subcategories, can be represented as
+[Hydra](https://www.hydra-cg.com/spec/latest/core/) collections. Hydra offers
+standardized, machine-readable pagination.
+
+```bash
+curl -L -H Accept:application/ld+json http://yoursite.com/hydra/123
+curl -L -H Accept:text/turtle http://yoursite.com/hydra/123
+```
 
 #### Export rules
 

@@ -25,7 +25,7 @@ init(Args) ->
 
 service_available(ReqData, Args) ->
     Context = z_context:new_request(ReqData, [], ?MODULE),
-    Context2 = set_cors_headers(Context),
+    Context2 = cors_headers:allow_all_cors(Context),
     State = #state{
         context = Context2,
         serialization = proplists:get_value(serialization, Args),
@@ -69,24 +69,3 @@ serialize(RdfResource, json_ld) ->
     jsx:encode(JsonLd);
 serialize(RdfResource, turtle) ->
     ginger_turtle:serialize(RdfResource).
-
-%% @doc Always enable CORS for this controller.
-%%      Unlike controller_api:set_cors_header, this function doesn't look at the
-%%      configuration but unconditionally exposes this controller between
-%%      domains. This makes sharing content much easier.
-set_cors_headers(Context) ->
-    lists:foldl(
-        fun ({K, Def}, Acc) ->
-            case m_config:get_value(site, K, Def, Context) of
-                undefined ->
-                    Acc;
-                V ->
-                    z_context:set_resp_header(atom_to_list(K), V, Acc)
-            end
-        end,
-        Context,
-        [
-            {'Access-Control-Allow-Origin', "*"},
-            {'Access-Control-Max-Age', undefined}
-        ]
-    ).

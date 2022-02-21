@@ -6,6 +6,7 @@
     dcterms/1,
     foaf/1,
     geo/1,
+    hydra/1,
     rdf/1,
     rdfs/1,
     schema/1,
@@ -30,6 +31,10 @@ foaf(Property) ->
 -spec geo(binary()) -> ginger_uri:uri().
 geo(Property) ->
     property(?NS_GEO, Property).
+
+-spec hydra(binary()) -> ginger_uri:uri().
+hydra(Property) ->
+    property(?NS_HYDRA, Property).
 
 -spec rdf(binary()) -> ginger_uri:uri().
 rdf(Property) ->
