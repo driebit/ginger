@@ -112,7 +112,7 @@ to_hydra(ReqData, State) ->
             #triple{
                 subject = HydraViewUrl,
                 predicate = rdf_property:hydra(<<"previous">>),
-                object = hydra_url(QueryId, page(RequestArgs, Previous), Context)
+                object = hydra_url(QueryId, page(RequestArgs, other_page(Previous, Page)), Context)
             },
             #triple{
                 subject = HydraViewUrl,
@@ -152,3 +152,10 @@ page(QueryParams, PageNumber) when is_number(PageNumber) andalso PageNumber >= 1
 
 id(Context) ->
     m_rsc:rid(z_context:get_q(id, Context), Context).
+
+%% @doc Even if we're on the first page, Zotonic returns a previous page (with value 1). Filter that out to hide the
+%% previous link when we're on the first page.
+other_page(Same, Same) ->
+    false;
+other_page(Other, _) ->
+    Other.
