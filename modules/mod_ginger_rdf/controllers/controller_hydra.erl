@@ -19,6 +19,7 @@
 -record(state, {
     ontologies :: [atom()],
     limit :: non_neg_integer(),
+    query_type :: atom(),
     context :: z:context()
 }).
 
@@ -31,6 +32,7 @@ service_available(ReqData, Args) ->
     State = #state{
         context = Context2,
         ontologies = proplists:get_value(ontologies, Args),
+        query_type = proplists:get_value(query, Args, query),
         limit = proplists:get_value(limit, Args, 100)
     },
     case wrq:method(ReqData) of
@@ -76,8 +78,8 @@ to_hydra(ReqData, State) ->
         total = Total,
         next = Next,
         prev = Previous
-    } = z_search:search_pager({query, [{query_id, QueryId}]}, Page, Limit, Context),
-    RdfResults = [m_rdf_export:to_rdf(Id, State#state.ontologies, Context) || Id <- Result],
+    } = z_search:search_pager({State#state.query_type, search_arguments(QueryId, Context)}, Page, Limit, Context),
+    RdfResults = [m_rdf_export:to_rdf(Id, [State#state.ontologies], Context) || Id <- Result, m_rsc:is_visible(Id, Context)],
 
     HydraCollectionUrl = hydra_url(QueryId, page(RequestArgs, undefined), Context), %% The Hydra collection.
     HydraViewUrl = hydra_url(QueryId, page(RequestArgs, Page), Context), %% The paged view on the Hydra collection.
@@ -159,3 +161,14 @@ other_page(Same, Same) ->
     false;
 other_page(Other, _) ->
     Other.
+
+%% @doc If the resource has a query text, use that to search.
+%%      If not, fall back to the resource's outgoing haspart edges.
+-spec search_arguments(m_rsc:resource(), z:context()) -> proplists:proplist().
+search_arguments(Id, Context) ->
+    case m_rsc:p(Id, query, Context) of
+        <<>> ->
+            [{is_published, true}, {hassubject, [Id, haspart]}];
+        _QueryText ->
+            [{is_published, true}, {query_id, Id}]
+    end.
