@@ -120,7 +120,7 @@ serialize_recursive_test() ->
         triples = [
             #triple{
                 subject = <<"http://dinges.com/123">>,
-                predicate = <<"owl:sameAs">>,
+                predicate = <<"some:predicate">>,
                 object = <<"http://dinges.com/123">>
             }
         ]
@@ -128,7 +128,7 @@ serialize_recursive_test() ->
     Map = ginger_json_ld:serialize_to_map(Resource),
     Expected = #{
         <<"@id">> => <<"http://dinges.com/123">>,
-        <<"owl:sameAs">> => [
+        <<"some:predicate">> => [
             #{<<"@id">> => <<"http://dinges.com/123">>}
         ]
     },
