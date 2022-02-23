@@ -347,7 +347,7 @@ triple_to_map(#triple{}, #rdf_resource{}) ->
 %% @doc Nest values from referenced resources.
 merge_triples(#rdf_resource{id = Subject}, Subject) ->
     %% Prevent infinite recursion when subject references itself.
-    Subject;
+    #{<<"@id">> => Subject};
 merge_triples(#rdf_resource{} = RdfResource, Subject) ->
     lists:foldl(
         fun(#triple{} = Triple, Map) ->
