@@ -17,7 +17,7 @@
 -include_lib("../include/rdf.hrl").
 
 -record(state, {
-    ontologies :: atom(),
+    ontologies :: [atom()],
     limit :: non_neg_integer(),
     context :: z:context()
 }).
