@@ -16,7 +16,7 @@
 
 -record(state, {
     serialization :: atom(),
-    ontologies :: atom(),
+    ontologies :: [atom()],
     context :: z:context()
 }).
 
