@@ -17,7 +17,7 @@
 -include_lib("../include/rdf.hrl").
 
 -record(state, {
-    ontology :: atom(),
+    ontologies :: [atom()],
     limit :: non_neg_integer(),
     query_type :: atom(),
     context :: z:context()
@@ -31,7 +31,7 @@ service_available(ReqData, Args) ->
     Context2 = cors_headers:allow_all_cors(Context),
     State = #state{
         context = Context2,
-        ontology = proplists:get_value(ontology, Args),
+        ontologies = proplists:get_value(ontologies, Args),
         query_type = proplists:get_value(query, Args, query),
         limit = proplists:get_value(limit, Args, 100)
     },
@@ -79,7 +79,7 @@ to_hydra(ReqData, State) ->
         next = Next,
         prev = Previous
     } = z_search:search_pager({State#state.query_type, search_arguments(QueryId, Context)}, Page, Limit, Context),
-    RdfResults = [m_rdf_export:to_rdf(Id, [State#state.ontology], Context) || Id <- Result, m_rsc:is_visible(Id, Context)],
+    RdfResults = [m_rdf_export:to_rdf(Id, [State#state.ontologies], Context) || Id <- Result, m_rsc:is_visible(Id, Context)],
 
     HydraCollectionUrl = hydra_url(QueryId, page(RequestArgs, undefined), Context), %% The Hydra collection.
     HydraViewUrl = hydra_url(QueryId, page(RequestArgs, Page), Context), %% The paged view on the Hydra collection.
