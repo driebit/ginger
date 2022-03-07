@@ -19,6 +19,7 @@
 -spec rsc(m_rsc:resource(), z:context()) -> resource_properties() | undefined.
 rsc(Id, Context) when is_integer(Id) ->
     Rsc = #{ <<"id">> => Id
+           , <<"name">> => m_rsc:p(Id, name, null, Context)
            , <<"title">> => translations(Id, title, Context)
            , <<"subtitle">> => translations(Id, subtitle, Context)
            , <<"body">> => translations(Id, body, Context)
