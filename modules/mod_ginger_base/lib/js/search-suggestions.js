@@ -49,6 +49,11 @@
                     this._closeSearch();
                 }
                 break;
+
+                case 'OnBlur': {
+                    this._closeSearch();
+                }
+                break;
             }
         },
 
@@ -122,11 +127,15 @@
 
             }
 
-            $(document).on('keyup', function(e) {
+            me.element.on('keyup', function(e) {
                 if (e.keyCode === 13) {
                     me.update('OnReturnPressed');
                 }
             });
+
+            me.element.on('blur', function() {
+                me.update('OnBlur');
+            })
 
             me.element.on('keyup', function(e) {
                 var key = e.keyCode;
