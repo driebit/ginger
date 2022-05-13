@@ -17,7 +17,7 @@
                         <tr>
                             <td>
                                 {% block logo %}
-                                    <img src="/lib/images/logo.png" width="150">
+                                    <img src="/lib/images/logo.png" width="150" alt="{_ Logo _}">
                                 {% endblock %}
                             </td>
                             <td width="20"></td>
