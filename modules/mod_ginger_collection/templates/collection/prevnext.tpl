@@ -1,5 +1,5 @@
 {% if q.query_id and q.current %}
-    {% with index|default:(m.config.mod_ginger_collection.index.value ++ "," ++ m.config.mod_elasticsearch.index.value) as index %}
+    {% with index|default:(m.ginger_collection.collection_index ++ "," ++ m.ginger_collection.default_index) as index %}
     {% with search|collection_query_pager:index:q.query_id:q.current as prevnext %}
     {% with prevnext|first as prev %}
     {% with prevnext|last as next %}

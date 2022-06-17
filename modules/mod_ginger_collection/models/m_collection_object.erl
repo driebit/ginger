@@ -8,6 +8,10 @@
     m_find_value/3,
     m_to_list/2,
     m_value/2,
+
+    get/2,
+    store/3,
+
     get/3,
     store/4
 ]).
@@ -32,24 +36,49 @@ m_find_value(ObjectId, #m{value = Type}, Context) ->
 m_to_list(_, _Context) ->
     [].
 
-m_value(#m{value = Object}, _Context) ->
+m_value(#m{ value = ObjectId }, Context) when is_binary(ObjectId) ->
+    % ES 7+ object lookup
+    get(ObjectId, Context);
+m_value(#m{ value = Object }, _Context) ->
     Object.
 
+%% @doc For ES 7.x+
+get(Id, Context) ->
+    Index = m_ginger_collection:collection_index(Context),
+    elasticsearch2:get_doc(Index, Id, Context).
+
+store(Id, Document, Context) ->
+    Index = m_ginger_collection:collection_index(Context),
+    elasticsearch2:put_doc(Index, Id, Document, Context).
+
+
+%% @doc For ES 5.x with Types
 get(Type, Id, Context) ->
-    case erlastic_search:get_doc(
-        mod_ginger_collection:index(Context),
-        z_convert:to_binary(Type),
-        z_convert:to_binary(Id)
-    ) of
-        {ok, Object} when is_list(Object) ->
-            %% BC with jsx 2.0
-            maps:from_list(Object);
-        {ok, Object} when is_map(Object) ->
-            Object;
-        {error, _} ->
-            undefined
+    Index = m_ginger_collection:collection_index(Context),
+    case m_ginger_collection:is_elastic2(Context) of
+        true ->
+            elasticsearch2:get_doc(Index, Id, Context);
+        false ->
+            case erlastic_search:get_doc(
+                Index,
+                z_convert:to_binary(Type),
+                z_convert:to_binary(Id)
+            ) of
+                {ok, Object} when is_map(Object) ->
+                    Object;
+                {error, _} ->
+                    undefined
+            end
     end.
 
 store(Type, Id, Document, Context) ->
-    Index = mod_ginger_collection:index(Context),
-    elasticsearch:put_doc(Index, Type, Id, Document, Context).
+    Index = m_ginger_collection:collection_index(Context),
+    case m_ginger_collection:is_elastic2(Context) of
+        true ->
+            Document1 = Document#{
+                <<"es_type">> => Type
+            },
+            elasticsearch2:put_doc(Index, Id, Document1, Context);
+        false ->
+            elasticsearch:put_doc(Index, Type, Id, Document, Context)
+    end.
