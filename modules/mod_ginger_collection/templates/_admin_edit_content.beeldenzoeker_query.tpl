@@ -10,7 +10,6 @@
 {% block widget_show_minimized %}false{% endblock %}
 
 {% block widget_content %}
-{% with m.rsc[id] as r %}
 <fieldset>
 	<p class="notification notice">
 		{_ Here you can edit your elasticsearch query. _}
@@ -20,9 +19,19 @@
     	<label class="control-label" for="elastic_query">{_ Elasticsearch query _}</label>
     	<div>
     	    {% with "[]" as placeholder %}
-    	    <textarea class="form-control" id="{{ #elastic_query }}" name="elastic_query" rows="15" placeholder="{{ placeholder }}">{{ r.elastic_query }}</textarea>
+    	       <textarea class="form-control" id="{{ #elastic_query }}" name="elastic_query" rows="15" placeholder="{{ placeholder }}">{{ id.elastic_query }}</textarea>
     	    {% endwith %}
-    		{% wire id=#elastic_query type="change" postback={elastic_query_preview query_type="beeldenzoeker" rsc_id=id div_id=#elastic_query_preview target_id=#elastic_query index=m.config.mod_ginger_collection.index.value}  delegate="controller_admin_elasticsearch_edit" %}
+    		{% wire id=#elastic_query
+                    type="change"
+                    postback={elastic_query_preview
+                        query_type="beeldenzoeker"
+                        rsc_id=id
+                        div_id=#elastic_query_preview
+                        target_id=#elastic_query
+                        index=m.ginger_collection.collection_index
+                    }
+                    delegate=m.ginger_collection.query_preview_delegate
+            %}
     	</div>
     </div>
 
@@ -37,5 +46,4 @@
 		{% catinclude "_admin_query_preview.tpl" id result=m.search[{beeldenzoeker query_id=id id=id index=m.config.mod_ginger_collection.index.value pagelen=20}] %}
     </div>
 </fieldset>
-{% endwith %}
 {% endblock %}
