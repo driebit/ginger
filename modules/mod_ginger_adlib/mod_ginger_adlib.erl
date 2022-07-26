@@ -27,6 +27,7 @@
     start_link/1
 ]).
 
+-define(ADLIB_LIMIT, 100).
 
 -include_lib("zotonic.hrl").
 -include_lib("include/ginger_adlib.hrl").
@@ -48,19 +49,28 @@ pull_database_updates(Database, Since, StartFrom, Context) when is_tuple(Since) 
     Format = detect_modification_date_format(Database, "1900-01-01", Context),
     pull_database_updates(Database, z_datetime:format(Since, Format, Context), StartFrom, Context);
 pull_database_updates(Database, Since, StartFrom, Context) when is_binary(Since) ->
+    pull_database_updates_loop(Database, Since, StartFrom, 0, Context).
+
+pull_database_updates_loop(Database, Since, StartFrom, TotalAcc, Context) ->
+    lager:debug("mod_ginger_adlib: pulling records modified after ~s from database ~s",
+                [Since, Database]),
     Args = [
         {database, Database},
         {search, <<"modification>=", Since/binary>>}
     ],
-
-    #search_result{result = Records, total = Total} = z_search:search({adlib, Args}, {StartFrom, 20}, Context),
+    #search_result{result = Records, total = Total} = z_search:search({adlib, Args}, {StartFrom, ?ADLIB_LIMIT}, Context),
+    TotalAcc1 = TotalAcc + length(Records),
+    lager:debug("mod_ginger_adlib: pulled records ~p / ~p modified after ~s from database ~s",
+                [TotalAcc1, Total, Since, Database]),
     case Records of
         [] ->
-            lager:info("mod_ginger_adlib: Pulled ~p records modified after ~s from database ~s", [Total, Since, Database]),
+            ?zInfo("mod_ginger_adlib: Pulled total ~p records modified after ~s from database ~s",
+                   [TotalAcc1, Since, Database],
+                   Context),
             ok;
         _ ->
             [z_notifier:notify(adlib_update(Record, Database), Context) || Record <- Records],
-            pull_database_updates(Database, Since, StartFrom + 20, Context)
+            pull_database_updates_loop(Database, Since, StartFrom + ?ADLIB_LIMIT, TotalAcc1, Context)
     end.
 
 %% @doc Pull single record update from Adlib
@@ -124,7 +134,6 @@ detect_modification_date_format(Database, Since, Context) ->
         {database, Database},
         {search, <<"modification>=", ISO8601/binary>>}
     ],
-    
     case z_search:search({adlib, Args}, {1, 20}, Context) of
         #search_result{total = undefined} ->
             %% Try legacy format
@@ -138,14 +147,12 @@ start_link(Args) when is_list(Args) ->
 
 init(Args) ->
     {context, Context} = proplists:lookup(context, Args),
-    
     case m_config:get(?MODULE, databases, Context) of
         undefined ->
             m_config:set_prop(?MODULE, databases, list, [], Context);
         _Exists ->
             ok
     end,
-    
     {ok, #state{context=z_context:new(Context)}}.
 
 handle_call(Message, _From, State) ->

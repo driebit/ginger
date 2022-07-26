@@ -1,6 +1,6 @@
 %% @author Driebit <info@driebit.nl>
 %% @copyright 2015 Driebit
-%% @doc unique filter, return a list with unique ids
+%% @doc Check if a resource has a location_lat defined.
 %%
 %% Licensed under the Apache License, Version 2.0 (the "License");
 %% you may not use this file except in compliance with the License.
@@ -19,15 +19,21 @@
 -export([location_defined/2]).
 -include("zotonic.hrl").
 
+has_location(undefined, _Context) ->
+    false;
 has_location(RscId, Context) when is_integer(RscId) ->
     case m_rsc:p(RscId, location_lat, Context) of
         undefined ->
+            false;
+        <<>> ->
             false;
         _Lat ->
             true
     end;
 has_location({RscId, _}, Context) ->
-    has_location(RscId, Context).
+    has_location(RscId, Context);
+has_location(RscId, Context) ->
+    has_location(m_rsc:rid(RscId, Context), Context).
 
 location_defined(Data, Context) ->
     List = filter_make_list:make_list(Data, Context),
