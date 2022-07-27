@@ -78,7 +78,7 @@ get_resource(Endpoint, Uri, Properties) ->
     case query_rdf(Endpoint, Query) of
         undefined ->
             undefined;
-        [Rdf] ->
+        [Rdf|_] ->
             Rdf
     end.
 
