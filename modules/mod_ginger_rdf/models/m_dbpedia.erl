@@ -13,7 +13,8 @@
     get_resource/2,
     get_resource/3,
     is_dbpedia_uri/1,
-    is_wikidata_uri/1
+    is_wikidata_uri/1,
+    task_resource_update/3
 ]).
 
 -define(CACHE_TYPE, <<"m_dbpedia:uri:fetch">>).
@@ -51,31 +52,39 @@ get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
 
 -spec get_resource(Uri::binary(), Language::binary(), z:context()) -> m_rdf:rdf_resource() | undefined.
 get_resource(Uri, Language, Context) ->
-            get_resource_cached(Uri, Language, Context).
-    % z_depcache:memo(
-    %     fun() ->
-    %         get_resource_cached(Uri, Language, Context)
-    %     end,
-    %     {Uri, Language},
-    %     Context
-    % ).
+    get_resource_cached(Uri, Language, Context).
 
 get_resource_cached(Uri, Language, Context) ->
     case cache_lookup(Uri, Language, Context) of
         {error, enoent} ->
             get_resource_fetch(Uri, Language, undefined, Context);
         {ok, {stale, Data}} ->
-            % Try to refresh the cached data
-            get_resource_fetch(Uri, Language, Data, Context);
+            % Schedule a refresh of the cached data
+            Key = cache_key(Uri, Language),
+            z_pivot_rsc:insert_task(?MODULE, task_resource_update, Key, [ Uri, Language ], Context),
+            Data;
         {ok, {valid, Data}} ->
             Data
     end.
+
+%% @doc Async update of a dbpedia data. Ensures that the page rendering is protected
+%% for timeouts and other dbpedia fetch problems.
+task_resource_update(Uri, Language, Context) ->
+    case cache_lookup(Uri, Language, Context) of
+        {error, enoent} ->
+            get_resource_fetch(Uri, Language, undefined, Context);
+        {ok, {stale, Data}} ->
+            get_resource_fetch(Uri, Language, Data, Context);
+        {ok, {valid, _Data}} ->
+            nop
+    end,
+    ok.
 
 get_resource_fetch(Uri, Language, StaleData, Context) ->
     Key = cache_key(Uri, Language),
     case dbpedia:get_resource(<<"http://", Uri/binary>>, Language) of
         undefined ->
-            % Store errornous or stale data for an hour
+            % Store erroneous or stale data for an hour
             Till = z_datetime:next_hour( calendar:universal_time() ),
             TkvData = {dbpedia, StaleData, Till},
             z_notifier:first(

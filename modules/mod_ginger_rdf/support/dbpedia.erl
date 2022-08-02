@@ -32,7 +32,8 @@ search(#search_query{search = {dbpedia, Args}, offsetlimit = {Offset, Limit}}) -
                 )
             )
         ),
-    #search_result{result = query(Query, proplists:get_value(lang, Args, <<>>))}.
+    Language = z_convert:to_binary(proplists:get_value(lang, Args, <<>>)),
+    #search_result{result = query(Query, Language)}.
 
 describe(Resource) when is_list(Resource) ->
     describe(list_to_binary(Resource));
@@ -41,14 +42,44 @@ describe(<<"http://", _/binary>> = Resource) ->
 describe(Query) ->
     describe(Query, <<>>).
 
-describe(Query, Language) when Language =:= <<"nl">>; Language =:= <<"wikidata">>; Language =:= <<>> ->
-    sparql_client:describe(endpoint(Language), Query);
-describe(Resource, Language) when not is_list(Resource); not is_binary(Language) ->
-    describe(z_convert:to_binary(Resource), z_convert:to_binary(Language)).
+describe(Query, Language) when not is_binary(Query) ->
+    describe(z_convert:to_binary(Query), Language);
+describe(Query, Language) when not is_binary(Language) ->
+    describe(Query, z_convert:to_binary(Language));
+describe(Query, Language) ->
+    sparql_client:describe(endpoint(Language), Query).
 
 -spec get_resource(binary(), binary()) -> m_rdf:rdf_resource() | undefined.
 get_resource(Uri, Language) ->
-    get_resource(Uri, default_properties(), Language).
+    case get_resource(Uri, default_properties(), Language) of
+        #rdf_resource{ id = SubjectUri, triples = Triples } = Resource ->
+            case has_predicate(rdf_property:'dbpedia-owl'(<<"thumbnail">>), Triples) of
+                false ->
+                    case get_resource_thumbnail(SubjectUri) of
+                        #rdf_resource{ triples = ThumbTriples } ->
+                            Resource#rdf_resource{ triples = Triples ++ ThumbTriples };
+                        undefined ->
+                            Resource
+                    end;
+                true ->
+                    Resource
+            end;
+        undefined ->
+            undefined
+    end.
+
+%% @doc The nl dbpedia is missing the thumbnails of entries. Check if dbpedia.org
+%% has a thumbnail.
+get_resource_thumbnail(<<"http://nl.dbpedia.org/", Rest/binary>>) ->
+    Uri = <<"http://dbpedia.org/", Rest/binary>>,
+    get_resource(Uri, thumbnail_properties(), <<>>);
+get_resource_thumbnail(_Uri) ->
+    undefined.
+
+has_predicate(Predicate, Triples) ->
+    lists:any(
+        fun(#triple{ predicate = P }) -> P =:= Predicate end,
+        Triples).
 
 -spec get_resource(binary(), [binary()], binary()) -> m_rdf:rdf_resource() | undefined.
 get_resource(Uri, Properties, Language) ->
@@ -63,6 +94,13 @@ default_properties() ->
         rdf_property:'dbpedia-owl'(<<"abstract">>),
         rdf_property:foaf(<<"isPrimaryTopicOf">>),
         <<"http://nl.dbpedia.org/property/naam">>
+    ].
+
+%% @doc In the nl dbpedia we miss the thumbnail, fetch it from the 'en' dbpedia.
+-spec thumbnail_properties() -> [binary()].
+thumbnail_properties() ->
+    [
+        rdf_property:'dbpedia-owl'(<<"thumbnail">>)
     ].
 
 %% @doc Come up with alternative forms for RKD URIs, of which DBPedia has quite some.
@@ -91,13 +129,14 @@ parse_argument(_, _) ->
 
 query(Query, Language) when Language =:= <<"nl">>;
                             Language =:= <<"wikidata">>;
-                            Language =:= <<>>;
-                            Language =:= "nl" ->
+                            Language =:= <<>> ->
     sparql_client:query_rdf(endpoint(Language), Query).
 
-endpoint(<<>>) ->
-    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
 endpoint(Language) when is_list(Language) ->
     endpoint(list_to_binary(Language));
+endpoint(<<>>) ->
+    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
+endpoint(<<"en">>) ->
+    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
 endpoint(Language) ->
     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<Language/binary, ".">>).
