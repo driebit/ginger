@@ -52,14 +52,18 @@ describe(Query, Language) ->
 -spec get_resource(binary(), binary()) -> m_rdf:rdf_resource() | undefined.
 get_resource(Uri, Language) ->
     case get_resource(Uri, default_properties(), Language) of
-        #rdf_resource{ id = SubjectUri, triples = Triples } = Resource ->
+        #rdf_resource{ triples = Triples } = Resource ->
             case has_predicate(rdf_property:'dbpedia-owl'(<<"thumbnail">>), Triples) of
                 false ->
-                    case get_resource_thumbnail(SubjectUri) of
-                        #rdf_resource{ triples = ThumbTriples } ->
-                            Resource#rdf_resource{ triples = Triples ++ ThumbTriples };
+                    case get_resource_thumbnail(Triples) of
                         undefined ->
-                            Resource
+                            Resource;
+                        ImageUrl ->
+                            ThumbTriple = #triple{
+                                predicate = rdf_property:'dbpedia-owl'(<<"thumbnail">>),
+                                object = ImageUrl
+                            },
+                            Resource#rdf_resource{ triples = [ ThumbTriple | Triples ] }
                     end;
                 true ->
                     Resource
@@ -68,13 +72,35 @@ get_resource(Uri, Language) ->
             undefined
     end.
 
-%% @doc The nl dbpedia is missing the thumbnails of entries. Check if dbpedia.org
-%% has a thumbnail.
-get_resource_thumbnail(<<"http://nl.dbpedia.org/", Rest/binary>>) ->
-    Uri = <<"http://dbpedia.org/", Rest/binary>>,
-    get_resource(Uri, thumbnail_properties(), <<>>);
-get_resource_thumbnail(_Uri) ->
-    undefined.
+%% @doc The nl dbpedia is missing the thumbnails of entries. Fetch the thumbnail from
+%% the wikipedia page.
+get_resource_thumbnail(Triples) ->
+    case fetch_wikipedia_url(Triples) of
+        undefined ->
+            undefined;
+        WikipediaUrl ->
+            case z_url_metadata:fetch(WikipediaUrl) of
+                {ok, MD} ->
+                    z_url_metadata:p(image, MD);
+                {error, _} ->
+                    undefined
+            end
+    end.
+
+fetch_wikipedia_url(Triples) ->
+    Predicate = rdf_property:foaf(<<"isPrimaryTopicOf">>),
+    case lists:filtermap(
+        fun
+            (#triple{ predicate = P, object = Object }) when P =:= Predicate ->
+                {true, Object};
+            (_) ->
+                false
+        end,
+        Triples)
+    of
+        [ Url | _ ] -> Url;
+        [] -> undefined
+    end.
 
 has_predicate(Predicate, Triples) ->
     lists:any(
@@ -94,13 +120,6 @@ default_properties() ->
         rdf_property:'dbpedia-owl'(<<"abstract">>),
         rdf_property:foaf(<<"isPrimaryTopicOf">>),
         <<"http://nl.dbpedia.org/property/naam">>
-    ].
-
-%% @doc In the nl dbpedia we miss the thumbnail, fetch it from the 'en' dbpedia.
--spec thumbnail_properties() -> [binary()].
-thumbnail_properties() ->
-    [
-        rdf_property:'dbpedia-owl'(<<"thumbnail">>)
     ].
 
 %% @doc Come up with alternative forms for RKD URIs, of which DBPedia has quite some.
