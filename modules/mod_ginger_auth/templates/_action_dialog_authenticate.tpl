@@ -1,7 +1,7 @@
 {# A wrapper around the signup/login dialog that displays them in a tabbed view
 
 Params:
-redirect: URL to redirect to after succesful login
+redirect: URL to redirect to after successful login
 #}
 
 {% lib

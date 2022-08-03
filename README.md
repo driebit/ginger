@@ -150,7 +150,7 @@ Checking out sites
 2. Start the site from the [status site](http://zotonic.com/docs/latest/ref/status-site.html):
    http://localhost.
 3. Login and go to the modules page
-4. Deactive site module and activate it again
+4. Deactivate site module and activate it again
 5. Now the site should work properly
 
 Adding modules

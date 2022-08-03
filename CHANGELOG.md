@@ -91,7 +91,7 @@
 - 8ede8f9 [base] Add Mailchimp sign-up form (David de Boer)
 - 164ce5d [default] keywords styling toegevoegd (Dorien)
 - c753016 [edit] Style country select help text (Fred Pook)
-- 57858d0 [edit] Added country select help tekst and translations (Fred Pook)
+- 57858d0 [edit] Added country select help text and translations (Fred Pook)
 - 598e79b [foundation] shizzle bro (Dorien)
 - a10e630 [base] meta (Dorien)
 - 48316de [base] person (Danny Evenwel)

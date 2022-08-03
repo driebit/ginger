@@ -2,8 +2,8 @@
 
 This [Ginger](https://ginger.nl) module provides the following.
 
-1. Configurable banner trough config key
-2. Configurable banner for editors trough resource
+1. Configurable banner through config key
+2. Configurable banner for editors through resource
 
 ## How to add a banner for admins
 

@@ -1,13 +1,13 @@
 # mod_ginger_remark #
 
-A Zotonic module for enabeling comment like functionality. The main difference with the build in Zotonic module for comments is that remarks are actual resources in Zotonic instead of being stored in a seperate table.
+A Zotonic module for enabling comment like functionality. The main difference with the build in Zotonic module for comments is that remarks are actual resources in Zotonic instead of being stored in a separate table.
 
 Features:
 
 - Rich text editing
-- Inculde uploaded media
+- Include uploaded media
 - Embed external media
-- Edit exsisting remarks
+- Edit existing remarks
 - Compatibility with Zotonic's Access Control Rules
 
 Roadmap:

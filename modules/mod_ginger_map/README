@@ -13,7 +13,7 @@ nearest neighbours, use:
 
 	{% include "_map_nearby.tpl" id=id limit=INT container=STRING height=INT %}
 
-if limit=5, this tempate will show the nearest 5 locations.
+if limit=5, this template will show the nearest 5 locations.
 
 To display a collection of resources, do:
 
