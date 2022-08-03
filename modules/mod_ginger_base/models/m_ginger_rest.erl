@@ -193,7 +193,7 @@ mediaclasses(Context) ->
      ).
 
 %% @doc Get resource blocks.
--spec blocks(m_rsc:resouce(), z:context()) -> [map()].
+-spec blocks(m_rsc:resource(), z:context()) -> [map()].
 blocks(Id, Context) ->
     case m_rsc:p(Id, blocks, [], Context) of
         <<>> ->
