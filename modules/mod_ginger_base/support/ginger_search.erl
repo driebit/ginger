@@ -49,15 +49,24 @@ query_arguments(GingerArguments, Context) ->
     query_arguments(GingerArguments, defaults(), Context).
 
 query_arguments(GingerArguments, DefaultArguments, Context) ->
+    ReuseRequestArguments = proplists:get_value(qargs, GingerArguments),
+    RequestArgs =
+        if
+            ReuseRequestArguments ->
+                lists:filtermap(
+                    fun(Arg) ->
+                        case z_context:get_q(Arg, Context) of
+                            undefined -> false;
+                            Value -> {true, {Arg, Value}}
+                        end
+                    end,
+                    ?GINGER_SEARCH_ARGUMENTS
+                );
+            true ->
+                GingerArguments
+        end,
 
-    % This is a special use case that needs a better solution in Zotonic
-    Args1 = case z_context:get_q(filters, Context) of
-        undefined ->
-            GingerArguments;
-        Filters ->
-            lists:append([GingerArguments, [{filters, Filters}]])
-    end,
-    merge_ginger_args(Args1, DefaultArguments, Context).
+    merge_ginger_args(lists:append(GingerArguments, RequestArgs), DefaultArguments, Context).
 
 %% @doc Get categories marked unfindable that must be excluded from search results
 -spec get_unfindable_categories(#context{}) -> list().
