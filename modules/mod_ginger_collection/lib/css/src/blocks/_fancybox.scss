@@ -30,35 +30,3 @@
     from { opacity: 1; }
     to   { opacity: 0; }
 }
-
-.zoom-help {
-	display: flex;
-    align-items: center;
-    justify-content: center;
-	width: 70px;
-    height: 70px;
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 100;
-    background: rgba($black,0.5);
-    transform: translate(-50%, -50%);
-    color: $white;
-    animation: fadeOut 2s 1;
-    animation-fill-mode: forwards;
-    animation-delay: 1s;
-    pointer-events: none;
-
-	&:before {
-		@extend .has-icon;
-		@extend .icon--search:before;
-		font-size: 30px;
-	}
-
-	&:after {
-		content: '+';
-		height: 10px;
-		position: absolute;
-		top: 18px;
-	}
-}
