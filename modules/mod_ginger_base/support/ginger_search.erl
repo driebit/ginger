@@ -49,10 +49,9 @@ query_arguments(GingerArguments, Context) ->
     query_arguments(GingerArguments, defaults(), Context).
 
 query_arguments(GingerArguments, DefaultArguments, Context) ->
-    ReuseRequestArguments = proplists:get_value(qargs, GingerArguments),
     RequestArgs =
-        if
-            ReuseRequestArguments ->
+        case proplists:get_value(qargs, GingerArguments) of
+            true ->
                 lists:filtermap(
                     fun(Arg) ->
                         case z_context:get_q(Arg, Context) of
@@ -60,10 +59,9 @@ query_arguments(GingerArguments, DefaultArguments, Context) ->
                             Value -> {true, {Arg, Value}}
                         end
                     end,
-                    ?GINGER_SEARCH_ARGUMENTS
-                );
-            true ->
-                GingerArguments
+                    ?GINGER_SEARCH_ARGUMENTS);
+            _ ->
+                []
         end,
 
     merge_ginger_args(lists:append(GingerArguments, RequestArgs), DefaultArguments, Context).
