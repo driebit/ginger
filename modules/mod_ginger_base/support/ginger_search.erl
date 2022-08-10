@@ -304,7 +304,7 @@ parse_argument(Arg) ->
 
 parse_predicate(P) ->
     case P of
-        [Node, PredName] -> [Node, z_convert:to_atom(PredName)];
+        [Node, PredName] -> [Node, erlang:binary_to_existing_atom(PredName)];
         _ -> P
     end.
 
