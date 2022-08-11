@@ -20,6 +20,8 @@
     custompivots,
     filters,
     has_geo,
+    hassubjects,
+    hasobjects,
     is_findable,
     keyword,
     ongoing_on_date,
@@ -164,7 +166,7 @@ parse_argument({Key, <<"undefined">>}) ->
 parse_argument({hassubjects, Subjects}) ->
     lists:map(
         fun(Subject) ->
-            {hassubject, Subject}
+            {hassubject, parse_predicate(Subject)}
         end,
         Subjects
     );
@@ -172,7 +174,7 @@ parse_argument({hassubjects, Subjects}) ->
 parse_argument({hasobjects, Objects}) ->
     lists:map(
         fun(Object) ->
-            {hasobject, Object}
+            {hasobject, parse_predicate(Object)}
         end,
         Objects
     );
@@ -306,6 +308,12 @@ parse_argument({boost_featured, true}) ->
 
 parse_argument(Arg) ->
     [Arg].
+
+parse_predicate(P) ->
+    case P of
+        [Node, PredName] -> [Node, erlang:binary_to_existing_atom(PredName)];
+        _ -> P
+    end.
 
 date_facet(Property) ->
     %% A facet on a date property is a min/max range.
