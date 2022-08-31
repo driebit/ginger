@@ -123,7 +123,10 @@
 
             me.suggestions.removeClass('is-scrolable');
             me.suggestions.hide();
-            me.searchInput.prop('disabled', true);
+
+            if (element.data("param-auto-disable") === true){
+                me.searchInput.prop('disabled', true);
+            }
 
             var observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
@@ -208,11 +211,17 @@
             if(close) {
                 me.suggestions.hide();
                 me.searchForm.removeClass('is-visible');
-                me.searchInput.prop('disabled', true);
                 if (me.toggleButton) me.toggleButton.removeClass('is-active');
+
+                if (me.element.data("param-auto-disable") === true){
+                    me.searchInput.prop('disabled', true);
+                }
             } else {
                 me.searchForm.toggleClass('is-visible');
-                me.searchInput.prop('disabled', false);
+
+                if (me.element.data("param-auto-disable") === true){
+                    me.searchInput.prop('disabled', false);
+                }
             }
 
             me.searchInput.val('');
