@@ -7,6 +7,7 @@
     suggestionsclass|default:"search-suggestions__suggestions",
     placeholder|default:_"Search",
     buttonlabel|if_undefined:_"Search",
+    auto_disable|default:true,
     iconclass
 as
     formclass,
@@ -16,6 +17,7 @@ as
     suggestionsclass,
     placeholder,
     buttonlabel,
+    auto_disable,
     iconclass
 %}
 
@@ -32,6 +34,7 @@ as
             data-param-wire="show-suggestions-{{ #identifier }}"
             data-param-results="search-suggestions__suggestions-{{ #identifier }}"
             data-param-togglebutton="{{ togglebutton }}"
+            data-param-auto-disable="{{ auto_disable }}"
           />
           <button type="submit" class="{{ buttonclass }}" title="{_ Search _}">
           {% if iconclass %}
