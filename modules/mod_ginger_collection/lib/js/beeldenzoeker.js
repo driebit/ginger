@@ -36,6 +36,18 @@ $(document).ready(function () {
         beforeLoad: function () {
             /* You can use callbacks to customize or disable title */
             this.title = false;
+        },
+        afterShow: function () {
+            $('.fancybox-inner').prepend('<div class="zoom-help"></div>');
+
+            $('.fancybox-image')
+                .wrap('<span style="display:inline-block"></span>')
+                .css('display', 'block')
+                .parent()
+                .zoom({
+                    magnify: 1.25,
+                    on: 'click'
+                });
         }
     });
 });
