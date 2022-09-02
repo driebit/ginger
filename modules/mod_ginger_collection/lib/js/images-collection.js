@@ -19,6 +19,7 @@ $(document).ready(function () {
         'scrolling': false,
         "padding": 0,
         'type': 'image',
+        'clickContent': false,
         'tpl': {
             error: '<p class="fancybox-error"></p>'
         },
@@ -36,6 +37,16 @@ $(document).ready(function () {
         beforeLoad: function () {
             /* You can use callbacks to customize or disable title */
             this.title = false;
+        },
+        afterShow: function () {
+            $('.fancybox-inner').prepend('<div class="zoom-help"></div>');
+
+            $('.fancybox-image')
+                .parent()
+                .zoom({
+                    magnify: 1.25,
+                    on: 'click'
+                });
         }
     });
 });
