@@ -178,6 +178,10 @@ $.widget("ui.search_ui", {
             json = atob(hash),
             values = jQuery.parseJSON(json);
 
+        // When pages link to the search page with certain filters enabled, facets are not present in the hash, so we add them here.
+        // If they would not be added, they would not be requested from the server and they cannot be displayed.
+        values.facets = this.getMergedFacets();
+
         $.proxy(me.setWidgetsState(values), me);
 
         if (me.blankSearchStarted && me.searchOnLoad == false) {
