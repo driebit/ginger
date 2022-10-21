@@ -57,7 +57,8 @@ get(Type, Id, Context) ->
     Index = m_ginger_collection:collection_index(Context),
     case m_ginger_collection:is_elastic2(Context) of
         true ->
-            elasticsearch2:get_doc(Index, Id, Context);
+            DocId = mod_elasticsearch2:typed_id(Id, Type),
+            elasticsearch2:get_doc(Index, DocId, Context);
         false ->
             case erlastic_search:get_doc(
                 Index,
@@ -78,7 +79,8 @@ store(Type, Id, Document, Context) ->
             Document1 = Document#{
                 <<"es_type">> => Type
             },
-            elasticsearch2:put_doc(Index, Id, Document1, Context);
+            DocId = mod_elasticsearch2:typed_id(Id, Type),
+            elasticsearch2:put_doc(Index, DocId, Document1, Context);
         false ->
             elasticsearch:put_doc(Index, Type, Id, Document, Context)
     end.
