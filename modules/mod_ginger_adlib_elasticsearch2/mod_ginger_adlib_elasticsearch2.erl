@@ -39,8 +39,9 @@ observe_adlib_update(#adlib_update{date = _Date, database = Database, record = #
     MappedRecord1 = MappedRecord#{
         <<"es_type">> => Database
     },
-    case elasticsearch2:put_doc(index(Context), Priref, MappedRecord1, Context) of
-        {ok, _} ->
+    DocId = mod_elasticsearch2:typed_id(Priref, Database),
+    case mod_elasticsearch2:put_doc(index(Context), DocId, MappedRecord1, Context) of
+        ok ->
             ok;
         {error, Message} ->
             lager:error("Record with priref ~s from database ~p could not be saved to Elasticsearch: ~p", [Priref, Database, Message])
