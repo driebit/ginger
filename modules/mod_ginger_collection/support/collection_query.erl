@@ -49,7 +49,13 @@ parse_query_term(Term, Values, QueryArgs) when
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
     Term =:= <<"dcterms:subject.rdfs:label.keyword">>;
     Term =:= <<"schema:about.rdfs:label.keyword">>;
-    Term =:= <<"rdf:type.rdfs:label.keyword">>
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/gebouwType.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/location.http://schemas.delving.eu/nave/terms/municipality.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/architectLabel.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/monumentStatus.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/religieuzeStroming.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/kloosterOrde.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/gewijdAan.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>
 ->
     QueryArgs ++ lists:map(
         fun(Value) ->
