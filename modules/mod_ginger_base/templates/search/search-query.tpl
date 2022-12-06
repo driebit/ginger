@@ -28,7 +28,8 @@
         list_template|default:"list/list-item-vertical.tpl",
         list_id|default:"list--query",
         list_class|default:"list--vertical",
-        index|default:(m.config.mod_elasticsearch.index.value),
+        index|default:(m.config.mod_elasticsearch2.index.value)
+             |default:(m.config.mod_elasticsearch.index.value),
         collection|default:false
     as
         type,
