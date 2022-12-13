@@ -9,5 +9,5 @@ vary(_Params, _Context) -> nocache.
 % Example: `<a href="{{ m.rsc.knowledgebase_query.page_url }}#{% ginger_search_hash hassubjects=[blk.rsc_id] type="list"|to_binary %}">`
 % Note that adding a `type` is required
 render(Params, _Vars, Context) ->
-    Hash = base64:encode(jsx:encode(maps:from_list(Params))),
+    Hash = filter_urlencode:urlencode(jsx:encode(maps:from_list(Params)), Context),
     {ok, z_render:render(Hash, Context)}.
