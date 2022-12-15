@@ -166,7 +166,7 @@
     &:hover,
     &:active,
     &:focus {
-        @extend %btn--primary;
+        @extend %btn--primary, :hover;
     }
 
     + .list__more {

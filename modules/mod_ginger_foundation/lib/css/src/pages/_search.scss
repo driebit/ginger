@@ -162,7 +162,7 @@
 
     &:after {
         @extend .has-icon;
-        @extend .icon--arrow-down;
+        @extend .icon--arrow-down, :before;
         @include size(width, 20);
         @include size(height, 20);
         position: absolute;
@@ -226,7 +226,7 @@
 
     &:after {
         @extend .has-icon;
-        @extend .icon--arrow-down;
+        @extend .icon--arrow-down, :before;
         position: relative;
         top: -1px;
         margin-left: 5px;
