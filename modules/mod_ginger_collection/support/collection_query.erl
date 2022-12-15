@@ -52,6 +52,7 @@ parse_query_term(Term, Values, QueryArgs) when
     Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/religieuzeStroming.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>;
     Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/kloosterOrde.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>;
     Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/gewijdAan.http://www.w3.org/2004/02/skos/core#prefLabel.@value.keyword">>;
+    Term =:= <<"http://www_openarchives_org/ore/terms/aggregates.http://schemas.delving.eu/nave/terms/existenceStatus.@value.keyword">>;
     % other usages
     Term =:= <<"object_category.rdfs:label.keyword">>;
     Term =:= <<"dcterms:spatial.rdfs:label.keyword">>;
