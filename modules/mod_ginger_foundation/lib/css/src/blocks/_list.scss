@@ -156,23 +156,9 @@
 }
 
 .list__more {
+    @extend %btn--primary;
     display: block;
-    @extend %btn;
     margin: 0 auto;
-    background: $mainThemeColor;
-    color: $white;
-    border-radius: $interfaceRadius;
-
-    &:hover,
-    &:active,
-    &:focus {
-        @extend :hover, %btn--primary;
-    }
-
-    + .list__more {
-        margin-top: 20px;
-        background: lighten($mainThemeColor, 20);
-    }
 }
 
 .list__item--vertical {
