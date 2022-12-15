@@ -1,9 +1,11 @@
+@use "sass:math";
+
 @function strip-unit($num) {
-    @return $num / ($num * 0 + 1);
+    @return math.div($num, $num * 0 + 1);
 }
 
 @function px-to-rem($value) {
-    @return  $value/10;
+    @return  $value*0.1;
 }
 
 /* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
@@ -171,7 +173,7 @@
         display: block;
         content: "";
         width: 100%;
-        padding-top: ($height / $width) * 100%;
+        padding-top: math.div($height, $width) * 100%;
     }
 
     > div {
