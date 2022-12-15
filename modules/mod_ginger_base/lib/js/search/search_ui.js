@@ -162,7 +162,7 @@ $.widget("ui.search_ui", {
             mergedValues = me.getMergedValues();
 
         var json = JSON.stringify(mergedValues);
-        var hash = btoa(json);
+        var hash = encodeURIComponent(json);
 
         window.location.hash = hash;
 
@@ -174,9 +174,17 @@ $.widget("ui.search_ui", {
     hashChanged: function() {
 
         var me = this,
-            hash = window.location.hash.substring(1, window.location.hash.length),
-            json = atob(hash),
+            hash = window.location.hash.substring(1, window.location.hash.length);
+
+        var json, values;
+        try {
+            json = decodeURIComponent(hash);
             values = jQuery.parseJSON(json);
+        } catch {
+            // Try base64 encoding for backwards compatibility
+            json = atob(hash);
+            values = jQuery.parseJSON(json);
+        }
 
         // When pages link to the search page with certain filters enabled, facets are not present in the hash, so we add them here.
         // If they would not be added, they would not be requested from the server and they cannot be displayed.
