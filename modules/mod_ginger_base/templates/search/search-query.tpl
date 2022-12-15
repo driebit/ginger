@@ -64,9 +64,6 @@
         collection
 %}
 
-{% print filters %}
-{% print custompivots %}
-
     {% if type == "list" %}
 
     {% with m.search.paged[{ginger_search
