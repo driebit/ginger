@@ -1,10 +1,11 @@
+// This is meant as an example screen.css as new sites
+
 // Global
-@import 'src/variables';
-@import 'src/mixins';
-@import 'src/base';
-@import 'src/icons';
-@import 'src/buttons';
-@import 'src/buttons';
+@import 'mod_ginger_foundation/lib/css/src/variables';
+@import 'mod_ginger_foundation/lib/css/src/mixins';
+@import 'mod_ginger_foundation/lib/css/src/base';
+@import 'mod_ginger_foundation/lib/css/src/icons';
+@import 'mod_ginger_foundation/lib/css/src/buttons';
 
 
 //Vendors
@@ -12,11 +13,11 @@
 @import 'mod_ginger_base/lib/css/vendors/slick';
 
 // Blocks
-@import 'src/blocks/';
+@import 'mod_ginger_foundation/lib/css/src/blocks/';
 
 // Layout
-@import 'src/layout/';
+@import 'mod_ginger_foundation/lib/css/src/layout/';
 
 
 // Pages
-@import 'src/pages/';
+@import 'mod_ginger_foundation/lib/css/src/pages/';
