@@ -7,7 +7,7 @@
 
     &:after {
         @extend .has-icon;
-        @extend .icon--search:before;
+        @extend :before, .icon--search;
         @include size(font-size, 25);
     }
 
@@ -19,7 +19,7 @@
         color: $mainThemeColor;
 
         &:after {
-            @extend .icon--close:before;
+            @extend :before, .icon--close;
         }
     }
 }
@@ -40,7 +40,7 @@
 
         &:before {
             @extend .has-icon;
-            @extend .icon--search:before;
+            @extend :before, .icon--search;
             position: absolute;
             top: 14px;
             left: 10px;

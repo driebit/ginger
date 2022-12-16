@@ -44,7 +44,7 @@
         left: -25px;
 
         &:before {
-            @extend .icon--arrow-left:before;
+            @extend .icon--arrow-left;
             left: -1px;
         }
     }
@@ -57,7 +57,7 @@
         right: -25px;
 
         &:before {
-            @extend .icon--arrow-right:before;
+            @extend .icon--arrow-right;
             left: 1px;
         }
     }
@@ -72,7 +72,7 @@
 
     &:before {
         @extend .has-icon;
-        @extend .icon--close:before;
+        @extend .icon--close;
         @include size(font-size, 14);
     }
 }

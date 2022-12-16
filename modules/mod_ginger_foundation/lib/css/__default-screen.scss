@@ -1,98 +1,23 @@
-// If you have globbing
+// This is meant as an example screen.css as new sites
 
 // Global
-
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/variables';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/mixins';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/base';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/icons';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/buttons';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/form';
-
-//Vendors
-@import '../../../../../modules/mod_ginger_base/lib/css/vendors/jquery.fancybox';
-@import '../../../../../modules/mod_ginger_base/lib/css/vendors/slick';
-
-// Blocks
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/*';
-
-// Layout
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/*';
-
-// Pages
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/*';
-
-// Otherwise, these are te
-
-// Global
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/variables';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/mixins';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/base';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/icons';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/buttons';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/buttons';
+@import 'mod_ginger_foundation/lib/css/src/variables';
+@import 'mod_ginger_foundation/lib/css/src/mixins';
+@import 'mod_ginger_foundation/lib/css/src/base';
+@import 'mod_ginger_foundation/lib/css/src/icons';
+@import 'mod_ginger_foundation/lib/css/src/buttons';
 
 
 //Vendors
-@import '../../../../../modules/mod_ginger_base/lib/css/vendors/jquery.fancybox';
-@import '../../../../../modules/mod_ginger_base/lib/css/vendors/slick';
+@import 'mod_ginger_base/lib/css/vendors/jquery.fancybox';
+@import 'mod_ginger_base/lib/css/vendors/slick';
 
 // Blocks
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/1layout-extends';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/1menu-extends';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/1page-actions-extends';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/actors';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/advanced-search';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/attached-media';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/back-to-top';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/banner';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/category-of';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/comments';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/content-group-nav';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/copyrights';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/dialog-language';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/dialog-profile';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/fancybox';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/favorite';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/foldout-button';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/global-search';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/home-search';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/keywords';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/list-header';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/list';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/map';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/masthead';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/media';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/meta';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/modal';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/page-actions';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/page-nav';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/pagination';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/part-of';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/person';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/published';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/remark-pager';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/remarks';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/share';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/summary';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/blocks/toggle-menu';
+@import 'mod_ginger_foundation/lib/css/src/blocks/';
 
 // Layout
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/content';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/foldout';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/footer';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/global-nav';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/main-aside';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/meta';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/page-actions';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/survey';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/layout/zprint';
+@import 'mod_ginger_foundation/lib/css/src/layout/';
 
 
 // Pages
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/edit';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/home';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/login';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/no-masthead';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/person';
-@import '../../../../../modules/mod_ginger_foundation/lib/css/src/pages/search';
+@import 'mod_ginger_foundation/lib/css/src/pages/';
