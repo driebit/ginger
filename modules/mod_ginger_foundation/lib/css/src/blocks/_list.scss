@@ -159,6 +159,12 @@
     @extend %btn--primary;
     display: block;
     margin: 0 auto;
+    border-radius: $interfaceRadius;
+
+    + .list__more {
+        margin-top: 20px;
+        background: lighten($mainThemeColor, 20);
+    }
 }
 
 .list__item--vertical {
