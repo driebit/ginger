@@ -68,6 +68,7 @@
 
     {% with m.search.paged[{ginger_search
 
+            filter=filters
             cat_exclude=cat_exclude
             cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
@@ -104,6 +105,7 @@
 
         {% with m.search[{ginger_search
             finished
+            filter=filters
             hassubjects=hassubjects
             hasobjects=hasobjects
             hascustompivots=custompivots
@@ -133,6 +135,7 @@
     {% else %}
 
         {% with m.search[{ginger_geo
+            filter=filters
             cat_exclude=cat_exclude
             cat_exclude_defaults=cat_exclude_defaults
             content_group=content_group
