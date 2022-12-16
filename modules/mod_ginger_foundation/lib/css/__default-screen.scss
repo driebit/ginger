@@ -1,10 +1,10 @@
 // Global
-@import '/lib/css/src/variables';
-@import '/lib/css/src/mixins';
-@import '/lib/css/src/base';
-@import '/lib/css/src/icons';
-@import '/lib/css/src/buttons';
-@import '/lib/css/src/buttons';
+@import 'src/variables';
+@import 'src/mixins';
+@import 'src/base';
+@import 'src/icons';
+@import 'src/buttons';
+@import 'src/buttons';
 
 
 //Vendors
@@ -12,11 +12,11 @@
 @import 'mod_ginger_base/lib/css/vendors/slick';
 
 // Blocks
-@import '/lib/css/src/blocks/';
+@import 'src/blocks/';
 
 // Layout
-@import '/lib/css/src/layout/';
+@import 'src/layout/';
 
 
 // Pages
-@import '/lib/css/src/pages/';
+@import 'src/pages/';
