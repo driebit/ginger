@@ -45,7 +45,12 @@ m_value(#m{ value = Object }, _Context) ->
 %% @doc For ES 7.x+
 get(Id, Context) ->
     Index = m_ginger_collection:collection_index(Context),
-    elasticsearch2:get_doc(Index, Id, Context).
+    case elasticsearch2:get_doc(Index, Id, Context) of
+        {ok, Doc} ->
+            Doc;
+        {error, _} ->
+            undefined
+    end.
 
 store(Id, Document, Context) ->
     Index = m_ginger_collection:collection_index(Context),
@@ -58,7 +63,16 @@ get(Type, Id, Context) ->
     case m_ginger_collection:is_elastic2(Context) of
         true ->
             DocId = mod_elasticsearch2:typed_id(Id, Type),
-            elasticsearch2:get_doc(Index, DocId, Context);
+            case elasticsearch2:get_doc(Index, DocId, Context) of
+                {ok, Doc} ->
+                    Doc;
+                {error, enoent} ->
+                    lager:info("m_collection_object: document not found '~s' index '~s'",
+                               [ DocId, Index ]),
+                    undefined;
+                {error, _} ->
+                    undefined
+            end;
         false ->
             case erlastic_search:get_doc(
                 Index,
