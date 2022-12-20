@@ -2,7 +2,7 @@
     <div>
         {% button class="btn btn-default" text=_"Delete Adlib page index..."
             action={confirm text=[
-                                _"Are you sure you want to delete the Adlin index?",
+                                _"Are you sure you want to delete the Adlib index?",
                                 "<br><br>",
                                 _"You will need to reimport all documents to fill it again."
                             ]
