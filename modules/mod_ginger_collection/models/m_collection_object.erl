@@ -26,12 +26,20 @@ m_find_value(uri, #m{value = undefined}, Context) ->
         ],
         Context
     );
-m_find_value(Type, #m{value = undefined} = M, _Context) ->
-    M#m{value = Type};
+m_find_value(Property, #m{value = undefined} = M, Context) ->
+    Property2 = z_convert:to_binary(Property),
+    case mod_elasticsearch2:typed_id_split(Property2) of
+        {Type, <<>>} -> M#m{value = Type};
+        {_Id, _Type} -> get(Property2, Context)
+    end;
 m_find_value(Property, #m{value = #{<<"_index">> := _Index} = Object}, _Context) ->
     maps:get(z_convert:to_binary(Property), Object);
 m_find_value(ObjectId, #m{value = Type}, Context) ->
-    get(Type, ObjectId, Context).
+    ObjectId2 = z_convert:to_binary(ObjectId),
+    case mod_elasticsearch2:typed_id_split(ObjectId2) of
+        {_Type, <<>>} -> get(Type, ObjectId2, Context);
+        {_Id, _Type} -> get(ObjectId2, Context)
+    end.
 
 m_to_list(_, _Context) ->
     [].
