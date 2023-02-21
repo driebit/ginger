@@ -51,7 +51,7 @@
 
 	&:before {
 		@extend .has-icon;
-		@extend .icon--search:before;
+		@extend .icon--search, :before;
 		font-size: 30px;
 	}
 
