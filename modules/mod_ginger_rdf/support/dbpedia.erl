@@ -75,7 +75,7 @@ get_resource(Uri, Language) ->
 %% @doc The nl dbpedia is missing the thumbnails of entries. Fetch the thumbnail from
 %% the wikipedia page.
 get_resource_thumbnail(Triples) ->
-    case ?DEBUG(fetch_wikipedia_url(Triples)) of
+    case fetch_wikipedia_url(Triples) of
         <<"http://", HostPath/binary>> ->
             get_url_image(<<"https://", HostPath/binary>>);
         <<"https://", _/binary>> = URL ->
