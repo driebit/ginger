@@ -61,4 +61,5 @@ jobs:
                 working-directory: ${{ env.ZOTONIC_DIR }}
                 env:
                     ERL: "erl -noshell"
+                    ZOTONIC_DBHOST: postgres
                 run: $GITHUB_WORKSPACE/scripts/runtests.sh
