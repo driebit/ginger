@@ -21,18 +21,22 @@ jobs:
         env:
             ZOTONIC_DIR: /tmp/zotonic
 
+        # Start PostgreSQL wth 'zotonic' as the default user.
         services:
-            postgres:
-                image: postgres:9.5.5-alpine
-                env:
-                    POSTGRES_USER: zotonic
-                ports:
-                    - 5432:5432
-                options: >-
-                    --health-cmd pg_isready
-                    --health-interval 10s
-                    --health-timeout 5s
-                    --health-retries 5
+          postgres:
+            image: postgres:14
+            env:
+              POSTGRES_DB: zotonic
+              POSTGRES_USER: zotonic
+              POSTGRES_PASSWORD: zotonic
+            # Set health checks to wait until postgres has started
+            options: >-
+              --health-cmd pg_isready
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
+            ports:
+              - 5432:5432
 
         steps:
             -   name: Checkout
