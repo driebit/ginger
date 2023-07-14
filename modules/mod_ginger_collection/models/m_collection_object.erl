@@ -75,7 +75,7 @@ get(Type, Id, Context) ->
                 {ok, Doc} ->
                     Doc;
                 {error, enoent} ->
-                    lager:info("m_collection_object: document not found '~s' index '~s'",
+                    lager:debug("m_collection_object: document not found '~s' index '~s'",
                                [ DocId, Index ]),
                     undefined;
                 {error, _} ->
