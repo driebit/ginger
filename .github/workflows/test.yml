@@ -46,7 +46,7 @@ jobs:
                 run: |
                     git clone https://github.com/zotonic/zotonic.git $ZOTONIC_DIR --branch 0.x
                     mkdir -p ~/.zotonic/0 ${ZOTONIC_DIR}/user
-                    sed "s|\.\.\/ginger/modules|$GITHUB_WORKSPACE/modules|" config/zotonic.config > ~/.zotonic/0/zotonic.config
+                    sed "s|\.\.\/ginger/modules|$GITHUB_WORKSPACE/modules|" config/zotonic-test.config > ~/.zotonic/0/zotonic.config
 
             -   name: Install dependencies
                 run: |
