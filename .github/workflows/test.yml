@@ -7,7 +7,16 @@ on:
 
 jobs:
     test:
-        runs-on: ubuntu-20.04
+        name: Test on OTP ${{ matrix.otp_version }}
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+          matrix:
+            otp_version: [21.3]
+            os: [ubuntu-latest]
+
+        container:
+          image: erlang:${{ matrix.otp_version }}
 
         env:
             ZOTONIC_DIR: /tmp/zotonic
@@ -29,13 +38,6 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v2.4.0
 
-            -   name: Set up Erlang
-                uses: erlef/setup-beam@v1.10.0
-                with:
-                    otp-version: "21.3"
-                env:
-                    ImageOS: ubuntu20
-
             -   name: Install and configure Zotonic
                 run: |
                     git clone https://github.com/zotonic/zotonic.git $ZOTONIC_DIR --branch 0.x
@@ -45,6 +47,7 @@ jobs:
             -   name: Install dependencies
                 run: |
                     git clone https://github.com/driebit/mod_elasticsearch.git modules/mod_elasticsearch
+                    git clone https://github.com/driebit/mod_elasticsearch2.git modules/mod_elasticsearch2
 
             -   name: Compile
                 working-directory: ${{ env.ZOTONIC_DIR }}
