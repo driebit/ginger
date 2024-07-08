@@ -239,8 +239,7 @@ compact_predicate(Predicate) ->
 %% @doc Deserialize a JSON-LD document into an RDF resource.
 -spec deserialize(tuple() | list()) -> #rdf_resource{}.
 deserialize(JsonLd) when is_map(JsonLd) ->
-    Context = maps:get(<<"@context">>, JsonLd, #{}),
-    deserialize_with_context(undefined, JsonLd, Context);
+    deserialize_with_context(undefined, JsonLd, #{});
 deserialize(JsonLd) ->
     %% Fall back to mochijson {struct, ...} structure
     open(JsonLd).
@@ -248,8 +247,7 @@ deserialize(JsonLd) ->
 %% Guide the parser; indicate that we are actually looking for a specific id
 %% so we don't get confused when we encounter multiple subjects in the jsonld.
 deserialize(Id, JsonLd) when is_map(JsonLd) ->
-    Context = maps:get(<<"@context">>, JsonLd, #{}),
-    deserialize_with_context(Id, JsonLd, Context).
+    deserialize_with_context(Id, JsonLd, #{}).
 
 deserialize_with_context(Id, JsonLd, Context) ->
     LocalContext = maps:get(<<"@context">>, JsonLd, #{}),
