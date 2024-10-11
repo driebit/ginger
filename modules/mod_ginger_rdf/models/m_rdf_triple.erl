@@ -149,7 +149,7 @@ remove_empty(Other) ->
     Other.
 
 % A triple is considered empty if it doesn't add any new information, aka iff:
-% 1. its object is empty (see 'has_empty_object')
+% 1. its object is empty (see 'is_empty_object')
 % 2. there are no 'subject_props' nor 'object_props'
 -spec is_empty(rdf:triple()) -> boolean().
 is_empty(#triple{object = Object, subject_props = [], object_props = []}) ->
