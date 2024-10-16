@@ -24,4 +24,6 @@ uri(<<"https://", _/binary>> = Uri) ->
 https(<<"http://", Uri/binary>>) ->
     <<"https://", Uri/binary>>;
 https(<<"https://", _/binary>> = Uri) ->
-    Uri.
+    Uri;
+https(<<"httpss://", Uri/binary>>) ->
+    <<"https://", Uri/binary>>.
