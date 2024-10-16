@@ -7,7 +7,11 @@
     insert/2,
     m_find_value/3,
     m_to_list/2,
-    m_value/2
+    m_value/2,
+
+    remove_empty/1,
+    replace_html/1,
+    replace_html/2
 ]).
 
 -include_lib("zotonic.hrl").
@@ -127,3 +131,74 @@ create_predicate(Uri, Context) ->
         {error, Reason} ->
             {error, Reason}
     end.
+
+
+% Removes all empty triples, recursively, from an 'rdf_resource', a 'triple' or
+% a list of either; returns any other value unaltered.
+% Note: the type of the output is always the same as the input's.
+remove_empty(List) when is_list(List) ->
+    % First remove the empty triples from the resources/triples in the list:
+    NewList = lists:map(fun remove_empty/1, List),
+    % Then filter the items in the list themselves:
+    [Item || Item <- NewList, not is_empty(Item)];
+remove_empty(Triple) when is_record(Triple, triple) ->
+    NewObject = remove_empty(Triple#triple.object),
+    Triple#triple{object=NewObject};
+remove_empty(Resource) when is_record(Resource, rdf_resource) ->
+    NewTriples = remove_empty(Resource#rdf_resource.triples),
+    Resource#rdf_resource{triples=NewTriples};
+remove_empty(Other) ->
+    Other.
+
+% A triple is considered empty if it doesn't add any new information, aka iff:
+% 1. its object is empty (see 'is_empty_object')
+% 2. there are no 'subject_props' nor 'object_props'
+-spec is_empty(rdf:triple()) -> boolean().
+is_empty(#triple{object = Object, subject_props = [], object_props = []}) ->
+    is_empty_object(Object);
+is_empty(_) ->
+    false.
+
+% A triple's object is considered empty if it doesn't add any new information, aka iff:
+% 1. it's an empty URI/binary value
+% 2. it's an 'rdf_value' whose 'value' is itself an empty object
+-spec is_empty_object(ginger_uri:uri() | #rdf_value{} | #rdf_resource{}) -> boolean().
+is_empty_object(Value) when is_binary(Value) ->
+    z_utils:is_empty(Value);
+is_empty_object(#rdf_value{value = Value}) ->
+    is_empty_object(Value);
+is_empty_object(_) ->
+    false.
+
+% Like 'replace_html/2' with 'z_html:strip/1' being the chosen modifier.
+replace_html(In) -> replace_html(In, fun z_html:strip/1).
+
+% Replaces all html values with the given modifier function, recursively, from
+% an 'rdf_value', an 'rdf_resource', a 'triple' or a list of either;
+% returns any other value unaltered.
+% Note: the type of the output is always the same as the input's.
+replace_html(List, ReplaceFun) when is_list(List) ->
+    lists:map(fun(Item) -> replace_html(Item, ReplaceFun) end, List);
+replace_html(Triple, ReplaceFun) when is_record(Triple, triple) ->
+    NewObject = replace_html(Triple#triple.object, ReplaceFun),
+    Triple#triple{object=NewObject};
+replace_html(Resource, ReplaceFun) when is_record(Resource, rdf_resource) ->
+    NewTriples = replace_html(Resource#rdf_resource.triples, ReplaceFun),
+    Resource#rdf_resource{triples=NewTriples};
+replace_html(Value, ReplaceFun) when is_record(Value, rdf_value) ->
+    ValueTerm = Value#rdf_value.value,
+    NewValueTerm =case is_html_value(ValueTerm) of
+        true -> ReplaceFun(ValueTerm);
+        false -> replace_html(ValueTerm, ReplaceFun)
+    end,
+    Value#rdf_value{value=NewValueTerm};
+replace_html(Other, _ReplaceFun) ->
+    Other.
+
+% Returns 'true' iff the input is a binary string of html, 'false' otherwise.
+is_html_value(Term) when is_binary(Term) ->
+    case z_html_parse:parse(Term) of
+        {ok, _HtmlNode} -> true;
+        {error, nohtml} -> false
+    end;
+is_html_value(_) -> false.
