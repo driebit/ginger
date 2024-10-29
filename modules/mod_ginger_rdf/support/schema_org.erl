@@ -241,12 +241,18 @@ image_object(Id, Context) ->
         #triple{
             predicate = rdf_property:rdf(<<"type">>),
             object = rdf_property:schema(<<"ImageObject">>)
-        },
-        #triple{
-            predicate = rdf_property:schema(<<"license">>),
-            object = m_rsc:p(Id, license, Context)
         }
     ]
+    ++ (case m_creative_commons:url_for(m_rsc:p(Id, rights, Context)) of
+            undefined ->
+                [];
+            Url ->
+                [#triple{
+                    predicate = rdf_property:schema(<<"license">>),
+                    object = Url
+                }]
+        end
+        )
     ++ m_rdf_export:translations_to_rdf(
         rdf_property:schema(<<"name">>), m_rsc:p(Id, title, Context),
         Context
