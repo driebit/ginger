@@ -12,6 +12,7 @@
     m_value/2,
     get_resource/2,
     get_resource/3,
+    get_resource_fetch/4,
     is_dbpedia_uri/1,
     is_wikidata_uri/1,
     task_resource_update/3
@@ -51,6 +52,9 @@ get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
     get_resource(Uri, <<>>, Context).
 
 -spec get_resource(Uri::binary(), Language::binary(), z:context()) -> m_rdf:rdf_resource() | undefined.
+get_resource(Uri, <<>>, Context) ->
+    Language = z_convert:to_binary(z_context:language(Context)),
+    get_resource(Uri, Language, Context);
 get_resource(Uri, Language, Context) ->
     get_resource_cached(Uri, Language, Context).
 
@@ -80,7 +84,8 @@ task_resource_update(Uri, Language, Context) ->
     end,
     ok.
 
-get_resource_fetch(Uri, Language, StaleData, Context) ->
+get_resource_fetch(Uri0, Language, StaleData, Context) ->
+    Uri = strip_protocol(Uri0),
     Key = cache_key(Uri, Language),
     case dbpedia:get_resource(<<"http://", Uri/binary>>, Language) of
         undefined ->
@@ -100,6 +105,10 @@ get_resource_fetch(Uri, Language, StaleData, Context) ->
                 Context),
             Data
     end.
+
+strip_protocol(<<"http://", R/binary>>) -> R;
+strip_protocol(<<"https://", R/binary>>) -> R;
+strip_protocol(R) -> R.
 
 cache_lookup(Uri, Language, Context) ->
     Key = cache_key(Uri, Language),
