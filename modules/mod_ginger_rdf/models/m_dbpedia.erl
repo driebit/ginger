@@ -23,13 +23,13 @@
 
 %% @doc Usage: m.dbpedia["http://nl.dbpedia.org/resource/Nederland"]
 -spec m_find_value(ginger_uri:uri() | atom(), #m{}, z:context()) -> m_rdf:rdf_resource().
-m_find_value(<<"http://", Uri/binary>>, #m{}, Context) ->
-    get_resource(Uri, Context);
-m_find_value(<<"https://", Uri/binary>>, #m{}, Context) ->
-    get_resource(Uri, Context);
-m_find_value(Language, #m{value = undefined} = M, _Context) ->
-    M#m{value = Language};
-m_find_value(Uri, #m{value = Language}, Context) ->
+m_find_value(<<"http://", Uri/binary>>, #m{ value = Language }, Context) ->
+    get_resource(Uri, Language, Context);
+m_find_value(<<"https://", Uri/binary>>, #m{ value = Language }, Context) ->
+    get_resource(Uri, Language, Context);
+m_find_value(Language, #m{ value = undefined } = M, _Context) ->
+    M#m{ value = Language };
+m_find_value(Uri, #m{ value = Language }, Context) ->
     get_resource(Uri, Language, Context).
 
 m_to_list(_, _Context) ->
@@ -45,27 +45,29 @@ get_resource(<<"http://", Url/binary>>, Context) ->
 get_resource(<<"https://", Url/binary>>, Context) ->
     get_resource(Url, Context);
 get_resource(<<"wikidata.dbpedia.org/", _/binary>> = Uri, Context) ->
-    get_resource(Uri, <<"wikidata">>, Context);
+    get_resource(<<"http://", Uri/binary>>, <<"wikidata">>, Context);
 get_resource(<<"nl.dbpedia.org", _/binary>> = Uri, Context) ->
-    get_resource(Uri, <<"nl">>, Context);
+    get_resource(<<"http://", Uri/binary>>, <<"nl">>, Context);
 get_resource(<<"dbpedia.org", _/binary>> = Uri, Context) ->
-    get_resource(Uri, <<>>, Context).
+    get_resource(<<"http://", Uri/binary>>, <<>>, Context).
 
--spec get_resource(Uri::binary(), Language::binary(), z:context()) -> m_rdf:rdf_resource() | undefined.
-get_resource(Uri, <<>>, Context) ->
-    Language = z_convert:to_binary(z_context:language(Context)),
-    get_resource(Uri, Language, Context);
+-spec get_resource(Uri, Language, Context) -> RdfResource | undefined when
+    Uri :: binary(),
+    Language :: binary() | atom() | undefined,
+    Context :: z:context(),
+    RdfResource :: m_rdf:rdf_resource().
 get_resource(Uri, Language, Context) ->
-    get_resource_cached(Uri, Language, Context).
-
-get_resource_cached(Uri, Language, Context) ->
-    case cache_lookup(Uri, Language, Context) of
+    Language1 = case z_convert:to_binary(Language) of
+        <<>> -> z_convert:to_binary(z_context:language(Context));
+        Lang -> Lang
+    end,
+    case cache_lookup(Uri, Language1, Context) of
         {error, enoent} ->
-            get_resource_fetch(Uri, Language, undefined, Context);
+            get_resource_fetch(Uri, Language1, undefined, Context);
         {ok, {stale, Data}} ->
             % Schedule a refresh of the cached data
             Key = cache_key(Uri, Language),
-            z_pivot_rsc:insert_task(?MODULE, task_resource_update, Key, [ Uri, Language ], Context),
+            z_pivot_rsc:insert_task(?MODULE, task_resource_update, Key, [ Uri, Language1 ], Context),
             Data;
         {ok, {valid, Data}} ->
             Data
@@ -84,10 +86,20 @@ task_resource_update(Uri, Language, Context) ->
     end,
     ok.
 
-get_resource_fetch(Uri0, Language, StaleData, Context) ->
-    Uri = strip_protocol(Uri0),
-    Key = cache_key(Uri, Language),
-    case dbpedia:get_resource(<<"http://", Uri/binary>>, Language) of
+-spec get_resource_fetch(Uri, Language, StaleData, Context) -> RdfResource | undefined when
+    Uri :: binary(),
+    Language :: binary() | atom() | undefined,
+    StaleData :: m_rdf:rdf_resource() | undefined,
+    Context :: z:context(),
+    RdfResource :: m_rdf:rdf_resource().
+get_resource_fetch(Uri, Language, StaleData, Context) ->
+    Language1 = case z_convert:to_binary(Language) of
+        <<>> -> z_convert:to_binary(z_context:language(Context));
+        Lang -> Lang
+    end,
+    HttpUri = ginger_uri:http(Uri),
+    Key = cache_key(HttpUri, Language1),
+    case dbpedia:get_resource(HttpUri, Language1) of
         undefined ->
             % Store erroneous or stale data for an hour
             Till = z_datetime:next_hour( calendar:universal_time() ),
@@ -106,12 +118,8 @@ get_resource_fetch(Uri0, Language, StaleData, Context) ->
             Data
     end.
 
-strip_protocol(<<"http://", R/binary>>) -> R;
-strip_protocol(<<"https://", R/binary>>) -> R;
-strip_protocol(R) -> R.
-
 cache_lookup(Uri, Language, Context) ->
-    Key = cache_key(Uri, Language),
+    Key = cache_key(ginger_uri:http(Uri), Language),
     case z_notifier:first(#tkvstore_get{ type = ?CACHE_TYPE, key = Key }, Context) of
         undefined ->
             {error, enoent};
@@ -129,21 +137,11 @@ cache_key(Uri, Language) ->
 
 
 %% @doc Does the URI belong to DBPedia?
--spec is_dbpedia_uri(binary()) -> boolean().
+-spec is_dbpedia_uri(Uri :: binary()) -> boolean().
 is_dbpedia_uri(Uri) ->
-    case binary:match(Uri, <<"dbpedia.org">>) of
-        nomatch ->
-            false;
-        _Found ->
-            true
-    end.
+    binary:match(Uri, <<"dbpedia.org">>) =/= nomatch.
 
 %% @doc Does the URI belong to Wikidata?
--spec is_wikidata_uri(binary()) -> boolean().
+-spec is_wikidata_uri(Uri :: binary()) -> boolean().
 is_wikidata_uri(Uri) ->
-    case binary:match(Uri, <<"wikidata.dbpedia.org">>) of
-        nomatch ->
-            false;
-        _Found ->
-            true
-    end.
+    binary:match(Uri, <<"wikidata.dbpedia.org">>) =/= nomatch.
