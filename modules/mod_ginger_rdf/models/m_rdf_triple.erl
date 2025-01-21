@@ -170,29 +170,39 @@ is_empty_object(#rdf_value{value = Value}) ->
 is_empty_object(_) ->
     false.
 
-% Like 'replace_html/2' with 'z_html:strip/1' being the chosen modifier.
-replace_html(In) -> replace_html(In, fun z_html:strip/1).
+% Like 'replace_html/2' with 'z_html:strip/1' being the chosen modifier
+% (regardless of predicate).
+replace_html(In) -> replace_html(In, fun(Html, _Predicate) -> z_html:strip(Html) end).
 
 % Replaces all html values with the given modifier function, recursively, from
 % an 'rdf_value', an 'rdf_resource', a 'triple' or a list of either;
 % returns any other value unaltered.
+% The modifier function is called with two arguments:
+% 1. the HTML text of an 'rdf_value'
+% 2. the predicate of which it's an object (if any, 'undefined' otherwise)
 % Note: the type of the output is always the same as the input's.
-replace_html(List, ReplaceFun) when is_list(List) ->
+replace_html(In, ReplaceFun) ->
+    replace_html(In, undefined, ReplaceFun).
+
+% Recursive part of 'replace_html/2'.
+% This carries an additional parameter for the predicate, which is discarded
+% in every case except when going over an 'rdf_value' from a 'triple'.
+replace_html(List, _Predicate, ReplaceFun) when is_list(List) ->
     lists:map(fun(Item) -> replace_html(Item, ReplaceFun) end, List);
-replace_html(Triple, ReplaceFun) when is_record(Triple, triple) ->
-    NewObject = replace_html(Triple#triple.object, ReplaceFun),
+replace_html(Triple, _Predicate, ReplaceFun) when is_record(Triple, triple) ->
+    NewObject = replace_html(Triple#triple.object, Triple#triple.predicate, ReplaceFun),
     Triple#triple{object=NewObject};
-replace_html(Resource, ReplaceFun) when is_record(Resource, rdf_resource) ->
+replace_html(Resource, _Predicate, ReplaceFun) when is_record(Resource, rdf_resource) ->
     NewTriples = replace_html(Resource#rdf_resource.triples, ReplaceFun),
     Resource#rdf_resource{triples=NewTriples};
-replace_html(Value, ReplaceFun) when is_record(Value, rdf_value) ->
+replace_html(Value, Predicate, ReplaceFun) when is_record(Value, rdf_value) ->
     ValueTerm = Value#rdf_value.value,
-    NewValueTerm =case is_html_value(ValueTerm) of
-        true -> ReplaceFun(ValueTerm);
+    NewValueTerm = case is_html_value(ValueTerm) of
+        true -> ReplaceFun(ValueTerm, Predicate);
         false -> replace_html(ValueTerm, ReplaceFun)
     end,
     Value#rdf_value{value=NewValueTerm};
-replace_html(Other, _ReplaceFun) ->
+replace_html(Other, _Predicate, _ReplaceFun) ->
     Other.
 
 % Returns 'true' iff the input is a binary string of html, 'false' otherwise.
