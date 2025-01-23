@@ -1,11 +1,7 @@
 @use "sass:math";
 
-@function strip-unit($num) {
-    @return math.div($num, $num * 0 + 1);
-}
-
 @function px-to-rem($value) {
-    @return  $value*0.1;
+    @return calc(#{$value} * 0.1);
 }
 
 /* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
@@ -15,9 +11,10 @@
     $remValues: '';
 
     @for $i from 1 through $max {
-        $value: strip-unit(nth($values, $i));
+        $value: nth($values, $i);
         $pxValues: #{$pxValues + $value}px;
-        $remValues: #{$remValues + px-to-rem($value)}rem;
+        $pxToRems: px-to-rem(#{$value}rem);
+        $remValues: #{$remValues + $pxToRems};
 
         @if $i < $max {
             $pxValues: #{$pxValues + " "};
@@ -35,9 +32,7 @@
 
 /* Creates a mediaquery based on property and size in pixels */
 @mixin mq($property, $size) {
-    $value: strip-unit($size);
-
-    @media only screen and (#{$property}: #{$value}px ) {
+    @media only screen and (#{$property}: $size ) {
         @content;
     }
 }
@@ -117,8 +112,8 @@
         &:before {
             content: '';
             display: inline-block;
-            @include size(width, 15px);
-            @include size(height, 15px);
+            @include size(width, 15);
+            @include size(height, 15);
             @include size(margin-right, 15);
             position: relative;
             top: 2px;
@@ -173,7 +168,7 @@
         display: block;
         content: "";
         width: 100%;
-        padding-top: math.div($height, $width) * 100%;
+        padding-top: calc(#{$height} / #{$width} * 100%);
     }
 
     > div {
