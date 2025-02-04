@@ -127,16 +127,21 @@ translations_to_rdf(Predicate, Translations, Context) ->
 
 -spec translations_to_rdf(m_rdf:resource() | undefined, m_rdf:predicate(), proplists:proplist(), z:context()) -> [m_rdf:triple()].
 translations_to_rdf(Subject, Predicate, Translations, Context) ->
-    lists:map(
+    lists:filtermap(
         fun({Language, Value}) ->
-            #triple{
-                subject = Subject,
-                predicate = Predicate,
-                object = #rdf_value{
-                    language = Language,
-                    value = Value
-                }
-            }
+            case z_utils:is_empty(Value) of
+                true -> false;
+                false ->
+                    {true, #triple{
+                              subject = Subject,
+                              predicate = Predicate,
+                              object = #rdf_value{
+                                          language = Language,
+                                          value = Value
+                                         }
+                             }
+                    }
+            end
         end,
         m_ginger_rest:translations(Translations, Context)
     ).
