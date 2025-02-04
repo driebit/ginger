@@ -3,7 +3,7 @@
     @include size(margin-bottom, 10);
 }
 
-@include mq(min-width, 900) {
+@include mq(min-width, 900px) {
     .page-action-elements {
         margin-top: 0px;
         @include size(margin-bottom, 10);
