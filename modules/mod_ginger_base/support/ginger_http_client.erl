@@ -123,6 +123,9 @@ handle_response(Response, Url) ->
             Body
         }} ->
             {proplists:get_value("content-type", Headers), Body};
+        {error, Reason} = Error ->
+            lager:error("~p error for URL ~p: ~p", [?MODULE, Url, Reason]),
+            Error;
         JsonResponse ->
             lager:error("~p unknown error for URL ~p: ~p", [?MODULE, Url, JsonResponse]),
             {error, JsonResponse}
