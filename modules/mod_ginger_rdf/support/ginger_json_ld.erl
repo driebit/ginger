@@ -6,6 +6,7 @@
     serialize/1,
     serialize_to_map/1,
     deserialize/1,
+    deserialize/2,
     open/1,
     open_file/1,
     compact/1
@@ -238,26 +239,35 @@ compact_predicate(Predicate) ->
 %% @doc Deserialize a JSON-LD document into an RDF resource.
 -spec deserialize(tuple() | list()) -> #rdf_resource{}.
 deserialize(JsonLd) when is_map(JsonLd) ->
-    Context = maps:get(<<"@context">>, JsonLd, #{}),
-    maps:fold(
-        fun(Key, Value, Acc) ->
-            deserialize(Key, Value, Acc, Context)
-        end,
-        #rdf_resource{},
-        maps:remove(<<"@context">>, JsonLd)
-    );
+    deserialize_with_context(undefined, JsonLd, #{});
 deserialize(JsonLd) ->
     %% Fall back to mochijson {struct, ...} structure
     open(JsonLd).
+
+%% Guide the parser; indicate that we are actually looking for a specific id
+%% so we don't get confused when we encounter multiple subjects in the jsonld.
+deserialize(Id, JsonLd) when is_map(JsonLd) ->
+    deserialize_with_context(Id, JsonLd, #{}).
+
+deserialize_with_context(Id, JsonLd, Context) ->
+    LocalContext = maps:get(<<"@context">>, JsonLd, #{}),
+    TotalContext = maps:merge(Context, LocalContext),
+    maps:fold(
+        fun(Key, Value, Acc) ->
+            deserialize(Key, Value, Acc, TotalContext)
+        end,
+        #rdf_resource{id = Id},
+        maps:remove(<<"@context">>, JsonLd)
+    ).
 
 deserialize(<<"@id">>, Uri, #rdf_resource{} = Acc, _Context) ->
     Acc#rdf_resource{id = Uri};
 deserialize(Predicate, #{<<"@id">> := Uri}, #rdf_resource{} = Acc, Context) ->
     deserialize(Predicate, Uri, Acc, Context);
-deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc, _Context) ->
+deserialize(<<"@graph">>, Triples, #rdf_resource{triples = ParentTriples} = Acc, Context) ->
     AllTriples = lists:foldl(
         fun(#{<<"@id">> := _Subject} = Map, ParentAcc) ->
-            #rdf_resource{triples = GraphTriples} = deserialize(Map),
+            #rdf_resource{triples = GraphTriples} = deserialize_with_context(undefined, Map, Context),
             lists:merge(GraphTriples, ParentAcc)
         end,
         ParentTriples,
