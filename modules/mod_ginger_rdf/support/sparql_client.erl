@@ -7,7 +7,8 @@
     query/3,
     query_rdf/2,
     query_rdf/3,
-    get_resource/3
+    get_resource/3,
+    get_resource/4
 ]).
 
 -include_lib("zotonic.hrl").
@@ -74,13 +75,99 @@ query_rdf(Endpoint, Query, Headers) ->
 %% @doc Get specified properties from a single resource.
 -spec get_resource(url(), url(), [binary()]) -> m_rdf:rdf_resource() | undefined.
 get_resource(Endpoint, Uri, Properties) ->
+    get_resource(Endpoint, Uri, Properties, undefined).
+
+-spec get_resource(Endpoint, Uri, Properties, Language) -> RdfResource | undefined when
+    Endpoint :: url(),
+    Uri :: url(),
+    Properties :: [binary()],
+    Language :: binary | undefined,
+    RdfResource :: m_rdf:rdf_resource().
+get_resource(Endpoint, Uri, Properties, Language) ->
     Query = sparql_query:select(Uri, Properties),
     case query_rdf(Endpoint, Query) of
         undefined ->
             undefined;
-        [Rdf|_] ->
-            Rdf
+        [] ->
+            undefined;
+        Rows ->
+            % Multiple results, group by language
+            Languages = [ Language | lists:usort(value_languages(Rows, [])) ],
+            Languages1 = lists:filter(fun is_binary/1, Languages),
+            LangPrefs = if
+                Language =:= undefined -> lang_prefs();
+                true -> [ Language | lang_prefs() ]
+            end,
+            first_matching(Languages1, Rows, LangPrefs)
     end.
+
+first_matching([], Rows, _Prefs) ->
+    hd(Rows);
+first_matching([Lang|_], Rows, []) ->
+    extract_language(Lang, Rows);
+first_matching(Langs, Rows, [ Pref | Prefs]) ->
+    case lists:member(Pref, Langs) of
+        true -> extract_language(Pref, Rows);
+        false -> first_matching(Langs, Rows, Prefs)
+    end.
+
+lang_prefs() ->
+    [ <<"nl">>, <<"en">>, <<"de">>, <<"fr">> ].
+
+extract_language(Lang, [ #rdf_resource{ triples = RTs} = R | _ ] = Rows) ->
+    AllTriples = [ Ts || #rdf_resource{ triples = Ts } <- Rows ],
+    TripleCount = length(RTs),
+    Accs = [ [] || _ <- lists:seq(1, TripleCount) ],
+    PerTriple = lists:map(fun lists:reverse/1, rotate(AllTriples, Accs)),
+    ForLang = lists:map(
+        fun(Ts) ->
+            case first_matching(Lang, Ts) of
+                undefined ->
+                    case first_matching(<<"en">>, Ts) of
+                        undefined -> hd(Ts);
+                        T -> T
+                    end;
+                T ->
+                    T
+            end
+        end,
+        PerTriple),
+    R#rdf_resource{
+        triples = ForLang
+    }.
+
+first_matching(_Lang, []) ->
+    undefined;
+first_matching(Lang, [ #triple{ object = #rdf_value{ language = ObjLang } } = T | _ ]) when Lang =:= ObjLang ->
+    T;
+first_matching(Lang, [ #triple{ object = #rdf_value{ language = _ } } | Ts ]) ->
+    first_matching(Lang, Ts);
+first_matching(_Lang, [ T | _ ]) ->
+    T.
+
+rotate([], Accs) ->
+    Accs;
+rotate([R|Rs], Accs) ->
+    Accs1 = append_to_accs(R, Accs, []),
+    rotate(Rs, Accs1).
+
+append_to_accs([], [], NewAccs) ->
+    lists:reverse(NewAccs);
+append_to_accs([Col|Cols], [Acc|Accs], NewAccs) ->
+    NewAccs1 = [ [ Col | Acc ] | NewAccs ],
+    append_to_accs(Cols, Accs, NewAccs1).
+
+
+value_languages(#rdf_resource{ triples = Ts }, Acc) ->
+    value_languages(Ts, Acc);
+value_languages(#triple{ object = #rdf_value{ language = Lang }}, Acc) ->
+    [Lang | Acc];
+value_languages([T|Ts], Acc) ->
+    Acc1 = value_languages(T, Acc),
+    value_languages(Ts, Acc1);
+value_languages(_, Acc) ->
+    Acc.
+
 
 %% @doc Try to decode the response from the SPARQL endpoint.
 -spec decode(map()) -> m_rdf:rdf_resource() | map().
