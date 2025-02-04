@@ -168,10 +168,12 @@ map_related_to_property(#triple{}, QueryArgs) ->
 
 date_filter(_Key, _Operator, <<>>, _IncludeMissing) ->
     [];
-date_filter(Key, Operator, Value, IncludeMissing) when Operator =:= <<"gte">>; Operator =:= <<"gt">>;
+date_filter(Key, Operator, Value, IncludeMissing) when
+    Operator =:= <<"gte">>; Operator =:= <<"gt">>;
     Operator =:= <<"lte">>; Operator =:= <<"lt">>
 ->
-    DateFilter = [Key, Operator, Value, [{<<"format">>, <<"yyyy">>}]],
+    % Use "year", as "yyyy" is strict and gives an exception on years < 1000.
+    DateFilter = [Key, Operator, Value, [{<<"format">>, <<"year">>}]],
     OrFilters = case IncludeMissing of
         true ->
             [DateFilter, [Key, missing]];

@@ -27,10 +27,6 @@
         "css/logon.css"
     %}
 
-    {% include
-        "head/polyfill.tpl"
-    %}
-
     {% block canonical %}{% endblock %}
 
     {% all include "_html_head.tpl" %}

@@ -45,7 +45,7 @@ candidates(Endpoint, Text, Language) when is_binary(Text) ->
 request(Endpoint, Method, #dbpedia_spotlight_request{} = Request) ->
     Qs = qs(Request),
     Url = <<Endpoint/binary, Method/binary, Qs/binary>>,
-    ginger_http_client:get(Url, []).
+    ginger_http_client:get(Url, [{"Accept", "application/json"}]).
 
 %% @doc Build query string.
 -spec qs(#dbpedia_spotlight_request{}) -> binary().

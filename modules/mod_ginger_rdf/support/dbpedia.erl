@@ -76,15 +76,20 @@ get_resource(Uri, Language) ->
 %% the wikipedia page.
 get_resource_thumbnail(Triples) ->
     case fetch_wikipedia_url(Triples) of
-        undefined ->
-            undefined;
-        WikipediaUrl ->
-            case z_url_metadata:fetch(WikipediaUrl) of
-                {ok, MD} ->
-                    z_url_metadata:p(image, MD);
-                {error, _} ->
-                    undefined
-            end
+        <<"http://", HostPath/binary>> ->
+            get_url_image(<<"https://", HostPath/binary>>);
+        <<"https://", _/binary>> = URL ->
+            get_url_image(URL);
+        _ ->
+            undefined
+    end.
+
+get_url_image(WikipediaUrl) ->
+    case z_url_metadata:fetch(WikipediaUrl) of
+        {ok, MD} ->
+            z_url_metadata:p(image, MD);
+        {error, _} ->
+            undefined
     end.
 
 fetch_wikipedia_url(Triples) ->
@@ -109,7 +114,7 @@ has_predicate(Predicate, Triples) ->
 
 -spec get_resource(binary(), [binary()], binary()) -> m_rdf:rdf_resource() | undefined.
 get_resource(Uri, Properties, Language) ->
-    sparql_client:get_resource(endpoint(Language), Uri, Properties).
+    sparql_client:get_resource(endpoint(Language), Uri, Properties, Language).
 
 %% @doc List of default properties that will be bound and retrieved in SPARQL queries.
 -spec default_properties() -> [binary()].
@@ -146,16 +151,19 @@ parse_argument(text, Text) ->
 parse_argument(_, _) ->
     <<>>.
 
-query(Query, Language) when Language =:= <<"nl">>;
-                            Language =:= <<"wikidata">>;
-                            Language =:= <<>> ->
+query(Query, Language) ->
     sparql_client:query_rdf(endpoint(Language), Query).
 
 endpoint(Language) when is_list(Language) ->
     endpoint(list_to_binary(Language));
-endpoint(<<>>) ->
-    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
-endpoint(<<"en">>) ->
-    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
-endpoint(Language) ->
-    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<Language/binary, ".">>).
+endpoint(_) ->
+    binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>).
+
+%% Do not use language specific endpoints, as they are notoriously unavailable.
+%% Instead query the global wikipedia and fetch the language specific values from there.
+% endpoint(<<>>) ->
+%     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
+% endpoint(<<"en">>) ->
+%     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<>>);
+% endpoint(Language) ->
+%     binary:replace(?SPARQL_ENDPOINT, <<"{lang}">>, <<Language/binary, ".">>).

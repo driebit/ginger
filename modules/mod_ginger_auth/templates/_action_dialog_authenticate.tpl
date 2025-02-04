@@ -17,7 +17,7 @@ redirect: URL to redirect to after successful login
 
         {% if m.modules.active.mod_signup %}
             <li {% if tab == "signup" %}class="active"{% endif %}>
-                {% wire id="tab-signup" propagate action={replace target="z_logon_or_signup" template="_logon_modal.tpl" logon_state="signup" } %}
+                {% wire id="tab-signup" propagate action={replace target="z_logon_or_signup" template="_logon_modal.tpl" logon_state="signup" page=redirect } %}
                 <a data-toggle="tab" href="#{{ #tab }}-signup" id="tab-signup">{_ Sign up _}</a>
             </li>
         {% endif %}
