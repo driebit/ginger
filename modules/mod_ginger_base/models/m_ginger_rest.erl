@@ -19,6 +19,7 @@
 -spec rsc(m_rsc:resource(), z:context()) -> resource_properties() | undefined.
 rsc(Id, Context) when is_integer(Id) ->
     Rsc = #{ <<"id">> => Id
+           , <<"name">> => m_rsc:p(Id, name, null, Context)
            , <<"title">> => translations(Id, title, Context)
            , <<"subtitle">> => translations(Id, subtitle, Context)
            , <<"body">> => translations(Id, body, Context)
@@ -192,7 +193,7 @@ mediaclasses(Context) ->
      ).
 
 %% @doc Get resource blocks.
--spec blocks(m_rsc:resouce(), z:context()) -> [map()].
+-spec blocks(m_rsc:resource(), z:context()) -> [map()].
 blocks(Id, Context) ->
     case m_rsc:p(Id, blocks, [], Context) of
         <<>> ->

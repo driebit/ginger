@@ -19,6 +19,7 @@ $(document).ready(function () {
         'scrolling': false,
         "padding": 0,
         'type': 'image',
+        'clickContent': false,
         'tpl': {
             error: '<p class="fancybox-error"></p>'
         },
@@ -41,8 +42,6 @@ $(document).ready(function () {
             $('.fancybox-inner').prepend('<div class="zoom-help"></div>');
 
             $('.fancybox-image')
-                .wrap('<span style="display:inline-block"></span>')
-                .css('display', 'block')
                 .parent()
                 .zoom({
                     magnify: 1.25,

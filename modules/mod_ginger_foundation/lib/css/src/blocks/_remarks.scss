@@ -246,7 +246,7 @@
 
     &:before {
         @extend .has-icon;
-        @extend .icon--pen:before;
+        @extend .icon--pen;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -258,7 +258,7 @@
 .remark-delete {
     &:before {
         @extend .has-icon;
-        @extend .icon--bin:before;
+        @extend .icon--bin;
     }
 }
 
@@ -311,7 +311,7 @@
     .remark-item__author {
         width: 30%;
         height: auto;
-        
+
         text-align: center;
 
         .avatar__image {

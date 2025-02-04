@@ -150,7 +150,7 @@ get_by_reminder_secret(Code, Context) ->
 
 %% @doc Takes a list of unary functions that return either {error, Reason} or
 %% {ok, Output} and succesively apply the functions to the output of the previous
-%% function, until all funtions are evaluated, or one returns an error
+%% function, until all functions are evaluated, or one returns an error
 pipeline([], Input) ->
     {ok, Input};
 pipeline([F|Fs], Input) ->

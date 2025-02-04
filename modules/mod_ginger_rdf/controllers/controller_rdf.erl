@@ -16,7 +16,7 @@
 
 -record(state, {
     serialization :: atom(),
-    ontology :: atom(),
+    ontologies :: [atom()],
     context :: z:context()
 }).
 
@@ -25,17 +25,18 @@ init(Args) ->
 
 service_available(ReqData, Args) ->
     Context = z_context:new_request(ReqData, [], ?MODULE),
-    Context2 = set_cors_headers(Context),
+    Context2 = cors_headers:allow_all_cors(Context),
     State = #state{
         context = Context2,
         serialization = proplists:get_value(serialization, Args),
-        ontology = proplists:get_value(ontology, Args)
+        %% Fall back to {ontology, a_single_ontology} for BC.
+        ontologies = proplists:get_value(ontologies, Args, [proplists:get_value(ontology, Args)])
     },
     case wrq:method(ReqData) of
         'OPTIONS' ->
-            {{halt, 204}, z_context:get_reqdata(Context), State};
+            {{halt, 204}, z_context:get_reqdata(Context2), State};
         _ ->
-            {true, z_context:get_reqdata(Context), State}
+            {true, z_context:get_reqdata(Context2), State}
     end.
 
 resource_exists(ReqData, State = #state{context = Context}) ->
@@ -58,7 +59,7 @@ id(Context) ->
 
 rdf(ReqData, State) ->
     Context1 = z_context:set_reqdata(ReqData, State#state.context),
-    RdfResource = m_rdf_export:to_rdf(id(Context1), [State#state.ontology], Context1),
+    RdfResource = m_rdf_export:to_rdf(id(Context1), State#state.ontologies, Context1),
     SerializedRdf = serialize(RdfResource, State#state.serialization),
     ?WM_REPLY(SerializedRdf, Context1).
 
@@ -69,24 +70,3 @@ serialize(RdfResource, json_ld) ->
     jsx:encode(JsonLd);
 serialize(RdfResource, turtle) ->
     ginger_turtle:serialize(RdfResource).
-
-%% @doc Always enable CORS for this controller.
-%%      Unlike controller_api:set_cors_header, this function doesn't look at the
-%%      configuration but unconditionally exposes this controller between
-%%      domains. This makes sharing content much easier.
-set_cors_headers(Context) ->
-    lists:foldl(
-        fun ({K, Def}, Acc) ->
-            case m_config:get_value(site, K, Def, Context) of
-                undefined ->
-                    Acc;
-                V ->
-                    z_context:set_resp_header(atom_to_list(K), V, Acc)
-            end
-        end,
-        Context,
-        [
-            {'Access-Control-Allow-Origin', "*"},
-            {'Access-Control-Max-Age', undefined}
-        ]
-    ).

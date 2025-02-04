@@ -1,0 +1,65 @@
+name: Test
+
+on:
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    test:
+        name: Test on OTP ${{ matrix.otp_version }}
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+          matrix:
+            otp_version: [21.3]
+            os: [ubuntu-latest]
+
+        container:
+          image: erlang:${{ matrix.otp_version }}
+
+        env:
+            ZOTONIC_DIR: /tmp/zotonic
+
+        # Start PostgreSQL wth 'zotonic' as the default user.
+        services:
+          postgres:
+            image: postgres:9.6
+            env:
+              POSTGRES_DB: zotonic
+              POSTGRES_USER: zotonic
+              POSTGRES_PASSWORD: zotonic
+            # Set health checks to wait until postgres has started.
+            options: >-
+              --health-cmd pg_isready
+              --health-interval 10s
+              --health-timeout 5s
+              --health-retries 5
+            ports:
+              - 5432:5432
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Install and configure Zotonic
+                run: |
+                    git clone https://github.com/zotonic/zotonic.git $ZOTONIC_DIR --branch 0.x
+                    mkdir -p ~/.zotonic/0 ${ZOTONIC_DIR}/user
+                    sed "s|\.\.\/ginger/modules|$GITHUB_WORKSPACE/modules|" config/zotonic-test.config > ~/.zotonic/0/zotonic.config
+
+            -   name: Install dependencies
+                run: |
+                    git clone https://github.com/driebit/mod_elasticsearch.git modules/mod_elasticsearch
+                    git clone https://github.com/driebit/mod_elasticsearch2.git modules/mod_elasticsearch2
+
+            -   name: Compile
+                working-directory: ${{ env.ZOTONIC_DIR }}
+                run: make all
+
+            -   name: Run tests
+                working-directory: ${{ env.ZOTONIC_DIR }}
+                env:
+                    ERL: "erl -noshell"
+                    ZOTONIC_DBHOST: postgres
+                run: $GITHUB_WORKSPACE/scripts/runtests.sh

@@ -5,6 +5,7 @@
     to_rdf/2,
     to_rdf/3,
     translations_to_rdf/3,
+    translations_to_rdf/4,
     with_original_media/4,
     with_thumbnail/4
 ]).
@@ -58,6 +59,7 @@ edges_to_triples(Edges, Ontologies, Context) ->
     lists:filtermap(
         fun({Predicate, EdgesForPredicate}) ->
             Uri = m_rsc:p(Predicate, uri, Context),
+            VisibleEdgesForPredicate = lists:filter(fun (Edge) -> edge_is_visible(Edge, Context) end, EdgesForPredicate),
             case lists:flatten([
                 Ontology:edge_to_triples(
                     Predicate,
@@ -66,7 +68,7 @@ edges_to_triples(Edges, Ontologies, Context) ->
                     proplists:get_value(object_id, Edge),
                     Context
                 )
-                || Edge <- EdgesForPredicate, Ontology <- Ontologies
+                || Edge <- VisibleEdgesForPredicate, Ontology <- Ontologies
             ]) of
                 [] ->
                     false;
@@ -76,6 +78,11 @@ edges_to_triples(Edges, Ontologies, Context) ->
         end,
         Edges
     ).
+
+%% @doc The visibility of a Zotonic edge is determined by the visibility of its object.
+-spec edge_is_visible(proplists:proplist(), z:context()) -> boolean().
+edge_is_visible(Edge, Context) ->
+    m_rsc:is_visible(proplists:get_value(object_id, Edge), Context).
 
 -spec types(m_rsc:resource(), z:context()) -> [m_rdf:triple()].
 types(Category, Context) ->
@@ -116,15 +123,25 @@ get_category_uri(Category, Context) ->
 
 -spec translations_to_rdf(m_rdf:predicate(), proplists:proplist(), z:context()) -> [m_rdf:triple()].
 translations_to_rdf(Predicate, Translations, Context) ->
-    lists:map(
+    translations_to_rdf(undefined, Predicate, Translations, Context).
+
+-spec translations_to_rdf(m_rdf:resource() | undefined, m_rdf:predicate(), proplists:proplist(), z:context()) -> [m_rdf:triple()].
+translations_to_rdf(Subject, Predicate, Translations, Context) ->
+    lists:filtermap(
         fun({Language, Value}) ->
-            #triple{
-                predicate = Predicate,
-                object = #rdf_value{
-                    language = Language,
-                    value = Value
-                }
-            }
+            case z_utils:is_empty(Value) of
+                true -> false;
+                false ->
+                    {true, #triple{
+                              subject = Subject,
+                              predicate = Predicate,
+                              object = #rdf_value{
+                                          language = Language,
+                                          value = Value
+                                         }
+                             }
+                    }
+            end
         end,
         m_ginger_rest:translations(Translations, Context)
     ).

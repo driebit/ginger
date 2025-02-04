@@ -40,31 +40,33 @@ as
             {% include "pager/pager.tpl" %}
         {% endif %}
 
-        {% if infinite_scroll %}
-            {% lazy image=undefined action={moreresults
-                result=items
-                target=list_id
-                template=list_items_template
-                list_item_template=list_template
-                class=class
-                extra_classes=extra_classes
-                is_result_render
-                visible} %}
-        {% elseif not hide_showmore_button %}
+        {% if result.next %}
+            {% if infinite_scroll %}
+                {% lazy image=undefined action={moreresults
+                    result=items
+                    target=list_id
+                    template=list_items_template
+                    list_item_template=list_template
+                    class=class
+                    extra_classes=extra_classes
+                    is_result_render
+                    visible} %}
+            {% elseif not hide_showmore_button %}
 
-            <div id="{{ list_id }}-buttons" class="list__more-nav">
+                <div id="{{ list_id }}-buttons" class="list__more-nav">
 
-                {% if not hide_showmore_button %}
-                    {% button class="list__more" text=showmore_button_text action={moreresults
-                        result=items
-                        target=list_id
-                        template=list_template
-                        catinclude }
-                    %}
-                {% endif %}
+                    {% if not hide_showmore_button %}
+                        {% button class="list__more" text=showmore_button_text action={moreresults
+                            result=items
+                            target=list_id
+                            template=list_template
+                            catinclude }
+                        %}
+                    {% endif %}
 
-            </div>
+                </div>
 
+            {% endif %}
         {% endif %}
 
     {% else %}

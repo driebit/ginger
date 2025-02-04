@@ -3,6 +3,7 @@
 -define(NS_RDF_SCHEMA, "http://www.w3.org/2000/01/rdf-schema#").
 -define(NS_FOAF, "http://xmlns.com/foaf/0.1/").
 -define(NS_GEO, "http://www.w3.org/2003/01/geo/wgs84_pos#").
+-define(NS_HYDRA, "http://www.w3.org/ns/hydra/core#").
 -define(NS_DCTERMS, "http://purl.org/dc/terms/").
 -define(NS_DCTYPE, "http://purl.org/dc/dcmitype/").
 -define(NS_VCARD, "http://www.w3.org/2006/vcard/ns#").
@@ -15,7 +16,13 @@
 
 -record(rdf_value, {
     value :: term(),
-    language = undefined :: undefined | binary()
+    language = undefined :: undefined | binary(),
+    type = undefined :: undefined | ginger_uri:uri()
+}).
+
+-record(rdf_resource, {
+    id :: ginger_uri:uri(),
+    triples = [] :: [m_rdf:triple()]
 }).
 
 -record(triple, {
@@ -26,13 +33,8 @@
     subject :: undefined | binary(),
     subject_props = [] :: proplists:proplist(),
     predicate :: m_rdf:predicate(),
-    object :: ginger_uri:uri() | #rdf_value{},
+    object :: ginger_uri:uri() | #rdf_value{} | #rdf_resource{},
     object_props = [] :: proplists:proplist()
-}).
-
--record(rdf_resource, {
-    id :: ginger_uri:uri(),
-    triples = [] :: [m_rdf:triple()]
 }).
 
 -record(rdf_search, {

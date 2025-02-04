@@ -4,9 +4,14 @@
 
 -export([
     handle/2,
-    put_handle/2,
-    put_handle/3
+    put_handle/2
 ]).
+
+%% Total request timeout
+-define(HTTPC_TIMEOUT, 20000).
+
+%% Connect timeout, server has to respond before this
+-define(HTTPC_TIMEOUT_CONNECT, 10000).
 
 -include_lib("zotonic.hrl").
 
@@ -16,23 +21,16 @@
     value :: binary()
 }).
 
--record(handle_net_config, {
-    api_url :: binary(),
-    prefix :: binary(),
-    certificate :: binary(),
-    key :: binary()
-}).
-
--opaque(config() :: #handle_net_config{}).
 -opaque(handle() :: #handle_net_handle{}).
 
 -export_type([
-    config/0,
     handle/0
 ]).
 
 %% @doc Create a handle for registration.
--spec handle(binary(), binary()) -> handle().
+-spec handle(Handle, TargetUrl) -> handle() when
+    Handle :: binary(),
+    TargetUrl :: binary().
 handle(Handle, TargetUrl) ->
     #handle_net_handle{
         handle = Handle,
@@ -41,44 +39,63 @@ handle(Handle, TargetUrl) ->
     }.
 
 %% @doc Register a handle with default config.
--spec put_handle(handle(), z:context()) -> tuple().
-put_handle(#handle_net_handle{} = Handle, Context) ->
-    put_handle(
-        #handle_net_config{
-            api_url = m_config:get_value(?MODULE, handle_net_api_url, Context),
-            prefix = m_config:get_value(?MODULE, handle_net_prefix, Context),
-            certificate = m_config:get_value(?MODULE, handle_net_certificate_file, Context),
-            key = m_config:get_value(?MODULE, handle_net_key_file, Context)
-        },
-        Handle,
-        Context
-    ).
-
-%% @doc Register a handle with config.
--spec put_handle(config(), handle(), z:context()) -> tuple().
-put_handle(#handle_net_config{} = Config, #handle_net_handle{handle = Suffix} = Handle, _Context) ->
-    {ApiUrl, Prefix, CertificateFile, KeyFile} = config(Config),
+-spec put_handle(handle(), z:context()) -> {ok, Handle} | {error, Reason} when
+    Handle :: binary(),
+    Reason :: term().
+put_handle(#handle_net_handle{ handle = Suffix } = Handle, Context) ->
+    ApiUrl = m_config:get_value(?MODULE, handle_net_api_url, Context),
+    Prefix = m_config:get_value(?MODULE, handle_net_prefix, Context),
+    CertificateFile = m_config:get_value(?MODULE, handle_net_certificate_file, Context),
+    KeyFile = m_config:get_value(?MODULE, handle_net_key_file, Context),
     Data = data(Handle, Prefix),
-    Url = <<ApiUrl/binary, "/api/handles/", Prefix/binary, "/", Suffix/binary>>,
-    request(Url, Data, CertificateFile, KeyFile).
+    Url = <<
+        ApiUrl/binary,
+        "/api/handles/",
+        Prefix/binary,
+        "/",
+        Suffix/binary>>,
+    request(
+        Url,
+        Data,
+        CertificateFile,
+        KeyFile).
 
 %% @doc Execute request to API.
--spec request(binary(), map(), binary(), binary()) -> tuple().
+-spec request(Url, Data, CertificateFile, KeyFile) -> {ok, Handle} | {error, Reason} when
+    Url :: binary(),
+    Data :: map(),
+    CertificateFile :: file:filename_all(),
+    KeyFile :: file:filename_all(),
+    Handle :: binary(),
+    Reason :: term().
 request(Url, Data, CertificateFile, KeyFile) ->
     Headers = [
         {"Authorization", "Handle clientCert=\"true\""}
     ],
-    SSL = ssl_options(CertificateFile, KeyFile),
-    
-    case httpc:request(put, {binary_to_list(Url), Headers, "application/json", jsx:encode(Data)}, [{ssl, SSL}], []) of
+    Request = {z_convert:to_list(Url), Headers, "application/json", jsx:encode(Data)},
+    HttpOptions = [
+        {ssl, ssl_options(CertificateFile, KeyFile)},
+        {autoredirect, false},
+        {relaxed, true},
+        {timeout, ?HTTPC_TIMEOUT},
+        {connect_timeout, ?HTTPC_TIMEOUT_CONNECT}
+    ],
+    Options = [
+        {body_format, binary}
+    ],
+    case httpc:request(put, Request, HttpOptions, Options) of
         {ok, {{_, StatusCode, _}, _Headers, Body}} when StatusCode < 400 ->
-            #{<<"handle">> := Handle} = jsx:decode(list_to_binary(Body)),
+            #{<<"handle">> := Handle} = jsx:decode(Body),
             {ok, Handle};
         {ok, {{_, StatusCode, _}, _Headers, Body}} ->
-            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~p ~s", [Data, Url, StatusCode, Body]),
+            lager:error(
+                "ginger_handle_net: Error when registering handle ~p at ~s: ~p ~s",
+                [Data, Url, StatusCode, Body]),
             {error, StatusCode};
         {error, Reason} ->
-            lager:error("ginger_handle_net: Error when registering handle ~p at ~s: ~p", [Data, Url, Reason]),
+            lager:error(
+                "ginger_handle_net: Error when registering handle ~p at ~s: ~p",
+                [Data, Url, Reason]),
             {error, Reason}
     end.
 
@@ -92,19 +109,11 @@ ssl_options(CertificateFile, KeyFile) ->
         {key, {Type, Encoded}}
     ].
 
-%% @doc Extract config into tuple.
--spec config(#handle_net_config{}) -> tuple().
-config(
-    #handle_net_config{
-        api_url = ApiUrl,
-        prefix = Prefix,
-        certificate = CertificateFile,
-        key = KeyFile
-    }) ->
-    {ApiUrl, Prefix, CertificateFile, KeyFile}.
 
 %% @doc Create HTTP request payload.
--spec data(#handle_net_handle{}, binary()) -> map().
+-spec data(#handle_net_handle{}, Prefix) -> Payload when
+    Prefix :: binary(),
+    Payload :: map().
 data(#handle_net_handle{type = url, value = TargetUrl}, Prefix) ->
     #{
         <<"values">> => [

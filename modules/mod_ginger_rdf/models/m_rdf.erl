@@ -139,10 +139,20 @@ ensure_resource(RscId, Props, Context) when is_integer(RscId) ->
 ensure_resource(Uri, Props0, Context) ->
     case z_acl:is_allowed(use, mod_ginger_rdf, Context) of
         true ->
+            Category = proplists:get_value(category, Props0, rdf),
+            %% Ensure that category is either rdf or a subcategory of rdf.
+            RdfCategory = case m_category:is_a(Category, rdf, Context) of
+                true ->
+                    Category;
+                false ->
+                    %% If not, fall back to category rdf.
+                    rdf
+            end,
+
             % Make sure these props are set...
             % ... so that you can not insert non rdf resources this way.
             RequiredProps = [
-                {category, rdf},
+                {category, RdfCategory},
                 {is_authoritative, false},
                 {is_dependent, true}, %% remove resource when there are no longer edges to it
                 {uri, Uri}

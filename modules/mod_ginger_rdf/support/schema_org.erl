@@ -31,21 +31,21 @@ property_to_triples({created, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"dateCreated">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({date_start, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"startDate">>),
-            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
+            object = date(Value)
         }
     ];
 property_to_triples({date_end, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"endDate">>),
-            object = #rdf_value{value = z_datetime:undefined_if_invalid_date(Value)}
+            object = date(Value)
         }
     ];
 property_to_triples({license, Value}, _Properties, _Context) ->
@@ -60,7 +60,7 @@ property_to_triples({modified, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"dateModified">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({name_first, Value}, _Properties, _Context) ->
@@ -92,7 +92,7 @@ property_to_triples({publication_start, Value}, _Properties, _Context) ->
     [
         #triple{
             predicate = rdf_property:schema(<<"datePublished">>),
-            object = #rdf_value{value = Value}
+            object = date(Value)
         }
     ];
 property_to_triples({subtitle, Value}, _Properties, Context) ->
@@ -111,7 +111,9 @@ property_to_triples({website, Value}, _Properties, _Context) ->
 property_to_triples(_Property, _Properties, _Context) ->
     [].
 
-edge_to_triples(_Edge, <<"http://schema.org/", _/binary>> = Uri, Subject, Object, Context) ->
+edge_to_triples(Edge, <<"https://schema.org/", Predicate/binary>>, Subject, Object, Context) ->
+    edge_to_triples(Edge, <<"http://schema.org/", Predicate/binary>>, Subject, Object, Context);
+edge_to_triples(_Edge, <<?NS_SCHEMA_ORG, _/binary>> = Uri, Subject, Object, Context) ->
     %% Return all edges with schema.org predicate URIs.
     with_title(
         [
@@ -231,7 +233,7 @@ with_title(Triples, Object, Context) ->
             Triples;
         Title ->
             Triples ++
-                m_rdf_export:translations_to_rdf(rdf_property:schema(<<"title">>), Title, Context)
+                m_rdf_export:translations_to_rdf(m_rsc:p(Object, uri, Context), rdf_property:schema(<<"title">>), Title, Context)
     end.
 
 image_object(Id, Context) ->
@@ -239,12 +241,18 @@ image_object(Id, Context) ->
         #triple{
             predicate = rdf_property:rdf(<<"type">>),
             object = rdf_property:schema(<<"ImageObject">>)
-        },
-        #triple{
-            predicate = rdf_property:schema(<<"license">>),
-            object = m_rsc:p(Id, license, Context)
         }
     ]
+    ++ (case m_creative_commons:url_for(m_rsc:p(Id, rights, Context)) of
+            undefined ->
+                [];
+            Url ->
+                [#triple{
+                    predicate = rdf_property:schema(<<"license">>),
+                    object = Url
+                }]
+        end
+        )
     ++ m_rdf_export:translations_to_rdf(
         rdf_property:schema(<<"name">>), m_rsc:p(Id, title, Context),
         Context
@@ -262,3 +270,9 @@ image_object(Id, Context) ->
         Context
     ),
     #rdf_resource{triples = WithThumbnail}.
+
+date(Value) ->
+    #rdf_value{
+        value = z_datetime:undefined_if_invalid_date(Value),
+        type = rdf_property:schema(<<"DateTime">>)
+    }.

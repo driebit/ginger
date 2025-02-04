@@ -1,6 +1,6 @@
 {% with item._source as record %}
     <li class="list__item--beeldenzoeker {{ extraClasses }}">
-        <a href="{% block link %}{% url collection_object database=item._type object_id=record.priref %}{% if query_id %}?query_id={{ query_id }}&total={{ total_results }}&current={{ current }}{% endif %}{% endblock %}"{% if link_target %} target="{{ link_target }}"{% endif %}>
+        <a href="{% block link %}{{ item|collection_object_url }}{% if query_id %}?query_id={{ query_id }}&total={{ total_results }}&current={{ current }}{% endif %}{% endblock %}"{% if link_target %} target="{{ link_target }}"{% endif %}>
             {% block item_image %}
                 {% include "collection/depiction.tpl" record=record width=400 height=400 template="list/list-item-image.tpl" %}
             {% endblock %}

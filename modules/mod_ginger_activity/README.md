@@ -135,6 +135,6 @@ Roadmap
 -------
 
 - Get different kind of aggregates
-- Create a custom fingerprint to uniquely indentify anonymous users
+- Create a custom fingerprint to uniquely identify anonymous users
 - Differentiate between different kinds of activity
 - Higher throughput data persistence options

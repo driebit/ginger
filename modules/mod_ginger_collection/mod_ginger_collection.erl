@@ -4,14 +4,13 @@
 -mod_title("Linked data collections").
 -mod_description("Linked data and media collection view and search interface powered by Elasticsearch").
 -mod_prio(200).
--mod_depends([mod_ginger_base, mod_elasticsearch, mod_ginger_rdf]).
+-mod_depends([mod_ginger_base, elasticsearch, mod_ginger_rdf]).
 -mod_schema(6).
 
 -include_lib("zotonic.hrl").
 
 -export([
     init/1,
-    index/1,
     manage_schema/2,
     observe_search_query/2,
     observe_acl_is_allowed/2,
@@ -19,21 +18,11 @@
 ]).
 
 init(Context) ->
-    default_config(index, index(Context), Context).
-
-%% @doc Get Elasticsearch index name used for collections.
--spec index(z:context()) -> binary().
-index(Context) ->
-    Default = <<(elasticsearch:index(Context))/binary, "_collection">>,
-    case m_config:get_value(?MODULE, index, Context) of
-        undefined -> Default;
-        <<>> -> Default;
-        Value -> z_convert:to_binary(Value)
-    end.
+    default_config(index, m_ginger_collection:collection_index(Context), Context).
 
 manage_schema(_, _Context) ->
     datamodel().
- 
+
 datamodel() ->
     #datamodel{
         categories = [

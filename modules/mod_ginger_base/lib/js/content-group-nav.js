@@ -17,7 +17,7 @@ $.widget( "ui.content_group_nav", {
 
         $(window).scroll($.proxy(me._scrolled, me));
 
-        if(me.banner.size() > 0) {
+        if(me.banner.length > 0) {
             me.body.addClass('has-content-group');
         }
 
@@ -29,7 +29,7 @@ $.widget( "ui.content_group_nav", {
     },
 
     _scrolled: function(event) {
-        
+
         var me = this,
             scrollTop = $(window).scrollTop(),
             minPoint = me.subnav.outerHeight() + 20,

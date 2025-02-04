@@ -53,7 +53,7 @@
 
     &:before {
         @extend .has-icon;
-        @extend .icon--search:before;
+        @extend .icon--search;
         position: absolute;
         top: 9px;
         left: 12px;
@@ -162,7 +162,7 @@
 
     &:after {
         @extend .has-icon;
-        @extend .icon--arrow-down:before;
+        @extend :before, .icon--arrow-down;
         @include size(width, 20);
         @include size(height, 20);
         position: absolute;
@@ -226,7 +226,7 @@
 
     &:after {
         @extend .has-icon;
-        @extend .icon--arrow-down:before;
+        @extend :before, .icon--arrow-down;
         position: relative;
         top: -1px;
         margin-left: 5px;

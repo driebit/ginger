@@ -49,6 +49,42 @@
                     this._closeSearch();
                 }
                 break;
+
+                /*
+                 * Tab should always move focus out of the search form.
+                 * If there are no search suggestions, only blur will be triggered (no keyup for tab)
+                 * If there are search suggestions, OnBlur will not move focus because the focus moved inside of the search form, so we move it after `_closeSearch`
+                 * If the user navigates to a search suggestion with the arrow keys, only blur will be triggered and we should not do anything
+                 */
+                case 'OnBlur': {
+                    const event = value;
+
+                    // Check that the new focus is outside of the search form
+                    if(event.relatedTarget && $(event.relatedTarget).parents('.search-suggestions__searchform').length === 0){
+                        this._closeSearch();
+
+                        const relativePosition = event.target.compareDocumentPosition(event.relatedTarget)
+                        if (relativePosition & Node.DOCUMENT_POSITION_FOLLOWING){
+                            $('#toggle-search').next().focus();
+                        } else if (relativePosition & Node.DOCUMENT_POSITION_PRECEDING) {
+                            $('#toggle-search').prev().focus();
+                        }
+                    }
+                }
+                break;
+
+                case 'OnTab': {
+                    const event = value;
+
+                    this._closeSearch();
+
+                    if (event.shiftkey){
+                        $('#toggle-search').prev().focus();
+                    } else {
+                        $('#toggle-search').next().focus();
+                    }
+                }
+                break;
             }
         },
 
@@ -88,6 +124,10 @@
             me.suggestions.removeClass('is-scrolable');
             me.suggestions.hide();
 
+            if (element.data("param-auto-disable") === true){
+                me.searchInput.prop('disabled', true);
+            }
+
             var observer = new MutationObserver(function(mutations) {
                 mutations.forEach(function(mutation) {
                     me.update('SetSuggestions', mutation.target.querySelectorAll('a'));
@@ -122,11 +162,9 @@
 
             }
 
-            $(document).on('keyup', function(e) {
-                if (e.keyCode === 13) {
-                    me.update('OnReturnPressed');
-                }
-            });
+            me.element.on('blur', function(e) {
+                me.update('OnBlur', e);
+            })
 
             me.element.on('keyup', function(e) {
                 var key = e.keyCode;
@@ -136,6 +174,10 @@
                     me.update('MoveUp', inputValue);
                 } else if (key === 40) {
                     me.update('MoveDown', inputValue);
+                } else if (key === 13) {
+                    me.update('OnReturnPressed');
+                } else if (key === 9) {
+                    me.update('OnTab', e);
                 } else {
                     me.update('SetInput', inputValue);
                     doSearch();
@@ -162,7 +204,6 @@
         },
 
         _toggleSearch: function(event, close) {
-
             var me = this;
 
             if (me.toggleButton) me.toggleButton.toggleClass('is-active');
@@ -171,8 +212,16 @@
                 me.suggestions.hide();
                 me.searchForm.removeClass('is-visible');
                 if (me.toggleButton) me.toggleButton.removeClass('is-active');
+
+                if (me.element.data("param-auto-disable") === true){
+                    me.searchInput.prop('disabled', true);
+                }
             } else {
                 me.searchForm.toggleClass('is-visible');
+
+                if (me.element.data("param-auto-disable") === true){
+                    me.searchInput.prop('disabled', false);
+                }
             }
 
             me.searchInput.val('');

@@ -81,7 +81,14 @@ label(<<"by-nc-nd/", _Version/binary>>) ->
 label(<<"http://creativecommons.org/publicdomain/zero/", _Version/binary>>) ->
     <<"CC0">>;
 label(<<"http://creativecommons.org/publicdomain/mark/", _Version/binary>>) ->
-    <<"PD">>.
+    <<"PD">>;
+label(License) when is_binary(License) ->
+    case z_string:to_lower(License) of
+        License ->
+            undefined;
+        LowerLic ->
+            label(LowerLic)
+    end.
 
 %% @doc Get URL to translated license at the Creative Commons website
 -spec language_url_for(binary(), #context{}) -> binary() | undefined.
@@ -103,4 +110,10 @@ versioned_license([<<"BY", _/binary>> = Type, Version]) ->
 versioned_license([<<"CC0">>, Version]) ->
     <<"http://creativecommons.org/publicdomain/zero/", Version/binary>>;
 versioned_license([<<"PD">>, Version]) ->
-    <<"http://creativecommons.org/publicdomain/mark/", Version/binary>>.
+    <<"http://creativecommons.org/publicdomain/mark/", Version/binary>>;
+versioned_license([<<"BY", _/binary>> = Type]) ->
+    <<"http://creativecommons.org/licenses/", Type/binary, "/4.0">>;
+versioned_license([<<"CC0">>]) ->
+    <<"http://creativecommons.org/publicdomain/zero/1.0">>;
+versioned_license([<<"PD">>]) ->
+    <<"http://creativecommons.org/publicdomain/mark/1.0">>.

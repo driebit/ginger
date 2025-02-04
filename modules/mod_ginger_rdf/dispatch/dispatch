@@ -1,4 +1,5 @@
 [
-    {rsc_json_ld, ["rdf", id], controller_rdf, [{serialization, json_ld}, {ontology, schema_org}]},
-    {rsc_turtle, ["turtle", id], controller_rdf, [{serialization, turtle}, {ontology, schema_org}]}
+    {rsc_json_ld, ["rdf", id], controller_rdf, [{serialization, json_ld}, {ontologies, [schema_org]}]},
+    {rsc_turtle, ["turtle", id], controller_rdf, [{serialization, turtle}, {ontologies, [schema_org]}]},
+    {hydra, ["hydra", id], controller_hydra, [{ontologies, [schema_org]}]}
 ].

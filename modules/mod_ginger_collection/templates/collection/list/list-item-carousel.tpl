@@ -1,6 +1,6 @@
 {% with item._source as record %}
     <li class="list__item--carousel {{ extraClasses }}">
-        <a href="{% url collection_object database=item._type object_id=record.priref %}">
+        <a href="{{ item|collection_object_url }}">
             {% block item_image %}
                 {% include "collection/depiction.tpl" record=record width=400 height=400 template="list/list-item-image.tpl" %}
             {% endblock %}

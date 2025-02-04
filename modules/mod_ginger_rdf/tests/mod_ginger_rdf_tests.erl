@@ -10,6 +10,11 @@ serialize_to_map_test() ->
         triples = [
             #triple{
                 subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:rdf(<<"type">>),
+                object = <<"http://purl.org/dc/dcmitype/Text">>
+            },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
                 predicate = <<"dcterms:abstract">>,
                 object = #rdf_value{value = <<"Good story bro!">>}
             },
@@ -33,6 +38,9 @@ serialize_to_map_test() ->
     Map = ginger_json_ld:serialize_to_map(Resource),
     Expected = #{
         <<"@id">> => <<"http://dinges.com/123">>,
+        <<"@type">> => [
+            <<"http://purl.org/dc/dcmitype/Text">>
+        ],
         <<"dcterms:abstract">> => [
             #{<<"@value">> => <<"Good story bro!">>}
         ],
@@ -112,7 +120,7 @@ serialize_recursive_test() ->
         triples = [
             #triple{
                 subject = <<"http://dinges.com/123">>,
-                predicate = <<"owl:sameAs">>,
+                predicate = <<"some:predicate">>,
                 object = <<"http://dinges.com/123">>
             }
         ]
@@ -120,43 +128,93 @@ serialize_recursive_test() ->
     Map = ginger_json_ld:serialize_to_map(Resource),
     Expected = #{
         <<"@id">> => <<"http://dinges.com/123">>,
-        <<"owl:sameAs">> => [
-            <<"http://dinges.com/123">>
+        <<"some:predicate">> => [
+            #{<<"@id">> => <<"http://dinges.com/123">>}
         ]
     },
     ?assertEqual(Expected, Map).
 
+deserialize_test() ->
+    Resource = #rdf_resource{
+        id = <<"http://dinges.com/123">>,
+        triples = [
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:dcterms(<<"abstract">>),
+                object = #rdf_value{value = <<"Good story bro!">>}
+            },
+            #triple{
+                subject = <<"http://dinges.com/123">>,
+                predicate = rdf_property:rdf(<<"type">>),
+                object = #rdf_value{value = <<"http://purl.org/dc/dcmitype/Text">>}
+            }
+        ]
+    },
+    Serialized = ginger_json_ld:serialize_to_map(Resource),
+    Deserialized = ginger_json_ld:deserialize(Serialized),
+    ?assertEqual(Resource, Deserialized).
+
 rdf_export_test() ->
     Context = context(),
+    %% Predicate must have a URI to be included in export.
+    m_rsc:update(author, [{uri, <<"http://schema.org/author">>}], z_acl:sudo(Context)),
+
     Props = [
         {category, text},
         {title, {trans, [
-            {nl, <<"Een mooie titel">>}
+            {nl, <<"Een mooie titel">>} %% Multilingual property.
         ]}},
         {is_published, true}
     ],
+    AuthorProps = [
+        {category, person},
+        {title, <<"Auteur van het artikel">>}, %% Monolingual property.
+        {is_published, true}
+    ],
     {ok, Id} = m_rsc:insert(Props, z_acl:sudo(Context)),
+    {ok, AuthorId} = m_rsc:insert(AuthorProps, z_acl:sudo(Context)),
+    {ok, _EdgeId} = m_edge:insert(Id, author, AuthorId, z_acl:sudo(Context)),
     Rdf = m_rdf_export:to_rdf(Id, Context),
     Map = ginger_json_ld:serialize_to_map(Rdf),
     ?assertEqual(
         #{
             <<"@id">> => m_rsc:p(Id, uri, Context),
-            <<"@type">> => #{
-                <<"@id">> => <<"http://purl.org/dc/dcmitype/Text">>
-            },
+            <<"@type">> => [
+                <<"http://purl.org/dc/dcmitype/Text">>
+            ],
             <<"http://schema.org/dateCreated">> => [
-                #{<<"@value">> => m_rsc:p(Id, created, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, created, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/dateModified">> => [
-                #{<<"@value">> => m_rsc:p(Id, modified, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, modified, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/datePublished">> => [
-                #{<<"@value">> => m_rsc:p(Id, publication_start, Context)}
+                #{
+                    <<"@value">> => m_rsc:p(Id, publication_start, Context),
+                    <<"@type">> => rdf_property:schema(<<"DateTime">>)
+                }
             ],
             <<"http://schema.org/headline">> => [
                 #{
                     <<"@value">> => <<"Een mooie titel">>,
                     <<"@language">> => nl
+                }
+            ],
+            <<"http://schema.org/author">> => [
+                #{
+                    <<"@id">> => m_rsc:p(AuthorId, uri, Context),
+                    <<"http://schema.org/title">> => [
+                        #{
+                            <<"@value">> => <<"Auteur van het artikel">>,
+                            <<"@language">> => en %% The site's default language.
+                        }
+                    ]
                 }
             ]
         },
@@ -188,14 +246,14 @@ address_to_triples_test() ->
         #{
             <<"http://schema.org/location">> => [
                 #{
-                    <<"@type">> => #{
-                        <<"@id">> => <<"http://schema.org/Place">>
-                    },
+                    <<"@type">> => [
+                        <<"http://schema.org/Place">>
+                    ],
                     <<"http://schema.org/address">> => [
                         #{
-                            <<"@type">> => #{
-                                <<"@id">> => <<"http://schema.org/PostalAddress">>
-                            },
+                            <<"@type">> => [
+                                <<"http://schema.org/PostalAddress">>
+                            ],
                             <<"http://schema.org/streetAddress">> => [
                                 #{
                                     <<"@value">> => <<"Oudezijds Voorburgwal 282">>
@@ -273,8 +331,8 @@ serialize_to_turtle_test() ->
     Expected = [
                 <<"<http://dinges.com/123> foaf:age <http://example.com/1>.">>,
                 <<"<http://example.com/1> foaf:age \"42\".">>,
-                <<"<http://dinges.com/123> foaf:age _:104915255.">>,
-                <<"_:104915255 foaf:age \"42\".">>,
+                <<"<http://dinges.com/123> foaf:age _:121203557.">>,
+                <<"_:121203557 foaf:age \"42\".">>,
                 <<"<http://dinges.com/123> dcterms:creator <http://dinges.com/456>.">>,
                 <<"<http://dinges.com/456> rdfs:label \"Pietje Puk\".">>,
                 <<"<http://dinges.com/456> <http://www.w3.org/2000/01/rdf-schema#label> \"Pietje Puk\".">>,

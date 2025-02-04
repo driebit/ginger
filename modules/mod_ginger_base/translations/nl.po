@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-07-20 17:39+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-10-11 14:53+0200\n"
+"Last-Translator: Marc Worrell <marc@worrell.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 3.1.1\n"
 
-#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:57
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:84
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:57
 msgid " "
 msgstr ""
 
@@ -32,18 +32,26 @@ msgstr "1 reactie"
 msgid "1 person interested"
 msgstr "1 geïnteresseerde"
 
+#: user/modules/mod_ginger_base/templates/pager/pager.tpl:3
+msgid "About {n} results"
+msgstr "Ongeveer {n} resultaten"
+
 #: user/modules/mod_ginger_base/templates/about/about.tpl:1
 msgid "About:"
 msgstr "Over: "
 
-#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:52
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:5
+msgid "Address"
+msgstr "Adres"
+
 #: user/modules/mod_ginger_base/templates/copyrights/edit-copyrights.tpl:81
+#: user/modules/mod_ginger_base/templates/copyrights/copyrights.tpl:51
 msgid "All rights reserved"
 msgstr "Alle rechten voorbehouden"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:16
-msgid "April"
-msgstr ""
+msgid "Apr"
+msgstr "apr"
 
 #: user/modules/mod_ginger_base/templates/error.tpl:101
 msgid "Arguments"
@@ -74,8 +82,8 @@ msgid "Attribution-ShareAlike"
 msgstr "Naamsvermelding-GelijkDelen"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:20
-msgid "August"
-msgstr ""
+msgid "Aug"
+msgstr "aug"
 
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.person.tpl:5
 msgid "Authored by "
@@ -89,9 +97,9 @@ msgstr "Gebaseerd op deze trefwoorden:"
 msgid "Birth date"
 msgstr "Geboortedatum"
 
-#: user/modules/mod_ginger_base/templates/media/media.image.tpl:37
-#: user/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
 #: user/modules/mod_ginger_base/templates/person/person-author.tpl:11
+#: user/modules/mod_ginger_base/templates/person/person-author-simple.tpl:4
+#: user/modules/mod_ginger_base/templates/media/_caption.tpl:4
 msgid "By:"
 msgstr "Door:"
 
@@ -107,17 +115,25 @@ msgstr "Categorieën"
 msgid "Choose language"
 msgstr "Kies je taal"
 
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:78
+msgid "City"
+msgstr "Stad"
+
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:5
 msgid "Connect"
 msgstr "Koppel"
 
 #: user/modules/mod_ginger_base/templates/search/components/filters-contentgroups.tpl:3
 msgid "Content"
-msgstr ""
+msgstr "Inhoud"
 
 #: user/modules/mod_ginger_base/templates/admin/admin-edit-copyrights.tpl:2
 msgid "Copyrights"
 msgstr "Copyrights"
+
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:59
+msgid "Country"
+msgstr "Land"
 
 #: user/modules/mod_ginger_base/templates/person/edit-person-dates.tpl:3
 msgid "Dates"
@@ -132,8 +148,8 @@ msgid "Death date"
 msgstr "Sterfdatum"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:24
-msgid "December"
-msgstr ""
+msgid "Dec"
+msgstr "dec"
 
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:6
 msgid "Disconnect"
@@ -148,8 +164,8 @@ msgid "Documents"
 msgstr "Documenten"
 
 #: user/modules/mod_ginger_base/templates/comments/_comments_form.tpl:35
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:6
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:6
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:6
 #: user/modules/mod_ginger_base/templates/share/share.tpl:21
 msgid "E-mail"
 msgstr "E-mail"
@@ -169,10 +185,10 @@ msgstr "Bewerk pagina"
 
 #: user/modules/mod_ginger_base/templates/search/components/filter-range.tpl:7
 msgid "End"
-msgstr ""
+msgstr "einde"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:6
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.organization.tpl:6
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:6
 msgid "Events"
 msgstr "Evenementen"
 
@@ -180,8 +196,9 @@ msgstr "Evenementen"
 msgid "Exclude from search results"
 msgstr "Niet tonen in zoekresultaten"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:46
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:46
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:46
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:23
 #: user/modules/mod_ginger_base/templates/share/share.tpl:9
 msgid "Facebook"
 msgstr "Facebook"
@@ -191,8 +208,8 @@ msgid "Favorites of "
 msgstr "Favorieten van "
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:14
-msgid "February"
-msgstr ""
+msgid "Feb"
+msgstr "feb"
 
 #: user/modules/mod_ginger_base/templates/error.tpl:102
 msgid "File"
@@ -206,23 +223,23 @@ msgstr "Filters"
 msgid "Function/ template"
 msgstr "Functie/ template"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:48
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:48
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:48
 msgid "Go to Facebook"
 msgstr "Ga naar Facebook"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:58
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:58
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:58
 msgid "Go to LinkedIn"
 msgstr "Ga naar Linkedin"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:68
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:68
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:68
 msgid "Go to Twitter"
 msgstr "Ga naar Twitter"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:38
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:38
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:38
 msgid "Go to website"
 msgstr "Ga naar website"
 
@@ -243,16 +260,16 @@ msgid "Incoming connections"
 msgstr "Inkomende relaties"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:13
-msgid "January"
-msgstr ""
+msgid "Jan"
+msgstr "jan"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:19
 msgid "July"
-msgstr ""
+msgstr "juli"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:18
 msgid "June"
-msgstr ""
+msgstr "juni"
 
 #: user/modules/mod_ginger_base/templates/email_base.tpl:38
 msgid "Kind regards,"
@@ -262,13 +279,14 @@ msgstr "Met vriendelijke groet,"
 msgid "Leave a comment"
 msgstr "Laat een reactie achter"
 
-#: user/modules/mod_ginger_base/templates/favorite/favorite.tpl:2
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:4
+#: user/modules/mod_ginger_base/templates/favorite/favorite.tpl:2
 msgid "Like"
 msgstr "Like"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:56
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:56
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:56
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:47
 #: user/modules/mod_ginger_base/templates/share/share.tpl:15
 msgid "LinkedIn"
 msgstr "Linkedin"
@@ -282,13 +300,13 @@ msgstr "Laad meer"
 msgid "Loading..."
 msgstr "Laden..."
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:18
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.organization.tpl:18
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.location.tpl:18
 msgid "Located here"
 msgstr "Hier gevestigd"
 
-#: user/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35
 #: user/modules/mod_ginger_base/templates/meta/meta-location.tpl:11
+#: user/modules/mod_ginger_base/templates/list/list-item-vertical.tpl:35
 msgid "Location"
 msgstr "Locatie"
 
@@ -300,13 +318,17 @@ msgstr "Log in of registreer om een reactie achter te laten"
 msgid "Logged in as"
 msgstr "Ingelogd als"
 
+#: user/modules/mod_ginger_base/templates/email_base.tpl:20
+msgid "Logo"
+msgstr "Logo"
+
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:15
-msgid "March"
-msgstr ""
+msgid "Mar"
+msgstr "mrt"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:17
 msgid "May"
-msgstr ""
+msgstr "mei"
 
 #: user/modules/mod_ginger_base/templates/attached-media/attached-media.tpl:9
 msgid "Media"
@@ -320,8 +342,12 @@ msgstr "Menu"
 msgid "Message"
 msgstr "Bericht"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:26
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:19
+msgid "Mobile"
+msgstr "Mobiel"
+
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:26
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:26
 msgid "Mobile number"
 msgstr "Mobiele nummer"
 
@@ -332,10 +358,6 @@ msgstr "Module"
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:10
 msgid "Month"
 msgstr "Maand"
-
-#: user/modules/mod_ginger_base/templates/pager/pager.tpl:2
-msgid "More than 30000 results"
-msgstr "Meer dan 30000 resultaten"
 
 #: user/modules/mod_ginger_base/templates/comments/_comments_form.tpl:27
 msgid "Name"
@@ -353,10 +375,10 @@ msgstr "Geen toegang"
 msgid "No comments"
 msgstr "Geen reacties"
 
-#: user/modules/mod_ginger_base/templates/list/list.tpl:11
-#: user/modules/mod_ginger_base/templates/list/list.tpl:72
-#: user/modules/mod_ginger_base/templates/map/map.tpl:63
 #: user/modules/mod_ginger_base/templates/search/components/filter-terms-options.tpl:35
+#: user/modules/mod_ginger_base/templates/map/map.tpl:63
+#: user/modules/mod_ginger_base/templates/list/list.tpl:11
+#: user/modules/mod_ginger_base/templates/list/list.tpl:73
 msgid "No results"
 msgstr "Geen resultaten"
 
@@ -373,24 +395,23 @@ msgid "Nothing found"
 msgstr "Geen resultaten"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:23
-msgid "November"
-msgstr ""
+msgid "Nov"
+msgstr "nov"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:22
-msgid "October"
-msgstr ""
+msgid "Oct"
+msgstr "okt"
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:10
 msgid "Page actions"
 msgstr "Pagina acties"
 
 #: user/modules/mod_ginger_base/templates/part-of/part-of-aside.tpl:1
-#, fuzzy
 msgid "Part of"
-msgstr "Onderdeel van:"
+msgstr "Onderdeel van"
 
-#: user/modules/mod_ginger_base/templates/part-of/part-of.media.tpl:4
 #: user/modules/mod_ginger_base/templates/part-of/part-of.tpl:4
+#: user/modules/mod_ginger_base/templates/part-of/part-of.media.tpl:4
 msgid "Part of:"
 msgstr "Onderdeel van:"
 
@@ -401,6 +422,10 @@ msgstr "Deelnemers"
 #: user/modules/mod_ginger_base/templates/share/share.tpl:18
 msgid "Pinterest"
 msgstr "Pinterest"
+
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:83
+msgid "Postcode"
+msgstr "Postcode"
 
 #: user/modules/mod_ginger_base/templates/dialog-profile/button-profile-live.tpl:19
 #: user/modules/mod_ginger_base/templates/dialog-profile/button-profile.tpl:7
@@ -416,8 +441,8 @@ msgstr "Publiek domein"
 msgid "Qualifier"
 msgstr "Kwalificatie"
 
-#: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-rsvp.tpl:11
+#: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:24
 msgid "RSVP"
 msgstr "Aanmelden"
 
@@ -429,10 +454,14 @@ msgstr "Lees meer"
 msgid "Reason"
 msgstr "Reden"
 
-#: user/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:14
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:39
+msgid "Redirect to website on page view"
+msgstr "Doorsturen naar website bij bekijken van de pagina"
+
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.text.tpl:4
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:5
 #: user/modules/mod_ginger_base/templates/main-aside/main-aside.tpl:14
+#: user/modules/mod_ginger_base/templates/main-aside/main-aside.media.tpl:14
 msgid "Related"
 msgstr "Gerelateerd"
 
@@ -448,16 +477,16 @@ msgstr "Reacties van "
 msgid "Return to the homepage"
 msgstr "Keer terug naar de homepage"
 
-#: user/modules/mod_ginger_base/templates/admin/admin-search.tpl:2
-#: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
-#: user/modules/mod_ginger_base/templates/search/components/input-text.tpl:2
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:8
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:9
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:24
 #: user/modules/mod_ginger_base/templates/search-suggestions/search-form.tpl:36
 #: user/modules/mod_ginger_base/templates/search-suggestions/toggle-search.tpl:3
+#: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 #: user/modules/mod_ginger_base/templates/search.tpl:3
 #: user/modules/mod_ginger_base/templates/search.tpl:13
+#: user/modules/mod_ginger_base/templates/admin/admin-search.tpl:2
+#: user/modules/mod_ginger_base/templates/search/components/input-text.tpl:2
 msgid "Search"
 msgstr "Zoeken"
 
@@ -465,13 +494,17 @@ msgstr "Zoeken"
 msgid "Search options"
 msgstr "Zoekopties"
 
+#: user/modules/mod_ginger_base/templates/_admin_category_dropdown.tpl:5
+msgid "Select category"
+msgstr "Selecteer categorie"
+
 #: user/modules/mod_ginger_base/templates/comments/_comments_form.tpl:51
 msgid "Send"
 msgstr "Verzenden"
 
 #: user/modules/mod_ginger_base/templates/date/edit-month.tpl:21
-msgid "September"
-msgstr ""
+msgid "Sep"
+msgstr "sep"
 
 #: user/modules/mod_ginger_base/templates/share/share.tpl:4
 msgid "Share"
@@ -507,7 +540,15 @@ msgstr "Stack trace"
 
 #: user/modules/mod_ginger_base/templates/search/components/filter-range.tpl:6
 msgid "Start"
-msgstr ""
+msgstr "Beginnen"
+
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:87
+msgid "State"
+msgstr "Provincie"
+
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:73
+msgid "Street Line 1"
+msgstr "Adresregel 1"
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_basics_form.tpl:18
 msgid "Subtitle"
@@ -517,14 +558,18 @@ msgstr "Subtitel"
 msgid "Summary"
 msgstr "Inleiding"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:16
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:15
+msgid "Telephone"
+msgstr "Telefoon"
+
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:16
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:16
 msgid "Telephone number"
 msgstr "Telefoonnummer"
 
-#: user/modules/mod_ginger_base/templates/search/components/filter-terms.tpl:7
+#: user/modules/mod_ginger_base/templates/search/components/filter-terms.tpl:8
 msgid "Term"
-msgstr ""
+msgstr "Term"
 
 #: user/modules/mod_ginger_base/templates/error.tpl:39
 msgid "That page does not exist"
@@ -558,18 +603,15 @@ msgstr "Deze pagina heeft geen inkomende relaties"
 msgid "Title"
 msgstr "Titel"
 
-#: user/modules/mod_ginger_base/templates/admin_seo.tpl:43
-msgid "This setting can only be changed in the site config file."
-msgstr "Deze instelling kun je alleen wijzigen in het site-configuratiebestand."
-
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:66
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:66
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:66
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:43
 #: user/modules/mod_ginger_base/templates/share/share.tpl:12
 msgid "Twitter"
 msgstr "Twitter"
 
-#: user/modules/mod_ginger_base/templates/favorite/favorite.tpl:3
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:5
+#: user/modules/mod_ginger_base/templates/favorite/favorite.tpl:3
 msgid "Unlike"
 msgstr "Unlinke"
 
@@ -577,12 +619,13 @@ msgstr "Unlinke"
 msgid "View all incoming connections"
 msgstr "Toon alle inkomende relaties"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:36
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:36
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:36
+#: user/modules/mod_ginger_base/templates/_admin_edit_content_address.tpl:30
 msgid "Website"
 msgstr "Website"
 
-#: user/modules/mod_ginger_base/templates/media/media.image.tpl:39
+#: user/modules/mod_ginger_base/templates/media/_caption.tpl:7
 msgid "With:"
 msgstr "Met:"
 
@@ -670,8 +713,8 @@ msgstr "reacties:"
 msgid "download"
 msgstr "download"
 
-#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:8
 #: user/modules/mod_ginger_base/templates/person/person-details.tpl:8
+#: user/modules/mod_ginger_base/templates/meta/meta-details.tpl:8
 msgid "email"
 msgstr "email"
 
@@ -685,14 +728,14 @@ msgstr "geïnteresseerden"
 
 #: user/modules/mod_ginger_base/templates/search/components/filters-keywords.tpl:16
 msgid "less"
-msgstr ""
+msgstr "minder"
 
 #: user/modules/mod_ginger_base/templates/search.tpl:21
 msgid "list"
 msgstr "lijst"
 
-#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:54
 #: user/modules/mod_ginger_base/templates/page-actions/page-action-connect.tpl:82
+#: user/modules/mod_ginger_base/templates/page-actions/page-action-connect-user.tpl:54
 msgid "logon or register"
 msgstr "Login of registreer"
 
@@ -710,7 +753,7 @@ msgstr "Maximum deelnemers"
 
 #: user/modules/mod_ginger_base/templates/search/components/filters-keywords.tpl:16
 msgid "more"
-msgstr ""
+msgstr "Meer"
 
 #: user/modules/mod_ginger_base/templates/_admin_edit_sidebar.event.tpl:30
 msgid "must be a number"
@@ -720,7 +763,7 @@ msgstr "moet een nummer zijn"
 msgid "no interested people"
 msgstr "geen geïnteresseerden"
 
-#: user/modules/mod_ginger_base/templates/pager/pager.tpl:2
+#: user/modules/mod_ginger_base/templates/pager/pager.tpl:4
 msgid "results"
 msgstr "resultaten"
 
@@ -731,6 +774,13 @@ msgstr "resultaten"
 #: user/modules/mod_ginger_base/templates/home-search/home-search.tpl:19
 msgid "search"
 msgstr "zoeken"
+
+#~ msgid "More than 30000 results"
+#~ msgstr "Meer dan 30000 resultaten"
+
+#~ msgid "This setting can only be changed in the site config file."
+#~ msgstr ""
+#~ "Deze instelling kun je alleen wijzigen in het site-configuratiebestand."
 
 #~ msgid "Pending"
 #~ msgstr "Wacht op akkoord"

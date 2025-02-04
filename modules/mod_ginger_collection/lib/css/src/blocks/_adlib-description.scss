@@ -59,7 +59,7 @@
 
 	&:before {
 		@extend .has-icon;
-		@extend .icon--arrow-down:before;
+		@extend .icon--arrow-down;
 		font-size: 10px;
 		margin-right: 10px;
 	}
@@ -83,7 +83,7 @@
 
 	&:after {
 		@extend .has-icon;
-		@extend .icon--arrow-down:before;
+		@extend :before, .icon--arrow-down;
 		font-size: 10px;
 		margin-right: 10px;
 	}

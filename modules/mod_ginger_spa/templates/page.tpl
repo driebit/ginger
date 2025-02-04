@@ -38,7 +38,7 @@
             <meta property="og:site_name" content="{{ m.config.site.title.value }}"/>
         {% endif %}
 
-        <meta property="og:url" content="https://{{ m.site.hostname }}{{ m.req.raw_path }}"/>
+        <meta property="og:url" content="{{ m.site.hostname }}{{ m.req.raw_path }}"/>
         <meta property="og:title" content="{{ id.title }}" />
         <meta property="og:description" content="{{ id.id|summary:160 }}"/>
         <meta property="og:image:width" content="450" />
@@ -47,14 +47,14 @@
         <meta name="twitter:title" content="{{ id.title }}" />
         <meta name="twitter:description" content="{{ id.id|summary:160 }}" />
         {% if id.o.hasbanner.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %} />
+            <meta property="twitter:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
         {% elif id.o.hascover.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
+            <meta property="twitter:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
         {% elif id.o.depiction.id as image %}
-            <meta property="og:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
-            <meta property="twitter:image" content="http://{{ m.site.hostname }}{% image_url image mediaclass='opengraph' %}" />
+            <meta property="og:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
+            <meta property="twitter:image" content="{% image_url image mediaclass='opengraph' use_absolute_url %}" />
         {% else %}
             <meta property="og:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
             <meta property="twitter:image" content="http://{{ m.site.hostname }}/lib/dist/assets/ogdata.jpg" />
@@ -87,6 +87,7 @@
     </head>
 
     <body>
+        {% block noscript %}{% endblock %}
         <script type="text/javascript">
             {% block flags %}
                 var menu = {
