@@ -90,7 +90,7 @@
         vertical-align: bottom;
 
         &:after {
-            content: '';
+            content: "";
             width: 8px;
             height: 8px;
             position: absolute;
@@ -107,8 +107,8 @@
     &:active,
     &:focus,
     &:active:focus {
-        background: darken($mainThemeColor, 10%);
-        border-color: darken($mainThemeColor, 10%);
+        background: color-mix(in srgb, $mainThemeColor, black, 10%);
+        border-color: color-mix(in srgb, $mainThemeColor, black, 10%);
         color: $white;
     }
 
@@ -157,7 +157,7 @@
         margin-right: 7px;
         position: relative;
         top: 2px;
-        color: lighten($typographyColor, 15%);
+        color: color-mix(in srgb, $typographyColor, white, 15%);
     }
 
     &:after {
@@ -189,10 +189,10 @@
     &.is-open {
         max-height: 200px;
 
-         ul {
+        ul {
             max-height: 200px;
             overflow: scroll;
-         }
+        }
     }
 
     ul {
@@ -250,7 +250,6 @@
 
 .search_results__map {
     display: none;
-
 }
 
 .search__results__list {

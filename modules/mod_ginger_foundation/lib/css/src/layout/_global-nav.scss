@@ -42,7 +42,7 @@
     li {
         display: block;
         @include size(line-height, 18);
-        border-bottom: 1px solid lighten($typographyColor, 60%);
+        border-bottom: 1px solid color-mix(in srgb, $typographyColor, white, 60%);
     }
 
     a {

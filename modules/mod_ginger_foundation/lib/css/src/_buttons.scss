@@ -22,7 +22,8 @@
     @extend %btn;
 }
 
-[class^="btn--"], [class*=" btn--"],
+[class^="btn--"],
+[class*=" btn--"],
 button[type="submit"] {
     @extend %btn--primary;
 }
@@ -39,9 +40,9 @@ button[type="submit"] {
     &:focus,
     &:focus:active,
     &.is-active {
-        background-color: darken($mainThemeColor, 5);
+        background-color: color-mix(in srgb, $mainThemeColor, black, 5%);
         color: $white;
-        border-color: darken($mainThemeColor, 5);
+        border-color: color-mix(in srgb, $mainThemeColor, black, 5%);
     }
 }
 

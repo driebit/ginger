@@ -6,23 +6,23 @@
 
 @keyframes outline-animate {
     0% {
-        outline-offset: .5rem
+        outline-offset: 0.5rem;
     }
 
     to {
-        outline-offset: -.1rem
+        outline-offset: -0.1rem;
     }
 }
 
 *:focus {
-    outline: 0.2rem solid #51CBEE;
-    animation: outline-animate .1s linear 0s 1 normal;
+    outline: 0.2rem solid #51cbee;
+    animation: outline-animate 0.1s linear 0s 1 normal;
     animation-fill-mode: forwards;
 }
 
 .visually-hidden {
     position: absolute !important;
-    clip: rect(1px,1px,1px,1px);
+    clip: rect(1px, 1px, 1px, 1px);
     overflow: hidden;
     height: 1px;
     width: 1px;
@@ -84,7 +84,9 @@ body {
     }
 }
 
-a, a:hover, a:active {
+a,
+a:hover,
+a:active {
     color: $mainThemeColor;
 }
 
@@ -99,7 +101,14 @@ img {
     border-radius: 0;
 }
 
-h1, h2, h3, h4, p, ol, ul, table {
+h1,
+h2,
+h3,
+h4,
+p,
+ol,
+ul,
+table {
     margin: 0 0 1em 0;
 }
 
@@ -136,15 +145,14 @@ h3 {
     margin-bottom: 0;
 }
 
-
 %cf {
     &:before {
-        content: '';
+        content: "";
         display: table;
     }
 
     &:after {
-        content: '';
+        content: "";
         display: table;
         clear: both;
     }
@@ -177,7 +185,8 @@ figure {
     padding-top: 56.25%;
     position: relative;
 
-    video, iframe {
+    video,
+    iframe {
         height: 100%;
         width: 100%;
         position: absolute;
@@ -190,7 +199,7 @@ figcaption {
     @include size(margin-top, 5);
     position: relative;
     @include size(font-size, 14);
-    color: lighten($typographyColor, 50%);
+    color: color-mix(in srgb, $typographyColor, white, 50%);
 
     p {
         display: inline-block;

@@ -11,7 +11,6 @@
         @include size(font-size, 25);
     }
 
-
     &.is-active {
         right: 15px;
         z-index: 2100;
@@ -49,12 +48,12 @@
         }
     }
 
-    [type=text] {
+    [type="text"] {
         display: block;
         border: none;
         width: 100%;
         height: 100%;
-        background-color: #FFF;
+        background-color: #fff;
         background-position: 10px center;
         background-repeat: no-repeat;
         background-size: 30px 30px;
@@ -67,7 +66,7 @@
         }
     }
 
-    [type=submit] {
+    [type="submit"] {
         display: none;
     }
 }
@@ -84,9 +83,9 @@
     width: 100%;
     @include size(padding, 10, 15);
     background: $white;
-    border: 1px solid rgba(0,0,0,.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 
     ul {
         @include size(padding-left, 20);
@@ -104,7 +103,7 @@
     }
 
     a {
-        color: lighten($typographyColor, 20%);
+        color: color-mix(in srgb, $typographyColor, white, 20%);
     }
 
     &.is-scrollable {
@@ -144,7 +143,7 @@
     .search-suggestions__searchform {
         @include size(height, $globalNavHeight);
 
-        [type=text] {
+        [type="text"] {
             @include size(line-height, $globalNavHeight);
         }
     }

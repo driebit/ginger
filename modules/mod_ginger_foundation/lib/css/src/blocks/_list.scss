@@ -8,8 +8,16 @@
 
     .list__item {
         @include grid(
-            (breakpoint: $smallBreakpoint, property: 'min-width', columns: '1/2'),
-            (breakpoint: $mediumBreakpoint, property: 'min-width', columns: '1/3')
+            (
+                breakpoint: $smallBreakpoint,
+                property: "min-width",
+                columns: "1/2",
+            ),
+            (
+                breakpoint: $mediumBreakpoint,
+                property: "min-width",
+                columns: "1/3",
+            )
         );
     }
 }
@@ -119,7 +127,11 @@
     position: absolute;
     @include size(top, -50);
     left: 0px;
-    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.60) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
     line-height: 1;
 }
 
@@ -140,7 +152,8 @@
 .list__item__content__date {
     display: block;
     @include size(margin-bottom, 7);
-    color: lighten($typographyColor, 50%);
+    color: color-mix(in srgb, $typographyColor, white, 50%);
+
     @include size(font-size, 15);
     font-weight: 300;
 }
@@ -163,14 +176,14 @@
 
     + .list__more {
         margin-top: 20px;
-        background: lighten($mainThemeColor, 20);
+        background: color-mix(in srgb, $mainThemeColor, white, 20%);
     }
 }
 
 .list__item--vertical {
     @extend .list__item;
 
-     > a {
+    > a {
         display: inline-block;
     }
 
@@ -203,7 +216,11 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        background: linear-gradient(to bottom,  rgba(0,0,0,0.45) 0%,rgba(0,0,0,0) 100%);
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0) 100%
+        );
         line-height: 1;
     }
 
@@ -266,7 +283,7 @@
     position: relative;
     background: none;
     min-height: 140px;
-    background-image: url('/lib/images/fallback.png');
+    background-image: url("/lib/images/fallback.png");
     background-position: center center;
 
     @include mq(min-width, $smallBreakpoint) {
@@ -323,7 +340,8 @@
     position: relative;
     overflow: hidden;
 
-    a, article {
+    a,
+    article {
         display: block;
         width: 100%;
         height: 100%;
@@ -351,7 +369,7 @@
 
 .list__item__locations {
     @include size(font-size, 15);
-    color: lighten($typographyColor, 50%);
+    color: color-mix(in srgb, $typographyColor, white, 50%);
 
     .icon--location:before {
         width: auto;
@@ -361,7 +379,6 @@
         color: inherit;
     }
 }
-
 
 .list__item--map {
     display: block;
@@ -381,7 +398,6 @@
         border: none;
     }
 
-
     .list__item__content__category {
         background: none;
         @include size(font-size, 18);
@@ -399,11 +415,10 @@
     @include size(width, 125);
     @include size(height, 115);
     float: left;
-    background-color: darken($mainThemeColor, 10%);
+    background-color: color-mix(in srgb, $mainThemeColor, black, 10%);
     background-size: cover;
     background-position: top center;
 }
-
 
 @include mq(min-width, $mediumBreakpoint) {
     .list__item {

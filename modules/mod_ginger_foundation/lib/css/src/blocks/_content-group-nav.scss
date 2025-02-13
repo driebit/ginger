@@ -12,7 +12,7 @@ body.has-content-group {
     background-size: cover;
     background-position: center center;
     text-align: center;
-    box-shadow: 3px 3px 10px 2px rgba(0,0,0,0.15);
+    box-shadow: 3px 3px 10px 2px rgba(0, 0, 0, 0.15);
     transition: height 0.3s;
 
     &:hover,
@@ -22,14 +22,14 @@ body.has-content-group {
     }
 
     &:after {
-        content: '';
+        content: "";
         width: 100%;
         height: 100%;
         position: absolute;
         @include size(top, 0);
         @include size(left, 0);
         z-index: 200;
-        background-color: rgba($mainThemeColor, .4);
+        background-color: rgba($mainThemeColor, 0.4);
     }
 
     &.is-minified {
@@ -53,11 +53,11 @@ body.has-content-group {
     background-position: center center;
     text-align: center;
     filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);  /* For Webkit browsers */
-    filter: gray;  /* For IE 6 - 9 */
+    -webkit-filter: grayscale(100%); /* For Webkit browsers */
+    filter: gray; /* For IE 6 - 9 */
 }
 
- .content-group-nav__banner__title {
+.content-group-nav__banner__title {
     @include vertical-align();
     z-index: 300;
     @include size(font-size, 28);
@@ -66,7 +66,7 @@ body.has-content-group {
     text-shadow: 0px 1px 10px rgba(50, 50, 50, 1);
 
     &:after {
-        content: '';
+        content: "";
         display: inline-block;
         position: relative;
         top: -6px;
@@ -102,7 +102,7 @@ body.has-content-group {
         text-align: left;
 
         &.active a {
-            background: darken($mainThemeColor, 5);
+            background: color-mix(in srgb, $mainThemeColor, black, 5%);
         }
     }
 
@@ -117,7 +117,7 @@ body.has-content-group {
         &:active,
         &:hover,
         &.is-active {
-            background: darken($mainThemeColor, 5);
+            background: color-mix(in srgb, $mainThemeColor, black, 5%);
             text-decoration: none;
         }
     }
@@ -142,4 +142,3 @@ body.has-content-group {
         @include size(top, $globalNavHeight);
     }
 }
-

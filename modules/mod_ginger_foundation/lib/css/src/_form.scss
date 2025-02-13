@@ -9,19 +9,19 @@ form {
         width: 100%;
         @include size(padding, 4, 10, 0);
         @include size(height, 38);
-        border: 1px solid darken($mainThemeColor, 15);
+        border: 1px solid color-mix(in srgb, $mainThemeColor, black, 15%);
         border-radius: 3px;
         line-height: 1;
         font-family: $primaryFontFamily;
     }
 
     textarea {
-        border: 1px solid darken($mainThemeColor, 15);
+        border: 1px solid color-mix(in srgb, $mainThemeColor, black, 15%);
         border-radius: 3px;
     }
 
     .form-control {
-        border: 1px solid darken($mainThemeColor, 15);
+        border: 1px solid color-mix(in srgb, $mainThemeColor, black, 15%);
         border-radius: 3px;
     }
 
@@ -29,7 +29,7 @@ form {
         width: 100%;
         @include size(padding, 0, 10);
         @include size(height, 38);
-        border: 1px solid darken($mainThemeColor, 15);
+        border: 1px solid color-mix(in srgb, $mainThemeColor, black, 15%);
         border-radius: 3px;
         @include size(line-height, 38);
         font-family: $primaryFontFamily;
@@ -45,7 +45,7 @@ form {
     }
 
     .form-group__input:after {
-        content: '!';
+        content: "!";
         display: block;
         width: 25px;
         height: 25px;
