@@ -1,18 +1,18 @@
 $black: #000;
-$white: #FFF;
-$alto: #DDD;
+$white: #fff;
+$alto: #ddd;
 $error: #a94442;
-$ginger: #FE7600;
+$ginger: #fe7600;
 
-$bodyBgColor: #EBEBEB;
+$bodyBgColor: #ebebeb;
 $bodyFontFamily: arial, times;
 $primaryFontFamily: $bodyFontFamily, arial, times;
 $secondaryFontFamily: arial, times;
 
 $typographyColor: #000;
-$mainThemeColor: #0087D2;
-$secondaryThemeColor: #0087D2;
-$tertiaryThemeColor: #0087D2;
+$mainThemeColor: #0087d2;
+$secondaryThemeColor: #0087d2;
+$tertiaryThemeColor: #0087d2;
 
 $btnRadius: 18px;
 $interfaceRadius: 4px;
@@ -26,18 +26,18 @@ $globalNavHeight: 70;
 $contentGroupNavHeight: 85;
 $minifiedcontentGroupNavHeight: 55;
 
-$listBgColor: #EBEBEB;
-$listHeaderBgColor: darken($listBgColor, 10);
+$listBgColor: #ebebeb;
+$listHeaderBgColor: color-mix(in srgb, $listBgColor, black, 10%);
 
-$relatedItemsBgColor: #1F1F25;
+$relatedItemsBgColor: #1f1f25;
 $relatedItemsTextColor: $white;
-$relatedItemsHeaderBgColor: #2C2E36;
+$relatedItemsHeaderBgColor: #2c2e36;
 
 $menuMobileActionsBgColor: #e0e0e0;
 $menuMobileBgColor: #f1f1f1;
 
 $footerHeight: 300;
-$footerBgColor: #23232A;
+$footerBgColor: #23232a;
 
 $standardOffset: 30;
 

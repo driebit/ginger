@@ -10,7 +10,7 @@
 
     i {
         @include size(margin-right, 8);
-        color: darken($mainThemeColor, 20);
+        color: color-mix(in srgb, $mainThemeColor, black, 20%);
     }
 }
 

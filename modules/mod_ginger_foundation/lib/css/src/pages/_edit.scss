@@ -10,7 +10,7 @@ ul.tree-list li.menu-item {
 
     .btn {
         border: none;
-        color: darken($mainThemeColor, 5);
+        color: color-mix(in srgb, $mainThemeColor, black, 5%);
     }
 }
 
@@ -30,7 +30,7 @@ ul.tree-list li.menu-item {
         font-size: 12px;
         line-height: 1.1em;
         position: relative;
-        color: lighten(black, 20%);
+        color: color-mix(in srgb, black, white, 20%);
 
         img {
             padding: 0;
@@ -100,20 +100,21 @@ img.admin-list-overview {
 .ginger-edit__aside {
     @include size(padding, 20);
     @include size(margin-bottom, $standardOffset);
-    background: darken($bodyBgColor, 2.5%);
+    background: color-mix(in srgb, $bodyBgColor, black, 2.5%);
 
     h3 {
         @include size(margin-bottom, 20);
     }
 }
 
-[class^="ginger-edit__aside"], [class*=" ginger-edit__aside"] {
+[class^="ginger-edit__aside"],
+[class*=" ginger-edit__aside"] {
     @extend .ginger-edit__aside;
 }
 
 .ginger-edit__profile-picture {
     padding: 15px;
-    border: 1px solid #BEBDBE;
+    border: 1px solid #bebdbe;
 
     .widget-header {
         display: none;
@@ -128,7 +129,6 @@ img.admin-list-overview {
         border: none;
     }
 }
-
 
 .ginger-edit {
     .modal-body {
