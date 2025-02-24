@@ -297,7 +297,7 @@
     }
 }
 
-@include mq(max-height, 500px) {
+@include mq(max-height, 500) {
     .is-open .global-nav__menu {
         height: calc(100% - (#{$globalNavHeight + $globalNavHeight}px));
         overflow-y: scroll;

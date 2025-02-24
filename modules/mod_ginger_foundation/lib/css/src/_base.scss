@@ -133,7 +133,7 @@ h3 {
     @include size(margin-bottom, 0);
 }
 
-@include mq(min-width, 900px) {
+@include mq(min-width, 900) {
     h1 {
         @include size(font-size, 41);
         @include size(line-height, 44);

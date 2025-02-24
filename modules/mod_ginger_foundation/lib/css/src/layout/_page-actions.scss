@@ -20,7 +20,7 @@
     display: inline-block;
 }
 
-@include mq(min-width, 900px) {
+@include mq(min-width, 900) {
     .page-actions__author {
         @include size(margin-bottom, 10);
     }
