@@ -9,7 +9,7 @@
 -mod_prio(250).
 -mod_depends([mod_content_groups, mod_acl_user_groups]).
 
--mod_schema(11).
+-mod_schema(13).
 
 -export([
     init/1,
@@ -53,10 +53,18 @@ manage_schema(_Version, Context) ->
             % {uniquename, category, [
             %     {propname, propvalue}
             % ]},
+            {acl_user_group_moderators, acl_user_group, [
+                {title, {trans, [{en, "Moderators"}, {nl, "Moderatoren"}]}}
+            ]},
             {editor_dev, person, [
                 {title, "Redacteur"},
                 {name_first, "Redacteur"},
                 {email, "redactie@ginger.nl"}
+            ]},
+            {moderator_dev, person, [
+                {title, "Moderator"},
+                {name_first, "Moderator"},
+                {email, "moderator@ginger.nl"}
             ]},
             {fallback, image, [
                 {title, "Fallback image"}
@@ -121,7 +129,8 @@ manage_schema(_Version, Context) ->
             ]}
         ],
         edges = [
-            {editor_dev, hasusergroup, acl_user_group_editors}
+            {editor_dev, hasusergroup, acl_user_group_editors},
+            {moderator_dev, hasusergroup, acl_user_group_moderators}
         ],
         data = [
             {acl_rules, [
@@ -165,12 +174,21 @@ manage_schema(_Version, Context) ->
                     {acl_user_group_id, acl_user_group_editors},
                     {actions, [use]},
                     {module, mod_menu}
+                ]},
+                %% Moderators can do user management
+                {module, [
+                    {acl_user_group_id, acl_user_group_moderators},
+                    {actions, [use]},
+                    {module, mod_admin_identity}
                 ]}
             ]}
         ]
     },
     z_datamodel:manage(?MODULE, Datamodel, Context),
-    schema:create_identity_if_not_exists(editor_dev, "redacteur", "redacteur", Context).
+    ginger_user_group:move_moderator_user_group(Context),
+    ginger_user_group:move_manager_user_group(Context),
+    schema:create_identity_if_not_exists(editor_dev, "redacteur", z_ids:id(20), Context),
+    schema:create_identity_if_not_exists(moderator_dev, "moderator", z_ids:id(20), Context).
 
 %% @doc Users without access to the admin should not be able to view unpublished
 %%      resources
@@ -207,16 +225,16 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
             Html = z_template:render(CommentTemplate, Props, Context),
             Context1 = z_render:insert_bottom(CommentsListElt, Html, Context),
             Context2 = case Is_visible of
-			   true ->
-             AllActions = lists:merge([
-					      {set_value, [{selector, "#"++FormId++" textarea[name=\"message\"]"}, {value, ""}]},
-					      {set_value, [{selector, "#"++FormId++" input[name=\"message\"]"}, {value, ""}]},
-					      {fade_in, [{target, "comment-"++integer_to_list(CommentId)}]}
-					     ], ExtraActions),
-			       z_render:wire(AllActions, Context1);
-			   false ->
-			       Context1
-		       end,
+                           true ->
+                               AllActions = lists:merge([
+                                   {set_value, [{selector, "#"++FormId++" textarea[name=\"message\"]"}, {value, ""}]},
+                                   {set_value, [{selector, "#"++FormId++" input[name=\"message\"]"}, {value, ""}]},
+                                   {fade_in, [{target, "comment-"++integer_to_list(CommentId)}]}
+                               ], ExtraActions),
+                               z_render:wire(AllActions, Context1);
+                           false ->
+                               Context1
+                       end,
             case z_convert:to_bool(proplists:get_value(do_redirect, Args, true)) of
                 true -> z_render:wire({redirect, [{location, "#comment-"++integer_to_list(CommentId)}]}, Context2);
                 false -> Context2
@@ -227,11 +245,11 @@ event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
 event(#postback{message={map_infobox, _Args}}, Context) ->
     Ids = z_context:get_q(ids, Context),
     Render = case z_context:get_q(data, Context) of
-                        [] ->
-                            z_template:render("map/map-infobox.tpl", [{results, Ids}], Context);
-                        Data ->
-                            z_template:render("map/map-infobox-data-item.tpl", [{item, Data}], Context)
-                end,
+                 [] ->
+                     z_template:render("map/map-infobox.tpl", [{results, Ids}], Context);
+                 Data ->
+                     z_template:render("map/map-infobox-data-item.tpl", [{item, Data}], Context)
+             end,
     Element = z_context:get_q(element, Context),
 
     EscapedRender = z_utils:js_escape(iolist_to_binary(Render)),
