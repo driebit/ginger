@@ -23,11 +23,12 @@ get(Context) ->
             end
     end.
 
+
 is_dev(Context) ->
-    match(".(test|ginger-test.driebit.net)$", Context).
+    match(".(test|ginger-test.driebit.net|test.ginger-review.driebit.net)$", Context).
 
 is_acc(Context) ->
-    match(".(ginger-acceptatie.driebit.net)$", Context).
+    match(".(ginger-acceptatie.driebit.net|acceptance.ginger-review.driebit.net)$", Context).
 
 is_prod(Context) ->
     case ginger_environment:get(Context) of
