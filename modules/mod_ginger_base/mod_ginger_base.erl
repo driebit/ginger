@@ -20,7 +20,8 @@
     observe_rsc_get/3,
     observe_search_query/2,
     observe_security_headers/2,
-    observe_acl_is_owner/2
+    observe_acl_is_owner/2,
+    observe_acl_is_allowed/2
 ]).
 
 -include("zotonic.hrl").
@@ -312,4 +313,32 @@ observe_acl_is_owner(#acl_is_owner{id = RscId, user_id = UserId}, Context) ->
     case lists:member(UserId, m_edge:objects(RscId, author, Context)) of
         true -> true;
         false -> undefined
+    end.
+
+
+%% moderator is allowed to change user groups is mod_admin_identity is used ; not allowed to change managers
+observe_acl_is_allowed(#acl_is_allowed{action=insert, object=#acl_edge{subject_id=SubjectId, predicate=Predicate, object_id=ObjectId}}, Context) ->
+    case { z_acl:is_allowed(use, mod_admin_identity, Context), m_rsc:is_a(SubjectId, person, Context), Predicate, m_rsc:is_a(ObjectId, acl_user_group, Context) } of
+        {true, true, hasusergroup, true} ->
+            check_dont_change_managers(ObjectId, Context);
+        _ -> 
+            undefined
+    end;
+observe_acl_is_allowed(#acl_is_allowed{action=delete, object=#acl_edge{subject_id=SubjectId, predicate=Predicate, object_id=ObjectId}}, Context) ->
+    case { z_acl:is_allowed(use, mod_admin_identity, Context), m_rsc:is_a(SubjectId, person, Context), Predicate, m_rsc:is_a(ObjectId, acl_user_group, Context) } of
+        {true, true, hasusergroup, true} ->
+            check_dont_change_managers(ObjectId, Context);
+        _ -> 
+            undefined
+    end;
+observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
+    undefined.
+
+check_dont_change_managers(ObjectId, Context) ->
+    UserGroupManagers = m_rsc:name_to_id_check(acl_user_group_managers, Context),
+    case ObjectId  of 
+        UserGroupManagers ->
+            false;
+        _ ->
+            true
     end.
