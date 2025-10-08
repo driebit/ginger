@@ -7,7 +7,7 @@
 -mod_title("Ginger Base").
 -mod_description("Ginger Base").
 -mod_prio(250).
--mod_depends([mod_content_groups, mod_acl_user_groups]).
+-mod_depends([mod_content_groups, mod_acl_user_groups, mod_admin_identity]).
 
 -mod_schema(13).
 
@@ -198,6 +198,27 @@ manage_schema(_Version, Context) ->
 %%observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
 %%    undefined.
 
+
+%% @doc Allow mod_admin_identity managers to impersonate other users
+event(#postback{message={switch_user, [{id, Id}]}}, Context) ->
+    CanSwitch = z_acl:is_admin(Context)
+        orelse z_acl:is_allowed(use, mod_admin_identity, Context),
+    case CanSwitch
+        andalso is_integer(Id)
+        andalso Id =/= 1
+    of
+        true ->
+            {ok, NewContext} = z_auth:switch_user(Id, Context),
+            Url = case z_acl:is_allowed(use, mod_admin, NewContext) of
+                      true ->
+                          z_dispatcher:url_for(admin, NewContext);
+                      false ->
+                          <<"/">>
+                  end,
+            z_render:wire({redirect, [{location, Url}]}, NewContext);
+        false ->
+            z_render:growl_error(?__("You are not allowed to switch users.", Context), Context)
+    end;
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
     ExtraActions = proplists:get_all_values(action, Args),
