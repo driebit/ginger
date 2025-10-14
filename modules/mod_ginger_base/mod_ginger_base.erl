@@ -201,12 +201,19 @@ manage_schema(_Version, Context) ->
 
 %% @doc Allow mod_admin_identity managers to impersonate other users
 event(#postback{message={switch_user, [{id, Id}]}}, Context) ->
-    CanSwitch = z_acl:is_admin(Context)
+    IsAdmin = z_acl:is_admin(Context),
+    CanSwitch = IsAdmin
         orelse z_acl:is_allowed(use, mod_admin_identity, Context),
-    case CanSwitch
+    ImpersonationEnabled = is_impersonation_enabled(Context),
+    AdminAllowed = IsAdmin
+        andalso is_integer(Id)
+        andalso Id =/= 1,
+    RegularAllowed = ImpersonationEnabled
+        andalso CanSwitch
         andalso is_integer(Id)
         andalso Id =/= 1
-    of
+        andalso not switching_between_moderators(Id, Context),
+    case AdminAllowed orelse RegularAllowed of
         true ->
             {ok, NewContext} = z_auth:switch_user(Id, Context),
             Url = case z_acl:is_allowed(use, mod_admin, NewContext) of
@@ -287,6 +294,56 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
         ]
     ),
     z_render:wire({script, [{script, JS}]}, Context).
+
+switching_between_moderators(TargetId, Context) ->
+    case is_horizontal_impersonation_allowed(Context) of
+        true ->
+            false;
+        false ->
+            case z_acl:is_admin(Context) of
+                true ->
+                    false;
+                false ->
+                    case z_acl:user(Context) of
+                        undefined ->
+                            false;
+                        TargetId ->
+                            false;
+                        SwitcherId when is_integer(SwitcherId) ->
+                            SudoContext = z_acl:sudo(Context),
+                            case m_rsc:rid(acl_user_group_moderators, SudoContext) of
+                                undefined ->
+                                    false;
+                                ModeratorGroupId ->
+                                    user_in_group(SwitcherId, ModeratorGroupId, SudoContext)
+                                        andalso user_in_group(TargetId, ModeratorGroupId, SudoContext)
+                            end;
+                        _ ->
+                            false
+                    end
+            end
+    end.
+
+user_in_group(UserId, GroupId, Context) when is_integer(UserId), is_integer(GroupId) ->
+    lists:member(GroupId, m_edge:objects(UserId, hasusergroup, Context));
+user_in_group(_, _, _) ->
+    false.
+
+is_impersonation_enabled(Context) ->
+    case m_config:get_value(mod_ginger_base, activate_impersonation, Context) of
+        undefined ->
+            false;
+        Value ->
+            z_utils:is_true(Value)
+    end.
+
+is_horizontal_impersonation_allowed(Context) ->
+    case m_config:get_value(mod_ginger_base, allow_horizontal_impersonation, Context) of
+        undefined ->
+            false;
+        Value ->
+            z_utils:is_true(Value)
+    end.
 
 %% @doc When a resource is persisted in the admin, update granularity for
 %%      granular date fields.

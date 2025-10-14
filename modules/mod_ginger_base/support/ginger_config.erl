@@ -36,5 +36,7 @@ get_config() ->
         {mod_l10n, timezone, <<"Europe/Berlin">>},
         %% Allow ginger-embed elements
         {site, html_elt_extra, <<"embed,iframe,object,script,ginger-embed">>},
-        {site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>}
+        {site, html_attr_extra, <<"data,allowfullscreen,flashvars,frameborder,scrolling,async,defer,data-rdf">>},
+        {mod_ginger_base, activate_impersonation, false},
+        {mod_ginger_base, allow_horizontal_impersonation, false}
     ].
