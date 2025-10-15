@@ -206,13 +206,11 @@ event(#postback{message={switch_user, [{id, Id}]}}, Context) ->
         orelse z_acl:is_allowed(use, mod_admin_identity, Context),
     ImpersonationEnabled = is_impersonation_enabled(Context),
     AdminAllowed = IsAdmin
-        andalso is_integer(Id)
         andalso Id =/= 1,
     RegularAllowed = ImpersonationEnabled
         andalso CanSwitch
-        andalso is_integer(Id)
         andalso Id =/= 1
-        andalso not switching_between_moderators(Id, Context),
+        andalso can_impersonate_user(Id, Context),
     case AdminAllowed orelse RegularAllowed of
         true ->
             {ok, NewContext} = z_auth:switch_user(Id, Context),
@@ -295,39 +293,63 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
     ),
     z_render:wire({script, [{script, JS}]}, Context).
 
-switching_between_moderators(TargetId, Context) ->
-    case is_horizontal_impersonation_allowed(Context) of
-        true ->
+can_impersonate_user(TargetId, Context) ->
+    case z_acl:user(Context) of
+        undefined ->
             false;
-        false ->
-            case z_acl:is_admin(Context) of
-                true ->
+        TargetId ->
+            true;
+        SwitcherId when is_integer(SwitcherId) ->
+            AllowHorizontal = is_horizontal_impersonation_allowed(Context),
+            SudoContext = z_acl:sudo(Context),
+            SwitcherGroups = direct_user_groups(SwitcherId, SudoContext),
+            TargetGroups = direct_user_groups(TargetId, SudoContext),
+            case {SwitcherGroups, TargetGroups} of
+                {[], _} ->
                     false;
-                false ->
-                    case z_acl:user(Context) of
-                        undefined ->
-                            false;
-                        TargetId ->
-                            false;
-                        SwitcherId when is_integer(SwitcherId) ->
-                            SudoContext = z_acl:sudo(Context),
-                            case m_rsc:rid(acl_user_group_moderators, SudoContext) of
-                                undefined ->
-                                    false;
-                                ModeratorGroupId ->
-                                    user_in_group(SwitcherId, ModeratorGroupId, SudoContext)
-                                        andalso user_in_group(TargetId, ModeratorGroupId, SudoContext)
-                            end;
-                        _ ->
-                            false
-                    end
-            end
+                {_, []} ->
+                    false;
+                _ ->
+                    lists:all(
+                      fun(TargetGroup) ->
+                          group_impersonation_allowed(TargetGroup, SwitcherGroups, SudoContext, AllowHorizontal)
+                      end,
+                      TargetGroups)
+            end;
+        _ ->
+            false
     end.
 
-user_in_group(UserId, GroupId, Context) when is_integer(UserId), is_integer(GroupId) ->
-    lists:member(GroupId, m_edge:objects(UserId, hasusergroup, Context));
-user_in_group(_, _, _) ->
-    false.
+direct_user_groups(UserId, Context) ->
+    lists:usort(acl_user_groups_checks:has_user_groups(UserId, Context)).
+
+group_impersonation_allowed(TargetGroup, SwitcherGroups, Context, AllowHorizontal) ->
+    TargetPath = user_group_path(TargetGroup, Context),
+    TargetPath =/= [] andalso
+        lists:any(
+          fun(SwitcherGroup) ->
+              SwitcherPath = user_group_path(SwitcherGroup, Context),
+              path_allows(TargetPath, SwitcherPath, AllowHorizontal)
+          end,
+          SwitcherGroups).
+
+user_group_path(GroupId, Context) ->
+    case mod_acl_user_groups:lookup(GroupId, Context) of
+        undefined ->
+            [GroupId];
+        Path when is_list(Path) ->
+            Path
+    end.
+
+path_allows(TargetPath, SwitcherPath, AllowHorizontal) when is_list(TargetPath), is_list(SwitcherPath) ->
+    case lists:suffix(TargetPath, SwitcherPath) of
+        true when AllowHorizontal ->
+            true;
+        true ->
+            length(SwitcherPath) > length(TargetPath);
+        false ->
+            false
+    end.
 
 is_impersonation_enabled(Context) ->
     case m_config:get_value(mod_ginger_base, activate_impersonation, Context) of
