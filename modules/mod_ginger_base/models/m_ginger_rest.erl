@@ -2,6 +2,9 @@
 -module(m_ginger_rest).
 
 -export([
+    m_find_value/3,
+    m_to_list/2,
+    m_value/2,
     rsc/2,
     with_edges/2,
     with_edges/3,
@@ -14,6 +17,28 @@
 
 -include_lib("zotonic.hrl").
 -include_lib("stdlib/include/qlc.hrl").
+
+
+m_find_value(resource, #m{value = undefined} = M, _Context) ->
+    M#m{value = [resource]};
+m_find_value(Id, #m{value = [resource]} = M, Context) ->
+    case m_rsc:rid(Id, Context) of
+        undefined -> undefined;
+        RId -> M#m{value = [resource, RId]}
+    end;
+m_find_value(with_edges, #m{value = [resource, Id]} = M, _Context) ->
+    M#m{value = [resource, Id, with_edges]};
+m_find_value(json, #m{value = [resource, Id, with_edges]}, Context) ->
+    jsx:encode(with_edges(rsc(Id, Context), Context));
+m_find_value(json, #m{value = [resource, Id]}, Context) ->
+    jsx:encode(rsc(Id, Context)).
+
+m_to_list(_, _Context) ->
+    [].
+
+m_value(_Source, _Context) ->
+    undefined.
+
 
 %% @doc Get REST resource properties.
 -spec rsc(m_rsc:resource(), z:context()) -> resource_properties() | undefined.
