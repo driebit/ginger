@@ -7,7 +7,7 @@
 -mod_title("Ginger Base").
 -mod_description("Ginger Base").
 -mod_prio(250).
--mod_depends([mod_content_groups, mod_acl_user_groups]).
+-mod_depends([mod_content_groups, mod_acl_user_groups, mod_admin_identity]).
 
 -mod_schema(13).
 
@@ -198,6 +198,32 @@ manage_schema(_Version, Context) ->
 %%observe_acl_is_allowed(#acl_is_allowed{}, _Context) ->
 %%    undefined.
 
+
+%% @doc Allow mod_admin_identity managers to impersonate other users
+event(#postback{message={switch_user, [{id, Id}]}}, Context) ->
+    IsAdmin = z_acl:is_admin(Context),
+    CanSwitch = IsAdmin
+        orelse z_acl:is_allowed(use, mod_admin_identity, Context),
+    ImpersonationEnabled = is_impersonation_enabled(Context),
+    AdminAllowed = IsAdmin
+        andalso Id =/= 1,
+    RegularAllowed = ImpersonationEnabled
+        andalso CanSwitch
+        andalso Id =/= 1
+        andalso can_impersonate_user(Id, Context),
+    case AdminAllowed orelse RegularAllowed of
+        true ->
+            {ok, NewContext} = z_auth:switch_user(Id, Context),
+            Url = case z_acl:is_allowed(use, mod_admin, NewContext) of
+                      true ->
+                          z_dispatcher:url_for(admin, NewContext);
+                      false ->
+                          <<"/">>
+                  end,
+            z_render:wire({redirect, [{location, Url}]}, NewContext);
+        false ->
+            z_render:growl_error(?__("You are not allowed to switch users.", Context), Context)
+    end;
 %% @doc Handle the submit event of a new comment
 event(#submit{message={newcomment, Args}, form=FormId}, Context) ->
     ExtraActions = proplists:get_all_values(action, Args),
@@ -266,6 +292,80 @@ event(#postback{message={map_infobox, _Args}}, Context) ->
         ]
     ),
     z_render:wire({script, [{script, JS}]}, Context).
+
+can_impersonate_user(TargetId, Context) ->
+    case z_acl:user(Context) of
+        undefined ->
+            false;
+        TargetId ->
+            true;
+        SwitcherId when is_integer(SwitcherId) ->
+            AllowHorizontal = is_horizontal_impersonation_allowed(Context),
+            SudoContext = z_acl:sudo(Context),
+            SwitcherGroups = direct_user_groups(SwitcherId, SudoContext),
+            TargetGroups = direct_user_groups(TargetId, SudoContext),
+            case {SwitcherGroups, TargetGroups} of
+                {[], _} ->
+                    false;
+                {_, []} ->
+                    false;
+                _ ->
+                    lists:all(
+                      fun(TargetGroup) ->
+                          group_impersonation_allowed(TargetGroup, SwitcherGroups, SudoContext, AllowHorizontal)
+                      end,
+                      TargetGroups)
+            end;
+        _ ->
+            false
+    end.
+
+direct_user_groups(UserId, Context) ->
+    lists:usort(acl_user_groups_checks:has_user_groups(UserId, Context)).
+
+group_impersonation_allowed(TargetGroup, SwitcherGroups, Context, AllowHorizontal) ->
+    TargetPath = user_group_path(TargetGroup, Context),
+    TargetPath =/= [] andalso
+        lists:any(
+          fun(SwitcherGroup) ->
+              SwitcherPath = user_group_path(SwitcherGroup, Context),
+              path_allows(TargetPath, SwitcherPath, AllowHorizontal)
+          end,
+          SwitcherGroups).
+
+user_group_path(GroupId, Context) ->
+    case mod_acl_user_groups:lookup(GroupId, Context) of
+        undefined ->
+            [GroupId];
+        Path when is_list(Path) ->
+            Path
+    end.
+
+path_allows(TargetPath, SwitcherPath, AllowHorizontal) when is_list(TargetPath), is_list(SwitcherPath) ->
+    case lists:suffix(TargetPath, SwitcherPath) of
+        true when AllowHorizontal ->
+            true;
+        true ->
+            length(SwitcherPath) > length(TargetPath);
+        false ->
+            false
+    end.
+
+is_impersonation_enabled(Context) ->
+    case m_config:get_value(mod_ginger_base, activate_impersonation, Context) of
+        undefined ->
+            false;
+        Value ->
+            z_utils:is_true(Value)
+    end.
+
+is_horizontal_impersonation_allowed(Context) ->
+    case m_config:get_value(mod_ginger_base, allow_horizontal_impersonation, Context) of
+        undefined ->
+            false;
+        Value ->
+            z_utils:is_true(Value)
+    end.
 
 %% @doc When a resource is persisted in the admin, update granularity for
 %%      granular date fields.
