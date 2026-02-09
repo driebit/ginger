@@ -253,9 +253,15 @@ path_to_id("/", Context) ->
 path_to_id(Path, Context) ->
     case string:tokens(Path, "/") of
         ["page", Id | _] ->
-            {ok, erlang:list_to_integer(Id)};
+            case m_rsc:rid(Id, Context) of
+                undefined -> {error, enoent};
+                RscId -> {ok, RscId}
+            end;
         [_Language, "page", Id | _] ->
-            {ok, erlang:list_to_integer(Id)};
+            case m_rsc:rid(Id, Context) of
+                undefined -> {error, enoent};
+                RscId -> {ok, RscId}
+            end;
         _ ->
             case m_rsc:page_path_to_id(Path, Context) of
                 {redirect, Id} ->
