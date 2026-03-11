@@ -1,0 +1,208 @@
+@use "sass:math";
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function px-to-rem($value) {
+    @return  $value*0.1;
+}
+
+/* Takes sizes in pixels and outputs both the pixel and rem values for the given property */
+@mixin size($property, $values...) {
+    $max: length($values);
+    $pxValues: '';
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: strip-unit(nth($values, $i));
+        $pxValues: #{$pxValues + $value}px;
+        $remValues: #{$remValues + px-to-rem($value)}rem;
+
+        @if $i < $max {
+            $pxValues: #{$pxValues + " "};
+            $remValues: #{$remValues + " "};
+        }
+    }
+
+    @if ($pxValues == $remValues) {
+        #{$property}: $pxValues;
+    } @else {
+        #{$property}: $pxValues;
+        #{$property}: $remValues;
+    }
+}
+
+/* Creates a mediaquery based on property and size in pixels */
+@mixin mq($property, $size) {
+    $value: strip-unit($size);
+
+    @media only screen and (#{$property}: #{$value}px ) {
+        @content;
+    }
+}
+
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin combinedSvgPngBackground($file, $embedSvg: false) {
+    background-image: url(#{$file}.png);
+
+    // SVG support correlates to multiple background support so browser that do not support SVG will
+    // ignore these rule because of the multiple background notation
+    @if $embedSvg == true {
+        background-image: url(#{$file}.svg?embed), none;
+    } @else {
+        background-image: url(#{$file}.svg), none;
+    }
+}
+
+// Grid responsive
+@mixin grid($values...) {
+    $max: length($values);
+
+    lost-column: 1/1;
+
+    @each $map in $values {
+
+        $mapBreakpoint: map-get($map, 'breakpoint');
+        $mapProperty: map-get($map, 'property');
+        $mapColumns: map-get($map, 'columns');
+
+        @include mq(#{$mapProperty}, $mapBreakpoint){
+            lost-column: #{$mapColumns};
+        }
+    }
+}
+
+// Long words stop breaking layout
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+@mixin styledInput {
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    input[type="checkbox"]:focus + label,
+    input[type="checkbox"]:active + label {
+        // Default
+        outline-style: dotted;
+        outline-width: 1px;
+        // WebKit
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+            content: '';
+            display: inline-block;
+            @include size(width, 15px);
+            @include size(height, 15px);
+            @include size(margin-right, 15);
+            position: relative;
+            top: 2px;
+            background: #FFFFFF;
+            border: 1px solid #979797;
+            box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.3);
+            border-radius: 2px;
+        }
+    }
+
+    input[type="radio"] + label {
+        &:before {
+            border-radius: 50%;
+        }
+    }
+
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label {
+        &:after {
+            content: '';
+            width: 5px;
+            height: 10px;
+            position: absolute;
+            top: 6px;
+            left: 5px;
+            border-right: 2px solid $mainThemeColor;
+            border-bottom: 2px solid $mainThemeColor;
+            transform: rotate(45deg);
+        }
+    }
+
+    input[type="radio"]:checked + label {
+        &:after {
+            width: 9px;
+            height: 9px;
+            top: 6px;
+            left: 3px;
+            background: $mainThemeColor;
+            border-radius: 50%;
+            border: none;
+            transform: none;
+        }
+    }
+}
+
+// Give aspect ratio to div
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &:before {
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+    }
+
+    > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+// Sets the style only for pseudo selectors
+@mixin setPseudoAll {
+    &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
+        @content;
+    }
+}
+
+// Sets only the interactive pseudo selectors
+@mixin setInteractive {
+    &:hover, &:active, &:focus, &:focus:active {
+        @content;
+    }
+}
+
+// Sets the style to pseudo selectors AND base default anchor
+@mixin setLinkAll {
+    &, &:hover, &:link, &:active, &:visited, &:focus, &:focus:active {
+        @content;
+    }
+}
+
