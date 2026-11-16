@@ -79,7 +79,7 @@ to_hydra(ReqData, State) ->
         next = Next,
         prev = Previous
     } = z_search:search_pager({State#state.query_type, search_arguments(QueryId, Context)}, Page, Limit, Context),
-    RdfResults = [m_rdf_export:to_rdf(Id, [State#state.ontologies], Context) || Id <- Result, m_rsc:is_visible(Id, Context)],
+    RdfResults = [m_rdf_export:to_rdf(Id, State#state.ontologies, Context) || Id <- Result, m_rsc:is_visible(Id, Context)],
 
     HydraCollectionUrl = hydra_url(QueryId, page(RequestArgs, undefined), Context), %% The Hydra collection.
     HydraViewUrl = hydra_url(QueryId, page(RequestArgs, Page), Context), %% The paged view on the Hydra collection.
